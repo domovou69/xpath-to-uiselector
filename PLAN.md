@@ -6,172 +6,176 @@ Converts Appium XPath locators in Android tests to UiAutomator2 `UiSelector` loc
 Started 2026-10-20. Follow-up to:
 
 - [xpath-to-class-chain](https://github.com/domovou69/xpath-to-class-chain): the same tool for iOS. Its
-  scanner, report, CLI and audit method are the template.
+  final state (v1.0.2) is the target shape: CLI, report, strategy markers, audit, skill, npm, upstream watch.
 - [appium-android-locator-benchmark](https://github.com/domovou69/appium-android-locator-benchmark):
   `UiSelector` was faster than XPath in 30 of 30 cases (49 % at 100 elements, 12 % at 2000), and XPath
-  finds nothing deeper than 70 levels (`snapshotMaxDepth`). That is the reason to build this.
+  finds nothing deeper than 70 levels. Speed is already measured; this project does not measure it again.
+
+## Review of the first draft (2026-10-20)
+
+The first draft copied xpath-to-class-chain's order: write the converter, then build an oracle, then fix.
+That order cost the iOS project most of its 89 commits: the first audit scored R 72 / S 7.7, then came
+root-cause rounds RC1–RC15, RC-D1–D4, Phase 5 A–D, an LLM comparison that found 24 GAPs the spec matrix
+had missed, and ~10 release-polish PRs (bin bit, short npm README, metadata). A check of the pinned
+UiAutomator2 server sources (v10.6.6) also refuted parts of the draft's rule table. Changes:
+
+| # | Draft | Problem | Now |
+| --- | --- | --- | --- |
+| 1 | XPath 2.0 functions skipped as "invalid XPath 1.0" | The server evaluates XPath with Eclipse PsychoPath (**XPath 2.0**) unless the `enforceXPath1` setting is on (`AccessibilityNodeInfoDumper.findNodes`). `ends-with`, `matches`, `lower-case`, `@a=("x","y")` are valid on Android | Converted where exact; the engine is a pinned assumption, with XPath 1.0 mode listed as a limit |
+| 2 | Rules from memory, "verify" later | The device check came after the converter, as on iOS | Stage 1 writes reference excerpts from the pinned sources; every row gets an S case with a hand-written expected `UiSelector`, run on the device **before** the converter exists |
+| 3 | Host harness with a `UiSelector` matcher transcribed from androidx | A second implementation to keep right (mini-WDA needed a Phase 2 correction); the emulator answers in ~50–100 ms per lookup | One oracle: the real server on the emulator, with random trees rendered from JSON (section 5). No transcribed matcher |
+| 4 | Converter logic copied 1:1 (string/regex based) | Most iOS fix rounds were string-handling bugs: `and`/`or` precedence (RC7), literals (B1), `not (` (B2), XPath 2.0 syntax passed through as `success` (P1). On Android XPath 2.0 is the default, so the input grammar is larger | Scanner, CLI, report, strategy markers 1:1; the converter core parses XPath into an AST and converts a whitelisted subset; anything else is a skip with a reason |
+| 5 | Not covered | `classNameMatches` makes `findElements` iterate `index(0..n)` instead of `instance` (`ByUiAutomatorFinder.matchDescendantElements`); `instance(n)` makes `findElements` return one element | Rules in section 3; `classNameMatches` only with a warning |
+| 6 | Not covered | The server's string literal unescapes only `\"`; a backslash stays as is, and a value ending in `\` cannot be written (`UiExpressionParser.coerceArgToType`) | Literal rules in section 3 |
+| 7 | Not covered | Dynamic XPaths: `String.format("…%s…")`, `"…" + name + "…"`, f-strings, Kotlin `$x`, C# `{0}`, JS `${}`. Common in Java/Python suites | Scanner rules in section 2 |
+| 8 | Not covered | Mixed web/mobile repos: Selenium or WebView XPaths (`//div`, `//button`, `text()`) must not be touched | Android signal required (section 2) |
+| 9 | Not covered | Conversions are exact only for default driver settings (`enforceXPath1`, `allowInvisibleElements`, `ignoreUnimportantViews`, `enableMultiWindows`, `snapshotMaxDepth`, `normalizeTagNames`) | Settings recorded in `docs/environment.md`; limits section in the README |
+| 10 | Real device, timing, LLM comparison implied by "like iOS" | On iOS the iPhone gave 246/246 the same outcomes as the simulator; timing is done by the benchmark; LLM comparison is not needed for the tool | Dropped. Optional later: an article |
+| 11 | Release polish at the end | ~10 iOS PRs were packaging fixes | Done in stage 0: `bin` mode 100755, `files`, short npm README, keywords, CI, `engines` |
+| 12 | 9 stages, ≈11–12 h plus an open-ended fix round | | 6 stages, ≈8 h (section 6) |
 
 ## Principles
 
-- **Exact or skip.** A locator is converted only when the `UiSelector` selects the same element. Forms
-  that are only close are converted with a warning (as `(//X)[n]` on iOS) and listed as such; everything
-  else is skipped with a reason.
-- **Sources, then the device.** Every rule cites the line in the pinned UiAutomator2 server / androidx
-  `uiautomator` sources it relies on. Where the device disagrees with a rule, the device wins.
-- **Pinned versions.** Appium, the uiautomator2 driver and server, the emulator image and the app build
-  are recorded in `docs/environment.md`, like in the benchmark. Results are valid for those versions.
-- **No runtime dependencies**, Node 20+, the same as xpath-to-class-chain. Audit scripts may use
-  devDependencies (Appium, an XPath engine).
+- **Exact or skip.** A locator is converted only when the `UiSelector` selects the same elements in the
+  same order. Close forms convert with a warning and are listed; everything else is skipped with a reason.
+- **Spec first, oracle first, converter last.** Every rule has a reference row (source file and line at
+  the pinned tag), an S case, and an oracle result on the emulator before the converter implements it.
+- **One oracle: the device.** UiAutomator2 server on the emulator decides. No re-implementation of
+  XPath or `UiSelector` matching.
+- **Pinned versions and settings** in `docs/environment.md`: Appium 3.8.0, appium-uiautomator2-driver
+  8.7.0, server 10.6.6 (PsychoPath vendored at commit `544c11a`), `androidx.test.uiautomator` version
+  from the server's catalog, emulator image, default settings.
+- **No runtime dependencies**, Node 20+. Audit scripts may use devDependencies.
 
-## 1. What carries over from xpath-to-class-chain
+## 1. What carries over from xpath-to-class-chain (v1.0.2)
 
 | Part | Decision |
 | --- | --- |
-| `walkDir`, symlink / UTF-8 / ignore-dir rules, `--write` / `--json` / `--quiet`, report shape, `STATUS` | 1:1 |
-| Quote/bracket-aware tokenizer, union splitter, `maskQuotedValues`, grouped `(…)[n]` unwrapping, `concat()` folding, literal escaping | 1:1, then tests re-pointed at Android examples |
-| Explicit XPath strategy markers per language (`lib/strategy.js`) | Reused to **find** the call; here the call is rewritten too (section 2) |
-| Platform detection | Inverted: iOS locators (`XCUIElementType*`, `ios:` key) are skipped, Android ones are converted |
-| Predicate → NSPredicate rewrite, validator, optimizer | Replaced: a `UiSelector` builder, a validator for existing `new UiSelector()` strings, and a small optimizer (method order, duplicate merge) |
-| Element type table (`elementTypes.js`) | Replaced: no closed list on Android; class names are taken as written |
-| Audit layout (`corpus/`, `harness/`, `device/`, `coverage-cases.json`, verdicts and scoring) | Same structure and the same verdict names |
-| Claude skill folder, npm packaging, upstream watch | Same, at the end |
+| `walkDir` (symlinks, UTF-8 round-trip, ignore dirs), CLI flags (`--write` needs a folder, `--json`, `--quiet`, unknown flags rejected), report shape, `STATUS`, quote escaping on write | 1:1 |
+| Explicit strategy markers per language (`lib/strategy.js`) | 1:1 for finding the call; extended to rewrite it (section 2) |
+| Platform detection | Inverted: iOS locators and `ios:` keys are skipped |
+| `${…}` handling, `concat()` folding, `.//X`, `descendant::`/`child::`/`self::` normalization, unions, grouped `(…)[n]`, `\"…\"` (JSON / Java) literals | Same behaviour, re-implemented on the AST |
+| NSPredicate rewrite, class chain validator and optimizer, `elementTypes.js` | Replaced: `UiSelector` emitter, validator for existing `new UiSelector()` strings, method-order normalizer |
+| `npm test` style (one dependency-free test file), `audit/` layout, verdicts and scoring, `coverage-cases.json` | Same |
+| Claude skill, npm metadata, upstream watch (GitHub Action, monthly) | Same; watched files are the server files cited in `reference/` |
 
 ## 2. Input and output
 
-**Input** is a path (file or folder). The scanner finds quoted strings that look like XPath and carry an
-Android signal (`android.`, `@resource-id`, `@content-desc`, `@text`, `@class`, `/hierarchy`, …).
+**Input** is a path. The scanner finds quoted strings that look like XPath **and** carry an Android
+signal: a dotted class step (`android.widget.*`, `androidx.*`, any `a.b.C` tag), `/hierarchy`, or an
+UiA2 attribute (`@resource-id`, `@content-desc`, `@class`, `@package`, `@clickable`, …). A bare `//div`,
+`//*[text()=…]` with no other signal, and `ios:` values are left alone (web / WebView / iOS).
 
-Formats, in order of work (to be re-ordered by what the R corpus actually contains, stage 2):
+**Dynamic locators** keep their placeholders: `%s`/`%d` (`String.format`), `{0}`/`{name}` (C#,
+Python `format`, f-strings), `$x`/`${x}` (Kotlin, JS, Groovy), and concatenation (`"…" + x + "…"`,
+converted only when the pieces join into one predicate literal). A placeholder inside a literal gets a
+warning: a runtime value with `"` or a trailing `\` breaks the `UiSelector` (section 3).
 
-1. Java, Kotlin (java-client: `AppiumBy.xpath`, `By.xpath`, `MobileBy.xpath`, `@AndroidFindBy(xpath = …)`)
-2. Python (`(AppiumBy.XPATH, …)`, `find_element(By.XPATH, …)`)
-3. JS / TS (WebdriverIO `$('//…')`, `{ xpath: … }`, `findElement('xpath', …)`)
-4. C#, Ruby, then data files (JSON, YAML, `.properties`, `.feature`)
-
-**Output depends on the place.** On iOS a plain string could just get the `-ios class chain:` prefix. On
-Android most suites name the strategy in code, so changing only the string breaks the locator. The
-converter rewrites the strategy and the string together where it recognizes the call:
+**Output** rewrites the strategy and the string together where the call is recognized:
 
 | Where | Before | After |
 | --- | --- | --- |
-| WebdriverIO string | `$('//android.widget.Button[@text="OK"]')` | `$('android=new UiSelector().className("android.widget.Button").text("OK")')` |
-| java-client | `AppiumBy.xpath("…")`, `By.xpath("…")`, `MobileBy.xpath("…")` | `AppiumBy.androidUIAutomator("…")` |
-| Page Factory | `@AndroidFindBy(xpath = "…")` | `@AndroidFindBy(uiAutomator = "…")` |
-| Python | `(AppiumBy.XPATH, "…")`, `find_element(By.XPATH, "…")` | `(AppiumBy.ANDROID_UIAUTOMATOR, "…")` |
+| WebdriverIO | `$('//android.widget.Button[@text="OK"]')` | `$('android=new UiSelector().className("android.widget.Button").text("OK")')` |
+| java-client | `AppiumBy.xpath(…)`, `By.xpath(…)`, `MobileBy.xpath(…)` | `AppiumBy.androidUIAutomator(…)` |
+| Page Factory | `@AndroidFindBy(xpath = …)` | `@AndroidFindBy(uiAutomator = …)` |
+| Python | `(AppiumBy.XPATH, …)`, `find_element(By.XPATH, …)` | `(AppiumBy.ANDROID_UIAUTOMATOR, …)` |
 | Ruby, C# | `find_element(:xpath, …)`, `MobileBy.XPath(…)` | `:uiautomator`, `MobileBy.AndroidUIAutomator(…)` |
-| Data files, unknown calls | any | not changed; listed in the report with the `UiSelector` it would be (`skipped_unknown_strategy`) |
+| Data files, unknown calls, Selenium 3 `*_by_xpath` | any | unchanged; reported with the `UiSelector` (`skipped_unknown_strategy`) |
 
-The quotes inside the `UiSelector` are escaped for the host language (`\"` in Java / Kotlin / C#).
-Selenium 3 helpers (`find_element_by_xpath`, `findElementByXPath`) have no `UiSelector` twin and are
-report-only. Existing `new UiSelector()` strings are validated (balanced quotes and parentheses, known
-methods) but not rewritten.
+Order of languages follows the R corpus frequencies (stage 2); Java, Kotlin, Python, JS/TS first.
 
-## 3. Conversion rules: exact / close / skip
+## 3. Rules (draft, confirmed by stage 3)
 
-A first draft from the benchmark and from what UiAutomator2 is known to do. Stage 1 confirms each row in
-the pinned sources (and fills in the full attribute list); stage 5 confirms it on the device. Rows marked
-"verify" are the ones most likely to move.
+Facts below are from the server sources at v10.6.6; rows marked **oracle** depend on device behaviour.
 
-| XPath form | `UiSelector` | Class | Notes |
-| --- | --- | --- | --- |
-| `//T` | `className("T")` | exact | the tag is the class name in UiA2's XML; check tag sanitizing (`$`, inner classes) |
-| `@text="v"`, `contains(@text,"v")`, `starts-with(@text,"v")` | `text`, `textContains`, `textStartsWith` | exact | verify `""` vs. a missing text |
-| the same on `@content-desc`, `@resource-id`, `@class`, `@package` | `description*`, `resourceId`, `className`, `packageName` | exact | `resourceId` has no Contains / StartsWith: use `resourceIdMatches` with an escaped literal |
-| `contains(@class,"v")` and other `*Contains` without a method | `…Matches("(?s).*<escaped v>.*")` | exact | Java `matches()` is a full match and `.` skips `\n` without `(?s)` |
-| `@checked`, `@checkable`, `@clickable`, `@enabled`, `@focusable`, `@focused`, `@long-clickable`, `@scrollable`, `@selected` = `"true"`/`"false"` | the boolean method | exact | `not(@x="true")` → `x(false)` only if the attribute is always present (verify) |
-| `@index="n"` | `index(n)` | verify | both should read the same child index |
-| `[a and b]` on different attributes | chained methods | exact | |
-| two conditions on the **same** attribute | one `…Matches` regex, or skip | verify | `UiSelector` keeps one value per attribute: a second `textContains` replaces the first |
-| `@x="a" or @x="b"` (same attribute) | `xMatches("a\|b")`, escaped | exact | |
-| `or` across attributes, unions of different paths | — | skip | `;`-joined selectors exist in the server parser, but the order of results differs |
-| `(//X)[n]` | `instance(n-1)` | close, maybe exact | `instance` counts in traversal order; exact if that equals document order (verify) |
-| `//X[n]` (position among siblings) | — | skip | no per-parent position |
-| `(//X)[last()]`, `position()`, `count()` | — | skip | |
-| `//A//B` | `A.childSelector(B)` | close | `childSelector` semantics with several matching `A` need the device |
-| `//A/B` (direct child), `//A[.//B]` (has descendant) | — | skip | no child-only or has-descendant filter in `UiSelector` |
-| sibling / parent / ancestor / following axes | — | skip | `fromParent` is a candidate for later, after device checks |
-| absolute paths `/hierarchy/android.widget.FrameLayout/…` | — | skip, reason "absolute path" | expected to be common in weak projects (Inspector output); the report suggests a stable attribute when the element has one |
-| `text()` | — | skip | UiA2's XML has no text nodes, so the XPath matches nothing (verify) |
-| `translate(@text,"A…Z","a…z")="v"` | `textMatches("(?i)…")` | verify | Java `(?i)` is ASCII-only by default, like `translate` with ASCII alphabets |
-| `normalize-space()`, `string-length()`, `not()` on text, numeric comparisons | — | skip | |
-| XPath 2.0 functions (`ends-with`, `matches`, `lower-case`) | — | skip, reason "invalid XPath 1.0" | if the server's engine is XPath 1.0, the original locator throws already (verify) |
+| XPath (server default: XPath 2.0) | `UiSelector` | Class |
+| --- | --- | --- |
+| `//T` | `className("T")` | exact, unless `T` was rewritten by the dumper (`$ @ # &` → `.`, `normalizeTagNames`): skip such names |
+| `@text`, `@content-desc`, `@resource-id`, `@class`, `@package` with `=`, `contains`, `starts-with` | `text`/`textContains`/`textStartsWith`, `description*`, `resourceId`, `className`, `packageName` | exact. A null attribute is not written to the XML at all, and `UiSelector` fails on null: oracle for `=""` |
+| `ends-with`, `contains` where no method exists, `matches(@a, p)` | `…Matches("(?s)…")`, metacharacters escaped one by one | exact for literals; `matches()` with flags or XSD-only syntax: oracle or skip |
+| `lower-case(@a)="v"`, `upper-case`, `translate` with ASCII alphabets | `…Matches("(?i)…")` | oracle (Java `(?i)` is ASCII-only by default) |
+| `@a=("x","y")`, `@a="x" or @a="y"` | `…Matches("x\|y")`, escaped | exact |
+| 9 booleans: `checkable`, `checked`, `clickable`, `enabled`, `focusable`, `focused`, `long-clickable`, `scrollable`, `selected` | the method | exact |
+| `@index="n"` | `index(n)` | oracle |
+| other ~40 attributes (`bounds`, `displayed`, `hint`, `password`, `a11y-*`, `input-type`, …) | — | skip: no `UiSelector` method |
+| `and` across attributes | chained methods | exact |
+| two conditions on one attribute | one `…Matches` with lookaheads, or skip | `UiSelector` keeps one value per criterion; oracle |
+| `or` across attributes, unions of different paths | — | skip (`;` statements are concatenated per selector then deduped: not document order) |
+| `(//X)[n]` | `instance(n-1)` | oracle; `findElements` returns only that one, as XPath does |
+| `//X[n]`, `last()`, `position()`, `count()` | — | skip |
+| `//A//B` | `childSelector` | oracle; skip if it differs |
+| `//A/B`, `[.//B]`, sibling/parent/ancestor axes | — | skip (`fromParent` only if the oracle shows an exact case) |
+| `/hierarchy/…` absolute paths | — | skip, reason "absolute path"; counted in the report |
+| `text()` | — | skip: the dump has no text nodes, the XPath matches nothing (oracle) |
+| `classNameMatches` in the output | — | warning: `findElements` iterates `index(0..n)` with it, not `instance` |
+| Literals: a value ending in `\`, or `\` before `"` | — | skip: the server unescapes only `\"` |
+| XPath syntax outside the AST whitelist | — | skip "unsupported syntax" |
 
-Generated regexes escape every metacharacter one by one (no `\Q…\E`: a literal `\E` would end it).
-Deep trees: XPath sees nothing below depth 70, `UiSelector` does. Such cases are listed as a known,
-favourable difference, not as wrong.
+## 4. Reference, S and R
 
-## 4. Locator groups R and S
+**Reference** (`reference/`, short quotes with links, Apache-2.0 / EPL sources): each row has an id.
 
-**S (synthetic edge cases).** Written by hand, about 120 cases in categories like iOS: attributes,
-booleans, string functions, logic, positions, paths and descendants, literals and escaping (quotes,
-`\n`, `$`, `\`, backticks, non-ASCII), regexes and case, unions, absolute paths, `not()`, invalid XPath.
-Each case has an expected class (exact / close / skip) and, where it converts, the expected `UiSelector`.
+- `uia2-server.md`: engine choice, XML dump (attributes, null omission, tag rewriting, non-XML chars,
+  toast and multi-window roots), `UiAutomatorParser` (statements, literals), `ByUiAutomatorFinder`
+  (`instance`, `CLASS_REGEX`, dedupe), lookup settings.
+- `uiselector-api.md`: every `UiSelector` method of the bundled androidx version, with its matching rule.
+- `xpath.md`: the PsychoPath functions and operators that real locators use; XPath 1.0 differences.
 
-**R (real locators).** No own corpus, so R is mined from about 10 open-source projects on GitHub:
+**S (synthetic).** Generated from the reference: at least one case per row, plus literal edge cases
+(quotes, `\n`, `\`, `$`, `%s`, non-ASCII, empty). Each case has the expected class and a hand-written
+`UiSelector`. `npm run spec:check` fails if a reference row has no case. Expected size ≈150.
 
-- **Large**: real apps or well-kept sample suites (Appium / WebdriverIO / Sauce Labs / BrowserStack demo
-  test suites, open-source apps with an Appium Android suite).
-- **Weak**: student and tutorial projects, framework starters, suites with Inspector-generated absolute
-  paths. They are where XPath is most often used badly, and the tool should handle them.
-- Selection: Android XPath present, at least ~20 locators, a license that allows quoting (MIT, Apache,
-  BSD; others only if the locators are anonymized and the repo is only referenced), last commit noted.
-- Search: `gh search code` for `AppiumBy.xpath("//android`, `@AndroidFindBy(xpath`, `AppiumBy.XPATH`,
-  `$('//android.widget`, `/hierarchy/android.widget`, by language; then a shallow, sparse clone of the
-  test folders only (no full app checkouts on the hotspot).
-- Storage: `audit/corpus/android-locators.json` with the same fields as iOS (`id`, `kind`, `quote`,
-  `source`, `count`) plus the project id; literals anonymized as on iOS, structure untouched;
-  `audit/corpus/sources.md` lists repo, commit, license and how many locators each gave. Target: 400+
-  unique locators, no project above ~25 % of the total.
-- The scanner is also run on the untouched project folders (scanner tests per language, like
-  `audit/corpus/contexts/` on iOS).
+**R (real).** About 10 open-source projects with Android Appium tests, large and weak (tutorials,
+starters, Inspector-generated absolute paths). Search with `gh search code` (`AppiumBy.xpath("//android`,
+`@AndroidFindBy(xpath`, `AppiumBy.XPATH`, `$('//android.widget`, `/hierarchy/android`); sparse clone of
+test folders only. `audit/corpus/android-locators.json` (anonymized literals, same fields as iOS plus
+project), `audit/corpus/sources.md` (repo, commit, license, count). Target 400+ unique locators, no
+project above ~25 %. The untouched files also serve as scanner tests.
 
-## 5. Test app and the two-level check
+## 5. The oracle
 
-**Test app** `LocatorLab` (Android), built from the benchmark's `ScaleActivity`: screens rendered from
-JSON assets, so a new edge case is a JSON entry, not new Kotlin. View-based first; one Compose screen
-later (testTag → `resource-id`). Screens: duplicates at different depths (instance vs. document order),
-nested matching containers (`childSelector`), empty vs. missing text and description, `\n` and non-ASCII
-text, all boolean states, a list, a chain deeper than 70 levels, both platform keys in one page object.
+**App** `LocatorLab` (Android), from the benchmark's `ScaleActivity`: screens are JSON. One generic view
+sets every attribute from JSON through its accessibility node (`getAccessibilityClassName`,
+`setViewIdResourceName`, text, description, the 9 booleans), so any class name or resource id from a
+corpus literal renders without rebuilding. A 30-minute spike in stage 3 confirms that UiA2 reports these
+values; fallback: generated `ids.xml` and one rebuild per corpus change.
 
-**Level 1, host (fast, no device).** Unit tests in `npm test` (every rule row, every skip reason, the
-scanner per language). Plus a harness: page sources in UiA2's XML format (generated from each locator's
-own literals and classes, ~200 per locator, like iOS), the XPath evaluated by an XPath 1.0 engine of the
-same family as the server's, and the `UiSelector` evaluated by a matcher transcribed from the pinned
-androidx `UiSelector` / server code. It compares result sets and the first element, and fuzzes R.
+**Runner** (`audit/device/run.js`, local Appium as devDependency, `--resume`, headless `AOSP_API_36`, AC
+power, Low Power Mode off). For each case: `findElements` with the XPath and with the `UiSelector`,
+compare element lists by attribute fingerprint and order. Outcomes `EQUAL`, `SET_DIFFERS`,
+`ORDER_DIFFERS`, `XPATH_ONLY`, `UISEL_ERROR`, `XPATH_ERROR`.
 
-**Level 2, device (ground truth).** Appium + the emulator (`AOSP_API_36`, headless, AC power, no Low
-Power Mode). For every S case and a sample of R adapted to the app screens: run the XPath and the
-`UiSelector`, compare the elements (attribute fingerprint, as in the benchmark). Outcomes as on iOS
-(`EQUAL`, `SET_DIFFERS`, `FIRST_DIFFERS`, `XPATH_ONLY`, `UISEL_ERROR`, …). Level 1 must agree with Level 2
-on every S case; a disagreement fixes the matcher before any number is published.
+- **S mode:** fixed screens with traps (duplicates at several depths, nested matches, null vs. empty,
+  all booleans, deep chain, two windows / toast).
+- **Fuzz mode:** for R, random screens built from the literals of each batch of locators (≈5 screens per
+  batch, ≈500 locators): ≈1–2 h in the background, replaces the iOS mini-WDA fuzz.
+- Lookup time is recorded on every run (free data, not a benchmark).
 
-**Scoring** as on iOS: verdicts CORRECT, CORRECT-SKIP, DRIFT (documented: 0.5), WRONG, GAP;
+**Scoring** as on iOS: CORRECT, CORRECT-SKIP, DRIFT (documented, 0.5), WRONG, GAP;
 R = 100 × (CORRECT + 0.5 × DRIFT) / expressible, S per category, C = converted / real. Release needs
-0 WRONG.
+0 WRONG and 0 GAP on S (the expected `UiSelector`s were proven on the device first).
 
 ## 6. Stages
 
-Each stage is one branch and one PR into `main`. Estimates are for one person-session with Claude; the
-share is of the 5-hour window.
+One branch and one PR per stage, into `main`. Share is of the 5-hour window.
 
 | # | Stage | Result | Estimate |
 | --- | --- | --- | --- |
-| 0 | Scaffold | `package.json`, CLI skeleton, tests runner, CI, `docs/environment.md`, carried-over modules with tests | ≈40 min, ≈8 % |
-| 1 | Semantics from sources | `docs/semantics.md`: server parser, XPath engine, XML attributes, `UiSelector` matching at the pinned versions; section 3 table confirmed or corrected | ≈60 min, ≈12 % |
-| 2 | R corpus | ~10 projects chosen, locators extracted and anonymized, `sources.md`, frequency of forms and formats | ≈75 min, ≈15 %, downloads ≈100–300 MB |
-| 3 | Converter core | exact rules, skips with reasons, close forms with warnings, validator, unit tests | ≈2 h, ≈25 % |
-| 4 | Scanner and strategy rewrite | per-language call rewrite, report, CLI flags, scanner tests on the R project folders | ≈90 min, ≈18 % |
-| 5 | Test app and device runner | LocatorLab-Android, S matrix on the emulator (Gradle build and runs in the background) | ≈2 h, ≈25 % |
-| 6 | Host harness and report | Level 1 harness, R and S scores, `audit/coverage-report.md` | ≈90 min, ≈18 % |
-| 7 | Fix round | fixes from stages 5–6, re-runs | 1–2 sessions, unknown until 6 |
-| 8 | Release | README, `docs/reference.md`, Claude skill, npm publish (after your OK), upstream watch | ≈60 min, ≈12 % |
+| 0 | Scaffold and carry-over | package (bin, files, engines, keywords, short npm README), CI, `docs/environment.md`, scanner / CLI / report / strategy markers with their tests, ported to Android detection | ≈45 min, ≈9 % |
+| 1 | Reference and S | `reference/` excerpts at the pinned tags, S cases with expected `UiSelector`, `spec:check` | ≈75 min, ≈15 % |
+| 2 | R corpus | ~10 projects, extraction, anonymization, `sources.md`, form and language frequencies | ≈60 min, ≈12 %; downloads ≈100–300 MB |
+| 3 | Oracle | LocatorLab spike and screens, runner, S run on the emulator: every S expectation confirmed or corrected (no converter yet) | ≈90 min, ≈18 %; Gradle build and runs in the background |
+| 4 | Converter | AST parser (whitelist), `UiSelector` emitter, strategy rewrite, unit tests; loop until S has 0 WRONG / 0 GAP; R fuzz run in the background | ≈2.5 h, ≈30 % |
+| 5 | Report and release | `audit/coverage-report.md`, README with limits and settings, `docs/reference.md`, Claude skill, upstream watch; npm publish after your OK | ≈60 min, ≈12 % |
 
-Total without stage 7: ≈11–12 h, about 2.5 windows. The order can change: stage 2 first is possible if
-the frequencies should drive stage 1.
+Total ≈8 h, under two windows. Stages 1 and 2 are independent and can swap. Fixes found by the R fuzz
+go into stage 4, not into a separate round.
 
 ## Open questions
 
-1. Rewrite the strategy call together with the string (section 2), or skip such locators as on iOS?
-   Recommended: rewrite, otherwise most Java / Python suites get nothing.
-2. Close forms (`instance`, `childSelector`): convert with a warning, as on iOS, or skip unless
-   `--allow-close`? Recommended: as on iOS, until the device shows they are exact or wrong.
+1. Converter core on an AST instead of copying the class-chain string logic (change 4). This departs
+   from "logic almost 1:1". Recommended: yes; the scanner, CLI and report stay 1:1.
+2. Rewrite the strategy call together with the string (section 2). Recommended: yes, otherwise most
+   Java / Python suites get nothing.
+3. Close forms (`childSelector`, `classNameMatches`): convert with a warning, as on iOS, or skip unless
+   `--allow-close`. Recommended: decide after stage 3, when the oracle shows which are exact.
