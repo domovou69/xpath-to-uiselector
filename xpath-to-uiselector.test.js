@@ -123,6 +123,73 @@ console.log('— CONVERTER (placeholder) —');
 }
 
 // =====================================================================
+// UISELECTOR PARSER — the server's literal rules (reference SRV-20..SRV-24).
+// [string, ok, calls (name=value pairs) when ok]
+// =====================================================================
+const { parseUiSelector } = require('./lib/uiselector');
+const PARSE_CASES = [
+  ['new UiSelector()', true, []],
+  ['new UiSelector().text("OK")', true, [['text', 'OK']]],
+  ['new UiSelector().className("a.B").checked(false).index(2).instance(0)', true,
+    [['className', 'a.B'], ['checked', false], ['index', 2], ['instance', 0]]],
+  ['new UiSelector().text("a\\"b")', true, [['text', 'a"b']]], // \" → "
+  ['new UiSelector().text("a\\\\b")', true, [['text', 'a\\\\b']]], // a backslash stays as written
+  ['new UiSelector().textMatches("a\\x22b")', true, [['textMatches', 'a\\x22b']]],
+  ['new UiSelector().text("f(x);")', true, [['text', 'f(x);']]], // ( ) ; inside a literal
+  ['new UiSelector().text("a\nb")', true, [['text', 'a\nb']]],
+  ['new UiSelector().className("L").childSelector(new UiSelector().text("x"))', true,
+    [['className', 'L'], ['childSelector', '[text=x]']]],
+  // rejected
+  ['new UiSelector().text("a\\")', false], // a trailing backslash escapes the closing quote
+  ['new UiSelector().text(OK)', false],
+  ['new UiSelector().checked("true")', false],
+  ['new UiSelector().index(x)', false],
+  ['new UiSelector().foo("x")', false],
+  ['new UiSelector().text("a");new UiSelector().text("b")', false], // one statement only
+  ['UiSelector().text("a")', false],
+  ['new UiSelector().text("a"', false],
+];
+
+console.log('— UISELECTOR PARSER —');
+for (const [str, wantOk, wantCalls] of PARSE_CASES) {
+  const res = parseUiSelector(str);
+  const show = calls => calls.map(c => [c.name, c.value && c.value.calls ? `[${c.value.calls.map(s => `${s.name}=${s.value}`).join(',')}]` : c.value]);
+  const got = res.ok ? JSON.stringify(show(res.selector.calls)) : null;
+  if (res.ok === wantOk && (!wantOk || got === JSON.stringify(wantCalls))) ok();
+  else fail(`PARSE ${JSON.stringify(str)}\n     expected: ${wantOk ? JSON.stringify(wantCalls) : 'rejected'}\n     got:      ${res.ok ? got : `rejected (${res.error})`}`);
+}
+
+// =====================================================================
+// SPEC CHECK — audit/spec/check.js must pass on the real cases and catch
+// broken ones. Mutates the shared CASES array and restores it.
+// =====================================================================
+console.log('— SPEC CHECK —');
+{
+  const spec = require('./audit/spec/cases');
+  const { check } = require('./audit/spec/check');
+  const real = spec.CASES.slice();
+  const withCases = (cases, fn) => {
+    spec.CASES.splice(0, spec.CASES.length, ...cases);
+    try { return fn(check().problems); } finally { spec.CASES.splice(0, spec.CASES.length, ...real); }
+  };
+
+  withCases(real, problems => (problems.length === 0 ? ok() : fail(`spec check on the real cases: ${problems.join('; ')}`)));
+
+  const mutations = [
+    ['an uncited reference row', real.filter(c => c.id !== 'P03'), /SRV-13 .* not cited/],
+    ['an unknown method', [...real, { ...real[0], id: 'Z01', uiselector: 'new UiSelector().textContainz("x")' }], /Z01 .*unknown method/],
+    ['a duplicate id', [...real, { ...real[1] }], /A02 .*duplicate id/],
+    ['an unknown ref', [...real, { id: 'Z02', xpath: '//x', expect: 'exact', uiselector: 'new UiSelector()', refs: ['SEL-99'] }], /Z02 .*unknown ref SEL-99/],
+    ['a close case without a warning', [...real, { id: 'Z03', xpath: '//x', expect: 'close', uiselector: 'new UiSelector()', refs: ['SEL-01'] }], /Z03 .*without a warning/],
+    ['a skip case without a reason', [...real, { id: 'Z04', xpath: '//x', expect: 'skip', refs: ['SEL-01'] }], /Z04 .*without a reason/],
+    ['an unclosed literal', [...real, { id: 'Z05', xpath: '//x', expect: 'exact', uiselector: 'new UiSelector().text("a\\")', refs: ['SEL-01'] }], /Z05 .*never closed/],
+  ];
+  for (const [label, cases, want] of mutations) {
+    withCases(cases, problems => (problems.some(p => want.test(p)) ? ok() : fail(`spec check missed ${label}: ${JSON.stringify(problems)}`)));
+  }
+}
+
+// =====================================================================
 // SCANNER — makeStats, walkDir, processFile against on-disk fixtures.
 // =====================================================================
 console.log('— SCANNER: makeStats —');
