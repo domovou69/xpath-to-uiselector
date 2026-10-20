@@ -1,0 +1,53 @@
+{
+  "name": "xpath-to-uiselector",
+  "version": "0.0.0",
+  "private": true,
+  "description": "XPath to Android UiSelector converter for Appium (UiAutomator2): rewrites the locators that have an exact UiSelector, skips the rest with a reason",
+  "license": "MIT",
+  "author": "Mikhail Yesipchuk (https://github.com/domovou69)",
+  "keywords": [
+    "appium",
+    "android",
+    "xpath",
+    "uiselector",
+    "uiautomator",
+    "uiautomator2",
+    "android-uiautomator",
+    "xpath-to-uiselector",
+    "locator",
+    "locators",
+    "converter",
+    "codemod",
+    "migration",
+    "test-automation",
+    "mobile-testing"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/domovou69/xpath-to-uiselector.git"
+  },
+  "homepage": "https://github.com/domovou69/xpath-to-uiselector#readme",
+  "bugs": {
+    "url": "https://github.com/domovou69/xpath-to-uiselector/issues"
+  },
+  "main": "xpath-to-uiselector.js",
+  "types": "xpath-to-uiselector.d.ts",
+  "bin": {
+    "xpath-to-uiselector": "xpath-to-uiselector.js"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "dry": "node xpath-to-uiselector.js",
+    "write": "node xpath-to-uiselector.js --write",
+    "json": "node xpath-to-uiselector.js --json",
+    "test": "node xpath-to-uiselector.test.js",
+    "prepublishOnly": "npm test"
+  },
+  "files": [
+    "xpath-to-uiselector.js",
+    "xpath-to-uiselector.d.ts",
+    "lib/"
+  ]
+}
