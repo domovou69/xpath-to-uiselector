@@ -1,10 +1,11 @@
 // Zero-dependency test runner: `node xpath-to-uiselector.test.js`
 // Exit code is non-zero on any failure. Add a row and re-run.
 //
-// Stage 0 (PLAN.md): the converter is a placeholder, so the scanner is tested
-// with an injected fake converter (`FAKE`). That keeps the file handling —
-// preview vs. write, quoting, platform keys, XPath strategies, refusals —
-// independent of the conversion rules that come in stage 4.
+// The scanner is tested with an injected fake converter (`FAKE`), which keeps
+// the file handling — preview vs. write, quoting, platform keys, strategy
+// rewrites, refusals — independent of the conversion rules. The rules are
+// tested on the converter itself: every S case (audit/spec/score.js) plus the
+// CONVERTER rows below.
 const { mkdtempSync, mkdirSync, writeFileSync, readFileSync, rmSync, symlinkSync } = require('fs');
 const { tmpdir } = require('os');
 const { join } = require('path');
@@ -113,13 +114,181 @@ for (const { argv, expect } of FLAGS_CASES) {
 }
 
 // =====================================================================
-// CONVERTER placeholder — until stage 4 every XPath is a skip with a reason.
+// CONVERTER — every S case scores CORRECT / CORRECT-SKIP (0 WRONG, 0 GAP),
+// plus rows the S cases do not cover. [xpath, expected UiSelector | null
+// (skip), warning expected, opts]
 // =====================================================================
-console.log('— CONVERTER (placeholder) —');
+console.log('— CONVERTER: S cases —');
 {
-  const res = convertXpathToUiSelector('//android.widget.Button[@text="OK"]');
-  if (res.status === STATUS.SKIPPED_UNSUPPORTED_LOGIC && res.locator === '//android.widget.Button[@text="OK"]' && res.reason) ok();
-  else fail(`placeholder converter: ${JSON.stringify(res)}`);
+  const { score } = require('./audit/spec/score');
+  const { rows, totals } = score();
+  for (const r of rows.filter(x => x.verdict === 'WRONG' || x.verdict === 'GAP' || x.verdict === 'DRIFT')) {
+    fail(`S ${r.verdict} ${r.c.id} ${r.c.xpath}\n     expected: ${r.c.uiselector || `skip (${r.c.reason})`}\n     got:      ${r.res.status} ${r.res.locator}${r.res.warning ? ` ! ${r.res.warning}` : ''}`);
+  }
+  if (!totals.WRONG && !totals.GAP && !totals.DRIFT) ok();
+}
+
+console.log('— CONVERTER: more rows —');
+{
+  const U = 'new UiSelector()';
+  const R = '\uF8FF'; // a runtime value, as the scanner passes it
+  const RT = { placeholders: new Set([R]) };
+  const CONVERT_CASES = [
+    ['(//*[@text="A"] | //*[@text="B"])[2]', `${U}.textMatches("A|B").instance(1)`],
+    ['//*[@text="A"] | //*[@text="B"] | //*[@text="C"]', `${U}.textMatches("A|B|C")`],
+    ['//*[@text="A"] | //*[@text="A"]', `${U}.text("A")`],
+    ['//*[contains(@text,"a") or starts-with(@text,"b")]', `${U}.textMatches("(?s).*a.*|b.*")`],
+    ['//*[ends-with(@text,"a") and contains(@text,"b")]', String.raw`${U}.textMatches("(?s)(?=.*a\z)(?=.*b).*")`],
+    ['//*[@text="ab" and (starts-with(@text,"a") or ends-with(@text,"b"))]', String.raw`${U}.textMatches("(?s)(?=(?:a.*|.*b)\z)ab")`],
+    ['//*[@resource-id="id/x" and @text="y"]', `${U}.resourceId("id/x").text("y")`],
+    ['//*[@clickable=false()]', `${U}.clickable(false)`],
+    ['//*[not(@checked="false")]', `${U}.checked(true)`],
+    ['//*["OK"=@text]', `${U}.text("OK")`],
+    ['//android.widget.Button[@class="android.widget.Button"]', `${U}.className("android.widget.Button")`],
+    ['//*[@class="android.widget.Button"][@text="OK"]', `${U}.className("android.widget.Button").text("OK")`],
+    ['//*[fn:contains(@text,"a")]', `${U}.textMatches("(?s).*a.*")`],
+    ['//*[matches(@resource-id,"^id/x$")]', `${U}.resourceIdMatches("(?d)(?s:.*)(?:^id/x$)(?s:.*)")`],
+    [`//*[matches(@text,'say \\"hi\\"')]`, String.raw`${U}.textMatches("(?d)(?s:.*)(?:say \x22hi\x22)(?s:.*)")`],
+    ['//*[@text="a"]//*[@text="b"]//*[@text="c"]', `${U}.text("a").childSelector(${U}.text("b").childSelector(${U}.text("c")))`, true],
+    ['//*[@content-desc=("a","")]', `${U}.descriptionMatches("a|")`],
+    ['//*[@text="Ünïcödé 😀"]', `${U}.text("Ünïcödé 😀")`],
+    ['//*[@index=3][@enabled="true"]', `${U}.index(3).enabled(true)`],
+    ['//*[self::android.widget.Button][@text="OK"]', `${U}.className("android.widget.Button").text("OK")`],
+    [`//*[@text="Hi ${R}"]`, `${U}.text("Hi ${R}")`, true, RT],
+    [`//*[contains(@text,"${R}")]`, String.raw`${U}.textMatches("(?s).*\Q${R}\E.*")`, true, RT],
+    [`//*[@text="${R}"]`, `${U}.text("${R}")`, false], // without opts it is an ordinary character
+    // skipped
+    ['//XCUIElementTypeButton', null],
+    ['//*[@text="a"]//*[@text="b"] | //*[@text="c"]', null],
+    ['(//*[@text="a"]//*[@text="b"])[1]', null],
+    ['((//*[@text="a"])[1])[1]', null],
+    ['(//*[@text="a"])[0]', null],
+    ['(//*[@text="a"])[1.5]', null],
+    ['//android.widget.Button[@class="android.widget.Text"]', null],
+    ['//*[@checked="true"][@checked="false"]', null],
+    ['//*[@text="OK" and not(@text="OK")]', null],
+    ['//*[matches(@text,"(a")]', null],
+    ['//*[matches(@text,"(a)\\1")]', null],
+    ['//*[matches(@text,"a","x")]', null],
+    ['//*[matches(@text,"a") and contains(@text,"b")]', null],
+    ['//*[lower-case(@text)="OK"]', null],
+    ['//*[lower-case(@text)="ok" and @text="ok"]', null],
+    ['//*[starts-with(@content-desc,"")]', null],
+    ['//*[@package=""]', null],
+    ['//*[@index=-1]', null],
+    ['//*[@text=$x]', null],
+    ['//*[@text="a"]/following::*', null],
+    ['//*[@text="a" or @text="b" or @checked="true"]', null],
+    ['//@text', null],
+    ['/android.widget.Button', null],
+    ['./android.widget.Button', null],
+    ['android.widget.Button', null],
+    ['//node()', null],
+    ['//*[.="a"]', null],
+    ['//*[@text]', null],
+    ['//*[self::android.widget.Button or self::android.view.View]', null],
+    ['//*[@text="a"] | //*[@text="b"][@checked="true"]', null],
+    ['//*[count(*)=2]', null],
+    ['//*[@text < "b"]', null],
+    ['//*[1 + 1]', null],
+    ['//*[substring(@text,string-length(@text)-1)="a"]', null],
+    ['//*[', null],
+    ['', null],
+    ['//*[@text="a"]]', null],
+    [`//${R}`, null, false, RT],
+    [`//*[matches(@text,"${R}")]`, null, false, RT],
+  ];
+  for (const [xpath, want, warn, opts] of CONVERT_CASES) {
+    const res = convertXpathToUiSelector(xpath, opts);
+    const good = want === null
+      ? res.status !== STATUS.SUCCESS && res.reason && res.locator === xpath
+      : res.status === STATUS.SUCCESS && res.locator === want && Boolean(res.warning) === Boolean(warn);
+    if (good) ok();
+    else fail(`CONVERT ${xpath}\n     expected: ${want === null ? 'skip' : want}${warn ? ' (warning)' : ''}\n     got:      ${res.status} ${res.locator}${res.reason ? ` (${res.reason})` : ''}${res.warning ? ` ! ${res.warning}` : ''}`);
+  }
+  // iOS element types are their own status
+  if (convertXpathToUiSelector('//XCUIElementTypeButton').status === STATUS.SKIPPED_IOS) ok();
+  else fail('CONVERT XCUIElementType: expected skipped_ios');
+}
+
+// =====================================================================
+// REGEX — can a Java regex match ""? (lib/regex.js, for matches(), XP-03)
+// [pattern, true | false | 'throws']
+// =====================================================================
+console.log('— REGEX —');
+{
+  const { matchesEmpty } = require('./lib/regex');
+  const REGEX_CASES = [
+    ['a*', true], ['a+', false], ['a?b', false], ['^$', true], ['(?:a|)', true], ['a|b*', true],
+    ['[a-z&&[^aeiou]]+', false], ['[]a]', false], ['[^]]*', true], [String.raw`\Qab\E`, false], [String.raw`\Q\E`, true],
+    ['a{0,2}', true], ['a{2}', false], ['(?i)', true], ['(?=a)', true], ['(?<!a)b', false], [String.raw`\d+`, false],
+    [String.raw`\b`, true], [String.raw`\p{Lu}+`, false], [String.raw`\x41`, false], ['(?<name>a)?', true], ['a*+', true], ['a+?', false],
+    ['(a', 'throws'], ['a)', 'throws'], [String.raw`(a)\1`, 'throws'], ['*a', 'throws'], ['[a', 'throws'], ['a**', 'throws'],
+  ];
+  for (const [pattern, want] of REGEX_CASES) {
+    let got;
+    try { got = matchesEmpty(pattern); } catch { got = 'throws'; }
+    if (got === want) ok();
+    else fail(`REGEX ${pattern}: expected ${want}, got ${got}`);
+  }
+}
+
+// =====================================================================
+// LITERAL — source literal ↔ runtime value, per language and quote kind
+// (lib/literal.js). [ext, quote, prefix, raw, value with ‹…› for runtime
+// parts | null (not read)]; every row that reads must also write back to raw.
+// =====================================================================
+console.log('— LITERAL —');
+{
+  const { literalKind, decodeLiteral, encodeLiteral } = require('./lib/literal');
+  const LITERAL_CASES = [
+    ['.java', '"', '', String.raw`//*[@text=\"OK\"]`, '//*[@text="OK"]'],
+    ['.java', '"', '', String.raw`//*[@text='C:\\Temp']`, String.raw`//*[@text='C:\Temp']`],
+    ['.java', '"', '', String.raw`//*[@text='%s']`, "//*[@text='‹%s›']"],
+    ['.java', '"', '', String.raw`//*[@text='\u00e9']`, "//*[@text='é']", false],
+    ['.java', '"', '', String.raw`//*[@text='\d']`, null],
+    ['.java', '"', '', String.raw`//*[@text='\uf8ff%s']`, "//*[@text='\uf8ff‹%s›']", false], // a placeholder never reuses an escaped character
+    ['.java', '"', '', String.raw`//*[@text='\uE163']`, "//*[@text='\uE163']"], // written back as an escape
+    ['.kt', '"', '', "//*[@text='$name']", "//*[@text='‹$name›']"],
+    ['.kt', '"', '', "//*[@text='${user.name}']", "//*[@text='‹${user.name}›']"],
+    ['.kt', '"', '', String.raw`//*[@text='\$5']`, "//*[@text='$5']"],
+    ['.js', '`', '', '//*[@text="${x}"]', '//*[@text="‹${x}›"]'],
+    ['.js', "'", '', '//*[@text="${x}"]', '//*[@text="${x}"]'],
+    ['.js', '`', '', String.raw`//*[@text="\${x}"]`, '//*[@text="${x}"]', false],
+    ['.py', "'", '', '//*[@text="%s"]', '//*[@text="‹%s›"]'],
+    ['.py', "'", 'f', '//*[@text="{name}"] or {{x}}', '//*[@text="‹{name}›"] or {x}'],
+    ['.py', "'", 'r', String.raw`//*[@text="a\b"]`, String.raw`//*[@text="a\b"]`],
+    ['.cs', '"', '', "//*[@text='{0}']", "//*[@text='‹{0}›']"],
+    ['.cs', '"', '$', "//*[@text='{name}']", "//*[@text='‹{name}›']"],
+    ['.cs', '"', '@', '//*[@text=""OK""]', '//*[@text="OK"]'],
+    ['.rb', '"', '', "//*[@text='#{name}']", "//*[@text='‹#{name}›']"],
+    ['.rb', "'", '', String.raw`//*[@text=\'a\']`, "//*[@text='a']"],
+    ['.json', '"', '', String.raw`//*[@text=\"a\/b\"]`, '//*[@text="a/b"]', false],
+    ['.yaml', '"', '', String.raw`//*[@text=\"a\"]`, String.raw`//*[@text=\"a\"]`, false], // data files are never written
+  ];
+  for (const [ext, quote, prefix, raw, want, roundTrip = true] of LITERAL_CASES) {
+    const kind = literalKind(ext, quote, prefix);
+    const res = decodeLiteral(raw, kind, quote);
+    const shown = res && [...res.value].map(ch => (res.placeholders.has(ch) ? `‹${res.placeholders.get(ch)}›` : ch)).join('');
+    const back = res && encodeLiteral(res.value, kind, quote, res.placeholders);
+    if (want === null ? res === null : shown === want && (!roundTrip || back === raw)) ok();
+    else fail(`LITERAL ${ext} ${prefix}${quote}${raw}${quote}\n     expected: ${want}\n     got:      ${shown}  (written back: ${back})`);
+  }
+  // A UiSelector with \x5c and quotes written into each kind.
+  const OUT_RX = String.raw`new UiSelector().textMatches("C:\x5cTemp")`;
+  const ENCODE_CASES = [
+    ['.java', '"', '', String.raw`new UiSelector().textMatches(\"C:\\x5cTemp\")`],
+    ['.js', "'", '', String.raw`new UiSelector().textMatches("C:\\x5cTemp")`],
+    ['.py', "'", 'r', String.raw`new UiSelector().textMatches("C:\x5cTemp")`],
+    ['.py', '"', 'r', null], // a raw string cannot hold its own quote
+    ['.cs', '"', '@', String.raw`new UiSelector().textMatches(""C:\x5cTemp"")`],
+    ['.kt', '"', '', String.raw`new UiSelector().textMatches(\"C:\\x5cTemp\")`],
+  ];
+  for (const [ext, quote, prefix, want] of ENCODE_CASES) {
+    const got = encodeLiteral(OUT_RX, literalKind(ext, quote, prefix), quote, new Map());
+    if (got === want) ok();
+    else fail(`ENCODE ${ext} ${prefix}${quote}: expected ${want}, got ${got}`);
+  }
 }
 
 // =====================================================================
@@ -239,12 +408,13 @@ console.log('— SCANNER: processFile —');
 
 {
   // write mode, per quote kind: the UiSelector's `"` is escaped only where the
-  // string itself is double-quoted
+  // string itself is double-quoted. A JS/TS string with no strategy call is a
+  // WebdriverIO selector (android=…).
   const cases = [
-    ['a.js', `const loc = '//android.widget.Button[@text="OK"]';`, `const loc = '${OUT}';`],
-    ['a.js', 'const loc = `//android.widget.Button[@text="OK"]`;', `const loc = \`${OUT}\`;`],
-    ['A.java', `String loc = "//android.widget.Button[@text='OK']";`, `String loc = "${OUT.replace(/"/g, '\\"')}";`],
-    ['a.json', `{ "login": "//android.widget.Button[@text='OK']" }`, `{ "login": "${OUT.replace(/"/g, '\\"')}" }`],
+    ['a.js', `const loc = '//android.widget.Button[@text="OK"]';`, `const loc = 'android=${OUT}';`],
+    ['a.js', 'const loc = `//android.widget.Button[@text="OK"]`;', `const loc = \`android=${OUT}\`;`],
+    ['a.js', `const loc = "//android.widget.Button[@text='OK']";`, `const loc = "android=${OUT.replace(/"/g, '\\"')}";`],
+    ['A.java', `e = driver.findElement(AppiumBy.xpath("//android.widget.Button[@text='OK']"));`, `e = driver.findElement(AppiumBy.androidUIAutomator("${OUT.replace(/"/g, '\\"')}"));`],
   ];
   for (const [name, source, expected] of cases) {
     const { after, stats } = scan(name, source);
@@ -261,12 +431,26 @@ console.log('— SCANNER: processFile —');
 }
 
 {
-  // the real (placeholder) converter: found and skipped with its reason, file untouched
-  const source = `const loc = '//android.widget.Button[@text="OK"]';`;
+  // the real converter: a skip keeps the file and records the reason
+  const source = `const loc = '//android.widget.Button[2]';`;
   const { after, stats, records } = scan('a.js', source, { convert: undefined });
   if (after === source && stats.locatorsFound === 1 && stats.skipped.unsupportedLogic === 1
-    && records[0].reason === 'converter not implemented yet') ok();
-  else fail(`placeholder converter via scanner: ${JSON.stringify({ after, stats, records })}`);
+    && records[0].reason === 'a position among siblings has no UiSelector form') ok();
+  else fail(`real converter skip via scanner: ${JSON.stringify({ after, stats, records })}`);
+}
+
+{
+  // no strategy call outside JS/TS, and data files: untouched, reported with the UiSelector
+  for (const [name, source] of [
+    ['A.java', `String loc = "//android.widget.Button[@text='OK']";`],
+    ['a.json', `{ "login": "//android.widget.Button[@text='OK']" }`],
+    ['a.yaml', `login: "//android.widget.Button[@text='OK']"`],
+  ]) {
+    const { after, stats, records } = scan(name, source);
+    if (after === source && stats.skipped.unknownStrategy === 1 && records[0].status === STATUS.SKIPPED_UNKNOWN_STRATEGY
+      && records[0].uiselector === OUT) ok();
+    else fail(`unknown strategy (${name}): ${JSON.stringify({ after, stats, records })}`);
+  }
 }
 
 {
@@ -331,82 +515,100 @@ console.log('— SCANNER: xpath strategies —');
 {
   const DQ = `//android.widget.Button[@text='OK']`; // for double-quoted strings
   const SQ = `//android.widget.Button[@text="OK"]`; // for single-quoted strings
-  // [file, source, marker shown in the skip reason]
+  const OUT_DQ = OUT.replace(/"/g, '\\"');
+  // The string rewritten, and the strategy text `from` → `to` (null: the
+  // client has no UiAutomator strategy, so the file stays as it is).
+  // [file, source, marker shown in the report, from, to]
   const XPATH_STRATEGY_CASES = [
     // Java
-    ['A.java', `e = driver.findElement(AppiumBy.xpath("${DQ}"));`, 'AppiumBy.xpath('],
-    ['A.java', `e = driver.findElement(By.xpath("${DQ}"));`, 'By.xpath('],
-    ['A.java', `e = driver.findElement(MobileBy.xpath("${DQ}"));`, 'MobileBy.xpath('],
-    ['A.java', `@AndroidFindBy(xpath = "${DQ}")\nWebElement e;`, '@AndroidFindBy(xpath ='],
-    ['A.java', `@AndroidFindBy(priority = 1, xpath = "${DQ}")\nWebElement e;`, '@AndroidFindBy(priority = 1, xpath ='],
-    ['A.java', `@AndroidFindBys({@AndroidBy(xpath = "${DQ}")})\nWebElement e;`, '@AndroidBy(xpath ='],
-    ['A.java', `@FindBy(xpath = "${DQ}")\nWebElement e;`, '@FindBy(xpath ='],
-    ['A.java', `@FindBy(how = How.XPATH, using = "${DQ}")\nWebElement e;`, 'How.XPATH, using ='],
-    ['A.java', `e = driver.findElementByXPath("${DQ}");`, 'findElementByXPath('],
-    ['A.java', `e = driver.findElement(\n    AppiumBy.xpath(\n        "${DQ}"));`, 'AppiumBy.xpath('],
-    ['A.java', `@AndroidFindBy(\n    xpath = "${DQ}"\n)\nWebElement e;`, '@AndroidFindBy(xpath ='],
+    ['A.java', `e = driver.findElement(AppiumBy.xpath("${DQ}"));`, 'AppiumBy.xpath(', 'AppiumBy.xpath(', 'AppiumBy.androidUIAutomator('],
+    ['A.java', `e = driver.findElement(By.xpath("${DQ}"));`, 'By.xpath(', 'By.xpath(', 'io.appium.java_client.AppiumBy.androidUIAutomator('],
+    ['A.java', `import io.appium.java_client.AppiumBy;\ne = driver.findElement(By.xpath("${DQ}"));`, 'By.xpath(', 'By.xpath(', 'AppiumBy.androidUIAutomator('],
+    ['A.java', `import io.appium.java_client.MobileBy;\ne = driver.findElement(By.xpath("${DQ}"));`, 'By.xpath(', 'By.xpath(', 'MobileBy.AndroidUIAutomator('],
+    ['A.java', `e = driver.findElement(MobileBy.xpath("${DQ}"));`, 'MobileBy.xpath(', 'MobileBy.xpath(', 'MobileBy.AndroidUIAutomator('],
+    ['A.java', `@AndroidFindBy(xpath = "${DQ}")\nWebElement e;`, '@AndroidFindBy(xpath =', 'xpath =', 'uiAutomator ='],
+    ['A.java', `@AndroidFindBy(priority = 1, xpath = "${DQ}")\nWebElement e;`, '@AndroidFindBy(priority = 1, xpath =', 'xpath =', 'uiAutomator ='],
+    ['A.java', `@AndroidFindBys({@AndroidBy(xpath = "${DQ}")})\nWebElement e;`, '@AndroidBy(xpath =', 'xpath =', 'uiAutomator ='],
+    ['A.java', `@FindBy(xpath = "${DQ}")\nWebElement e;`, '@FindBy(xpath =', null],
+    ['A.java', `@FindBy(how = How.XPATH, using = "${DQ}")\nWebElement e;`, 'How.XPATH, using =', null],
+    ['A.java', `e = driver.findElementByXPath("${DQ}");`, 'findElementByXPath(', null],
+    ['A.java', `e = driver.findElement(\n    AppiumBy.xpath(\n        "${DQ}"));`, 'AppiumBy.xpath(', 'AppiumBy.xpath(', 'AppiumBy.androidUIAutomator('],
+    ['A.java', `@AndroidFindBy(\n    xpath = "${DQ}"\n)\nWebElement e;`, '@AndroidFindBy(xpath =', 'xpath =', 'uiAutomator ='],
     // Kotlin / Groovy
-    ['A.kt', `val e = driver.findElement(AppiumBy.xpath("${DQ}"))`, 'AppiumBy.xpath('],
-    ['A.kt', `@AndroidFindBy(xpath = "${DQ}")\nlateinit var e: WebElement`, '@AndroidFindBy(xpath ='],
-    ['A.groovy', `def e = driver.findElement(By.xpath('${SQ}'))`, 'By.xpath('],
+    ['A.kt', `val e = driver.findElement(AppiumBy.xpath("${DQ}"))`, 'AppiumBy.xpath(', 'AppiumBy.xpath(', 'AppiumBy.androidUIAutomator('],
+    ['A.kt', `@AndroidFindBy(xpath = "${DQ}")\nlateinit var e: WebElement`, '@AndroidFindBy(xpath =', 'xpath =', 'uiAutomator ='],
+    ['A.groovy', `def e = driver.findElement(By.xpath('${SQ}'))`, 'By.xpath(', 'By.xpath(', 'io.appium.java_client.AppiumBy.androidUIAutomator('],
     // Python
-    ['a.py', `e = driver.find_element(AppiumBy.XPATH, '${SQ}')`, 'AppiumBy.XPATH'],
-    ['a.py', `B0 = (By.XPATH, "${DQ}")`, 'By.XPATH'],
-    ['a.py', `e = driver.find_element(MobileBy.XPATH, '${SQ}')`, 'MobileBy.XPATH'],
-    ['a.py', `e = driver.find_element("xpath", '${SQ}')`, '"xpath"'],
-    ['a.py', `e = driver.find_element(by=AppiumBy.XPATH, value='${SQ}')`, 'AppiumBy.XPATH'],
-    ['a.py', `e = driver.find_element(\n    AppiumBy.XPATH,\n    '${SQ}',\n)`, 'AppiumBy.XPATH'],
-    ['a.py', `e = driver.find_element_by_xpath('${SQ}')`, 'find_element_by_xpath('],
+    ['a.py', `e = driver.find_element(AppiumBy.XPATH, '${SQ}')`, 'AppiumBy.XPATH', 'AppiumBy.XPATH', 'AppiumBy.ANDROID_UIAUTOMATOR'],
+    ['a.py', `B0 = (By.XPATH, "${DQ}")`, 'By.XPATH', 'By.XPATH', "'-android uiautomator'"],
+    ['a.py', `from appium.webdriver.common.appiumby import AppiumBy\nB0 = (By.XPATH, "${DQ}")`, 'By.XPATH', 'By.XPATH', 'AppiumBy.ANDROID_UIAUTOMATOR'],
+    ['a.py', `e = driver.find_element(MobileBy.XPATH, '${SQ}')`, 'MobileBy.XPATH', 'MobileBy.XPATH', 'MobileBy.ANDROID_UIAUTOMATOR'],
+    ['a.py', `e = driver.find_element("xpath", '${SQ}')`, '"xpath"', '"xpath"', '"-android uiautomator"'],
+    ['a.py', `e = driver.find_element(by=AppiumBy.XPATH, value='${SQ}')`, 'AppiumBy.XPATH', 'AppiumBy.XPATH', 'AppiumBy.ANDROID_UIAUTOMATOR'],
+    ['a.py', `e = driver.find_element(\n    AppiumBy.XPATH,\n    '${SQ}',\n)`, 'AppiumBy.XPATH', 'AppiumBy.XPATH', 'AppiumBy.ANDROID_UIAUTOMATOR'],
+    ['a.py', `e = driver.find_element_by_xpath('${SQ}')`, 'find_element_by_xpath(', null],
     // C#
-    ['A.cs', `var e = driver.FindElement(MobileBy.XPath("${DQ}"));`, 'MobileBy.XPath('],
-    ['A.cs', `var e = driver.FindElement(By.XPath("${DQ}"));`, 'By.XPath('],
-    ['A.cs', `var e = driver.FindElement("xpath", "${DQ}");`, '"xpath"'],
-    ['A.cs', `[FindsByAndroidUIAutomator(XPath = "${DQ}")]\nprivate IWebElement e;`, 'FindsByAndroidUIAutomator(XPath ='],
-    ['A.cs', `[FindsBy(How = How.XPath, Using = "${DQ}")]\nprivate IWebElement e;`, 'How.XPath, Using ='],
-    ['A.cs', `var e = driver.FindElementByXPath("${DQ}");`, 'FindElementByXPath('],
+    ['A.cs', `var e = driver.FindElement(MobileBy.XPath("${DQ}"));`, 'MobileBy.XPath(', 'MobileBy.XPath(', 'MobileBy.AndroidUIAutomator('],
+    ['A.cs', `var e = driver.FindElement(By.XPath("${DQ}"));`, 'By.XPath(', 'By.XPath(', 'OpenQA.Selenium.Appium.MobileBy.AndroidUIAutomator('],
+    ['A.cs', `var e = driver.FindElement("xpath", "${DQ}");`, '"xpath"', '"xpath"', '"-android uiautomator"'],
+    ['A.cs', `[FindsByAndroidUIAutomator(XPath = "${DQ}")]\nprivate IWebElement e;`, 'FindsByAndroidUIAutomator(XPath =', 'XPath =', 'AndroidUIAutomator ='],
+    ['A.cs', `[FindsBy(How = How.XPath, Using = "${DQ}")]\nprivate IWebElement e;`, 'How.XPath, Using =', null],
+    ['A.cs', `var e = driver.FindElementByXPath("${DQ}");`, 'FindElementByXPath(', null],
     // Ruby
-    ['a.rb', `e = driver.find_element(:xpath, '${SQ}')`, ':xpath'],
-    ['a.rb', `e = driver.find_element :xpath => '${SQ}'`, ':xpath'],
-    ['a.rb', `e = driver.find_element(xpath: '${SQ}')`, 'xpath:'],
-    ['a.rb', `e = xpath('${SQ}')`, 'xpath('],
-    ['a.rb', `e = xpaths '${SQ}'`, 'xpaths'],
+    ['a.rb', `e = driver.find_element(:xpath, '${SQ}')`, ':xpath', ':xpath', ':uiautomator'],
+    ['a.rb', `e = driver.find_element :xpath => '${SQ}'`, ':xpath', ':xpath', ':uiautomator'],
+    ['a.rb', `e = driver.find_element(xpath: '${SQ}')`, 'xpath:', 'xpath:', 'uiautomator:'],
+    ['a.rb', `e = xpath('${SQ}')`, 'xpath(', null],
+    ['a.rb', `e = xpaths '${SQ}'`, 'xpaths', null],
     // JS / TS
-    ['a.js', `I.click({ xpath: '${SQ}' });`, 'xpath:'],
-    ['a.js', `const loc = {\n  xpath:\n    '${SQ}',\n};`, 'xpath:'],
-    ['a.js', 'I.click({ xpath: `//android.widget.Button[@text="${name}"]` });', 'xpath:'],
-    ['a.js', `const e = await driver.findElement('xpath', '${SQ}');`, "'xpath'"],
-    ['a.js', `const e = await driver.findElement(By.xpath('${SQ}'));`, 'By.xpath('],
-    ['a.ts', `const e = await driver.findElements('xpath', '${SQ}');`, "'xpath'"],
+    ['a.js', `I.click({ xpath: '${SQ}' });`, 'xpath:', null],
+    ['a.js', `const loc = {\n  xpath:\n    '${SQ}',\n};`, 'xpath:', null],
+    ['a.js', 'I.click({ xpath: `//android.widget.Button[@text="${name}"]` });', 'xpath:', null],
+    ['a.js', `const e = await driver.findElement('xpath', '${SQ}');`, "'xpath'", "'xpath'", "'-android uiautomator'"],
+    ['a.js', `const e = await driver.findElement(By.xpath('${SQ}'));`, 'By.xpath(', null],
+    ['a.ts', `const e = await driver.findElements('xpath', '${SQ}');`, "'xpath'", "'xpath'", "'-android uiautomator'"],
     // PHP
-    ['a.php', `$e = $driver->findElement(WebDriverBy::xpath('${SQ}'));`, 'WebDriverBy::xpath('],
+    ['a.php', `$e = $driver->findElement(WebDriverBy::xpath('${SQ}'));`, 'WebDriverBy::xpath(', null],
   ];
 
-  // No explicit XPath strategy: these convert.
-  const CONVERT_CASES = [
-    ['a.js', `const a = '${SQ}';`],
-    ['a.js', `I.click('${SQ}');`],
-    ['a.js', `const xpath = '${SQ}';`], // a variable name is not a strategy
-    ['a.ts', `export const s = () => $('${SQ}');`],
-    ['a.ts', 'export const d = () => $(`//android.widget.Button[@text="${name}"]`);'],
-    ['A.java', `static final String LOC = "${DQ}";`],
-    ['A.java', `String xpath = "${DQ}";`],
-    ['A.kt', `const val LOC = "${DQ}"`],
-    ['a.py', `LOC = '${SQ}'`],
-    ['a.rb', `LOC = '${SQ}'`],
-  ];
-
-  for (const [name, source, marker] of XPATH_STRATEGY_CASES) {
+  for (const [name, source, marker, from, to] of XPATH_STRATEGY_CASES) {
     const { records, stats, after } = scan(name, source);
-    const reason = `xpath strategy: ${marker}`;
-    if (after === source && stats.locatorsUpdated === 0 && stats.skipped.xpathStrategy === 1
-      && records.length === 1 && records[0].status === STATUS.SKIPPED_XPATH_STRATEGY && records[0].reason === reason) ok();
-    else fail(`xpath strategy (${name}) ${JSON.stringify(source)}\n     expected: untouched, reason ${JSON.stringify(reason)}\n     got:      ${after === source ? 'untouched' : 'REWRITTEN'}, records=${JSON.stringify(records)}`);
+    const r = records[0] || {};
+    if (to) {
+      const i = source.lastIndexOf(from, source.indexOf('//android'));
+      const expected = (source.slice(0, i) + to + source.slice(i + from.length))
+        .replace(`"${DQ}"`, `"${OUT_DQ}"`).replace(`'${SQ}'`, `'${OUT}'`);
+      if (after === expected && stats.locatorsUpdated === 1 && records.length === 1 && r.strategy === marker) ok();
+      else fail(`strategy rewrite (${name}) ${JSON.stringify(source)}\n     expected: ${expected}\n     got:      ${after}  records=${JSON.stringify(records)}`);
+    } else {
+      const reason = `xpath strategy: ${marker} has no UiAutomator form`;
+      if (after === source && stats.locatorsUpdated === 0 && stats.skipped.xpathStrategy === 1
+        && records.length === 1 && r.status === STATUS.SKIPPED_XPATH_STRATEGY && r.reason === reason && r.uiselector === OUT) ok();
+      else fail(`xpath strategy kept (${name}) ${JSON.stringify(source)}\n     expected: untouched, reason ${JSON.stringify(reason)}\n     got:      ${after === source ? 'untouched' : 'REWRITTEN'}, records=${JSON.stringify(records)}`);
+    }
   }
 
-  for (const [name, source] of CONVERT_CASES) {
+  // No strategy call: JS/TS strings become WebdriverIO selectors; other
+  // languages are reported with the UiSelector and left alone.
+  const NO_STRATEGY_CASES = [
+    ['a.js', `const a = '${SQ}';`, true],
+    ['a.js', `I.click('${SQ}');`, true],
+    ['a.js', `const xpath = '${SQ}';`, true], // a variable name is not a strategy
+    ['a.ts', `export const s = () => $('${SQ}');`, true],
+    ['a.ts', 'export const d = () => $(`//android.widget.Button[@text="${name}"]`);', true],
+    ['A.java', `static final String LOC = "${DQ}";`, false],
+    ['A.java', `String xpath = "${DQ}";`, false],
+    ['A.kt', `const val LOC = "${DQ}"`, false],
+    ['a.py', `LOC = '${SQ}'`, false],
+    ['a.rb', `LOC = '${SQ}'`, false],
+  ];
+  for (const [name, source, converts] of NO_STRATEGY_CASES) {
     const { stats, after } = scan(name, source);
-    if (after !== source && after.includes('new UiSelector()') && stats.locatorsUpdated === 1 && !stats.skipped.xpathStrategy) ok();
-    else fail(`no xpath strategy (${name}) ${JSON.stringify(source)}\n     expected: converted\n     got:      ${after}  stats=${JSON.stringify(stats)}`);
+    const good = converts
+      ? after !== source && after.includes('android=new UiSelector()') && stats.locatorsUpdated === 1
+      : after === source && stats.skipped.unknownStrategy === 1;
+    if (good && !stats.skipped.xpathStrategy) ok();
+    else fail(`no xpath strategy (${name}) ${JSON.stringify(source)}\n     expected: ${converts ? 'android=…' : 'unknown strategy'}\n     got:      ${after}  stats=${JSON.stringify(stats)}`);
   }
 
   // iOS detection runs first: an iOS locator under an XPath strategy stays an iOS skip.
@@ -420,9 +622,50 @@ console.log('— SCANNER: xpath strategies —');
   // earlier on the same line does not affect the next string.
   {
     const source = `driver.findElement(By.xpath("//a")); String loc = "${DQ}";`;
-    const { stats, after } = scan('A.java', source);
-    if (after !== source && stats.locatorsUpdated === 1 && !stats.skipped.xpathStrategy) ok();
-    else fail(`xpath strategy closed call: got ${after}  stats=${JSON.stringify(stats)}`);
+    const { stats, records } = scan('A.java', source);
+    if (stats.skipped.unknownStrategy === 1 && records[0].strategy === null) ok();
+    else fail(`xpath strategy closed call: records=${JSON.stringify(records)}`);
+  }
+}
+
+// =====================================================================
+// SCANNER: runtime values — placeholders and concatenation, with the real
+// converter. [file, source, expected file after | null (untouched), warning]
+// =====================================================================
+console.log('— SCANNER: runtime values —');
+{
+  const U = 'new UiSelector()';
+  const real = { convert: undefined };
+  const RUNTIME_CASES = [
+    ['a.ts', 'const d = (name) => $(`//*[@text="${name}"]`);', `const d = (name) => $(\`android=${U}.text("\${name}")\`);`, true],
+    ['a.ts', 'const d = (name) => $(`//*[contains(@text,"${name}")]`);', `const d = (name) => $(\`android=${U}.textMatches("(?s).*\\\\Q\${name}\\\\E.*")\`);`, true],
+    ['A.java', 'e = driver.findElement(AppiumBy.xpath(String.format("//*[@text=\'%s\']", name)));',
+      `e = driver.findElement(AppiumBy.androidUIAutomator(String.format("${U}.text(\\"%s\\")", name)));`, true],
+    ['A.java', 'e = driver.findElement(AppiumBy.xpath("//*[@text=\'" + name + "\']"));',
+      `e = driver.findElement(AppiumBy.androidUIAutomator("${U}.text(\\"" + name + "\\")"));`, true],
+    ['A.java', 'e = driver.findElement(AppiumBy.xpath("//*[@resource-id=\'" + pkg + ":id/" + ids.get(0) + "\']"));',
+      `e = driver.findElement(AppiumBy.androidUIAutomator("${U}.resourceId(\\"" + pkg + ":id/" + ids.get(0) + "\\")"));`, true],
+    ['A.kt', 'val e = driver.findElement(AppiumBy.xpath("//*[@text=\'$name\']"))', `val e = driver.findElement(AppiumBy.androidUIAutomator("${U}.text(\\"$name\\")"))`, true],
+    ['a.py', 'e = driver.find_element(AppiumBy.XPATH, f\'//*[@text="{name}"]\')', `e = driver.find_element(AppiumBy.ANDROID_UIAUTOMATOR, f'${U}.text("{name}")')`, true],
+    ['a.py', 'e = driver.find_element(AppiumBy.XPATH, \'//*[@text="{}"]\'.format(name))', `e = driver.find_element(AppiumBy.ANDROID_UIAUTOMATOR, '${U}.text("{}")'.format(name))`, true],
+    ['A.cs', 'var e = driver.FindElement(MobileBy.XPath($"//*[@text=\'{name}\']"));', `var e = driver.FindElement(MobileBy.AndroidUIAutomator($"${U}.text(\\"{name}\\")"));`, true],
+    ['a.rb', 'e = driver.find_element(:xpath, "//*[@text=\'#{name}\']")', `e = driver.find_element(:uiautomator, "${U}.text(\\"#{name}\\")")`, true],
+    // the runtime value is a number or a step name: skipped
+    ['A.java', 'e = driver.findElement(AppiumBy.xpath("(//android.widget.Button)[" + i + "]"));', null],
+    ['A.java', 'e = driver.findElement(AppiumBy.xpath("//" + cls + "[@text=\'OK\']"));', null],
+    // a value outside every literal: the string alone is not the locator
+    ['A.java', 'e = driver.findElement(AppiumBy.xpath(BASE + "//*[@text=\'OK\']"));', null],
+    ['A.java', 'e = driver.findElement(AppiumBy.xpath("//*[@text=\'OK\']" + suffix));', null],
+    // a backslash in the source literal is written back escaped
+    ['A.java', 'e = driver.findElement(AppiumBy.xpath("//*[@text=\'C:\\\\Temp\']"));', `e = driver.findElement(AppiumBy.androidUIAutomator("${U}.textMatches(\\"C:\\\\x5cTemp\\")"));`, false],
+  ];
+  for (const [name, source, want, warn] of RUNTIME_CASES) {
+    const { after, records } = scan(name, source, real);
+    const r = records[0] || {};
+    const good = want === null ? after === source && records.length === 1 && !r.changed
+      : after === want && Boolean(r.warning) === Boolean(warn);
+    if (good) ok();
+    else fail(`runtime (${name}) ${source}\n     expected: ${want === null ? 'untouched' : want}${warn ? ' (warning)' : ''}\n     got:      ${after}  records=${JSON.stringify(records)}`);
   }
 }
 
@@ -555,19 +798,18 @@ console.log('— CLI —');
     if (status === 1 && untouched) ok();
     else fail(`CLI bare --write: exit ${status}, ${untouched ? 'untouched' : 'MODIFIED'} (expected exit 1)`);
   }
-  // An explicit path is accepted. With the placeholder converter nothing is
-  // written yet; stage 4 turns this into "written".
+  // An explicit path is accepted and written.
   {
     const { status, untouched } = runInFixture(['./tests', '--write']);
-    if (status === 0 && untouched) ok();
-    else fail(`CLI explicit --write: exit ${status}`);
+    if (status === 0 && !untouched) ok();
+    else fail(`CLI explicit --write: exit ${status}, ${untouched ? 'untouched' : 'written'}`);
   }
   // A single file is a valid target; the report names it relative to its folder.
   {
     const { status, report } = runInFixture(['./tests/spec.js', '--json']);
     if (status === 0 && report && report.stats.filesScanned === 1 && report.stats.locatorsFound === 1
-      && report.skipped.length === 1 && report.skipped[0].file === 'spec.js'
-      && report.skipped[0].reason === 'converter not implemented yet') ok();
+      && report.updated.length === 1 && report.updated[0].file === 'spec.js'
+      && report.updated[0].new === 'android=new UiSelector().className(\\"android.widget.Button\\").text(\\"Go\\")') ok();
     else fail(`CLI single file --json: exit ${status}, report=${JSON.stringify(report)}`);
   }
   // Unknown flags and missing paths exit 1.
@@ -631,6 +873,23 @@ console.log('— CORPUS —');
   if (corpus.length > 1000 && bad.length === 0) ok();
   else fail(`corpus: ${corpus.length} entries, malformed: ${JSON.stringify(bad.slice(0, 3))}`);
 
+  // The converter never throws on a real literal: every one converts or skips
+  // with a reason (audit/corpus/convert.js reads them as the scanner does).
+  {
+    const { convertEntry } = require('./audit/corpus/convert');
+    const crashed = [];
+    for (const e of corpus) {
+      try {
+        const r = convertEntry(e);
+        if (r.outcome === 'skip' && !r.reason) crashed.push(`${e.id}: skip without a reason`);
+      } catch (err) {
+        crashed.push(`${e.id}: ${err.message}`);
+      }
+    }
+    if (crashed.length === 0) ok();
+    else fail(`corpus through the converter: ${crashed.slice(0, 5).join('; ')}`);
+  }
+
   const sources = readFileSync(join(__dirname, 'audit/corpus/sources.md'), 'utf8');
   const missing = [...new Set(corpus.map((e) => e.project))].filter((p) => !sources.includes(`[${p}](`));
   if (missing.length === 0) ok();
@@ -643,10 +902,7 @@ console.log('— CORPUS —');
     processFile(join(dir, file), { dryRun: true, quiet: true, convert: FAKE }, records, makeStats());
     const strategies = {};
     for (const r of records) {
-      if (r.status === STATUS.SKIPPED_XPATH_STRATEGY) {
-        const s = r.reason.replace(/^xpath strategy: /, '');
-        strategies[s] = (strategies[s] || 0) + 1;
-      }
+      if (r.strategy) strategies[r.strategy] = (strategies[r.strategy] || 0) + 1;
     }
     if (records.length === want.found && JSON.stringify(strategies) === JSON.stringify(want.strategies)) ok();
     else fail(`context ${file}: found ${records.length}, strategies ${JSON.stringify(strategies)}; want ${want.found}, ${JSON.stringify(want.strategies)}`);
