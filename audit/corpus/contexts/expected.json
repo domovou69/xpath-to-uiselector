@@ -1,0 +1,22 @@
+{
+  "LoginPage.java": {
+    "found": 1,
+    "strategies": { "@AndroidFindBy(xpath =": 1 },
+    "expect": "rewrite the one @AndroidFindBy(xpath = …) together with its strategy (uiAutomator = …) or skip it with a reason; the accessibility = … and @iOSXCUITFindBy annotations stay untouched; file still compiles"
+  },
+  "page_screen.py": {
+    "found": 5,
+    "strategies": { "MobileBy.XPATH": 5 },
+    "expect": "the two native XPaths (//android.widget.*) convert together with MobileBy.XPATH → UIAUTOMATOR; the three WebView XPaths (//input, //button with @name) are skipped (@name is not a UiAutomator attribute, SRV-11); file still parses"
+  },
+  "selectors.ts": {
+    "found": 14,
+    "strategies": {},
+    "expect": "bare strings returned by helpers: interpolated literals (${…}) are skipped or converted with the interpolation kept intact; relative .//X literals are never touched; -ios class chain / predicate strings are never touched; template literals stay valid"
+  },
+  "XPathTest.kt": {
+    "found": 1,
+    "strategies": {},
+    "expect": "the framework's own \"xpath=//…\" selector strings are not found; the bare /hierarchy/… literal is found and skipped (absolute path); file still compiles"
+  }
+}

@@ -84,7 +84,10 @@ warning: a runtime value with `"` or a trailing `\` breaks the `UiSelector` (sec
 | Ruby, C# | `find_element(:xpath, …)`, `MobileBy.XPath(…)` | `:uiautomator`, `MobileBy.AndroidUIAutomator(…)` |
 | Data files, unknown calls, Selenium 3 `*_by_xpath` | any | unchanged; reported with the `UiSelector` (`skipped_unknown_strategy`) |
 
-Order of languages follows the R corpus frequencies (stage 2); Java, Kotlin, Python, JS/TS first.
+Order of languages follows the R corpus (stage 2, [`frequencies.md`](audit/corpus/frequencies.md)): Python
+(5 projects, 54 % of occurrences), then TypeScript / JavaScript (4), Java (3), Kotlin (2) and C# (1). Strategy
+calls to rewrite, by frequency: `MobileBy.XPATH` / `AppiumBy.XPATH` / `By.XPATH` (Python), `@AndroidFindBy(xpath =`,
+`By.XPath(` (C#), `AppiumBy.xpath(` / `By.xpath(` (Java), `"xpath"` (WebdriverIO-style `findElement`); a third are bare strings.
 
 ## 3. Rules
 
@@ -134,12 +137,18 @@ Stage 3 confirms them on the emulator. Changes from the draft, found in the sour
 (quotes, `\n`, `\`, `$`, `%s`, non-ASCII, empty). Each case has the expected class and a hand-written
 `UiSelector`. `npm run spec:check` fails if a reference row has no case. Expected size ≈150.
 
-**R (real).** About 10 open-source projects with Android Appium tests, large and weak (tutorials,
-starters, Inspector-generated absolute paths). Search with `gh search code` (`AppiumBy.xpath("//android`,
-`@AndroidFindBy(xpath`, `AppiumBy.XPATH`, `$('//android.widget`, `/hierarchy/android`); sparse clone of
-test folders only. `audit/corpus/android-locators.json` (anonymized literals, same fields as iOS plus
-project), `audit/corpus/sources.md` (repo, commit, license, count). Target 400+ unique locators, no
-project above ~25 %. The untouched files also serve as scanner tests.
+**R (real).** Done in stage 2: 15 open-source projects with Android Appium tests, large and weak, in
+[`audit/corpus/`](audit/corpus/sources.md). No clone: `gh search code` for candidates, the git tree at a
+pinned commit, only the test files from `raw.githubusercontent.com` (≈3 MB of traffic in all).
+`android-locators.json` holds 1473 anonymized literals (1261 Android, the rest iOS and WebView), same
+fields as iOS plus `project`, `lang`, `strategy`; `sources.md` the repos, commits, licenses and counts;
+`frequencies.md` the forms, languages and strategies; `contexts/` four MIT / Apache-2.0 files for the
+scanner tests. Largest project: 22.5 % of the unique Android literals.
+
+What the corpus says for the rules (share of unique Android literals): `@text` 55 %, `@resource-id`
+38 %, `//*` 35 %, `and` 22 %, `@content-desc` 15 %, `contains()` 11 %, absolute `/hierarchy/` 6 %, step
+`[n]` 8 %; 81 % are a single step. Rare: `or` 2 %, axes and `..` under 2 % each, `matches()` and
+`text()` under 0.5 %.
 
 ## 5. The oracle
 
@@ -172,7 +181,7 @@ One branch and one PR per stage, into `main`. Share is of the 5-hour window.
 | --- | --- | --- | --- |
 | 0 | Scaffold and carry-over | package (bin, files, engines, keywords, short npm README), CI, `docs/environment.md`, `docs/settings.md` (all settings with defaults, from the driver docs and the server's `model/settings/`), scanner / CLI / report / strategy markers with their tests, ported to Android detection | ≈45 min, ≈9 % |
 | 1 | Reference and S | `reference/` excerpts at the pinned tags, S cases with expected `UiSelector`, `spec:check` | ≈75 min, ≈15 % |
-| 2 | R corpus | ~10 projects, extraction, anonymization, `sources.md`, form and language frequencies | ≈60 min, ≈12 %; downloads ≈100–300 MB |
+| 2 | R corpus | ~10 projects, extraction, anonymization, `sources.md`, form and language frequencies | ≈60 min, ≈12 %; done: 15 projects, ≈3 MB downloaded, no clone |
 | 3 | Oracle | LocatorLab spike and screens, runner, S run on the emulator: every S expectation confirmed or corrected (no converter yet) | ≈90 min, ≈18 %; Gradle build and runs in the background |
 | 4 | Converter | AST parser (whitelist), `UiSelector` emitter, strategy rewrite, unit tests; loop until S has 0 WRONG / 0 GAP; R fuzz run in the background | ≈2.5 h, ≈30 % |
 | 5 | Report and release | `audit/coverage-report.md`, README with limits and settings, `docs/reference.md`, Claude skill, upstream watch; npm publish after your OK | ≈60 min, ≈12 % |
