@@ -615,5 +615,43 @@ console.log('— REGEX SAFETY —');
   }
 }
 
+// =====================================================================
+// CORPUS — the R corpus is well-formed and the context files scan as
+// audit/corpus/contexts/expected.json says (stage 2).
+// =====================================================================
+console.log('— CORPUS —');
+{
+  const corpus = require('./audit/corpus/android-locators.json');
+  const KINDS = new Set(['xpath', 'xpath-dynamic', 'xpath-ios', 'xpath-web']);
+  const FIELDS = ['id', 'kind', 'quote', 'source', 'count', 'project', 'lang', 'strategy'];
+  const bad = corpus.filter((e, i) => e.id !== `A${String(i + 1).padStart(4, '0')}`
+    || JSON.stringify(Object.keys(e)) !== JSON.stringify(FIELDS)
+    || !KINDS.has(e.kind) || !["'", '"', '`'].includes(e.quote)
+    || !(e.count >= 1) || !isLikelyXpathLocator(e.source));
+  if (corpus.length > 1000 && bad.length === 0) ok();
+  else fail(`corpus: ${corpus.length} entries, malformed: ${JSON.stringify(bad.slice(0, 3))}`);
+
+  const sources = readFileSync(join(__dirname, 'audit/corpus/sources.md'), 'utf8');
+  const missing = [...new Set(corpus.map((e) => e.project))].filter((p) => !sources.includes(`[${p}](`));
+  if (missing.length === 0) ok();
+  else fail(`corpus: projects not in sources.md: ${missing.join(', ')}`);
+
+  const dir = join(__dirname, 'audit/corpus/contexts');
+  const expected = require('./audit/corpus/contexts/expected.json');
+  for (const [file, want] of Object.entries(expected)) {
+    const records = [];
+    processFile(join(dir, file), { dryRun: true, quiet: true, convert: FAKE }, records, makeStats());
+    const strategies = {};
+    for (const r of records) {
+      if (r.status === STATUS.SKIPPED_XPATH_STRATEGY) {
+        const s = r.reason.replace(/^xpath strategy: /, '');
+        strategies[s] = (strategies[s] || 0) + 1;
+      }
+    }
+    if (records.length === want.found && JSON.stringify(strategies) === JSON.stringify(want.strategies)) ok();
+    else fail(`context ${file}: found ${records.length}, strategies ${JSON.stringify(strategies)}; want ${want.found}, ${JSON.stringify(want.strategies)}`);
+  }
+}
+
 console.log(`\n${failed === 0 ? '✅' : '⚠️'} ${passed} passed, ${failed} failed`);
 process.exit(failed === 0 ? 0 : 1);
