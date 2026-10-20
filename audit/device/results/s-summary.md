@@ -8,7 +8,7 @@ probe's count), then the outcome when it is not EQUAL. DEPTH: the UiSelector als
 70-level page source limit (SRV-12). TOAST: the XPath also finds the toast (SRV-13). A07 and C07 run with
 LocatorLab's package in place of com.example.app.
 
-Verdicts: CONFIRMED 75, xpath 46, DIFFERS 9, VACUOUS 2.
+Verdicts: CONFIRMED 75, xpath 51, DIFFERS 4, VACUOUS 2.
 
 | Case | Expect | attrs | tree | deep | windows | Verdict |
 | --- | --- | --- | --- | --- | --- | --- |
@@ -27,7 +27,7 @@ Verdicts: CONFIRMED 75, xpath 46, DIFFERS 9, VACUOUS 2.
 | A13 | skip | 1 | 0 | 0 | 0 | xpath 1/0/0/0 |
 | A14 | skip | 0 | 0 | 0 | 0 | xpath 0/0/0/0 |
 | A15 | skip | err/1 XPATH_ERROR probe XPATH_ERROR | err/0 XPATH_ERROR probe XPATH_ERROR | err/0 XPATH_ERROR probe XPATH_ERROR | err/0 XPATH_ERROR probe XPATH_ERROR | xpath error/error/error/error; probe XPATH_ERROR |
-| A16 | close | 2/1 SET_DIFFERS | 0/0 | 0/0 | 0/0 | DIFFERS (attrs: SET_DIFFERS) |
+| A16 | skip | 2/1 probe SET_DIFFERS | 0/0 | 0/0 | 0/0 | xpath 2/0/0/0; probe SET_DIFFERS, EQUAL |
 | A17 | exact | 1/1 | 0/0 | 0/0 | 0/0 | CONFIRMED |
 | A18 | skip | 0/2 probe SET_DIFFERS | 0/1 probe SET_DIFFERS | 0/0 | 0/1 probe SET_DIFFERS | xpath 0/0/0/0; probe SET_DIFFERS, EQUAL |
 | A19 | skip | 0 | 0 | 0 | 0 | xpath 0/0/0/0 |
@@ -53,7 +53,7 @@ Verdicts: CONFIRMED 75, xpath 46, DIFFERS 9, VACUOUS 2.
 | C03 | exact | 1/1 | 0/0 | 0/0 | 0/0 | CONFIRMED |
 | C04 | exact | 2/2 | 0/0 | 0/0 | 0/0 | CONFIRMED |
 | C05 | exact | 2/2 | 0/0 | 0/0 | 0/0 | CONFIRMED |
-| C06 | close | 8/3 SET_DIFFERS | 13/4 SET_DIFFERS | 1/1 | 2/1 SET_DIFFERS | DIFFERS (attrs: SET_DIFFERS; tree: SET_DIFFERS; windows: SET_DIFFERS) |
+| C06 | skip | 8/3 probe SET_DIFFERS | 13/4 probe SET_DIFFERS | 1/1 | 2/1 probe SET_DIFFERS | xpath 8/13/1/2; probe SET_DIFFERS, EQUAL |
 | C07 | exact | 104/104 | 49/49 | 79/120 DEPTH | 12/12 | CONFIRMED, except DEPTH |
 | C08 | skip | 104/72 probe SET_DIFFERS | 49/28 probe SET_DIFFERS | 79/13 probe SET_DIFFERS | 12/5 probe SET_DIFFERS | xpath 104/49/79/12; probe SET_DIFFERS |
 | C09 | exact | 1/1 | 0/0 | 0/0 | 0/0 | CONFIRMED |
@@ -119,12 +119,12 @@ Verdicts: CONFIRMED 75, xpath 46, DIFFERS 9, VACUOUS 2.
 | H04 | exact | 56/56 | 25/25 | 8/13 DEPTH | 4/4 | CONFIRMED, except DEPTH |
 | H05 | close | 5/5 | 1/1 | 0/0 | 1/1 | CONFIRMED |
 | H06 | close | 8/8 | 1/1 | 1/1 | 1/1 | CONFIRMED |
-| H07 | close | 4/5 SET_DIFFERS | 1/1 | 0/0 | 1/1 | DIFFERS (attrs: SET_DIFFERS) |
-| H08 | close | 4/5 SET_DIFFERS | 1/1 | 0/0 | 1/1 | DIFFERS (attrs: SET_DIFFERS) |
+| H07 | skip | 4/5 probe SET_DIFFERS | 1/1 | 0/0 | 1/1 | xpath 4/1/0/1; probe SET_DIFFERS, EQUAL |
+| H08 | skip | 4/5 probe SET_DIFFERS | 1/1 | 0/0 | 1/1 | xpath 4/1/0/1; probe SET_DIFFERS, EQUAL |
 | H09 | skip | err XPATH_ERROR | err XPATH_ERROR | err XPATH_ERROR | err XPATH_ERROR | xpath error/error/error/error |
 | H10 | exact | 1/1 | 0/0 | 0/0 | 0/0 | CONFIRMED |
 | X01 | exact | 4/4 | 2/2 | 0/0 | 0/0 | CONFIRMED |
-| X02 | close | 7/3 SET_DIFFERS | 13/4 SET_DIFFERS | 1/1 | 2/1 SET_DIFFERS | DIFFERS (attrs: SET_DIFFERS; tree: SET_DIFFERS; windows: SET_DIFFERS) |
+| X02 | skip | 7/3 probe SET_DIFFERS | 13/4 probe SET_DIFFERS | 1/1 | 2/1 probe SET_DIFFERS | xpath 7/13/1/2; probe SET_DIFFERS, EQUAL |
 | X03 | skip | 3 | 1 | 0 | 0 | xpath 3/1/0/0 |
 | X04 | exact | 4/4 | 2/2 | 0/0 | 0/0 | CONFIRMED |
 | P01 | skip | 0 | 0 | 0 | 0 | xpath 0/0/0/0 |

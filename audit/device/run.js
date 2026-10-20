@@ -35,8 +35,10 @@ const PROBES = {
   A08: `${U}.text("")`,
   A09: `${U}.resourceId("")`,
   A15: `${U}.className("com.example.app.Outer$Inner")`,
+  A16: `${U}.className("android.view.View").text("x")`,
   A18: `${U}.text("OK")`,
   B16: `${U}.index(2)`,
+  C06: `${U}.classNameMatches("(?s).*Button.*")`,
   C08: `${U}.textMatches("(?s).*")`,
   C10: `${U}.className("android.widget.SeekBar").text("50.0")`,
   C11: `${U}.text("50.0")`,
@@ -48,9 +50,12 @@ const PROBES = {
   F02: `${U}.className("android.widget.ListView").childSelector(${U}.className("android.widget.TextView"))`,
   G12: `${U}.text("bell\u0007")`,
   H03: `${U}.textMatches("(?d)(?s:.*)(?:a*)(?s:.*)")`,
+  H07: `${U}.textMatches("(?i)ok")`,
+  H08: `${U}.textMatches("(?i)OK")`,
   P03: `${U}.className("android.widget.Toast").text("Saved")`,
   P04: U,
   V08: `${U}.text("1")`,
+  X02: String.raw`${U}.classNameMatches("android\.widget\.Button|android\.widget\.ImageButton")`,
 };
 
 // LocatorLab cannot set a node's package (the framework overwrites it), so @package cases run with

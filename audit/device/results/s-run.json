@@ -556,8 +556,8 @@
   "A16|attrs": {
    "case": "A16",
    "screen": "attrs",
-   "expect": "close",
-   "outcome": "SET_DIFFERS",
+   "expect": "skip",
+   "outcome": "XPATH_ONLY",
    "xpath": {
     "ms": 66.7,
     "n": 2,
@@ -566,12 +566,16 @@
      "||x||[0,613][270,723]"
     ]
    },
-   "ui": {
-    "ms": 73.4,
-    "n": 1,
-    "fp": [
-     "android.view.View||x||[810,503][1080,613]"
-    ]
+   "probe": {
+    "uiselector": "new UiSelector().className(\"android.view.View\").text(\"x\")",
+    "ui": {
+     "ms": 73.4,
+     "n": 1,
+     "fp": [
+      "android.view.View||x||[810,503][1080,613]"
+     ]
+    },
+    "outcome": "SET_DIFFERS"
    }
   },
   "A17|attrs": {
@@ -1690,8 +1694,8 @@
   "C06|attrs": {
    "case": "C06",
    "screen": "attrs",
-   "expect": "close",
-   "outcome": "SET_DIFFERS",
+   "expect": "skip",
+   "outcome": "XPATH_ONLY",
    "xpath": {
     "ms": 75.9,
     "n": 8,
@@ -1706,14 +1710,18 @@
      "android.widget.Button||Add||[540,2153][810,2263]"
     ]
    },
-   "ui": {
-    "ms": 54.6,
-    "n": 3,
-    "fp": [
-     "android.widget.Button|com.example.app:id/login|Sign in||[0,63][270,173]",
-     "android.widget.Button||OK||[270,1053][540,1163]",
-     "android.widget.Button||OK||[540,1053][810,1163]"
-    ]
+   "probe": {
+    "uiselector": "new UiSelector().classNameMatches(\"(?s).*Button.*\")",
+    "ui": {
+     "ms": 54.6,
+     "n": 3,
+     "fp": [
+      "android.widget.Button|com.example.app:id/login|Sign in||[0,63][270,173]",
+      "android.widget.Button||OK||[270,1053][540,1163]",
+      "android.widget.Button||OK||[540,1053][810,1163]"
+     ]
+    },
+    "outcome": "SET_DIFFERS"
    }
   },
   "C07|attrs": {
@@ -3901,8 +3909,8 @@
   "H07|attrs": {
    "case": "H07",
    "screen": "attrs",
-   "expect": "close",
-   "outcome": "SET_DIFFERS",
+   "expect": "skip",
+   "outcome": "XPATH_ONLY",
    "xpath": {
     "ms": 60.9,
     "n": 4,
@@ -3913,23 +3921,27 @@
      "android.widget.TextView||ok||[0,1933][270,2043]"
     ]
    },
-   "ui": {
-    "ms": 66.4,
-    "n": 5,
-    "fp": [
-     "android.widget.Button||OK||[270,1053][540,1163]",
-     "android.widget.Button||OK||[540,1053][810,1163]",
-     "android.widget.TextView||Ok||[810,1823][1080,1933]",
-     "android.widget.TextView||ok||[0,1933][270,2043]",
-     "android.widget.TextView||OK||[270,1933][540,2043]"
-    ]
+   "probe": {
+    "uiselector": "new UiSelector().textMatches(\"(?i)ok\")",
+    "ui": {
+     "ms": 66.4,
+     "n": 5,
+     "fp": [
+      "android.widget.Button||OK||[270,1053][540,1163]",
+      "android.widget.Button||OK||[540,1053][810,1163]",
+      "android.widget.TextView||Ok||[810,1823][1080,1933]",
+      "android.widget.TextView||ok||[0,1933][270,2043]",
+      "android.widget.TextView||OK||[270,1933][540,2043]"
+     ]
+    },
+    "outcome": "SET_DIFFERS"
    }
   },
   "H08|attrs": {
    "case": "H08",
    "screen": "attrs",
-   "expect": "close",
-   "outcome": "SET_DIFFERS",
+   "expect": "skip",
+   "outcome": "XPATH_ONLY",
    "xpath": {
     "ms": 68.1,
     "n": 4,
@@ -3940,16 +3952,20 @@
      "android.widget.TextView||ok||[0,1933][270,2043]"
     ]
    },
-   "ui": {
-    "ms": 58.2,
-    "n": 5,
-    "fp": [
-     "android.widget.Button||OK||[270,1053][540,1163]",
-     "android.widget.Button||OK||[540,1053][810,1163]",
-     "android.widget.TextView||Ok||[810,1823][1080,1933]",
-     "android.widget.TextView||ok||[0,1933][270,2043]",
-     "android.widget.TextView||OK||[270,1933][540,2043]"
-    ]
+   "probe": {
+    "uiselector": "new UiSelector().textMatches(\"(?i)OK\")",
+    "ui": {
+     "ms": 58.2,
+     "n": 5,
+     "fp": [
+      "android.widget.Button||OK||[270,1053][540,1163]",
+      "android.widget.Button||OK||[540,1053][810,1163]",
+      "android.widget.TextView||Ok||[810,1823][1080,1933]",
+      "android.widget.TextView||ok||[0,1933][270,2043]",
+      "android.widget.TextView||OK||[270,1933][540,2043]"
+     ]
+    },
+    "outcome": "SET_DIFFERS"
    }
   },
   "H09|attrs": {
@@ -4011,8 +4027,8 @@
   "X02|attrs": {
    "case": "X02",
    "screen": "attrs",
-   "expect": "close",
-   "outcome": "SET_DIFFERS",
+   "expect": "skip",
+   "outcome": "XPATH_ONLY",
    "xpath": {
     "ms": 68.7,
     "n": 7,
@@ -4026,14 +4042,18 @@
      "android.widget.Button||Add||[540,2153][810,2263]"
     ]
    },
-   "ui": {
-    "ms": 54.2,
-    "n": 3,
-    "fp": [
-     "android.widget.Button|com.example.app:id/login|Sign in||[0,63][270,173]",
-     "android.widget.Button||OK||[270,1053][540,1163]",
-     "android.widget.Button||OK||[540,1053][810,1163]"
-    ]
+   "probe": {
+    "uiselector": "new UiSelector().classNameMatches(\"android\\.widget\\.Button|android\\.widget\\.ImageButton\")",
+    "ui": {
+     "ms": 54.2,
+     "n": 3,
+     "fp": [
+      "android.widget.Button|com.example.app:id/login|Sign in||[0,63][270,173]",
+      "android.widget.Button||OK||[270,1053][540,1163]",
+      "android.widget.Button||OK||[540,1053][810,1163]"
+     ]
+    },
+    "outcome": "SET_DIFFERS"
    }
   },
   "X03|attrs": {
@@ -4770,17 +4790,21 @@
   "A16|tree": {
    "case": "A16",
    "screen": "tree",
-   "expect": "close",
-   "outcome": "EQUAL",
+   "expect": "skip",
+   "outcome": "XPATH_ONLY",
    "xpath": {
     "ms": 27.8,
     "n": 0,
     "fp": []
    },
-   "ui": {
-    "ms": 8.1,
-    "n": 0,
-    "fp": []
+   "probe": {
+    "uiselector": "new UiSelector().className(\"android.view.View\").text(\"x\")",
+    "ui": {
+     "ms": 8.1,
+     "n": 0,
+     "fp": []
+    },
+    "outcome": "EQUAL"
    }
   },
   "A17|tree": {
@@ -5494,8 +5518,8 @@
   "C06|tree": {
    "case": "C06",
    "screen": "tree",
-   "expect": "close",
-   "outcome": "SET_DIFFERS",
+   "expect": "skip",
+   "outcome": "XPATH_ONLY",
    "xpath": {
     "ms": 26.7,
     "n": 13,
@@ -5515,15 +5539,19 @@
      "android.widget.Button||Add||[270,1903][540,2271]"
     ]
    },
-   "ui": {
-    "ms": 13.6,
-    "n": 4,
-    "fp": [
-     "android.widget.Button||Add||[0,63][360,431]",
-     "android.widget.Button||Add||[540,431][1080,553]",
-     "android.widget.ImageButton||Image||[720,1167][1080,1535]",
-     "android.widget.Button||OK||[810,1535][1080,1903]"
-    ]
+   "probe": {
+    "uiselector": "new UiSelector().classNameMatches(\"(?s).*Button.*\")",
+    "ui": {
+     "ms": 13.6,
+     "n": 4,
+     "fp": [
+      "android.widget.Button||Add||[0,63][360,431]",
+      "android.widget.Button||Add||[540,431][1080,553]",
+      "android.widget.ImageButton||Image||[720,1167][1080,1535]",
+      "android.widget.Button||OK||[810,1535][1080,1903]"
+     ]
+    },
+    "outcome": "SET_DIFFERS"
    }
   },
   "C07|tree": {
@@ -7158,8 +7186,8 @@
   "H07|tree": {
    "case": "H07",
    "screen": "tree",
-   "expect": "close",
-   "outcome": "EQUAL",
+   "expect": "skip",
+   "outcome": "XPATH_ONLY",
    "xpath": {
     "ms": 15.4,
     "n": 1,
@@ -7167,19 +7195,23 @@
      "android.widget.Button||OK||[810,1535][1080,1903]"
     ]
    },
-   "ui": {
-    "ms": 13.9,
-    "n": 1,
-    "fp": [
-     "android.widget.Button||OK||[810,1535][1080,1903]"
-    ]
+   "probe": {
+    "uiselector": "new UiSelector().textMatches(\"(?i)ok\")",
+    "ui": {
+     "ms": 13.9,
+     "n": 1,
+     "fp": [
+      "android.widget.Button||OK||[810,1535][1080,1903]"
+     ]
+    },
+    "outcome": "EQUAL"
    }
   },
   "H08|tree": {
    "case": "H08",
    "screen": "tree",
-   "expect": "close",
-   "outcome": "EQUAL",
+   "expect": "skip",
+   "outcome": "XPATH_ONLY",
    "xpath": {
     "ms": 21.4,
     "n": 1,
@@ -7187,12 +7219,16 @@
      "android.widget.Button||OK||[810,1535][1080,1903]"
     ]
    },
-   "ui": {
-    "ms": 24.8,
-    "n": 1,
-    "fp": [
-     "android.widget.Button||OK||[810,1535][1080,1903]"
-    ]
+   "probe": {
+    "uiselector": "new UiSelector().textMatches(\"(?i)OK\")",
+    "ui": {
+     "ms": 24.8,
+     "n": 1,
+     "fp": [
+      "android.widget.Button||OK||[810,1535][1080,1903]"
+     ]
+    },
+    "outcome": "EQUAL"
    }
   },
   "H09|tree": {
@@ -7246,8 +7282,8 @@
   "X02|tree": {
    "case": "X02",
    "screen": "tree",
-   "expect": "close",
-   "outcome": "SET_DIFFERS",
+   "expect": "skip",
+   "outcome": "XPATH_ONLY",
    "xpath": {
     "ms": 17.5,
     "n": 13,
@@ -7267,15 +7303,19 @@
      "android.widget.Button||Add||[270,1903][540,2271]"
     ]
    },
-   "ui": {
-    "ms": 22.8,
-    "n": 4,
-    "fp": [
-     "android.widget.Button||Add||[0,63][360,431]",
-     "android.widget.Button||Add||[540,431][1080,553]",
-     "android.widget.ImageButton||Image||[720,1167][1080,1535]",
-     "android.widget.Button||OK||[810,1535][1080,1903]"
-    ]
+   "probe": {
+    "uiselector": "new UiSelector().classNameMatches(\"android\\.widget\\.Button|android\\.widget\\.ImageButton\")",
+    "ui": {
+     "ms": 22.8,
+     "n": 4,
+     "fp": [
+      "android.widget.Button||Add||[0,63][360,431]",
+      "android.widget.Button||Add||[540,431][1080,553]",
+      "android.widget.ImageButton||Image||[720,1167][1080,1535]",
+      "android.widget.Button||OK||[810,1535][1080,1903]"
+     ]
+    },
+    "outcome": "SET_DIFFERS"
    }
   },
   "X03|tree": {
@@ -8137,17 +8177,21 @@
   "A16|deep": {
    "case": "A16",
    "screen": "deep",
-   "expect": "close",
-   "outcome": "EQUAL",
+   "expect": "skip",
+   "outcome": "XPATH_ONLY",
    "xpath": {
     "ms": 21.8,
     "n": 0,
     "fp": []
    },
-   "ui": {
-    "ms": 27.4,
-    "n": 0,
-    "fp": []
+   "probe": {
+    "uiselector": "new UiSelector().className(\"android.view.View\").text(\"x\")",
+    "ui": {
+     "ms": 27.4,
+     "n": 0,
+     "fp": []
+    },
+    "outcome": "EQUAL"
    }
   },
   "A17|deep": {
@@ -9062,8 +9106,8 @@
   "C06|deep": {
    "case": "C06",
    "screen": "deep",
-   "expect": "close",
-   "outcome": "EQUAL",
+   "expect": "skip",
+   "outcome": "XPATH_ONLY",
    "xpath": {
     "ms": 23.4,
     "n": 1,
@@ -9071,12 +9115,16 @@
      "android.widget.Button||Add||[0,63][540,505]"
     ]
    },
-   "ui": {
-    "ms": 30.2,
-    "n": 1,
-    "fp": [
-     "android.widget.Button||Add||[0,63][540,505]"
-    ]
+   "probe": {
+    "uiselector": "new UiSelector().classNameMatches(\"(?s).*Button.*\")",
+    "ui": {
+     "ms": 30.2,
+     "n": 1,
+     "fp": [
+      "android.widget.Button||Add||[0,63][540,505]"
+     ]
+    },
+    "outcome": "EQUAL"
    }
   },
   "C07|deep": {
@@ -10718,33 +10766,41 @@
   "H07|deep": {
    "case": "H07",
    "screen": "deep",
-   "expect": "close",
-   "outcome": "EQUAL",
+   "expect": "skip",
+   "outcome": "XPATH_ONLY",
    "xpath": {
     "ms": 22.2,
     "n": 0,
     "fp": []
    },
-   "ui": {
-    "ms": 27.4,
-    "n": 0,
-    "fp": []
+   "probe": {
+    "uiselector": "new UiSelector().textMatches(\"(?i)ok\")",
+    "ui": {
+     "ms": 27.4,
+     "n": 0,
+     "fp": []
+    },
+    "outcome": "EQUAL"
    }
   },
   "H08|deep": {
    "case": "H08",
    "screen": "deep",
-   "expect": "close",
-   "outcome": "EQUAL",
+   "expect": "skip",
+   "outcome": "XPATH_ONLY",
    "xpath": {
     "ms": 23.8,
     "n": 0,
     "fp": []
    },
-   "ui": {
-    "ms": 30,
-    "n": 0,
-    "fp": []
+   "probe": {
+    "uiselector": "new UiSelector().textMatches(\"(?i)OK\")",
+    "ui": {
+     "ms": 30,
+     "n": 0,
+     "fp": []
+    },
+    "outcome": "EQUAL"
    }
   },
   "H09|deep": {
@@ -10792,8 +10848,8 @@
   "X02|deep": {
    "case": "X02",
    "screen": "deep",
-   "expect": "close",
-   "outcome": "EQUAL",
+   "expect": "skip",
+   "outcome": "XPATH_ONLY",
    "xpath": {
     "ms": 24.3,
     "n": 1,
@@ -10801,12 +10857,16 @@
      "android.widget.Button||Add||[0,63][540,505]"
     ]
    },
-   "ui": {
-    "ms": 29.4,
-    "n": 1,
-    "fp": [
-     "android.widget.Button||Add||[0,63][540,505]"
-    ]
+   "probe": {
+    "uiselector": "new UiSelector().classNameMatches(\"android\\.widget\\.Button|android\\.widget\\.ImageButton\")",
+    "ui": {
+     "ms": 29.4,
+     "n": 1,
+     "fp": [
+      "android.widget.Button||Add||[0,63][540,505]"
+     ]
+    },
+    "outcome": "EQUAL"
    }
   },
   "X03|deep": {
@@ -11370,17 +11430,21 @@
   "A16|windows": {
    "case": "A16",
    "screen": "windows",
-   "expect": "close",
-   "outcome": "EQUAL",
+   "expect": "skip",
+   "outcome": "XPATH_ONLY",
    "xpath": {
     "ms": 11.9,
     "n": 0,
     "fp": []
    },
-   "ui": {
-    "ms": 8.5,
-    "n": 0,
-    "fp": []
+   "probe": {
+    "uiselector": "new UiSelector().className(\"android.view.View\").text(\"x\")",
+    "ui": {
+     "ms": 8.5,
+     "n": 0,
+     "fp": []
+    },
+    "outcome": "EQUAL"
    }
   },
   "A17|windows": {
@@ -11868,8 +11932,8 @@
   "C06|windows": {
    "case": "C06",
    "screen": "windows",
-   "expect": "close",
-   "outcome": "SET_DIFFERS",
+   "expect": "skip",
+   "outcome": "XPATH_ONLY",
    "xpath": {
     "ms": 10.9,
     "n": 2,
@@ -11878,12 +11942,16 @@
      "android.widget.Button||OK||[0,615][1080,1444]"
     ]
    },
-   "ui": {
-    "ms": 9.6,
-    "n": 1,
-    "fp": [
-     "android.widget.Button||Add||[0,63][360,615]"
-    ]
+   "probe": {
+    "uiselector": "new UiSelector().classNameMatches(\"(?s).*Button.*\")",
+    "ui": {
+     "ms": 9.6,
+     "n": 1,
+     "fp": [
+      "android.widget.Button||Add||[0,63][360,615]"
+     ]
+    },
+    "outcome": "SET_DIFFERS"
    }
   },
   "C07|windows": {
@@ -13094,8 +13162,8 @@
   "H07|windows": {
    "case": "H07",
    "screen": "windows",
-   "expect": "close",
-   "outcome": "EQUAL",
+   "expect": "skip",
+   "outcome": "XPATH_ONLY",
    "xpath": {
     "ms": 11.4,
     "n": 1,
@@ -13103,19 +13171,23 @@
      "android.widget.Button||OK||[0,615][1080,1444]"
     ]
    },
-   "ui": {
-    "ms": 9.7,
-    "n": 1,
-    "fp": [
-     "android.widget.Button||OK||[0,615][1080,1444]"
-    ]
+   "probe": {
+    "uiselector": "new UiSelector().textMatches(\"(?i)ok\")",
+    "ui": {
+     "ms": 9.7,
+     "n": 1,
+     "fp": [
+      "android.widget.Button||OK||[0,615][1080,1444]"
+     ]
+    },
+    "outcome": "EQUAL"
    }
   },
   "H08|windows": {
    "case": "H08",
    "screen": "windows",
-   "expect": "close",
-   "outcome": "EQUAL",
+   "expect": "skip",
+   "outcome": "XPATH_ONLY",
    "xpath": {
     "ms": 13.6,
     "n": 1,
@@ -13123,12 +13195,16 @@
      "android.widget.Button||OK||[0,615][1080,1444]"
     ]
    },
-   "ui": {
-    "ms": 9.2,
-    "n": 1,
-    "fp": [
-     "android.widget.Button||OK||[0,615][1080,1444]"
-    ]
+   "probe": {
+    "uiselector": "new UiSelector().textMatches(\"(?i)OK\")",
+    "ui": {
+     "ms": 9.2,
+     "n": 1,
+     "fp": [
+      "android.widget.Button||OK||[0,615][1080,1444]"
+     ]
+    },
+    "outcome": "EQUAL"
    }
   },
   "H09|windows": {
@@ -13176,8 +13252,8 @@
   "X02|windows": {
    "case": "X02",
    "screen": "windows",
-   "expect": "close",
-   "outcome": "SET_DIFFERS",
+   "expect": "skip",
+   "outcome": "XPATH_ONLY",
    "xpath": {
     "ms": 11.4,
     "n": 2,
@@ -13186,12 +13262,16 @@
      "android.widget.Button||OK||[0,615][1080,1444]"
     ]
    },
-   "ui": {
-    "ms": 10.5,
-    "n": 1,
-    "fp": [
-     "android.widget.Button||Add||[0,63][360,615]"
-    ]
+   "probe": {
+    "uiselector": "new UiSelector().classNameMatches(\"android\\.widget\\.Button|android\\.widget\\.ImageButton\")",
+    "ui": {
+     "ms": 10.5,
+     "n": 1,
+     "fp": [
+      "android.widget.Button||Add||[0,63][360,615]"
+     ]
+    },
+    "outcome": "SET_DIFFERS"
    }
   },
   "X03|windows": {

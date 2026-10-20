@@ -55,6 +55,10 @@ their own resource ids for that reason.
   `UiSelector` does not ([settings.md](../../docs/settings.md) marks the setting as *Result*).
 - `(?i)` in a `UiSelector` regex folds Unicode letters (Android regexes are ICU): the Kelvin sign
   matches `k`.
-- Lookup times (`findElements`, screens of 12–200 nodes): median 24 ms for XPath, 28 ms for
-  `UiSelector`, 95th percentile about 80 ms for both; recorded per lookup in `s-run.json` (not a
-  benchmark).
+- Lookup times are recorded per lookup in `s-run.json` (`xpath.ms`, `ui.ms`, `probe.ui.ms`). They
+  are a side product, one cold lookup each on small screens, not a benchmark (that is the
+  [benchmark](https://github.com/domovou69/appium-android-locator-benchmark)'s job). Paired on the
+  same case: the `UiSelector` was faster in 65 of 86 pairs on `attrs`, 55 on `tree`, 61 on `windows`,
+  but only 10 of 86 on `deep`, where it walks below level 70 and XPath does not. `findElements` with
+  more than 20 matches: median 60 ms for XPath, 243 ms for `UiSelector`, because the server runs
+  one `instance(i)` search per element (SRV-31).
