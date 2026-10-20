@@ -86,31 +86,38 @@ warning: a runtime value with `"` or a trailing `\` breaks the `UiSelector` (sec
 
 Order of languages follows the R corpus frequencies (stage 2); Java, Kotlin, Python, JS/TS first.
 
-## 3. Rules (draft, confirmed by stage 3)
+## 3. Rules
 
-Facts below are from the server sources at v10.6.6; rows marked **oracle** depend on device behaviour.
+Confirmed against the sources in stage 1: every rule cites rows of [`reference/`](reference/README.md),
+and the full list with expected output is the S cases in [`audit/spec/cases.js`](audit/spec/cases.js).
+Stage 3 confirms them on the emulator. Changes from the draft, found in the sources:
 
-| XPath (server default: XPath 2.0) | `UiSelector` | Class |
+- `textContains`, `textStartsWith`, `descriptionContains`, `descriptionStartsWith` are
+  **case-insensitive** (SEL-02). XPath's `contains()` / `starts-with()` are not, so they become an
+  escaped `…Matches("(?s).*v.*")` regex; the four methods are never emitted.
+- Values with `"` or `\` are not skipped: a `…Matches` form writes them as `\x22` / `\x5c` (SRV-23).
+- `(//X)[n]` → `instance(n-1)` should be exact: UiSelector counts in pre-order, the same as XPath
+  document order, with the same visibility rule (SEL-06, SEL-07, SEL-10).
+- `//A//B` → `childSelector`: the first element equals the XPath's, `findElements` returns at most one per
+  container (SEL-11): close.
+- New skips: `@text=""` and text tests that hold for `""` (SRV-05), float-shaped `@text` (range widgets,
+  SRV-06), `android.widget.Toast` (SRV-13), `//*` (SRV-02), `@name` / camelCase aliases (SRV-11).
+- `matches()` converts exactly with a wrapper that turns PsychoPath's `find()` into a whole-string match
+  (XP-03); patterns that match `""` are skipped.
+
+| XPath | `UiSelector` | Class |
 | --- | --- | --- |
-| `//T` | `className("T")` | exact, unless `T` was rewritten by the dumper (`$ @ # &` → `.`, `normalizeTagNames`): skip such names |
-| `@text`, `@content-desc`, `@resource-id`, `@class`, `@package` with `=`, `contains`, `starts-with` | `text`/`textContains`/`textStartsWith`, `description*`, `resourceId`, `className`, `packageName` | exact. A null attribute is not written to the XML at all, and `UiSelector` fails on null: oracle for `=""` |
-| `ends-with`, `contains` where no method exists, `matches(@a, p)` | `…Matches("(?s)…")`, metacharacters escaped one by one | exact for literals; `matches()` with flags or XSD-only syntax: oracle or skip |
-| `lower-case(@a)="v"`, `upper-case`, `translate` with ASCII alphabets | `…Matches("(?i)…")` | oracle (Java `(?i)` is ASCII-only by default) |
-| `@a=("x","y")`, `@a="x" or @a="y"` | `…Matches("x\|y")`, escaped | exact |
-| 9 booleans: `checkable`, `checked`, `clickable`, `enabled`, `focusable`, `focused`, `long-clickable`, `scrollable`, `selected` | the method | exact |
-| `@index="n"` | `index(n)` | oracle |
-| other ~40 attributes (`bounds`, `displayed`, `hint`, `password`, `a11y-*`, `input-type`, …) | — | skip: no `UiSelector` method |
-| `and` across attributes | chained methods | exact |
-| two conditions on one attribute | one `…Matches` with lookaheads, or skip | `UiSelector` keeps one value per criterion; oracle |
-| `or` across attributes, unions of different paths | — | skip (`;` statements are concatenated per selector then deduped: not document order) |
-| `(//X)[n]` | `instance(n-1)` | oracle; `findElements` returns only that one, as XPath does |
-| `//X[n]`, `last()`, `position()`, `count()` | — | skip |
-| `//A//B` | `childSelector` | oracle; skip if it differs |
-| `//A/B`, `[.//B]`, sibling/parent/ancestor axes | — | skip (`fromParent` only if the oracle shows an exact case) |
-| `/hierarchy/…` absolute paths | — | skip, reason "absolute path"; counted in the report |
-| `text()` | — | skip: the dump has no text nodes, the XPath matches nothing (oracle) |
-| `classNameMatches` in the output | — | warning: `findElements` iterates `index(0..n)` with it, not `instance` |
-| Literals: a value ending in `\`, or `\` before `"` | — | skip: the server unescapes only `\"` |
+| `//T`, `@class="T"` | `className("T")` | exact; `$` in `T`: skip |
+| `@text`, `@content-desc`, `@resource-id`, `@package` `= "v"` | `text`, `description`, `resourceId`, `packageName` | exact; `…Matches` when `v` has `"` or `\` |
+| `contains`, `starts-with`, `ends-with`, `matches()`, `or` / sequence on one attribute | `…Matches(regex)` | exact |
+| two conditions on one attribute | one regex with lookaheads | exact |
+| `contains(@class, …)`, unions of class steps | `classNameMatches` | close: breaks `findElements` (SRV-33) |
+| `lower-case`, `upper-case`, `translate` | `…Matches("(?i)…")` | close until the oracle decides |
+| 9 booleans, `not(@b="true")` | `b(true/false)` | exact |
+| `@index` | `index(n)` | exact |
+| `(//X)[n]`, `[position()=n]` | `instance(n-1)` | exact (oracle) |
+| `//A//B` | `childSelector` | close |
+| `//A/B`, `[.//B]`, `//X[n]`, `last()`, axes other than descendant, `not()` on text, `or` across attributes, unions of different paths, `/hierarchy/…`, `text()`, ~40 attributes without a criterion | — | skip with a reason |
 | XPath syntax outside the AST whitelist | — | skip "unsupported syntax" |
 
 ## 4. Reference, S and R

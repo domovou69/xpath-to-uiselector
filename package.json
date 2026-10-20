@@ -43,6 +43,7 @@
     "write": "node xpath-to-uiselector.js --write",
     "json": "node xpath-to-uiselector.js --json",
     "test": "node xpath-to-uiselector.test.js",
+    "spec:check": "node audit/spec/check.js",
     "prepublishOnly": "npm test"
   },
   "files": [
