@@ -192,7 +192,7 @@ One branch and one PR per stage, into `main`. Share is of the 5-hour window.
 | 1 | Reference and S | `reference/` excerpts at the pinned tags, S cases with expected `UiSelector`, `spec:check` | ≈75 min, ≈15 % |
 | 2 | R corpus | ~10 projects, extraction, anonymization, `sources.md`, form and language frequencies | ≈60 min, ≈12 %; done: 20 projects, ≈4 MB downloaded, no clone |
 | 3 | Oracle | LocatorLab spike and screens, runner, S run on the emulator: every S expectation confirmed or corrected (no converter yet) | ≈90 min, ≈18 %; done: [`audit/device/`](audit/device/README.md), ≈0 MB downloaded |
-| 4 | Converter | AST parser (whitelist), `UiSelector` emitter, strategy rewrite, unit tests; loop until S has 0 WRONG / 0 GAP; R fuzz run in the background | ≈2.5 h, ≈30 % |
+| 4 | Converter | AST parser (whitelist), `UiSelector` emitter, strategy rewrite, unit tests; loop until S has 0 WRONG / 0 GAP; R fuzz run in the background | ≈2.5 h, ≈30 %; 4a done (no device): `lib/xpath.js`, `lib/converter.js`, `lib/literal.js`, S 132/132 (`npm run spec:score`), R offline in [`convert-summary.md`](audit/corpus/convert-summary.md); 4b: fuzz on the emulator |
 | 5 | Report and release | `audit/coverage-report.md`, README with limits and settings, `docs/reference.md`, Claude skill, upstream watch; npm publish after your OK | ≈60 min, ≈12 % |
 
 Total ≈8 h, under two windows. Stages 1 and 2 are independent and can swap. Fixes found by the R fuzz

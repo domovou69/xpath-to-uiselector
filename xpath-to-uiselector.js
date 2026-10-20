@@ -60,12 +60,20 @@ function main(target = DEFAULT_TARGET, opts) {
   if (opts.json) {
     const updated = records
       .filter(r => r.changed)
-      .map(({ file, old, new: newLocator, warning }) => (warning ? { file, old, new: newLocator, warning } : { file, old, new: newLocator }));
+      .map(({ file, old, new: newLocator, warning, strategy }) => {
+        const entry = { file, old, new: newLocator };
+        if (strategy) entry.strategy = strategy;
+        if (warning) entry.warning = warning;
+        return entry;
+      });
     const skipped = records
       .filter(r => !r.changed && r.status !== STATUS.SKIPPED_NO_CHANGE)
-      .map(({ file, old, status, reason }) => {
+      .map(({ file, old, status, reason, strategy, uiselector, warning }) => {
         const entry = { file, locator: old, status };
         if (reason) entry.reason = reason;
+        if (strategy) entry.strategy = strategy;
+        if (uiselector) entry.uiselector = uiselector;
+        if (uiselector && warning) entry.warning = warning;
         return entry;
       });
     const payload = { mode: opts.dryRun ? 'dry-run' : 'write', path: fullPath, stats, updated, skipped };
@@ -87,6 +95,7 @@ function main(target = DEFAULT_TARGET, opts) {
   console.log(`Total skipped:    ${stats.locatorsFound - stats.locatorsUpdated}`);
   console.log(`  ios:            ${stats.skipped.ios}`);
   console.log(`  xpath strategy: ${stats.skipped.xpathStrategy}`);
+  console.log(`  no strategy:    ${stats.skipped.unknownStrategy}`);
   console.log(`  validation:     ${stats.skipped.validationFailed}`);
   console.log(`  unsupported:    ${stats.skipped.unsupportedLogic}`);
   console.log(`  not xpath:      ${stats.skipped.notXpath}`);

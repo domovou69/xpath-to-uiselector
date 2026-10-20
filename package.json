@@ -44,6 +44,8 @@
     "json": "node xpath-to-uiselector.js --json",
     "test": "node xpath-to-uiselector.test.js",
     "spec:check": "node audit/spec/check.js",
+    "spec:score": "node audit/spec/score.js",
+    "corpus:convert": "node audit/corpus/convert.js",
     "prepublishOnly": "npm test",
     "appium": "appium --port 4723",
     "oracle": "node audit/device/run.js"

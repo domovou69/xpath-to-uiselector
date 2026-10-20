@@ -8,6 +8,7 @@ export type Status =
   | 'skipped_not_xpath'
   | 'skipped_ios'
   | 'skipped_xpath_strategy'
+  | 'skipped_unknown_strategy'
   | 'skipped_unsupported_logic'
   | 'skipped_validation_failed'
   | 'skipped_no_change';
@@ -22,8 +23,17 @@ export interface ConvertResult {
   warning?: string;
 }
 
+export interface ConvertOptions {
+  /**
+   * Characters that stand for runtime values (the scanner uses private-use
+   * characters for `${x}`, `%s`, `" + x + "`). They are kept as they are, quoted
+   * with \Q…\E inside a regex, and the result carries a warning.
+   */
+  placeholders?: Set<string>;
+}
+
 /** Convert a single Android XPath locator to a UiSelector. */
-export function convertXpathToUiSelector(xpath: string): ConvertResult;
+export function convertXpathToUiSelector(xpath: string, opts?: ConvertOptions): ConvertResult;
 
 /** Pre-filter: does this raw string look like an XPath locator worth touching? */
 export function isLikelyXpathLocator(str: string): boolean;
@@ -50,8 +60,10 @@ export interface ScanStats {
   warnings: number;
   skipped: {
     ios: number;
-    /** Locators passed to an explicit XPath strategy (`AppiumBy.xpath(…)`, `(By.XPATH, …)`), left untouched. */
+    /** Converted, but passed to an XPath strategy with no UiAutomator form (`@FindBy(xpath = …)`, `findElementByXPath(…)`), left untouched. */
     xpathStrategy: number;
+    /** Converted, but no strategy call around the string (outside JS/TS) or a data file, left untouched. */
+    unknownStrategy: number;
     validationFailed: number;
     unsupportedLogic: number;
     notXpath: number;
@@ -69,8 +81,12 @@ export interface ScanRecord {
   new?: string;
   status: Status;
   reason: string | null;
-  /** The conversion's `warning`; present only when `changed`. */
+  /** The conversion's `warning`. */
   warning?: string | null;
+  /** The XPath strategy call around the string, as found (e.g. `AppiumBy.xpath(`). */
+  strategy?: string | null;
+  /** The UiSelector for a converted locator that was not written (skipped_*_strategy). */
+  uiselector?: string;
 }
 
 export interface MainResult {
