@@ -36,4 +36,10 @@ Same emulator as the [benchmark](https://github.com/domovou69/appium-android-loc
 | Machine | Apple M1 Pro, 16 GB |
 | macOS | 26.6.2 |
 | Node / npm | 24.21.0 / 12.2.0 (the package itself supports Node 20+; CI runs 20, 22 and 24) |
-| JDK, Android SDK | as in the benchmark: JDK bundled with Android Studio, `~/Library/Android/sdk` |
+| JDK, Android SDK | as in the benchmark: JDK bundled with Android Studio, `~/Library/Android/sdk`; Appium needs `ANDROID_HOME` and `JAVA_HOME` exported |
+
+## Oracle app
+
+| Item | Version |
+| --- | --- |
+| LocatorLab (`audit/device/LocatorLab/`) | Gradle 9.8.1, Android Gradle Plugin 9.4.1 (built-in Kotlin), compileSdk / targetSdk 37, minSdk 30, debug build |
