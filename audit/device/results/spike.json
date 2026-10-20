@@ -1,0 +1,358 @@
+{
+ "date": "2026-10-20",
+ "host": {
+  "cpu": "Apple M1 Pro",
+  "macOS": "26.6.2",
+  "node": "v24.21.0",
+  "power": "AC",
+  "lowPowerMode": false
+ },
+ "device": {
+  "model": "Android SDK built for arm64",
+  "android": "16",
+  "sdk": "36",
+  "fingerprint": "Android/sdk_phone64_arm64/emu64a:16/BE2A.250530.026.D1/13818094:userdebug/test-keys",
+  "avd": "AOSP_API_36"
+ },
+ "stack": {
+  "appium": "3.8.0",
+  "uiautomator2Driver": "8.7.0",
+  "uiautomator2Server": "10.6.6"
+ },
+ "source": [
+  "<android.widget.FrameLayout index=\"0\" package=\"io.github.domovou69.locatorlab\" class=\"android.widget.FrameLayout\" text=\"\" resource-id=\"com.example.app:id/root\" checkable=\"false\" checked=\"false\" clickable=\"false\" enabled=\"true\" focusable=\"false\" focused=\"false\" long-clickable=\"false\" password=\"false\" scrollable=\"false\" selected=\"false\" bounds=\"[0,63][1080,2274]\" displayed=\"true\" a11y-important=\"true\" screen-reader-focusable=\"false\" drawing-order=\"1\" showing-hint=\"false\" text-entry-key=\"false\" dismissable=\"false\" a11y-focused=\"false\" heading=\"false\" live-region=\"0\" context-clickable=\"false\" content-invalid=\"false\" window-id=\"9\">",
+  "<android.widget.Button index=\"0\" package=\"io.github.domovou69.locatorlab\" class=\"android.widget.Button\" text=\"Sign in\" content-desc=\"Login button\" resource-id=\"com.example.app:id/login\" checkable=\"false\" checked=\"false\" clickable=\"true\" enabled=\"true\" focusable=\"true\" focused=\"false\" long-clickable=\"false\" password=\"false\" scrollable=\"false\" selected=\"false\" bounds=\"[0,63][1080,378]\" displayed=\"true\" a11y-important=\"true\" screen-reader-focusable=\"false\" drawing-order=\"1\" showing-hint=\"false\" text-entry-key=\"false\" dismissable=\"false\" a11y-focused=\"false\" heading=\"false\" live-region=\"0\" context-clickable=\"false\" content-invalid=\"false\" window-id=\"9\" />",
+  "<com.example.app.FancyView index=\"1\" package=\"io.github.domovou69.locatorlab\" class=\"com.example.app.FancyView\" text=\"\" content-desc=\"\" resource-id=\"short_id\" checkable=\"false\" checked=\"false\" clickable=\"false\" enabled=\"true\" focusable=\"false\" focused=\"false\" long-clickable=\"false\" password=\"false\" scrollable=\"false\" selected=\"false\" bounds=\"[0,378][1080,693]\" displayed=\"true\" a11y-important=\"true\" screen-reader-focusable=\"false\" drawing-order=\"2\" showing-hint=\"false\" text-entry-key=\"false\" dismissable=\"false\" a11y-focused=\"false\" heading=\"false\" live-region=\"0\" context-clickable=\"false\" content-invalid=\"false\" window-id=\"9\" />",
+  "<android.widget.CheckBox index=\"2\" package=\"io.github.domovou69.locatorlab\" class=\"android.widget.CheckBox\" text=\"All on\" checkable=\"true\" checked=\"true\" clickable=\"false\" enabled=\"false\" focusable=\"true\" focused=\"true\" long-clickable=\"true\" password=\"false\" scrollable=\"true\" selected=\"true\" bounds=\"[0,693][1080,1008]\" displayed=\"true\" a11y-important=\"true\" screen-reader-focusable=\"false\" drawing-order=\"3\" showing-hint=\"false\" text-entry-key=\"false\" dismissable=\"false\" a11y-focused=\"false\" heading=\"false\" live-region=\"0\" context-clickable=\"false\" content-invalid=\"false\" window-id=\"9\" />",
+  "<android.widget.SeekBar index=\"4\" package=\"io.github.domovou69.locatorlab\" class=\"android.widget.SeekBar\" text=\"50.0\" checkable=\"false\" checked=\"false\" clickable=\"false\" enabled=\"true\" focusable=\"false\" focused=\"false\" long-clickable=\"false\" password=\"false\" scrollable=\"false\" selected=\"false\" bounds=\"[0,1323][1080,1638]\" displayed=\"true\" a11y-important=\"true\" screen-reader-focusable=\"false\" drawing-order=\"5\" showing-hint=\"false\" text-entry-key=\"false\" dismissable=\"false\" a11y-focused=\"false\" heading=\"false\" live-region=\"0\" context-clickable=\"false\" content-invalid=\"false\" window-id=\"9\" />",
+  "<com.example.app.Outer.Inner index=\"5\" package=\"io.github.domovou69.locatorlab\" class=\"com.example.app.Outer$Inner\" text=\"Dollar class\" checkable=\"false\" checked=\"false\" clickable=\"false\" enabled=\"true\" focusable=\"false\" focused=\"false\" long-clickable=\"false\" password=\"false\" scrollable=\"false\" selected=\"false\" bounds=\"[0,1638][1080,1953]\" displayed=\"true\" a11y-important=\"true\" screen-reader-focusable=\"false\" drawing-order=\"6\" showing-hint=\"false\" text-entry-key=\"false\" dismissable=\"false\" a11y-focused=\"false\" heading=\"false\" live-region=\"0\" context-clickable=\"false\" content-invalid=\"false\" window-id=\"9\" />"
+ ],
+ "checks": [
+  {
+   "name": "class",
+   "xpath": {
+    "n": 1,
+    "fp": [
+     "android.widget.Button|com.example.app:id/login|Sign in|Login button|[0,63][1080,378]"
+    ]
+   },
+   "ui": {
+    "n": 1,
+    "fp": [
+     "android.widget.Button|com.example.app:id/login|Sign in|Login button|[0,63][1080,378]"
+    ]
+   },
+   "same": true
+  },
+  {
+   "name": "custom class",
+   "xpath": {
+    "n": 1,
+    "fp": [
+     "com.example.app.FancyView|short_id|||[0,378][1080,693]"
+    ]
+   },
+   "ui": {
+    "n": 1,
+    "fp": [
+     "com.example.app.FancyView|short_id|||[0,378][1080,693]"
+    ]
+   },
+   "same": true
+  },
+  {
+   "name": "resource-id",
+   "xpath": {
+    "n": 1,
+    "fp": [
+     "android.widget.Button|com.example.app:id/login|Sign in|Login button|[0,63][1080,378]"
+    ]
+   },
+   "ui": {
+    "n": 1,
+    "fp": [
+     "android.widget.Button|com.example.app:id/login|Sign in|Login button|[0,63][1080,378]"
+    ]
+   },
+   "same": true
+  },
+  {
+   "name": "short resource-id",
+   "xpath": {
+    "n": 1,
+    "fp": [
+     "com.example.app.FancyView|short_id|||[0,378][1080,693]"
+    ]
+   },
+   "ui": {
+    "n": 1,
+    "fp": [
+     "com.example.app.FancyView|short_id|||[0,378][1080,693]"
+    ]
+   },
+   "same": true
+  },
+  {
+   "name": "text",
+   "xpath": {
+    "n": 1,
+    "fp": [
+     "android.widget.Button|com.example.app:id/login|Sign in|Login button|[0,63][1080,378]"
+    ]
+   },
+   "ui": {
+    "n": 1,
+    "fp": [
+     "android.widget.Button|com.example.app:id/login|Sign in|Login button|[0,63][1080,378]"
+    ]
+   },
+   "same": true
+  },
+  {
+   "name": "content-desc",
+   "xpath": {
+    "n": 1,
+    "fp": [
+     "android.widget.Button|com.example.app:id/login|Sign in|Login button|[0,63][1080,378]"
+    ]
+   },
+   "ui": {
+    "n": 1,
+    "fp": [
+     "android.widget.Button|com.example.app:id/login|Sign in|Login button|[0,63][1080,378]"
+    ]
+   },
+   "same": true
+  },
+  {
+   "name": "empty text",
+   "xpath": {
+    "n": 7,
+    "fp": [
+     "android.widget.FrameLayout||||[0,0][1080,2400]",
+     "android.widget.LinearLayout||||[0,0][1080,2400]",
+     "android.widget.FrameLayout|android:id/content|||[0,0][1080,2400]",
+     "android.widget.FrameLayout||||[0,0][1080,2400]",
+     "android.widget.FrameLayout|com.example.app:id/root|||[0,63][1080,2274]",
+     "com.example.app.FancyView|short_id|||[0,378][1080,693]",
+     "android.widget.TextView||||[0,1008][1080,1323]"
+    ]
+   },
+   "ui": {
+    "n": 1,
+    "fp": [
+     "com.example.app.FancyView|short_id|||[0,378][1080,693]"
+    ]
+   },
+   "same": false
+  },
+  {
+   "name": "empty content-desc",
+   "xpath": {
+    "n": 1,
+    "fp": [
+     "com.example.app.FancyView|short_id|||[0,378][1080,693]"
+    ]
+   },
+   "ui": {
+    "n": 1,
+    "fp": [
+     "com.example.app.FancyView|short_id|||[0,378][1080,693]"
+    ]
+   },
+   "same": true
+  },
+  {
+   "name": "checkable",
+   "xpath": {
+    "n": 1,
+    "fp": [
+     "android.widget.CheckBox||All on||[0,693][1080,1008]"
+    ]
+   },
+   "ui": {
+    "n": 1,
+    "fp": [
+     "android.widget.CheckBox||All on||[0,693][1080,1008]"
+    ]
+   },
+   "same": true
+  },
+  {
+   "name": "checked",
+   "xpath": {
+    "n": 1,
+    "fp": [
+     "android.widget.CheckBox||All on||[0,693][1080,1008]"
+    ]
+   },
+   "ui": {
+    "n": 1,
+    "fp": [
+     "android.widget.CheckBox||All on||[0,693][1080,1008]"
+    ]
+   },
+   "same": true
+  },
+  {
+   "name": "clickable",
+   "xpath": {
+    "n": 1,
+    "fp": [
+     "android.widget.Button|com.example.app:id/login|Sign in|Login button|[0,63][1080,378]"
+    ]
+   },
+   "ui": {
+    "n": 1,
+    "fp": [
+     "android.widget.Button|com.example.app:id/login|Sign in|Login button|[0,63][1080,378]"
+    ]
+   },
+   "same": true
+  },
+  {
+   "name": "enabled false",
+   "xpath": {
+    "n": 1,
+    "fp": [
+     "android.widget.CheckBox||All on||[0,693][1080,1008]"
+    ]
+   },
+   "ui": {
+    "n": 1,
+    "fp": [
+     "android.widget.CheckBox||All on||[0,693][1080,1008]"
+    ]
+   },
+   "same": true
+  },
+  {
+   "name": "focusable",
+   "xpath": {
+    "n": 3,
+    "fp": [
+     "android.widget.FrameLayout||||[0,0][1080,2400]",
+     "android.widget.Button|com.example.app:id/login|Sign in|Login button|[0,63][1080,378]",
+     "android.widget.CheckBox||All on||[0,693][1080,1008]"
+    ]
+   },
+   "ui": {
+    "n": 3,
+    "fp": [
+     "android.widget.FrameLayout||||[0,0][1080,2400]",
+     "android.widget.Button|com.example.app:id/login|Sign in|Login button|[0,63][1080,378]",
+     "android.widget.CheckBox||All on||[0,693][1080,1008]"
+    ]
+   },
+   "same": true
+  },
+  {
+   "name": "focused",
+   "xpath": {
+    "n": 2,
+    "fp": [
+     "android.widget.FrameLayout||||[0,0][1080,2400]",
+     "android.widget.CheckBox||All on||[0,693][1080,1008]"
+    ]
+   },
+   "ui": {
+    "n": 2,
+    "fp": [
+     "android.widget.FrameLayout||||[0,0][1080,2400]",
+     "android.widget.CheckBox||All on||[0,693][1080,1008]"
+    ]
+   },
+   "same": true
+  },
+  {
+   "name": "long-clickable",
+   "xpath": {
+    "n": 1,
+    "fp": [
+     "android.widget.CheckBox||All on||[0,693][1080,1008]"
+    ]
+   },
+   "ui": {
+    "n": 1,
+    "fp": [
+     "android.widget.CheckBox||All on||[0,693][1080,1008]"
+    ]
+   },
+   "same": true
+  },
+  {
+   "name": "scrollable",
+   "xpath": {
+    "n": 1,
+    "fp": [
+     "android.widget.CheckBox||All on||[0,693][1080,1008]"
+    ]
+   },
+   "ui": {
+    "n": 1,
+    "fp": [
+     "android.widget.CheckBox||All on||[0,693][1080,1008]"
+    ]
+   },
+   "same": true
+  },
+  {
+   "name": "selected",
+   "xpath": {
+    "n": 1,
+    "fp": [
+     "android.widget.CheckBox||All on||[0,693][1080,1008]"
+    ]
+   },
+   "ui": {
+    "n": 1,
+    "fp": [
+     "android.widget.CheckBox||All on||[0,693][1080,1008]"
+    ]
+   },
+   "same": true
+  },
+  {
+   "name": "range text",
+   "xpath": {
+    "n": 1,
+    "fp": [
+     "android.widget.SeekBar||50.0||[0,1323][1080,1638]"
+    ]
+   },
+   "ui": {
+    "n": 0,
+    "fp": []
+   },
+   "same": false
+  },
+  {
+   "name": "$ class",
+   "xpath": {
+    "n": 1,
+    "fp": [
+     "com.example.app.Outer$Inner||Dollar class||[0,1638][1080,1953]"
+    ]
+   },
+   "ui": {
+    "n": 1,
+    "fp": [
+     "com.example.app.Outer$Inner||Dollar class||[0,1638][1080,1953]"
+    ]
+   },
+   "same": true
+  },
+  {
+   "name": "hidden",
+   "xpath": {
+    "n": 0,
+    "fp": []
+   },
+   "ui": {
+    "n": 0,
+    "fp": []
+   },
+   "same": true
+  }
+ ]
+}

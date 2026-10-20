@@ -44,11 +44,20 @@
     "json": "node xpath-to-uiselector.js --json",
     "test": "node xpath-to-uiselector.test.js",
     "spec:check": "node audit/spec/check.js",
-    "prepublishOnly": "npm test"
+    "prepublishOnly": "npm test",
+    "appium": "appium --port 4723",
+    "oracle": "node audit/device/run.js"
   },
   "files": [
     "xpath-to-uiselector.js",
     "xpath-to-uiselector.d.ts",
     "lib/"
-  ]
+  ],
+  "devDependencies": {
+    "appium": "3.8.0",
+    "appium-uiautomator2-driver": "8.7.0"
+  },
+  "allowScripts": {
+    "appium": false
+  }
 }

@@ -105,22 +105,30 @@ Stage 3 confirms them on the emulator. Changes from the draft, found in the sour
 - `//A//B` → `childSelector`: the first element equals the XPath's, `findElements` returns at most one per
   container (SEL-11): close.
 - New skips: `@text=""` and text tests that hold for `""` (SRV-05), float-shaped `@text` (range widgets,
-  SRV-06), `android.widget.Toast` (SRV-13), `//*` (SRV-02), `@name` / camelCase aliases (SRV-11).
+  SRV-06), `android.widget.Toast` (SRV-13), `@name` / camelCase aliases (SRV-11).
+
+Stage 3 ran all 132 S cases on four LocatorLab screens ([summary](audit/device/results/s-summary.md)):
+every exact case gave the same elements in the same order, except the two documented gaps of XPath
+(nodes below level 70, the toast). Corrections: `//*` is exact (`new UiSelector()`; the root is never
+returned), `@text=1` and `contains(text(),…)` fail on the device, `$` in a name test is a parse error.
+`(?i)` is ICU and folds Unicode letters: `lower-case` agreed, `upper-case` and `translate` did not.
 - `matches()` converts exactly with a wrapper that turns PsychoPath's `find()` into a whole-string match
   (XP-03); patterns that match `""` are skipped.
 
 | XPath | `UiSelector` | Class |
 | --- | --- | --- |
-| `//T`, `@class="T"` | `className("T")` | exact; `$` in `T`: skip |
+| `//T`, `@class="T"` | `className("T")` | exact; `$` in `T`: skip; `android.view.View`: close |
+| `//*` | `new UiSelector()` | exact (oracle) |
 | `@text`, `@content-desc`, `@resource-id`, `@package` `= "v"` | `text`, `description`, `resourceId`, `packageName` | exact; `…Matches` when `v` has `"` or `\` |
 | `contains`, `starts-with`, `ends-with`, `matches()`, `or` / sequence on one attribute | `…Matches(regex)` | exact |
 | two conditions on one attribute | one regex with lookaheads | exact |
-| `contains(@class, …)`, unions of class steps | `classNameMatches` | close: breaks `findElements` (SRV-33) |
-| `lower-case`, `upper-case`, `translate` | `…Matches("(?i)…")` | close until the oracle decides |
+| `contains(@class, …)`, unions of class steps | — | skip: `classNameMatches` breaks `findElements` (SRV-33, Decision 3) |
+| `lower-case` | `…Matches("(?i)…")` | close (Decision 3) |
+| `upper-case`, `translate` | — | skip: `(?i)` folds the Kelvin sign, they do not (Decision 3) |
 | 9 booleans, `not(@b="true")` | `b(true/false)` | exact |
 | `@index` | `index(n)` | exact |
 | `(//X)[n]`, `[position()=n]` | `instance(n-1)` | exact (oracle) |
-| `//A//B` | `childSelector` | close |
+| `//A//B` | `childSelector` | close (Decision 3) |
 | `//A/B`, `[.//B]`, `//X[n]`, `last()`, axes other than descendant, `not()` on text, `or` across attributes, unions of different paths, `/hierarchy/…`, `text()`, ~40 attributes without a criterion | — | skip with a reason |
 | XPath syntax outside the AST whitelist | — | skip "unsupported syntax" |
 
@@ -183,7 +191,7 @@ One branch and one PR per stage, into `main`. Share is of the 5-hour window.
 | 0 | Scaffold and carry-over | package (bin, files, engines, keywords, short npm README), CI, `docs/environment.md`, `docs/settings.md` (all settings with defaults, from the driver docs and the server's `model/settings/`), scanner / CLI / report / strategy markers with their tests, ported to Android detection | ≈45 min, ≈9 % |
 | 1 | Reference and S | `reference/` excerpts at the pinned tags, S cases with expected `UiSelector`, `spec:check` | ≈75 min, ≈15 % |
 | 2 | R corpus | ~10 projects, extraction, anonymization, `sources.md`, form and language frequencies | ≈60 min, ≈12 %; done: 20 projects, ≈4 MB downloaded, no clone |
-| 3 | Oracle | LocatorLab spike and screens, runner, S run on the emulator: every S expectation confirmed or corrected (no converter yet) | ≈90 min, ≈18 %; Gradle build and runs in the background |
+| 3 | Oracle | LocatorLab spike and screens, runner, S run on the emulator: every S expectation confirmed or corrected (no converter yet) | ≈90 min, ≈18 %; done: [`audit/device/`](audit/device/README.md), ≈0 MB downloaded |
 | 4 | Converter | AST parser (whitelist), `UiSelector` emitter, strategy rewrite, unit tests; loop until S has 0 WRONG / 0 GAP; R fuzz run in the background | ≈2.5 h, ≈30 % |
 | 5 | Report and release | `audit/coverage-report.md`, README with limits and settings, `docs/reference.md`, Claude skill, upstream watch; npm publish after your OK | ≈60 min, ≈12 % |
 
@@ -195,6 +203,10 @@ go into stage 4, not into a separate round.
 1. Converter core on an AST (change 4): accepted as recommended. The scanner, CLI and report stay 1:1.
 2. The strategy call is rewritten together with the string (section 2): yes.
 3. Close forms (`childSelector`, `classNameMatches`): decided after stage 3, when the oracle shows
-   which are exact.
+   which are exact. Stage 3: neither is exact for `findElements`; both return the XPath's first
+   element. Decided 2026-10-20: `//A//B` → `childSelector` close (5.5 % of R); `classNameMatches`
+   skip (≈0 % of R, `findElements` lost most elements); `lower-case` → `(?i)` close (agreed on the
+   device; one-to-many case folds unchecked); `upper-case`, `translate` skip; `//android.view.View`
+   stays close.
 4. Web / WebView XPaths in scanned files: the user's responsibility (change 8).
 5. Default driver settings only, documented in `docs/settings.md` (change 9).
