@@ -35,7 +35,6 @@ const PROBES = {
   A08: `${U}.text("")`,
   A09: `${U}.resourceId("")`,
   A15: `${U}.className("com.example.app.Outer$Inner")`,
-  A16: `${U}.className("android.view.View").text("x")`,
   A18: `${U}.text("OK")`,
   B16: `${U}.index(2)`,
   C06: `${U}.classNameMatches("(?s).*Button.*")`,

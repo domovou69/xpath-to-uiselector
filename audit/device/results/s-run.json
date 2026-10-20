@@ -556,8 +556,8 @@
   "A16|attrs": {
    "case": "A16",
    "screen": "attrs",
-   "expect": "skip",
-   "outcome": "XPATH_ONLY",
+   "expect": "close",
+   "outcome": "SET_DIFFERS",
    "xpath": {
     "ms": 66.7,
     "n": 2,
@@ -566,16 +566,12 @@
      "||x||[0,613][270,723]"
     ]
    },
-   "probe": {
-    "uiselector": "new UiSelector().className(\"android.view.View\").text(\"x\")",
-    "ui": {
-     "ms": 73.4,
-     "n": 1,
-     "fp": [
-      "android.view.View||x||[810,503][1080,613]"
-     ]
-    },
-    "outcome": "SET_DIFFERS"
+   "ui": {
+    "ms": 73.4,
+    "n": 1,
+    "fp": [
+     "android.view.View||x||[810,503][1080,613]"
+    ]
    }
   },
   "A17|attrs": {
@@ -4790,21 +4786,17 @@
   "A16|tree": {
    "case": "A16",
    "screen": "tree",
-   "expect": "skip",
-   "outcome": "XPATH_ONLY",
+   "expect": "close",
+   "outcome": "EQUAL",
    "xpath": {
     "ms": 27.8,
     "n": 0,
     "fp": []
    },
-   "probe": {
-    "uiselector": "new UiSelector().className(\"android.view.View\").text(\"x\")",
-    "ui": {
-     "ms": 8.1,
-     "n": 0,
-     "fp": []
-    },
-    "outcome": "EQUAL"
+   "ui": {
+    "ms": 8.1,
+    "n": 0,
+    "fp": []
    }
   },
   "A17|tree": {
@@ -8177,21 +8169,17 @@
   "A16|deep": {
    "case": "A16",
    "screen": "deep",
-   "expect": "skip",
-   "outcome": "XPATH_ONLY",
+   "expect": "close",
+   "outcome": "EQUAL",
    "xpath": {
     "ms": 21.8,
     "n": 0,
     "fp": []
    },
-   "probe": {
-    "uiselector": "new UiSelector().className(\"android.view.View\").text(\"x\")",
-    "ui": {
-     "ms": 27.4,
-     "n": 0,
-     "fp": []
-    },
-    "outcome": "EQUAL"
+   "ui": {
+    "ms": 27.4,
+    "n": 0,
+    "fp": []
    }
   },
   "A17|deep": {
@@ -11430,21 +11418,17 @@
   "A16|windows": {
    "case": "A16",
    "screen": "windows",
-   "expect": "skip",
-   "outcome": "XPATH_ONLY",
+   "expect": "close",
+   "outcome": "EQUAL",
    "xpath": {
     "ms": 11.9,
     "n": 0,
     "fp": []
    },
-   "probe": {
-    "uiselector": "new UiSelector().className(\"android.view.View\").text(\"x\")",
-    "ui": {
-     "ms": 8.5,
-     "n": 0,
-     "fp": []
-    },
-    "outcome": "EQUAL"
+   "ui": {
+    "ms": 8.5,
+    "n": 0,
+    "fp": []
    }
   },
   "A17|windows": {

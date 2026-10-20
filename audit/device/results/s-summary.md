@@ -8,7 +8,7 @@ probe's count), then the outcome when it is not EQUAL. DEPTH: the UiSelector als
 70-level page source limit (SRV-12). TOAST: the XPath also finds the toast (SRV-13). A07 and C07 run with
 LocatorLab's package in place of com.example.app.
 
-Verdicts: CONFIRMED 75, xpath 51, DIFFERS 4, VACUOUS 2.
+Verdicts: CONFIRMED 75, xpath 50, DIFFERS 5, VACUOUS 2.
 
 | Case | Expect | attrs | tree | deep | windows | Verdict |
 | --- | --- | --- | --- | --- | --- | --- |
@@ -27,7 +27,7 @@ Verdicts: CONFIRMED 75, xpath 51, DIFFERS 4, VACUOUS 2.
 | A13 | skip | 1 | 0 | 0 | 0 | xpath 1/0/0/0 |
 | A14 | skip | 0 | 0 | 0 | 0 | xpath 0/0/0/0 |
 | A15 | skip | err/1 XPATH_ERROR probe XPATH_ERROR | err/0 XPATH_ERROR probe XPATH_ERROR | err/0 XPATH_ERROR probe XPATH_ERROR | err/0 XPATH_ERROR probe XPATH_ERROR | xpath error/error/error/error; probe XPATH_ERROR |
-| A16 | skip | 2/1 probe SET_DIFFERS | 0/0 | 0/0 | 0/0 | xpath 2/0/0/0; probe SET_DIFFERS, EQUAL |
+| A16 | close | 2/1 SET_DIFFERS | 0/0 | 0/0 | 0/0 | DIFFERS (attrs: SET_DIFFERS) |
 | A17 | exact | 1/1 | 0/0 | 0/0 | 0/0 | CONFIRMED |
 | A18 | skip | 0/2 probe SET_DIFFERS | 0/1 probe SET_DIFFERS | 0/0 | 0/1 probe SET_DIFFERS | xpath 0/0/0/0; probe SET_DIFFERS, EQUAL |
 | A19 | skip | 0 | 0 | 0 | 0 | xpath 0/0/0/0 |

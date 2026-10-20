@@ -117,7 +117,7 @@ returned), `@text=1` and `contains(text(),…)` fail on the device, `$` in a nam
 
 | XPath | `UiSelector` | Class |
 | --- | --- | --- |
-| `//T`, `@class="T"` | `className("T")` | exact; `$` in `T`, `android.view.View`: skip |
+| `//T`, `@class="T"` | `className("T")` | exact; `$` in `T`: skip; `android.view.View`: close |
 | `//*` | `new UiSelector()` | exact (oracle) |
 | `@text`, `@content-desc`, `@resource-id`, `@package` `= "v"` | `text`, `description`, `resourceId`, `packageName` | exact; `…Matches` when `v` has `"` or `\` |
 | `contains`, `starts-with`, `ends-with`, `matches()`, `or` / sequence on one attribute | `…Matches(regex)` | exact |
@@ -207,6 +207,6 @@ go into stage 4, not into a separate round.
    element. Decided 2026-10-20: `//A//B` → `childSelector` close (5.5 % of R); `classNameMatches`
    skip (≈0 % of R, `findElements` lost most elements); `lower-case` → `(?i)` close (agreed on the
    device; one-to-many case folds unchecked); `upper-case`, `translate` skip; `//android.view.View`
-   skip.
+   stays close.
 4. Web / WebView XPaths in scanned files: the user's responsibility (change 8).
 5. Default driver settings only, documented in `docs/settings.md` (change 9).
