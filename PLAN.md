@@ -28,8 +28,8 @@ UiAutomator2 server sources (v10.6.6) also refuted parts of the draft's rule tab
 | 5 | Not covered | `classNameMatches` makes `findElements` iterate `index(0..n)` instead of `instance` (`ByUiAutomatorFinder.matchDescendantElements`); `instance(n)` makes `findElements` return one element | Rules in section 3; `classNameMatches` only with a warning |
 | 6 | Not covered | The server's string literal unescapes only `\"`; a backslash stays as is, and a value ending in `\` cannot be written (`UiExpressionParser.coerceArgToType`) | Literal rules in section 3 |
 | 7 | Not covered | Dynamic XPaths: `String.format("…%s…")`, `"…" + name + "…"`, f-strings, Kotlin `$x`, C# `{0}`, JS `${}`. Common in Java/Python suites | Scanner rules in section 2 |
-| 8 | Not covered | Mixed web/mobile repos: Selenium or WebView XPaths (`//div`, `//button`, `text()`) must not be touched | Android signal required (section 2) |
-| 9 | Not covered | Conversions are exact only for default driver settings (`enforceXPath1`, `allowInvisibleElements`, `ignoreUnimportantViews`, `enableMultiWindows`, `snapshotMaxDepth`, `normalizeTagNames`) | Settings recorded in `docs/environment.md`; limits section in the README |
+| 8 | Not covered | Mixed web/mobile repos: Selenium or WebView XPaths in the scanned files | User's decision: the user chooses what to scan and reverts what is not Android; the preview diff is the default. No Android-signal filter; the README says so |
+| 9 | Not covered | Conversions are exact only for default driver settings (`enforceXPath1`, `allowInvisibleElements`, `ignoreUnimportantViews`, `enableMultiWindows`, `snapshotMaxDepth`, `normalizeTagNames`) | Default settings only (user's decision). `docs/settings.md` lists every UiAutomator2 setting with its default at the pinned versions and marks the ones that change lookup results or speed; the README links it |
 | 10 | Real device, timing, LLM comparison implied by "like iOS" | On iOS the iPhone gave 246/246 the same outcomes as the simulator; timing is done by the benchmark; LLM comparison is not needed for the tool | Dropped. Optional later: an article |
 | 11 | Release polish at the end | ~10 iOS PRs were packaging fixes | Done in stage 0: `bin` mode 100755, `files`, short npm README, keywords, CI, `engines` |
 | 12 | 9 stages, ≈11–12 h plus an open-ended fix round | | 6 stages, ≈8 h (section 6) |
@@ -44,7 +44,8 @@ UiAutomator2 server sources (v10.6.6) also refuted parts of the draft's rule tab
   XPath or `UiSelector` matching.
 - **Pinned versions and settings** in `docs/environment.md`: Appium 3.8.0, appium-uiautomator2-driver
   8.7.0, server 10.6.6 (PsychoPath vendored at commit `544c11a`), `androidx.test.uiautomator` version
-  from the server's catalog, emulator image, default settings.
+  from the server's catalog, emulator image. Driver settings: defaults only, listed in full in
+  `docs/settings.md` (stage 0), with the ones that affect lookup results or speed marked.
 - **No runtime dependencies**, Node 20+. Audit scripts may use devDependencies.
 
 ## 1. What carries over from xpath-to-class-chain (v1.0.2)
@@ -61,10 +62,11 @@ UiAutomator2 server sources (v10.6.6) also refuted parts of the draft's rule tab
 
 ## 2. Input and output
 
-**Input** is a path. The scanner finds quoted strings that look like XPath **and** carry an Android
-signal: a dotted class step (`android.widget.*`, `androidx.*`, any `a.b.C` tag), `/hierarchy`, or an
-UiA2 attribute (`@resource-id`, `@content-desc`, `@class`, `@package`, `@clickable`, …). A bare `//div`,
-`//*[text()=…]` with no other signal, and `ios:` values are left alone (web / WebView / iOS).
+**Input** is a path. The scanner finds quoted strings that look like XPath, with the same pre-filter as
+on iOS (`//` or `(//` plus a predicate or a step, so URLs are not touched). iOS locators
+(`XCUIElementType*`, values under an `ios:` key) are skipped. Web and WebView XPaths are not detected:
+the user points the tool at Android tests and reverts what does not belong (user's decision); the
+default run only previews the diff, and the README states this.
 
 **Dynamic locators** keep their placeholders: `%s`/`%d` (`String.format`), `{0}`/`{name}` (C#,
 Python `format`, f-strings), `$x`/`${x}` (Kotlin, JS, Groovy), and concatenation (`"…" + x + "…"`,
@@ -161,7 +163,7 @@ One branch and one PR per stage, into `main`. Share is of the 5-hour window.
 
 | # | Stage | Result | Estimate |
 | --- | --- | --- | --- |
-| 0 | Scaffold and carry-over | package (bin, files, engines, keywords, short npm README), CI, `docs/environment.md`, scanner / CLI / report / strategy markers with their tests, ported to Android detection | ≈45 min, ≈9 % |
+| 0 | Scaffold and carry-over | package (bin, files, engines, keywords, short npm README), CI, `docs/environment.md`, `docs/settings.md` (all settings with defaults, from the driver docs and the server's `model/settings/`), scanner / CLI / report / strategy markers with their tests, ported to Android detection | ≈45 min, ≈9 % |
 | 1 | Reference and S | `reference/` excerpts at the pinned tags, S cases with expected `UiSelector`, `spec:check` | ≈75 min, ≈15 % |
 | 2 | R corpus | ~10 projects, extraction, anonymization, `sources.md`, form and language frequencies | ≈60 min, ≈12 %; downloads ≈100–300 MB |
 | 3 | Oracle | LocatorLab spike and screens, runner, S run on the emulator: every S expectation confirmed or corrected (no converter yet) | ≈90 min, ≈18 %; Gradle build and runs in the background |
@@ -171,11 +173,11 @@ One branch and one PR per stage, into `main`. Share is of the 5-hour window.
 Total ≈8 h, under two windows. Stages 1 and 2 are independent and can swap. Fixes found by the R fuzz
 go into stage 4, not into a separate round.
 
-## Open questions
+## Decisions (2026-10-20)
 
-1. Converter core on an AST instead of copying the class-chain string logic (change 4). This departs
-   from "logic almost 1:1". Recommended: yes; the scanner, CLI and report stay 1:1.
-2. Rewrite the strategy call together with the string (section 2). Recommended: yes, otherwise most
-   Java / Python suites get nothing.
-3. Close forms (`childSelector`, `classNameMatches`): convert with a warning, as on iOS, or skip unless
-   `--allow-close`. Recommended: decide after stage 3, when the oracle shows which are exact.
+1. Converter core on an AST (change 4): accepted as recommended. The scanner, CLI and report stay 1:1.
+2. The strategy call is rewritten together with the string (section 2): yes.
+3. Close forms (`childSelector`, `classNameMatches`): decided after stage 3, when the oracle shows
+   which are exact.
+4. Web / WebView XPaths in scanned files: the user's responsibility (change 8).
+5. Default driver settings only, documented in `docs/settings.md` (change 9).
