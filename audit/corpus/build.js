@@ -323,6 +323,17 @@ function pct(n, d) {
 
 function frequencies(list, pins) {
   const android = list.filter((e) => e.kind === 'xpath' || e.kind === 'xpath-dynamic');
+  // Each project weighs 1: the mean over projects of the share of its unique literals that pass.
+  const byProject = new Map();
+  for (const e of android) {
+    if (!byProject.has(e.project)) byProject.set(e.project, []);
+    byProject.get(e.project).push(e);
+  }
+  const weighted = (test) => {
+    let sum = 0;
+    for (const es of byProject.values()) sum += es.filter(test).length / es.length;
+    return pct(sum, byProject.size);
+  };
   const occ = (es) => es.reduce((a, e) => a + e.count, 0);
   const tally = (es, keyOf) => {
     const m = new Map();
@@ -356,8 +367,10 @@ function frequencies(list, pins) {
     if (!projectsByLang.has(e.lang)) projectsByLang.set(e.lang, new Set());
     projectsByLang.get(e.lang).add(e.project);
   }
-  out.push(table(['Language', 'Projects', 'Unique', 'Occurrences', 'Share'],
-    tally(android, (e) => e.lang).map(([k, t]) => [k, projectsByLang.get(k).size, t.u, t.o, pct(t.o, occ(android))])));
+  out.push('"Project-weighted" gives each project the same weight, so one large project does not set the share.');
+  out.push('');
+  out.push(table(['Language', 'Projects', 'Unique', 'Occurrences', 'Share', 'Project-weighted'],
+    tally(android, (e) => e.lang).map(([k, t]) => [k, projectsByLang.get(k).size, t.u, t.o, pct(t.o, occ(android)), weighted((e) => e.lang === k)])));
   out.push('');
   out.push('## Strategies');
   out.push('');
@@ -370,13 +383,13 @@ function frequencies(list, pins) {
   out.push('');
   out.push(`Over ${android.length} unique Android literals (${occ(android)} occurrences). A literal has several forms, so the`);
   out.push('columns do not add up. String values are blanked before the tests, so they never trigger a form.');
-  out.push('"Projects" shows how widespread a form is: one large weak project can dominate the occurrence share.');
+  out.push('"Projects" shows how widespread a form is; "Project-weighted" is the mean of the per-project shares.');
   out.push('');
   const rows = FORMS.map(([name, test]) => {
     const hit = android.filter((e) => test(blank(e.source)));
-    return [name, new Set(hit.map((e) => e.project)).size, hit.length, pct(hit.length, android.length), occ(hit), pct(occ(hit), occ(android))];
+    return [name, new Set(hit.map((e) => e.project)).size, hit.length, pct(hit.length, android.length), occ(hit), pct(occ(hit), occ(android)), weighted((e) => test(blank(e.source)))];
   });
-  out.push(table(['Form', 'Projects', 'Unique', 'Share', 'Occurrences', 'Share'], rows));
+  out.push(table(['Form', 'Projects', 'Unique', 'Share', 'Occurrences', 'Share', 'Project-weighted'], rows));
   out.push('');
   out.push('## Projects');
   out.push('');

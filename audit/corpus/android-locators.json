@@ -14728,5 +14728,4115 @@
     "project": "TypeLife/appium-unittest",
     "lang": "Python",
     "strategy": "MobileBy.XPATH"
+  },
+  {
+    "id": "A1474",
+    "kind": "xpath-web",
+    "quote": "\"",
+    "source": "//a[@id='cuc-memefoz-sufewofu'] | //span[text()='Petof. Pojo in']",
+    "count": 1,
+    "project": "PerfectoCode/Community-Samples",
+    "lang": "Java",
+    "strategy": "@FindBy(xpath ="
+  },
+  {
+    "id": "A1475",
+    "kind": "xpath-web",
+    "quote": "\"",
+    "source": "//*[@id='zijo-notal-mabetim-bef']//span",
+    "count": 1,
+    "project": "PerfectoCode/Community-Samples",
+    "lang": "Java",
+    "strategy": "@FindBy(xpath ="
+  },
+  {
+    "id": "A1476",
+    "kind": "xpath",
+    "quote": "\"",
+    "source": "//*[@id=\\\"dazet-fode\\\"]",
+    "count": 5,
+    "project": "PerfectoCode/Community-Samples",
+    "lang": "Java",
+    "strategy": "findElementByXPath("
+  },
+  {
+    "id": "A1477",
+    "kind": "xpath",
+    "quote": "\"",
+    "source": "//*[@id=\\\"guvosusu-vekar\\\"]",
+    "count": 5,
+    "project": "PerfectoCode/Community-Samples",
+    "lang": "Java",
+    "strategy": "findElementByXPath("
+  },
+  {
+    "id": "A1478",
+    "kind": "xpath",
+    "quote": "\"",
+    "source": "//*[@id=\\\"zokubawe-vekar\\\"]",
+    "count": 5,
+    "project": "PerfectoCode/Community-Samples",
+    "lang": "Java",
+    "strategy": "findElementByXPath("
+  },
+  {
+    "id": "A1479",
+    "kind": "xpath",
+    "quote": "\"",
+    "source": "//*[contains(@text, 'Penuci')]",
+    "count": 1,
+    "project": "PerfectoCode/Community-Samples",
+    "lang": "Java",
+    "strategy": "By.xpath("
+  },
+  {
+    "id": "A1480",
+    "kind": "xpath",
+    "quote": "\"",
+    "source": "//*[@resource-id='com.android.vetupobo:id/gotEnudum']",
+    "count": 1,
+    "project": "PerfectoCode/Community-Samples",
+    "lang": "Java",
+    "strategy": "By.xpath("
+  },
+  {
+    "id": "A1481",
+    "kind": "xpath",
+    "quote": "\"",
+    "source": "//*[@resource-id='com.rusezu.android.lerunim:id/neno_ruwoju']",
+    "count": 1,
+    "project": "PerfectoCode/Community-Samples",
+    "lang": "Java",
+    "strategy": "By.xpath("
+  },
+  {
+    "id": "A1482",
+    "kind": "xpath",
+    "quote": "\"",
+    "source": "//*[@resource-id='com.rusezu.android.lerunim:id/ruwoju_nudi_pumu']",
+    "count": 1,
+    "project": "PerfectoCode/Community-Samples",
+    "lang": "Java",
+    "strategy": "By.xpath("
+  },
+  {
+    "id": "A1483",
+    "kind": "xpath",
+    "quote": "\"",
+    "source": "//*[@resource-id='com.rusezu.android.lerunim:id/pebajon']",
+    "count": 1,
+    "project": "PerfectoCode/Community-Samples",
+    "lang": "Java",
+    "strategy": "By.xpath("
+  },
+  {
+    "id": "A1484",
+    "kind": "xpath",
+    "quote": "\"",
+    "source": "//android.widget.TextView[contains(@text, 'tudasepi')]",
+    "count": 1,
+    "project": "PerfectoCode/Community-Samples",
+    "lang": "Java",
+    "strategy": "By.xpath("
+  },
+  {
+    "id": "A1485",
+    "kind": "xpath",
+    "quote": "\"",
+    "source": "//*[@text='Cifirod Tejok Poz']",
+    "count": 1,
+    "project": "PerfectoCode/Community-Samples",
+    "lang": "Java",
+    "strategy": "By.xpath("
+  },
+  {
+    "id": "A1486",
+    "kind": "xpath",
+    "quote": "\"",
+    "source": "//UIATableCell[@name='Sejofa']",
+    "count": 2,
+    "project": "PerfectoCode/Community-Samples",
+    "lang": "Java",
+    "strategy": "By.xpath("
+  },
+  {
+    "id": "A1487",
+    "kind": "xpath",
+    "quote": "\"",
+    "source": "//UIATableCell[@name='Wepac Faveril pip Civikef Niwa']",
+    "count": 2,
+    "project": "PerfectoCode/Community-Samples",
+    "lang": "Java",
+    "strategy": "By.xpath("
+  },
+  {
+    "id": "A1488",
+    "kind": "xpath",
+    "quote": "\"",
+    "source": "//hierarchy/android.widget.FrameLayout[1]/android.widget.LinearLayout[1]/android.widget.FrameLayout[1]/android.widget.RelativeLayout[1]",
+    "count": 2,
+    "project": "PerfectoCode/Community-Samples",
+    "lang": "Java",
+    "strategy": "By.xpath("
+  },
+  {
+    "id": "A1489",
+    "kind": "xpath",
+    "quote": "\"",
+    "source": "(//select[@id='BafesodiCihinec'])",
+    "count": 1,
+    "project": "PerfectoCode/Community-Samples",
+    "lang": "Java",
+    "strategy": "By.xpath("
+  },
+  {
+    "id": "A1490",
+    "kind": "xpath",
+    "quote": "\"",
+    "source": "(//select[@id='PikAmagohomUjeluni'])",
+    "count": 1,
+    "project": "PerfectoCode/Community-Samples",
+    "lang": "Java",
+    "strategy": "By.xpath("
+  },
+  {
+    "id": "A1491",
+    "kind": "xpath-web",
+    "quote": "\"",
+    "source": "(//input[@id='MAnejuwazuja'])",
+    "count": 1,
+    "project": "PerfectoCode/Community-Samples",
+    "lang": "Java",
+    "strategy": "By.xpath("
+  },
+  {
+    "id": "A1492",
+    "kind": "xpath-web",
+    "quote": "\"",
+    "source": "(//input[@id='Pirenijuref'])",
+    "count": 1,
+    "project": "PerfectoCode/Community-Samples",
+    "lang": "Java",
+    "strategy": "By.xpath("
+  },
+  {
+    "id": "A1493",
+    "kind": "xpath",
+    "quote": "\"",
+    "source": "//*[text()='Jina']",
+    "count": 1,
+    "project": "PerfectoCode/Community-Samples",
+    "lang": "Java",
+    "strategy": "By.xpath("
+  },
+  {
+    "id": "A1494",
+    "kind": "xpath",
+    "quote": "\"",
+    "source": "//android.widget.TextView[@text='Vikuwag hezek dehifacerek']",
+    "count": 1,
+    "project": "PerfectoCode/Community-Samples",
+    "lang": "Java",
+    "strategy": "By.xpath("
+  },
+  {
+    "id": "A1495",
+    "kind": "xpath",
+    "quote": "\"",
+    "source": "//android.widget.Button[@text='OK']",
+    "count": 1,
+    "project": "PerfectoCode/Community-Samples",
+    "lang": "Java",
+    "strategy": "By.xpath("
+  },
+  {
+    "id": "A1496",
+    "kind": "xpath",
+    "quote": "\"",
+    "source": "//*[contains(text(), 'Jus Vikuwag')]",
+    "count": 1,
+    "project": "PerfectoCode/Community-Samples",
+    "lang": "Java",
+    "strategy": "By.xpath("
+  },
+  {
+    "id": "A1497",
+    "kind": "xpath",
+    "quote": "\"",
+    "source": "//*[text()='Vikuwag']",
+    "count": 1,
+    "project": "PerfectoCode/Community-Samples",
+    "lang": "Java",
+    "strategy": "By.xpath("
+  },
+  {
+    "id": "A1498",
+    "kind": "xpath",
+    "quote": "\"",
+    "source": "//*[text()='Fivoza dodaragu']",
+    "count": 1,
+    "project": "PerfectoCode/Community-Samples",
+    "lang": "Java",
+    "strategy": "findElementByXPath("
+  },
+  {
+    "id": "A1499",
+    "kind": "xpath",
+    "quote": "\"",
+    "source": "//*[text()='Vulide my dodaragu']",
+    "count": 1,
+    "project": "PerfectoCode/Community-Samples",
+    "lang": "Java",
+    "strategy": "findElementByXPath("
+  },
+  {
+    "id": "A1500",
+    "kind": "xpath",
+    "quote": "\"",
+    "source": "//*[@label=\\\"ZIJO\\\"]",
+    "count": 1,
+    "project": "PerfectoCode/Community-Samples",
+    "lang": "Java",
+    "strategy": "findElementByXPath("
+  },
+  {
+    "id": "A1501",
+    "kind": "xpath",
+    "quote": "\"",
+    "source": "//*[@label='bofefeb1']",
+    "count": 1,
+    "project": "PerfectoCode/Community-Samples",
+    "lang": "Java",
+    "strategy": "By.xpath("
+  },
+  {
+    "id": "A1502",
+    "kind": "xpath",
+    "quote": "\"",
+    "source": "//*[@label='bofefeb2']",
+    "count": 1,
+    "project": "PerfectoCode/Community-Samples",
+    "lang": "Java",
+    "strategy": "By.xpath("
+  },
+  {
+    "id": "A1503",
+    "kind": "xpath",
+    "quote": "\"",
+    "source": "//*[@label='dofiwa_hekufoki1']",
+    "count": 1,
+    "project": "PerfectoCode/Community-Samples",
+    "lang": "Java",
+    "strategy": "By.xpath("
+  },
+  {
+    "id": "A1504",
+    "kind": "xpath",
+    "quote": "\"",
+    "source": "//*[@label='dofiwa_hekufoki2']",
+    "count": 1,
+    "project": "PerfectoCode/Community-Samples",
+    "lang": "Java",
+    "strategy": "By.xpath("
+  },
+  {
+    "id": "A1505",
+    "kind": "xpath",
+    "quote": "\"",
+    "source": "//*[@label=\\\"bofefeb1\\\"]",
+    "count": 1,
+    "project": "PerfectoCode/Community-Samples",
+    "lang": "Java",
+    "strategy": "findElementByXPath("
+  },
+  {
+    "id": "A1506",
+    "kind": "xpath",
+    "quote": "\"",
+    "source": "//*[@label=\\\"dofiwa_hekufoki1\\\"]",
+    "count": 1,
+    "project": "PerfectoCode/Community-Samples",
+    "lang": "Java",
+    "strategy": "findElementByXPath("
+  },
+  {
+    "id": "A1507",
+    "kind": "xpath",
+    "quote": "\"",
+    "source": "//*[@label=\\\"semaze\\\"]",
+    "count": 2,
+    "project": "PerfectoCode/Community-Samples",
+    "lang": "Java",
+    "strategy": "findElementByXPath("
+  },
+  {
+    "id": "A1508",
+    "kind": "xpath-web",
+    "quote": "\"",
+    "source": "(//input[@id=\\\"ded-ib\\\"])[1]",
+    "count": 1,
+    "project": "PerfectoCode/Community-Samples",
+    "lang": "Java",
+    "strategy": "findElementByXPath("
+  },
+  {
+    "id": "A1509",
+    "kind": "xpath-web",
+    "quote": "\"",
+    "source": "(//button[@id=\\\"zebi\\\"])[1]",
+    "count": 1,
+    "project": "PerfectoCode/Community-Samples",
+    "lang": "Java",
+    "strategy": "findElementByXPath("
+  },
+  {
+    "id": "A1510",
+    "kind": "xpath-web",
+    "quote": "\"",
+    "source": "//div[@class='kafu-rebukub']/div/div/h3/a",
+    "count": 1,
+    "project": "PerfectoCode/Community-Samples",
+    "lang": "Java",
+    "strategy": "findElementByXPath("
+  },
+  {
+    "id": "A1511",
+    "kind": "xpath",
+    "quote": "\"",
+    "source": "//*[@label=\\\"bofefeb2\\\"]",
+    "count": 1,
+    "project": "PerfectoCode/Community-Samples",
+    "lang": "Java",
+    "strategy": "findElementByXPath("
+  },
+  {
+    "id": "A1512",
+    "kind": "xpath",
+    "quote": "\"",
+    "source": "//*[@label=\\\"dofiwa_hekufoki2\\\"]",
+    "count": 1,
+    "project": "PerfectoCode/Community-Samples",
+    "lang": "Java",
+    "strategy": "findElementByXPath("
+  },
+  {
+    "id": "A1513",
+    "kind": "xpath-web",
+    "quote": "\"",
+    "source": "(//input[@id=\\\"kw\\\"])[1]",
+    "count": 1,
+    "project": "PerfectoCode/Community-Samples",
+    "lang": "Java",
+    "strategy": "findElementByXPath("
+  },
+  {
+    "id": "A1514",
+    "kind": "xpath-web",
+    "quote": "\"",
+    "source": "(//a[@id=\\\"lucudaNirIta\\\"])[1]",
+    "count": 1,
+    "project": "PerfectoCode/Community-Samples",
+    "lang": "Java",
+    "strategy": "findElementByXPath("
+  },
+  {
+    "id": "A1515",
+    "kind": "xpath-web",
+    "quote": "\"",
+    "source": "(//div[@id=\\\"ciwaTaj\\\"])[1]",
+    "count": 1,
+    "project": "PerfectoCode/Community-Samples",
+    "lang": "Java",
+    "strategy": "findElementByXPath("
+  },
+  {
+    "id": "A1516",
+    "kind": "xpath",
+    "quote": "\"",
+    "source": "//*[@resource-id=\\\"com.android.fahufufevewegiko:id/butimaziha_hilen_dofiwa\\\" or @resource-id=\\\"com.android.zikametijazesonelibu:id/butimaziha_hilen_dofiwa\\\"]",
+    "count": 1,
+    "project": "PerfectoCode/Community-Samples",
+    "lang": "Java",
+    "strategy": "By.xpath("
+  },
+  {
+    "id": "A1517",
+    "kind": "xpath",
+    "quote": "\"",
+    "source": "//*[contains(@value, 'Hofiti los Nenovi')]",
+    "count": 2,
+    "project": "PerfectoCode/Community-Samples",
+    "lang": "Java",
+    "strategy": "By.xpath("
+  },
+  {
+    "id": "A1518",
+    "kind": "xpath",
+    "quote": "\"",
+    "source": "//*[@label='OK']",
+    "count": 2,
+    "project": "PerfectoCode/Community-Samples",
+    "lang": "Java",
+    "strategy": "By.xpath("
+  },
+  {
+    "id": "A1519",
+    "kind": "xpath",
+    "quote": "\"",
+    "source": "//*[@class='HUDEpecit' and @name ='Nenovi']",
+    "count": 2,
+    "project": "PerfectoCode/Community-Samples",
+    "lang": "Java",
+    "strategy": "By.xpath("
+  },
+  {
+    "id": "A1520",
+    "kind": "xpath-ios",
+    "quote": "\"",
+    "source": "//XCUIElementTypeOther[@label=\\\"Bofefeb\\\"]",
+    "count": 3,
+    "project": "PerfectoCode/Community-Samples",
+    "lang": "Java",
+    "strategy": null
+  },
+  {
+    "id": "A1521",
+    "kind": "xpath",
+    "quote": "\"",
+    "source": "//*[@label=\\\"Bofefeb\\\"]",
+    "count": 3,
+    "project": "PerfectoCode/Community-Samples",
+    "lang": "Java",
+    "strategy": "findElementByXPath("
+  },
+  {
+    "id": "A1522",
+    "kind": "xpath",
+    "quote": "\"",
+    "source": "//*[@label=\\\"Go\\\"]",
+    "count": 3,
+    "project": "PerfectoCode/Community-Samples",
+    "lang": "Java",
+    "strategy": "findElementByXPath("
+  },
+  {
+    "id": "A1523",
+    "kind": "xpath-web",
+    "quote": "\"",
+    "source": "//*[@id=\\\"jac-neno-jemo-0\\\"]/a/div/div[1]/span[1]",
+    "count": 6,
+    "project": "PerfectoCode/Community-Samples",
+    "lang": "Java",
+    "strategy": "findElementByXPath("
+  },
+  {
+    "id": "A1524",
+    "kind": "xpath",
+    "quote": "\"",
+    "source": "(//table[@class=\\\"SifupugoMoleg_zuhac SifupugoMoleg_zuhac_1\\\"])[4]/tbody/tr[2]/td[4]",
+    "count": 3,
+    "project": "PerfectoCode/Community-Samples",
+    "lang": "Java",
+    "strategy": "findElementByXPath("
+  },
+  {
+    "id": "A1525",
+    "kind": "xpath-web",
+    "quote": "\"",
+    "source": "//*[@id=\\\"catuwecacoka\\\"]/div/form/div[4]/div[2]/div/button",
+    "count": 3,
+    "project": "PerfectoCode/Community-Samples",
+    "lang": "Java",
+    "strategy": "findElementByXPath("
+  },
+  {
+    "id": "A1526",
+    "kind": "xpath",
+    "quote": "\"",
+    "source": "//*[@label=\\\"Sejofa\\\"]",
+    "count": 6,
+    "project": "PerfectoCode/Community-Samples",
+    "lang": "Java",
+    "strategy": "findElementByXPath("
+  },
+  {
+    "id": "A1527",
+    "kind": "xpath-ios",
+    "quote": "\"",
+    "source": "//XCUIElementTypeSearchField[@label='Ruwoju' or @value='Votinane' and @enabled='true']",
+    "count": 3,
+    "project": "PerfectoCode/Community-Samples",
+    "lang": "Java",
+    "strategy": null
+  },
+  {
+    "id": "A1528",
+    "kind": "xpath",
+    "quote": "\"",
+    "source": "//*[@label='Gurizi']",
+    "count": 3,
+    "project": "PerfectoCode/Community-Samples",
+    "lang": "Java",
+    "strategy": "findElementByXPath("
+  },
+  {
+    "id": "A1529",
+    "kind": "xpath",
+    "quote": "\"",
+    "source": "//*[@label=\\\"Wepac Faveril pip Niwa\\\"]",
+    "count": 4,
+    "project": "PerfectoCode/Community-Samples",
+    "lang": "Java",
+    "strategy": "findElementByXPath("
+  },
+  {
+    "id": "A1530",
+    "kind": "xpath-web",
+    "quote": "\"",
+    "source": "//a[@title='Go to My rUme jelu']/span[@class='boLim']",
+    "count": 3,
+    "project": "PerfectoCode/Community-Samples",
+    "lang": "Java",
+    "strategy": "@FindBy(xpath ="
+  },
+  {
+    "id": "A1531",
+    "kind": "xpath-web",
+    "quote": "\"",
+    "source": "//input[@placeholder='Bocic or guvosusu']",
+    "count": 3,
+    "project": "PerfectoCode/Community-Samples",
+    "lang": "Java",
+    "strategy": "@FindBy(xpath ="
+  },
+  {
+    "id": "A1532",
+    "kind": "xpath-web",
+    "quote": "\"",
+    "source": "//input[@placeholder='Zokubawe'][1]",
+    "count": 3,
+    "project": "PerfectoCode/Community-Samples",
+    "lang": "Java",
+    "strategy": "@FindBy(xpath ="
+  },
+  {
+    "id": "A1533",
+    "kind": "xpath",
+    "quote": "\"",
+    "source": "//UIATableCell[@name='Wi-Fi']",
+    "count": 2,
+    "project": "PerfectoCode/Community-Samples",
+    "lang": "Java",
+    "strategy": "By.xpath("
+  },
+  {
+    "id": "A1534",
+    "kind": "xpath",
+    "quote": "\"",
+    "source": "//UIATableView[1]/UIATableCell[1]/UIASwitch[1]",
+    "count": 6,
+    "project": "PerfectoCode/Community-Samples",
+    "lang": "Java",
+    "strategy": "By.xpath("
+  },
+  {
+    "id": "A1535",
+    "kind": "xpath",
+    "quote": "\"",
+    "source": "//*[@name='NOMODinumet']",
+    "count": 1,
+    "project": "PerfectoCode/Community-Samples",
+    "lang": "Java",
+    "strategy": "By.xpath("
+  },
+  {
+    "id": "A1536",
+    "kind": "xpath",
+    "quote": "\"",
+    "source": "//*[@label='Hama Hebegu']",
+    "count": 1,
+    "project": "PerfectoCode/Community-Samples",
+    "lang": "Java",
+    "strategy": "By.xpath("
+  },
+  {
+    "id": "A1537",
+    "kind": "xpath",
+    "quote": "\"",
+    "source": "//*[@label=\\\"Hama Hebegu\\\"]",
+    "count": 1,
+    "project": "PerfectoCode/Community-Samples",
+    "lang": "Java",
+    "strategy": "findElementByXPath("
+  },
+  {
+    "id": "A1538",
+    "kind": "xpath",
+    "quote": "\"",
+    "source": "(//*[@resource-id='io.zofujize.vikuwag.vajotin:id/danob_bocic'] | //*[@id='danob_bocic'] | //*[@resource-id='danob_bocic'])",
+    "count": 7,
+    "project": "PerfectoCode/Community-Samples",
+    "lang": "Java",
+    "strategy": "By.xpath("
+  },
+  {
+    "id": "A1539",
+    "kind": "xpath",
+    "quote": "\"",
+    "source": "(//*[@resource-id='io.zofujize.vikuwag.vajotin:id/danob_zokubawe'] | //*[@id='danob_zokubawe'] | //*[@resource-id='danob_zokubawe'])",
+    "count": 6,
+    "project": "PerfectoCode/Community-Samples",
+    "lang": "Java",
+    "strategy": "By.xpath("
+  },
+  {
+    "id": "A1540",
+    "kind": "xpath",
+    "quote": "\"",
+    "source": "(//*[@resource-id='io.zofujize.vikuwag.vajotin:id/danob_danob_hac'] | //*[@id='danob_danob_hac'] | //*[@resource-id='danob_danob_hac'])",
+    "count": 6,
+    "project": "PerfectoCode/Community-Samples",
+    "lang": "Java",
+    "strategy": "By.xpath("
+  },
+  {
+    "id": "A1541",
+    "kind": "xpath",
+    "quote": "\"",
+    "source": "//*[@text='Hokahuta']",
+    "count": 32,
+    "project": "PerfectoCode/Community-Samples",
+    "lang": "Java",
+    "strategy": "By.xpath("
+  },
+  {
+    "id": "A1542",
+    "kind": "xpath",
+    "quote": "\"",
+    "source": "(//*[@content-desc='Zoci Teseru'] | //*[@text='neno'] | //*[@class='dofiwa tub-cofopahavon codujege'])",
+    "count": 2,
+    "project": "PerfectoCode/Community-Samples",
+    "lang": "Java",
+    "strategy": "By.xpath("
+  },
+  {
+    "id": "A1543",
+    "kind": "xpath",
+    "quote": "\"",
+    "source": "(//*[@text='Vuhebo'] | (//*[@text='fiz pin']/..) | //*[@class='in-copu jemo tub-dovovonuh jemo-tinen codujege'])",
+    "count": 2,
+    "project": "PerfectoCode/Community-Samples",
+    "lang": "Java",
+    "strategy": "By.xpath("
+  },
+  {
+    "id": "A1544",
+    "kind": "xpath",
+    "quote": "\"",
+    "source": "//*[@resource-id='android:id/button1']",
+    "count": 6,
+    "project": "PerfectoCode/Community-Samples",
+    "lang": "Java",
+    "strategy": "By.xpath("
+  },
+  {
+    "id": "A1545",
+    "kind": "xpath",
+    "quote": "\"",
+    "source": "(//*[@content-desc='Zoci Teseru'] | //*[@class='dofiwa tub-cofopahavon codujege'] | //*[@text='neno'])",
+    "count": 4,
+    "project": "PerfectoCode/Community-Samples",
+    "lang": "Java",
+    "strategy": "By.xpath("
+  },
+  {
+    "id": "A1546",
+    "kind": "xpath",
+    "quote": "\"",
+    "source": "(//*[@text='Vuhebo'] | //*[@class='in-copu jemo tub-dovovonuh jemo-tinen codujege'] | //*[@text='fiz pin']/..)",
+    "count": 4,
+    "project": "PerfectoCode/Community-Samples",
+    "lang": "Java",
+    "strategy": "By.xpath("
+  },
+  {
+    "id": "A1547",
+    "kind": "xpath",
+    "quote": "\"",
+    "source": "(//*[@id='danob_bocic']/input)",
+    "count": 21,
+    "project": "PerfectoCode/Community-Samples",
+    "lang": "Java",
+    "strategy": "AppiumBy.xpath("
+  },
+  {
+    "id": "A1548",
+    "kind": "xpath",
+    "quote": "\"",
+    "source": "(//*[@id='danob_bocic'])",
+    "count": 5,
+    "project": "PerfectoCode/Community-Samples",
+    "lang": "Java",
+    "strategy": "AppiumBy.xpath("
+  },
+  {
+    "id": "A1549",
+    "kind": "xpath",
+    "quote": "\"",
+    "source": "(//*[@id='danob_zokubawe'])",
+    "count": 5,
+    "project": "PerfectoCode/Community-Samples",
+    "lang": "Java",
+    "strategy": "By.xpath("
+  },
+  {
+    "id": "A1550",
+    "kind": "xpath",
+    "quote": "\"",
+    "source": "(//*[@id='danob_danob_hac'])",
+    "count": 19,
+    "project": "PerfectoCode/Community-Samples",
+    "lang": "Java",
+    "strategy": "By.xpath("
+  },
+  {
+    "id": "A1551",
+    "kind": "xpath",
+    "quote": "\"",
+    "source": "//*[@resource-id='com.rusezu.android.vowu.nola:id/dejuhip_waw_wabuf_dofiwa']",
+    "count": 1,
+    "project": "PerfectoCode/Community-Samples",
+    "lang": "Java",
+    "strategy": "AppiumBy.xpath("
+  },
+  {
+    "id": "A1552",
+    "kind": "xpath",
+    "quote": "\"",
+    "source": "//*[@class='rej-vosor rej-losuva']",
+    "count": 1,
+    "project": "PerfectoCode/Community-Samples",
+    "lang": "Java",
+    "strategy": "AppiumBy.xpath("
+  },
+  {
+    "id": "A1553",
+    "kind": "xpath",
+    "quote": "\"",
+    "source": "//*[@resource-id='com.rusezu.android.vowu.nola:id/dejuhip_waw_veco_mivuzu_wodon']",
+    "count": 2,
+    "project": "PerfectoCode/Community-Samples",
+    "lang": "Java",
+    "strategy": "AppiumBy.xpath("
+  },
+  {
+    "id": "A1554",
+    "kind": "xpath",
+    "quote": "\"",
+    "source": "//*[@resource-id='com.rusezu.android.vowu.nola:id/dejuhip_waw_veco_mivuzu_wodon']/android.widget.FrameLayout[1]",
+    "count": 1,
+    "project": "PerfectoCode/Community-Samples",
+    "lang": "Java",
+    "strategy": "AppiumBy.xpath("
+  },
+  {
+    "id": "A1555",
+    "kind": "xpath",
+    "quote": "\"",
+    "source": "//*[@resource-id='com.rusezu.android.vowu.nola:id/rej_bibok']//*[@password='false']",
+    "count": 3,
+    "project": "PerfectoCode/Community-Samples",
+    "lang": "Java",
+    "strategy": "AppiumBy.xpath("
+  },
+  {
+    "id": "A1556",
+    "kind": "xpath",
+    "quote": "\"",
+    "source": "//*[@resource-id='com.kuz.android.puvobizil:id/widget_gowomoc']",
+    "count": 1,
+    "project": "PerfectoCode/Community-Samples",
+    "lang": "Java",
+    "strategy": "AppiumBy.xpath("
+  },
+  {
+    "id": "A1557",
+    "kind": "xpath",
+    "quote": "\"",
+    "source": "(//*[@content-desc='Sabutiv'])[2]",
+    "count": 1,
+    "project": "PerfectoCode/Community-Samples",
+    "lang": "Java",
+    "strategy": "AppiumBy.xpath("
+  },
+  {
+    "id": "A1558",
+    "kind": "xpath",
+    "quote": "\"",
+    "source": "(//*[@resource-id=\\\"com.android.johifa:id/dodaragu_wev_gazaril_mevoha\\\" and @text='Ledejef'] | //*[@resource-id=\\\"com.android.johifa:id/mevoha_pumu\\\" and @text='No nohafeha wovorezona'])",
+    "count": 2,
+    "project": "PerfectoCode/Community-Samples",
+    "lang": "Java",
+    "strategy": "AppiumBy.xpath("
+  },
+  {
+    "id": "A1559",
+    "kind": "xpath",
+    "quote": "\"",
+    "source": "(//*[@resource-id=\\\"com.android.johifa:id/mevoha_pumu\\\" and @text='No nohafeha wovorezona'])",
+    "count": 1,
+    "project": "PerfectoCode/Community-Samples",
+    "lang": "Java",
+    "strategy": "AppiumBy.xpath("
+  },
+  {
+    "id": "A1560",
+    "kind": "xpath-web",
+    "quote": "\"",
+    "source": "(//h1//*[text()=\\\"No nohafeha\\\"])",
+    "count": 2,
+    "project": "PerfectoCode/Community-Samples",
+    "lang": "Java",
+    "strategy": "AppiumBy.xpath("
+  },
+  {
+    "id": "A1561",
+    "kind": "xpath",
+    "quote": "\"",
+    "source": "//*[@class=\\\"ng-kuhisicug ng-zupuhijo ng-besel tub-kuhisicug tub-zupuhijo tub-besel tub-zibac tub-zibac-dujezuzih in-jemo codujege\\\"]",
+    "count": 1,
+    "project": "PerfectoCode/Community-Samples",
+    "lang": "Java",
+    "strategy": "By.xpath("
+  },
+  {
+    "id": "A1562",
+    "kind": "xpath",
+    "quote": "\"",
+    "source": "(//*[@id=\\\"jus_deli\\\"])",
+    "count": 1,
+    "project": "PerfectoCode/Community-Samples",
+    "lang": "Java",
+    "strategy": "AppiumBy.xpath("
+  },
+  {
+    "id": "A1563",
+    "kind": "xpath",
+    "quote": "\"",
+    "source": "(//*[@class=\\\"kivoh-buzop-tinen sc-tub-kivoh-md\\\" and text()=\\\"Tuhama\\\"])",
+    "count": 1,
+    "project": "PerfectoCode/Community-Samples",
+    "lang": "Java",
+    "strategy": "AppiumBy.xpath("
+  },
+  {
+    "id": "A1564",
+    "kind": "xpath-web",
+    "quote": "\"",
+    "source": "(//*[@class=\\\"kivoh-dofiwa-petis sc-tub-kivoh-md\\\"]/button[2])",
+    "count": 3,
+    "project": "PerfectoCode/Community-Samples",
+    "lang": "Java",
+    "strategy": "AppiumBy.xpath("
+  },
+  {
+    "id": "A1565",
+    "kind": "xpath",
+    "quote": "\"",
+    "source": "(//*[@id=\\\"jus_zimope\\\"])",
+    "count": 1,
+    "project": "PerfectoCode/Community-Samples",
+    "lang": "Java",
+    "strategy": "AppiumBy.xpath("
+  },
+  {
+    "id": "A1566",
+    "kind": "xpath",
+    "quote": "\"",
+    "source": "(//*[@id=\\\"jus_muguludo\\\"])",
+    "count": 1,
+    "project": "PerfectoCode/Community-Samples",
+    "lang": "Java",
+    "strategy": "AppiumBy.xpath("
+  },
+  {
+    "id": "A1567",
+    "kind": "xpath",
+    "quote": "\"",
+    "source": "(//*[@class=\\\"kivoh-buzop-tinen sc-tub-kivoh-md\\\" and text()=\\\" PEG - S$ \\\"])",
+    "count": 1,
+    "project": "PerfectoCode/Community-Samples",
+    "lang": "Java",
+    "strategy": "AppiumBy.xpath("
+  },
+  {
+    "id": "A1568",
+    "kind": "xpath",
+    "quote": "\"",
+    "source": "(//*[@id=\\\"jus_vobuhaha\\\"])",
+    "count": 1,
+    "project": "PerfectoCode/Community-Samples",
+    "lang": "Java",
+    "strategy": "AppiumBy.xpath("
+  },
+  {
+    "id": "A1569",
+    "kind": "xpath",
+    "quote": "\"",
+    "source": "(//*[@class=\\\"kivoh-buzop-tinen sc-tub-kivoh-md\\\" and text()=\\\" Pidiwihi \\\"])",
+    "count": 1,
+    "project": "PerfectoCode/Community-Samples",
+    "lang": "Java",
+    "strategy": "AppiumBy.xpath("
+  },
+  {
+    "id": "A1570",
+    "kind": "xpath",
+    "quote": "\"",
+    "source": "//*[@class=\\\"ng-cenakoh ng-fesif ng-besel\\\"]",
+    "count": 1,
+    "project": "PerfectoCode/Community-Samples",
+    "lang": "Java",
+    "strategy": "AppiumBy.xpath("
+  },
+  {
+    "id": "A1571",
+    "kind": "xpath",
+    "quote": "\"",
+    "source": "(//*[@id=\\\"jus_jina_hac\\\"])",
+    "count": 1,
+    "project": "PerfectoCode/Community-Samples",
+    "lang": "Java",
+    "strategy": "AppiumBy.xpath("
+  },
+  {
+    "id": "A1572",
+    "kind": "xpath",
+    "quote": "\"",
+    "source": "(//*[@name='danob_bocic'] | //*[@class='vihavu-vekar sc-tub-vekar-dik' and @name='danob_bocic'] | //*[@id='danob_bocic'])",
+    "count": 6,
+    "project": "PerfectoCode/Community-Samples",
+    "lang": "Java",
+    "strategy": "By.xpath("
+  },
+  {
+    "id": "A1573",
+    "kind": "xpath",
+    "quote": "\"",
+    "source": "(//*[@name='danob_zokubawe'] | //*[@class='vihavu-vekar sc-tub-vekar-dik' and @name='danob_zokubawe'] | //*[@id='danob_zokubawe'])",
+    "count": 6,
+    "project": "PerfectoCode/Community-Samples",
+    "lang": "Java",
+    "strategy": "By.xpath("
+  },
+  {
+    "id": "A1574",
+    "kind": "xpath",
+    "quote": "\"",
+    "source": "(//*[@label='Danob'] | //*[@id='danob_danob_hac'])",
+    "count": 6,
+    "project": "PerfectoCode/Community-Samples",
+    "lang": "Java",
+    "strategy": "By.xpath("
+  },
+  {
+    "id": "A1575",
+    "kind": "xpath",
+    "quote": "\"",
+    "source": "(//*[@label='jiba neno'] | //*[@class='dofiwa tub-cofopahavon codujege'] | //*[@class='sc-tub-cejuves-dik-h sc-tub-cejuves-dik-s codujege'])",
+    "count": 2,
+    "project": "PerfectoCode/Community-Samples",
+    "lang": "Java",
+    "strategy": "By.xpath("
+  },
+  {
+    "id": "A1576",
+    "kind": "xpath",
+    "quote": "\"",
+    "source": "(//*[@label='Vuhebo'] | //*[@class='in-copu jemo tub-dovovonuh jemo-tinen codujege'])",
+    "count": 6,
+    "project": "PerfectoCode/Community-Samples",
+    "lang": "Java",
+    "strategy": "By.xpath("
+  },
+  {
+    "id": "A1577",
+    "kind": "xpath",
+    "quote": "\"",
+    "source": "(//*[@label='jiba neno'] | //*[@class='sc-tub-cejuves-dik-h sc-tub-cejuves-dik-s codujege'] | //*[@class='dofiwa tub-cofopahavon codujege'])",
+    "count": 4,
+    "project": "PerfectoCode/Community-Samples",
+    "lang": "Java",
+    "strategy": "By.xpath("
+  },
+  {
+    "id": "A1578",
+    "kind": "xpath",
+    "quote": "\"",
+    "source": "(//*[@id='danob_zokubawe']/input)",
+    "count": 14,
+    "project": "PerfectoCode/Community-Samples",
+    "lang": "Java",
+    "strategy": "By.xpath("
+  },
+  {
+    "id": "A1579",
+    "kind": "xpath",
+    "quote": "\"",
+    "source": "//*[@resource-id=\\\"com.android.fahufufevewegiko:id/butimaziha_hilen_dofiwa\\\"]",
+    "count": 1,
+    "project": "PerfectoCode/Community-Samples",
+    "lang": "Java",
+    "strategy": "findElementByXPath("
+  },
+  {
+    "id": "A1580",
+    "kind": "xpath",
+    "quote": "\"",
+    "source": "//*[@resource-id=\\\"nimepiho.wawilomode.com.SakOmore:id/mifawuni_fijize_android_ketodasi_giduru_neno\\\"]//*[@class=\\\"android.widget.ImageButton\\\"]",
+    "count": 1,
+    "project": "PerfectoCode/Community-Samples",
+    "lang": "Java",
+    "strategy": "findElementByXPath("
+  },
+  {
+    "id": "A1581",
+    "kind": "xpath",
+    "quote": "\"",
+    "source": "//*[@resource-id=\\\"nimepiho.wawilomode.com.SakOmore:id/mifawuni_fijize_ketodasi_jus_nimepiho\\\"]",
+    "count": 1,
+    "project": "PerfectoCode/Community-Samples",
+    "lang": "Java",
+    "strategy": "findElementByXPath("
+  },
+  {
+    "id": "A1582",
+    "kind": "xpath",
+    "quote": "\"",
+    "source": "//*[@text=\\\"SakOmore\\\"]",
+    "count": 1,
+    "project": "PerfectoCode/Community-Samples",
+    "lang": "Java",
+    "strategy": "findElementByXPath("
+  },
+  {
+    "id": "A1583",
+    "kind": "xpath",
+    "quote": "\"",
+    "source": "//*[@text=\\\"Ruwoju\\\"]",
+    "count": 2,
+    "project": "PerfectoCode/Community-Samples",
+    "lang": "Java",
+    "strategy": "findElementByXPath("
+  },
+  {
+    "id": "A1584",
+    "kind": "xpath",
+    "quote": "\"",
+    "source": "//*[@resource-id=\\\"com.rusezu.android.kah:id/nudi_pumu\\\"]",
+    "count": 2,
+    "project": "PerfectoCode/Community-Samples",
+    "lang": "Java",
+    "strategy": "findElementByXPath("
+  },
+  {
+    "id": "A1585",
+    "kind": "xpath",
+    "quote": "\"",
+    "source": "//*[@resource-id=\\\"com.rusezu.android.kah:id/copu\\\"]/android.widget.RelativeLayout[1]",
+    "count": 1,
+    "project": "PerfectoCode/Community-Samples",
+    "lang": "Java",
+    "strategy": "findElementByXPath("
+  },
+  {
+    "id": "A1586",
+    "kind": "xpath",
+    "quote": "\"",
+    "source": "//*[@resource-id=\\\"com.rusezu.android.kah:id/fohatup_dofiwa\\\"]",
+    "count": 1,
+    "project": "PerfectoCode/Community-Samples",
+    "lang": "Java",
+    "strategy": "findElementByXPath("
+  },
+  {
+    "id": "A1587",
+    "kind": "xpath",
+    "quote": "\"",
+    "source": "//*[@resource-id=\\\"nimepiho.wawilomode.com.SakOmore:id/vekar_jecavup\\\"]",
+    "count": 1,
+    "project": "PerfectoCode/Community-Samples",
+    "lang": "Java",
+    "strategy": "findElementByXPath("
+  },
+  {
+    "id": "A1588",
+    "kind": "xpath",
+    "quote": "\"",
+    "source": "//*[@resource-id=\\\"nimepiho.wawilomode.com.SakOmore:id/fohatup_dofiwa\\\"]",
+    "count": 1,
+    "project": "PerfectoCode/Community-Samples",
+    "lang": "Java",
+    "strategy": "findElementByXPath("
+  },
+  {
+    "id": "A1589",
+    "kind": "xpath",
+    "quote": "\"",
+    "source": "//*[@resource-id=\\\"nimepiho.wawilomode.com.SakOmore:id/daheci_hemumi\\\" and @checked=\\\"false\\\"]",
+    "count": 1,
+    "project": "PerfectoCode/Community-Samples",
+    "lang": "Java",
+    "strategy": "findElementByXPath("
+  },
+  {
+    "id": "A1590",
+    "kind": "xpath",
+    "quote": "\"",
+    "source": "//*[@resource-id=\\\"nimepiho.wawilomode.com.SakOmore:id/daheci_hemumi\\\" and @checked=\\\"true\\\"]",
+    "count": 1,
+    "project": "PerfectoCode/Community-Samples",
+    "lang": "Java",
+    "strategy": "findElementByXPath("
+  },
+  {
+    "id": "A1591",
+    "kind": "xpath",
+    "quote": "\"",
+    "source": "//*[@resource-id=\\\"nimepiho.wawilomode.com.SakOmore:id/fibuhiLuca\\\"]",
+    "count": 1,
+    "project": "PerfectoCode/Community-Samples",
+    "lang": "Java",
+    "strategy": "findElementByXPath("
+  },
+  {
+    "id": "A1592",
+    "kind": "xpath",
+    "quote": "\"",
+    "source": "//*[@resource-id=\\\"nimepiho.wawilomode.com.SakOmore:id/wifuHijaPovav\\\"]",
+    "count": 1,
+    "project": "PerfectoCode/Community-Samples",
+    "lang": "Java",
+    "strategy": "findElementByXPath("
+  },
+  {
+    "id": "A1593",
+    "kind": "xpath",
+    "quote": "\"",
+    "source": "//*[@resource-id=\\\"nimepiho.wawilomode.com.SakOmore:id/diroWugirobe\\\"]",
+    "count": 1,
+    "project": "PerfectoCode/Community-Samples",
+    "lang": "Java",
+    "strategy": "findElementByXPath("
+  },
+  {
+    "id": "A1594",
+    "kind": "xpath",
+    "quote": "\"",
+    "source": "//*[@resource-id=\\\"nimepiho.wawilomode.com.SakOmore:id/kohowuJabesil\\\"]",
+    "count": 1,
+    "project": "PerfectoCode/Community-Samples",
+    "lang": "Java",
+    "strategy": "findElementByXPath("
+  },
+  {
+    "id": "A1595",
+    "kind": "xpath",
+    "quote": "\"",
+    "source": "//*[@resource-id=\\\"nimepiho.wawilomode.com.SakOmore:id/dikoSacupaNofer\\\"]",
+    "count": 1,
+    "project": "PerfectoCode/Community-Samples",
+    "lang": "Java",
+    "strategy": "findElementByXPath("
+  },
+  {
+    "id": "A1596",
+    "kind": "xpath",
+    "quote": "\"",
+    "source": "//*[@resource-id=\\\"nimepiho.wawilomode.com.SakOmore:id/petiSulaliVumi\\\"]",
+    "count": 1,
+    "project": "PerfectoCode/Community-Samples",
+    "lang": "Java",
+    "strategy": "findElementByXPath("
+  },
+  {
+    "id": "A1597",
+    "kind": "xpath",
+    "quote": "\"",
+    "source": "//*[@resource-id=\\\"nimepiho.wawilomode.com.SakOmore:id/zusAkuRezenaSeluhupOf\\\"]",
+    "count": 1,
+    "project": "PerfectoCode/Community-Samples",
+    "lang": "Java",
+    "strategy": "findElementByXPath("
+  },
+  {
+    "id": "A1598",
+    "kind": "xpath",
+    "quote": "\"",
+    "source": "//*[@text=\\\"Gigiloc\\\"]",
+    "count": 1,
+    "project": "PerfectoCode/Community-Samples",
+    "lang": "Java",
+    "strategy": "findElementByXPath("
+  },
+  {
+    "id": "A1599",
+    "kind": "xpath",
+    "quote": "\"",
+    "source": "//*[@resource-id=\\\"android:id/button1\\\"]",
+    "count": 3,
+    "project": "PerfectoCode/Community-Samples",
+    "lang": "Java",
+    "strategy": "findElementByXPath("
+  },
+  {
+    "id": "A1600",
+    "kind": "xpath",
+    "quote": "\"",
+    "source": "//*[@resource-id=\\\"nimepiho.wawilomode.com.SakOmore:id/gipOteLutapoFebovafOvi\\\"]",
+    "count": 1,
+    "project": "PerfectoCode/Community-Samples",
+    "lang": "Java",
+    "strategy": "findElementByXPath("
+  },
+  {
+    "id": "A1601",
+    "kind": "xpath",
+    "quote": "\"",
+    "source": "//*[@text=\\\"Jubajev\\\"]",
+    "count": 1,
+    "project": "PerfectoCode/Community-Samples",
+    "lang": "Java",
+    "strategy": "findElementByXPath("
+  },
+  {
+    "id": "A1602",
+    "kind": "xpath",
+    "quote": "\"",
+    "source": "//*[@resource-id=\\\"nimepiho.wawilomode.com.SakOmore:id/naj\\\"]",
+    "count": 1,
+    "project": "PerfectoCode/Community-Samples",
+    "lang": "Java",
+    "strategy": "findElementByXPath("
+  },
+  {
+    "id": "A1603",
+    "kind": "xpath",
+    "quote": "\"",
+    "source": "//*[@resource-id=\\\"nimepiho.wawilomode.com.SakOmore:id/sidiFeca\\\"]/android.widget.FrameLayout[1]/android.widget.RelativeLayout[1]/android.widget.CheckBox[1]",
+    "count": 1,
+    "project": "PerfectoCode/Community-Samples",
+    "lang": "Java",
+    "strategy": "findElementByXPath("
+  },
+  {
+    "id": "A1604",
+    "kind": "xpath",
+    "quote": "\"",
+    "source": "//*[@resource-id=\\\"nimepiho.wawilomode.com.SakOmore:id/sidiFeca\\\"]/android.widget.FrameLayout[3]/android.widget.RelativeLayout[1]/android.widget.CheckBox[1]",
+    "count": 1,
+    "project": "PerfectoCode/Community-Samples",
+    "lang": "Java",
+    "strategy": "findElementByXPath("
+  },
+  {
+    "id": "A1605",
+    "kind": "xpath",
+    "quote": "\"",
+    "source": "//*[@resource-id=\\\"nimepiho.wawilomode.com.SakOmore:id/sidiFeca\\\"]/android.widget.FrameLayout[6]/android.widget.RelativeLayout[1]/android.widget.CheckBox[1]",
+    "count": 1,
+    "project": "PerfectoCode/Community-Samples",
+    "lang": "Java",
+    "strategy": "findElementByXPath("
+  },
+  {
+    "id": "A1606",
+    "kind": "xpath",
+    "quote": "\"",
+    "source": "//*[@resource-id=\\\"nimepiho.wawilomode.com.SakOmore:id/pejijoMopako\\\"]",
+    "count": 1,
+    "project": "PerfectoCode/Community-Samples",
+    "lang": "Java",
+    "strategy": "findElementByXPath("
+  },
+  {
+    "id": "A1607",
+    "kind": "xpath",
+    "quote": "\"",
+    "source": "//*[@content-desc=\\\"Hekufoki up\\\"]",
+    "count": 1,
+    "project": "PerfectoCode/Community-Samples",
+    "lang": "Java",
+    "strategy": "findElementByXPath("
+  },
+  {
+    "id": "A1608",
+    "kind": "xpath",
+    "quote": "\"",
+    "source": "//*[@resource-id=\\\"nimepiho.wawilomode.com.SakOmore:id/jukuNuca2\\\"]",
+    "count": 6,
+    "project": "PerfectoCode/Community-Samples",
+    "lang": "Java",
+    "strategy": "findElementByXPath("
+  },
+  {
+    "id": "A1609",
+    "kind": "xpath",
+    "quote": "\"",
+    "source": "//*[@resource-id=\\\"nimepiho.wawilomode.com.SakOmore:id/bilot_naj\\\"]",
+    "count": 3,
+    "project": "PerfectoCode/Community-Samples",
+    "lang": "Java",
+    "strategy": "findElementByXPath("
+  },
+  {
+    "id": "A1610",
+    "kind": "xpath",
+    "quote": "\"",
+    "source": "//*[@text=\\\"JitofakureLawOsafiZunijeja\\\"]/../..//*[@text=\\\"Pedege\\\"]",
+    "count": 2,
+    "project": "PerfectoCode/Community-Samples",
+    "lang": "Java",
+    "strategy": "findElementsByXPath("
+  },
+  {
+    "id": "A1611",
+    "kind": "xpath",
+    "quote": "\"",
+    "source": "//*[@text=\\\"JitofakureLawOsafiZunijeja\\\"]/../..//*[@text=\\\"Migafiz\\\"]",
+    "count": 1,
+    "project": "PerfectoCode/Community-Samples",
+    "lang": "Java",
+    "strategy": "findElementsByXPath("
+  },
+  {
+    "id": "A1612",
+    "kind": "xpath",
+    "quote": "\"",
+    "source": "(//*[@resource-id=\\\"com.android.bipecusu:id/wepac_bev_dofiwa_tinen\\\"] | //*[@resource-id=\\\"com.android.bipecusu:id/wepac_bev\\\"])",
+    "count": 2,
+    "project": "PerfectoCode/Community-Samples",
+    "lang": "Java",
+    "strategy": "findElementByXPath("
+  },
+  {
+    "id": "A1613",
+    "kind": "xpath",
+    "quote": "\"",
+    "source": "//*[@resource-id=\\\"nimepiho.wawilomode.com.SakOmore:id/neno_hipepu\\\"]",
+    "count": 1,
+    "project": "PerfectoCode/Community-Samples",
+    "lang": "Java",
+    "strategy": "findElementByXPath("
+  },
+  {
+    "id": "A1614",
+    "kind": "xpath",
+    "quote": "\"",
+    "source": "//*[@resource-id=\\\"nimepiho.wawilomode.com.SakOmore:id/cOrani\\\"]",
+    "count": 1,
+    "project": "PerfectoCode/Community-Samples",
+    "lang": "Java",
+    "strategy": "findElementByXPath("
+  },
+  {
+    "id": "A1615",
+    "kind": "xpath",
+    "quote": "\"",
+    "source": "//*[@resource-id=\\\"nimepiho.wawilomode.com.SakOmore:id/hewevat\\\"]//*[@class=\\\"android.widget.ImageButton\\\"]",
+    "count": 1,
+    "project": "PerfectoCode/Community-Samples",
+    "lang": "Java",
+    "strategy": "findElementByXPath("
+  },
+  {
+    "id": "A1616",
+    "kind": "xpath",
+    "quote": "\"",
+    "source": "//*[@text='Gawo']",
+    "count": 2,
+    "project": "PerfectoCode/Community-Samples",
+    "lang": "Java",
+    "strategy": "@AndroidFindBy(xpath ="
+  },
+  {
+    "id": "A1617",
+    "kind": "xpath",
+    "quote": "\"",
+    "source": "//*[@text=\\\"RUV-₹\\\"]",
+    "count": 2,
+    "project": "PerfectoCode/Community-Samples",
+    "lang": "Java",
+    "strategy": "@AndroidFindBy(xpath ="
+  },
+  {
+    "id": "A1618",
+    "kind": "xpath",
+    "quote": "\"",
+    "source": "//*[@text='Bimugome']",
+    "count": 2,
+    "project": "PerfectoCode/Community-Samples",
+    "lang": "Java",
+    "strategy": "@AndroidFindBy(xpath ="
+  },
+  {
+    "id": "A1619",
+    "kind": "xpath",
+    "quote": "\"",
+    "source": "//*[@content-desc='Zoci Teseru']",
+    "count": 2,
+    "project": "PerfectoCode/Community-Samples",
+    "lang": "Java",
+    "strategy": "@AndroidFindBy(xpath ="
+  },
+  {
+    "id": "A1620",
+    "kind": "xpath",
+    "quote": "\"",
+    "source": "//*[@text='Vuhebo']",
+    "count": 2,
+    "project": "PerfectoCode/Community-Samples",
+    "lang": "Java",
+    "strategy": "@AndroidFindBy(xpath ="
+  },
+  {
+    "id": "A1621",
+    "kind": "xpath",
+    "quote": "\"",
+    "source": "//*[@name='Guvosusu'][3]",
+    "count": 1,
+    "project": "PerfectoCode/Community-Samples",
+    "lang": "Java",
+    "strategy": "By.xpath("
+  },
+  {
+    "id": "A1622",
+    "kind": "xpath",
+    "quote": "\"",
+    "source": "//*[@name='Zokubawe'][3]",
+    "count": 1,
+    "project": "PerfectoCode/Community-Samples",
+    "lang": "Java",
+    "strategy": "By.xpath("
+  },
+  {
+    "id": "A1623",
+    "kind": "xpath-web",
+    "quote": "\"",
+    "source": "//button[@label='Fiz in to Hifusabedo']",
+    "count": 1,
+    "project": "PerfectoCode/Community-Samples",
+    "lang": "Java",
+    "strategy": "By.xpath("
+  },
+  {
+    "id": "A1624",
+    "kind": "xpath-web",
+    "quote": "\"",
+    "source": "//button[contains(@label,'Hilen')]",
+    "count": 1,
+    "project": "PerfectoCode/Community-Samples",
+    "lang": "Java",
+    "strategy": "By.xpath("
+  },
+  {
+    "id": "A1625",
+    "kind": "xpath",
+    "quote": "\"",
+    "source": "//*[@name='lavosIzufIvosej']",
+    "count": 3,
+    "project": "PerfectoCode/Community-Samples",
+    "lang": "Java",
+    "strategy": "By.xpath("
+  },
+  {
+    "id": "A1626",
+    "kind": "xpath",
+    "quote": "\"",
+    "source": "//text[@label='Fiz Pin']",
+    "count": 1,
+    "project": "PerfectoCode/Community-Samples",
+    "lang": "Java",
+    "strategy": "By.xpath("
+  },
+  {
+    "id": "A1627",
+    "kind": "xpath-web",
+    "quote": "\"",
+    "source": "//button[@label='Fiz Pin']",
+    "count": 1,
+    "project": "PerfectoCode/Community-Samples",
+    "lang": "Java",
+    "strategy": "By.xpath("
+  },
+  {
+    "id": "A1628",
+    "kind": "xpath",
+    "quote": "\"",
+    "source": "//text[@label='Temodapame']",
+    "count": 1,
+    "project": "PerfectoCode/Community-Samples",
+    "lang": "Java",
+    "strategy": "By.xpath("
+  },
+  {
+    "id": "A1629",
+    "kind": "xpath",
+    "quote": "\"",
+    "source": "//text[@label='Vawakaku']",
+    "count": 1,
+    "project": "PerfectoCode/Community-Samples",
+    "lang": "Java",
+    "strategy": "By.xpath("
+  },
+  {
+    "id": "A1630",
+    "kind": "xpath",
+    "quote": "\"",
+    "source": "//text[@label='Bonajemo']",
+    "count": 3,
+    "project": "PerfectoCode/Community-Samples",
+    "lang": "Java",
+    "strategy": "By.xpath("
+  },
+  {
+    "id": "A1631",
+    "kind": "xpath-web",
+    "quote": "\"",
+    "source": "//button[@label='Nud']",
+    "count": 1,
+    "project": "PerfectoCode/Community-Samples",
+    "lang": "Java",
+    "strategy": "By.xpath("
+  },
+  {
+    "id": "A1632",
+    "kind": "xpath",
+    "quote": "\"",
+    "source": "//textfield[@name='Savejat Bedu']",
+    "count": 1,
+    "project": "PerfectoCode/Community-Samples",
+    "lang": "Java",
+    "strategy": "By.xpath("
+  },
+  {
+    "id": "A1633",
+    "kind": "xpath-web",
+    "quote": "\"",
+    "source": "//button[@label='Jina']",
+    "count": 1,
+    "project": "PerfectoCode/Community-Samples",
+    "lang": "Java",
+    "strategy": "By.xpath("
+  },
+  {
+    "id": "A1634",
+    "kind": "xpath",
+    "quote": "\"",
+    "source": "//text[@label='Jogaw']",
+    "count": 1,
+    "project": "PerfectoCode/Community-Samples",
+    "lang": "Java",
+    "strategy": "By.xpath("
+  },
+  {
+    "id": "A1635",
+    "kind": "xpath",
+    "quote": "\"",
+    "source": "//text[@label='Vecobokovuceg']",
+    "count": 1,
+    "project": "PerfectoCode/Community-Samples",
+    "lang": "Java",
+    "strategy": "By.xpath("
+  },
+  {
+    "id": "A1636",
+    "kind": "xpath",
+    "quote": "\"",
+    "source": "//text[@label='Savejat Fokib']/following::*//text[1]",
+    "count": 1,
+    "project": "PerfectoCode/Community-Samples",
+    "lang": "Java",
+    "strategy": "By.xpath("
+  },
+  {
+    "id": "A1637",
+    "kind": "xpath-web",
+    "quote": "\"",
+    "source": "//button[@label='Ziha']",
+    "count": 2,
+    "project": "PerfectoCode/Community-Samples",
+    "lang": "Java",
+    "strategy": "By.xpath("
+  },
+  {
+    "id": "A1638",
+    "kind": "xpath-web",
+    "quote": "\"",
+    "source": "//button[text()='RAZAHEZ']",
+    "count": 1,
+    "project": "PerfectoCode/Community-Samples",
+    "lang": "Java",
+    "strategy": "By.xpath("
+  },
+  {
+    "id": "A1639",
+    "kind": "xpath-web",
+    "quote": "\"",
+    "source": "//button[text()='VEKUCIW']",
+    "count": 1,
+    "project": "PerfectoCode/Community-Samples",
+    "lang": "Java",
+    "strategy": "By.xpath("
+  },
+  {
+    "id": "A1640",
+    "kind": "xpath",
+    "quote": "\"",
+    "source": "//name[@displayName=\\\"Fej tahig\\\"]/parent::info/parent::action",
+    "count": 1,
+    "project": "PerfectoCode/Community-Samples",
+    "lang": "Java",
+    "strategy": null
+  },
+  {
+    "id": "A1641",
+    "kind": "xpath",
+    "quote": "\"",
+    "source": "//*[@resource-id='com.sucogijijozilo.lunidehasapizam:id/vuluwaNore']",
+    "count": 1,
+    "project": "PerfectoCode/Community-Samples",
+    "lang": "Java",
+    "strategy": "By.xpath("
+  },
+  {
+    "id": "A1642",
+    "kind": "xpath",
+    "quote": "\"",
+    "source": "//*[@label='ZIJO']",
+    "count": 2,
+    "project": "PerfectoCode/Community-Samples",
+    "lang": "Java",
+    "strategy": "By.xpath("
+  },
+  {
+    "id": "A1643",
+    "kind": "xpath",
+    "quote": "\"",
+    "source": "//*[@displayName='OS']/following-sibling::value",
+    "count": 1,
+    "project": "PerfectoCode/Community-Samples",
+    "lang": "Java",
+    "strategy": null
+  },
+  {
+    "id": "A1644",
+    "kind": "xpath",
+    "quote": "\"",
+    "source": "//dataItem/attachment[contains(text(),'fosage')]",
+    "count": 1,
+    "project": "PerfectoCode/Community-Samples",
+    "lang": "Java",
+    "strategy": null
+  },
+  {
+    "id": "A1645",
+    "kind": "xpath",
+    "quote": "\"",
+    "source": "//name[@displayName=\\\"Tahig sadawa\\\"]/parent::info/following-sibling::parameters/*/name[@displayName=\\\"Kedadupuzoz\\\"]/following-sibling::value",
+    "count": 1,
+    "project": "PerfectoCode/Community-Samples",
+    "lang": "Java",
+    "strategy": null
+  },
+  {
+    "id": "A1646",
+    "kind": "xpath",
+    "quote": "\"",
+    "source": "//name[@displayName=\\\"Tahig sadawa\\\"]/parent::info/following-sibling::parameters/*/name[@displayName=\\\"Bafibu\\\"]/following-sibling::value",
+    "count": 1,
+    "project": "PerfectoCode/Community-Samples",
+    "lang": "Java",
+    "strategy": null
+  },
+  {
+    "id": "A1647",
+    "kind": "xpath",
+    "quote": "\"",
+    "source": "//name[@displayName=\\\"Tahig sadawa\\\"]/parent::info/times/flowTimes/end/millis",
+    "count": 1,
+    "project": "PerfectoCode/Community-Samples",
+    "lang": "Java",
+    "strategy": null
+  },
+  {
+    "id": "A1648",
+    "kind": "xpath",
+    "quote": "\"",
+    "source": "//*[@resource-id=\\\"com.android.johifa:id/gul_wev\\\"]",
+    "count": 1,
+    "project": "PerfectoCode/Community-Samples",
+    "lang": "Java",
+    "strategy": "By.xpath("
+  },
+  {
+    "id": "A1649",
+    "kind": "xpath",
+    "quote": "\"",
+    "source": "//*[@id=\\\"ded-ib\\\"]",
+    "count": 1,
+    "project": "PerfectoCode/Community-Samples",
+    "lang": "Java",
+    "strategy": "By.xpath("
+  },
+  {
+    "id": "A1650",
+    "kind": "xpath",
+    "quote": "\"",
+    "source": "//*[contains(@resource-id,\\\"neno_dofiwa\\\")]",
+    "count": 2,
+    "project": "PerfectoCode/Community-Samples",
+    "lang": "Java",
+    "strategy": "By.xpath("
+  },
+  {
+    "id": "A1651",
+    "kind": "xpath",
+    "quote": "\"",
+    "source": "//*[contains(@resource-id,\\\"suj\\\")]",
+    "count": 1,
+    "project": "PerfectoCode/Community-Samples",
+    "lang": "Java",
+    "strategy": "By.xpath("
+  },
+  {
+    "id": "A1652",
+    "kind": "xpath",
+    "quote": "\"",
+    "source": "//*[contains(@content-desc,\\\"Neci\\\")]",
+    "count": 1,
+    "project": "PerfectoCode/Community-Samples",
+    "lang": "Java",
+    "strategy": "By.xpath("
+  },
+  {
+    "id": "A1653",
+    "kind": "xpath",
+    "quote": "\"",
+    "source": "//*[contains(@resource-id,\\\"gotaz\\\")]",
+    "count": 1,
+    "project": "PerfectoCode/Community-Samples",
+    "lang": "Java",
+    "strategy": "By.xpath("
+  },
+  {
+    "id": "A1654",
+    "kind": "xpath",
+    "quote": "\"",
+    "source": "/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.widget.FrameLayout/android.view.ViewGroup/android.widget.LinearLayout/android.widget.LinearLayout/androidx.recyclerview.widget.RecyclerView/android.view.ViewGroup[1]/android.widget.TextView[1]",
+    "count": 1,
+    "project": "haticedagli/Hepsiburada-Android-Automation-Testing",
+    "lang": "Java",
+    "strategy": "@AndroidFindBy(xpath ="
+  },
+  {
+    "id": "A1655",
+    "kind": "xpath",
+    "quote": "\"",
+    "source": "/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.view.ViewGroup/android.view.ViewGroup/android.widget.ScrollView/android.webkit.WebView/android.webkit.WebView/android.view.View/android.view.View/android.view.View[3]/android.widget.Button",
+    "count": 1,
+    "project": "haticedagli/Hepsiburada-Android-Automation-Testing",
+    "lang": "Java",
+    "strategy": "@AndroidFindBy(xpath ="
+  },
+  {
+    "id": "A1656",
+    "kind": "xpath",
+    "quote": "\"",
+    "source": "/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.view.ViewGroup/android.view.ViewGroup/android.widget.ScrollView/android.webkit.WebView/android.webkit.WebView/android.view.View/android.view.View[1]/android.view.View[3]/android.widget.Button",
+    "count": 1,
+    "project": "haticedagli/Hepsiburada-Android-Automation-Testing",
+    "lang": "Java",
+    "strategy": "@AndroidFindBy(xpath ="
+  },
+  {
+    "id": "A1657",
+    "kind": "xpath",
+    "quote": "\"",
+    "source": "/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.view.ViewGroup/android.view.ViewGroup/android.widget.ScrollView/android.webkit.WebView/android.webkit.WebView/android.view.View/android.view.View[1]/android.view.View[3]/android.view.View/android.view.View/android.widget.EditText",
+    "count": 1,
+    "project": "haticedagli/Hepsiburada-Android-Automation-Testing",
+    "lang": "Java",
+    "strategy": "@AndroidFindBy(xpath ="
+  },
+  {
+    "id": "A1658",
+    "kind": "xpath",
+    "quote": "\"",
+    "source": "/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.view.ViewGroup/android.view.ViewGroup/android.widget.ScrollView/android.webkit.WebView/android.webkit.WebView/android.view.View/android.view.View[1]/android.view.View[3]/android.view.View/android.widget.EditText",
+    "count": 1,
+    "project": "haticedagli/Hepsiburada-Android-Automation-Testing",
+    "lang": "Java",
+    "strategy": "@AndroidFindBy(xpath ="
+  },
+  {
+    "id": "A1659",
+    "kind": "xpath",
+    "quote": "\"",
+    "source": "/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.view.ViewGroup/android.view.ViewGroup/android.widget.ScrollView/android.webkit.WebView/android.webkit.WebView/android.view.View/android.view.View[1]/android.view.View[4]",
+    "count": 1,
+    "project": "haticedagli/Hepsiburada-Android-Automation-Testing",
+    "lang": "Java",
+    "strategy": "@AndroidFindBy(xpath ="
+  },
+  {
+    "id": "A1660",
+    "kind": "xpath",
+    "quote": "\"",
+    "source": "//*[@text='Dağamenekileg']",
+    "count": 1,
+    "project": "haticedagli/Hepsiburada-Android-Automation-Testing",
+    "lang": "Java",
+    "strategy": "@AndroidFindBy(xpath ="
+  },
+  {
+    "id": "A1661",
+    "kind": "xpath",
+    "quote": "\"",
+    "source": "/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.widget.FrameLayout/android.view.ViewGroup/android.widget.RelativeLayout/android.view.ViewGroup/android.widget.FrameLayout/androidx.recyclerview.widget.RecyclerView/android.view.ViewGroup[5]",
+    "count": 1,
+    "project": "haticedagli/Hepsiburada-Android-Automation-Testing",
+    "lang": "Java",
+    "strategy": "@AndroidFindBy(xpath ="
+  },
+  {
+    "id": "A1662",
+    "kind": "xpath",
+    "quote": "\"",
+    "source": "/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.widget.FrameLayout/android.view.ViewGroup/android.widget.RelativeLayout/android.view.ViewGroup/android.widget.FrameLayout/androidx.recyclerview.widget.RecyclerView/android.view.ViewGroup[3]",
+    "count": 1,
+    "project": "haticedagli/Hepsiburada-Android-Automation-Testing",
+    "lang": "Java",
+    "strategy": "@AndroidFindBy(xpath ="
+  },
+  {
+    "id": "A1663",
+    "kind": "xpath",
+    "quote": "\"",
+    "source": "//android.view.ViewGroup[@content-desc=\\\"savejat_neno_dofiwa_1\\\"]/android.view.ViewGroup/android.widget.Button",
+    "count": 1,
+    "project": "haticedagli/Hepsiburada-Android-Automation-Testing",
+    "lang": "Java",
+    "strategy": "@AndroidFindBy(xpath ="
+  },
+  {
+    "id": "A1664",
+    "kind": "xpath",
+    "quote": "\"",
+    "source": "//android.widget.TextView[@text=\\\"Savejat\\\"]",
+    "count": 2,
+    "project": "phoungphoung33/uabpay",
+    "lang": "Java",
+    "strategy": "@AndroidFindBy(xpath ="
+  },
+  {
+    "id": "A1665",
+    "kind": "xpath",
+    "quote": "\"",
+    "source": "//android.widget.TextView[@text=\\\"Wakuruni Gupusepot\\\"]",
+    "count": 2,
+    "project": "phoungphoung33/uabpay",
+    "lang": "Java",
+    "strategy": "@AndroidFindBy(xpath ="
+  },
+  {
+    "id": "A1666",
+    "kind": "xpath",
+    "quote": "\"",
+    "source": "//android.widget.TextView[@text=\\\"ွ်ြရနက\\\"]",
+    "count": 2,
+    "project": "phoungphoung33/uabpay",
+    "lang": "Java",
+    "strategy": "@AndroidFindBy(xpath ="
+  },
+  {
+    "id": "A1667",
+    "kind": "xpath",
+    "quote": "\"",
+    "source": "//android.widget.FrameLayout[@resource-id=\\\"android:id/content\\\"]/android.widget.FrameLayout/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup[1]/android.view.ViewGroup/android.view.ViewGroup[2]/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup[1]/android.view.ViewGroup/android.view.ViewGroup[1]/android.view.ViewGroup",
+    "count": 2,
+    "project": "phoungphoung33/uabpay",
+    "lang": "Java",
+    "strategy": "@AndroidFindBy(xpath ="
+  },
+  {
+    "id": "A1668",
+    "kind": "xpath",
+    "quote": "\"",
+    "source": "//*[@resource-id=\\\"android:id/content\\\"]//android.widget.ImageView\\n",
+    "count": 2,
+    "project": "phoungphoung33/uabpay",
+    "lang": "Java",
+    "strategy": "@AndroidFindBy(xpath ="
+  },
+  {
+    "id": "A1669",
+    "kind": "xpath",
+    "quote": "\"",
+    "source": "//android.widget.TextView[@text=\\\"ြွမြွကြ\\\"]",
+    "count": 2,
+    "project": "phoungphoung33/uabpay",
+    "lang": "Java",
+    "strategy": "@AndroidFindBy(xpath ="
+  },
+  {
+    "id": "A1670",
+    "kind": "xpath",
+    "quote": "\"",
+    "source": "//android.widget.TextView[@text=\\\"Kaki\\\"]",
+    "count": 14,
+    "project": "phoungphoung33/uabpay",
+    "lang": "Java",
+    "strategy": "@AndroidFindBy(xpath ="
+  },
+  {
+    "id": "A1671",
+    "kind": "xpath",
+    "quote": "\"",
+    "source": "//android.widget.TextView[contains(@text,'Votodem')]",
+    "count": 2,
+    "project": "phoungphoung33/uabpay",
+    "lang": "Java",
+    "strategy": "@AndroidFindBy(xpath ="
+  },
+  {
+    "id": "A1672",
+    "kind": "xpath",
+    "quote": "\"",
+    "source": "//android.widget.FrameLayout[@resource-id=\\\"android:id/content\\\"]/android.widget.FrameLayout/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup[2]/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup[4]/android.widget.ScrollView/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup[2]/android.view.ViewGroup[2]/android.widget.HorizontalScrollView/android.view.ViewGroup/android.view.ViewGroup[1]/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup[1]/android.view.ViewGroup/android.view.ViewGroup/android.widget.ImageView",
+    "count": 2,
+    "project": "phoungphoung33/uabpay",
+    "lang": "Java",
+    "strategy": "@AndroidFindBy(xpath ="
+  },
+  {
+    "id": "A1673",
+    "kind": "xpath",
+    "quote": "\"",
+    "source": "(//android.widget.ImageView)[2]\\n",
+    "count": 2,
+    "project": "phoungphoung33/uabpay",
+    "lang": "Java",
+    "strategy": "@AndroidFindBy(xpath ="
+  },
+  {
+    "id": "A1674",
+    "kind": "xpath",
+    "quote": "\"",
+    "source": "//android.widget.TextView[@text=\\\"Kado los Tanowuh \\\"]",
+    "count": 2,
+    "project": "phoungphoung33/uabpay",
+    "lang": "Java",
+    "strategy": "@AndroidFindBy(xpath ="
+  },
+  {
+    "id": "A1675",
+    "kind": "xpath",
+    "quote": "\"",
+    "source": "//android.widget.TextView[@text=\\\"NUD LEBITUD\\\"]",
+    "count": 2,
+    "project": "phoungphoung33/uabpay",
+    "lang": "Java",
+    "strategy": "@AndroidFindBy(xpath ="
+  },
+  {
+    "id": "A1676",
+    "kind": "xpath",
+    "quote": "\"",
+    "source": "//android.widget.TextView[@text=\\\"Rojuno Savejat\\\"]",
+    "count": 5,
+    "project": "phoungphoung33/uabpay",
+    "lang": "Java",
+    "strategy": "@AndroidFindBy(xpath ="
+  },
+  {
+    "id": "A1677",
+    "kind": "xpath",
+    "quote": "\"",
+    "source": "//android.widget.TextView[@text=\\\"09975446233\\\"]",
+    "count": 2,
+    "project": "phoungphoung33/uabpay",
+    "lang": "Java",
+    "strategy": "@AndroidFindBy(xpath ="
+  },
+  {
+    "id": "A1678",
+    "kind": "xpath",
+    "quote": "\"",
+    "source": "//android.widget.EditText[@text=\\\"Hutag Zimope\\\"]",
+    "count": 2,
+    "project": "phoungphoung33/uabpay",
+    "lang": "Java",
+    "strategy": "@AndroidFindBy(xpath ="
+  },
+  {
+    "id": "A1679",
+    "kind": "xpath",
+    "quote": "\"",
+    "source": "//android.widget.TextView[@text=\\\"JUSI\\\"]",
+    "count": 4,
+    "project": "phoungphoung33/uabpay",
+    "lang": "Java",
+    "strategy": "@AndroidFindBy(xpath ="
+  },
+  {
+    "id": "A1680",
+    "kind": "xpath",
+    "quote": "\"",
+    "source": "//android.view.View",
+    "count": 4,
+    "project": "phoungphoung33/uabpay",
+    "lang": "Java",
+    "strategy": "@AndroidFindBy(xpath ="
+  },
+  {
+    "id": "A1681",
+    "kind": "xpath",
+    "quote": "\"",
+    "source": "(//android.widget.ImageView)[2]",
+    "count": 10,
+    "project": "phoungphoung33/uabpay",
+    "lang": "Java",
+    "strategy": "@AndroidFindBy(xpath ="
+  },
+  {
+    "id": "A1682",
+    "kind": "xpath",
+    "quote": "\"",
+    "source": "//android.widget.TextView[@text=\\\"VEZ Kafu \\\"]",
+    "count": 2,
+    "project": "phoungphoung33/uabpay",
+    "lang": "Java",
+    "strategy": "@AndroidFindBy(xpath ="
+  },
+  {
+    "id": "A1683",
+    "kind": "xpath",
+    "quote": "\"",
+    "source": "//android.view.View[@resource-id=\\\"sonugaZariz\\\"]",
+    "count": 4,
+    "project": "phoungphoung33/uabpay",
+    "lang": "Java",
+    "strategy": "@AndroidFindBy(xpath ="
+  },
+  {
+    "id": "A1684",
+    "kind": "xpath",
+    "quote": "\"",
+    "source": "//android.widget.CheckedTextView[@resource-id=\\\"android:id/text1\\\" and @text=\\\"12\\\"]",
+    "count": 4,
+    "project": "phoungphoung33/uabpay",
+    "lang": "Java",
+    "strategy": "@AndroidFindBy(xpath ="
+  },
+  {
+    "id": "A1685",
+    "kind": "xpath",
+    "quote": "\"",
+    "source": "//android.widget.ListView//android.widget.CheckedTextView[@text='12']\\n",
+    "count": 4,
+    "project": "phoungphoung33/uabpay",
+    "lang": "Java",
+    "strategy": "@AndroidFindBy(xpath ="
+  },
+  {
+    "id": "A1686",
+    "kind": "xpath",
+    "quote": "\"",
+    "source": "//android.widget.TextView[@text=\\\"Wawu/Puzono Kafu \\\"]",
+    "count": 4,
+    "project": "phoungphoung33/uabpay",
+    "lang": "Java",
+    "strategy": "@AndroidFindBy(xpath ="
+  },
+  {
+    "id": "A1687",
+    "kind": "xpath",
+    "quote": "\"",
+    "source": "//android.widget.TextView[@text=\\\"Nele Bonajemo \\\"]",
+    "count": 2,
+    "project": "phoungphoung33/uabpay",
+    "lang": "Java",
+    "strategy": "@AndroidFindBy(xpath ="
+  },
+  {
+    "id": "A1688",
+    "kind": "xpath",
+    "quote": "\"",
+    "source": "//android.widget.TextView[@text=\\\"Nele\\\"]",
+    "count": 2,
+    "project": "phoungphoung33/uabpay",
+    "lang": "Java",
+    "strategy": "@AndroidFindBy(xpath ="
+  },
+  {
+    "id": "A1689",
+    "kind": "xpath",
+    "quote": "\"",
+    "source": "//android.widget.TextView[@text=\\\"huf\\\"]",
+    "count": 2,
+    "project": "phoungphoung33/uabpay",
+    "lang": "Java",
+    "strategy": "@AndroidFindBy(xpath ="
+  },
+  {
+    "id": "A1690",
+    "kind": "xpath",
+    "quote": "\"",
+    "source": "(//android.widget.ScrollView//android.widget.EditText)[2]",
+    "count": 2,
+    "project": "phoungphoung33/uabpay",
+    "lang": "Java",
+    "strategy": "@AndroidFindBy(xpath ="
+  },
+  {
+    "id": "A1691",
+    "kind": "xpath",
+    "quote": "\"",
+    "source": "(//android.widget.ScrollView//android.widget.EditText)[3]",
+    "count": 2,
+    "project": "phoungphoung33/uabpay",
+    "lang": "Java",
+    "strategy": "@AndroidFindBy(xpath ="
+  },
+  {
+    "id": "A1692",
+    "kind": "xpath",
+    "quote": "\"",
+    "source": "//android.widget.EditText[@text=\\\"Relirelitafu Hadi\\\"]",
+    "count": 4,
+    "project": "phoungphoung33/uabpay",
+    "lang": "Java",
+    "strategy": "@AndroidFindBy(xpath ="
+  },
+  {
+    "id": "A1693",
+    "kind": "xpath",
+    "quote": "\"",
+    "source": "//android.widget.EditText",
+    "count": 11,
+    "project": "phoungphoung33/uabpay",
+    "lang": "Java",
+    "strategy": "@AndroidFindBy(xpath ="
+  },
+  {
+    "id": "A1694",
+    "kind": "xpath",
+    "quote": "\"",
+    "source": "//android.widget.TextView[@text=\\\"VOVAWEDO\\\"]",
+    "count": 10,
+    "project": "phoungphoung33/uabpay",
+    "lang": "Java",
+    "strategy": "@AndroidFindBy(xpath ="
+  },
+  {
+    "id": "A1695",
+    "kind": "xpath",
+    "quote": "\"",
+    "source": "//android.widget.RadioButton[@resource-id=\\\"kafu_rupi_002\\\"]",
+    "count": 2,
+    "project": "phoungphoung33/uabpay",
+    "lang": "Java",
+    "strategy": "@AndroidFindBy(xpath ="
+  },
+  {
+    "id": "A1696",
+    "kind": "xpath",
+    "quote": "\"",
+    "source": "//android.widget.EditText[@resource-id=\\\"kafu_misafa\\\"]",
+    "count": 4,
+    "project": "phoungphoung33/uabpay",
+    "lang": "Java",
+    "strategy": "@AndroidFindBy(xpath ="
+  },
+  {
+    "id": "A1697",
+    "kind": "xpath",
+    "quote": "\"",
+    "source": "//android.view.View[@resource-id=\\\"kafu_jetumu_fasik\\\"]",
+    "count": 4,
+    "project": "phoungphoung33/uabpay",
+    "lang": "Java",
+    "strategy": "@AndroidFindBy(xpath ="
+  },
+  {
+    "id": "A1698",
+    "kind": "xpath",
+    "quote": "\"",
+    "source": "//android.widget.CheckedTextView[@resource-id=\\\"android:id/text1\\\" and contains(@text,'12')]",
+    "count": 2,
+    "project": "phoungphoung33/uabpay",
+    "lang": "Java",
+    "strategy": "@AndroidFindBy(xpath ="
+  },
+  {
+    "id": "A1699",
+    "kind": "xpath",
+    "quote": "\"",
+    "source": "//android.view.View[@resource-id=\\\"kafu_jetumu_tibu\\\"]",
+    "count": 4,
+    "project": "phoungphoung33/uabpay",
+    "lang": "Java",
+    "strategy": "@AndroidFindBy(xpath ="
+  },
+  {
+    "id": "A1700",
+    "kind": "xpath",
+    "quote": "\"",
+    "source": "//android.widget.CheckedTextView[@resource-id=\\\"android:id/text1\\\" and contains(@text,'2031')]",
+    "count": 2,
+    "project": "phoungphoung33/uabpay",
+    "lang": "Java",
+    "strategy": "@AndroidFindBy(xpath ="
+  },
+  {
+    "id": "A1701",
+    "kind": "xpath",
+    "quote": "\"",
+    "source": "//android.widget.EditText[@resource-id=\\\"kafu_tib\\\"]",
+    "count": 4,
+    "project": "phoungphoung33/uabpay",
+    "lang": "Java",
+    "strategy": "@AndroidFindBy(xpath ="
+  },
+  {
+    "id": "A1702",
+    "kind": "xpath",
+    "quote": "\"",
+    "source": "//android.widget.Button[@text=\\\"Mow\\\"]",
+    "count": 4,
+    "project": "phoungphoung33/uabpay",
+    "lang": "Java",
+    "strategy": "@AndroidFindBy(xpath ="
+  },
+  {
+    "id": "A1703",
+    "kind": "xpath",
+    "quote": "\"",
+    "source": "//android.widget.TextView[@text=\\\"JEJUBUBI \\\"]",
+    "count": 2,
+    "project": "phoungphoung33/uabpay",
+    "lang": "Java",
+    "strategy": "@AndroidFindBy(xpath ="
+  },
+  {
+    "id": "A1704",
+    "kind": "xpath",
+    "quote": "\"",
+    "source": "//android.widget.RadioButton[@resource-id=\\\"kafu_rupi_062\\\"]",
+    "count": 2,
+    "project": "phoungphoung33/uabpay",
+    "lang": "Java",
+    "strategy": "@AndroidFindBy(xpath ="
+  },
+  {
+    "id": "A1705",
+    "kind": "xpath",
+    "quote": "\"",
+    "source": "//android.widget.CheckedTextView[@resource-id=\\\"android:id/text1\\\" and contains(@text,'10')]",
+    "count": 2,
+    "project": "phoungphoung33/uabpay",
+    "lang": "Java",
+    "strategy": "@AndroidFindBy(xpath ="
+  },
+  {
+    "id": "A1706",
+    "kind": "xpath",
+    "quote": "\"",
+    "source": "//android.widget.CheckedTextView[@resource-id=\\\"android:id/text1\\\" and contains(@text,'2029')]",
+    "count": 2,
+    "project": "phoungphoung33/uabpay",
+    "lang": "Java",
+    "strategy": "@AndroidFindBy(xpath ="
+  },
+  {
+    "id": "A1707",
+    "kind": "xpath",
+    "quote": "\"",
+    "source": "//android.widget.EditText[@text=\\\"09\\\"]",
+    "count": 6,
+    "project": "phoungphoung33/uabpay",
+    "lang": "Java",
+    "strategy": "@AndroidFindBy(xpath ="
+  },
+  {
+    "id": "A1708",
+    "kind": "xpath",
+    "quote": "\"",
+    "source": "//android.widget.TextView[@text=\\\"FIZ IN\\\"]",
+    "count": 8,
+    "project": "phoungphoung33/uabpay",
+    "lang": "Java",
+    "strategy": "@AndroidFindBy(xpath ="
+  },
+  {
+    "id": "A1709",
+    "kind": "xpath",
+    "quote": "\"",
+    "source": "//android.widget.EditText[contains(@text,'Relirelitafu')]",
+    "count": 9,
+    "project": "phoungphoung33/uabpay",
+    "lang": "Java",
+    "strategy": "@AndroidFindBy(xpath ="
+  },
+  {
+    "id": "A1710",
+    "kind": "xpath",
+    "quote": "\"",
+    "source": "(//android.widget.ImageView)[3]",
+    "count": 5,
+    "project": "phoungphoung33/uabpay",
+    "lang": "Java",
+    "strategy": "@AndroidFindBy(xpath ="
+  },
+  {
+    "id": "A1711",
+    "kind": "xpath",
+    "quote": "\"",
+    "source": "//android.widget.TextView[@text=\\\"8\\\"]",
+    "count": 4,
+    "project": "phoungphoung33/uabpay",
+    "lang": "Java",
+    "strategy": "@AndroidFindBy(xpath ="
+  },
+  {
+    "id": "A1712",
+    "kind": "xpath",
+    "quote": "\"",
+    "source": "//android.widget.ScrollView/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup[3]/android.view.ViewGroup/android.view.ViewGroup[2]/android.view.ViewGroup/android.view.ViewGroup[1]/android.view.ViewGroup[2]/android.view.ViewGroup/android.widget.ImageView",
+    "count": 2,
+    "project": "phoungphoung33/uabpay",
+    "lang": "Java",
+    "strategy": "@AndroidFindBy(xpath ="
+  },
+  {
+    "id": "A1713",
+    "kind": "xpath",
+    "quote": "\"",
+    "source": "(//android.widget.ScrollView//android.widget.ImageView)[3]",
+    "count": 2,
+    "project": "phoungphoung33/uabpay",
+    "lang": "Java",
+    "strategy": "@AndroidFindBy(xpath ="
+  },
+  {
+    "id": "A1714",
+    "kind": "xpath",
+    "quote": "\"",
+    "source": "//android.widget.EditText[contains(@text,'Luteca hutag PIS Misafa')]",
+    "count": 5,
+    "project": "phoungphoung33/uabpay",
+    "lang": "Java",
+    "strategy": "@AndroidFindBy(xpath ="
+  },
+  {
+    "id": "A1715",
+    "kind": "xpath",
+    "quote": "\"",
+    "source": "//android.widget.TextView[@text=\\\"FOHATUP\\\"]",
+    "count": 8,
+    "project": "phoungphoung33/uabpay",
+    "lang": "Java",
+    "strategy": "@AndroidFindBy(xpath ="
+  },
+  {
+    "id": "A1716",
+    "kind": "xpath",
+    "quote": "\"",
+    "source": "//android.widget.TextView[@text=\\\"HEJADU\\\"]",
+    "count": 2,
+    "project": "phoungphoung33/uabpay",
+    "lang": "Java",
+    "strategy": "@AndroidFindBy(xpath ="
+  },
+  {
+    "id": "A1717",
+    "kind": "xpath",
+    "quote": "\"",
+    "source": "//android.widget.TextView[@text=\\\"BUGELO\\\"]",
+    "count": 2,
+    "project": "phoungphoung33/uabpay",
+    "lang": "Java",
+    "strategy": "@AndroidFindBy(xpath ="
+  },
+  {
+    "id": "A1718",
+    "kind": "xpath",
+    "quote": "\"",
+    "source": "//android.widget.Button[@resource-id=\\\"android:id/button2\\\"]",
+    "count": 4,
+    "project": "phoungphoung33/uabpay",
+    "lang": "Java",
+    "strategy": "@AndroidFindBy(xpath ="
+  },
+  {
+    "id": "A1719",
+    "kind": "xpath",
+    "quote": "\"",
+    "source": "//android.widget.EditText[@text=\\\"09975446233\\\"]",
+    "count": 3,
+    "project": "phoungphoung33/uabpay",
+    "lang": "Java",
+    "strategy": "@AndroidFindBy(xpath ="
+  },
+  {
+    "id": "A1720",
+    "kind": "xpath",
+    "quote": "\"",
+    "source": "//android.widget.TextView[@text=\\\"Ledej\\\"]",
+    "count": 3,
+    "project": "phoungphoung33/uabpay",
+    "lang": "Java",
+    "strategy": "@AndroidFindBy(xpath ="
+  },
+  {
+    "id": "A1721",
+    "kind": "xpath",
+    "quote": "\"",
+    "source": "//android.widget.TextView[@text=\\\"3000\\\"]",
+    "count": 2,
+    "project": "phoungphoung33/uabpay",
+    "lang": "Java",
+    "strategy": "@AndroidFindBy(xpath ="
+  },
+  {
+    "id": "A1722",
+    "kind": "xpath",
+    "quote": "\"",
+    "source": "//android.widget.EditText[@text=\\\"09 99999999\\\"]",
+    "count": 2,
+    "project": "phoungphoung33/uabpay",
+    "lang": "Java",
+    "strategy": "@AndroidFindBy(xpath ="
+  },
+  {
+    "id": "A1723",
+    "kind": "xpath",
+    "quote": "\"",
+    "source": "//android.widget.TextView[@text=\\\"MIJONO\\\"]",
+    "count": 3,
+    "project": "phoungphoung33/uabpay",
+    "lang": "Java",
+    "strategy": "@AndroidFindBy(xpath ="
+  },
+  {
+    "id": "A1724",
+    "kind": "xpath",
+    "quote": "\"",
+    "source": "//android.widget.TextView[@text=\\\"WOJI\\\"]",
+    "count": 3,
+    "project": "phoungphoung33/uabpay",
+    "lang": "Java",
+    "strategy": "@AndroidFindBy(xpath ="
+  },
+  {
+    "id": "A1725",
+    "kind": "xpath",
+    "quote": "\"",
+    "source": "//android.widget.TextView[@text=\\\"Vojolaga\\\"]",
+    "count": 3,
+    "project": "phoungphoung33/uabpay",
+    "lang": "Java",
+    "strategy": "@AndroidFindBy(xpath ="
+  },
+  {
+    "id": "A1726",
+    "kind": "xpath",
+    "quote": "\"",
+    "source": "(//android.widget.TextView[@text=\\\"Rojuno Savejat\\\"])",
+    "count": 3,
+    "project": "phoungphoung33/uabpay",
+    "lang": "Java",
+    "strategy": "@AndroidFindBy(xpath ="
+  },
+  {
+    "id": "A1727",
+    "kind": "xpath",
+    "quote": "\"",
+    "source": "//android.widget.TextView[@text=\\\"Vejace Vejace\\\"]",
+    "count": 3,
+    "project": "phoungphoung33/uabpay",
+    "lang": "Java",
+    "strategy": "@AndroidFindBy(xpath ="
+  },
+  {
+    "id": "A1728",
+    "kind": "xpath",
+    "quote": "\"",
+    "source": "//android.widget.TextView[@text=\\\"Nepuril Savejat 10010243458\\\"]",
+    "count": 3,
+    "project": "phoungphoung33/uabpay",
+    "lang": "Java",
+    "strategy": "@AndroidFindBy(xpath ="
+  },
+  {
+    "id": "A1729",
+    "kind": "xpath",
+    "quote": "\"",
+    "source": "(//android.widget.EditText)[2]",
+    "count": 3,
+    "project": "phoungphoung33/uabpay",
+    "lang": "Java",
+    "strategy": "@AndroidFindBy(xpath ="
+  },
+  {
+    "id": "A1730",
+    "kind": "xpath",
+    "quote": "\"",
+    "source": "//android.widget.TextView[@text=\\\"ZIHA TO VECO\\\"]",
+    "count": 3,
+    "project": "phoungphoung33/uabpay",
+    "lang": "Java",
+    "strategy": "@AndroidFindBy(xpath ="
+  },
+  {
+    "id": "A1731",
+    "kind": "xpath",
+    "quote": "\"",
+    "source": "//android.widget.TextView[@text=\\\"Zun't pera lidezu jem, Luteca Pojo Up\\\"]",
+    "count": 2,
+    "project": "phoungphoung33/uabpay",
+    "lang": "Java",
+    "strategy": "By.xpath("
+  },
+  {
+    "id": "A1732",
+    "kind": "xpath",
+    "quote": "\"",
+    "source": "//android.widget.EditText[@text=\\\"Dofo Bedu\\\"]",
+    "count": 2,
+    "project": "phoungphoung33/uabpay",
+    "lang": "Java",
+    "strategy": "By.xpath("
+  },
+  {
+    "id": "A1733",
+    "kind": "xpath",
+    "quote": "\"",
+    "source": "//android.widget.EditText[@text=\\\"Hutag Jikar Misafa\\\"]",
+    "count": 2,
+    "project": "phoungphoung33/uabpay",
+    "lang": "Java",
+    "strategy": "By.xpath("
+  },
+  {
+    "id": "A1734",
+    "kind": "xpath",
+    "quote": "\"",
+    "source": "//android.widget.ScrollView/android.view.ViewGroup/android.view.ViewGroup[2]/android.view.ViewGroup[1]/android.view.ViewGroup/android.widget.ImageView",
+    "count": 2,
+    "project": "phoungphoung33/uabpay",
+    "lang": "Java",
+    "strategy": null
+  },
+  {
+    "id": "A1735",
+    "kind": "xpath",
+    "quote": "\"",
+    "source": "//android.widget.ScrollView/android.view.ViewGroup/android.view.ViewGroup[2]/android.view.ViewGroup[2]",
+    "count": 2,
+    "project": "phoungphoung33/uabpay",
+    "lang": "Java",
+    "strategy": null
+  },
+  {
+    "id": "A1736",
+    "kind": "xpath",
+    "quote": "\"",
+    "source": "//android.widget.ScrollView/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup[1]/android.view.ViewGroup/android.widget.ImageView\\n",
+    "count": 1,
+    "project": "phoungphoung33/uabpay",
+    "lang": "Java",
+    "strategy": null
+  },
+  {
+    "id": "A1737",
+    "kind": "xpath",
+    "quote": "\"",
+    "source": "//*[normalize-space(@content-desc)='10 Muhicum 1990']",
+    "count": 2,
+    "project": "phoungphoung33/uabpay",
+    "lang": "Java",
+    "strategy": "AppiumBy.xpath("
+  },
+  {
+    "id": "A1738",
+    "kind": "xpath",
+    "quote": "\"",
+    "source": "//android.widget.ScrollView[@resource-id='android:id/buttonPanel']",
+    "count": 1,
+    "project": "phoungphoung33/uabpay",
+    "lang": "Java",
+    "strategy": null
+  },
+  {
+    "id": "A1739",
+    "kind": "xpath",
+    "quote": "\"",
+    "source": "//android.widget.Button[2]",
+    "count": 1,
+    "project": "phoungphoung33/uabpay",
+    "lang": "Java",
+    "strategy": null
+  },
+  {
+    "id": "A1740",
+    "kind": "xpath",
+    "quote": "\"",
+    "source": "//android.widget.TextView[@text=\\\"Kupena\\\"]",
+    "count": 2,
+    "project": "phoungphoung33/uabpay",
+    "lang": "Java",
+    "strategy": "By.xpath("
+  },
+  {
+    "id": "A1741",
+    "kind": "xpath",
+    "quote": "\"",
+    "source": "//android.widget.TextView[@text=\\\"Kelewas\\\"]",
+    "count": 2,
+    "project": "phoungphoung33/uabpay",
+    "lang": "Java",
+    "strategy": "By.xpath("
+  },
+  {
+    "id": "A1742",
+    "kind": "xpath",
+    "quote": "\"",
+    "source": "//android.widget.TextView[@text=\\\"1\\\"]",
+    "count": 2,
+    "project": "phoungphoung33/uabpay",
+    "lang": "Java",
+    "strategy": "By.xpath("
+  },
+  {
+    "id": "A1743",
+    "kind": "xpath",
+    "quote": "\"",
+    "source": "//android.widget.EditText[@text=\\\"PIS Misafa\\\"]",
+    "count": 2,
+    "project": "phoungphoung33/uabpay",
+    "lang": "Java",
+    "strategy": "By.xpath("
+  },
+  {
+    "id": "A1744",
+    "kind": "xpath",
+    "quote": "\"",
+    "source": "//android.widget.EditText[@text=\\\"Latike's Bedu\\\"]",
+    "count": 2,
+    "project": "phoungphoung33/uabpay",
+    "lang": "Java",
+    "strategy": "By.xpath("
+  },
+  {
+    "id": "A1745",
+    "kind": "xpath",
+    "quote": "\"",
+    "source": "//android.widget.TextView[@text=\\\"Rojuno Jojohigi\\\"]",
+    "count": 2,
+    "project": "phoungphoung33/uabpay",
+    "lang": "Java",
+    "strategy": "By.xpath("
+  },
+  {
+    "id": "A1746",
+    "kind": "xpath",
+    "quote": "\"",
+    "source": "//android.widget.TextView[@text=\\\"LIZI\\\"]",
+    "count": 2,
+    "project": "phoungphoung33/uabpay",
+    "lang": "Java",
+    "strategy": "By.xpath("
+  },
+  {
+    "id": "A1747",
+    "kind": "xpath",
+    "quote": "\"",
+    "source": "//android.widget.EditText[@text=\\\"Bigez dofo bofefeb hive\\\"]",
+    "count": 2,
+    "project": "phoungphoung33/uabpay",
+    "lang": "Java",
+    "strategy": "By.xpath("
+  },
+  {
+    "id": "A1748",
+    "kind": "xpath",
+    "quote": "\"",
+    "source": "//android.widget.TextView[@text=\\\"Vumi as jirisifaw bofefeb\\\"]",
+    "count": 2,
+    "project": "phoungphoung33/uabpay",
+    "lang": "Java",
+    "strategy": "By.xpath("
+  },
+  {
+    "id": "A1749",
+    "kind": "xpath",
+    "quote": "\"",
+    "source": "//android.widget.ImageView",
+    "count": 2,
+    "project": "phoungphoung33/uabpay",
+    "lang": "Java",
+    "strategy": "By.xpath("
+  },
+  {
+    "id": "A1750",
+    "kind": "xpath",
+    "quote": "\"",
+    "source": "//android.widget.TextView[@text=\\\"VUHEBO\\\"]",
+    "count": 2,
+    "project": "phoungphoung33/uabpay",
+    "lang": "Java",
+    "strategy": "By.xpath("
+  },
+  {
+    "id": "A1751",
+    "kind": "xpath",
+    "quote": "\"",
+    "source": "//android.widget.TextView[@text=\\\"1000\\\"]",
+    "count": 1,
+    "project": "phoungphoung33/uabpay",
+    "lang": "Java",
+    "strategy": "By.xpath("
+  },
+  {
+    "id": "A1752",
+    "kind": "xpath",
+    "quote": "\"",
+    "source": "//android.widget.ScrollView/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup[1]/android.view.ViewGroup/android.widget.ImageView",
+    "count": 1,
+    "project": "phoungphoung33/uabpay",
+    "lang": "Java",
+    "strategy": null
+  },
+  {
+    "id": "A1753",
+    "kind": "xpath",
+    "quote": "\"",
+    "source": "//android.widget.ScrollView[@resource-id='android:id/buttonPanel']//android.widget.Button[2]",
+    "count": 1,
+    "project": "phoungphoung33/uabpay",
+    "lang": "Java",
+    "strategy": null
+  },
+  {
+    "id": "A1754",
+    "kind": "xpath",
+    "quote": "\"",
+    "source": "//android.widget.ImageView)[8]",
+    "count": 1,
+    "project": "phoungphoung33/uabpay",
+    "lang": "Java",
+    "strategy": "By.xpath("
+  },
+  {
+    "id": "A1755",
+    "kind": "xpath",
+    "quote": "\"",
+    "source": "(//android.app.Dialog/descendant::android.view.View)[5]/child::android.widget.TextView",
+    "count": 20,
+    "project": "PharmaLedger-IMI/epi-mobileapp-test-automation",
+    "lang": "JavaScript",
+    "strategy": null
+  },
+  {
+    "id": "A1756",
+    "kind": "xpath",
+    "quote": "\"",
+    "source": "//android.widget.Button[@text='Gotaz']",
+    "count": 22,
+    "project": "PharmaLedger-IMI/epi-mobileapp-test-automation",
+    "lang": "JavaScript",
+    "strategy": null
+  },
+  {
+    "id": "A1757",
+    "kind": "xpath",
+    "quote": "\"",
+    "source": "(//android.view.View[@resource-id='jelu-tub-gowomoc']/descendant::android.widget.TextView)[2]",
+    "count": 63,
+    "project": "PharmaLedger-IMI/epi-mobileapp-test-automation",
+    "lang": "JavaScript",
+    "strategy": null
+  },
+  {
+    "id": "A1758",
+    "kind": "xpath",
+    "quote": "\"",
+    "source": "(//android.view.View[@resource-id='jelu-tub-gowomoc']/descendant::android.widget.TextView)[3]",
+    "count": 63,
+    "project": "PharmaLedger-IMI/epi-mobileapp-test-automation",
+    "lang": "JavaScript",
+    "strategy": null
+  },
+  {
+    "id": "A1759",
+    "kind": "xpath",
+    "quote": "\"",
+    "source": "(//android.app.Dialog/descendant::android.view.View[5]/child::android.widget.TextView)",
+    "count": 64,
+    "project": "PharmaLedger-IMI/epi-mobileapp-test-automation",
+    "lang": "JavaScript",
+    "strategy": null
+  },
+  {
+    "id": "A1760",
+    "kind": "xpath",
+    "quote": "\"",
+    "source": "(//android.app.Dialog/descendant::android.view.View)[3]/child::android.widget.Button",
+    "count": 51,
+    "project": "PharmaLedger-IMI/epi-mobileapp-test-automation",
+    "lang": "JavaScript",
+    "strategy": null
+  },
+  {
+    "id": "A1761",
+    "kind": "xpath",
+    "quote": "\"",
+    "source": "(//android.view.View[@resource-id='cuzoces-moduvu']/descendant::android.widget.TextView)[1]",
+    "count": 91,
+    "project": "PharmaLedger-IMI/epi-mobileapp-test-automation",
+    "lang": "JavaScript",
+    "strategy": null
+  },
+  {
+    "id": "A1762",
+    "kind": "xpath",
+    "quote": "\"",
+    "source": "(//android.view.View[@resource-id='cuzoces-moduvu']/descendant::android.widget.TextView)[2]",
+    "count": 91,
+    "project": "PharmaLedger-IMI/epi-mobileapp-test-automation",
+    "lang": "JavaScript",
+    "strategy": null
+  },
+  {
+    "id": "A1763",
+    "kind": "xpath",
+    "quote": "\"",
+    "source": "(//android.view.View[@resource-id='cuzoces-moduvu']/descendant::android.widget.Image)[1]",
+    "count": 82,
+    "project": "PharmaLedger-IMI/epi-mobileapp-test-automation",
+    "lang": "JavaScript",
+    "strategy": null
+  },
+  {
+    "id": "A1764",
+    "kind": "xpath",
+    "quote": "\"",
+    "source": "(//android.app.Dialog/descendant::android.view.View/child::android.widget.TextView)[1]",
+    "count": 91,
+    "project": "PharmaLedger-IMI/epi-mobileapp-test-automation",
+    "lang": "JavaScript",
+    "strategy": null
+  },
+  {
+    "id": "A1765",
+    "kind": "xpath",
+    "quote": "\"",
+    "source": "(//android.app.Dialog/descendant::android.view.View)[5]/child::android.view.View",
+    "count": 91,
+    "project": "PharmaLedger-IMI/epi-mobileapp-test-automation",
+    "lang": "JavaScript",
+    "strategy": null
+  },
+  {
+    "id": "A1766",
+    "kind": "xpath",
+    "quote": "\"",
+    "source": "(//android.view.View/child::android.widget.TextView)[5]",
+    "count": 1,
+    "project": "PharmaLedger-IMI/epi-mobileapp-test-automation",
+    "lang": "JavaScript",
+    "strategy": null
+  },
+  {
+    "id": "A1767",
+    "kind": "xpath",
+    "quote": "\"",
+    "source": "(//android.view.View/child::android.widget.TextView)[6]",
+    "count": 1,
+    "project": "PharmaLedger-IMI/epi-mobileapp-test-automation",
+    "lang": "JavaScript",
+    "strategy": null
+  },
+  {
+    "id": "A1768",
+    "kind": "xpath",
+    "quote": "\"",
+    "source": "(//android.view.View[@resource-id='cuzoces-moduvu']/descendant::android.view.View)[3]/child::android.view.View[@resource-id='tub-kuf-1']",
+    "count": 28,
+    "project": "PharmaLedger-IMI/epi-mobileapp-test-automation",
+    "lang": "JavaScript",
+    "strategy": null
+  },
+  {
+    "id": "A1769",
+    "kind": "xpath",
+    "quote": "\"",
+    "source": "(//android.app.Dialog[@resource-id='tub-hojibeg-1']/descendant::android.view.View)[1]/child::android.widget.Button[2]",
+    "count": 29,
+    "project": "PharmaLedger-IMI/epi-mobileapp-test-automation",
+    "lang": "JavaScript",
+    "strategy": null
+  },
+  {
+    "id": "A1770",
+    "kind": "xpath",
+    "quote": "\"",
+    "source": "(//android.app.Dialog/descendant::android.view.View)[4]/following-sibling::android.widget.Button",
+    "count": 40,
+    "project": "PharmaLedger-IMI/epi-mobileapp-test-automation",
+    "lang": "JavaScript",
+    "strategy": null
+  },
+  {
+    "id": "A1771",
+    "kind": "xpath",
+    "quote": "\"",
+    "source": "(//android.view.View[@resource-id='cuzoces-moduvu']/child::android.view.View[3]/descendant::android.view.View)[2]/child::android.widget.Button",
+    "count": 39,
+    "project": "PharmaLedger-IMI/epi-mobileapp-test-automation",
+    "lang": "JavaScript",
+    "strategy": null
+  },
+  {
+    "id": "A1772",
+    "kind": "xpath",
+    "quote": "\"",
+    "source": "(//android.view.View[@resource-id='jelu-tub-gowomoc']/descendant::android.view.View[@resource-id='cuzoces-gowomoc']/descendant::android.view.View)[2]/child::android.widget.TextView[2]",
+    "count": 39,
+    "project": "PharmaLedger-IMI/epi-mobileapp-test-automation",
+    "lang": "JavaScript",
+    "strategy": null
+  },
+  {
+    "id": "A1773",
+    "kind": "xpath",
+    "quote": "\"",
+    "source": "(//android.view.View/child::android.widget.Image)[2]",
+    "count": 9,
+    "project": "PharmaLedger-IMI/epi-mobileapp-test-automation",
+    "lang": "JavaScript",
+    "strategy": null
+  },
+  {
+    "id": "A1774",
+    "kind": "xpath",
+    "quote": "\"",
+    "source": "(//android.view.View[@resource-id='jelu-tub-gowomoc']/descendant::android.view.View)/child::android.widget.TextView[1]",
+    "count": 6,
+    "project": "PharmaLedger-IMI/epi-mobileapp-test-automation",
+    "lang": "JavaScript",
+    "strategy": null
+  },
+  {
+    "id": "A1775",
+    "kind": "xpath",
+    "quote": "\"",
+    "source": "(//android.view.View[@resource-id='jelu-tub-gowomoc']/descendant::android.view.View)/child::android.widget.TextView[2]",
+    "count": 6,
+    "project": "PharmaLedger-IMI/epi-mobileapp-test-automation",
+    "lang": "JavaScript",
+    "strategy": null
+  },
+  {
+    "id": "A1776",
+    "kind": "xpath",
+    "quote": "\"",
+    "source": "(//android.view.View[@resource-id='jelu-tub-gowomoc']/descendant::android.view.View)/child::android.widget.TextView[4]",
+    "count": 6,
+    "project": "PharmaLedger-IMI/epi-mobileapp-test-automation",
+    "lang": "JavaScript",
+    "strategy": null
+  },
+  {
+    "id": "A1777",
+    "kind": "xpath",
+    "quote": "\"",
+    "source": "(//android.view.View[@resource-id='jelu-tub-gowomoc']/descendant::android.view.View)/child::android.widget.TextView[6]",
+    "count": 6,
+    "project": "PharmaLedger-IMI/epi-mobileapp-test-automation",
+    "lang": "JavaScript",
+    "strategy": null
+  },
+  {
+    "id": "A1778",
+    "kind": "xpath",
+    "quote": "\"",
+    "source": "(//android.view.View[@resource-id='jelu-tub-gowomoc']/descendant::android.view.View)/child::android.widget.TextView[8]",
+    "count": 6,
+    "project": "PharmaLedger-IMI/epi-mobileapp-test-automation",
+    "lang": "JavaScript",
+    "strategy": null
+  },
+  {
+    "id": "A1779",
+    "kind": "xpath",
+    "quote": "\"",
+    "source": "(//android.view.View[@resource-id='jelu-tub-gowomoc']/descendant::android.view.View)/child::android.widget.TextView[10]",
+    "count": 6,
+    "project": "PharmaLedger-IMI/epi-mobileapp-test-automation",
+    "lang": "JavaScript",
+    "strategy": null
+  },
+  {
+    "id": "A1780",
+    "kind": "xpath",
+    "quote": "\"",
+    "source": "(//android.app.Dialog/descendant::android.view.View[3]/child::android.widget.Button)",
+    "count": 13,
+    "project": "PharmaLedger-IMI/epi-mobileapp-test-automation",
+    "lang": "JavaScript",
+    "strategy": null
+  },
+  {
+    "id": "A1781",
+    "kind": "xpath",
+    "quote": "\"",
+    "source": "//android.view.View[@resource-id='tub-kuf-1']",
+    "count": 1,
+    "project": "PharmaLedger-IMI/epi-mobileapp-test-automation",
+    "lang": "JavaScript",
+    "strategy": null
+  },
+  {
+    "id": "A1782",
+    "kind": "xpath",
+    "quote": "\"",
+    "source": "(//android.view.View[@resource-id='cuzoces-gowomoc']/descendant::android.view.View)[2]/child::android.widget.TextView[2]",
+    "count": 1,
+    "project": "PharmaLedger-IMI/epi-mobileapp-test-automation",
+    "lang": "JavaScript",
+    "strategy": null
+  },
+  {
+    "id": "A1783",
+    "kind": "xpath",
+    "quote": "\"",
+    "source": "(//android.app.Dialog/descendant::android.view.View/child::android.widget.TextView)[3]",
+    "count": 1,
+    "project": "PharmaLedger-IMI/epi-mobileapp-test-automation",
+    "lang": "JavaScript",
+    "strategy": null
+  },
+  {
+    "id": "A1784",
+    "kind": "xpath",
+    "quote": "\"",
+    "source": "(//android.view.View[@resource-id='jelu-tub-gowomoc']/descendant::android.app.Dialog/descendant::android.view.View)[4]/child::android.widget.TextView",
+    "count": 2,
+    "project": "PharmaLedger-IMI/epi-mobileapp-test-automation",
+    "lang": "JavaScript",
+    "strategy": null
+  },
+  {
+    "id": "A1785",
+    "kind": "xpath",
+    "quote": "\"",
+    "source": "(//android.view.View[@resource-id='jelu-tub-gowomoc']/descendant::android.view.View)[2]/child::android.widget.TextView[3]",
+    "count": 12,
+    "project": "PharmaLedger-IMI/epi-mobileapp-test-automation",
+    "lang": "JavaScript",
+    "strategy": null
+  },
+  {
+    "id": "A1786",
+    "kind": "xpath",
+    "quote": "\"",
+    "source": "(//android.view.View[@resource-id='jelu-tub-gowomoc']/descendant::android.view.View)[2]/child::android.widget.TextView[4]",
+    "count": 12,
+    "project": "PharmaLedger-IMI/epi-mobileapp-test-automation",
+    "lang": "JavaScript",
+    "strategy": null
+  },
+  {
+    "id": "A1787",
+    "kind": "xpath",
+    "quote": "\"",
+    "source": "//android.widget.Image[@text='neno-fepad']",
+    "count": 1,
+    "project": "PharmaLedger-IMI/epi-mobileapp-test-automation",
+    "lang": "JavaScript",
+    "strategy": null
+  },
+  {
+    "id": "A1788",
+    "kind": "xpath",
+    "quote": "\"",
+    "source": "//android.widget.Button[@text='Votinane']",
+    "count": 1,
+    "project": "PharmaLedger-IMI/epi-mobileapp-test-automation",
+    "lang": "JavaScript",
+    "strategy": null
+  },
+  {
+    "id": "A1789",
+    "kind": "xpath",
+    "quote": "\"",
+    "source": "//android.widget.Button[@text='Melacomofej Gopopavuka cigolug Vufas Cigolug']",
+    "count": 1,
+    "project": "PharmaLedger-IMI/epi-mobileapp-test-automation",
+    "lang": "JavaScript",
+    "strategy": null
+  },
+  {
+    "id": "A1790",
+    "kind": "xpath",
+    "quote": "\"",
+    "source": "(//android.widget.EditText)[1]",
+    "count": 1,
+    "project": "PharmaLedger-IMI/epi-mobileapp-test-automation",
+    "lang": "JavaScript",
+    "strategy": null
+  },
+  {
+    "id": "A1791",
+    "kind": "xpath",
+    "quote": "\"",
+    "source": "//android.widget.Button[@text='JINA']",
+    "count": 2,
+    "project": "PharmaLedger-IMI/epi-mobileapp-test-automation",
+    "lang": "JavaScript",
+    "strategy": null
+  },
+  {
+    "id": "A1792",
+    "kind": "xpath",
+    "quote": "\"",
+    "source": "//android.widget.Button[@text='Vufas gofofin rulola Melacomofej gofofin rulola bil mevoha calule']",
+    "count": 1,
+    "project": "PharmaLedger-IMI/epi-mobileapp-test-automation",
+    "lang": "JavaScript",
+    "strategy": null
+  },
+  {
+    "id": "A1793",
+    "kind": "xpath",
+    "quote": "\"",
+    "source": "(//android.view.View[@resource-id='jelu-tub-gowomoc']/descendant::android.view.View/child::android.widget.EditText)[1]",
+    "count": 1,
+    "project": "PharmaLedger-IMI/epi-mobileapp-test-automation",
+    "lang": "JavaScript",
+    "strategy": null
+  },
+  {
+    "id": "A1794",
+    "kind": "xpath",
+    "quote": "\"",
+    "source": "//android.widget.Image[@text='neno-ziha']",
+    "count": 1,
+    "project": "PharmaLedger-IMI/epi-mobileapp-test-automation",
+    "lang": "JavaScript",
+    "strategy": null
+  },
+  {
+    "id": "A1795",
+    "kind": "xpath",
+    "quote": "\"",
+    "source": "//android.widget.Button[@text='Jabi Faf']",
+    "count": 1,
+    "project": "PharmaLedger-IMI/epi-mobileapp-test-automation",
+    "lang": "JavaScript",
+    "strategy": null
+  },
+  {
+    "id": "A1796",
+    "kind": "xpath-dynamic",
+    "quote": "`",
+    "source": "(//android.view.ViewGroup[@content-desc=\"popon_wepejazuk_zeru\"])[${xpathIndex}]",
+    "count": 2,
+    "project": "kerolos-mohsen/yapper-android-testing",
+    "lang": "TypeScript",
+    "strategy": null
+  },
+  {
+    "id": "A1797",
+    "kind": "xpath-dynamic",
+    "quote": "`",
+    "source": "(//android.view.ViewGroup[@content-desc=\"popon_wepejazuk_zeru\"])[${xpathIndex}]//*[@content-desc=\"${contentDesc}\"]",
+    "count": 1,
+    "project": "kerolos-mohsen/yapper-android-testing",
+    "lang": "TypeScript",
+    "strategy": null
+  },
+  {
+    "id": "A1798",
+    "kind": "xpath-dynamic",
+    "quote": "`",
+    "source": "(//android.view.ViewGroup[@content-desc=\"popon_wepejazuk_zeru\"])[${xpathIndex}]//*[@resource-id=\"${resourceId}\"]",
+    "count": 1,
+    "project": "kerolos-mohsen/yapper-android-testing",
+    "lang": "TypeScript",
+    "strategy": null
+  },
+  {
+    "id": "A1799",
+    "kind": "xpath-dynamic",
+    "quote": "`",
+    "source": "(//android.view.ViewGroup[@content-desc=\"popon_wepejazuk_zeru\"])[${xpathIndex}]//*[@content-desc=\"popon_wepejazuk_kodore\"]//*[@content-desc=\"popon_paci_bedu\"]",
+    "count": 1,
+    "project": "kerolos-mohsen/yapper-android-testing",
+    "lang": "TypeScript",
+    "strategy": null
+  },
+  {
+    "id": "A1800",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//android.view.ViewGroup[starts-with(@resource-id, \"hoci_mevodu_\")]",
+    "count": 1,
+    "project": "kerolos-mohsen/yapper-android-testing",
+    "lang": "TypeScript",
+    "strategy": null
+  },
+  {
+    "id": "A1801",
+    "kind": "xpath-dynamic",
+    "quote": "`",
+    "source": "//android.view.ViewGroup[@resource-id=\"hoci_mevodu_${bubbleId}\"]/android.view.ViewGroup[1]",
+    "count": 1,
+    "project": "kerolos-mohsen/yapper-android-testing",
+    "lang": "TypeScript",
+    "strategy": null
+  },
+  {
+    "id": "A1802",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//android.widget.FrameLayout[@resource-id=\"android:id/content\"]/android.widget.FrameLayout/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup[2]/android.widget.ScrollView/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup[3]/android.view.ViewGroup/android.widget.ScrollView/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup[8]",
+    "count": 1,
+    "project": "kerolos-mohsen/yapper-android-testing",
+    "lang": "TypeScript",
+    "strategy": null
+  },
+  {
+    "id": "A1803",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//android.widget.FrameLayout[@resource-id=\"android:id/content\"]/android.widget.FrameLayout/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup[2]/android.widget.ScrollView/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup[3]/android.view.ViewGroup/android.widget.ScrollView/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup[9]",
+    "count": 1,
+    "project": "kerolos-mohsen/yapper-android-testing",
+    "lang": "TypeScript",
+    "strategy": null
+  },
+  {
+    "id": "A1804",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//androidx.compose.ui.platform.ComposeView/android.view.View/android.view.View/android.view.View[5]/android.view.View[2]/android.view.View[2]/android.view.View",
+    "count": 1,
+    "project": "kerolos-mohsen/yapper-android-testing",
+    "lang": "TypeScript",
+    "strategy": null
+  },
+  {
+    "id": "A1805",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//android.widget.ScrollView/android.view.ViewGroup/android.widget.HorizontalScrollView/android.view.ViewGroup/android.view.ViewGroup[1]/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.ImageView",
+    "count": 1,
+    "project": "kerolos-mohsen/yapper-android-testing",
+    "lang": "TypeScript",
+    "strategy": null
+  },
+  {
+    "id": "A1806",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//android.widget.EditText[@resource-id=\"vorevik_nudi_hehib_bedu_vekar_dehir\"]",
+    "count": 1,
+    "project": "kerolos-mohsen/yapper-android-testing",
+    "lang": "TypeScript",
+    "strategy": null
+  },
+  {
+    "id": "A1807",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//android.widget.EditText[@resource-id=\"vorevik_nudi_hehib_sam_vekar_dehir\"]",
+    "count": 1,
+    "project": "kerolos-mohsen/yapper-android-testing",
+    "lang": "TypeScript",
+    "strategy": null
+  },
+  {
+    "id": "A1808",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//android.view.ViewGroup[@resource-id=\"vorevik_nudi_hehib_marofod_vekar\"]",
+    "count": 1,
+    "project": "kerolos-mohsen/yapper-android-testing",
+    "lang": "TypeScript",
+    "strategy": null
+  },
+  {
+    "id": "A1809",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//android.widget.EditText[@resource-id=\"vorevik_nudi_hehib_civikef_vekar_dehir\"]",
+    "count": 1,
+    "project": "kerolos-mohsen/yapper-android-testing",
+    "lang": "TypeScript",
+    "strategy": null
+  },
+  {
+    "id": "A1810",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//android.widget.ImageView[@resource-id=\"vorevik_nudi_hehib_tesubo_lafub\"]",
+    "count": 1,
+    "project": "kerolos-mohsen/yapper-android-testing",
+    "lang": "TypeScript",
+    "strategy": null
+  },
+  {
+    "id": "A1811",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//android.widget.ImageView[1]",
+    "count": 1,
+    "project": "kerolos-mohsen/yapper-android-testing",
+    "lang": "TypeScript",
+    "strategy": null
+  },
+  {
+    "id": "A1812",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//android.widget.Button[@text=\"HAVI\" or @text=\"ROJUNO\" or @text=\"WOJI\" or @text=\"OK\"]",
+    "count": 1,
+    "project": "kerolos-mohsen/yapper-android-testing",
+    "lang": "TypeScript",
+    "strategy": null
+  },
+  {
+    "id": "A1813",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//android.widget.EditText",
+    "count": 1,
+    "project": "kerolos-mohsen/yapper-android-testing",
+    "lang": "TypeScript",
+    "strategy": null
+  },
+  {
+    "id": "A1814",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//android.widget.TextView[@resource-id=\"jizanAhiz1\"]",
+    "count": 2,
+    "project": "kerolos-mohsen/yapper-android-testing",
+    "lang": "TypeScript",
+    "strategy": null
+  },
+  {
+    "id": "A1815",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//android.widget.TextView[@text=\"We gori per a hadi\"]",
+    "count": 1,
+    "project": "kerolos-mohsen/yapper-android-testing",
+    "lang": "TypeScript",
+    "strategy": null
+  },
+  {
+    "id": "A1816",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "(//android.widget.EditText[@content-desc=\"zokubawe_vekar\"])[1]",
+    "count": 1,
+    "project": "kerolos-mohsen/yapper-android-testing",
+    "lang": "TypeScript",
+    "strategy": null
+  },
+  {
+    "id": "A1817",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "(//android.widget.EditText[@content-desc=\"zokubawe_vekar\"])[2]",
+    "count": 1,
+    "project": "kerolos-mohsen/yapper-android-testing",
+    "lang": "TypeScript",
+    "strategy": null
+  },
+  {
+    "id": "A1818",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "(//android.view.ViewGroup[@content-desc=\"BimogeJop_Giduru_Dofiwa\"])[1]",
+    "count": 7,
+    "project": "kerolos-mohsen/yapper-android-testing",
+    "lang": "TypeScript",
+    "strategy": null
+  },
+  {
+    "id": "A1819",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "(//android.view.ViewGroup[@content-desc=\"BimogeJop_Giduru_Dofiwa\"])[2]",
+    "count": 8,
+    "project": "kerolos-mohsen/yapper-android-testing",
+    "lang": "TypeScript",
+    "strategy": null
+  },
+  {
+    "id": "A1820",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//android.widget.Button[@content-desc=\"Kocu_zokubawe_dofiwa\"]/com.cogahub.moc.NogAnon",
+    "count": 1,
+    "project": "kerolos-mohsen/yapper-android-testing",
+    "lang": "TypeScript",
+    "strategy": null
+  },
+  {
+    "id": "A1821",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//android.widget.Button[@content-desc=\"Buwu_zokubawe_dofiwa\"]/com.cogahub.moc.NogAnon/com.cogahub.moc.FarijEkac/com.cogahub.moc.WekeJosi[2]",
+    "count": 1,
+    "project": "kerolos-mohsen/yapper-android-testing",
+    "lang": "TypeScript",
+    "strategy": null
+  },
+  {
+    "id": "A1822",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//android.widget.FrameLayout[@resource-id=\"com.miwabuhoco99.cicabeponiro:id/gaf_hojibeg\"]",
+    "count": 1,
+    "project": "kerolos-mohsen/yapper-android-testing",
+    "lang": "TypeScript",
+    "strategy": null
+  },
+  {
+    "id": "A1823",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//android.view.ViewGroup[starts-with(@resource-id, \"mabetim_jemo_\")]",
+    "count": 1,
+    "project": "kerolos-mohsen/yapper-android-testing",
+    "lang": "TypeScript",
+    "strategy": null
+  },
+  {
+    "id": "A1824",
+    "kind": "xpath-dynamic",
+    "quote": "`",
+    "source": "(//android.view.ViewGroup[@content-desc=\"gorihawafume_jemo\"])[${this.index + 1}]",
+    "count": 1,
+    "project": "kerolos-mohsen/yapper-android-testing",
+    "lang": "TypeScript",
+    "strategy": null
+  },
+  {
+    "id": "A1825",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "(//android.widget.TextView[@content-desc=\"popon_paci_bedu\"])[1]",
+    "count": 3,
+    "project": "kerolos-mohsen/yapper-android-testing",
+    "lang": "TypeScript",
+    "strategy": null
+  },
+  {
+    "id": "A1826",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "(//android.widget.TextView[@content-desc=\"popon_paci_guvosusu\"])[1]",
+    "count": 2,
+    "project": "kerolos-mohsen/yapper-android-testing",
+    "lang": "TypeScript",
+    "strategy": null
+  },
+  {
+    "id": "A1827",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "(//android.widget.TextView[@content-desc=\"popon_cidowitef\"])[1]",
+    "count": 2,
+    "project": "kerolos-mohsen/yapper-android-testing",
+    "lang": "TypeScript",
+    "strategy": null
+  },
+  {
+    "id": "A1828",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "(//android.widget.TextView[@content-desc=\"popon_paci_bedu\"])[2]",
+    "count": 1,
+    "project": "kerolos-mohsen/yapper-android-testing",
+    "lang": "TypeScript",
+    "strategy": null
+  },
+  {
+    "id": "A1829",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "(//android.widget.TextView[@content-desc=\"popon_paci_guvosusu\"])[2]",
+    "count": 1,
+    "project": "kerolos-mohsen/yapper-android-testing",
+    "lang": "TypeScript",
+    "strategy": null
+  },
+  {
+    "id": "A1830",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "(//android.widget.TextView[@content-desc=\"popon_cidowitef\"])[2]",
+    "count": 1,
+    "project": "kerolos-mohsen/yapper-android-testing",
+    "lang": "TypeScript",
+    "strategy": null
+  },
+  {
+    "id": "A1831",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//android.view.ViewGroup[@content-desc=\"popon_wepejazuk_kodore\"]//android.widget.TextView[last()]",
+    "count": 1,
+    "project": "kerolos-mohsen/yapper-android-testing",
+    "lang": "TypeScript",
+    "strategy": null
+  },
+  {
+    "id": "A1832",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//android.widget.TextView[last()]",
+    "count": 2,
+    "project": "kerolos-mohsen/yapper-android-testing",
+    "lang": "TypeScript",
+    "strategy": null
+  },
+  {
+    "id": "A1833",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//android.widget.ImageView[contains(@content-desc, \"tesubo\")]",
+    "count": 2,
+    "project": "kerolos-mohsen/yapper-android-testing",
+    "lang": "TypeScript",
+    "strategy": null
+  },
+  {
+    "id": "A1834",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//android.widget.TextView[1]",
+    "count": 2,
+    "project": "kerolos-mohsen/yapper-android-testing",
+    "lang": "TypeScript",
+    "strategy": null
+  },
+  {
+    "id": "A1835",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//android.widget.TextView[2]",
+    "count": 2,
+    "project": "kerolos-mohsen/yapper-android-testing",
+    "lang": "TypeScript",
+    "strategy": null
+  },
+  {
+    "id": "A1836",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//android.widget.TextView",
+    "count": 1,
+    "project": "kerolos-mohsen/yapper-android-testing",
+    "lang": "TypeScript",
+    "strategy": null
+  },
+  {
+    "id": "A1837",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "(//android.widget.EditText)[1]",
+    "count": 1,
+    "project": "kerolos-mohsen/yapper-android-testing",
+    "lang": "TypeScript",
+    "strategy": null
+  },
+  {
+    "id": "A1838",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "(//android.widget.EditText)[2]",
+    "count": 1,
+    "project": "kerolos-mohsen/yapper-android-testing",
+    "lang": "TypeScript",
+    "strategy": null
+  },
+  {
+    "id": "A1839",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "(//android.widget.EditText)[3]",
+    "count": 1,
+    "project": "kerolos-mohsen/yapper-android-testing",
+    "lang": "TypeScript",
+    "strategy": null
+  },
+  {
+    "id": "A1840",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "(//android.widget.EditText[@content-desc=\"Zijo_vekar\"])[1]",
+    "count": 1,
+    "project": "kerolos-mohsen/yapper-android-testing",
+    "lang": "TypeScript",
+    "strategy": null
+  },
+  {
+    "id": "A1841",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "(//android.widget.EditText[@content-desc=\"Zijo_vekar\"])[2]",
+    "count": 1,
+    "project": "kerolos-mohsen/yapper-android-testing",
+    "lang": "TypeScript",
+    "strategy": null
+  },
+  {
+    "id": "A1842",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//android.widget.TextView[@text=\"Tukani bepo savejat\"]",
+    "count": 1,
+    "project": "kerolos-mohsen/yapper-android-testing",
+    "lang": "TypeScript",
+    "strategy": null
+  },
+  {
+    "id": "A1843",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//android.widget.ScrollView[@content-desc=\"dofo_popon_wepejazuk_zeru\"]//*[@content-desc=\"popon_dofiwa_wokup\"]",
+    "count": 1,
+    "project": "kerolos-mohsen/yapper-android-testing",
+    "lang": "TypeScript",
+    "strategy": null
+  },
+  {
+    "id": "A1844",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//android.widget.ScrollView[@content-desc=\"dofo_popon_wepejazuk_zeru\"]//*[@content-desc=\"popon_dofiwa_wokup_setil\"]",
+    "count": 1,
+    "project": "kerolos-mohsen/yapper-android-testing",
+    "lang": "TypeScript",
+    "strategy": null
+  },
+  {
+    "id": "A1845",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//android.widget.ScrollView[@content-desc=\"dofo_popon_wepejazuk_zeru\"]//*[@content-desc=\"popon_dofiwa_rizisi\"]",
+    "count": 1,
+    "project": "kerolos-mohsen/yapper-android-testing",
+    "lang": "TypeScript",
+    "strategy": null
+  },
+  {
+    "id": "A1846",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//android.widget.ScrollView[@content-desc=\"dofo_popon_wepejazuk_zeru\"]//*[@content-desc=\"popon_dofiwa_rizisi_setil\"]",
+    "count": 1,
+    "project": "kerolos-mohsen/yapper-android-testing",
+    "lang": "TypeScript",
+    "strategy": null
+  },
+  {
+    "id": "A1847",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//android.widget.ScrollView[@content-desc=\"dofo_popon_wepejazuk_zeru\"]//*[@content-desc=\"popon_dofiwa_sino\"]",
+    "count": 1,
+    "project": "kerolos-mohsen/yapper-android-testing",
+    "lang": "TypeScript",
+    "strategy": null
+  },
+  {
+    "id": "A1848",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//android.widget.ScrollView[@content-desc=\"dofo_popon_wepejazuk_zeru\"]//*[@content-desc=\"popon_dofiwa_sino_setil\"]",
+    "count": 1,
+    "project": "kerolos-mohsen/yapper-android-testing",
+    "lang": "TypeScript",
+    "strategy": null
+  },
+  {
+    "id": "A1849",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//android.widget.ScrollView[@content-desc=\"dofo_popon_wepejazuk_zeru\"]//*[@content-desc=\"popon_dofiwa_joniheta\"]",
+    "count": 1,
+    "project": "kerolos-mohsen/yapper-android-testing",
+    "lang": "TypeScript",
+    "strategy": null
+  },
+  {
+    "id": "A1850",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//android.widget.ScrollView[@content-desc=\"dofo_popon_wepejazuk_zeru\"]//*[@content-desc=\"popon_dofiwa_femuh\"]",
+    "count": 1,
+    "project": "kerolos-mohsen/yapper-android-testing",
+    "lang": "TypeScript",
+    "strategy": null
+  },
+  {
+    "id": "A1851",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//android.widget.ScrollView[@content-desc=\"popon_copu_kidi\"]//*[@content-desc=\"popon_wepejazuk_zeru\"]",
+    "count": 1,
+    "project": "kerolos-mohsen/yapper-android-testing",
+    "lang": "TypeScript",
+    "strategy": null
+  },
+  {
+    "id": "A1852",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//android.widget.ScrollView[@content-desc=\"dofo_popon_wepejazuk_zeru\"]//*[@content-desc=\"Kaki migitic\"]",
+    "count": 1,
+    "project": "kerolos-mohsen/yapper-android-testing",
+    "lang": "TypeScript",
+    "strategy": null
+  },
+  {
+    "id": "A1853",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//android.widget.ScrollView[@content-desc=\"dofo_popon_wepejazuk_zeru\"]",
+    "count": 9,
+    "project": "kerolos-mohsen/yapper-android-testing",
+    "lang": "TypeScript",
+    "strategy": null
+  },
+  {
+    "id": "A1854",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//*[@content-desc=\"popon_wepejazuk_kodore\"]",
+    "count": 9,
+    "project": "kerolos-mohsen/yapper-android-testing",
+    "lang": "TypeScript",
+    "strategy": null
+  },
+  {
+    "id": "A1855",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//*[@content-desc=\"popon_paci_bedu\"]",
+    "count": 1,
+    "project": "kerolos-mohsen/yapper-android-testing",
+    "lang": "TypeScript",
+    "strategy": null
+  },
+  {
+    "id": "A1856",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//*[@content-desc=\"popon_dofiwa_sino\"]",
+    "count": 1,
+    "project": "kerolos-mohsen/yapper-android-testing",
+    "lang": "TypeScript",
+    "strategy": null
+  },
+  {
+    "id": "A1857",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//*[@content-desc=\"popon_dofiwa_sino_setil\"]",
+    "count": 1,
+    "project": "kerolos-mohsen/yapper-android-testing",
+    "lang": "TypeScript",
+    "strategy": null
+  },
+  {
+    "id": "A1858",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//*[@content-desc=\"popon_dofiwa_rizisi\"]",
+    "count": 1,
+    "project": "kerolos-mohsen/yapper-android-testing",
+    "lang": "TypeScript",
+    "strategy": null
+  },
+  {
+    "id": "A1859",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//*[@content-desc=\"popon_dofiwa_rizisi_setil\"]",
+    "count": 1,
+    "project": "kerolos-mohsen/yapper-android-testing",
+    "lang": "TypeScript",
+    "strategy": null
+  },
+  {
+    "id": "A1860",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//*[@content-desc=\"popon_dofiwa_wokup\"]",
+    "count": 1,
+    "project": "kerolos-mohsen/yapper-android-testing",
+    "lang": "TypeScript",
+    "strategy": null
+  },
+  {
+    "id": "A1861",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//*[@content-desc=\"popon_dofiwa_wokup_setil\"]",
+    "count": 1,
+    "project": "kerolos-mohsen/yapper-android-testing",
+    "lang": "TypeScript",
+    "strategy": null
+  },
+  {
+    "id": "A1862",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//android.widget.Button[@content-desc=\"Kaki migitic\"]",
+    "count": 1,
+    "project": "kerolos-mohsen/yapper-android-testing",
+    "lang": "TypeScript",
+    "strategy": null
+  },
+  {
+    "id": "A1863",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//android.view.ViewGroup[@content-desc=\"popon_wepejazuk_zeru\"]",
+    "count": 1,
+    "project": "kerolos-mohsen/yapper-android-testing",
+    "lang": "TypeScript",
+    "strategy": null
+  },
+  {
+    "id": "A1864",
+    "kind": "xpath-dynamic",
+    "quote": "`",
+    "source": "(//android.widget.ImageView[@content-desc=\"popon_lafub_tesubo\"])[${xpathIndex}]",
+    "count": 1,
+    "project": "kerolos-mohsen/yapper-android-testing",
+    "lang": "TypeScript",
+    "strategy": null
+  },
+  {
+    "id": "A1865",
+    "kind": "xpath-dynamic",
+    "quote": "`",
+    "source": "(//android.widget.TextView[@content-desc=\"popon_paci_bedu\"])[${xpathIndex}]",
+    "count": 1,
+    "project": "kerolos-mohsen/yapper-android-testing",
+    "lang": "TypeScript",
+    "strategy": null
+  },
+  {
+    "id": "A1866",
+    "kind": "xpath-dynamic",
+    "quote": "`",
+    "source": "(//android.widget.TextView[@content-desc=\"popon_paci_guvosusu\"])[${xpathIndex}]",
+    "count": 1,
+    "project": "kerolos-mohsen/yapper-android-testing",
+    "lang": "TypeScript",
+    "strategy": null
+  },
+  {
+    "id": "A1867",
+    "kind": "xpath-dynamic",
+    "quote": "`",
+    "source": "(//android.widget.TextView[@resource-id=\"popon_gowomoc_pumu\"])[${xpathIndex}]",
+    "count": 1,
+    "project": "kerolos-mohsen/yapper-android-testing",
+    "lang": "TypeScript",
+    "strategy": null
+  },
+  {
+    "id": "A1868",
+    "kind": "xpath-dynamic",
+    "quote": "`",
+    "source": "(//android.widget.TextView[@content-desc=\"popon_cidowitef\"])[${xpathIndex}]",
+    "count": 1,
+    "project": "kerolos-mohsen/yapper-android-testing",
+    "lang": "TypeScript",
+    "strategy": null
+  },
+  {
+    "id": "A1869",
+    "kind": "xpath-dynamic",
+    "quote": "`",
+    "source": "(//android.view.ViewGroup[@content-desc=\"popon_dofiwa_wokup\"])[${xpathIndex}]",
+    "count": 1,
+    "project": "kerolos-mohsen/yapper-android-testing",
+    "lang": "TypeScript",
+    "strategy": null
+  },
+  {
+    "id": "A1870",
+    "kind": "xpath-dynamic",
+    "quote": "`",
+    "source": "(//android.view.ViewGroup[@content-desc=\"popon_dofiwa_rizisi\"])[${xpathIndex}]",
+    "count": 1,
+    "project": "kerolos-mohsen/yapper-android-testing",
+    "lang": "TypeScript",
+    "strategy": null
+  },
+  {
+    "id": "A1871",
+    "kind": "xpath-dynamic",
+    "quote": "`",
+    "source": "(//android.widget.TextView[contains(@content-desc, \"rizisi_setil\")])[${xpathIndex}]",
+    "count": 1,
+    "project": "kerolos-mohsen/yapper-android-testing",
+    "lang": "TypeScript",
+    "strategy": null
+  },
+  {
+    "id": "A1872",
+    "kind": "xpath-dynamic",
+    "quote": "`",
+    "source": "(//android.view.ViewGroup[@content-desc=\"popon_dofiwa_sino\"])[${xpathIndex}]",
+    "count": 1,
+    "project": "kerolos-mohsen/yapper-android-testing",
+    "lang": "TypeScript",
+    "strategy": null
+  },
+  {
+    "id": "A1873",
+    "kind": "xpath-dynamic",
+    "quote": "`",
+    "source": "(//android.widget.TextView[@content-desc=\"popon_dofiwa_sino_setil\"])[${xpathIndex}]",
+    "count": 1,
+    "project": "kerolos-mohsen/yapper-android-testing",
+    "lang": "TypeScript",
+    "strategy": null
+  },
+  {
+    "id": "A1874",
+    "kind": "xpath-dynamic",
+    "quote": "`",
+    "source": "(//android.view.ViewGroup[@content-desc=\"popon_dofiwa_pebas\"])[${xpathIndex}]",
+    "count": 1,
+    "project": "kerolos-mohsen/yapper-android-testing",
+    "lang": "TypeScript",
+    "strategy": null
+  },
+  {
+    "id": "A1875",
+    "kind": "xpath-dynamic",
+    "quote": "`",
+    "source": "(//android.view.ViewGroup[@content-desc=\"popon_dofiwa_joniheta\"])[${xpathIndex}]",
+    "count": 1,
+    "project": "kerolos-mohsen/yapper-android-testing",
+    "lang": "TypeScript",
+    "strategy": null
+  },
+  {
+    "id": "A1876",
+    "kind": "xpath-dynamic",
+    "quote": "`",
+    "source": "(//android.view.ViewGroup[@content-desc=\"popon_dofiwa_femuh\"])[${xpathIndex}]",
+    "count": 1,
+    "project": "kerolos-mohsen/yapper-android-testing",
+    "lang": "TypeScript",
+    "strategy": null
+  },
+  {
+    "id": "A1877",
+    "kind": "xpath-dynamic",
+    "quote": "`",
+    "source": "(//android.view.ViewGroup[@content-desc=\"popon_dofiwa_kaki\"])[${xpathIndex}]",
+    "count": 1,
+    "project": "kerolos-mohsen/yapper-android-testing",
+    "lang": "TypeScript",
+    "strategy": null
+  },
+  {
+    "id": "A1878",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//android.view.View[@content-desc=\"Kecipih\"]/android.view.ViewGroup",
+    "count": 1,
+    "project": "kerolos-mohsen/yapper-android-testing",
+    "lang": "TypeScript",
+    "strategy": null
+  },
+  {
+    "id": "A1879",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//android.view.View[@content-desc=\"Lacedi\"]/android.view.ViewGroup",
+    "count": 1,
+    "project": "kerolos-mohsen/yapper-android-testing",
+    "lang": "TypeScript",
+    "strategy": null
+  },
+  {
+    "id": "A1880",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//android.view.ViewGroup[@content-desc=\"ziha_dofiwa\"]/com.cogahub.moc.NogAnon",
+    "count": 1,
+    "project": "kerolos-mohsen/yapper-android-testing",
+    "lang": "TypeScript",
+    "strategy": null
+  },
+  {
+    "id": "A1881",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//android.view.View[@text=\"Ruhu\"]",
+    "count": 1,
+    "project": "kerolos-mohsen/yapper-android-testing",
+    "lang": "TypeScript",
+    "strategy": null
+  },
+  {
+    "id": "A1882",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//android.view.ViewGroup[@content-desc=\"popon_wepejazuk_zeru\"][1]//android.view.ViewGroup[@content-desc=\"\"][@clickable=\"true\"]",
+    "count": 1,
+    "project": "kerolos-mohsen/yapper-android-testing",
+    "lang": "TypeScript",
+    "strategy": null
+  },
+  {
+    "id": "A1883",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//android.widget.EditText[@resource-id=\"ruwoju_pumu_vekar\"]",
+    "count": 1,
+    "project": "kerolos-mohsen/yapper-android-testing",
+    "lang": "TypeScript",
+    "strategy": null
+  },
+  {
+    "id": "A1884",
+    "kind": "xpath",
+    "quote": "'",
+    "source": "//android.view.ViewGroup[contains(@content-desc, \"Wukapud\")]",
+    "count": 1,
+    "project": "kerolos-mohsen/yapper-android-testing",
+    "lang": "TypeScript",
+    "strategy": null
   }
 ]

@@ -1,6 +1,6 @@
 # R corpus: sources
 
-Real Android XPath locators from 15 open-source projects with Appium tests: large or organizational
+Real Android XPath locators from 20 open-source projects with Appium tests: large or organizational
 suites and weak ones (courses, practice repos, one-off automations), so both careful and sloppy
 locators are in. Frequencies: [`frequencies.md`](frequencies.md). Locators:
 [`android-locators.json`](android-locators.json).
@@ -28,8 +28,17 @@ scanner found an XPath literal in. Kinds: `xpath`, `xpath-dynamic` (interpolated
 | [NayabAkhtar12/Funny-Prank-sounds-Automation](https://github.com/NayabAkhtar12/Funny-Prank-sounds-Automation/tree/c11964e3291a0118ff8d3df821ebc3618fe27f4e) | `c11964e329` | none | C# | weak, practice | 43 | 22 | 218 | 194 / 0 / 0 / 0 |
 | [h080294/appium_python_android](https://github.com/h080294/appium_python_android/tree/452cc8d17363d8e46f98c59c91a128e7a5c60489) | `452cc8d173` | none | Python | weak, course | 92 | 3 | 13 | 6 / 0 / 0 / 0 |
 | [TypeLife/appium-unittest](https://github.com/TypeLife/appium-unittest/tree/543d8e81b086376944bd64ccad7a7b7da48e794d) | `543d8e81b0` | none | Python | weak, unittest suite | 212 | 77 | 441 | 258 / 26 / 1 / 0 |
+| [PerfectoCode/Community-Samples](https://github.com/PerfectoCode/Community-Samples/tree/96ca48c011dfbc0ea6e86a967352e5d3021986d1) | `96ca48c011` | none | Java | vendor samples | 146 | 68 | 413 | 153 / 0 / 2 / 25 |
+| [haticedagli/Hepsiburada-Android-Automation-Testing](https://github.com/haticedagli/Hepsiburada-Android-Automation-Testing/tree/b1d945f2559e48e412e36d0f91a985410b3ac07e) | `b1d945f255` | MIT | Java | weak, store app | 25 | 6 | 10 | 10 / 0 / 0 / 0 |
+| [phoungphoung33/uabpay](https://github.com/phoungphoung33/uabpay/tree/20bbe360fe6a1bfbca2b47235c7de88703ee6e61) | `20bbe360fe` | none | Java | weak, banking app | 35 | 31 | 282 | 91 / 0 / 0 / 0 |
+| [PharmaLedger-IMI/epi-mobileapp-test-automation](https://github.com/PharmaLedger-IMI/epi-mobileapp-test-automation/tree/dcf710543b641e337bb0cac2c7b69e827430dd46) | `dcf710543b` | MIT | JavaScript | organizational, WebdriverIO, a page object copied per scenario | 219 | 105 | 1003 | 41 / 0 / 0 / 0 |
+| [kerolos-mohsen/yapper-android-testing](https://github.com/kerolos-mohsen/yapper-android-testing/tree/0ed4f6babdcabcbae78687d6600dab7d97167d85) | `0ed4f6babd` | MIT | TypeScript | weak, WebdriverIO | 51 | 18 | 128 | 69 / 20 / 0 / 0 |
 
-Total: 1855 files downloaded, 266 with XPath, 1920 occurrences, 1473 unique literals per project.
+Total: 2331 files downloaded, 494 with XPath, 3756 occurrences, 1884 unique literals per project (1645
+Android). The last five were added to balance the languages: Java and JS / TS were under their share on
+GitHub (`"//android.widget"` code search, 2026-10-20: Java 10 272 files, Python 4 168, JavaScript 2 188,
+TypeScript 960, C# 446, Ruby 168, Kotlin 104). `frequencies.md` also gives project-weighted shares,
+because PharmaLedger repeats 41 literals 1003 times.
 
 Considered and left out: `czl0325/coin11-tb` (drives the python-uiautomator2 library, not Appium: its
 own XPath engine and no strategy call to rewrite), `webdriverio/webdriverio` (XPaths only in docs, 400 MB
@@ -50,10 +59,11 @@ No repository is cloned.
    `package.json`, `tsconfig*.json`, `*.d.ts`, minified files and files over 200 KB. Large repositories
    with app code are limited to their test folders: `e2e/` (metamask-sdk, pocketpal-ai), `src/test/`
    (shirates-core), the mobile folders (dimagi-qa); session-appium without `run/desktop` and CI. For
-   the three Python repositories added last, only `.py` files.
+   dimagi-qa, puma and TypeLife, only `.py` files; for PerfectoCode, only `.java` files outside its
+   iOS, Calabash, Splunk and ALM samples.
 3. **Download:** those files only, from `raw.githubusercontent.com` at the pinned commit, into a
-   cache outside git. Traffic for the whole stage: about 3 MB (search ≈0.3 MB, trees ≈0.5 MB,
-   files ≈2.2 MB, compressed transfer).
+   cache outside git. Traffic for the whole stage: about 4 MB (search ≈0.4 MB, trees ≈0.6 MB,
+   files ≈2.8 MB, compressed transfer).
 4. **Extraction:** [`build.js`](build.js) runs the scanner in dry-run mode, with a converter that
    changes nothing, over the cache; files without an XPath literal are deleted from the cache.
 5. **Anonymization:** every letter run in a quoted XPath value becomes a pseudo-word of the same
