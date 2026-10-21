@@ -3,8 +3,8 @@
 Everything about using xpath-to-uiselector beyond the [README](../README.md): commands, flags, what the scanner
 rewrites, the conversion rules, the report format and library use. Every rule cites the rows of
 [`reference/`](../reference/README.md) it comes from (`SRV-…` UiAutomator2 server, `SEL-…` androidx `UiSelector`,
-`XP-…` PsychoPath XPath 2.0) and has an S case in [`audit/spec/cases.js`](../audit/spec/cases.js) that ran on the
-emulator.
+`XP-…` PsychoPath XPath 2.0) and has an edge case in [`audit/spec/cases.js`](../audit/spec/cases.js) that ran on the
+emulator ([how it was checked](how-it-works.md#2-how-it-was-built-and-checked)).
 
 ## Install and run
 
@@ -245,7 +245,8 @@ elements at the default settings (SRV-12, SEL-07). Details: [coverage-report.md]
       "status": "skipped_unsupported_logic", "reason": "UiSelector has no direct-child criterion",
       "strategy": "AppiumBy.xpath(" },
     { "file": "LoginPage.java", "locator": "//*[@text='%s']", "status": "skipped_unknown_strategy",
-      "reason": "no strategy call around the string: …", "uiselector": "new UiSelector().text(\"%s\")" }
+      "reason": "no strategy call around the string: …", "uiselector": "new UiSelector().text(\"%s\")",
+      "warning": "a runtime value goes into a string literal: a \" or a trailing \\ in it breaks the UiSelector" }
   ]
 }
 ```
@@ -258,7 +259,8 @@ elements at the default settings (SRV-12, SEL-07). Details: [coverage-report.md]
 | `skipped_xpath_strategy` | Converted, but not written: the call's client has no UiAutomator strategy; `uiselector` holds the result |
 | `skipped_validation_failed` | The `UiSelector` would not parse, or cannot be written in that kind of literal |
 | `skipped_ios` | iOS locator |
-| `skipped_not_xpath`, `skipped_no_change` | Not an XPath / nothing to change (counted, not listed) |
+| `skipped_not_xpath` | Not an XPath (listed in the report, not printed) |
+| `skipped_no_change` | Nothing to change (counted only) |
 
 ## Library
 
@@ -280,9 +282,9 @@ convertXpathToUiSelector('//android.widget.ListView/android.widget.TextView');
 
 ```bash
 npm test               # unit tests: converter, scanner, strategy rewrite, literals per language, CLI
-npm run spec:check     # every reference row has an S case
-npm run spec:score     # the converter against every S case; exit 1 on any WRONG or GAP
-npm run corpus:convert # the R corpus offline (audit/corpus/convert-summary.md)
+npm run spec:check     # every reference row has an edge case
+npm run spec:score     # the converter against every edge case; exit 1 on a wrong or missed answer
+npm run corpus:convert # the real-world locators, offline (audit/corpus/convert-summary.md)
 ```
 
 The device runs need an emulator and the local Appium (devDependencies): [audit/device/README.md](../audit/device/README.md).

@@ -509,7 +509,8 @@ console.log('— SCANNER: processFile —');
 
 // =====================================================================
 // SCANNER: explicit XPath strategies (carried over from xpath-to-class-chain,
-// RC-S1, RC-S2). Skipped until the call rewrite of stage 4.
+// RC-S1, RC-S2): the call is rewritten together with the string, or the
+// string is left alone when the client has no UiAutomator strategy.
 // =====================================================================
 console.log('— SCANNER: xpath strategies —');
 {

@@ -30,7 +30,8 @@ if (!meta.hasChanges) process.exit(0);
 
 const key = newer.map(c => `${c.id}@${c.latest}`).join(' ');
 const todo = '**What to do:** read the changed files against the reference rows in the "Cited by" column. If a rule may have ' +
-  'changed, re-run the S cases and the R fuzz on the emulator with the new versions (`audit/device/README.md`). When the ' +
+  'changed, re-run the edge cases (`npm run oracle`) and the real-world fuzz (`npm run oracle:fuzz`) on the emulator with ' +
+  'the new versions (`audit/device/README.md`). When the ' +
   'converter still behaves the same, update `checked` in `audit/upstream.json` through a PR, then `docs/environment.md`, ' +
   'docs/results.md and the devDependencies. Close this issue.';
 let detail = changes;
