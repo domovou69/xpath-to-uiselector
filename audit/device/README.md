@@ -50,6 +50,19 @@ Fingerprint of an element: `class|resource-id|text|content-desc|bounds`. Every n
 screen has its own bounds, except a node and a child that fills it; the boxes of the deep chain get
 their own resource ids for that reason.
 
+## Findings of the R fuzz (stage 4b, 2026-10-21)
+
+- `textMatches` and `descriptionMatches` compile their regex with `Pattern.DOTALL`; `resourceIdMatches`,
+  `classNameMatches` and `packageNameMatches` with no flags (androidx `UiSelector.java` 2.3.0, lines 131, 242).
+  The reference said "no flags" for all five. Consequence: a `matches()` pattern without the `s` flag must turn
+  DOTALL off, `(?-s:…)`, or `.` also crosses a line break the XPath's does not (S case H11; the old form found
+  `Line 1\nLine 2`, the XPath did not). Found by the `(?s) dropped` mutants, which survived on text.
+- A `View.INVISIBLE` view is not in the accessibility tree at all, so it is neither counted in `@index` nor a
+  hidden match for `instance`. A view with no size is in the tree but not visible to the user: both sides leave it
+  out of the results and both count it in `@index` (SRV-10, SEL-09). The matrix screens use the latter.
+- `adb shell` refuses a long command line; the screen goes through the device shell's stdin. One `exec`
+  argument is still limited to 128 KB, which caps a screen at ≈100 KB of base64.
+
 ## Findings outside the S cases (2026-10-20)
 
 - An app cannot set the package of its own accessibility nodes: the framework overwrites it after the

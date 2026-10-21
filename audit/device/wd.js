@@ -2,7 +2,7 @@
 // launcher, and host / device / stack versions. Ported from appium-android-locator-benchmark/bench/lib/wd.js.
 'use strict';
 
-const { execFileSync } = require('node:child_process');
+const { execFileSync, spawn } = require('node:child_process');
 const { existsSync, readFileSync } = require('node:fs');
 const { homedir } = require('node:os');
 const path = require('node:path');
@@ -79,13 +79,15 @@ function host() {
     power: /AC Power/.test(batt) ? 'AC' : /Battery Power/.test(batt) ? 'battery' : null, lowPowerMode: lpm ? lpm[1] === '1' : null };
 }
 
-// refuses to run on battery or in Low Power Mode (project rule)
+// refuses to run on battery or in Low Power Mode (project rule), and keeps the display and the system awake while
+// the run lives: with the display asleep macOS slows the emulator down several times
 function requirePower() {
   const h = host();
   if (h.power !== 'AC' || h.lowPowerMode !== false) {
     console.error(`power: ${h.power}, Low Power Mode: ${h.lowPowerMode}. Plug in and turn Low Power Mode off, then rerun.`);
     process.exit(2);
   }
+  try { spawn('caffeinate', ['-dimsu', '-w', String(process.pid)], { detached: true, stdio: 'ignore' }).unref(); h.caffeinate = true; } catch { h.caffeinate = false; }
   return h;
 }
 

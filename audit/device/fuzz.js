@@ -39,6 +39,8 @@ const VIEW = 'android.view.View';
 // rare forms (at most RARE_MAX XPaths of the form) run again on screens of their own, one batch per seed
 const RARE_MAX = 2;
 const RARE_SEEDS = ['r-fuzz-rare-1', 'r-fuzz-rare-2', 'r-fuzz-rare-3'];
+// matrix screens (fuzz-screens.js matrixCell): every item once, run only on its own screen
+const MATRIX_SEED = 'r-fuzz-matrix-2';
 const KEEP_FP = 10; // fingerprint lists up to this length are kept; longer ones only when they differ
 
 const read = f => JSON.parse(fs.readFileSync(f, 'utf8'));
@@ -68,6 +70,13 @@ function screensFor(items) {
     file.rare = RARE_SEEDS.flatMap((seed, i) => generate(rare.map(it => ({ ...it })), seed, 0, `r${i}b`).batches.map(b => ({ ...b, seed })));
     write(SCREENS, file, 0);
     console.log(`screens: ${rare.length} items of rare forms on ${file.rare.length * 5} more screens`);
+  }
+  if (!file.matrix) {
+    const copies = items.map(it => ({ ...it }));
+    const { batches } = generate(copies, MATRIX_SEED, 0, 'm', { matrix: true });
+    file.matrix = { seed: MATRIX_SEED, home: Object.fromEntries(copies.filter(c => c.home).map(c => [c.key, c.home])), batches };
+    write(SCREENS, file, 0);
+    console.log(`screens: ${items.length} items on ${batches.length * 5} matrix screens`);
   }
   for (const it of items) if (file.items[it.key].xpath !== it.xpath) throw new Error(`item ${it.key}: the XPath differs from the screens file`);
   return file;
@@ -107,6 +116,9 @@ const keep = (l, outcome) => (l.error ? l : { ms: l.ms, n: l.n, h: hash(l.fp), .
 // Verdicts and summary
 // ---------------------------------------------------------------------------
 
+// a lookup that failed on the way (Appium proxy timeout, a dropped socket), not on the selector: --resume reruns it
+const transient = r => [r?.x?.error, r?.u?.error].some(e => /timeout|could not proxy|ECONNRESET|socket hang up/i.test(e || ''));
+
 const strict = it => it.outcome === 'exact' || it.warnings.every(w => w === RUNTIME_ONLY);
 
 // Mutants (--mutants): wrong UiSelectors made from an exact item's own, run on its own screen. A mutant the
@@ -114,7 +126,11 @@ const strict = it => it.outcome === 'exact' || it.warnings.every(w => w === RUNT
 const STR = String.raw`"((?:[^"\\]|\\.)*)"`;
 const MUTANTS = [
   // the case-insensitive methods the converter never emits (SEL-02)
-  ['contains → *Contains', u => u.replace(new RegExp(`\\.(text|description|resourceId)Matches\\("\\(\\?s\\)\\.\\*([\\w ]+)\\.\\*"\\)`), '.$1Contains("$2")')],
+  ['contains → *Contains', u => {
+    const re = /\.(text|description|resourceId)Matches\("\(\?s\)\.\*([\w ]+)\.\*"\)/, m = re.exec(u);
+    // only where a letter has a case: *Contains differs from the regex by its case folding (an equivalent mutant otherwise)
+    return m && m[2].toLowerCase() !== m[2].toUpperCase() ? u.replace(re, '.$1Contains("$2")') : u;
+  }],
   ['eq → *StartsWith', u => u.replace(new RegExp(`\\.(text|description)\\(${STR}\\)`), '.$1StartsWith("$2")')],
   ['eq → *Contains', u => u.replace(new RegExp(`\\.(text|description)\\(${STR}\\)`), '.$1Contains("$2")')],
   ['no className', u => (/\)\.\w+\(/.test(u.replace(/^new UiSelector\(\)\.className\("[^"]*"\)/, '')) ? u.replace(/^(new UiSelector\(\))\.className\("[^"]*"\)/, '$1') : u)],
@@ -124,6 +140,17 @@ const MUTANTS = [
   ['index + 1', u => u.replace(/\.index\((\d+)\)/, (_, n) => `.index(${+n + 1})`)],
   ['boolean flipped', u => u.replace(/\.(checked|checkable|clickable|enabled|focusable|focused|longClickable|scrollable|selected)\((true|false)\)/, (_, m, v) => `.${m}(${v === 'true' ? 'false' : 'true'})`)],
   ['plain → regex, no anchor', u => u.replace(new RegExp(`\\.(text|description|resourceId)\\(${STR}\\)`), (_, m, v) => `.${m}Matches("(?s).*${v.replace(/[\^$.|?*+()[\]{}]/g, '\\$&')}.*")`)],
+  ['text ↔ description', u => u.replace(/\.(text|description)(Matches)?\(/, (_, a, r) => `.${a === 'text' ? 'description' : 'text'}${r || ''}(`)],
+  ['resource id without package', u => u.replace(/\.resourceId\("[^"]*:id\/([^"]*)"\)/, '.resourceId("$1")')],
+  ['regex unescaped', u => (/Matches\(/.test(u) ? u.replace(/\\([.^$|?*+()[\]{}])/g, '$1') : u)],
+  ['plain → unescaped regex', u => u.replace(new RegExp(`\\.(text|description|resourceId)\\(${STR}\\)`), (m0, m, v) => (/[.^$|?*+()[\]{}]/.test(v) ? `.${m}Matches("${v}")` : m0))],
+  // textMatches and descriptionMatches compile with DOTALL (SEL-03): there (?s) changes nothing
+  ['(?s) dropped', u => (/(resourceId|className|packageName)Matches\("\(\?s\)/.test(u) ? u.replace(/((?:resourceId|className|packageName)Matches\(")\(\?s\)/, '$1') : u)],
+  // only where a letter has a case: on other values (?i) changes nothing (an equivalent mutant)
+  ['(?i) added', u => { const m = /Matches\("((?:[^"\\]|\\.)*)"/.exec(u); const body = m && m[1].replace(/\(\?[a-z-]*:?/g, '').replace(/\\./g, ''); return body && body.toLowerCase() !== body.toUpperCase() ? u.replace(/Matches\("/, 'Matches("(?i)') : u; }],
+  ['className → classNameMatches', u => u.replace(/\.className\("(?:[^"]*\.)?([^".]+)"\)/, '.classNameMatches(".*$1")')],
+  ['ends → contains', u => u.replace(/(\w+Matches)\("(\(\?s\)\.\*)((?:[^"\\]|\\.)*)"\)/, (m0, m, a, b) => (b.endsWith('.*') ? m0 : `${m}("${a}${b}.*")`))],
+  ['starts → contains', u => u.replace(/(\w+Matches)\("\(\?s\)((?:[^"\\]|\\.)*)\.\*"\)/, (m0, m, b) => (b.startsWith('.*') || b.startsWith('(?=') ? m0 : `${m}("(?s).*${b}.*")`))],
 ];
 const mutantsOf = it => MUTANTS.map(([name, f]) => [name, f(it.uiselector)]).filter(([, u]) => u !== it.uiselector);
 const MUTANTS_PER_KIND = 150;
@@ -136,14 +163,17 @@ function mutantPlan(items) {
   return plan;
 }
 
-// `rare`: over the item's screens of the rare-form seeds; vacuous there when no screen has a match
-function verdict(it, file, runs, rare = false) {
+// `set`: 'base' (the screens of the item's batch), 'rare' (its screens of the rare-form seeds; vacuous when no
+// screen has a match) or 'matrix' (its own matrix screen)
+function verdict(it, file, runs, set = 'base') {
   const meta = file.items[it.key];
+  const rare = set === 'rare';
   const screens = rare ? file.rare.filter(b => b.items.includes(it.key)).flatMap(b => b.screens.map(sc => sc.name))
-    : file.batches[meta.batch].screens.map(sc => sc.name);
+    : set === 'matrix' ? (file.matrix?.home[it.key] ? [file.matrix.home[it.key]] : [])
+      : file.batches[meta.batch].screens.map(sc => sc.name);
   const rs = screens.map(sc => runs[`${it.key}|${sc}`]).filter(r => r && r.ui === it.uiselector);
   if (!screens.length || rs.length < screens.length) return { v: 'NOT RUN' };
-  const home = rare ? rs.find(r => r.x.n) || rs[0] : rs.find(r => r.screen === meta.home);
+  const home = rare ? rs.find(r => r.x.n) || rs[0] : set === 'matrix' ? rs[0] : rs.find(r => r.screen === meta.home);
   const bad = rs.filter(r => r.outcome !== 'EQUAL');
   if (strict(it)) {
     if (bad.length) return { v: 'WRONG', bad };
@@ -227,7 +257,7 @@ function summary(doc, file, items) {
   if (fsorted.length > 20) L.push(`<details><summary>The other ${fsorted.length - 20} forms</summary>`, '', ...head, ...fsorted.slice(20).map(row), '', '</details>', '');
   if (file.rare?.length) {
     const rare = items.filter(it => file.rare.some(b => b.items.includes(it.key)));
-    const RV = rare.map(it => ({ it, ...verdict(it, file, doc.runs, true) }));
+    const RV = rare.map(it => ({ it, ...verdict(it, file, doc.runs, 'rare') }));
     const n = v => RV.filter(x => x.v === v).length;
     L.push('### Rare forms, three more seeds', '');
     L.push(`The ${rare.length} XPaths of forms with at most ${RARE_MAX} XPaths ran again on ${file.rare.length * 5} screens of their own, one batch per seed`);
@@ -253,18 +283,51 @@ function summary(doc, file, items) {
     for (const x of vac) L.push(`- \`${x.it.key}\` \`${x.it.xpath}\``);
     L.push('');
   }
-  const ms = Object.values(doc.mutants || {});
-  if (ms.length) {
-    L.push('## Mutants', '');
-    L.push('How strong the screens are: wrong UiSelectors made from the exact items\' own (`--mutants`), each run on its');
-    L.push('item\'s own screen. Killed: the result differs from the XPath\'s. A mutant that is right by chance (a dropped');
-    L.push('criterion that no element on the screen needs) survives, so 100 % is not expected.', '');
-    L.push('| Mutant | Run | Killed | Share |', '| --- | --- | --- | --- |');
-    for (const [name] of MUTANTS) {
-      const l = ms.filter(m => m.mutant === name);
-      if (l.length) L.push(`| ${name} | ${l.length} | ${l.filter(m => m.outcome !== 'EQUAL').length} | ${pct(l.filter(m => m.outcome !== 'EQUAL').length, l.length)} |`);
+  if (file.matrix) {
+    const MV = items.map(it => ({ it, ...verdict(it, file, doc.runs, 'matrix') }));
+    const n = v => MV.filter(x => x.v === v).length;
+    const ms = file.matrix.batches.flatMap(b => b.screens);
+    const nodes = sc => { const c = x => 1 + (x.k || []).reduce((t, y) => t + c(y), 0); return c(sc.root); };
+    L.push('## Matrix screens', '');
+    L.push(`Every item once more, on ${ms.length} screens of its own kind (seed \`${file.matrix.seed}\`, ${Math.min(...ms.map(nodes))}–${Math.max(...ms.map(nodes))} nodes), run only on its own screen. A matrix`);
+    L.push('cell breaks every tested condition of every level in every way that applies to it: for a string one character more');
+    L.push('or less at either end, the case swapped, a space around it or a no-break space in it, null, "", the value in');
+    L.push('another attribute, a resource id without its package, and the strings that the value read as an unescaped regex');
+    L.push('matches (`.` → `x`, `a+b` → `aab`, `(x)` → `x`); for contains / starts-with the value broken in place or moved to');
+    L.push('the other end; similar classes (`ImageButton` for `Button`, another package, `…Compat`, lower case, none); booleans');
+    L.push('flipped; the index moved by one with an invisible sibling before it. Targets: every alternative, deeper, nested,');
+    L.push('with line breaks around a contains / starts-with value and with the bare value; invisible ones (hidden, in a hidden');
+    L.push('box, no size) and a hidden match first in the cell; union branches also in reverse document order.', '');
+    L.push(`Verdicts: CORRECT ${n('CORRECT')}, DRIFT ${n('DRIFT')}, WRONG ${n('WRONG')}, VACUOUS ${n('VACUOUS')}, not run ${n('NOT RUN')}.`, '');
+    for (const x of MV.filter(y => y.v === 'WRONG' || y.v === 'VACUOUS')) {
+      L.push(`- ${x.v} \`${x.it.key}\` \`${x.it.xpath}\` → \`${x.it.uiselector}\`${x.bad ? `: ${x.bad.map(r => `${r.outcome} ${r.x.error ? 'err' : r.x.n}/${r.u.error ? 'err' : r.u.n}`).join(', ')}` : ''}`);
     }
-    L.push(`| all | ${ms.length} | ${ms.filter(m => m.outcome !== 'EQUAL').length} | ${pct(ms.filter(m => m.outcome !== 'EQUAL').length, ms.length)} |`, '');
+    if (n('WRONG') + n('VACUOUS')) L.push('');
+  }
+  // only the mutants of the current plan, made from the current UiSelectors
+  const plan = mutantPlan(items), cur = new Map();
+  for (const it of items) for (const [name, u] of mutantsOf(it)) if (plan.has(`${it.key}|${name}`)) cur.set(`${it.key}|${name}`, u);
+  const live = st => Object.entries(st || {}).filter(([k, m]) => cur.get(k) === m.ui).map(([, m]) => m);
+  const mb = live(doc.mutants), mm = live(doc.mutantsMatrix);
+  if (mb.length || mm.length) {
+    const killed = l => l.filter(m => m.outcome !== 'EQUAL').length;
+    L.push('## Mutants', '');
+    L.push('Do the screens catch a wrong conversion? A mutant is a wrong UiSelector made from an exact item\'s own, the kind');
+    L.push('of error a converter could make (the converter never emits these: its rules and the S cases on the device keep it');
+    L.push('to exact forms). Each mutant runs on its item\'s own screen; it is killed when the result differs from the XPath\'s.');
+    L.push(`Up to ${MUTANTS_PER_KIND} items per kind, the first in key order. A survivor is a mutant that no element of the screen tells apart.`, '');
+    L.push('| Mutant | Random traps: run | killed | Matrix: run | killed |', '| --- | --- | --- | --- | --- |');
+    for (const [name] of MUTANTS) {
+      const b = mb.filter(m => m.mutant === name), x = mm.filter(m => m.mutant === name);
+      if (b.length || x.length) L.push(`| ${name} | ${b.length} | ${pct(killed(b), b.length)} | ${x.length} | ${pct(killed(x), x.length)} |`);
+    }
+    L.push(`| all | ${mb.length} | ${pct(killed(mb), mb.length)} | ${mm.length} | ${pct(killed(mm), mm.length)} |`, '');
+    const surv = mm.filter(m => m.outcome === 'EQUAL');
+    if (surv.length) {
+      L.push(`<details><summary>Survivors on the matrix screens (${surv.length})</summary>`, '');
+      for (const m of surv) L.push(`- ${m.mutant}: \`${items.find(i => i.key === m.key)?.xpath}\` → \`${m.ui}\` (${m.xn}/${m.un})`);
+      L.push('', '</details>', '');
+    }
   }
   const rs = Object.values(doc.runs);
   L.push('## Lookup times', '');
@@ -288,15 +351,17 @@ function summary(doc, file, items) {
   const s = await Session.open();
   Object.assign(doc, { date: new Date().toISOString().slice(0, 10), host, device: device(), stack: stack(s), settings: await s.settings(), seed: file.seed });
   const byKey = new Map(items.map(it => [it.key, it]));
+  const matrix = args.includes('--matrix');
+  const homeOf = k => (matrix ? file.matrix.home[k] : file.items[k].home);
   if (args.includes('--mutants')) {
-    doc.mutants ||= {};
+    const store = matrix ? (doc.mutantsMatrix ||= {}) : (doc.mutants ||= {});
     const plan = mutantPlan(items);
     try {
-      for (const b of file.batches) {
+      for (const b of matrix ? file.matrix.batches : file.batches) {
         if (batches && !batches.includes(b.id)) continue;
         for (const sc of b.screens) {
-          const todo = b.items.map(k => byKey.get(k)).filter(it => it && it.outcome === 'exact' && file.items[it.key].home === sc.name)
-            .flatMap(it => mutantsOf(it).map(([name, u]) => ({ it, name, u }))).filter(m => plan.has(`${m.it.key}|${m.name}`) && doc.mutants[`${m.it.key}|${m.name}`]?.ui !== m.u);
+          const todo = b.items.map(k => byKey.get(k)).filter(it => it && it.outcome === 'exact' && homeOf(it.key) === sc.name)
+            .flatMap(it => mutantsOf(it).map(([name, u]) => ({ it, name, u }))).filter(m => plan.has(`${m.it.key}|${m.name}`) && store[`${m.it.key}|${m.name}`]?.ui !== m.u);
           if (!todo.length) continue;
           await launch(sc);
           const cache = new Map();
@@ -304,7 +369,7 @@ function summary(doc, file, items) {
           for (const m of todo) {
             const x = await lookup(s, cache, 'xpath', m.it.xpath);
             const u = await lookup(s, cache, UI, m.u);
-            doc.mutants[`${m.it.key}|${m.name}`] = { key: m.it.key, mutant: m.name, ui: m.u, outcome: compare(x, u), xn: x.n, un: u.error ? 'err' : u.n };
+            store[`${m.it.key}|${m.name}`] = { key: m.it.key, mutant: m.name, ui: m.u, outcome: compare(x, u), xn: x.n, un: u.error ? 'err' : u.n };
           }
           write(OUT, doc);
         }
@@ -313,9 +378,10 @@ function summary(doc, file, items) {
     fs.writeFileSync(SUMMARY, summary(doc, file, items));
     return;
   }
-  const pool = args.includes('--rare') ? file.rare : file.batches;
+  const pool = args.includes('--rare') ? file.rare : matrix ? file.matrix.batches : file.batches;
   const todoOf = (b, sc) => b.items.map(k => byKey.get(k)).filter(it => it && (!only || only.includes(it.key)))
-    .filter(it => doc.runs[`${it.key}|${sc.name}`]?.ui !== it.uiselector);
+    .filter(it => !matrix || homeOf(it.key) === sc.name)
+    .filter(it => doc.runs[`${it.key}|${sc.name}`]?.ui !== it.uiselector || transient(doc.runs[`${it.key}|${sc.name}`]));
   const total = pool.filter(b => !batches || batches.includes(b.id)).reduce((n, b) => n + b.screens.reduce((m, sc) => m + todoOf(b, sc).length, 0), 0);
   let done = 0, diffs = 0;
   const t0 = Date.now();

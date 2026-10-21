@@ -155,10 +155,10 @@ const CASES = [
   exact('G16', r`//*[contains(@text,"a\b")]`, r`${U}.textMatches("(?s).*a\x5cb.*")`, ['SRV-23', 'SEL-03']),
 
   // --- H: regexes and case ---
-  exact('H01', r`//*[matches(@text,"^Total: \d+$")]`, r`${U}.textMatches("(?d)(?s:.*)(?:^Total: \d+$)(?s:.*)")`, ['XP-03']),
-  exact('H02', '//*[matches(@text,"total","i")]', `${U}.textMatches("(?d)(?s:.*)(?i:total)(?s:.*)")`, ['XP-03', 'XP-04']),
+  exact('H01', r`//*[matches(@text,"^Total: \d+$")]`, r`${U}.textMatches("(?d)(?s:.*)(?-s:^Total: \d+$)(?s:.*)")`, ['XP-03']),
+  exact('H02', '//*[matches(@text,"total","i")]', `${U}.textMatches("(?d)(?s:.*)(?i-s:total)(?s:.*)")`, ['XP-03', 'XP-04']),
   skip('H03', '//*[matches(@text,"a*")]', 'the pattern matches "", which XPath also matches on elements without the attribute', ['XP-03']),
-  exact('H04', '//*[matches(@text,"[a-z-[aeiou]]+")]', `${U}.textMatches("(?d)(?s:.*)(?:[a-z&&[^aeiou]]+)(?s:.*)")`, ['XP-03'], 'PsychoPath rewrites -[ to &&[^'),
+  exact('H04', '//*[matches(@text,"[a-z-[aeiou]]+")]', `${U}.textMatches("(?d)(?s:.*)(?-s:[a-z&&[^aeiou]]+)(?s:.*)")`, ['XP-03'], 'PsychoPath rewrites -[ to &&[^'),
   dev(close('H05', '//*[lower-case(@text)="ok"]', `${U}.textMatches("(?i)ok")`, ['XP-05'],
     'Android regexes are ICU: (?i) folds Unicode letters like lower-case() does; one-to-many folds (İ, ß) are not checked'),
     'EQUAL on every screen, the Kelvin sign "OK" (lower-case → "ok") included'),
@@ -171,7 +171,11 @@ const CASES = [
   dev(skip('H08', '//*[upper-case(@text)="OK"]', 'upper-case() leaves the Kelvin sign as is (it is upper case already); (?i) folds it to k (Decision 3)', ['XP-05']),
     'XPath 4, textMatches("(?i)OK") 5: it also finds "O" + Kelvin sign'),
   skip('H09', '//*[matches(@text,"x","q")]', 'q is not a valid flag, so the XPath fails', ['XP-03']),
-  exact('H10', '//*[matches(@content-desc,"^Menu")]', `${U}.descriptionMatches("(?d)(?s:.*)(?:^Menu)(?s:.*)")`, ['XP-03']),
+  exact('H10', '//*[matches(@content-desc,"^Menu")]', `${U}.descriptionMatches("(?d)(?s:.*)(?-s:^Menu)(?s:.*)")`, ['XP-03']),
+  // textMatches compiles with DOTALL (SEL-03); PsychoPath's . stops at a line break unless the s flag is given
+  exact('H11', '//*[matches(@text,"Line 1.Line 2")]', `${U}.textMatches("(?d)(?s:.*)(?-s:Line 1.Line 2)(?s:.*)")`, ['XP-03', 'SEL-03'],
+    'found by the R fuzz mutants (stage 4b): without (?-s:…) the UiSelector also finds "Line 1\\nLine 2"'),
+  exact('H12', '//*[matches(@text,"Line 1.Line 2","s")]', `${U}.textMatches("(?d)(?s:.*)(?s:Line 1.Line 2)(?s:.*)")`, ['XP-03', 'XP-04', 'SEL-03']),
 
   // --- X: unions and sequences ---
   exact('X01', '//*[@text="A"] | //*[@text="B"]', `${U}.textMatches("A|B")`, ['XP-09', 'SEL-03']),

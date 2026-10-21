@@ -1,5 +1,5 @@
 {
- "date": "2026-10-20",
+ "date": "2026-10-21",
  "runs": {
   "P03|attrs": {
    "case": "P03",
@@ -3458,60 +3458,6 @@
     ]
    }
   },
-  "H01|attrs": {
-   "case": "H01",
-   "screen": "attrs",
-   "expect": "exact",
-   "outcome": "EQUAL",
-   "xpath": {
-    "ms": 62.3,
-    "n": 1,
-    "fp": [
-     "android.widget.TextView||Total: 42||[540,173][810,283]"
-    ]
-   },
-   "ui": {
-    "ms": 61.9,
-    "n": 1,
-    "fp": [
-     "android.widget.TextView||Total: 42||[540,173][810,283]"
-    ]
-   }
-  },
-  "H02|attrs": {
-   "case": "H02",
-   "screen": "attrs",
-   "expect": "exact",
-   "outcome": "EQUAL",
-   "xpath": {
-    "ms": 76.4,
-    "n": 8,
-    "fp": [
-     "android.widget.TextView||Total||[270,63][540,173]",
-     "android.widget.TextView||total||[540,63][810,173]",
-     "android.widget.TextView||TOTAL||[810,63][1080,173]",
-     "android.widget.TextView||Subtotal||[0,173][270,283]",
-     "android.widget.TextView|| Total ||[270,173][540,283]",
-     "android.widget.TextView||Total: 42||[540,173][810,283]",
-     "android.widget.TextView||Grand Total USD||[810,173][1080,283]",
-     "android.widget.TextView||Total: 4x||[0,2043][270,2153]"
-    ]
-   },
-   "ui": {
-    "ms": 60.6,
-    "n": 8,
-    "fp": [
-     "android.widget.TextView||Total||[270,63][540,173]",
-     "android.widget.TextView||total||[540,63][810,173]",
-     "android.widget.TextView||TOTAL||[810,63][1080,173]",
-     "android.widget.TextView||Subtotal||[0,173][270,283]",
-     "android.widget.TextView|| Total ||[270,173][540,283]",
-     "android.widget.TextView||Total: 42||[540,173][810,283]",
-     "android.widget.TextView||Grand Total USD||[810,173][1080,283]",
-     "android.widget.TextView||Total: 4x||[0,2043][270,2153]"
-    ]
-   }
-  },
   "H03|attrs": {
    "case": "H03",
    "screen": "attrs",
@@ -3710,136 +3656,6 @@
     "outcome": "SET_DIFFERS"
    }
   },
-  "H04|attrs": {
-   "case": "H04",
-   "screen": "attrs",
-   "expect": "exact",
-   "outcome": "EQUAL",
-   "xpath": {
-    "ms": 78.8,
-    "n": 56,
-    "fp": [
-     "android.widget.Button|com.example.app:id/login|Sign in||[0,63][270,173]",
-     "android.widget.TextView||Total||[270,63][540,173]",
-     "android.widget.TextView||total||[540,63][810,173]",
-     "android.widget.TextView||Subtotal||[0,173][270,283]",
-     "android.widget.TextView|| Total ||[270,173][540,283]",
-     "android.widget.TextView||Total: 42||[540,173][810,283]",
-     "android.widget.TextView||Grand Total USD||[810,173][1080,283]",
-     "android.widget.EditText||Email||[810,283][1080,393]",
-     "android.widget.TextView||Has text||[810,393][1080,503]",
-     "android.widget.TextView||Empty id||[0,503][270,613]",
-     "android.widget.TextView|login|Short id||[270,503][540,613]",
-     "android.widget.TextView|com.example.app:id/login_button|Long id||[540,503][810,613]",
-     "android.view.View||x||[810,503][1080,613]",
-     "||x||[0,613][270,723]",
-     "android.view.View||y||[270,613][540,723]",
-     "com.example.app.Outer$Inner||Dollar class||[540,613][810,723]",
-     "android.widget.CheckBox||Unchecked box||[810,613][1080,723]",
-     "android.widget.CheckBox||Checked box||[0,723][270,833]",
-     "android.widget.TextView||Disabled||[270,723][540,833]",
-     "android.widget.TextView||Focusable||[540,723][810,833]",
-     "android.widget.TextView||Focused||[810,723][1080,833]",
-     "android.widget.TextView||Long||[0,833][270,943]",
-     "android.widget.TextView||Scroll||[270,833][540,943]",
-     "android.widget.TextView||Selected||[540,833][810,943]",
-     "android.widget.TextView||Password||[810,833][1080,943]",
-     "android.widget.TextView||v1.5||[0,943][270,1053]",
-     "android.widget.TextView||1x5||[270,943][540,1053]",
-     "android.widget.RadioButton||Radio||[0,1053][270,1163]",
-     "android.widget.TextView||Yes||[810,1053][1080,1163]",
-     "android.widget.TextView||ab||[540,1273][810,1383]",
-     "android.widget.TextView||ba||[810,1273][1080,1383]",
-     "android.widget.TextView||a only||[0,1383][270,1493]",
-     "android.widget.TextView||Ad banner||[270,1383][540,1493]",
-     "android.widget.TextView||Say \"hi\"||[810,1383][1080,1493]",
-     "android.widget.TextView||C:\\Temp\\||[0,1493][270,1603]",
-     "android.widget.TextView||it's||[270,1493][540,1603]",
-     "android.widget.TextView||a]b||[540,1493][810,1603]",
-     "android.widget.TextView||a/b||[810,1493][1080,1603]",
-     "android.widget.TextView||Price: $5||[0,1603][270,1713]",
-     "android.widget.TextView||Pay $5.00 (incl.) now||[270,1603][540,1713]",
-     "android.widget.TextView||Line 1\nLine 2||[540,1603][810,1713]",
-     "android.widget.TextView||Grüße||[810,1603][1080,1713]",
-     "android.widget.TextView||a;b||[0,1713][270,1823]",
-     "android.widget.TextView||f(x)||[270,1713][540,1823]",
-     "android.widget.TextView||bell\u0007||[540,1713][810,1823]",
-     "android.widget.TextView||a\"b||[810,1713][1080,1823]",
-     "android.widget.TextView||%s||[0,1823][270,1933]",
-     "android.widget.TextView||${name}||[270,1823][540,1933]",
-     "android.widget.TextView||xa\\by||[540,1823][810,1933]",
-     "android.widget.TextView||Ok||[810,1823][1080,1933]",
-     "android.widget.TextView||ok||[0,1933][270,2043]",
-     "android.widget.TextView||xyz||[540,1933][810,2043]",
-     "android.widget.TextView||Total: 4x||[0,2043][270,2153]",
-     "android.widget.ImageButton||Image||[0,2153][270,2263]",
-     "android.widget.Button||Add||[270,2153][540,2263]",
-     "android.widget.Button||Add||[540,2153][810,2263]"
-    ]
-   },
-   "ui": {
-    "ms": 229.9,
-    "n": 56,
-    "fp": [
-     "android.widget.Button|com.example.app:id/login|Sign in||[0,63][270,173]",
-     "android.widget.TextView||Total||[270,63][540,173]",
-     "android.widget.TextView||total||[540,63][810,173]",
-     "android.widget.TextView||Subtotal||[0,173][270,283]",
-     "android.widget.TextView|| Total ||[270,173][540,283]",
-     "android.widget.TextView||Total: 42||[540,173][810,283]",
-     "android.widget.TextView||Grand Total USD||[810,173][1080,283]",
-     "android.widget.EditText||Email||[810,283][1080,393]",
-     "android.widget.TextView||Has text||[810,393][1080,503]",
-     "android.widget.TextView||Empty id||[0,503][270,613]",
-     "android.widget.TextView|login|Short id||[270,503][540,613]",
-     "android.widget.TextView|com.example.app:id/login_button|Long id||[540,503][810,613]",
-     "android.view.View||x||[810,503][1080,613]",
-     "||x||[0,613][270,723]",
-     "android.view.View||y||[270,613][540,723]",
-     "com.example.app.Outer$Inner||Dollar class||[540,613][810,723]",
-     "android.widget.CheckBox||Unchecked box||[810,613][1080,723]",
-     "android.widget.CheckBox||Checked box||[0,723][270,833]",
-     "android.widget.TextView||Disabled||[270,723][540,833]",
-     "android.widget.TextView||Focusable||[540,723][810,833]",
-     "android.widget.TextView||Focused||[810,723][1080,833]",
-     "android.widget.TextView||Long||[0,833][270,943]",
-     "android.widget.TextView||Scroll||[270,833][540,943]",
-     "android.widget.TextView||Selected||[540,833][810,943]",
-     "android.widget.TextView||Password||[810,833][1080,943]",
-     "android.widget.TextView||v1.5||[0,943][270,1053]",
-     "android.widget.TextView||1x5||[270,943][540,1053]",
-     "android.widget.RadioButton||Radio||[0,1053][270,1163]",
-     "android.widget.TextView||Yes||[810,1053][1080,1163]",
-     "android.widget.TextView||ab||[540,1273][810,1383]",
-     "android.widget.TextView||ba||[810,1273][1080,1383]",
-     "android.widget.TextView||a only||[0,1383][270,1493]",
-     "android.widget.TextView||Ad banner||[270,1383][540,1493]",
-     "android.widget.TextView||Say \"hi\"||[810,1383][1080,1493]",
-     "android.widget.TextView||C:\\Temp\\||[0,1493][270,1603]",
-     "android.widget.TextView||it's||[270,1493][540,1603]",
-     "android.widget.TextView||a]b||[540,1493][810,1603]",
-     "android.widget.TextView||a/b||[810,1493][1080,1603]",
-     "android.widget.TextView||Price: $5||[0,1603][270,1713]",
-     "android.widget.TextView||Pay $5.00 (incl.) now||[270,1603][540,1713]",
-     "android.widget.TextView||Line 1\nLine 2||[540,1603][810,1713]",
-     "android.widget.TextView||Grüße||[810,1603][1080,1713]",
-     "android.widget.TextView||a;b||[0,1713][270,1823]",
-     "android.widget.TextView||f(x)||[270,1713][540,1823]",
-     "android.widget.TextView||bell\u0007||[540,1713][810,1823]",
-     "android.widget.TextView||a\"b||[810,1713][1080,1823]",
-     "android.widget.TextView||%s||[0,1823][270,1933]",
-     "android.widget.TextView||${name}||[270,1823][540,1933]",
-     "android.widget.TextView||xa\\by||[540,1823][810,1933]",
-     "android.widget.TextView||Ok||[810,1823][1080,1933]",
-     "android.widget.TextView||ok||[0,1933][270,2043]",
-     "android.widget.TextView||xyz||[540,1933][810,2043]",
-     "android.widget.TextView||Total: 4x||[0,2043][270,2153]",
-     "android.widget.ImageButton||Image||[0,2153][270,2263]",
-     "android.widget.Button||Add||[270,2153][540,2263]",
-     "android.widget.Button||Add||[540,2153][810,2263]"
-    ]
-   }
-  },
   "H05|attrs": {
    "case": "H05",
    "screen": "attrs",
@@ -3972,26 +3788,6 @@
    "xpath": {
     "ms": 59.9,
     "error": "unknown error: Invalid regular expression flag parameter.. Try changing the 'enforceXPath1' driver setting to 'true' in order to workaround the problem."
-   }
-  },
-  "H10|attrs": {
-   "case": "H10",
-   "screen": "attrs",
-   "expect": "exact",
-   "outcome": "EQUAL",
-   "xpath": {
-    "ms": 73.1,
-    "n": 1,
-    "fp": [
-     "android.widget.ImageView|||Menu open|[540,283][810,393]"
-    ]
-   },
-   "ui": {
-    "ms": 53,
-    "n": 1,
-    "fp": [
-     "android.widget.ImageView|||Menu open|[540,283][810,393]"
-    ]
    }
   },
   "X01|attrs": {
@@ -6932,42 +6728,6 @@
     "fp": []
    }
   },
-  "H01|tree": {
-   "case": "H01",
-   "screen": "tree",
-   "expect": "exact",
-   "outcome": "EQUAL",
-   "xpath": {
-    "ms": 19.9,
-    "n": 0,
-    "fp": []
-   },
-   "ui": {
-    "ms": 17.2,
-    "n": 0,
-    "fp": []
-   }
-  },
-  "H02|tree": {
-   "case": "H02",
-   "screen": "tree",
-   "expect": "exact",
-   "outcome": "EQUAL",
-   "xpath": {
-    "ms": 25.4,
-    "n": 1,
-    "fp": [
-     "android.widget.TextView||Total||[540,1535][810,1903]"
-    ]
-   },
-   "ui": {
-    "ms": 16,
-    "n": 1,
-    "fp": [
-     "android.widget.TextView||Total||[540,1535][810,1903]"
-    ]
-   }
-  },
   "H03|tree": {
    "case": "H03",
    "screen": "tree",
@@ -7067,74 +6827,6 @@
     "outcome": "SET_DIFFERS"
    }
   },
-  "H04|tree": {
-   "case": "H04",
-   "screen": "tree",
-   "expect": "exact",
-   "outcome": "EQUAL",
-   "xpath": {
-    "ms": 15.4,
-    "n": 25,
-    "fp": [
-     "android.widget.Button||Add||[0,63][360,431]",
-     "android.widget.TextView||Name||[360,63][720,431]",
-     "android.widget.TextView||Item||[720,63][1080,431]",
-     "android.widget.TextView||Item||[0,431][540,553]",
-     "android.widget.Button||Add||[540,431][1080,553]",
-     "android.widget.TextView||Item||[0,553][540,675]",
-     "android.widget.Button||Add||[540,553][1080,675]",
-     "android.widget.TextView||Item||[0,675][540,736]",
-     "android.widget.Button||Add||[540,675][1080,736]",
-     "android.widget.TextView||Deeper item||[0,736][1080,797]",
-     "android.widget.TextView||Item||[0,799][540,983]",
-     "android.widget.Button||Add||[540,799][1080,983]",
-     "android.widget.TextView||Item||[0,983][540,1075]",
-     "android.widget.Button||Add||[540,983][1080,1075]",
-     "android.widget.TextView||Inner||[0,1075][540,1167]",
-     "android.widget.Button||Add||[540,1075][1080,1167]",
-     "android.widget.Button||Outer||[0,1167][360,1535]",
-     "android.widget.Button||Inner button||[0,1167][360,1535]",
-     "android.widget.Button||Deep button||[360,1167][720,1535]",
-     "android.widget.ImageButton||Image||[720,1167][1080,1535]",
-     "android.widget.TextView|com.example.app:id/name_label|Name||[0,1535][270,1903]",
-     "android.widget.TextView||Value||[270,1535][540,1903]",
-     "android.widget.TextView||Total||[540,1535][810,1903]",
-     "android.widget.CheckBox||Unchecked box||[0,1903][270,2271]",
-     "android.widget.Button||Add||[270,1903][540,2271]"
-    ]
-   },
-   "ui": {
-    "ms": 56.3,
-    "n": 25,
-    "fp": [
-     "android.widget.Button||Add||[0,63][360,431]",
-     "android.widget.TextView||Name||[360,63][720,431]",
-     "android.widget.TextView||Item||[720,63][1080,431]",
-     "android.widget.TextView||Item||[0,431][540,553]",
-     "android.widget.Button||Add||[540,431][1080,553]",
-     "android.widget.TextView||Item||[0,553][540,675]",
-     "android.widget.Button||Add||[540,553][1080,675]",
-     "android.widget.TextView||Item||[0,675][540,736]",
-     "android.widget.Button||Add||[540,675][1080,736]",
-     "android.widget.TextView||Deeper item||[0,736][1080,797]",
-     "android.widget.TextView||Item||[0,799][540,983]",
-     "android.widget.Button||Add||[540,799][1080,983]",
-     "android.widget.TextView||Item||[0,983][540,1075]",
-     "android.widget.Button||Add||[540,983][1080,1075]",
-     "android.widget.TextView||Inner||[0,1075][540,1167]",
-     "android.widget.Button||Add||[540,1075][1080,1167]",
-     "android.widget.Button||Outer||[0,1167][360,1535]",
-     "android.widget.Button||Inner button||[0,1167][360,1535]",
-     "android.widget.Button||Deep button||[360,1167][720,1535]",
-     "android.widget.ImageButton||Image||[720,1167][1080,1535]",
-     "android.widget.TextView|com.example.app:id/name_label|Name||[0,1535][270,1903]",
-     "android.widget.TextView||Value||[270,1535][540,1903]",
-     "android.widget.TextView||Total||[540,1535][810,1903]",
-     "android.widget.CheckBox||Unchecked box||[0,1903][270,2271]",
-     "android.widget.Button||Add||[270,1903][540,2271]"
-    ]
-   }
-  },
   "H05|tree": {
    "case": "H05",
    "screen": "tree",
@@ -7231,22 +6923,6 @@
    "xpath": {
     "ms": 25.9,
     "error": "unknown error: Invalid regular expression flag parameter.. Try changing the 'enforceXPath1' driver setting to 'true' in order to workaround the problem."
-   }
-  },
-  "H10|tree": {
-   "case": "H10",
-   "screen": "tree",
-   "expect": "exact",
-   "outcome": "EQUAL",
-   "xpath": {
-    "ms": 30.1,
-    "n": 0,
-    "fp": []
-   },
-   "ui": {
-    "ms": 23.3,
-    "n": 0,
-    "fp": []
    }
   },
   "X01|tree": {
@@ -10526,42 +10202,6 @@
     "fp": []
    }
   },
-  "H01|deep": {
-   "case": "H01",
-   "screen": "deep",
-   "expect": "exact",
-   "outcome": "EQUAL",
-   "xpath": {
-    "ms": 23.5,
-    "n": 0,
-    "fp": []
-   },
-   "ui": {
-    "ms": 28.7,
-    "n": 0,
-    "fp": []
-   }
-  },
-  "H02|deep": {
-   "case": "H02",
-   "screen": "deep",
-   "expect": "exact",
-   "outcome": "EQUAL",
-   "xpath": {
-    "ms": 26.2,
-    "n": 1,
-    "fp": [
-     "android.widget.TextView||Total||[540,63][1080,505]"
-    ]
-   },
-   "ui": {
-    "ms": 26.7,
-    "n": 1,
-    "fp": [
-     "android.widget.TextView||Total||[540,63][1080,505]"
-    ]
-   }
-  },
   "H03|deep": {
    "case": "H03",
    "screen": "deep",
@@ -10676,45 +10316,6 @@
     "outcome": "SET_DIFFERS"
    }
   },
-  "H04|deep": {
-   "case": "H04",
-   "screen": "deep",
-   "expect": "exact",
-   "outcome": "SET_DIFFERS",
-   "xpath": {
-    "ms": 26.6,
-    "n": 8,
-    "fp": [
-     "android.widget.Button||Add||[0,63][540,505]",
-     "android.widget.TextView||Total||[540,63][1080,505]",
-     "android.widget.TextView||Depth 10||[0,505][1080,1389]",
-     "android.widget.TextView||Depth 20||[0,1389][1080,1831]",
-     "android.widget.TextView||Depth 30||[0,1831][1080,2052]",
-     "android.widget.TextView||Depth 40||[0,2052][1080,2162]",
-     "android.widget.TextView||Depth 50||[0,2162][1080,2217]",
-     "android.widget.TextView||Depth 60||[0,2217][1080,2244]"
-    ]
-   },
-   "ui": {
-    "ms": 53.7,
-    "n": 13,
-    "fp": [
-     "android.widget.Button||Add||[0,63][540,505]",
-     "android.widget.TextView||Total||[540,63][1080,505]",
-     "android.widget.TextView||Depth 10||[0,505][1080,1389]",
-     "android.widget.TextView||Depth 20||[0,1389][1080,1831]",
-     "android.widget.TextView||Depth 30||[0,1831][1080,2052]",
-     "android.widget.TextView||Depth 40||[0,2052][1080,2162]",
-     "android.widget.TextView||Depth 50||[0,2162][1080,2217]",
-     "android.widget.TextView||Depth 60||[0,2217][1080,2244]",
-     "android.widget.TextView||Depth 70||[0,2244][1080,2257]",
-     "android.widget.TextView||Depth 80||[0,2257][1080,2263]",
-     "android.widget.TextView||Depth 90||[0,2263][1080,2266]",
-     "android.widget.TextView||Depth 100||[0,2266][1080,2267]",
-     "android.widget.TextView||Deep marker||[0,2267][1080,2268]"
-    ]
-   }
-  },
   "H05|deep": {
    "case": "H05",
    "screen": "deep",
@@ -10799,22 +10400,6 @@
    "xpath": {
     "ms": 24.7,
     "error": "unknown error: Invalid regular expression flag parameter.. Try changing the 'enforceXPath1' driver setting to 'true' in order to workaround the problem."
-   }
-  },
-  "H10|deep": {
-   "case": "H10",
-   "screen": "deep",
-   "expect": "exact",
-   "outcome": "EQUAL",
-   "xpath": {
-    "ms": 26.4,
-    "n": 0,
-    "fp": []
-   },
-   "ui": {
-    "ms": 28.4,
-    "n": 0,
-    "fp": []
    }
   },
   "X01|deep": {
@@ -13002,42 +12587,6 @@
     "fp": []
    }
   },
-  "H01|windows": {
-   "case": "H01",
-   "screen": "windows",
-   "expect": "exact",
-   "outcome": "EQUAL",
-   "xpath": {
-    "ms": 8.5,
-    "n": 0,
-    "fp": []
-   },
-   "ui": {
-    "ms": 14.5,
-    "n": 0,
-    "fp": []
-   }
-  },
-  "H02|windows": {
-   "case": "H02",
-   "screen": "windows",
-   "expect": "exact",
-   "outcome": "EQUAL",
-   "xpath": {
-    "ms": 11.7,
-    "n": 1,
-    "fp": [
-     "android.widget.TextView||Total||[720,63][1080,615]"
-    ]
-   },
-   "ui": {
-    "ms": 12.5,
-    "n": 1,
-    "fp": [
-     "android.widget.TextView||Total||[720,63][1080,615]"
-    ]
-   }
-  },
   "H03|windows": {
    "case": "H03",
    "screen": "windows",
@@ -13075,32 +12624,6 @@
      ]
     },
     "outcome": "SET_DIFFERS"
-   }
-  },
-  "H04|windows": {
-   "case": "H04",
-   "screen": "windows",
-   "expect": "exact",
-   "outcome": "EQUAL",
-   "xpath": {
-    "ms": 12.2,
-    "n": 4,
-    "fp": [
-     "android.widget.Button||Add||[0,63][360,615]",
-     "android.widget.TextView||Item||[360,63][720,615]",
-     "android.widget.TextView||Total||[720,63][1080,615]",
-     "android.widget.TextView||Name||[0,1444][1080,2273]"
-    ]
-   },
-   "ui": {
-    "ms": 16.4,
-    "n": 4,
-    "fp": [
-     "android.widget.Button||Add||[0,63][360,615]",
-     "android.widget.TextView||Item||[360,63][720,615]",
-     "android.widget.TextView||Total||[720,63][1080,615]",
-     "android.widget.TextView||Name||[0,1444][1080,2273]"
-    ]
    }
   },
   "H05|windows": {
@@ -13199,22 +12722,6 @@
    "xpath": {
     "ms": 13.9,
     "error": "unknown error: Invalid regular expression flag parameter.. Try changing the 'enforceXPath1' driver setting to 'true' in order to workaround the problem."
-   }
-  },
-  "H10|windows": {
-   "case": "H10",
-   "screen": "windows",
-   "expect": "exact",
-   "outcome": "EQUAL",
-   "xpath": {
-    "ms": 11,
-    "n": 0,
-    "fp": []
-   },
-   "ui": {
-    "ms": 14.2,
-    "n": 0,
-    "fp": []
    }
   },
   "X01|windows": {
@@ -14132,6 +13639,670 @@
      "android.widget.Button||OK||[0,615][1080,1444]",
      "android.widget.TextView||Name||[0,1444][1080,2273]"
     ]
+   }
+  },
+  "H01|attrs": {
+   "case": "H01",
+   "screen": "attrs",
+   "expect": "exact",
+   "outcome": "EQUAL",
+   "xpath": {
+    "ms": 457.1,
+    "n": 1,
+    "fp": [
+     "android.widget.TextView||Total: 42||[540,173][810,283]"
+    ]
+   },
+   "ui": {
+    "ms": 65,
+    "n": 1,
+    "fp": [
+     "android.widget.TextView||Total: 42||[540,173][810,283]"
+    ]
+   }
+  },
+  "H02|attrs": {
+   "case": "H02",
+   "screen": "attrs",
+   "expect": "exact",
+   "outcome": "EQUAL",
+   "xpath": {
+    "ms": 92.7,
+    "n": 8,
+    "fp": [
+     "android.widget.TextView||Total||[270,63][540,173]",
+     "android.widget.TextView||total||[540,63][810,173]",
+     "android.widget.TextView||TOTAL||[810,63][1080,173]",
+     "android.widget.TextView||Subtotal||[0,173][270,283]",
+     "android.widget.TextView|| Total ||[270,173][540,283]",
+     "android.widget.TextView||Total: 42||[540,173][810,283]",
+     "android.widget.TextView||Grand Total USD||[810,173][1080,283]",
+     "android.widget.TextView||Total: 4x||[0,2043][270,2153]"
+    ]
+   },
+   "ui": {
+    "ms": 67.2,
+    "n": 8,
+    "fp": [
+     "android.widget.TextView||Total||[270,63][540,173]",
+     "android.widget.TextView||total||[540,63][810,173]",
+     "android.widget.TextView||TOTAL||[810,63][1080,173]",
+     "android.widget.TextView||Subtotal||[0,173][270,283]",
+     "android.widget.TextView|| Total ||[270,173][540,283]",
+     "android.widget.TextView||Total: 42||[540,173][810,283]",
+     "android.widget.TextView||Grand Total USD||[810,173][1080,283]",
+     "android.widget.TextView||Total: 4x||[0,2043][270,2153]"
+    ]
+   }
+  },
+  "H04|attrs": {
+   "case": "H04",
+   "screen": "attrs",
+   "expect": "exact",
+   "outcome": "EQUAL",
+   "xpath": {
+    "ms": 104.9,
+    "n": 56,
+    "fp": [
+     "android.widget.Button|com.example.app:id/login|Sign in||[0,63][270,173]",
+     "android.widget.TextView||Total||[270,63][540,173]",
+     "android.widget.TextView||total||[540,63][810,173]",
+     "android.widget.TextView||Subtotal||[0,173][270,283]",
+     "android.widget.TextView|| Total ||[270,173][540,283]",
+     "android.widget.TextView||Total: 42||[540,173][810,283]",
+     "android.widget.TextView||Grand Total USD||[810,173][1080,283]",
+     "android.widget.EditText||Email||[810,283][1080,393]",
+     "android.widget.TextView||Has text||[810,393][1080,503]",
+     "android.widget.TextView||Empty id||[0,503][270,613]",
+     "android.widget.TextView|login|Short id||[270,503][540,613]",
+     "android.widget.TextView|com.example.app:id/login_button|Long id||[540,503][810,613]",
+     "android.view.View||x||[810,503][1080,613]",
+     "||x||[0,613][270,723]",
+     "android.view.View||y||[270,613][540,723]",
+     "com.example.app.Outer$Inner||Dollar class||[540,613][810,723]",
+     "android.widget.CheckBox||Unchecked box||[810,613][1080,723]",
+     "android.widget.CheckBox||Checked box||[0,723][270,833]",
+     "android.widget.TextView||Disabled||[270,723][540,833]",
+     "android.widget.TextView||Focusable||[540,723][810,833]",
+     "android.widget.TextView||Focused||[810,723][1080,833]",
+     "android.widget.TextView||Long||[0,833][270,943]",
+     "android.widget.TextView||Scroll||[270,833][540,943]",
+     "android.widget.TextView||Selected||[540,833][810,943]",
+     "android.widget.TextView||Password||[810,833][1080,943]",
+     "android.widget.TextView||v1.5||[0,943][270,1053]",
+     "android.widget.TextView||1x5||[270,943][540,1053]",
+     "android.widget.RadioButton||Radio||[0,1053][270,1163]",
+     "android.widget.TextView||Yes||[810,1053][1080,1163]",
+     "android.widget.TextView||ab||[540,1273][810,1383]",
+     "android.widget.TextView||ba||[810,1273][1080,1383]",
+     "android.widget.TextView||a only||[0,1383][270,1493]",
+     "android.widget.TextView||Ad banner||[270,1383][540,1493]",
+     "android.widget.TextView||Say \"hi\"||[810,1383][1080,1493]",
+     "android.widget.TextView||C:\\Temp\\||[0,1493][270,1603]",
+     "android.widget.TextView||it's||[270,1493][540,1603]",
+     "android.widget.TextView||a]b||[540,1493][810,1603]",
+     "android.widget.TextView||a/b||[810,1493][1080,1603]",
+     "android.widget.TextView||Price: $5||[0,1603][270,1713]",
+     "android.widget.TextView||Pay $5.00 (incl.) now||[270,1603][540,1713]",
+     "android.widget.TextView||Line 1\nLine 2||[540,1603][810,1713]",
+     "android.widget.TextView||Grüße||[810,1603][1080,1713]",
+     "android.widget.TextView||a;b||[0,1713][270,1823]",
+     "android.widget.TextView||f(x)||[270,1713][540,1823]",
+     "android.widget.TextView||bell\u0007||[540,1713][810,1823]",
+     "android.widget.TextView||a\"b||[810,1713][1080,1823]",
+     "android.widget.TextView||%s||[0,1823][270,1933]",
+     "android.widget.TextView||${name}||[270,1823][540,1933]",
+     "android.widget.TextView||xa\\by||[540,1823][810,1933]",
+     "android.widget.TextView||Ok||[810,1823][1080,1933]",
+     "android.widget.TextView||ok||[0,1933][270,2043]",
+     "android.widget.TextView||xyz||[540,1933][810,2043]",
+     "android.widget.TextView||Total: 4x||[0,2043][270,2153]",
+     "android.widget.ImageButton||Image||[0,2153][270,2263]",
+     "android.widget.Button||Add||[270,2153][540,2263]",
+     "android.widget.Button||Add||[540,2153][810,2263]"
+    ]
+   },
+   "ui": {
+    "ms": 190.1,
+    "n": 56,
+    "fp": [
+     "android.widget.Button|com.example.app:id/login|Sign in||[0,63][270,173]",
+     "android.widget.TextView||Total||[270,63][540,173]",
+     "android.widget.TextView||total||[540,63][810,173]",
+     "android.widget.TextView||Subtotal||[0,173][270,283]",
+     "android.widget.TextView|| Total ||[270,173][540,283]",
+     "android.widget.TextView||Total: 42||[540,173][810,283]",
+     "android.widget.TextView||Grand Total USD||[810,173][1080,283]",
+     "android.widget.EditText||Email||[810,283][1080,393]",
+     "android.widget.TextView||Has text||[810,393][1080,503]",
+     "android.widget.TextView||Empty id||[0,503][270,613]",
+     "android.widget.TextView|login|Short id||[270,503][540,613]",
+     "android.widget.TextView|com.example.app:id/login_button|Long id||[540,503][810,613]",
+     "android.view.View||x||[810,503][1080,613]",
+     "||x||[0,613][270,723]",
+     "android.view.View||y||[270,613][540,723]",
+     "com.example.app.Outer$Inner||Dollar class||[540,613][810,723]",
+     "android.widget.CheckBox||Unchecked box||[810,613][1080,723]",
+     "android.widget.CheckBox||Checked box||[0,723][270,833]",
+     "android.widget.TextView||Disabled||[270,723][540,833]",
+     "android.widget.TextView||Focusable||[540,723][810,833]",
+     "android.widget.TextView||Focused||[810,723][1080,833]",
+     "android.widget.TextView||Long||[0,833][270,943]",
+     "android.widget.TextView||Scroll||[270,833][540,943]",
+     "android.widget.TextView||Selected||[540,833][810,943]",
+     "android.widget.TextView||Password||[810,833][1080,943]",
+     "android.widget.TextView||v1.5||[0,943][270,1053]",
+     "android.widget.TextView||1x5||[270,943][540,1053]",
+     "android.widget.RadioButton||Radio||[0,1053][270,1163]",
+     "android.widget.TextView||Yes||[810,1053][1080,1163]",
+     "android.widget.TextView||ab||[540,1273][810,1383]",
+     "android.widget.TextView||ba||[810,1273][1080,1383]",
+     "android.widget.TextView||a only||[0,1383][270,1493]",
+     "android.widget.TextView||Ad banner||[270,1383][540,1493]",
+     "android.widget.TextView||Say \"hi\"||[810,1383][1080,1493]",
+     "android.widget.TextView||C:\\Temp\\||[0,1493][270,1603]",
+     "android.widget.TextView||it's||[270,1493][540,1603]",
+     "android.widget.TextView||a]b||[540,1493][810,1603]",
+     "android.widget.TextView||a/b||[810,1493][1080,1603]",
+     "android.widget.TextView||Price: $5||[0,1603][270,1713]",
+     "android.widget.TextView||Pay $5.00 (incl.) now||[270,1603][540,1713]",
+     "android.widget.TextView||Line 1\nLine 2||[540,1603][810,1713]",
+     "android.widget.TextView||Grüße||[810,1603][1080,1713]",
+     "android.widget.TextView||a;b||[0,1713][270,1823]",
+     "android.widget.TextView||f(x)||[270,1713][540,1823]",
+     "android.widget.TextView||bell\u0007||[540,1713][810,1823]",
+     "android.widget.TextView||a\"b||[810,1713][1080,1823]",
+     "android.widget.TextView||%s||[0,1823][270,1933]",
+     "android.widget.TextView||${name}||[270,1823][540,1933]",
+     "android.widget.TextView||xa\\by||[540,1823][810,1933]",
+     "android.widget.TextView||Ok||[810,1823][1080,1933]",
+     "android.widget.TextView||ok||[0,1933][270,2043]",
+     "android.widget.TextView||xyz||[540,1933][810,2043]",
+     "android.widget.TextView||Total: 4x||[0,2043][270,2153]",
+     "android.widget.ImageButton||Image||[0,2153][270,2263]",
+     "android.widget.Button||Add||[270,2153][540,2263]",
+     "android.widget.Button||Add||[540,2153][810,2263]"
+    ]
+   }
+  },
+  "H10|attrs": {
+   "case": "H10",
+   "screen": "attrs",
+   "expect": "exact",
+   "outcome": "EQUAL",
+   "xpath": {
+    "ms": 69.8,
+    "n": 1,
+    "fp": [
+     "android.widget.ImageView|||Menu open|[540,283][810,393]"
+    ]
+   },
+   "ui": {
+    "ms": 71.2,
+    "n": 1,
+    "fp": [
+     "android.widget.ImageView|||Menu open|[540,283][810,393]"
+    ]
+   }
+  },
+  "H11|attrs": {
+   "case": "H11",
+   "screen": "attrs",
+   "expect": "exact",
+   "outcome": "EQUAL",
+   "xpath": {
+    "ms": 79.3,
+    "n": 0,
+    "fp": []
+   },
+   "ui": {
+    "ms": 59,
+    "n": 0,
+    "fp": []
+   },
+   "probe": {
+    "uiselector": "new UiSelector().textMatches(\"(?d)(?s:.*)(?:Line 1.Line 2)(?s:.*)\")",
+    "ui": {
+     "ms": 69.9,
+     "n": 1,
+     "fp": [
+      "android.widget.TextView||Line 1\nLine 2||[540,1603][810,1713]"
+     ]
+    },
+    "outcome": "SET_DIFFERS"
+   }
+  },
+  "H12|attrs": {
+   "case": "H12",
+   "screen": "attrs",
+   "expect": "exact",
+   "outcome": "EQUAL",
+   "xpath": {
+    "ms": 80.6,
+    "n": 1,
+    "fp": [
+     "android.widget.TextView||Line 1\nLine 2||[540,1603][810,1713]"
+    ]
+   },
+   "ui": {
+    "ms": 60,
+    "n": 1,
+    "fp": [
+     "android.widget.TextView||Line 1\nLine 2||[540,1603][810,1713]"
+    ]
+   }
+  },
+  "H01|tree": {
+   "case": "H01",
+   "screen": "tree",
+   "expect": "exact",
+   "outcome": "EQUAL",
+   "xpath": {
+    "ms": 43.2,
+    "n": 0,
+    "fp": []
+   },
+   "ui": {
+    "ms": 33.4,
+    "n": 0,
+    "fp": []
+   }
+  },
+  "H02|tree": {
+   "case": "H02",
+   "screen": "tree",
+   "expect": "exact",
+   "outcome": "EQUAL",
+   "xpath": {
+    "ms": 23.5,
+    "n": 1,
+    "fp": [
+     "android.widget.TextView||Total||[540,1535][810,1903]"
+    ]
+   },
+   "ui": {
+    "ms": 25.4,
+    "n": 1,
+    "fp": [
+     "android.widget.TextView||Total||[540,1535][810,1903]"
+    ]
+   }
+  },
+  "H04|tree": {
+   "case": "H04",
+   "screen": "tree",
+   "expect": "exact",
+   "outcome": "EQUAL",
+   "xpath": {
+    "ms": 37.1,
+    "n": 25,
+    "fp": [
+     "android.widget.Button||Add||[0,63][360,431]",
+     "android.widget.TextView||Name||[360,63][720,431]",
+     "android.widget.TextView||Item||[720,63][1080,431]",
+     "android.widget.TextView||Item||[0,431][540,553]",
+     "android.widget.Button||Add||[540,431][1080,553]",
+     "android.widget.TextView||Item||[0,553][540,675]",
+     "android.widget.Button||Add||[540,553][1080,675]",
+     "android.widget.TextView||Item||[0,675][540,736]",
+     "android.widget.Button||Add||[540,675][1080,736]",
+     "android.widget.TextView||Deeper item||[0,736][1080,797]",
+     "android.widget.TextView||Item||[0,799][540,983]",
+     "android.widget.Button||Add||[540,799][1080,983]",
+     "android.widget.TextView||Item||[0,983][540,1075]",
+     "android.widget.Button||Add||[540,983][1080,1075]",
+     "android.widget.TextView||Inner||[0,1075][540,1167]",
+     "android.widget.Button||Add||[540,1075][1080,1167]",
+     "android.widget.Button||Outer||[0,1167][360,1535]",
+     "android.widget.Button||Inner button||[0,1167][360,1535]",
+     "android.widget.Button||Deep button||[360,1167][720,1535]",
+     "android.widget.ImageButton||Image||[720,1167][1080,1535]",
+     "android.widget.TextView|com.example.app:id/name_label|Name||[0,1535][270,1903]",
+     "android.widget.TextView||Value||[270,1535][540,1903]",
+     "android.widget.TextView||Total||[540,1535][810,1903]",
+     "android.widget.CheckBox||Unchecked box||[0,1903][270,2271]",
+     "android.widget.Button||Add||[270,1903][540,2271]"
+    ]
+   },
+   "ui": {
+    "ms": 63.2,
+    "n": 25,
+    "fp": [
+     "android.widget.Button||Add||[0,63][360,431]",
+     "android.widget.TextView||Name||[360,63][720,431]",
+     "android.widget.TextView||Item||[720,63][1080,431]",
+     "android.widget.TextView||Item||[0,431][540,553]",
+     "android.widget.Button||Add||[540,431][1080,553]",
+     "android.widget.TextView||Item||[0,553][540,675]",
+     "android.widget.Button||Add||[540,553][1080,675]",
+     "android.widget.TextView||Item||[0,675][540,736]",
+     "android.widget.Button||Add||[540,675][1080,736]",
+     "android.widget.TextView||Deeper item||[0,736][1080,797]",
+     "android.widget.TextView||Item||[0,799][540,983]",
+     "android.widget.Button||Add||[540,799][1080,983]",
+     "android.widget.TextView||Item||[0,983][540,1075]",
+     "android.widget.Button||Add||[540,983][1080,1075]",
+     "android.widget.TextView||Inner||[0,1075][540,1167]",
+     "android.widget.Button||Add||[540,1075][1080,1167]",
+     "android.widget.Button||Outer||[0,1167][360,1535]",
+     "android.widget.Button||Inner button||[0,1167][360,1535]",
+     "android.widget.Button||Deep button||[360,1167][720,1535]",
+     "android.widget.ImageButton||Image||[720,1167][1080,1535]",
+     "android.widget.TextView|com.example.app:id/name_label|Name||[0,1535][270,1903]",
+     "android.widget.TextView||Value||[270,1535][540,1903]",
+     "android.widget.TextView||Total||[540,1535][810,1903]",
+     "android.widget.CheckBox||Unchecked box||[0,1903][270,2271]",
+     "android.widget.Button||Add||[270,1903][540,2271]"
+    ]
+   }
+  },
+  "H10|tree": {
+   "case": "H10",
+   "screen": "tree",
+   "expect": "exact",
+   "outcome": "EQUAL",
+   "xpath": {
+    "ms": 26,
+    "n": 0,
+    "fp": []
+   },
+   "ui": {
+    "ms": 25.2,
+    "n": 0,
+    "fp": []
+   }
+  },
+  "H11|tree": {
+   "case": "H11",
+   "screen": "tree",
+   "expect": "exact",
+   "outcome": "EQUAL",
+   "xpath": {
+    "ms": 26.6,
+    "n": 0,
+    "fp": []
+   },
+   "ui": {
+    "ms": 8.1,
+    "n": 0,
+    "fp": []
+   },
+   "probe": {
+    "uiselector": "new UiSelector().textMatches(\"(?d)(?s:.*)(?:Line 1.Line 2)(?s:.*)\")",
+    "ui": {
+     "ms": 15.2,
+     "n": 0,
+     "fp": []
+    },
+    "outcome": "EQUAL"
+   }
+  },
+  "H12|tree": {
+   "case": "H12",
+   "screen": "tree",
+   "expect": "exact",
+   "outcome": "EQUAL",
+   "xpath": {
+    "ms": 22.6,
+    "n": 0,
+    "fp": []
+   },
+   "ui": {
+    "ms": 29.2,
+    "n": 0,
+    "fp": []
+   }
+  },
+  "H01|deep": {
+   "case": "H01",
+   "screen": "deep",
+   "expect": "exact",
+   "outcome": "EQUAL",
+   "xpath": {
+    "ms": 57,
+    "n": 0,
+    "fp": []
+   },
+   "ui": {
+    "ms": 31.9,
+    "n": 0,
+    "fp": []
+   }
+  },
+  "H02|deep": {
+   "case": "H02",
+   "screen": "deep",
+   "expect": "exact",
+   "outcome": "EQUAL",
+   "xpath": {
+    "ms": 36.7,
+    "n": 1,
+    "fp": [
+     "android.widget.TextView||Total||[540,63][1080,505]"
+    ]
+   },
+   "ui": {
+    "ms": 36.6,
+    "n": 1,
+    "fp": [
+     "android.widget.TextView||Total||[540,63][1080,505]"
+    ]
+   }
+  },
+  "H04|deep": {
+   "case": "H04",
+   "screen": "deep",
+   "expect": "exact",
+   "outcome": "SET_DIFFERS",
+   "xpath": {
+    "ms": 35,
+    "n": 8,
+    "fp": [
+     "android.widget.Button||Add||[0,63][540,505]",
+     "android.widget.TextView||Total||[540,63][1080,505]",
+     "android.widget.TextView||Depth 10||[0,505][1080,1389]",
+     "android.widget.TextView||Depth 20||[0,1389][1080,1831]",
+     "android.widget.TextView||Depth 30||[0,1831][1080,2052]",
+     "android.widget.TextView||Depth 40||[0,2052][1080,2162]",
+     "android.widget.TextView||Depth 50||[0,2162][1080,2217]",
+     "android.widget.TextView||Depth 60||[0,2217][1080,2244]"
+    ]
+   },
+   "ui": {
+    "ms": 60.6,
+    "n": 13,
+    "fp": [
+     "android.widget.Button||Add||[0,63][540,505]",
+     "android.widget.TextView||Total||[540,63][1080,505]",
+     "android.widget.TextView||Depth 10||[0,505][1080,1389]",
+     "android.widget.TextView||Depth 20||[0,1389][1080,1831]",
+     "android.widget.TextView||Depth 30||[0,1831][1080,2052]",
+     "android.widget.TextView||Depth 40||[0,2052][1080,2162]",
+     "android.widget.TextView||Depth 50||[0,2162][1080,2217]",
+     "android.widget.TextView||Depth 60||[0,2217][1080,2244]",
+     "android.widget.TextView||Depth 70||[0,2244][1080,2257]",
+     "android.widget.TextView||Depth 80||[0,2257][1080,2263]",
+     "android.widget.TextView||Depth 90||[0,2263][1080,2266]",
+     "android.widget.TextView||Depth 100||[0,2266][1080,2267]",
+     "android.widget.TextView||Deep marker||[0,2267][1080,2268]"
+    ]
+   }
+  },
+  "H10|deep": {
+   "case": "H10",
+   "screen": "deep",
+   "expect": "exact",
+   "outcome": "EQUAL",
+   "xpath": {
+    "ms": 29.4,
+    "n": 0,
+    "fp": []
+   },
+   "ui": {
+    "ms": 29.4,
+    "n": 0,
+    "fp": []
+   }
+  },
+  "H11|deep": {
+   "case": "H11",
+   "screen": "deep",
+   "expect": "exact",
+   "outcome": "EQUAL",
+   "xpath": {
+    "ms": 33.6,
+    "n": 0,
+    "fp": []
+   },
+   "ui": {
+    "ms": 29.4,
+    "n": 0,
+    "fp": []
+   },
+   "probe": {
+    "uiselector": "new UiSelector().textMatches(\"(?d)(?s:.*)(?:Line 1.Line 2)(?s:.*)\")",
+    "ui": {
+     "ms": 30.5,
+     "n": 0,
+     "fp": []
+    },
+    "outcome": "EQUAL"
+   }
+  },
+  "H12|deep": {
+   "case": "H12",
+   "screen": "deep",
+   "expect": "exact",
+   "outcome": "EQUAL",
+   "xpath": {
+    "ms": 31.1,
+    "n": 0,
+    "fp": []
+   },
+   "ui": {
+    "ms": 30.9,
+    "n": 0,
+    "fp": []
+   }
+  },
+  "H01|windows": {
+   "case": "H01",
+   "screen": "windows",
+   "expect": "exact",
+   "outcome": "EQUAL",
+   "xpath": {
+    "ms": 25.6,
+    "n": 0,
+    "fp": []
+   },
+   "ui": {
+    "ms": 9.3,
+    "n": 0,
+    "fp": []
+   }
+  },
+  "H02|windows": {
+   "case": "H02",
+   "screen": "windows",
+   "expect": "exact",
+   "outcome": "EQUAL",
+   "xpath": {
+    "ms": 15.6,
+    "n": 1,
+    "fp": [
+     "android.widget.TextView||Total||[720,63][1080,615]"
+    ]
+   },
+   "ui": {
+    "ms": 12.2,
+    "n": 1,
+    "fp": [
+     "android.widget.TextView||Total||[720,63][1080,615]"
+    ]
+   }
+  },
+  "H04|windows": {
+   "case": "H04",
+   "screen": "windows",
+   "expect": "exact",
+   "outcome": "SET_DIFFERS",
+   "xpath": {
+    "ms": 19.2,
+    "n": 5,
+    "fp": [
+     "android.widget.Button||Add||[0,63][360,615]",
+     "android.widget.TextView||Item||[360,63][720,615]",
+     "android.widget.TextView||Total||[720,63][1080,615]",
+     "android.widget.TextView||Name||[0,1444][1080,2273]",
+     "||||"
+    ]
+   },
+   "ui": {
+    "ms": 18.4,
+    "n": 4,
+    "fp": [
+     "android.widget.Button||Add||[0,63][360,615]",
+     "android.widget.TextView||Item||[360,63][720,615]",
+     "android.widget.TextView||Total||[720,63][1080,615]",
+     "android.widget.TextView||Name||[0,1444][1080,2273]"
+    ]
+   }
+  },
+  "H10|windows": {
+   "case": "H10",
+   "screen": "windows",
+   "expect": "exact",
+   "outcome": "EQUAL",
+   "xpath": {
+    "ms": 13.1,
+    "n": 0,
+    "fp": []
+   },
+   "ui": {
+    "ms": 12.1,
+    "n": 0,
+    "fp": []
+   }
+  },
+  "H11|windows": {
+   "case": "H11",
+   "screen": "windows",
+   "expect": "exact",
+   "outcome": "EQUAL",
+   "xpath": {
+    "ms": 13.2,
+    "n": 0,
+    "fp": []
+   },
+   "ui": {
+    "ms": 8.2,
+    "n": 0,
+    "fp": []
+   },
+   "probe": {
+    "uiselector": "new UiSelector().textMatches(\"(?d)(?s:.*)(?:Line 1.Line 2)(?s:.*)\")",
+    "ui": {
+     "ms": 8.2,
+     "n": 0,
+     "fp": []
+    },
+    "outcome": "EQUAL"
+   }
+  },
+  "H12|windows": {
+   "case": "H12",
+   "screen": "windows",
+   "expect": "exact",
+   "outcome": "EQUAL",
+   "xpath": {
+    "ms": 13.6,
+    "n": 0,
+    "fp": []
+   },
+   "ui": {
+    "ms": 9.4,
+    "n": 0,
+    "fp": []
    }
   }
  },
