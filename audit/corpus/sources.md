@@ -1,4 +1,4 @@
-# R corpus: sources
+# Real-world locators (R corpus): sources
 
 Real Android XPath locators from 20 open-source projects with Appium tests: large or organizational
 suites and weak ones (courses, practice repos, one-off automations), so both careful and sloppy

@@ -38,8 +38,8 @@ dependencies. The strategy call is rewritten together with the string:
 - **Skips** the rest with a reason: direct child `//A/B`, sibling positions, `/hierarchy/…` paths, parent and
   sibling axes, and more.
 
-On 1142 real XPaths from 20 projects, run on an Android emulator: **0 wrong** conversions; 71 % of real Android
-XPath literals converted.
+Checked on 1645 real Android XPaths from 20 open-source projects: 71 % convert, and every converted one (1142
+distinct XPaths) ran on an Android emulator with **0 wrong** results.
 
 ## Limits
 
@@ -50,6 +50,7 @@ XPath literals converted.
 ## Documentation
 
 - [Reference](docs/reference.md): examples per language, every conversion rule, flags, JSON report, library API
+- [How it works](docs/how-it-works.md): diagrams of the converter, how it was checked, and the monthly upstream watch
 - [Results](docs/results.md): scores, versions checked, the [coverage report](audit/coverage-report.md)
 - [Claude Code skill](.claude/skills/xpath-to-uiselector/SKILL.md): runs the converter and reviews the skips
 

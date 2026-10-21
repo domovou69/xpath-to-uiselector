@@ -1,15 +1,17 @@
 # Device oracle
 
 The UiAutomator2 server on the emulator decides whether an XPath and a `UiSelector` select the same
-elements (PLAN.md section 5). Nothing here re-implements XPath or `UiSelector` matching.
+elements (PLAN.md section 5). Nothing here re-implements XPath or `UiSelector` matching. Two kinds of runs: the edge
+cases (S cases, `run.js`) and the real-world locators (R fuzz, `fuzz.js`); the short labels in their summaries are
+explained in [docs/how-it-works.md](../../docs/how-it-works.md#terms).
 
 | File | What |
 | --- | --- |
 | [LocatorLab/](LocatorLab/) | Android app. One activity renders a screen from JSON; every node is a generic view whose accessibility node carries the class name, resource id, text, content-desc, package, the booleans and a range value from JSON, so any locator's values render without a rebuild |
-| [screens.js](screens.js) | S-mode screens: `attrs`, `tree`, `deep`, `windows` |
-| [run.js](run.js) | The runner: every S case on every screen, `findElements` by XPath and by `UiSelector`, lists compared by fingerprint and order |
-| [fuzz-screens.js](fuzz-screens.js) | R fuzz screens: a cell of targets and near misses per converted R literal, built from its XPath; 5 screens per batch, seeded; matrix cells that break every tested condition every way |
-| [fuzz.js](fuzz.js) | The R fuzz runner: every converted R literal on every screen of its batch (`--rare`: rare forms on more seeds, `--matrix`: its matrix screen), `--mutants` (wrong UiSelectors that the screens must catch), verdicts by XPath and by form, R and C |
+| [screens.js](screens.js) | Edge-case screens: `attrs`, `tree`, `deep`, `windows` |
+| [run.js](run.js) | The edge-case runner: every case on every screen, `findElements` by XPath and by `UiSelector`, lists compared by fingerprint and order |
+| [fuzz-screens.js](fuzz-screens.js) | Real-world fuzz screens: a cell of targets and near misses per converted real-world literal, built from its XPath; 5 screens per batch, seeded; matrix cells that break every tested condition every way |
+| [fuzz.js](fuzz.js) | The real-world fuzz runner: every converted literal on every screen of its batch (`--rare`: rare forms on more seeds, `--matrix`: its matrix screen), `--mutants` (wrong UiSelectors that the screens must catch), verdicts by XPath and by form, R and C |
 | [spike.js](spike.js) | The stage 3 spike: does the server report the accessibility-node values in the page source and to `UiSelector` |
 | [wd.js](wd.js) | Plain-HTTP WebDriver client, launcher, host / device / stack versions |
 | [results/](results/) | `spike.json`, `s-run.json` (every lookup, with times and versions), `s-summary.md`; `r-fuzz-screens.json` (the generated screens), `r-fuzz.json`, `r-fuzz-summary.md` |
@@ -50,12 +52,12 @@ Fingerprint of an element: `class|resource-id|text|content-desc|bounds`. Every n
 screen has its own bounds, except a node and a child that fills it; the boxes of the deep chain get
 their own resource ids for that reason.
 
-## Findings of the R fuzz (stage 4b, 2026-10-21)
+## Findings of the real-world fuzz (stage 4b, 2026-10-21)
 
 - `textMatches` and `descriptionMatches` compile their regex with `Pattern.DOTALL`; `resourceIdMatches`,
   `classNameMatches` and `packageNameMatches` with no flags (androidx `UiSelector.java` 2.3.0, lines 131, 242).
   The reference said "no flags" for all five. Consequence: a `matches()` pattern without the `s` flag must turn
-  DOTALL off, `(?-s:…)`, or `.` also crosses a line break the XPath's does not (S case H11; the old form found
+  DOTALL off, `(?-s:…)`, or `.` also crosses a line break the XPath's does not (edge case H11; the old form found
   `Line 1\nLine 2`, the XPath did not). Found by the `(?s) dropped` mutants, which survived on text.
 - A `View.INVISIBLE` view is not in the accessibility tree at all, so it is neither counted in `@index` nor a
   hidden match for `instance`. A view with no size is in the tree but not visible to the user: both sides leave it
@@ -63,7 +65,7 @@ their own resource ids for that reason.
 - `adb shell` refuses a long command line; the screen goes through the device shell's stdin. One `exec`
   argument is still limited to 128 KB, which caps a screen at ≈100 KB of base64.
 
-## Findings outside the S cases (2026-10-20)
+## Findings outside the edge cases (2026-10-20)
 
 - An app cannot set the package of its own accessibility nodes: the framework overwrites it after the
   delegate. `@package` cases (A07, C07) run with LocatorLab's package in place of `com.example.app`.
@@ -75,7 +77,7 @@ their own resource ids for that reason.
 - Lookup times are recorded per lookup in `s-run.json` (`xpath.ms`, `ui.ms`, `probe.ui.ms`). They
   are a side product, one cold lookup each on small screens, not a benchmark (that is the
   [benchmark](https://github.com/domovou69/appium-android-locator-benchmark)'s job). Paired on the
-  same case: the `UiSelector` was faster in 65 of 86 pairs on `attrs`, 55 on `tree`, 61 on `windows`,
-  but only 10 of 86 on `deep`, where it walks below level 70 and XPath does not. `findElements` with
-  more than 20 matches: median 60 ms for XPath, 243 ms for `UiSelector`, because the server runs
-  one `instance(i)` search per element (SRV-31).
+  same case (the 84 exact and close cases of the current `s-run.json`): the `UiSelector` was faster in 63
+  of 84 pairs on `attrs`, 53 on `tree`, 63 on `windows`, but only 14 of 84 on `deep`, where it walks
+  below level 70 and XPath does not. `findElements` with more than 20 matches: median 60 ms for XPath,
+  243 ms for `UiSelector`, because the server runs one `instance(i)` search per element (SRV-32).

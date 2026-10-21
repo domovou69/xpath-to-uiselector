@@ -1,5 +1,7 @@
 # Upstream watch
 
+As a diagram: [docs/how-it-works.md](../../docs/how-it-works.md#3-monthly-upstream-watch).
+
 Once a month, [`.github/workflows/upstream-schedule.yml`](../../.github/workflows/upstream-schedule.yml) checks
 whether a new appium-uiautomator2-driver release, or the UiAutomator2 server it pins, changed a file the converter's
 rules depend on. When one did, the job opens an issue with the label `upstream`, and GitHub emails it. No change
@@ -34,8 +36,8 @@ androidx `UiSelector` itself has no tags on GitHub; a new version shows up as a 
 
 ## After an issue
 
-Read the changed files against the rows in "Cited by". If a rule may have changed, re-run the S cases and the R
-fuzz on the emulator with the new versions ([audit/device/README.md](../device/README.md)). When the converter still
+Read the changed files against the rows in "Cited by". If a rule may have changed, re-run the edge cases
+(`npm run oracle`) and the real-world fuzz (`npm run oracle:fuzz`) on the emulator with the new versions ([audit/device/README.md](../device/README.md)). When the converter still
 behaves the same, update `checked` in `audit/upstream.json` first through a PR, then
 [docs/environment.md](../../docs/environment.md), docs/results.md and the devDependencies. Close the
 issue. If `checked` is not updated, the next month reports the same range again (one issue per set of latest
