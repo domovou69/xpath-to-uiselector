@@ -1,0 +1,54 @@
+name: Upstream schedule
+
+# Monthly: did a new appium-uiautomator2-driver release, or the UiAutomator2 server it pins, change a file the
+# converter's rules cite (reference/)? Opens an issue (label `upstream`) when one did. Deterministic, no LLM.
+# Any failure fails the job, and GitHub emails the failure. See audit/upstream/README.md.
+on:
+  schedule:
+    - cron: "0 6 1 * *"
+  workflow_dispatch:
+    inputs:
+      driver_base:
+        description: "Compare the driver from this version instead of `checked` (e.g. 8.0.0)"
+        required: false
+      server_base:
+        description: "Compare the server from this version instead of `checked` (e.g. 10.0.0)"
+        required: false
+      dry_run:
+        description: "Print the issue body instead of creating the issue"
+        type: boolean
+        default: false
+
+permissions:
+  contents: read
+  issues: write
+
+jobs:
+  watch:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-node@v6
+        with:
+          node-version: 24
+
+      - name: Collect upstream changes
+        run: node audit/upstream/check.js
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+          DRIVER_BASE: ${{ inputs.driver_base }}
+          SERVER_BASE: ${{ inputs.server_base }}
+
+      - name: Report
+        run: node audit/upstream/report.js
+        env:
+          GH_TOKEN: ${{ github.token }}
+          DRY_RUN: ${{ inputs.dry_run }}
+
+      - uses: actions/upload-artifact@v7
+        if: always()
+        with:
+          name: upstream-watch
+          path: out/
+          if-no-files-found: ignore
