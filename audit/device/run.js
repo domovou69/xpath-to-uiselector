@@ -30,7 +30,8 @@ const OUT = path.join(__dirname, 'results', 's-run.json');
 const SUMMARY = path.join(__dirname, 'results', 's-summary.md');
 const U = 'new UiSelector()';
 
-// naive UiSelectors for skip cases: what a converter would emit without the rule that skips them
+// naive UiSelectors for skip cases: what a converter would emit without the rule that skips them; an exact
+// case may have one too (the wrong form a rule replaced)
 const PROBES = {
   A08: `${U}.text("")`,
   A09: `${U}.resourceId("")`,
@@ -55,6 +56,8 @@ const PROBES = {
   P04: U,
   V08: `${U}.text("1")`,
   X02: String.raw`${U}.classNameMatches("android\.widget\.Button|android\.widget\.ImageButton")`,
+  // exact cases: the form before the stage 4b fix, without (?-s:…)
+  H11: `${U}.textMatches("(?d)(?s:.*)(?:Line 1.Line 2)(?s:.*)")`,
 };
 
 // LocatorLab cannot set a node's package (the framework overwrites it), so @package cases run with
@@ -90,7 +93,9 @@ async function runCase(s, c) {
     return row;
   }
   const ui = await lookup(s, UI, c.uiselector);
-  return { outcome: compare(xpath, ui), xpath, ui, ...(c.substituted ? { substituted: { xpath: c.xpath, uiselector: c.uiselector } } : {}) };
+  const row = { outcome: compare(xpath, ui), xpath, ui, ...(c.substituted ? { substituted: { xpath: c.xpath, uiselector: c.uiselector } } : {}) };
+  if (PROBES[c.id]) { const p = await lookup(s, UI, PROBES[c.id]); row.probe = { uiselector: PROBES[c.id], ui: p, outcome: compare(xpath, p) }; }
+  return row;
 }
 
 // a known, documented difference behind SET_DIFFERS, or null:

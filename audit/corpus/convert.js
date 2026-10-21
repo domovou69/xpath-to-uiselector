@@ -17,19 +17,23 @@ const { rewriteStrategy } = require('../../lib/strategy');
 
 const EXT = { Java: '.java', Kotlin: '.kt', Python: '.py', 'C#': '.cs', TypeScript: '.ts', JavaScript: '.js' };
 
-function convertEntry(e) {
-  const ext = EXT[e.lang];
+// The literal as the scanner reads it: { value, placeholders }, or null.
+function decodeEntry(e) {
   // The corpus keeps no string prefix: braces in Python / C# literals are read
   // as f-string / $"" holes, as the corpus build counts them dynamic.
   const braces = /\{\w*\}/.test(e.source);
   const prefix = braces ? (e.lang === 'Python' ? 'f' : e.lang === 'C#' ? '$' : '') : '';
-  const kind = literalKind(ext, e.quote, prefix);
-  const decoded = decodeLiteral(e.source, kind, e.quote);
+  const kind = literalKind(EXT[e.lang], e.quote, prefix);
+  return decodeLiteral(e.source, kind, e.quote);
+}
+
+function convertEntry(e) {
+  const decoded = decodeEntry(e);
   if (!decoded) return { outcome: 'skip', reason: 'the string literal has an escape this tool does not read' };
   const res = convertXpathToUiSelector(decoded.value, { placeholders: new Set(decoded.placeholders.keys()) });
   if (res.status !== STATUS.SUCCESS) return { outcome: res.status === STATUS.SKIPPED_IOS ? 'ios' : 'skip', reason: res.reason };
   const warnings = res.warning ? res.warning.split('; ') : [];
-  return { outcome: warnings.length ? 'close' : 'exact', warnings };
+  return { outcome: warnings.length ? 'close' : 'exact', warnings, xpath: decoded.value, uiselector: res.locator, placeholders: decoded.placeholders };
 }
 
 // What the scanner does with the call around a converted literal.
@@ -139,4 +143,4 @@ if (require.main === module) {
   console.log(`${total} Android literals: ${c('exact')} exact, ${c('close')} close, ${c('skip')} skip, ${c('ios')} iOS → audit/corpus/convert-summary.md`);
 }
 
-module.exports = { convertEntry, run };
+module.exports = { decodeEntry, convertEntry, run, WARNING_LABEL, warningLabel };

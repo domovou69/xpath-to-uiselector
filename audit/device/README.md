@@ -8,9 +8,11 @@ elements (PLAN.md section 5). Nothing here re-implements XPath or `UiSelector` m
 | [LocatorLab/](LocatorLab/) | Android app. One activity renders a screen from JSON; every node is a generic view whose accessibility node carries the class name, resource id, text, content-desc, package, the booleans and a range value from JSON, so any locator's values render without a rebuild |
 | [screens.js](screens.js) | S-mode screens: `attrs`, `tree`, `deep`, `windows` |
 | [run.js](run.js) | The runner: every S case on every screen, `findElements` by XPath and by `UiSelector`, lists compared by fingerprint and order |
+| [fuzz-screens.js](fuzz-screens.js) | R fuzz screens: a cell of targets and near misses per converted R literal, built from its XPath; 5 screens per batch, seeded; matrix cells that break every tested condition every way |
+| [fuzz.js](fuzz.js) | The R fuzz runner: every converted R literal on every screen of its batch (`--rare`: rare forms on more seeds, `--matrix`: its matrix screen), `--mutants` (wrong UiSelectors that the screens must catch), verdicts by XPath and by form, R and C |
 | [spike.js](spike.js) | The stage 3 spike: does the server report the accessibility-node values in the page source and to `UiSelector` |
 | [wd.js](wd.js) | Plain-HTTP WebDriver client, launcher, host / device / stack versions |
-| [results/](results/) | `spike.json`, `s-run.json` (every lookup, with times and versions), `s-summary.md` |
+| [results/](results/) | `spike.json`, `s-run.json` (every lookup, with times and versions), `s-summary.md`; `r-fuzz-screens.json` (the generated screens), `r-fuzz.json`, `r-fuzz-summary.md` |
 
 ## Run
 
@@ -24,10 +26,12 @@ export ANDROID_HOME=~/Library/Android/sdk JAVA_HOME="/Applications/Android Studi
 adb install -r audit/device/LocatorLab/app/build/outputs/apk/debug/app-debug.apk
 npm run appium &          # local Appium 3.8.0 + uiautomator2 driver 8.7.0 (devDependencies)
 npm run oracle            # or: node audit/device/run.js --resume | --only A01,E01 | --screens tree | --summary
+npm run oracle:fuzz       # or: node audit/device/fuzz.js --resume [--rare | --matrix] [--mutants] | --batch 0,1 | --only <key> | --generate | --summary
 ```
 
 A screen is passed to the app as base64 JSON in an intent extra
-(`am start -S -n io.github.domovou69.locatorlab/.LabActivity --es b64 …`); the app logs
+(`am start -S -n io.github.domovou69.locatorlab/.LabActivity --es b64 …`, written to the device shell's stdin,
+since adb refuses a long command line; one argument is still limited to 128 KB); the app logs
 `LocatorLab: ready <name>` once it has drawn, shown the popup and the toast.
 
 ## Outcomes
@@ -45,6 +49,19 @@ source has).
 Fingerprint of an element: `class|resource-id|text|content-desc|bounds`. Every node of a LocatorLab
 screen has its own bounds, except a node and a child that fills it; the boxes of the deep chain get
 their own resource ids for that reason.
+
+## Findings of the R fuzz (stage 4b, 2026-10-21)
+
+- `textMatches` and `descriptionMatches` compile their regex with `Pattern.DOTALL`; `resourceIdMatches`,
+  `classNameMatches` and `packageNameMatches` with no flags (androidx `UiSelector.java` 2.3.0, lines 131, 242).
+  The reference said "no flags" for all five. Consequence: a `matches()` pattern without the `s` flag must turn
+  DOTALL off, `(?-s:…)`, or `.` also crosses a line break the XPath's does not (S case H11; the old form found
+  `Line 1\nLine 2`, the XPath did not). Found by the `(?s) dropped` mutants, which survived on text.
+- A `View.INVISIBLE` view is not in the accessibility tree at all, so it is neither counted in `@index` nor a
+  hidden match for `instance`. A view with no size is in the tree but not visible to the user: both sides leave it
+  out of the results and both count it in `@index` (SRV-10, SEL-09). The matrix screens use the latter.
+- `adb shell` refuses a long command line; the screen goes through the device shell's stdin. One `exec`
+  argument is still limited to 128 KB, which caps a screen at ≈100 KB of base64.
 
 ## Findings outside the S cases (2026-10-20)
 
