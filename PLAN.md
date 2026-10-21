@@ -175,7 +175,10 @@ compare element lists by attribute fingerprint and order. Outcomes `EQUAL`, `SET
 - **S mode:** fixed screens with traps (duplicates at several depths, nested matches, null vs. empty,
   all booleans, deep chain, two windows / toast).
 - **Fuzz mode:** for R, random screens built from the literals of each batch of locators (≈5 screens per
-  batch, ≈500 locators): ≈1–2 h in the background, replaces the iOS mini-WDA fuzz.
+  batch, ≈500 locators): ≈1–2 h in the background, replaces the iOS mini-WDA fuzz. Done in 4b
+  ([summary](audit/device/results/r-fuzz-summary.md)): batches of ≈143 (a screen must fit one 128 KB
+  `am start` argument), 40 screens, 33 min; reported by XPath form as well as by count; mutants (wrong
+  UiSelectors on the same screens) show how strong the traps are; forms with at most 2 XPaths ran on 3 more seeds.
 - Lookup time is recorded on every run (free data, not a benchmark).
 
 **Scoring** as on iOS: CORRECT, CORRECT-SKIP, DRIFT (documented, 0.5), WRONG, GAP;
@@ -192,11 +195,18 @@ One branch and one PR per stage, into `main`. Share is of the 5-hour window.
 | 1 | Reference and S | `reference/` excerpts at the pinned tags, S cases with expected `UiSelector`, `spec:check` | ≈75 min, ≈15 % |
 | 2 | R corpus | ~10 projects, extraction, anonymization, `sources.md`, form and language frequencies | ≈60 min, ≈12 %; done: 20 projects, ≈4 MB downloaded, no clone |
 | 3 | Oracle | LocatorLab spike and screens, runner, S run on the emulator: every S expectation confirmed or corrected (no converter yet) | ≈90 min, ≈18 %; done: [`audit/device/`](audit/device/README.md), ≈0 MB downloaded |
-| 4 | Converter | AST parser (whitelist), `UiSelector` emitter, strategy rewrite, unit tests; loop until S has 0 WRONG / 0 GAP; R fuzz run in the background | ≈2.5 h, ≈30 %; 4a done (no device): `lib/xpath.js`, `lib/converter.js`, `lib/literal.js`, S 132/132 (`npm run spec:score`), R offline in [`convert-summary.md`](audit/corpus/convert-summary.md); 4b: fuzz on the emulator |
+| 4 | Converter | AST parser (whitelist), `UiSelector` emitter, strategy rewrite, unit tests; loop until S has 0 WRONG / 0 GAP; R fuzz run in the background | ≈2.5 h, ≈30 %; 4a done (no device): `lib/xpath.js`, `lib/converter.js`, `lib/literal.js`, S 132/132 (`npm run spec:score`), R offline in [`convert-summary.md`](audit/corpus/convert-summary.md); 4b done: R fuzz on the emulator, 1142 XPaths (91 forms) on 40 screens, 0 WRONG, 0 VACUOUS, R 96.6, C 71.1 % |
 | 5 | Report and release | `audit/coverage-report.md`, README with limits and settings, `docs/reference.md`, Claude skill, upstream watch; npm publish after your OK | ≈60 min, ≈12 % |
 
 Total ≈8 h, under two windows. Stages 1 and 2 are independent and can swap. Fixes found by the R fuzz
 go into stage 4, not into a separate round.
+
+## Backlog
+
+- Converter coverage: the R skips ([convert-summary.md](audit/corpus/convert-summary.md), 475 unique, 28.9 %)
+  are the list for later converter work. Most reasons have no exact `UiSelector` at all (direct child, `/hierarchy/`
+  paths, attributes without a criterion), but some could get a close form or a rewrite hint; each needs an S case
+  on the device first, as in stages 1–3.
 
 ## Decisions (2026-10-20)
 

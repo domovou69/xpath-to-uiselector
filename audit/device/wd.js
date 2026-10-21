@@ -57,7 +57,8 @@ const adb = (...a) => execFileSync(ADB, a, { encoding: 'utf8', maxBuffer: 1 << 2
 async function launch(screen, settleMs = 500) {
   adb('logcat', '-c');
   const b64 = Buffer.from(JSON.stringify(screen), 'utf8').toString('base64');
-  adb('shell', 'am', 'start', '-S', '-n', `${PKG}/.LabActivity`, '--es', 'b64', b64);
+  // through the device shell's stdin: adb refuses a long command line; exec still limits one argument to 128 KB
+  execFileSync(ADB, ['shell'], { input: `am start -S -n ${PKG}/.LabActivity --es b64 ${b64}\nexit\n`, encoding: 'utf8' });
   const t0 = Date.now();
   for (;;) {
     if (adb('logcat', '-d', '-s', 'LocatorLab:I').includes(`ready ${screen.name}`)) {

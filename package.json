@@ -48,7 +48,8 @@
     "corpus:convert": "node audit/corpus/convert.js",
     "prepublishOnly": "npm test",
     "appium": "appium --port 4723",
-    "oracle": "node audit/device/run.js"
+    "oracle": "node audit/device/run.js",
+    "oracle:fuzz": "node audit/device/fuzz.js"
   },
   "files": [
     "xpath-to-uiselector.js",
