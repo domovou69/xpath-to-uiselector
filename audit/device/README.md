@@ -8,8 +8,8 @@ elements (PLAN.md section 5). Nothing here re-implements XPath or `UiSelector` m
 | [LocatorLab/](LocatorLab/) | Android app. One activity renders a screen from JSON; every node is a generic view whose accessibility node carries the class name, resource id, text, content-desc, package, the booleans and a range value from JSON, so any locator's values render without a rebuild |
 | [screens.js](screens.js) | S-mode screens: `attrs`, `tree`, `deep`, `windows` |
 | [run.js](run.js) | The runner: every S case on every screen, `findElements` by XPath and by `UiSelector`, lists compared by fingerprint and order |
-| [fuzz-screens.js](fuzz-screens.js) | R fuzz screens: a cell of targets and near misses per converted R literal, built from its XPath; 5 screens per batch, seeded |
-| [fuzz.js](fuzz.js) | The R fuzz runner: every converted R literal on every screen of its batch, verdicts, R and C |
+| [fuzz-screens.js](fuzz-screens.js) | R fuzz screens: a cell of targets and near misses per converted R literal, built from its XPath; 5 screens per batch, seeded; matrix cells that break every tested condition every way |
+| [fuzz.js](fuzz.js) | The R fuzz runner: every converted R literal on every screen of its batch (`--rare`: rare forms on more seeds, `--matrix`: its matrix screen), `--mutants` (wrong UiSelectors that the screens must catch), verdicts by XPath and by form, R and C |
 | [spike.js](spike.js) | The stage 3 spike: does the server report the accessibility-node values in the page source and to `UiSelector` |
 | [wd.js](wd.js) | Plain-HTTP WebDriver client, launcher, host / device / stack versions |
 | [results/](results/) | `spike.json`, `s-run.json` (every lookup, with times and versions), `s-summary.md`; `r-fuzz-screens.json` (the generated screens), `r-fuzz.json`, `r-fuzz-summary.md` |
@@ -26,7 +26,7 @@ export ANDROID_HOME=~/Library/Android/sdk JAVA_HOME="/Applications/Android Studi
 adb install -r audit/device/LocatorLab/app/build/outputs/apk/debug/app-debug.apk
 npm run appium &          # local Appium 3.8.0 + uiautomator2 driver 8.7.0 (devDependencies)
 npm run oracle            # or: node audit/device/run.js --resume | --only A01,E01 | --screens tree | --summary
-npm run oracle:fuzz       # or: node audit/device/fuzz.js --resume | --batch 0,1 | --only <key> | --generate | --summary
+npm run oracle:fuzz       # or: node audit/device/fuzz.js --resume [--rare | --matrix] [--mutants] | --batch 0,1 | --only <key> | --generate | --summary
 ```
 
 A screen is passed to the app as base64 JSON in an intent extra

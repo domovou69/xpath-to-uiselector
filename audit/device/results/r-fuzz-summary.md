@@ -159,29 +159,70 @@ The 70 XPaths of forms with at most 2 XPaths ran again on 15 screens of their ow
 
 None.
 
+## Matrix screens
+
+Every item once more, on 100 screens of its own kind (seed `r-fuzz-matrix-2`, 394–851 nodes), run only on its own screen. A matrix
+cell breaks every tested condition of every level in every way that applies to it: for a string one character more
+or less at either end, the case swapped, a space around it or a no-break space in it, null, "", the value in
+another attribute, a resource id without its package, and the strings that the value read as an unescaped regex
+matches (`.` → `x`, `a+b` → `aab`, `(x)` → `x`); for contains / starts-with the value broken in place or moved to
+the other end; similar classes (`ImageButton` for `Button`, another package, `…Compat`, lower case, none); booleans
+flipped; the index moved by one with an invisible sibling before it. Targets: every alternative, deeper, nested,
+with line breaks around a contains / starts-with value and with the bare value; invisible ones (hidden, in a hidden
+box, no size) and a hidden match first in the cell; union branches also in reverse document order.
+
+Verdicts: CORRECT 1065, DRIFT 77, WRONG 0, VACUOUS 0, not run 0.
+
 ## Mutants
 
-How strong the screens are: wrong UiSelectors made from the exact items' own (`--mutants`), each run on its
-item's own screen. Killed: the result differs from the XPath's. A mutant that is right by chance (a dropped
-criterion that no element on the screen needs) survives, so 100 % is not expected.
+Do the screens catch a wrong conversion? A mutant is a wrong UiSelector made from an exact item's own, the kind
+of error a converter could make (the converter never emits these: its rules and the S cases on the device keep it
+to exact forms). Each mutant runs on its item's own screen; it is killed when the result differs from the XPath's.
+Up to 150 items per kind, the first in key order. A survivor is a mutant that no element of the screen tells apart.
 
-| Mutant | Run | Killed | Share |
-| --- | --- | --- | --- |
-| contains → *Contains | 27 | 14 | 51.9 % |
-| eq → *StartsWith | 150 | 48 | 32.0 % |
-| eq → *Contains | 150 | 65 | 43.3 % |
-| no className | 150 | 100 | 66.7 % |
-| first criterion dropped | 150 | 109 | 72.7 % |
-| last criterion dropped | 150 | 144 | 96.0 % |
-| instance + 1 | 34 | 34 | 100.0 % |
-| index + 1 | 24 | 24 | 100.0 % |
-| boolean flipped | 5 | 5 | 100.0 % |
-| plain → regex, no anchor | 150 | 57 | 38.0 % |
-| all | 990 | 600 | 60.6 % |
+| Mutant | Random traps: run | killed | Matrix: run | killed |
+| --- | --- | --- | --- | --- |
+| contains → *Contains | 23 | 60.9 % | 23 | 100.0 % |
+| eq → *StartsWith | 150 | 32.0 % | 150 | 99.3 % |
+| eq → *Contains | 150 | 43.3 % | 150 | 99.3 % |
+| no className | 150 | 66.7 % | 150 | 98.7 % |
+| first criterion dropped | 150 | 72.7 % | 150 | 99.3 % |
+| last criterion dropped | 150 | 96.0 % | 150 | 99.3 % |
+| instance + 1 | 34 | 100.0 % | 34 | 100.0 % |
+| index + 1 | 24 | 100.0 % | 24 | 100.0 % |
+| boolean flipped | 5 | 100.0 % | 5 | 100.0 % |
+| plain → regex, no anchor | 150 | 38.0 % | 150 | 99.3 % |
+| text ↔ description | 150 | 100.0 % | 150 | 100.0 % |
+| resource id without package | 150 | 100.0 % | 150 | 100.0 % |
+| regex unescaped | 23 | 8.7 % | 23 | 100.0 % |
+| plain → unescaped regex | 150 | 5.3 % | 150 | 99.3 % |
+| (?s) dropped | 26 | 0.0 % | 26 | 100.0 % |
+| (?i) added | 74 | 20.3 % | 74 | 100.0 % |
+| className → classNameMatches | 150 | 96.7 % | 150 | 99.3 % |
+| starts → contains | 9 | 22.2 % | 9 | 100.0 % |
+| all | 1718 | 62.4 % | 1718 | 99.5 % |
+
+Survivors on the matrix screens are left for one of two reasons: a `(…)[1]` whose first match on the screen lies in an
+earlier cell of another item with the same value, so both lookups return that element; or `@package`, which
+LocatorLab cannot set (every node has the app's package), so dropping `packageName` changes nothing on any screen.
+
+<details><summary>Survivors on the matrix screens (9)</summary>
+
+- eq → *StartsWith: `(//android.widget.TextView[@content-desc="popon_paci_bedu"])[1]` → `new UiSelector().className("android.widget.TextView").descriptionStartsWith("popon_paci_bedu").instance(0)` (1/1)
+- eq → *Contains: `(//android.widget.TextView[@content-desc="popon_paci_bedu"])[1]` → `new UiSelector().className("android.widget.TextView").descriptionContains("popon_paci_bedu").instance(0)` (1/1)
+- no className: `(//android.widget.TextView[@content-desc="popon_paci_bedu"])[1]` → `new UiSelector().description("popon_paci_bedu").instance(0)` (1/1)
+- first criterion dropped: `(//android.widget.TextView[@content-desc="popon_paci_bedu"])[1]` → `new UiSelector().description("popon_paci_bedu").instance(0)` (1/1)
+- plain → regex, no anchor: `(//android.widget.TextView[@content-desc="popon_paci_bedu"])[1]` → `new UiSelector().className("android.widget.TextView").descriptionMatches("(?s).*popon_paci_bedu.*").instance(0)` (1/1)
+- className → classNameMatches: `(//android.widget.TextView[@content-desc="popon_paci_bedu"])[1]` → `new UiSelector().classNameMatches(".*TextView").description("popon_paci_bedu").instance(0)` (1/1)
+- last criterion dropped: `//android.widget.SeekBar[@package="io.github.domovou69.locatorlab"]` → `new UiSelector().className("android.widget.SeekBar")` (9/9)
+- no className: `(//android.widget.ImageView[@resource-id="cigolug.huso.refugocog:id/bubelevog"])[1]` → `new UiSelector().resourceId("cigolug.huso.refugocog:id/bubelevog").instance(0)` (1/1)
+- plain → unescaped regex: `(//android.widget.ImageView[@resource-id="cigolug.huso.refugocog:id/bubelevog"])[1]` → `new UiSelector().className("android.widget.ImageView").resourceIdMatches("cigolug.huso.refugocog:id/bubelevog").instance(0)` (1/1)
+
+</details>
 
 ## Lookup times
 
-Recorded per lookup in `r-fuzz.json`; a side product, not a benchmark. Median findElements: XPath 160.4 ms,
+Recorded per lookup in `r-fuzz.json`; a side product, not a benchmark. Median findElements: XPath 160.6 ms,
 UiSelector 126.8 ms over 7902 item/screen pairs; with more than 20 matches XPath
-170.5 ms, UiSelector 222.5 ms.
+176.4 ms, UiSelector 223.4 ms.
 

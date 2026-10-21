@@ -324,6 +324,9 @@ function summary(doc, file, items) {
     L.push(`| all | ${mb.length} | ${pct(killed(mb), mb.length)} | ${mm.length} | ${pct(killed(mm), mm.length)} |`, '');
     const surv = mm.filter(m => m.outcome === 'EQUAL');
     if (surv.length) {
+      L.push('Survivors on the matrix screens are left for one of two reasons: a `(…)[1]` whose first match on the screen lies in an');
+      L.push('earlier cell of another item with the same value, so both lookups return that element; or `@package`, which');
+      L.push('LocatorLab cannot set (every node has the app\'s package), so dropping `packageName` changes nothing on any screen.', '');
       L.push(`<details><summary>Survivors on the matrix screens (${surv.length})</summary>`, '');
       for (const m of surv) L.push(`- ${m.mutant}: \`${items.find(i => i.key === m.key)?.xpath}\` → \`${m.ui}\` (${m.xn}/${m.un})`);
       L.push('', '</details>', '');
@@ -371,10 +374,10 @@ function summary(doc, file, items) {
             const u = await lookup(s, cache, UI, m.u);
             store[`${m.it.key}|${m.name}`] = { key: m.it.key, mutant: m.name, ui: m.u, outcome: compare(x, u), xn: x.n, un: u.error ? 'err' : u.n };
           }
-          write(OUT, doc);
+          write(OUT, doc, 0);
         }
       }
-    } finally { write(OUT, doc); await s.close(); }
+    } finally { write(OUT, doc, 0); await s.close(); }
     fs.writeFileSync(SUMMARY, summary(doc, file, items));
     return;
   }
@@ -402,13 +405,13 @@ function summary(doc, file, items) {
           doc.runs[`${it.key}|${sc.name}`] = { key: it.key, screen: sc.name, ui: it.uiselector, outcome, x: keep(x, full), u: keep(u, full) };
           done++;
           if (outcome !== 'EQUAL' && strict(it)) { diffs++; console.log(`  ${it.key} ${outcome} ${x.error ? 'err' : x.n}/${u.error ? 'err' : u.n} ${it.xpath}`); }
-          if (done % 25 === 0) write(OUT, doc);
+          if (done % 25 === 0) write(OUT, doc, 0);
           if (done % 100 === 0) console.log(`  ${done}/${total}, ${Math.round((Date.now() - t0) / 60000)} min, ${diffs} exact differences`);
         }
-        write(OUT, doc);
+        write(OUT, doc, 0);
       }
     }
-  } finally { write(OUT, doc); await s.close(); }
+  } finally { write(OUT, doc, 0); await s.close(); }
   fs.writeFileSync(SUMMARY, summary(doc, file, items));
   console.log(`done ${done}/${total} in ${Math.round((Date.now() - t0) / 60000)} min, ${diffs} exact differences → ${path.relative(process.cwd(), SUMMARY)}`);
 })().catch(e => { console.error(e); process.exit(1); });

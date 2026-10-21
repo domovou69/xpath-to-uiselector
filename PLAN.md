@@ -177,8 +177,11 @@ compare element lists by attribute fingerprint and order. Outcomes `EQUAL`, `SET
 - **Fuzz mode:** for R, random screens built from the literals of each batch of locators (≈5 screens per
   batch, ≈500 locators): ≈1–2 h in the background, replaces the iOS mini-WDA fuzz. Done in 4b
   ([summary](audit/device/results/r-fuzz-summary.md)): batches of ≈143 (a screen must fit one 128 KB
-  `am start` argument), 40 screens, 33 min; reported by XPath form as well as by count; mutants (wrong
-  UiSelectors on the same screens) show how strong the traps are; forms with at most 2 XPaths ran on 3 more seeds.
+  `am start` argument), 40 screens, 33 min; reported by XPath form as well as by count; forms with at most 2
+  XPaths ran on 3 more seeds. Mutants (18 kinds of wrong UiSelector) showed the random traps caught only 62 %, so
+  every item also ran on a matrix screen that breaks every tested condition every way: 99.5 % of the mutants
+  killed (the 9 survivors are equivalent on those screens), still 0 WRONG. The mutants also found that
+  `textMatches` / `descriptionMatches` compile with DOTALL: `matches()` without `s` now emits `(?-s:…)` (H11).
 - Lookup time is recorded on every run (free data, not a benchmark).
 
 **Scoring** as on iOS: CORRECT, CORRECT-SKIP, DRIFT (documented, 0.5), WRONG, GAP;
@@ -195,7 +198,7 @@ One branch and one PR per stage, into `main`. Share is of the 5-hour window.
 | 1 | Reference and S | `reference/` excerpts at the pinned tags, S cases with expected `UiSelector`, `spec:check` | ≈75 min, ≈15 % |
 | 2 | R corpus | ~10 projects, extraction, anonymization, `sources.md`, form and language frequencies | ≈60 min, ≈12 %; done: 20 projects, ≈4 MB downloaded, no clone |
 | 3 | Oracle | LocatorLab spike and screens, runner, S run on the emulator: every S expectation confirmed or corrected (no converter yet) | ≈90 min, ≈18 %; done: [`audit/device/`](audit/device/README.md), ≈0 MB downloaded |
-| 4 | Converter | AST parser (whitelist), `UiSelector` emitter, strategy rewrite, unit tests; loop until S has 0 WRONG / 0 GAP; R fuzz run in the background | ≈2.5 h, ≈30 %; 4a done (no device): `lib/xpath.js`, `lib/converter.js`, `lib/literal.js`, S 132/132 (`npm run spec:score`), R offline in [`convert-summary.md`](audit/corpus/convert-summary.md); 4b done: R fuzz on the emulator, 1142 XPaths (91 forms) on 40 screens, 0 WRONG, 0 VACUOUS, R 96.6, C 71.1 % |
+| 4 | Converter | AST parser (whitelist), `UiSelector` emitter, strategy rewrite, unit tests; loop until S has 0 WRONG / 0 GAP; R fuzz run in the background | ≈2.5 h, ≈30 %; 4a done (no device): `lib/xpath.js`, `lib/converter.js`, `lib/literal.js`, S 132/132 (`npm run spec:score`), R offline in [`convert-summary.md`](audit/corpus/convert-summary.md); 4b done: R fuzz on the emulator, 1142 XPaths (91 forms) on 40 random and 100 matrix screens, 0 WRONG, 0 VACUOUS, mutants 99.5 % killed, R 96.6, C 71.1 %, one converter fix (`matches()` and DOTALL) |
 | 5 | Report and release | `audit/coverage-report.md`, README with limits and settings, `docs/reference.md`, Claude skill, upstream watch; npm publish after your OK | ≈60 min, ≈12 % |
 
 Total ≈8 h, under two windows. Stages 1 and 2 are independent and can swap. Fixes found by the R fuzz
