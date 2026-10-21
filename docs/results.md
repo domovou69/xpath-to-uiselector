@@ -11,9 +11,9 @@ files (S, R, C, DRIFT, …): [how-it-works.md](how-it-works.md).
 | Real-world locators, 20 open-source projects | 1142 converted XPaths (91 forms) on random and matrix screens: **0 wrong**; score 96.6 of 100, where a close match counts half |
 | Conversion rate | 71.1 % of 1645 Android XPath literals (exact 63.6 %); most skips have no exact `UiSelector` at all |
 | Strength of the check | 99.5 % of 1718 deliberately wrong `UiSelector`s (mutants) were caught by the matrix screens |
-| Checked with | Appium 3.8.0, appium-uiautomator2-driver 8.7.0, UiAutomator2 server 10.6.6, androidx uiautomator 2.3.0; Android 16 emulator (API 36); default settings |
+| Checked with | Appium 3.8.0, appium-uiautomator2-driver 8.7.0, UiAutomator2 server 10.6.6, androidx uiautomator 2.3.0; Android 16 emulator (API 36), and Android 17 (API 37) for the edge cases and the matrix slice of the real-world fuzz with the same results ([compare-api37.md](../audit/device/results/compare-api37.md)); default settings |
 
-Older and newer versions were not checked. A monthly job ([audit/upstream/](../audit/upstream/README.md)) opens an
+Android versions older than 16, real phones and other stack versions were not checked. A monthly job ([audit/upstream/](../audit/upstream/README.md)) opens an
 issue when a new driver or server release changes a file the rules cite.
 
 ## By language (real-world locators, offline)

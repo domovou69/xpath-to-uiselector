@@ -29,6 +29,20 @@ Same emulator as the [benchmark](https://github.com/domovou69/appium-android-loc
 | Start | `emulator -avd AOSP_API_36 -no-window -no-snapshot-load -no-boot-anim -no-audio` |
 | Power | AC only, macOS Low Power Mode off |
 
+A second Android version, to show the results do not depend on it: the edge cases and the matrix slice of the
+real-world fuzz also ran on the Google Play AVD already on the host, compared pair by pair with API 36 in
+[compare-api37.md](../audit/device/results/compare-api37.md). Its Google Play services work in the background,
+which slows a run but does not change what a lookup returns.
+
+| Item | Value |
+| --- | --- |
+| AVD | `Medium_Phone_API_37.0`: `system-images;android-37.0;google_apis_playstore;arm64-v8a` rev. 6 (Android 17 with Google Play, build `CE2A.260420.019`) |
+| Screen / CPU / RAM | the same: 1080×2400, 420 dpi / 4 cores / 4 GB |
+| Start | `emulator -avd Medium_Phone_API_37.0 -no-window -no-snapshot-load -no-boot-anim -no-audio` |
+| Results | `--out api37`: `s-run-api37.json`, `s-summary-api37.md`, `r-fuzz-api37.json`, `r-fuzz-summary-api37.md` |
+
+Older versions than Android 16 were not run.
+
 ## Host
 
 | Item | Value |

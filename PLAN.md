@@ -209,6 +209,7 @@ One branch and one PR per stage, into `main`. Share is of the 5-hour window.
 | 3 | Oracle | LocatorLab spike and screens, runner, edge cases on the emulator: every expectation confirmed or corrected (no converter yet) | ≈90 min, ≈18 %; done: [`audit/device/`](audit/device/README.md), ≈0 MB downloaded |
 | 4 | Converter | AST parser (whitelist), `UiSelector` emitter, strategy rewrite, unit tests; loop until the edge cases have 0 wrong / 0 missed; real-world fuzz run in the background | ≈2.5 h, ≈30 %; 4a done (no device): `lib/xpath.js`, `lib/converter.js`, `lib/literal.js`, edge cases 132/132 (`npm run spec:score`), real-world locators offline in [`convert-summary.md`](audit/corpus/convert-summary.md); 4b done: real-world fuzz on the emulator, 1142 XPaths (91 forms) on 40 random and 100 matrix screens, 0 wrong, 0 with nothing matched, mutants 99.5 % killed, score 96.6, conversion rate 71.1 %, one converter fix (`matches()` and DOTALL; edge cases H11, H12 added, 134/134) |
 | 5 | Report and release | `audit/coverage-report.md`, README with limits and settings, `docs/reference.md`, Claude skill, upstream watch; npm publish after your OK | ≈60 min, ≈12 %; done except publish: [coverage report](audit/coverage-report.md), short README (the npm page) with details in [docs/reference.md](docs/reference.md) and [docs/results.md](docs/results.md), skill in `.claude/skills/xpath-to-uiselector/` (not published separately), deterministic upstream watch (no LLM, [audit/upstream/](audit/upstream/README.md)), version 1.0.0, `private` removed, `npm pack --dry-run` 13 files / 31.7 kB. Release review (no device): every number, name and link checked against its source, plain terms in the docs, [docs/how-it-works.md](docs/how-it-works.md) with diagrams, GitHub repository description and 12 topics |
+| 6 | Second Android version (Backlog) | the edge cases and the matrix slice of the real-world fuzz on another Android version, compared pair by pair with API 36 | ≈1 h, ≈15 %; done 2026-10-21 on the Google Play AVD already on the host (`Medium_Phone_API_37.0`, Android 17), no download, chosen instead of an older API: same verdicts (edge cases 76 confirmed / 50 xpath only / 5 differ as warned / 3 nothing matched; matrix 1065 correct, 77 close, 0 wrong), only bounds moved; 7 other differences explained, none from the OS ([compare-api37.md](audit/device/results/compare-api37.md)); `--out` in `run.js` and `fuzz.js`, `audit/device/compare.js`; no converter change. Older APIs (33, 30) not run |
 
 Total ≈8 h, under two windows. Stages 1 and 2 are independent and can swap. Fixes found by the real-world fuzz
 go into stage 4, not into a separate round.
@@ -218,15 +219,13 @@ go into stage 4, not into a separate round.
 In order:
 
 1. npm publish of 1.0.0 (prepared in stage 5, waits for the user's OK); then the npm badge in the README.
-2. A second Android version on the emulator: all edge cases on an older API (33; fallback 30, LocatorLab's
-   minSdk), compared case by case with API 36, the AVD recorded in `docs/environment.md`; optionally a slice of the
-   real-world fuzz (matrix screens). Scope and download (≈1–1.5 GB image) agreed with the user first.
-3. Coverage of skipped forms: the real-world skips ([convert-summary.md](audit/corpus/convert-summary.md), 475
+2. Coverage of skipped forms: the real-world skips ([convert-summary.md](audit/corpus/convert-summary.md), 475
    unique, 28.9 %) are the list for later converter work. Most reasons have no exact `UiSelector` at all (direct
    child, `/hierarchy/` paths, attributes without a criterion), but some could get a close form or a rewrite hint.
    New edge cases generated from `reference/` for them, run on the emulator first, as in stages 1–3.
-4. Optional: a real phone, the edge cases and a slice of the real-world fuzz on a physical Android device (AC power,
-   Low Power Mode off), as the iPhone check on iOS; another OEM build.
+3. Optional: a real phone, the edge cases and a slice of the real-world fuzz on a physical Android device (AC power,
+   Low Power Mode off), as the iPhone check on iOS; another OEM build. An older Android version (API 33 or 30,
+   ≈550–670 MB image) only if a reason comes up: Android 17 already matched Android 16.
 
 ## Decisions (2026-10-20)
 

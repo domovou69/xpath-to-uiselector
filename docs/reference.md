@@ -221,8 +221,8 @@ elements at the default settings (SRV-12, SEL-07). Details: [coverage-report.md]
   work as `UiSelector`.
 - **Web and WebView XPaths** are the user's responsibility: they are converted like Android ones.
 - **Runtime values** with `"` or `\` break the `UiSelector` (warned).
-- **Versions:** checked with Appium 3.8.0, appium-uiautomator2-driver 8.7.0, UiAutomator2 server 10.6.6
-  ([environment.md](environment.md)).
+- **Versions:** checked with Appium 3.8.0, appium-uiautomator2-driver 8.7.0, UiAutomator2 server 10.6.6, on
+  Android 16 and 17 emulators ([environment.md](environment.md)).
 
 ## JSON report
 
