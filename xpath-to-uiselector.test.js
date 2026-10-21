@@ -909,5 +909,22 @@ console.log('— CORPUS —');
   }
 }
 
+// =====================================================================
+// SKILL — the Claude Code skill's read-only entry point finds this checkout.
+// =====================================================================
+console.log('— SKILL —');
+{
+  const SKILL = join(__dirname, '.claude/skills/xpath-to-uiselector/scripts/convert.js');
+  const run = (...args) => JSON.parse(execFileSync(process.execPath, [SKILL, ...args], { stdio: 'pipe', timeout: 20000 }).toString());
+  const r = run('//*[@text="OK"]', '//a/b', '"new UiSelector().text(\\"x\\")"', 'android=new UiSelector().text("x")', '//XCUIElementTypeButton', 'id=login');
+  const got = r.results.map(x => x.status).join(',');
+  if (got === 'success,skipped_unsupported_logic,skipped_validation_failed,skipped_no_change,skipped_ios,skipped_not_xpath') ok();
+  else fail(`skill: statuses ${got}`);
+  if (r.engine.source === 'repository' && r.results[0].uiselector === 'new UiSelector().text("OK")') ok();
+  else fail(`skill: engine ${r.engine.source}, uiselector ${r.results[0].uiselector}`);
+  if (r.summary.total === 6 && r.summary.converted === 1 && r.summary.unchanged === 1) ok();
+  else fail(`skill: summary ${JSON.stringify(r.summary)}`);
+}
+
 console.log(`\n${failed === 0 ? '✅' : '⚠️'} ${passed} passed, ${failed} failed`);
 process.exit(failed === 0 ? 0 : 1);

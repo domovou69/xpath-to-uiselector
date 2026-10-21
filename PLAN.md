@@ -6,7 +6,8 @@ Converts Appium XPath locators in Android tests to UiAutomator2 `UiSelector` loc
 Started 2026-10-20. Follow-up to:
 
 - [xpath-to-class-chain](https://github.com/domovou69/xpath-to-class-chain): the same tool for iOS. Its
-  final state (v1.0.2) is the target shape: CLI, report, strategy markers, audit, skill, npm, upstream watch.
+  final state (v1.0.2) is the target shape: CLI, report, strategy markers, audit, skill, npm, upstream watch
+  (here without the LLM step: every change to a watched file opens an issue).
 - [appium-android-locator-benchmark](https://github.com/domovou69/appium-android-locator-benchmark):
   `UiSelector` was faster than XPath in 30 of 30 cases (49 % at 100 elements, 12 % at 2000), and XPath
   finds nothing deeper than 70 levels. Speed is already measured; this project does not measure it again.
@@ -199,13 +200,16 @@ One branch and one PR per stage, into `main`. Share is of the 5-hour window.
 | 2 | R corpus | ~10 projects, extraction, anonymization, `sources.md`, form and language frequencies | ≈60 min, ≈12 %; done: 20 projects, ≈4 MB downloaded, no clone |
 | 3 | Oracle | LocatorLab spike and screens, runner, S run on the emulator: every S expectation confirmed or corrected (no converter yet) | ≈90 min, ≈18 %; done: [`audit/device/`](audit/device/README.md), ≈0 MB downloaded |
 | 4 | Converter | AST parser (whitelist), `UiSelector` emitter, strategy rewrite, unit tests; loop until S has 0 WRONG / 0 GAP; R fuzz run in the background | ≈2.5 h, ≈30 %; 4a done (no device): `lib/xpath.js`, `lib/converter.js`, `lib/literal.js`, S 132/132 (`npm run spec:score`), R offline in [`convert-summary.md`](audit/corpus/convert-summary.md); 4b done: R fuzz on the emulator, 1142 XPaths (91 forms) on 40 random and 100 matrix screens, 0 WRONG, 0 VACUOUS, mutants 99.5 % killed, R 96.6, C 71.1 %, one converter fix (`matches()` and DOTALL) |
-| 5 | Report and release | `audit/coverage-report.md`, README with limits and settings, `docs/reference.md`, Claude skill, upstream watch; npm publish after your OK | ≈60 min, ≈12 % |
+| 5 | Report and release | `audit/coverage-report.md`, README with limits and settings, `docs/reference.md`, Claude skill, upstream watch; npm publish after your OK | ≈60 min, ≈12 %; done except publish: [coverage report](audit/coverage-report.md), short README (the npm page) with details in [docs/reference.md](docs/reference.md) and [docs/results.md](docs/results.md), skill in `.claude/skills/xpath-to-uiselector/` (not published separately), deterministic upstream watch (no LLM, [audit/upstream/](audit/upstream/README.md)), version 1.0.0, `private` removed, `npm pack --dry-run` 13 files / 31.7 kB |
 
 Total ≈8 h, under two windows. Stages 1 and 2 are independent and can swap. Fixes found by the R fuzz
 go into stage 4, not into a separate round.
 
 ## Backlog
 
+- npm publish of 1.0.0 (prepared in stage 5, waits for the user's OK); then the npm badge in the README.
+- Real phone: run the S cases and a slice of the R fuzz on a physical Android device (AC power, Low Power Mode off),
+  as the iPhone check on iOS; also another Android version or OEM build.
 - Converter coverage: the R skips ([convert-summary.md](audit/corpus/convert-summary.md), 475 unique, 28.9 %)
   are the list for later converter work. Most reasons have no exact `UiSelector` at all (direct child, `/hierarchy/`
   paths, attributes without a criterion), but some could get a close form or a rewrite hint; each needs an S case

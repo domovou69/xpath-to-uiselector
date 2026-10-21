@@ -4,39 +4,56 @@
 
 Converts Appium XPath locators in your Android tests to UiAutomator2 `UiSelector` locators
 (`-android uiautomator`), and refuses to convert the ones that have no exact `UiSelector`.
+`UiSelector` was faster than XPath in 30 of 30 benchmark cases and has no 70-level depth limit
+([benchmark](https://github.com/domovou69/appium-android-locator-benchmark)).
 
-**Status: in development, not published.** The converter passes every synthetic case proven on the
-emulator (`npm run spec:score`); the fuzz run over real locators is next. See [PLAN.md](PLAN.md).
+## Try it
 
-Why: on the same screens `UiSelector` was faster than XPath in 30 of 30 cases (49 % at 100 elements,
-12 % at 2000), and XPath finds nothing deeper than 70 levels
-([benchmark](https://github.com/domovou69/appium-android-locator-benchmark)). The iOS counterpart is
-[xpath-to-class-chain](https://github.com/domovou69/xpath-to-class-chain).
-
-## Usage (from a clone)
+Nothing to install. The bare command only previews; review the diff, then add `--write`.
 
 ```bash
-node xpath-to-uiselector.js ./tests            # preview, writes nothing
-node xpath-to-uiselector.js ./tests --write    # save it
-node xpath-to-uiselector.js ./tests --json     # report with every skip
+npx xpath-to-uiselector ./tests            # preview
+npx xpath-to-uiselector ./tests --write    # save it
+npx xpath-to-uiselector ./tests --json     # report with every skip and warning
 ```
 
-The path can be a folder or a single file. Every XPath in the scanned files is a candidate, web XPaths
-included, so point it at your Android tests and review the preview. Requires Node.js 20 or newer; no
-dependencies.
+Point it at your Android Appium tests (Java, Kotlin, Python, JS/TS, C#, Ruby, JSON, YAML…). Node.js 20+, no
+dependencies. The strategy call is rewritten together with the string:
 
-A converted locator is written only together with its strategy: `AppiumBy.xpath(…)` becomes
-`AppiumBy.androidUIAutomator(…)`, `@AndroidFindBy(xpath = …)` becomes `uiAutomator = …`, Python
-`AppiumBy.XPATH` becomes `ANDROID_UIAUTOMATOR`, and so on. A JS/TS string with no call around it becomes a
-WebdriverIO selector (`android=new UiSelector()…`). Strings in other languages with no strategy call, data
-files, and calls with no UiAutomator form (Selenium `@FindBy`, `findElementByXPath`) are left as they are;
-the report shows their `UiSelector`. Runtime parts (`${x}`, `%s`, `{0}`, `" + x + "`) are kept, with a
-warning.
+```diff
+- AppiumBy.xpath("(//android.widget.TextView[@content-desc='price'])[2]")
++ AppiumBy.androidUIAutomator("new UiSelector().className(\"android.widget.TextView\").description(\"price\").instance(1)")
+
+- (AppiumBy.XPATH, '//*[@content-desc="Cart" and contains(@text, "USD")]')
++ (AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().description("Cart").textMatches("(?s).*USD.*")')
+
+[skip] UiSelector has no direct-child criterion: //android.widget.ListView/android.widget.TextView[1]
+```
+
+## What it does
+
+- **Converts** what has an exact `UiSelector`: attributes, booleans, `@index`, `contains()` / `starts-with()` /
+  `ends-with()` / `matches()`, `or` on one attribute, `(//X)[n]`.
+- **Warns** where only a close form exists, such as `//A//B` → `childSelector`.
+- **Skips** the rest with a reason: direct child `//A/B`, sibling positions, `/hierarchy/…` paths, parent and
+  sibling axes, and more.
+
+On 1142 real XPaths from 20 projects, run on an Android emulator: **0 wrong** conversions; 71 % of real Android
+XPath literals converted.
 
 ## Limits
 
-- Results hold for the default UiAutomator2 settings: [docs/settings.md](docs/settings.md).
-- Versions checked: [docs/environment.md](docs/environment.md).
+- Exact for the **default** UiAutomator2 driver settings only ([settings](docs/settings.md)).
+- Web and WebView XPaths are not detected: point it at Android tests only.
+- Runtime values (`%s`, `{0}`, `${x}`) that contain `"` or `\` break the `UiSelector` (warned).
+
+## Documentation
+
+- [Reference](docs/reference.md): examples per language, every conversion rule, flags, JSON report, library API
+- [Results](docs/results.md): scores, versions checked, the [coverage report](audit/coverage-report.md)
+- [Claude Code skill](.claude/skills/xpath-to-uiselector/SKILL.md): runs the converter and reviews the skips
+
+iOS counterpart: [xpath-to-class-chain](https://github.com/domovou69/xpath-to-class-chain).
 
 ## License
 

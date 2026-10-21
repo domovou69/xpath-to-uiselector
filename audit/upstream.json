@@ -1,0 +1,56 @@
+{
+  "about": "Single source of truth for the versions the converter was last checked against on a device, and for the upstream files the monthly watch (audit/upstream/) compares. After a device re-check, update `checked` here first, then docs/environment.md, docs/results.md and the devDependencies.",
+  "checked": {
+    "date": "2026-10-21",
+    "appium": "3.8.0",
+    "driver": "8.7.0",
+    "server": "10.6.6",
+    "uiautomator": "2.3.0",
+    "android": "16 (API 36, emulator)"
+  },
+  "watch": {
+    "driver": {
+      "name": "appium-uiautomator2-driver",
+      "repo": "appium/appium-uiautomator2-driver",
+      "npm": "appium-uiautomator2-driver",
+      "tag": "v{version}",
+      "files": [
+        "lib/commands/find.*",
+        { "path": "lib/driver.*", "match": "locatorStrateg" },
+        { "path": "package.json", "match": "appium-uiautomator2-server" },
+        { "path": "README.md", "match": "enforceXPath1|allowInvisibleElements|ignoreUnimportantViews|enableMultiWindows|snapshotMaxDepth|normalizeTagNames|limitXPathContextScope|enableNotificationListener" }
+      ]
+    },
+    "server": {
+      "name": "UiAutomator2 server",
+      "repo": "appium/appium-uiautomator2-server",
+      "npm": "appium-uiautomator2-server",
+      "tag": "v{version}",
+      "latestFrom": { "component": "driver", "dependency": "appium-uiautomator2-server" },
+      "files": [
+        "app/src/main/java/io/appium/uiautomator2/core/AccessibilityNodeInfoDumper.java",
+        "app/src/main/java/io/appium/uiautomator2/core/AxNodeInfoHelper.java",
+        "app/src/main/java/io/appium/uiautomator2/model/UiElementSnapshot.java",
+        "app/src/main/java/io/appium/uiautomator2/model/internal/CustomUiDevice.java",
+        "app/src/main/java/io/appium/uiautomator2/model/settings/*.java",
+        "app/src/main/java/io/appium/uiautomator2/utils/Attribute.java",
+        "app/src/main/java/io/appium/uiautomator2/utils/ByUiAutomatorFinder.java",
+        "app/src/main/java/io/appium/uiautomator2/utils/ElementLocationHelpers.java",
+        "app/src/main/java/io/appium/uiautomator2/utils/UiAutomatorParser.java",
+        "app/src/main/java/io/appium/uiautomator2/utils/UiExpressionParser.java",
+        "app/src/main/java/io/appium/uiautomator2/utils/UiSelectorParser.java",
+        { "path": "gradle/libs.versions.toml", "match": "uiautomator" },
+        "vendor/SOURCE_COMMIT",
+        "vendor/org.eclipse.wst.xml.xpath2.processor/src/org/eclipse/wst/xml/xpath2/processor/function/FnFunctionLibrary.java",
+        "vendor/org.eclipse.wst.xml.xpath2.processor/src/org/eclipse/wst/xml/xpath2/processor/internal/function/AbstractRegExFunction.java",
+        "vendor/org.eclipse.wst.xml.xpath2.processor/src/org/eclipse/wst/xml/xpath2/processor/internal/function/FnContains.java",
+        "vendor/org.eclipse.wst.xml.xpath2.processor/src/org/eclipse/wst/xml/xpath2/processor/internal/function/FnStartsWith.java",
+        "vendor/org.eclipse.wst.xml.xpath2.processor/src/org/eclipse/wst/xml/xpath2/processor/internal/function/FnEndsWith.java",
+        "vendor/org.eclipse.wst.xml.xpath2.processor/src/org/eclipse/wst/xml/xpath2/processor/internal/function/FnMatches.java",
+        "vendor/org.eclipse.wst.xml.xpath2.processor/src/org/eclipse/wst/xml/xpath2/processor/internal/function/FnLowerCase.java",
+        "vendor/org.eclipse.wst.xml.xpath2.processor/src/org/eclipse/wst/xml/xpath2/processor/internal/function/FnUpperCase.java",
+        "vendor/org.eclipse.wst.xml.xpath2.processor/src/org/eclipse/wst/xml/xpath2/processor/internal/function/FnTranslate.java"
+      ]
+    }
+  }
+}
