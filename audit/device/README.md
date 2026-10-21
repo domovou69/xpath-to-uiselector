@@ -13,8 +13,9 @@ explained in [docs/how-it-works.md](../../docs/how-it-works.md#terms).
 | [fuzz-screens.js](fuzz-screens.js) | Real-world fuzz screens: a cell of targets and near misses per converted real-world literal, built from its XPath; 5 screens per batch, seeded; matrix cells that break every tested condition every way |
 | [fuzz.js](fuzz.js) | The real-world fuzz runner: every converted literal on every screen of its batch (`--rare`: rare forms on more seeds, `--matrix`: its matrix screen), `--mutants` (wrong UiSelectors that the screens must catch), verdicts by XPath and by form, R and C |
 | [spike.js](spike.js) | The stage 3 spike: does the server report the accessibility-node values in the page source and to `UiSelector` |
+| [compare.js](compare.js) | Compares two runs pair by pair (outcome, counts, fingerprints with and without bounds), e.g. API 36 against API 37; no device |
 | [wd.js](wd.js) | Plain-HTTP WebDriver client, launcher, host / device / stack versions |
-| [results/](results/) | `spike.json`, `s-run.json` (every lookup, with times and versions), `s-summary.md`; `r-fuzz-screens.json` (the generated screens), `r-fuzz.json`, `r-fuzz-summary.md` |
+| [results/](results/) | `spike.json`, `s-run.json` (every lookup, with times and versions), `s-summary.md`; `r-fuzz-screens.json` (the generated screens), `r-fuzz.json`, `r-fuzz-summary.md`; the same with `-api37` from Android 17, and `compare-api37.md` |
 
 ## Run
 
@@ -29,6 +30,18 @@ adb install -r audit/device/LocatorLab/app/build/outputs/apk/debug/app-debug.apk
 npm run appium &          # local Appium 3.8.0 + uiautomator2 driver 8.7.0 (devDependencies)
 npm run oracle            # or: node audit/device/run.js --resume | --only A01,E01 | --screens tree | --summary
 npm run oracle:fuzz       # or: node audit/device/fuzz.js --resume [--rare | --matrix] [--mutants] | --batch 0,1 | --only <key> | --generate | --summary
+```
+
+Another device or Android version writes its own files with `--out <name>` (`s-run-<name>.json`,
+`r-fuzz-<name>.json` and their summaries; the fuzz screens are shared), and `node audit/device/compare.js --out
+<name>` compares them with the API 36 runs. With another Appium already on port 4723 (e.g. an iOS run), start this
+one with `npx appium --port 4724` and set `APPIUM_URL=http://127.0.0.1:4724`. The Android 17 run:
+
+```sh
+emulator -avd Medium_Phone_API_37.0 -no-window -no-snapshot-load -no-boot-anim -no-audio &
+node audit/device/run.js --resume --out api37
+node audit/device/fuzz.js --resume --matrix --out api37
+node audit/device/compare.js --out api37
 ```
 
 A screen is passed to the app as base64 JSON in an intent extra
@@ -51,6 +64,21 @@ source has).
 Fingerprint of an element: `class|resource-id|text|content-desc|bounds`. Every node of a LocatorLab
 screen has its own bounds, except a node and a child that fills it; the boxes of the deep chain get
 their own resource ids for that reason.
+
+## Findings on Android 17 (2026-10-21)
+
+The edge cases and the matrix slice of the real-world fuzz ran on `Medium_Phone_API_37.0` (Android 17, Google
+Play image) and were compared with Android 16 by [compare.js](compare.js): [compare-api37.md](results/compare-api37.md).
+
+- Same verdicts everywhere: edge cases 76 confirmed, 50 xpath only, 5 differ as warned, 3 nothing matched; matrix
+  1065 correct, 77 close matches, 0 wrong, 0 with nothing matched.
+- Bounds move: x never, but the app window is 63 px taller and every row 3–11 px taller, so elements further down
+  shift more. Element lists agree once bounds are left out.
+- 7 other differences, none from the OS. P04 on four screens: the base pairs were recorded before `run.js` ran the
+  probe of exact cases. P04 and H04 on `windows`: the toast was still in the page source in the base run and gone
+  here; right after the screen appears Android 17 finds it too. Two matrix items: the base read one attribute of the
+  last element empty once; rerun on Android 16 on the same screen ([r-fuzz-api36check.json](results/r-fuzz-api36check.json))
+  it reads as on Android 17. Both lookups share one fingerprint read, so such a misread cannot make a WRONG.
 
 ## Findings of the real-world fuzz (stage 4b, 2026-10-21)
 

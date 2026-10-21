@@ -2,7 +2,7 @@
 
 Condensed from the engine's `docs/reference.md`. Pinned stack: Appium 3.8.0, appium-uiautomator2-driver 8.7.0,
 UiAutomator2 server 10.6.6, androidx `UiSelector` 2.3.0, default settings. Every exact rule was proven on an
-Android 16 emulator with `findElements`: same elements, same order.
+Android 16 emulator with `findElements`: same elements, same order (and again on Android 17, with the same results).
 
 ## Syntax the server accepts
 

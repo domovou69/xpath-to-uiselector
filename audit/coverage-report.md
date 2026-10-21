@@ -2,7 +2,7 @@
 
 What the audit proves about the converter, and what it does not. Stack: Appium 3.8.0,
 appium-uiautomator2-driver 8.7.0, UiAutomator2 server 10.6.6, `androidx.test.uiautomator` 2.3.0,
-emulator `AOSP_API_36` (Android 16), default driver settings ([docs/environment.md](../docs/environment.md),
+emulator `AOSP_API_36` (Android 16; the edge cases and the matrix slice of the fuzz also on Android 17), default driver settings ([docs/environment.md](../docs/environment.md),
 [docs/settings.md](../docs/settings.md)). Recorded 2026-10-21. The generated summaries linked below use short labels
 (S, R, C, DRIFT, VACUOUS, …); [docs/how-it-works.md](../docs/how-it-works.md#terms) gives their plain names, which
 this report uses.
@@ -14,6 +14,7 @@ this report uses.
 | Real-world locators (emulator fuzz) | **96.6** over 1142 XPaths, **96.7** over their 1170 literals: 1065 correct, 77 close matches, **0 wrong** | [r-fuzz-summary.md](device/results/r-fuzz-summary.md) |
 | Real-world locators by form | 91 forms, none with a wrong XPath or one where nothing matched | same |
 | Conversion rate (converted / real Android literals) | **71.1 %** (1170 of 1645); exact only 63.6 % | [convert-summary.md](corpus/convert-summary.md) |
+| Another Android version (Android 17, API 37) | Same verdicts for all 134 edge cases and all 1142 real-world XPaths on the matrix screens (1065 correct, 77 close matches, 0 wrong); compared pair by pair with Android 16, only bounds moved, and the 7 other differences are explained: none comes from the OS | [compare-api37.md](device/results/compare-api37.md) |
 | Strength of the check (mutants killed) | **99.5 %** of 1718 wrong UiSelectors on the matrix screens (62.4 % on the random screens alone) | r-fuzz-summary.md, "Mutants" |
 
 ## How it was checked
@@ -145,7 +146,7 @@ same value, and `@package`, which LocatorLab cannot vary. The mutants also found
 | `@package` with another app's package | An app cannot set another package on its nodes; A07 ran with LocatorLab's own package | Edge case A07, reference SRV-08 |
 | Jetpack Compose, WebView, multi-window apps beyond the popup screen | LocatorLab renders classic views from JSON; Compose `testTag` needs `mapTestTagToResourceId`; WebView XPaths are web locators | The rules depend on the accessibility node values, which are the same for Compose nodes; WebView is out of scope |
 | One-to-many case folds (`İ`, `ß`) under `lower-case()` | ICU `(?i)` and Java `toLowerCase` differ there; not rendered on the screens | `lower-case()` is a close form with a warning |
-| A real phone, other Android versions, other server versions | One emulator (Android 16, API 36) and one pinned stack. On iOS the real phone agreed with the simulator on every case; here the matching runs in the server and androidx, which ship with the driver, while the node values come from the OS | The monthly upstream watch ([audit/upstream/](upstream/README.md)) flags changes to the server files the rules cite; Backlog: a real phone |
+| A real phone, Android versions older than 16, other server versions | Emulators only, one pinned stack. The matching runs in the server and androidx, which ship with the driver, while the node values come from the OS. Android 17 (Google Play image) gave the same results as Android 16 pair by pair, apart from bounds (taller rows and window); older versions and OEM builds were not run. On iOS the real phone agreed with the simulator on every case | [compare-api37.md](device/results/compare-api37.md); the monthly upstream watch ([audit/upstream/](upstream/README.md)) flags changes to the server files the rules cite; Backlog: a real phone |
 | Lookup speed | Measured by the [benchmark](https://github.com/domovou69/appium-android-locator-benchmark) (UiSelector faster in 30 of 30 cases); here lookup times are a side product | r-fuzz-summary.md, "Lookup times" |
 
 ## Data and scripts

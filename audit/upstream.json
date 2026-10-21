@@ -6,7 +6,7 @@
     "driver": "8.7.0",
     "server": "10.6.6",
     "uiautomator": "2.3.0",
-    "android": "16 (API 36, emulator)"
+    "android": "16 (API 36) and 17 (API 37), emulators"
   },
   "watch": {
     "driver": {
