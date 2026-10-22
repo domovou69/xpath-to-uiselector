@@ -21,6 +21,8 @@ export interface ConvertResult {
   reason?: string | null;
   /** Set on a successful conversion that is close, not exact. */
   warning?: string;
+  /** Set on some skips: how to rewrite the locator by hand, and how the near UiSelector form differs. */
+  hint?: string;
 }
 
 export interface ConvertOptions {
@@ -30,6 +32,12 @@ export interface ConvertOptions {
    * with \Q…\E inside a regex, and the result carries a warning.
    */
   placeholders?: Set<string>;
+  /**
+   * Placeholder → placeholder for the same host expression minus one, where the
+   * string syntax evaluates expressions (`${i}`, f-strings, C# `$"…"`). A runtime
+   * position `(//X)[${i}]` converts only through it, to `instance(${i - 1})`.
+   */
+  decrement?: Map<string, string>;
 }
 
 /** Convert a single Android XPath locator to a UiSelector. */
@@ -83,6 +91,8 @@ export interface ScanRecord {
   reason: string | null;
   /** The conversion's `warning`. */
   warning?: string | null;
+  /** The conversion's `hint`, on a skip that has a manual rewrite. */
+  hint?: string;
   /** The XPath strategy call around the string, as found (e.g. `AppiumBy.xpath(`). */
   strategy?: string | null;
   /** The UiSelector for a converted locator that was not written (skipped_*_strategy). */

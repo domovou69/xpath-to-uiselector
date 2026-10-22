@@ -28,6 +28,9 @@ Android 16 emulator with `findElements`: same elements, same order (and again on
 | `contains(@text,"a") and contains(@text,"b")` | `textMatches("(?s)(?=.*a)(?=.*b).*")` |
 | `matches(@text,"p")`, `matches(@text,"p","i")` | `textMatches("(?d)(?s:.*)(?-s:p)(?s:.*)")`, `(?i-s:p)` with `i` |
 | `(//X)[n]`, `(//X)[position()=n]` | `….instance(n-1)` (pre-order = document order) |
+| `(//A//B)[1]` | `A.instance(0).childSelector(B.instance(0))` (`[2]` and later: no, `instance` counts within each A) |
+| `[@text]`, `[@checked]`, `[@index]` | dropped (written on every element) |
+| `[@content-desc]`, `[@resource-id]`, `[@content-desc!=""]` | `descriptionMatches("(?s).*")`, `resourceIdMatches("(?s).+")`, `descriptionMatches("(?s).+")` |
 | `.//X`, `/hierarchy//X`, `//descendant::X`, `concat("a","b")`, `@text eq "v"` | as the plain form |
 | `@text='Say "hi"'`, `@text="C:\T"` | `textMatches("Say \x22hi\x22")`, `textMatches("C:\x5cT")` |
 
@@ -42,6 +45,8 @@ sides.
 | `//android.view.View…` | `className("android.view.View")` | The page source also writes nodes with no class name as `android.view.View` |
 | `lower-case(@text)="ok"` | `textMatches("(?i)ok")` | ICU `(?i)`; one-to-many folds (`İ`, `ß`) not checked |
 | a runtime value (`%s`, `{0}`, `${x}`, `" + x + "`) in a value | kept; `\Q…\E` inside a regex | A runtime value with `"`, `\` or `\E` breaks the locator |
+| `//${cls}`, `@index='$i'`, `(//X)[${i}]` | `className("${cls}")`, `index($i)`, `instance(${i - 1})` | The value must be a class name / whole number; the position is rewritten minus one only where the string syntax computes it |
+| `[@text!=""]` | `textMatches("(?s).+")` | The XPath also finds range widgets (their text exists only in the page source) |
 
 ## No exact UiSelector
 
@@ -51,7 +56,9 @@ sides.
 | `//X[2]`, `//X[@a="v"][1]`, `last()`, `position()<3` | No position among siblings; `instance` counts across the whole screen |
 | `/hierarchy/android.widget.FrameLayout/…` | Absolute path from the page source root (copied from Appium Inspector) |
 | `[.//B]` | No has-descendant filter |
-| `..`, `parent::`, `ancestor::`, `following-sibling::`, `preceding-sibling::` | Not converted; `fromParent` is not proven exact |
+| `..`, `parent::`, `ancestor::`, `following-sibling::`, `preceding-sibling::` | Not converted; `fromParent` searches the parent's whole subtree (the `hint` says so) |
+| `(//A//B)[2]`, `(//A)[n]//B` | `instance` inside `childSelector` counts within each A; agrees only when one A matches |
+| `@label`, `@value`, `@id`, `data-*` | Web or iOS attributes: not in the Android page source |
 | `not(contains(@text,…))`, `@text!="v"` | No negation for strings |
 | `@text="A" or @content-desc="A"`, unions of different attributes or paths | No `or` across criteria; `;`-joined statements return results in statement order, not document order |
 | `contains(@class,…)`, `//Button \| //ImageButton` | `classNameMatches` makes `findElements` iterate `index(i)` and lose elements |

@@ -6,6 +6,8 @@
 //            ListView), several matches per container, the same text inside and outside containers
 //   deep     a 100-level chain with markers above and below the 70-level source limit
 //   windows  a second window (PopupWindow) and a toast
+//   nest     several containers of one class (one without matches, one nested in another), matches before,
+//            between and after them; null vs. "" for text and content-desc, ids, a range widget
 'use strict';
 
 const P = 'com.example.app:id/';
@@ -88,6 +90,22 @@ const windows = {
   popup: box([row(BTN('Popup button'), TV('Item', { id: `${P}popup_item` }), BTN('Add'))]),
 };
 
-const SCREENS = [attrs, tree, deep, windows];
+const L = (id, k) => n('android.widget.ListView', undefined, { id: `${P}${id}`, k });
+const nest = {
+  name: 'nest',
+  root: box([
+    row(TV('Before'), BTN('Add'), TV(undefined, { d: 'menu before' })),
+    L('empty', [row(BTN('No text'))]),
+    L('first', [item('First 1'), item('First 2')]),
+    row(TV('Between'), BTN('Add', { b: { clickable: true } })),
+    L('second', [item('Second 1'), L('nested', [item('Nested 1'), item('Nested 2')]), item('Second 2')]),
+    L('third', [item('Third 1'), item('')]),
+    row(TV('After'), n('android.widget.EditText', 'Typed'), n('android.widget.EditText', ''), n('android.widget.EditText')),
+    row(TV('', { d: '' }), TV(undefined, { d: 'main menu' }), TV('No desc'), TV(''), n('android.widget.SeekBar', undefined, { range: 30 })),
+    row(TV('Tagged', { id: `${P}tagged`, b: { clickable: true } }), TV('Untagged', { b: { clickable: true } }), TV('Short', { id: 'short' })),
+  ]),
+};
+
+const SCREENS = [attrs, tree, deep, windows, nest];
 
 module.exports = { SCREENS };

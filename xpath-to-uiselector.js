@@ -68,9 +68,10 @@ function main(target = DEFAULT_TARGET, opts) {
       });
     const skipped = records
       .filter(r => !r.changed && r.status !== STATUS.SKIPPED_NO_CHANGE)
-      .map(({ file, old, status, reason, strategy, uiselector, warning }) => {
+      .map(({ file, old, status, reason, hint, strategy, uiselector, warning }) => {
         const entry = { file, locator: old, status };
         if (reason) entry.reason = reason;
+        if (hint) entry.hint = hint;
         if (strategy) entry.strategy = strategy;
         if (uiselector) entry.uiselector = uiselector;
         if (uiselector && warning) entry.warning = warning;

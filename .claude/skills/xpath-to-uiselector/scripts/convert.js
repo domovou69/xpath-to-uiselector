@@ -74,6 +74,7 @@ function convertOne(input, lib, uiselector) {
   const out = { ...entry, status: r.status };
   if (r.status === STATUS.SUCCESS) out.uiselector = r.locator;
   if (r.reason) out.reason = r.reason;
+  if (r.hint) out.hint = r.hint;
   if (r.warning) out.warning = r.warning;
   return out;
 }
@@ -93,6 +94,7 @@ function scan(target, scanner) {
     if (r.uiselector) out.uiselector = r.uiselector;
     if (r.strategy) out.strategy = r.strategy;
     if (r.reason) out.reason = r.reason;
+    if (r.hint) out.hint = r.hint;
     if (r.warning) out.warning = r.warning;
     return out;
   });

@@ -85,7 +85,7 @@ function currentItems(seed = SEED) {
     const it = by.get(r.xpath);
     if (it) { it.ids.push(e.id); it.projects.add(e.project); it.count += e.count; continue; }
     by.set(r.xpath, { key: sha(r.xpath).slice(0, 12), ids: [e.id], projects: new Set([e.project]), count: e.count,
-      outcome: r.outcome, warnings: r.warnings.map(warningLabel), raw: r.xpath, rawUi: r.uiselector, placeholders: r.placeholders });
+      outcome: r.outcome, warnings: r.warnings.map(warningLabel), raw: r.xpath, rawUi: r.uiselector, placeholders: r.placeholders, decrement: r.decrement });
   }
   return [...by.values()].map(it => finish(it, seed)).sort((a, b) => (a.key < b.key ? -1 : 1));
 }
@@ -95,11 +95,18 @@ function finish(it, seed) {
   const rnd = rng(seed, it.key, 'runtime');
   let xpath = it.raw, ui = it.rawUi;
   const values = {};
+  const dec = it.decrement || new Map(), minusOne = new Set(dec.values());
   for (const [ch, src] of it.placeholders) {
-    const v = rnd.pick(RUNTIME);
+    // a hole for a value minus one is filled with its source hole
+    if (minusOne.has(ch)) continue;
+    // by its place in the XPath: a class name, a position, an index, or a string value
+    const v = new RegExp(`(?:^|/|::)${ch}(?=$|[[/])`).test(xpath) ? rnd.pick(COMMON)
+      : xpath.includes(`[${ch}]`) ? String(1 + rnd.int(3))
+        : new RegExp(`@index\\s*=\\s*(["'])${ch}\\1`).test(xpath) ? String(rnd.int(3)) : rnd.pick(RUNTIME);
     values[src] = v;
     xpath = xpath.replaceAll(ch, v);
     ui = ui.replaceAll(ch, v);
+    if (dec.has(ch)) ui = ui.replaceAll(dec.get(ch), String(Number(v) - 1));
   }
   let pkg = null;
   const m = /@package\s*=\s*(["'])([^"']*)\1/.exec(xpath);
@@ -115,7 +122,7 @@ function finish(it, seed) {
 // ---------------------------------------------------------------------------
 // Shape: what an element must have to match, read from the XPath AST
 //   { instance: n | null, alts: [[level]] }   level = { cls, terms: [[atom]] } (terms: alternatives)
-//   atom = { k: 'str', attr, op: eq|contains|starts|ends, v, ci } | { k: 'bool', attr, v } | { k: 'index', v } | { k: 'cls', v }
+//   atom = { k: 'str', attr, op: eq|contains|starts|ends|exists|nonempty, v, ci } | { k: 'bool', attr, v } | { k: 'index', v } | { k: 'cls', v }
 // ---------------------------------------------------------------------------
 
 function shape(xpath) {
@@ -160,6 +167,11 @@ function solve(e) {
     case 'path': {
       const s = e.steps[0];
       if (e.steps.length === 1 && s.axis === 'self' && s.test.kind === 'name') return [[{ k: 'cls', v: s.test.name }]];
+      // [@a]: always true for the attributes on every element, a non-null test for the others
+      if (e.steps.length === 1 && s.axis === 'attribute' && s.test.kind === 'name') {
+        if (s.test.name === 'text' || s.test.name === 'index' || BOOLS.includes(s.test.name)) return [[]];
+        if (KEY[s.test.name] || s.test.name === 'package') return [[{ k: 'str', attr: s.test.name, op: 'exists', ci: false }]];
+      }
       return nogen('path predicate');
     }
     default: return nogen(`predicate ${e.type}`);
@@ -182,6 +194,7 @@ function lit(e) {
 }
 
 function comparison(e) {
+  if ((e.op === '!=' || e.op === 'ne') && e.right.type === 'str' && e.right.value === '' && ref(e.left)) return [[{ k: 'str', attr: ref(e.left).attr, op: 'nonempty', ci: false }]];
   if (e.op !== '=' && e.op !== 'eq') nogen(`op ${e.op}`);
   let r = ref(e.left), v;
   if (r) v = lit(e.right); else { r = ref(e.right); v = lit(e.left); }
@@ -250,7 +263,10 @@ function element(lv, rnd, pools, term = rnd.pick(lv.terms), mode) {
   else n._tested.add('c');
   for (const [attr, atoms] of Object.entries(strs)) {
     if (attr === 'package') continue;
-    n[KEY[attr]] = strValue(atoms, rnd, mode);
+    const real = atoms.filter(a => a.op !== 'exists' && a.op !== 'nonempty');
+    // only an existence test: any value, "" too where it is not required non-empty (an id is never written empty)
+    n[KEY[attr]] = real.length ? strValue(real, rnd, mode)
+      : atoms.some(a => a.op === 'nonempty') || attr === 'resource-id' || rnd.chance(0.7) ? rnd.pick(attr === 'resource-id' ? pools.ids : pools.strings) : '';
     n._tested.add(KEY[attr]);
     if (atoms.some(a => a.ci)) n._ci = true;
   }
@@ -369,6 +385,8 @@ const dropMid = v => v.slice(0, v.length >> 1) + v.slice((v.length >> 1) + 1);
 // ways to break one string condition; each takes the attribute's whole value s and returns the new one,
 // ABSENT, or { move: value } (the value in another attribute instead)
 function stringBreaks(a, key) {
+  if (a.op === 'exists') return [() => ABSENT, s => ({ move: s })];
+  if (a.op === 'nonempty') return [() => ABSENT, s => ({ move: s }), () => ''];
   const v = a.v, cs = hasCase(v) && !a.ci, f = [];
   const at = (s, from, to) => { const i = s.indexOf(from); return i < 0 ? s : s.slice(0, i) + to + s.slice(i + from.length); };
   if (a.op === 'eq') {
@@ -586,8 +604,9 @@ function poolsOf(items) {
       if (lv.cls) classes.add(lv.cls);
       for (const t of lv.terms) for (const x of t) {
         if (x.k === 'cls') classes.add(x.v);
-        if (x.k === 'str' && x.attr === 'resource-id') ids.add(x.v);
-        else if (x.k === 'str') strings.add(x.v);
+        if (x.k !== 'str' || x.v === undefined) continue;
+        if (x.attr === 'resource-id') ids.add(x.v);
+        else strings.add(x.v);
       }
     }
   }

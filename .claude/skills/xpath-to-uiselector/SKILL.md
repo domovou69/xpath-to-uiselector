@@ -33,8 +33,8 @@ Prefer `--file` over arguments whenever a locator holds a quote or backslash: sh
 silently.
 
 The report has `engine` (where the engine was found), `summary`, and `results[]` with `input`, `status`, and
-`uiselector`, `written` (the rewritten source literal, `--scan` only), `strategy`, `reason`, `warning`, `file` when
-present.
+`uiselector`, `written` (the rewritten source literal, `--scan` only), `strategy`, `reason`, `hint` (a manual
+rewrite for the skip, and how the nearest UiSelector form differs), `warning`, `file` when present.
 
 Exit code 3 means the engine was not found. Go to **Fallback** below.
 
@@ -49,8 +49,8 @@ Exit code 3 means the engine was not found. Go to **Fallback** below.
 | `skipped_ios`, `skipped_not_xpath` | Out of scope: list as untouched. |
 | `skipped_unsupported_logic`, `skipped_validation_failed` | Go to STEP 3. |
 
-In the audit the engine produced no wrong `UiSelector` on 1142 real XPaths run on an emulator, and its checks
-caught 99.5 % of deliberately wrong ones. It converted 71 % of real Android XPath literals; most of the rest have no
+In the audit the engine produced no wrong `UiSelector` on 1169 real XPaths run on an emulator, and its checks
+caught 99.5 % of deliberately wrong ones. It converted 73 % of real Android XPath literals; most of the rest have no
 exact `UiSelector` at all (direct child `//A/B`, sibling positions, absolute `/hierarchy/…` paths, attributes with
 no criterion). A skip means no exact `UiSelector` exists or none has been proven on a device. Do not override it
 with one of your own and present that as a conversion.
@@ -59,7 +59,7 @@ with one of your own and present that as a conversion.
 
 For each locator from STEP 2 that needs review:
 
-1. **Explain why** in one or two sentences, from the engine's `reason` and `references/uiselector-rules.md` ("No
+1. **Explain why** in one or two sentences, from the engine's `reason` (and its `hint`, when present) and `references/uiselector-rules.md` ("No
    exact UiSelector"). Name the construct (`/` direct child, `following-sibling::`, `[2]` among siblings, `@bounds`,
    …) and the UiSelector / UiAutomator2 limitation behind it.
 2. **Recommend a fix** from `references/refactoring-playbook.md`, in this order: a resource id or content

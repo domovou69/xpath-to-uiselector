@@ -157,10 +157,36 @@ console.log('— CONVERTER: more rows —');
     [`//*[@text="Hi ${R}"]`, `${U}.text("Hi ${R}")`, true, RT],
     [`//*[contains(@text,"${R}")]`, String.raw`${U}.textMatches("(?s).*\Q${R}\E.*")`, true, RT],
     [`//*[@text="${R}"]`, `${U}.text("${R}")`, false], // without opts it is an ordinary character
+    // (//A//B)[1]: instance(0) outside keeps findElements at one element (SEL-14, SRV-35)
+    ['(//*[@text="a"]//*[@text="b"])[1]', `${U}.text("a").instance(0).childSelector(${U}.text("b").instance(0))`],
+    ['(//*[@text="a"]/descendant::*[@text="b"])[position()=1]', `${U}.text("a").instance(0).childSelector(${U}.text("b").instance(0))`],
+    // existence tests (SRV-04, SRV-05, SRV-07, SRV-09, SRV-10)
+    ['//*[@text]', U],
+    ['//*[@text][@checked][@index]', U],
+    ['//*[@package]', `${U}.packageNameMatches("(?s).*")`],
+    ['//*[@resource-id and @resource-id="id/x"]', `${U}.resourceId("id/x")`],
+    ['//*[@text!="" and contains(@text,"a")]', `${U}.textMatches("(?s).*a.*")`],
+    ['//*[@text!="" and @clickable="true"]', `${U}.textMatches("(?s).+").clickable(true)`, true],
+    ['//*[@content-desc!="" and @content-desc="x"]', `${U}.description("x")`],
+    // runtime values outside a literal
+    [`//${R}`, `${U}.className("${R}")`, true, RT],
+    [`//${R}[@text="OK"]`, `${U}.className("${R}").text("OK")`, true, RT],
+    [`//*[@index='${R}']`, `${U}.index(${R})`, true, RT],
+    [`(//*[@text="a"])[${R}]`, `${U}.text("a").instance()`, true, { placeholders: new Set([R]), decrement: new Map([[R, '']]) }],
     // skipped
     ['//XCUIElementTypeButton', null],
     ['//*[@text="a"]//*[@text="b"] | //*[@text="c"]', null],
-    ['(//*[@text="a"]//*[@text="b"])[1]', null],
+    ['(//*[@text="a"]//*[@text="b"])[2]', null],
+    ['(//*[@text="a"])[2]//*[@text="b"]', null],
+    [`(//*[@text="a"])[${R}]`, null, false, RT], // no decrement for this hole: the string syntax cannot compute it
+    [`//*[@text="a"][${R}]`, null, false, RT],
+    [`//*[@${R}="a"]`, null, false, RT],
+    [`//*[@${R}]`, null, false, RT],
+    [`//a${R}`, null, false, RT],
+    ['//*[@text or @content-desc="a"]', null],
+    ['//*[@content-desc or @content-desc="a"]', null],
+    ['//*[@bounds]', null],
+    ['//*[@text!="" and @text="a"]', `${U}.text("a")`],
     ['((//*[@text="a"])[1])[1]', null],
     ['(//*[@text="a"])[0]', null],
     ['(//*[@text="a"])[1.5]', null],
@@ -185,7 +211,6 @@ console.log('— CONVERTER: more rows —');
     ['android.widget.Button', null],
     ['//node()', null],
     ['//*[.="a"]', null],
-    ['//*[@text]', null],
     ['//*[self::android.widget.Button or self::android.view.View]', null],
     ['//*[@text="a"] | //*[@text="b"][@checked="true"]', null],
     ['//*[count(*)=2]', null],
@@ -195,7 +220,6 @@ console.log('— CONVERTER: more rows —');
     ['//*[', null],
     ['', null],
     ['//*[@text="a"]]', null],
-    [`//${R}`, null, false, RT],
     [`//*[matches(@text,"${R}")]`, null, false, RT],
   ];
   for (const [xpath, want, warn, opts] of CONVERT_CASES) {
@@ -209,6 +233,34 @@ console.log('— CONVERTER: more rows —');
   // iOS element types are their own status
   if (convertXpathToUiSelector('//XCUIElementTypeButton').status === STATUS.SKIPPED_IOS) ok();
   else fail('CONVERT XCUIElementType: expected skipped_ios');
+  // a skip with a manual rewrite carries it as hint; web / iOS attributes get their own reason
+  const HINT_CASES = [
+    ['//android.widget.ListView/android.widget.TextView', /^A\.childSelector\(B\)/],
+    ['//android.widget.Button[2]', /^\(\/\/X\)\[n\]/],
+    ['/hierarchy/android.widget.FrameLayout', /resource-id, text or content-desc/],
+    ['//*[@text="a"]/..', /fromParent/],
+    ['//*[@text="a"]/following-sibling::*', /fromParent/],
+    ['//*[@text="a" or @content-desc="b"]', /one lookup per side/],
+    ['//*[text()="a"]', /@text instead of text\(\)/],
+    ['//*[@resourceId="x"]', /@resource-id/],
+    ['(//*[@text="a"]//*[@text="b"])[2]', /counts within one A/],
+    ['//*[@text="a"][@checked="TRUE"]', null],
+  ];
+  for (const [xpath, want] of HINT_CASES) {
+    const res = convertXpathToUiSelector(xpath);
+    if (res.status !== STATUS.SUCCESS && (want ? want.test(res.hint || '') : !res.hint)) ok();
+    else fail(`HINT ${xpath}: expected ${want || 'no hint'}, got ${res.status} ${res.hint}`);
+  }
+  for (const attr of ['label', 'value', 'id', 'data-testid', 'aria-label']) {
+    const res = convertXpathToUiSelector(`//*[@${attr}="a"]`);
+    if (res.reason === `${attr} is a web or iOS attribute: the Android page source has no ${attr}`) ok();
+    else fail(`WEB/IOS @${attr}: got ${res.reason}`);
+  }
+  {
+    const { records } = scan('a.ts', "const e = $('//android.widget.ListView/android.widget.TextView');", { convert: undefined });
+    if (records.length === 1 && /^A\.childSelector/.test(records[0].hint || '')) ok();
+    else fail(`HINT in the scan record: ${JSON.stringify(records)}`);
+  }
 }
 
 // =====================================================================
@@ -651,9 +703,25 @@ console.log('— SCANNER: runtime values —');
     ['a.py', 'e = driver.find_element(AppiumBy.XPATH, \'//*[@text="{}"]\'.format(name))', `e = driver.find_element(AppiumBy.ANDROID_UIAUTOMATOR, '${U}.text("{}")'.format(name))`, true],
     ['A.cs', 'var e = driver.FindElement(MobileBy.XPath($"//*[@text=\'{name}\']"));', `var e = driver.FindElement(MobileBy.AndroidUIAutomator($"${U}.text(\\"{name}\\")"));`, true],
     ['a.rb', 'e = driver.find_element(:xpath, "//*[@text=\'#{name}\']")', `e = driver.find_element(:uiautomator, "${U}.text(\\"#{name}\\")")`, true],
-    // the runtime value is a number or a step name: skipped
+    // a runtime class name goes into className()
+    ['A.java', 'e = driver.findElement(AppiumBy.xpath("//" + cls + "[@text=\'OK\']"));',
+      `e = driver.findElement(AppiumBy.androidUIAutomator("${U}.className(\\"" + cls + "\\").text(\\"OK\\")"));`, true],
+    ['a.py', 'e = driver.find_element(AppiumBy.XPATH, f\'//{cls}[@text="OK"]\')', `e = driver.find_element(AppiumBy.ANDROID_UIAUTOMATOR, f'${U}.className("{cls}").text("OK")')`, true],
+    // a runtime index goes into index()
+    ['A.kt', 'val e = driver.findElement(AppiumBy.xpath("//android.widget.ImageView[@index=\'$i\']"))',
+      `val e = driver.findElement(AppiumBy.androidUIAutomator("${U}.className(\\"android.widget.ImageView\\").index($i)"))`, true],
+    // a runtime position: the host expression minus one, where the string syntax evaluates it
+    ['a.ts', 'const e = $(`(//*[@text="OK"])[${i}]`);', `const e = $(\`android=${U}.text("OK").instance(\${i - 1})\`);`, true],
+    ['a.ts', 'const e = $(`(//*[@text="OK"])[${this.index + 1}]`);', `const e = $(\`android=${U}.text("OK").instance(\${this.index})\`);`, true],
+    ['a.ts', 'const e = $(`(//*[@text="OK"])[${a ? 1 : 2}]`);', `const e = $(\`android=${U}.text("OK").instance(\${(a ? 1 : 2) - 1})\`);`, true],
+    ['a.py', 'e = driver.find_element(AppiumBy.XPATH, f\'(//*[@text="OK"])[{i}]\')', `e = driver.find_element(AppiumBy.ANDROID_UIAUTOMATOR, f'${U}.text("OK").instance({i - 1})')`, true],
+    ['A.cs', 'var e = driver.FindElement(MobileBy.XPath($"(//*[@text=\'OK\'])[{i}]"));', `var e = driver.FindElement(MobileBy.AndroidUIAutomator($"${U}.text(\\"OK\\").instance({i - 1})"));`, true],
+    ['A.kt', 'val e = driver.findElement(AppiumBy.xpath("(//*[@text=\'OK\'])[$i]"))', `val e = driver.findElement(AppiumBy.androidUIAutomator("${U}.text(\\"OK\\").instance(\${i - 1})"))`, true],
+    ['a.rb', 'e = driver.find_element(:xpath, "(//*[@text=\'OK\'])[#{i}]")', `e = driver.find_element(:uiautomator, "${U}.text(\\"OK\\").instance(#{i - 1})")`, true],
+    // ... and skipped where it cannot: %d, format {}, concatenation
+    ['A.java', 'e = driver.findElement(AppiumBy.xpath(String.format("(//*[@text=\'OK\'])[%d]", i)));', null],
+    ['a.py', 'e = driver.find_element(AppiumBy.XPATH, \'(//*[@text="OK"])[{}]\'.format(i))', null],
     ['A.java', 'e = driver.findElement(AppiumBy.xpath("(//android.widget.Button)[" + i + "]"));', null],
-    ['A.java', 'e = driver.findElement(AppiumBy.xpath("//" + cls + "[@text=\'OK\']"));', null],
     // a value outside every literal: the string alone is not the locator
     ['A.java', 'e = driver.findElement(AppiumBy.xpath(BASE + "//*[@text=\'OK\']"));', null],
     ['A.java', 'e = driver.findElement(AppiumBy.xpath("//*[@text=\'OK\']" + suffix));', null],
