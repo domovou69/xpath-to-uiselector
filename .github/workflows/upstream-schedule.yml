@@ -1,7 +1,8 @@
 name: Upstream schedule
 
 # Monthly: did a new appium-uiautomator2-driver release, or the UiAutomator2 server it pins, change a file the
-# converter's rules cite (reference/)? Opens an issue (label `upstream`) when one did. Deterministic, no LLM.
+# converter's rules cite (reference/)? Did a tracked upstream issue (`issues`, e.g. the UiSelector deprecation) get new
+# comments or change state? Opens an issue (label `upstream`) when either did. Deterministic, no LLM.
 # Any failure fails the job, and GitHub emails the failure. See audit/upstream/README.md.
 on:
   schedule:

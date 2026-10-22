@@ -18,18 +18,25 @@ try {
 } catch (e) { fail(`run check.js first: ${e.message}`); }
 
 const newer = meta.components.filter(c => c.newer);
+const issues = meta.issues || [], moved = issues.filter(i => i.changed);
+const filesChanged = meta.components.some(c => c.files.length || c.missingTag);
 const versions = meta.components.map(c => `- ${c.name}: ${c.base}${c.newer ? ` → ${c.latest}` : ' (no newer release)'}`).join('\n');
-const summary = !meta.hasChanges
-  ? (newer.length ? 'Newer releases, but no watched file changed.' : 'No newer release.')
-  : 'A watched upstream file changed (or a release cannot be compared). The rules that cite it may no longer hold.';
-const summaryMd = [`**${meta.hasChanges ? 'Re-check needed.' : 'Nothing to do.'}** ${summary}`, '', `Baseline \`checked\`: ${meta.checkedDate}.`, '', versions, ''].join('\n');
+const summary = [
+  filesChanged ? 'A watched upstream file changed (or a release cannot be compared). The rules that cite it may no longer hold.'
+    : newer.length ? 'Newer releases, but no watched file changed.' : 'No newer release.',
+  moved.length ? `A tracked issue changed: ${moved.map(i => `#${i.number}`).join(', ')}.` : '',
+].filter(Boolean).join(' ');
+const tracked = issues.map(i => `- Tracked ${i.repo}#${i.number}: ${i.status}. What you need to do: ${i.action}`).join('\n');
+const summaryMd = [`**${meta.hasChanges ? 'Action needed.' : 'Nothing to do.'}** ${summary}`, '', `Baseline \`checked\`: ${meta.checkedDate}.`, '', versions, ...(tracked ? ['', tracked] : []), ''].join('\n');
 
 if (process.env.GITHUB_STEP_SUMMARY) fs.appendFileSync(process.env.GITHUB_STEP_SUMMARY, `## Upstream watch\n\n${summaryMd}\n${changes}\n`);
 console.log(summaryMd);
 if (!meta.hasChanges) process.exit(0);
 
-const key = newer.map(c => `${c.id}@${c.latest}`).join(' ');
-const todo = '**What to do:** read the changed files against the reference rows in the "Cited by" column. If a rule may have ' +
+const key = [...newer.map(c => `${c.id}@${c.latest}`), ...moved.map(i => `#${i.number}@${i.state}/${i.comments}`)].join(' ');
+const todo = !filesChanged
+  ? '**What to do:** see "What you need to do" in the tracked issues above. Close this issue after updating `seen`.'
+  : '**What to do:** read the changed files against the reference rows in the "Cited by" column. If a rule may have ' +
   'changed, re-run the edge cases (`npm run oracle`) and the real-world fuzz (`npm run oracle:fuzz`) on the emulator with ' +
   'the new versions (`audit/device/README.md`). When the ' +
   'converter still behaves the same, update `checked` in `audit/upstream.json` through a PR, then `docs/environment.md`, ' +
@@ -37,7 +44,9 @@ const todo = '**What to do:** read the changed files against the reference rows 
 let detail = changes;
 if (detail.length > BODY_LIMIT) detail = `${detail.slice(0, BODY_LIMIT)}\n\n… cut; the full list is in the run artifact \`upstream-watch\`.`;
 const body = [summaryMd, todo, '', detail, '', `<!-- upstream-key: ${key} -->`].join('\n');
-const title = `Upstream: ${newer.map(c => `${c.name} ${c.latest}`).join(', ')} changed files the converter depends on`;
+const title = filesChanged
+  ? `Upstream: ${newer.map(c => `${c.name} ${c.latest}`).join(', ')} changed files the converter depends on`
+  : `Upstream: tracked issue ${moved.map(i => `${i.repo}#${i.number}`).join(', ')} changed`;
 
 if (DRY) { console.log(`\n--- dry run: issue not created ---\nTitle: ${title}\n\n${body}`); process.exit(0); }
 

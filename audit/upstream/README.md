@@ -25,16 +25,29 @@ every change to a watched file is reported, with the reference rows that cite it
 
 androidx `UiSelector` itself has no tags on GitHub; a new version shows up as a change to `libs.versions.toml`.
 
+**Tracked issues** (`issues`): upstream issues whose outcome decides the converter's future, each with the state
+and comment count last read (`seen`). Now:
+[appium-uiautomator2-driver#812](https://github.com/appium/appium-uiautomator2-driver/issues/812), Appium's answer
+to Google's plan to remove `UiSelector`. Every run prints a separate "Tracked issues" block in the job log and the
+job summary: status, last activity and **What you need to do** (`none` while nothing changed). A new comment or a
+state change also opens the issue.
+
 ## How it works
 
 1. [`check.js`](check.js) (Node 20+, no dependencies) reads the latest versions from npm, compares the git trees of
    both tags to find the changed watched files, and collects their commits and patches. For each server file it
-   lists the reference rows (`SRV-…`, `XP-…`) that name it. A release whose tag is missing from the repository is
+   lists the reference rows (`SRV-…`, `XP-…`) that name it. It reads each tracked issue and compares it with `seen`. A release whose tag is missing from the repository is
    reported as "cannot compare", not passed. It writes `out/upstream-meta.json` and `out/upstream-changes.md`.
 2. [`report.js`](report.js) writes the job summary and, when something changed, creates the issue. It skips the
-   issue when an open `upstream` issue already names the same latest versions.
+   issue when an open `upstream` issue already names the same latest versions and tracked-issue states.
 
 ## After an issue
+
+For a tracked issue: read the new comments or the resolution, then set `seen` (date, state, comments) in
+`audit/upstream.json` through a PR. If Appium added a new locator strategy, plan the converter target for it and
+update the "Future of `UiSelector`" note in the README. Close the issue.
+
+For changed files:
 
 Read the changed files against the rows in "Cited by". If a rule may have changed, re-run the edge cases
 (`npm run oracle`) and the real-world fuzz (`npm run oracle:fuzz`) on the emulator with the new versions ([audit/device/README.md](../device/README.md)). When the converter still

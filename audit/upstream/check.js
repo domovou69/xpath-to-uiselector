@@ -148,6 +148,28 @@ async function component(id, spec, done) {
   return r;
 }
 
+// Tracked issues (`issues` in audit/upstream.json): compared with the state and comment count in `seen`.
+async function trackedIssue(t) {
+  const x = await get(`https://api.github.com/repos/${t.repo}/issues/${t.number}`);
+  const r = { repo: t.repo, number: t.number, title: x.title, url: x.html_url, why: t.why, seen: t.seen,
+    state: x.state, comments: x.comments, updated: x.updated_at.slice(0, 10) };
+  const fresh = x.comments - t.seen.comments;
+  r.changed = x.state !== t.seen.state || fresh > 0;
+  r.status = x.state !== t.seen.state ? `${t.seen.state} → ${x.state}` : fresh > 0 ? `${fresh} new comment(s)` : `still ${x.state}, no new comments`;
+  r.action = !r.changed ? `none (checked against ${t.seen.date})`
+    : x.state === 'closed' ? 'read how it was resolved; if Appium added a new locator strategy, plan the converter target for it and update the README note; then set `seen` in audit/upstream.json'
+    : 'read the new comments (a removal date, a BySelector parser, a new strategy?); then set `seen` in audit/upstream.json';
+  return r;
+}
+
+function issuesMd(issues) {
+  if (!issues.length) return '';
+  const L = ['### Tracked issues', '', '| Issue | Status | Last activity | What you need to do |', '| --- | --- | --- | --- |'];
+  for (const i of issues) L.push(`| [${i.repo}#${i.number}](${i.url}) ${i.title} | ${i.status} | ${i.updated} | ${i.action} |`);
+  L.push('', ...issues.map(i => `- #${i.number}: ${i.why}.`), '');
+  return L.join('\n');
+}
+
 function changesMd(results) {
   const L = [];
   for (const r of results) {
@@ -174,16 +196,20 @@ function changesMd(results) {
   const done = {};
   for (const [id, spec] of Object.entries(baseline.watch)) done[id] = await component(id, spec, done);
   const results = Object.values(done);
-  const hasChanges = results.some(r => r.files.length || r.missingTag);
+  const issues = [];
+  for (const t of baseline.issues || []) issues.push(await trackedIssue(t));
+  const hasChanges = results.some(r => r.files.length || r.missingTag) || issues.some(i => i.changed);
   fs.mkdirSync(OUT, { recursive: true });
   const meta = { checkedDate: baseline.checked.date, hasChanges, components: results.map(({ commits, ...r }) =>
-    ({ ...r, files: r.files.map(f => ({ filename: f.filename, status: f.status, cites: f.cites })), commits: commits.map(k => k.url) })) };
+    ({ ...r, files: r.files.map(f => ({ filename: f.filename, status: f.status, cites: f.cites })), commits: commits.map(k => k.url) })), issues };
   fs.writeFileSync(path.join(OUT, 'upstream-meta.json'), JSON.stringify(meta, null, 2) + '\n');
-  fs.writeFileSync(path.join(OUT, 'upstream-changes.md'), changesMd(results));
+  fs.writeFileSync(path.join(OUT, 'upstream-changes.md'), [changesMd(results), issuesMd(issues)].filter(Boolean).join('\n'));
   for (const r of results) {
     const what = !r.newer ? 'no newer release' : r.missingTag ? `cannot compare (no tag ${r.missingTag.join(', ')})`
       : r.files.length ? `${r.files.length} watched file(s) changed: ${r.files.map(f => path.basename(f.filename)).join(', ')}` : 'no watched file changed';
     console.log(`${r.name}: ${r.base} → ${r.latest}${r.npmLatest !== r.latest ? ` (npm ${r.npmLatest})` : ''}: ${what}`);
   }
+  if (issues.length) console.log('\nTracked issues:');
+  for (const i of issues) console.log(`- ${i.repo}#${i.number} (${i.title}): ${i.status}, last activity ${i.updated}\n  What you need to do: ${i.action}`);
   if (process.env.GITHUB_OUTPUT) fs.appendFileSync(process.env.GITHUB_OUTPUT, `has_changes=${hasChanges}\n`);
 })().catch(e => { console.error(e.message); process.exit(1); });
