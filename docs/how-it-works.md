@@ -87,7 +87,10 @@ flowchart TD
   update -.->|"next month compares from here"| cmp
 ```
 
-`checked` is a field in [audit/upstream.json](../audit/upstream.json). Details: [audit/upstream/](../audit/upstream/README.md).
+`checked` is a field in [audit/upstream.json](../audit/upstream.json). The same job also follows tracked upstream
+issues, such as [appium-uiautomator2-driver#812](https://github.com/appium/appium-uiautomator2-driver/issues/812)
+on the removal of `UiSelector`: each run logs their status and what you need to do, and a new comment or a state
+change opens an issue. Details: [audit/upstream/](../audit/upstream/README.md).
 
 ## Terms
 

@@ -1,5 +1,5 @@
 {
-  "about": "Single source of truth for the versions the converter was last checked against on a device, and for the upstream files the monthly watch (audit/upstream/) compares. After a device re-check, update `checked` here first, then docs/environment.md, docs/results.md and the devDependencies.",
+  "about": "Single source of truth for the versions the converter was last checked against on a device, for the upstream files the monthly watch (audit/upstream/) compares, and for the upstream issues it tracks (`issues`, with the state last read in `seen`). After a device re-check, update `checked` here first, then docs/environment.md, docs/results.md and the devDependencies.",
   "checked": {
     "date": "2026-10-21",
     "appium": "3.8.0",
@@ -8,6 +8,14 @@
     "uiautomator": "2.3.0",
     "android": "16 (API 36) and 17 (API 37), emulators"
   },
+  "issues": [
+    {
+      "repo": "appium/appium-uiautomator2-driver",
+      "number": 812,
+      "why": "Google plans to remove UiSelector from UiAutomator; Appium's answer (a BySelector parser or a new strategy) decides the converter's future target",
+      "seen": { "date": "2026-10-22", "state": "open", "comments": 7 }
+    }
+  ],
   "watch": {
     "driver": {
       "name": "appium-uiautomator2-driver",

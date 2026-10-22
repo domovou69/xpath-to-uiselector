@@ -48,6 +48,16 @@ distinct XPaths) ran on an Android emulator with **0 wrong** results.
 - Runtime values (`%s`, `{0}`, `${x}`) that contain `"` or `\` break the `UiSelector` (warned); `(//X)[${i}]` becomes
   `instance(${i - 1})` only where the string syntax can compute it.
 
+## Future of `UiSelector`
+
+Google plans to [deprecate and remove](https://developer.android.com/training/testing/other-components/ui-automator-legacy#ui-automator)
+`UiSelector` from UiAutomator, and the [UiAutomator2 driver](https://github.com/appium/appium-uiautomator2-driver)
+warns that this will make every `-android uiautomator` locator invalid. No date or version is set yet (UiAutomator
+2.4.0, July 2026, still ships it), and the driver's server bundles UiAutomator 2.3.0, so today's locators keep
+working until Appium moves to a version without it. Appium has not announced a replacement:
+[appium-uiautomator2-driver#812](https://github.com/appium/appium-uiautomator2-driver/issues/812) is open. XPath
+locators are not affected. The monthly [upstream watch](audit/upstream/README.md) reports any change to that issue.
+
 ## Documentation
 
 - [Reference](docs/reference.md): examples per language, every conversion rule, flags, JSON report, library API
