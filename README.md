@@ -33,19 +33,20 @@ dependencies. The strategy call is rewritten together with the string:
 ## What it does
 
 - **Converts** what has an exact `UiSelector`: attributes, booleans, `@index`, `contains()` / `starts-with()` /
-  `ends-with()` / `matches()`, `or` on one attribute, `(//X)[n]`.
+  `ends-with()` / `matches()`, `or` on one attribute, `(//X)[n]`, `(//A//B)[1]`, existence tests such as `[@text]`.
 - **Warns** where only a close form exists, such as `//A//B` → `childSelector`.
-- **Skips** the rest with a reason: direct child `//A/B`, sibling positions, `/hierarchy/…` paths, parent and
-  sibling axes, and more.
+- **Skips** the rest with a reason, and most with a `hint` on how to rewrite it by hand: direct child `//A/B`, sibling
+  positions, `/hierarchy/…` paths, parent and sibling axes, and more.
 
-Checked on 1645 real Android XPaths from 20 open-source projects: 71 % convert, and every converted one (1142
+Checked on 1645 real Android XPaths from 20 open-source projects: 73 % convert, and every converted one (1169
 distinct XPaths) ran on an Android emulator with **0 wrong** results.
 
 ## Limits
 
 - Exact for the **default** UiAutomator2 driver settings only ([settings](docs/settings.md)).
 - Web and WebView XPaths are not detected: point it at Android tests only.
-- Runtime values (`%s`, `{0}`, `${x}`) that contain `"` or `\` break the `UiSelector` (warned).
+- Runtime values (`%s`, `{0}`, `${x}`) that contain `"` or `\` break the `UiSelector` (warned); `(//X)[${i}]` becomes
+  `instance(${i - 1})` only where the string syntax can compute it.
 
 ## Documentation
 

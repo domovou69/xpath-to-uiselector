@@ -36,7 +36,8 @@ const SCREENS = path.join(DIR, 'r-fuzz-screens.json');
 const SUFFIX = opt('--out') ? `-${opt('--out')}` : '';
 const OUT = path.join(DIR, `r-fuzz${SUFFIX}.json`);
 const SUMMARY = path.join(DIR, `r-fuzz-summary${SUFFIX}.md`);
-const RUNTIME_ONLY = 'runtime value in a literal';
+// warnings about runtime values, which the fuzz fills with safe ones
+const RUNTIME_ONLY = new Set(['runtime value in a literal', 'runtime class name', 'runtime index', 'runtime position']);
 const VIEW = 'android.view.View';
 // rare forms (at most RARE_MAX XPaths of the form) run again on screens of their own, one batch per seed
 const RARE_MAX = 2;
@@ -52,7 +53,7 @@ const hash = v => crypto.createHash('sha256').update(JSON.stringify(v)).digest('
 // the screens file, created or extended for the items the converter converts now
 function screensFor(items) {
   const file = fs.existsSync(SCREENS) ? read(SCREENS) : { seed: SEED, date: new Date().toISOString().slice(0, 10), items: {}, batches: [] };
-  const fresh = items.filter(it => !file.items[it.key]);
+  const fresh = items.filter(it => !file.items[it.key] && !(file.nogen || []).some(n => n.key === it.key));
   if (fresh.length) {
     const copies = fresh.map(it => ({ ...it }));
     const { batches, nogen } = generate(copies, file.seed, file.batches.length);
@@ -80,7 +81,19 @@ function screensFor(items) {
     write(SCREENS, file, 0);
     console.log(`screens: ${items.length} items on ${batches.length * 5} matrix screens`);
   }
-  for (const it of items) if (file.items[it.key].xpath !== it.xpath) throw new Error(`item ${it.key}: the XPath differs from the screens file`);
+  // items that convert only now get matrix screens of their own
+  const noMatrix = items.filter(it => !file.matrix.home[it.key] && !(file.matrix.nogen || []).includes(it.key));
+  if (noMatrix.length) {
+    const copies = noMatrix.map(it => ({ ...it }));
+    const from = Math.max(-1, ...file.matrix.batches.map(b => b.id)) + 1;
+    const { batches, nogen } = generate(copies, file.matrix.seed, from, 'm', { matrix: true });
+    file.matrix.batches.push(...batches);
+    for (const c of copies) if (c.home) file.matrix.home[c.key] = c.home;
+    file.matrix.nogen = [...(file.matrix.nogen || []), ...nogen.map(n => n.key)];
+    write(SCREENS, file, 0);
+    console.log(`screens: ${noMatrix.length - nogen.length} new items on ${batches.length * 5} new matrix screens`);
+  }
+  for (const it of items) if (file.items[it.key] && file.items[it.key].xpath !== it.xpath) throw new Error(`item ${it.key}: the XPath differs from the screens file`);
   return file;
 }
 
@@ -121,7 +134,7 @@ const keep = (l, outcome) => (l.error ? l : { ms: l.ms, n: l.n, h: hash(l.fp), .
 // a lookup that failed on the way (Appium proxy timeout, a dropped socket), not on the selector: --resume reruns it
 const transient = r => [r?.x?.error, r?.u?.error].some(e => /timeout|could not proxy|ECONNRESET|socket hang up/i.test(e || ''));
 
-const strict = it => it.outcome === 'exact' || it.warnings.every(w => w === RUNTIME_ONLY);
+const strict = it => it.outcome === 'exact' || it.warnings.every(w => RUNTIME_ONLY.has(w));
 
 // Mutants (--mutants): wrong UiSelectors made from an exact item's own, run on its own screen. A mutant the
 // screen tells apart from the XPath is killed; the share killed shows how strong the traps are.
@@ -193,7 +206,7 @@ function verdict(it, file, runs, set = 'base') {
 const pct = (a, b) => (b ? `${((100 * a) / b).toFixed(1)} %` : '—');
 const median = a => { const b = a.slice().sort((x, y) => x - y); return b.length ? b[b.length >> 1] : null; };
 
-function summary(doc, file, items) {
+function summary(doc, file, items, all = items) {
   const V = items.map(it => ({ it, ...verdict(it, file, doc.runs) }));
   const by = v => V.filter(x => x.v === v);
   const lit = list => list.reduce((n, x) => n + x.it.ids.length, 0);
@@ -224,6 +237,10 @@ function summary(doc, file, items) {
   L.push('What the device sees is the XPath after the scanner has read the source literal. How the literal is written in the');
   L.push('source (quotes, escapes, `String.format`, f-strings, concatenation) and how the UiSelector is written back are');
   L.push('checked by the unit tests (`npm test`) and offline per language ([convert-summary.md](../../corpus/convert-summary.md)), not here.', '');
+  if (file.nogen?.length) {
+    L.push(`Not run: ${file.nogen.length} converted XPath${file.nogen.length > 1 ? 's' : ''} the screen builder cannot read (${[...new Set(file.nogen.map(n => n.reason))].join(', ')}),`);
+    L.push('covered by the edge cases instead.', '');
+  }
   L.push('## Verdicts', '');
   L.push('| Verdict | Items | Literals | Exact items | Close items |', '| --- | --- | --- | --- | --- |');
   for (const v of ['CORRECT', 'DRIFT', 'WRONG', 'VACUOUS', 'NOT RUN']) {
@@ -247,7 +264,8 @@ function summary(doc, file, items) {
   L.push(`R = 100 × (CORRECT + 0.5 × DRIFT) / converted and run (VACUOUS left out): **${R(scored).toFixed(1)}** over ${scored.length} items,`);
   L.push(`**${RL(scored).toFixed(1)}** over their ${lit(scored)} literals. Skips are not run here: every skip reason has an S case on the`);
   L.push('device ([s-summary.md](s-summary.md)).', '');
-  L.push(`C = converted / Android literals: **${pct(lit(V), android)}** (${lit(V)} of ${android}); exact only ${pct(lit(V.filter(x => x.it.outcome === 'exact')), android)}.`, '');
+  const conv = list => list.reduce((n, it) => n + it.ids.length, 0);
+  L.push(`C = converted / Android literals: **${pct(conv(all), android)}** (${conv(all)} of ${android}); exact only ${pct(conv(all.filter(it => it.outcome === 'exact')), android)}.`, '');
   // by form
   const forms = new Map();
   for (const x of V) forms.set(form(x.it.xpath), [...(forms.get(form(x.it.xpath)) || []), x]);
@@ -348,11 +366,13 @@ function summary(doc, file, items) {
 // ---------------------------------------------------------------------------
 
 (async () => {
-  const items = currentItems();
-  const file = screensFor(items);
+  const all = currentItems();
+  const file = screensFor(all);
+  // an XPath the screen builder cannot read (file.nogen) has no screens: listed in the summary, not run
+  const items = all.filter(it => file.items[it.key]);
   if (args.includes('--generate')) return;
   const doc = fs.existsSync(OUT) && (args.includes('--resume') || args.includes('--summary')) ? read(OUT) : { runs: {} };
-  if (args.includes('--summary')) { fs.writeFileSync(SUMMARY, summary(doc, file, items)); console.log(SUMMARY); return; }
+  if (args.includes('--summary')) { fs.writeFileSync(SUMMARY, summary(doc, file, items, all)); console.log(SUMMARY); return; }
   const host = requirePower();
   const only = opt('--only')?.split(',');
   const batches = opt('--batch')?.split(',').map(Number);
@@ -383,7 +403,7 @@ function summary(doc, file, items) {
         }
       }
     } finally { write(OUT, doc, 0); await s.close(); }
-    fs.writeFileSync(SUMMARY, summary(doc, file, items));
+    fs.writeFileSync(SUMMARY, summary(doc, file, items, all));
     return;
   }
   const pool = args.includes('--rare') ? file.rare : matrix ? file.matrix.batches : file.batches;
@@ -417,6 +437,6 @@ function summary(doc, file, items) {
       }
     }
   } finally { write(OUT, doc, 0); await s.close(); }
-  fs.writeFileSync(SUMMARY, summary(doc, file, items));
+  fs.writeFileSync(SUMMARY, summary(doc, file, items, all));
   console.log(`done ${done}/${total} in ${Math.round((Date.now() - t0) / 60000)} min, ${diffs} exact differences → ${path.relative(process.cwd(), SUMMARY)}`);
 })().catch(e => { console.error(e); process.exit(1); });

@@ -53,7 +53,7 @@ flowchart TD
 1. **Reference rows** ([reference/](../reference/README.md)): what the UiAutomator2 server, androidx `UiSelector` and
    the XPath engine actually do, with the source file and line at pinned versions.
 2. **Edge cases** ([audit/spec/cases.js](../audit/spec/cases.js)): at least one XPath per reference row, with its
-   class (exact, close, skip) and a hand-written expected `UiSelector`. 134 cases.
+   class (exact, close, skip) and a hand-written expected `UiSelector`. 150 cases.
 3. **Emulator** ([audit/device/](../audit/device/README.md)): every edge case ran on an Android emulator before the
    converter existed; `findElements` by XPath and by `UiSelector`, the two element lists compared. Where the device
    disagreed, the case was corrected (for example, `//*` turned out exact).

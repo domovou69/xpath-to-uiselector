@@ -137,7 +137,11 @@ returned), `@text=1` and `contains(text(),…)` fail on the device, `$` in a nam
 | `@index` | `index(n)` | exact |
 | `(//X)[n]`, `[position()=n]` | `instance(n-1)` | exact (oracle) |
 | `//A//B` | `childSelector` | close (Decision 3) |
-| `//A/B`, `[.//B]`, `//X[n]`, `last()`, axes other than descendant, `not()` on text, `or` across attributes, unions of different paths, `/hierarchy/…`, `text()`, ~40 attributes without a criterion | — | skip with a reason |
+| `(//A//B)[1]` | `A.instance(0).childSelector(B.instance(0))` | exact (oracle, Decision 6); `[2]` and later skip: `instance` counts within each container |
+| `[@text]`, `[@checked]`, `[@index]`; `[@content-desc]`, `[@resource-id]`, `[@content-desc!=""]` | dropped; `…Matches("(?s).*")` / `"(?s).+"` | exact (Decision 6) |
+| `[@text!=""]` | `textMatches("(?s).+")` | close: range widgets |
+| `//${cls}`, `@index='$i'`, `(//X)[${i}]` | `className`, `index`, `instance(${i - 1})` | close, runtime warning (Decision 6) |
+| `//A/B`, `[.//B]`, `//X[n]`, `last()`, axes other than descendant, `not()` on text, `or` across attributes, unions of different paths, `/hierarchy/…`, `text()`, ~40 attributes without a criterion | — | skip with a reason, most with a rewrite `hint` |
 | XPath syntax outside the AST whitelist | — | skip "unsupported syntax" |
 
 ## 4. Reference, edge cases and real-world locators
@@ -219,13 +223,34 @@ go into stage 4, not into a separate round.
 In order:
 
 1. npm publish of 1.0.0 (prepared in stage 5, waits for the user's OK); then the npm badge in the README.
-2. Coverage of skipped forms: the real-world skips ([convert-summary.md](audit/corpus/convert-summary.md), 475
-   unique, 28.9 %) are the list for later converter work. Most reasons have no exact `UiSelector` at all (direct
-   child, `/hierarchy/` paths, attributes without a criterion), but some could get a close form or a rewrite hint.
-   New edge cases generated from `reference/` for them, run on the emulator first, as in stages 1–3.
+2. Coverage of skipped forms: done 2026-10-21 (below). Left from it, small: `normalize-space(@a)="v"` as an exact
+   whitespace regex (1 literal), `lower-case(@a)=lower-case("v")` (2), `X/..//Y` → `fromParent` as close where the
+   device shows the same first element (≈4), `(//A)[n]//B` as close (3, all with a runtime position); mutants and
+   Android 17 for the new conversions.
 3. Optional: a real phone, the edge cases and a slice of the real-world fuzz on a physical Android device (AC power,
    Low Power Mode off), as the iPhone check on iOS; another OEM build. An older Android version (API 33 or 30,
    ≈550–670 MB image) only if a reason comes up: Android 17 already matched Android 16.
+
+## Coverage of skipped forms (2026-10-21)
+
+The 475 real-world skips were grouped: convertible forms, rewrite hints, web / iOS attributes, the rest unchanged.
+Done in the order of the stages: reference rows from androidx `uiautomator-2.3.0` and the server's
+`ByUiAutomatorFinder` (SEL-14, SRV-35), 16 new edge cases and a `nest` screen (several containers, one empty, one
+nested; null vs. `""`), the emulator, then the converter, then the real-world fuzz of the new conversions on random
+and matrix screens.
+
+- **The device corrected the reading of the source.** `(//A//B)[n]` → `A.childSelector(B.instance(n-1))` looked exact,
+  but `getChildSelector()` returns a copy, so `instance` counts within each container: `(//ListView//TextView)[5]`
+  found nothing where the fifth lies in the second ListView (E10). Only `[1]` is exact, and only with `instance(0)` on
+  the outer selector: the server looks for `instance` on the outer selector only, and without it `findElements`
+  returned 3 elements (E09 probe). `[2]` and later stay skipped with a hint.
+- Converted now: `(//A//B)[1]`, existence tests, runtime class names, indexes and positions (the host expression is
+  rewritten minus one where the string syntax computes it). Edge cases 150 of 150, all 89 exact confirmed on the device
+  (the 134 old ones also on the new screen); real-world fuzz of the 27 new XPaths: 0 wrong, 0 with nothing matched.
+- Hints: 347 of the 446 remaining skips carry one (direct child, sibling position, `/hierarchy/`, axes, `or` across
+  attributes, `text()`, aliases, nested positions). Web and iOS attributes (`@label`, `@id`, `data-*`, …) get their
+  own reason; nothing is filtered (Decision 4).
+- Real-world locators: conversion rate 71.1 % → 72.9 % (1199 of 1645), skips 475 → 446; score 96.6; 0 wrong.
 
 ## Decisions (2026-10-20)
 
@@ -239,3 +264,7 @@ In order:
    stays close.
 4. Web / WebView XPaths in scanned files: the user's responsibility (change 8).
 5. Default driver settings only, documented in `docs/settings.md` (change 9).
+6. Skipped-form coverage (2026-10-21): an always-true test (`[@text]`, `[@checked]`) is dropped, exact; a runtime
+   position is converted by rewriting the host expression minus one, only where the string syntax computes it, close;
+   `fromParent` may be close if the device shows the same first element (not done yet: hint only). `(//A//B)[n]` was
+   an exact candidate; the device made it `[1]` only.

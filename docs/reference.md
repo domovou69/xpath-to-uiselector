@@ -134,6 +134,10 @@ default settings. **Close** converts with a `warning` (printed with `!`, in the 
 | `@index="2"`, `@index=2` | `index(2)` | exact: both count every child, invisible ones included | SEL-09, SRV-10 |
 | `.//X`, `/hierarchy//X`, `//descendant::X` | as `//X` | exact | SRV-02, XP-01 |
 | `[a][b]`, `[a and b]` | criteria in the order the XPath names them | exact | SEL-01 |
+| `[@text]`, `[@checked]` (any of the nine booleans), `[@index]` | dropped | exact: written on every element, so always true | SRV-05, SRV-09, SRV-10 |
+| `[@content-desc]`, `[@package]` | `descriptionMatches("(?s).*")`, `packageNameMatches("(?s).*")` | exact: written when non-null, `""` included | SRV-04, SRV-08 |
+| `[@resource-id]`, `[@resource-id!=""]`, `[@content-desc!=""]` | `resourceIdMatches("(?s).+")`, `descriptionMatches("(?s).+")` | exact; an existence test next to another test on the same attribute is dropped | SRV-04, SRV-07 |
+| `[@text!=""]` | `textMatches("(?s).+")` | close: a range widget (SeekBar, ProgressBar) has a text only in the page source, so the XPath also finds it | SRV-05, SRV-06 |
 
 Output order: `className`, then the criteria in XPath order, then `instance`, then `childSelector`.
 
@@ -176,14 +180,27 @@ written (SRV-23). A value with `"` or `\` is therefore written as a regex with `
 | --- | --- | --- | --- |
 | `(//X)[n]`, `(//X)[position()=n]` | `….instance(n-1)` | exact: `UiSelector` counts in pre-order, as XPath's document order, with the same visibility rule; `findElements` returns that one element | SEL-06, SEL-07, SEL-10, SRV-31 |
 | `//A//B`, `//A/descendant::B` | `A.childSelector(B)` | close: the first element is the XPath's, but `findElements` returns at most one B per matched A | SEL-11 |
+| `(//A//B)[1]`, `(//A/descendant::B)[1]` | `A.instance(0).childSelector(B.instance(0))` | exact: the first A that has a B, and its first B, is the first B in document order; `instance(0)` on A changes nothing in matching but makes `findElements` return one element (the server looks for `instance` only on the outer selector) | SEL-14, SRV-35 |
+
+### Runtime values outside a literal
+
+A runtime value standing alone where a name or a number goes. All three are close, with a warning that the value
+must have the right shape.
+
+| XPath | UiSelector | Note | Rows |
+| --- | --- | --- | --- |
+| `//${cls}[@text="OK"]`, `"//" + cls + "[…]"` | `className("${cls}").text("OK")` | the value must be the full class name | SRV-03 |
+| `//X[@index='$i']` | `index($i)` | the value must be a whole number | SEL-09 |
+| `(//X)[${i}]` | `instance(${i - 1})` | the host expression is rewritten minus one (`${this.index + 1}` → `${this.index}`) where the string syntax computes it: JS/TS `${}`, Kotlin `$i` / `${}`, Ruby `#{}`, Python f-strings, C# `$"{}"`. With `%d`, `.format()` or concatenation it is skipped with a hint | SEL-10 |
 
 ### Skipped, with the reason
 
 | XPath | Why | Rows |
 | --- | --- | --- |
 | `//A/B` (direct child), `//X[n]` (position among siblings), `last()`, `position()<3` | `UiSelector` has no direct-child criterion and no sibling position | SEL-13, XP-08 |
+| `(//A//B)[n]` with n ≥ 2, `(//A)[n]//B` | `UiSelector` counts `instance` within each container, so it agrees only when one A matches; `A.instance(n-1).childSelector(B)` returns one B and goes on to the next A | SEL-14 |
 | `/hierarchy/…/X` (absolute path from Appium Inspector), `//hierarchy` | Absolute from the page source root; the root is not an element on screen | SRV-02 |
-| `[.//B]`, `..`, `parent::`, `ancestor::`, `following-sibling::`, `preceding-sibling::` | No has-descendant filter; parent and sibling axes are not converted (`fromParent` is not proven exact) | SEL-12, SEL-13 |
+| `[.//B]`, `..`, `parent::`, `ancestor::`, `following-sibling::`, `preceding-sibling::` | No has-descendant filter; parent and sibling axes are not converted (`fromParent` searches the parent's whole subtree) | SEL-12, SEL-13 |
 | `not(contains(@text,…))`, `@text!="x"` | No negation for strings | SEL-13 |
 | `@text="A" or @content-desc="A"`, `@checked="true" or @selected="true"`, unions of different attributes or paths | No `or` across criteria (statements joined with `;` are deduplicated in statement order, not document order) | SEL-13, SRV-21 |
 | `contains(@class,"Button")`, `//Button \| //ImageButton` | `classNameMatches` makes `findElements` iterate `index(i)` instead of `instance(i)` and loses elements | SRV-33 |
@@ -195,12 +212,19 @@ written (SRV-23). A value with `"` or `\` is therefore written as a regex with `
 | `text()`, `contains(text(),…)` | The page source has no text nodes | XP-07 |
 | `@bounds`, `@displayed`, `@password`, `@hint`, `@a11y-…` and ~40 more | No `UiSelector` criterion | SRV-11 |
 | `@name`, `@resourceId`, `@contentDescription` | Aliases of `getAttribute`, not page source attributes: the XPath matches nothing | SRV-11 |
+| `@label`, `@value`, `@id`, `@type`, `data-*`, `aria-*` … | Web or iOS attributes: the Android page source has none (a reason, not a filter) | SRV-11 |
 | `//android.widget.Toast` | Toasts exist only in the page source | SRV-13 |
 | `//com.app.Outer$Inner` | The XPath parser rejects `$` in a name test | SRV-03 |
 | control characters in a value | Replaced in the page source | SRV-14 |
 | `normalize-space()`, `string-length()`, `substring()`, quantified and `if` expressions, `matches()` with the `x` flag or an invalid flag | No `UiSelector` form, or the XPath itself fails | XP-01, XP-03 |
 | `matches()` with a pattern that matches `""` | XPath also matches elements without the attribute | XP-03 |
 | syntax errors, anything outside the parser's whitelist | `not a valid XPath` / no `UiSelector` form | SRV-01 |
+
+Most skips carry a `hint` (in the console and in the JSON report): how to rewrite the locator by hand, and how the
+nearest `UiSelector` form differs. For example, `//A/B` → `A.childSelector(B)` finds deeper B too; `//X[n]` → `(//X)[n]`
+counts over the whole screen; `X/..//Y` → `X.fromParent(Y)` searches the parent's whole subtree; `/hierarchy/…` →
+locate the element by its resource id, text or content description; `text()` → `@text`; `@resourceId` →
+`@resource-id`; an `or` across attributes → one lookup per side.
 
 The full list of skip reasons with their frequencies on real projects: [convert-summary.md](../audit/corpus/convert-summary.md).
 
@@ -220,7 +244,8 @@ elements at the default settings (SRV-12, SEL-07). Details: [coverage-report.md]
   XPath 1.0 mode `ends-with()`, `matches()`, `lower-case()` and sequences fail as XPath, but their conversions still
   work as `UiSelector`.
 - **Web and WebView XPaths** are the user's responsibility: they are converted like Android ones.
-- **Runtime values** with `"` or `\` break the `UiSelector` (warned).
+- **Runtime values** with `"` or `\` break the `UiSelector` (warned); a runtime class name, index or position must
+  have the right shape (warned).
 - **Versions:** checked with Appium 3.8.0, appium-uiautomator2-driver 8.7.0, UiAutomator2 server 10.6.6, on
   Android 16 and 17 emulators ([environment.md](environment.md)).
 
@@ -243,7 +268,7 @@ elements at the default settings (SRV-12, SEL-07). Details: [coverage-report.md]
   "skipped": [
     { "file": "LoginPage.java", "locator": "//android.widget.ListView/android.widget.TextView[1]",
       "status": "skipped_unsupported_logic", "reason": "UiSelector has no direct-child criterion",
-      "strategy": "AppiumBy.xpath(" },
+      "hint": "A.childSelector(B) is the closest form, but it also finds B deeper below A: …", "strategy": "AppiumBy.xpath(" },
     { "file": "LoginPage.java", "locator": "//*[@text='%s']", "status": "skipped_unknown_strategy",
       "reason": "no strategy call around the string: …", "uiselector": "new UiSelector().text(\"%s\")",
       "warning": "a runtime value goes into a string literal: a \" or a trailing \\ in it breaks the UiSelector" }
@@ -254,7 +279,7 @@ elements at the default settings (SRV-12, SEL-07). Details: [coverage-report.md]
 | Status | Meaning |
 | --- | --- |
 | `success` | Converted (in `updated`); `warning` when close |
-| `skipped_unsupported_logic` | No exact `UiSelector`; `reason` says why |
+| `skipped_unsupported_logic` | No exact `UiSelector`; `reason` says why, `hint` (when there is one) how to rewrite it by hand |
 | `skipped_unknown_strategy` | Converted, but not written: no strategy call around the string; `uiselector` holds the result |
 | `skipped_xpath_strategy` | Converted, but not written: the call's client has no UiAutomator strategy; `uiselector` holds the result |
 | `skipped_validation_failed` | The `UiSelector` would not parse, or cannot be written in that kind of literal |
@@ -272,7 +297,8 @@ const r = convertXpathToUiSelector('(//android.widget.Button[@enabled="true"])[3
 // r.locator === 'new UiSelector().className("android.widget.Button").enabled(true).instance(2)'
 
 convertXpathToUiSelector('//android.widget.ListView/android.widget.TextView');
-// { status: 'skipped_unsupported_logic', reason: 'UiSelector has no direct-child criterion', locator: <the input> }
+// { status: 'skipped_unsupported_logic', reason: 'UiSelector has no direct-child criterion', locator: <the input>,
+//   hint: 'A.childSelector(B) is the closest form, but it also finds B deeper below A: …' }
 ```
 
 `locator` is the bare `UiSelector` (no `android=` prefix and no source-language escaping). TypeScript declarations:

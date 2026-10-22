@@ -48,6 +48,12 @@ const PROBES = {
   C13: `${U}.text("Total")`,
   C14: `${U}.text("Total")`,
   E04: `${U}.className("android.widget.Button").instance(1)`,
+  // without the outer instance(0), findElements runs its instance(i) loop on the container (SRV-35)
+  E09: `${U}.className("android.widget.ListView").childSelector(${U}.className("android.widget.TextView").instance(0))`,
+  // the form an exact-candidate rule would emit for n ≥ 2: it counts within each container (SEL-14)
+  E10: `${U}.className("android.widget.ListView").instance(0).childSelector(${U}.className("android.widget.TextView").instance(4))`,
+  E11: `${U}.resourceId("com.example.app:id/second").instance(0).childSelector(${U}.className("android.widget.TextView").instance(2))`,
+  E15: `${U}.className("android.widget.ListView").instance(1).childSelector(${U}.className("android.widget.TextView"))`,
   E07: `${U}.text("Add").instance(0)`,
   F02: `${U}.className("android.widget.ListView").childSelector(${U}.className("android.widget.TextView"))`,
   G12: `${U}.text("bell\u0007")`,

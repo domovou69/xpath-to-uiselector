@@ -47,6 +47,17 @@ const CASES = [
     'elements with no class name also appear as android.view.View in the page source'), 'XPath 2, UiSelector 1: the node without a class name'),
   exact('A17', '//*[@resource-id="login"]', `${U}.resourceId("login")`, ['SEL-01'], 'a short id matches only a short resource id on both sides'),
   skip('A18', '//*[@name="OK"]', 'the page source has no name attribute (name is an alias of text for getAttribute only)', ['SRV-11']),
+  // existence tests (skipped-form coverage)
+  exact('A20', '//android.widget.EditText[@text]', `${U}.className("android.widget.EditText")`, ['SRV-05'], 'text is written on every element: dropped'),
+  exact('A21', '//*[@content-desc]', `${U}.descriptionMatches("(?s).*")`, ['SRV-04', 'SRV-08'], 'content-desc is written when non-null, "" included'),
+  exact('A22', '//*[@resource-id]', `${U}.resourceIdMatches("(?s).+")`, ['SRV-07']),
+  exact('A23', '//*[@content-desc!=""]', `${U}.descriptionMatches("(?s).+")`, ['SRV-04', 'SRV-08']),
+  close('A24', '//*[@text!=""]', `${U}.textMatches("(?s).+")`, ['SRV-05', 'SRV-06'],
+    'a range widget (SeekBar, ProgressBar) has a text only in the page source, so the XPath also finds it'),
+  close('A25', '(//android.widget.TextView[@text and @text!=""])[2]', `${U}.className("android.widget.TextView").textMatches("(?s).+").instance(1)`, ['SRV-05', 'SEL-10'],
+    'a range widget (SeekBar, ProgressBar) has a text only in the page source, so the XPath also finds it'),
+  exact('A26', '//*[@content-desc and contains(@content-desc,"menu")]', `${U}.descriptionMatches("(?s).*menu.*")`, ['SRV-04', 'XP-02']),
+  exact('A27', '//*[@resource-id!=""][@clickable="true"]', `${U}.resourceIdMatches("(?s).+").clickable(true)`, ['SRV-07', 'SEL-04']),
   skip('A19', '//*[@resourceId="com.example.app:id/login"]', 'the page source has no resourceId attribute (alias for getAttribute only)', ['SRV-11']),
 
   // --- B: booleans and index ---
@@ -67,7 +78,9 @@ const CASES = [
   exact('B14', '//*[@index="2"]', `${U}.index(2)`, ['SEL-09', 'SRV-10']),
   exact('B15', '//android.widget.TextView[@index=0]', `${U}.className("android.widget.TextView").index(0)`, ['SEL-09', 'XP-06']),
   skip('B16', '//*[@index="02"]', 'a string comparison with "02" never matches the written index', ['SRV-10', 'SRV-24']),
-  skip('B17', '//*[@checked]', 'checked is written on every element, so the test is always true', ['SRV-09']),
+  // was a skip; an always-true test is dropped (user's decision, skipped-form coverage)
+  exact('B17', '//*[@checked]', U, ['SRV-09'], 'checked is written on every element, so the test is always true and is dropped'),
+  exact('B18', '//android.widget.TextView[@index]', `${U}.className("android.widget.TextView")`, ['SRV-10']),
 
   // --- C: string functions ---
   exact('C01', '//*[contains(@text,"Total")]', `${U}.textMatches("(?s).*Total.*")`, ['XP-02', 'SEL-02', 'SEL-03']),
@@ -112,6 +125,22 @@ const CASES = [
   exact('E05', '(//android.widget.Button)[position()=2]', `${U}.className("android.widget.Button").instance(1)`, ['XP-08', 'SEL-10']),
   skip('E06', '(//android.widget.Button)[position()<3]', 'a position range has no UiSelector form', ['XP-08']),
   skip('E07', '//*[@text="Add"][1]', 'a position among siblings has no UiSelector form', ['XP-08']),
+  // a position over a nested path (skipped-form coverage): UiSelector counts within each container (SEL-14), so
+  // only [1] agrees; instance(0) on the outer selector keeps findElements at one element (SRV-35)
+  dev(exact('E09', '(//android.widget.ListView//android.widget.TextView)[1]',
+    `${U}.className("android.widget.ListView").instance(0).childSelector(${U}.className("android.widget.TextView").instance(0))`, ['SEL-14', 'SRV-35', 'XP-08']),
+    'without the outer instance(0) (the probe), findElements returned 3 elements on tree'),
+  dev(skip('E10', '(//android.widget.ListView//android.widget.TextView)[5]', 'a position over a nested path counts within each container in UiSelector, so only [1] converts', ['SEL-14']),
+    'was an exact candidate: the probe A.instance(0).childSelector(B.instance(4)) found nothing on tree, where the fifth TextView lies in the second ListView'),
+  skip('E11', '(//*[@resource-id="com.example.app:id/second"]/descendant::android.widget.TextView)[3]', 'a position over a nested path counts within each container in UiSelector, so only [1] converts', ['SEL-14']),
+  exact('E12', '(//android.widget.ListView//android.widget.LinearLayout//android.widget.TextView)[1]',
+    `${U}.className("android.widget.ListView").instance(0).childSelector(${U}.className("android.widget.LinearLayout").childSelector(${U}.className("android.widget.TextView").instance(0)))`, ['SEL-14', 'SRV-35']),
+  exact('E13', '(//android.widget.ListView//android.widget.ListView)[1]',
+    `${U}.className("android.widget.ListView").instance(0).childSelector(${U}.className("android.widget.ListView").instance(0))`, ['SEL-14'],
+    'the container class inside itself'),
+  exact('E14', '(//android.widget.ListView//android.widget.Button[@text="Add"])[1]',
+    `${U}.className("android.widget.ListView").instance(0).childSelector(${U}.className("android.widget.Button").text("Add").instance(0))`, ['SEL-14', 'SRV-35']),
+  skip('E15', '(//android.widget.ListView)[2]//android.widget.TextView', 'a path that continues after a filter expression', ['SEL-10', 'SEL-11']),
   exact('E08', '(//android.widget.Button[@enabled="true"])[3]', `${U}.className("android.widget.Button").enabled(true).instance(2)`, ['SEL-10', 'SRV-31']),
 
   // --- F: paths ---

@@ -25,7 +25,7 @@ or keeps the XPath. Code samples are illustrative: write them in the language an
 | `UiSelector has no direct-child criterion` (`//A/B`) | If B is unique inside A, `//A//B` → `childSelector` is close (same first element). Otherwise select B by its own attributes, or give it an id. |
 | `a position among siblings has no UiSelector form` (`//X[2]`) | If the user means "the 2nd X on the screen", that is `(//X)[2]` → `instance(1)`: a different locator, confirm it. Or find all matches in test code and pick by index. |
 | `absolute path from the page source root` (`/hierarchy/…`) | Inspector paths break on any layout change. Rebuild from the target's own attributes (resource id, text, description) seen in the page source. |
-| sibling axes, `..`, `parent::`, `ancestor::` (label next to a field) | Find the common container, then the target inside it (two lookups), or give the target an id. A `fromParent` candidate is possible but unverified. |
+| sibling axes, `..`, `parent::`, `ancestor::` (label next to a field) | Find the common container, then the target inside it (two lookups), or give the target an id. `X.fromParent(Y)` is possible where no other Y lies anywhere under X's parent: it searches that whole subtree. |
 | `UiSelector has no has-descendant filter` (`//Row[.//*[@text="x"]]`) | Find the inner element, then act on it, or two lookups from the container list. Keep the XPath if the container itself must be returned. |
 | `UiSelector has no negation for text`, `or across attributes` | Look up the alternatives in test code and take the first found, or keep the XPath. |
 | `classNameMatches …` (`contains(@class,…)`, class unions) | Name the real class (`className("android.widget.Button")`) and look up each class separately. |
@@ -34,7 +34,7 @@ or keeps the XPath. Code samples are illustrative: write them in the language an
 | an attribute without a UiSelector criterion (`bounds`, `displayed`, `hint`, …) | Drop the attribute if the rest of the locator is unique (confirm on the page source); read the attribute in test code after the lookup; or keep the XPath. |
 | alias attribute (`@name`, `@resourceId`) | The XPath matches nothing as written: `@name` → `@text` or `@content-desc`, `@resourceId` → `@resource-id`. Fix the XPath, then run the engine again. |
 | `text()` | Replace `text()` with `@text` and run the engine again. |
-| `a runtime value outside a string literal` | Move the runtime part into a string value, or build the `UiSelector` in code (`"new UiSelector().index(" + i + ")"`). |
+| `a runtime value outside a string literal`, `a runtime position in this kind of string literal` | Move the runtime part into a string value, or build the `UiSelector` in code (`"new UiSelector().….instance(" + (i - 1) + ")"`). |
 | `not a valid XPath` | Show the error and the likely fix; the XPath already fails at runtime. |
 | `skipped_unknown_strategy` (constant, `String.format`) | Use the `uiselector` where the string is passed and switch that call to the UiAutomator strategy. |
 | `skipped_xpath_strategy` (Selenium `@FindBy`, `findElementByXPath`) | Switch to `@AndroidFindBy(uiAutomator = "…")` or `AppiumBy.androidUIAutomator("…")`; quote the `UiSelector` for the language. |

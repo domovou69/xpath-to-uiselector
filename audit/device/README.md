@@ -8,7 +8,7 @@ explained in [docs/how-it-works.md](../../docs/how-it-works.md#terms).
 | File | What |
 | --- | --- |
 | [LocatorLab/](LocatorLab/) | Android app. One activity renders a screen from JSON; every node is a generic view whose accessibility node carries the class name, resource id, text, content-desc, package, the booleans and a range value from JSON, so any locator's values render without a rebuild |
-| [screens.js](screens.js) | Edge-case screens: `attrs`, `tree`, `deep`, `windows` |
+| [screens.js](screens.js) | Edge-case screens: `attrs`, `tree`, `deep`, `windows`, `nest` |
 | [run.js](run.js) | The edge-case runner: every case on every screen, `findElements` by XPath and by `UiSelector`, lists compared by fingerprint and order |
 | [fuzz-screens.js](fuzz-screens.js) | Real-world fuzz screens: a cell of targets and near misses per converted real-world literal, built from its XPath; 5 screens per batch, seeded; matrix cells that break every tested condition every way |
 | [fuzz.js](fuzz.js) | The real-world fuzz runner: every converted literal on every screen of its batch (`--rare`: rare forms on more seeds, `--matrix`: its matrix screen), `--mutants` (wrong UiSelectors that the screens must catch), verdicts by XPath and by form, R and C |
@@ -64,6 +64,20 @@ source has).
 Fingerprint of an element: `class|resource-id|text|content-desc|bounds`. Every node of a LocatorLab
 screen has its own bounds, except a node and a child that fills it; the boxes of the deep chain get
 their own resource ids for that reason.
+
+## Findings of the skipped-form coverage (2026-10-21)
+
+- `instance` inside a `childSelector` counts within each container, not across them: `getChildSelector()` returns a
+  copy (androidx `UiSelector.java` 2.3.0, lines 618–621), taken anew for every container that matches (SEL-14).
+  `(//ListView//TextView)[5]` with the fifth TextView in the second ListView: the probe
+  `ListView.instance(0).childSelector(TextView.instance(4))` found nothing (E10). Only `(//A//B)[1]` converts.
+- The server looks for `instance` only on the outer selector (`ByUiAutomatorFinder.doesUiSelectorHaveAttribute`, SRV-35):
+  without `instance(0)` on the outer selector, `findElements` with `A.childSelector(B.instance(0))` returned 3
+  elements where the XPath has 1 (E09 probe). `instance(0)` changes nothing in matching.
+- `nest` screen: every case, the 134 old ones too, ran on it; nothing changed for the old cases. The new
+  real-world conversions (27 XPaths) ran on a new random batch (`b8`) and new matrix screens (`m20`): 0 wrong, 0 with
+  nothing matched. One XPath (`[@content-desc and matches(…)]`) has no screens: the screen builder does not read
+  `matches()`; edge case A26 covers its existence part.
 
 ## Findings on Android 17 (2026-10-21)
 

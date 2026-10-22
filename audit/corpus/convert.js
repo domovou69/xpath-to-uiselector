@@ -12,7 +12,7 @@ const { join } = require('path');
 const corpus = require('./android-locators.json');
 const STATUS = require('../../lib/status');
 const { convertXpathToUiSelector } = require('../../lib/converter');
-const { literalKind, decodeLiteral } = require('../../lib/literal');
+const { literalKind, decodeLiteral, decrementHoles } = require('../../lib/literal');
 const { rewriteStrategy } = require('../../lib/strategy');
 
 const EXT = { Java: '.java', Kotlin: '.kt', Python: '.py', 'C#': '.cs', TypeScript: '.ts', JavaScript: '.js' };
@@ -24,16 +24,19 @@ function decodeEntry(e) {
   const braces = /\{\w*\}/.test(e.source);
   const prefix = braces ? (e.lang === 'Python' ? 'f' : e.lang === 'C#' ? '$' : '') : '';
   const kind = literalKind(EXT[e.lang], e.quote, prefix);
-  return decodeLiteral(e.source, kind, e.quote);
+  const decoded = decodeLiteral(e.source, kind, e.quote);
+  return decoded && { ...decoded, kind };
 }
 
 function convertEntry(e) {
   const decoded = decodeEntry(e);
   if (!decoded) return { outcome: 'skip', reason: 'the string literal has an escape this tool does not read' };
-  const res = convertXpathToUiSelector(decoded.value, { placeholders: new Set(decoded.placeholders.keys()) });
-  if (res.status !== STATUS.SUCCESS) return { outcome: res.status === STATUS.SKIPPED_IOS ? 'ios' : 'skip', reason: res.reason };
+  const keys = new Set(decoded.placeholders.keys());
+  const decrement = decrementHoles(decoded.placeholders, decoded.kind, decoded.free);
+  const res = convertXpathToUiSelector(decoded.value, { placeholders: keys, decrement });
+  if (res.status !== STATUS.SUCCESS) return { outcome: res.status === STATUS.SKIPPED_IOS ? 'ios' : 'skip', reason: res.reason, hint: res.hint };
   const warnings = res.warning ? res.warning.split('; ') : [];
-  return { outcome: warnings.length ? 'close' : 'exact', warnings, xpath: decoded.value, uiselector: res.locator, placeholders: decoded.placeholders };
+  return { outcome: warnings.length ? 'close' : 'exact', warnings, xpath: decoded.value, uiselector: res.locator, placeholders: decoded.placeholders, decrement };
 }
 
 // What the scanner does with the call around a converted literal.
@@ -46,10 +49,14 @@ const WARNING_LABEL = {
   'findElements returns at most one match per container': 'childSelector (//A//B)',
   'elements with no class name also appear as android.view.View in the page source': 'android.view.View',
 };
-const warningLabel = w => WARNING_LABEL[w] || (w.startsWith('a runtime value') ? 'runtime value in a literal' : w.startsWith('Android regexes') ? 'lower-case()' : w);
+const warningLabel = w => WARNING_LABEL[w] || (w.startsWith('a runtime value goes into index') ? 'runtime index'
+  : w.startsWith('a runtime value') ? 'runtime value in a literal' : w.startsWith('a runtime class name') ? 'runtime class name'
+    : w.startsWith('a runtime position') ? 'runtime position' : w.startsWith('a range widget') ? 'range widget (@text!="")'
+      : w.startsWith('Android regexes') ? 'lower-case()' : w);
 
 // Reasons that differ only in an attribute name are counted together.
 const reasonGroup = r => (/ has no UiSelector criterion$/.test(r) ? 'an attribute without a UiSelector criterion (bounds, displayed, …)'
+  : / is a web or iOS attribute/.test(r) ? 'a web or iOS attribute (label, id, value, data-*, …)'
   : /^the page source has no .* attribute/.test(r) ? 'an alias attribute (name, resourceId, …) that the page source does not have'
     : /^not a valid XPath/.test(r) ? 'not a valid XPath' : r);
 
@@ -104,7 +111,9 @@ function run() {
   const skipped = rows.filter(r => r.outcome === 'skip');
   const byReason = new Map();
   for (const r of skipped) byReason.set(reasonGroup(r.reason), [...(byReason.get(reasonGroup(r.reason)) || []), r]);
-  out.push(`${skipped.length} skipped literals; the first reason the converter meets is counted.`, '');
+  const hinted = skipped.filter(r => r.hint);
+  out.push(`${skipped.length} skipped literals; the first reason the converter meets is counted. ${hinted.length} of them (${occ(hinted)} occurrences)`);
+  out.push('carry a `hint`: how to rewrite the locator by hand and how the nearest UiSelector form differs.', '');
   out.push('| Reason | Unique | Share of all | Occurrences | Projects |', '| --- | --- | --- | --- | --- |');
   const sorted = [...byReason].sort((a, b) => b[1].length - a[1].length);
   for (const [reason, list] of sorted.slice(0, 15)) {

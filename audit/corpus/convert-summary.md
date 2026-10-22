@@ -10,9 +10,9 @@ every project counts the same.
 
 | Outcome | Unique | Share | Occurrences | Share | Project-weighted |
 | --- | --- | --- | --- | --- | --- |
-| exact | 1046 | 63.6 % | 1595 | 45.9 % | 49.2 % |
-| close (converted with a warning) | 124 | 7.5 % | 190 | 5.5 % | 5.2 % |
-| skip | 475 | 28.9 % | 1687 | 48.6 % | 45.6 % |
+| exact | 1048 | 63.7 % | 1599 | 46.1 % | 49.2 % |
+| close (converted with a warning) | 151 | 9.2 % | 389 | 11.2 % | 6.6 % |
+| skip | 446 | 27.1 % | 1484 | 42.7 % | 44.2 % |
 | iOS (XCUIElementType inside an Android-looking literal) | 0 | 0.0 % | 0 | 0.0 % | 0.0 % |
 
 ## Warnings of the close conversions
@@ -21,33 +21,38 @@ A conversion can carry more than one warning.
 
 | Warning | Unique | Share of all | Occurrences |
 | --- | --- | --- | --- |
-| runtime value in a literal | 62 | 3.8 % | 109 |
+| runtime value in a literal | 67 | 4.1 % | 114 |
 | childSelector (//A//B) | 41 | 2.5 % | 45 |
-| android.view.View | 29 | 1.8 % | 44 |
+| android.view.View | 31 | 1.9 % | 217 |
+| runtime position | 17 | 1.0 % | 18 |
 | lower-case() | 12 | 0.7 % | 12 |
+| runtime class name | 6 | 0.4 % | 6 |
+| runtime index | 1 | 0.1 % | 1 |
+| range widget (@text!="") | 1 | 0.1 % | 1 |
 
 ## Top reasons to skip
 
-475 skipped literals; the first reason the converter meets is counted.
+446 skipped literals; the first reason the converter meets is counted. 347 of them (1247 occurrences)
+carry a `hint`: how to rewrite the locator by hand and how the nearest UiSelector form differs.
 
 | Reason | Unique | Share of all | Occurrences | Projects |
 | --- | --- | --- | --- | --- |
-| UiSelector has no direct-child criterion | 104 | 6.3 % | 250 | 15 |
-| an attribute without a UiSelector criterion (bounds, displayed, …) | 79 | 4.8 % | 209 | 6 |
+| UiSelector has no direct-child criterion | 110 | 6.7 % | 257 | 15 |
 | absolute path from the page source root | 78 | 4.7 % | 100 | 6 |
-| a runtime value outside a string literal | 34 | 2.1 % | 38 | 3 |
+| a web or iOS attribute (label, id, value, data-*, …) | 77 | 4.7 % | 205 | 5 |
+| a path that continues after a filter expression | 24 | 1.5 % | 409 | 5 |
 | the parent step is not converted | 23 | 1.4 % | 29 | 4 |
 | a position among siblings has no UiSelector form | 22 | 1.3 % | 108 | 10 |
 | UiSelector has no has-descendant filter | 21 | 1.3 % | 28 | 4 |
-| a path that continues after a filter expression | 21 | 1.3 % | 406 | 4 |
 | an alias attribute (name, resourceId, …) that the page source does not have | 17 | 1.0 % | 35 | 3 |
 | not a valid XPath | 11 | 0.7 % | 11 | 5 |
 | the page source has no text nodes, so text() matches nothing | 11 | 0.7 % | 11 | 2 |
 | or across attributes has no UiSelector form | 10 | 0.6 % | 10 | 5 |
 | sibling axes are not converted | 9 | 0.5 % | 11 | 5 |
-| a position over a nested path has no UiSelector form | 8 | 0.5 % | 396 | 2 |
 | a union of different attributes has no UiSelector form | 6 | 0.4 % | 13 | 3 |
-| 13 other reasons | 21 | | | |
+| a position over a nested path counts within each container in UiSelector, so only [1] converts | 6 | 0.4 % | 223 | 2 |
+| a prefixed name test is not converted | 3 | 0.2 % | 3 | 1 |
+| 12 other reasons | 18 | | | |
 
 ## What the scanner does with a converted literal
 
@@ -55,9 +60,9 @@ From the strategy call recorded with each literal (PLAN.md section 2).
 
 | Action | Unique | Share of converted | Occurrences |
 | --- | --- | --- | --- |
-| written (strategy rewritten) | 733 | 62.6 % | 1176 |
-| reported (no strategy call) | 268 | 22.9 % | 346 |
-| written (WebdriverIO android=) | 137 | 11.7 % | 199 |
+| written (strategy rewritten) | 734 | 61.2 % | 1177 |
+| reported (no strategy call) | 278 | 23.2 % | 358 |
+| written (WebdriverIO android=) | 155 | 12.9 % | 389 |
 | reported (strategy without UiAutomator form) | 32 | 2.7 % | 64 |
 
 ## By language
@@ -65,9 +70,9 @@ From the strategy call recorded with each literal (PLAN.md section 2).
 | Language | Literals | Exact | Close | Skip |
 | --- | --- | --- | --- | --- |
 | Java | 384 | 55.2 % | 2.9 % | 41.9 % |
-| Kotlin | 135 | 73.3 % | 0.7 % | 25.9 % |
-| Python | 646 | 64.4 % | 13.8 % | 21.8 % |
+| Kotlin | 135 | 73.3 % | 1.5 % | 25.2 % |
+| Python | 646 | 64.7 % | 15.0 % | 20.3 % |
 | C# | 194 | 96.4 % | 0.0 % | 3.6 % |
-| TypeScript | 199 | 53.3 % | 10.6 % | 36.2 % |
-| JavaScript | 87 | 29.9 % | 2.3 % | 67.8 % |
+| TypeScript | 199 | 53.3 % | 18.6 % | 28.1 % |
+| JavaScript | 87 | 29.9 % | 4.6 % | 65.5 % |
 
