@@ -222,7 +222,7 @@ go into stage 4, not into a separate round.
 
 In order:
 
-1. npm publish of 1.0.0 (prepared in stage 5, waits for the user's OK); then the npm badge in the README.
+1. npm publish of 1.0.0: done 2026-10-23 (published by the user), GitHub release v1.0.0, npm badge in the README.
    Before it, 2026-10-23, CLI hardening in 1.0.0: exit code 2 and `errors` in the report when a file or folder
    cannot be read or written, atomic `--write` (temporary file + rename, mode kept), `--exact` (writes only
    conversions with no warning, the rest `skipped_not_exact`), README states what `--write` changes (54 %).

@@ -1,6 +1,7 @@
 # xpath-to-uiselector
 
 [![CI](https://github.com/domovou69/xpath-to-uiselector/actions/workflows/test.yml/badge.svg?branch=main)](https://github.com/domovou69/xpath-to-uiselector/actions/workflows/test.yml)
+[![npm](https://img.shields.io/npm/v/xpath-to-uiselector)](https://www.npmjs.com/package/xpath-to-uiselector)
 
 Converts Appium XPath locators in your Android tests to UiAutomator2 `UiSelector` locators
 (`-android uiautomator`), and refuses to convert the ones that have no exact `UiSelector`.
