@@ -8,11 +8,12 @@
 //   real-world       five random screens and a matrix screen of their own, generated from the XPath by
 //                    audit/device/fuzz-screens.js (seed llm-verify-1), + the `llm` screen
 //   `llm`            hand-made cells for forms the generator does not read and traps it does not make: range
-//                    widgets whose value is 1.5 / 21.5, (//X)[n]//Y over several containers, normalize-space,
-//                    string-length with characters outside the BMP
+//                    widgets whose value is 1.5 / 21.5, (//X)[n]//Y and (//A/descendant::B)[n] over several
+//                    containers, normalize-space, string-length with characters outside the BMP
 //
 // Verdict of one UiSelector over its screens:
-//   CORRECT   EQUAL on every screen (DEPTH and TOAST, as in run.js, count as equal), and the XPath finds something
+//   CORRECT   EQUAL on every screen (DEPTH and TOAST, as in run.js, count as equal; TOAST not when the XPath
+//             targets android.widget.Toast), and the XPath finds something
 //   DRIFT     a documented close form: a childSelector for //A//B whose first element agrees, or a difference
 //             only in the class-less elements the page source calls android.view.View (the converter warns)
 //   WRONG-LB  differs only on elements with a line break in a value (generated traps; real ids have none)
@@ -66,6 +67,9 @@ const LLM_SCREEN = {
     n('android.widget.ScrollView', undefined, { k: [row(n('android.widget.ImageView', undefined, { d: 'i3' }), n('android.widget.ImageView', undefined, { d: 'i4' }))] }),
     n('android.view.View', undefined, { id: 'cuzoces-moduvu', k: [row(TV('m1'), TV('m2'))] }),
     n('android.view.View', undefined, { id: 'cuzoces-moduvu', k: [row(TV('m3'), TV('m4'))] }),
+    // (//A/descendant::B)[n] over two containers: the third overall is the first of the second container
+    box([TV('s1'), TV('s2')], { id: 'com.example.app:id/second' }),
+    box([TV('s3'), TV('s4'), TV('s5')], { id: 'com.example.app:id/second' }),
     // union with a web attribute
     row(TV('u1', { id: 'io.zofujize.vikuwag.vajotin:id/danob_danob_hac' }), TV('u2', { id: 'danob_danob_hac' }), TV('u3', { id: 'x:id/danob_danob_hac_2' })),
     // normalize-space, string-length, substring, translate
@@ -118,12 +122,12 @@ function compare(x, u) {
 }
 const short = (l, o) => (l.error ? { error: l.error } : { n: l.n, ...(o !== 'EQUAL' || l.n <= 5 ? { fp: l.fp } : { f0: l.fp[0] }) });
 
-function verdict(rows, warning, child) {
+function verdict(rows, warning, child, toast) {
   if (!rows.length) return null;
   if (rows.some(r => r.outcome === 'UISEL_ERROR')) return { verdict: 'INVALID', error: rows.find(r => r.u && r.u.error).u.error };
   // the XPath itself fails (e.g. an invalid matches() flag): a UiSelector that runs behaves differently
   if (rows.some(r => r.outcome === 'XPATH_ERROR')) return { verdict: 'WRONG', xpathError: true };
-  const bad = rows.filter(r => r.outcome !== 'EQUAL').map(r => ({ r, why: known(r) }));
+  const bad = rows.filter(r => r.outcome !== 'EQUAL').map(r => ({ r, why: known(r, toast) }));
   const first = bad.every(({ r }) => (r.x.fp[0] || null) === (r.u.fp[0] || null));
   const screens = bad.map(({ r, why }) => `${r.screen} ${r.x.n}/${r.u.n} ${why || r.outcome}`);
   const left = bad.filter(b => !['DEPTH', 'TOAST'].includes(b.why));
@@ -143,28 +147,31 @@ function verdict(rows, warning, child) {
 // (their value is a text only in the page source, SRV-06); LINEBREAK, every element only one side finds has a
 // line break in a value, which only the generated traps have.
 // A toast left over from the `windows` screen (it stays in the source for a few seconds) can join another kind, so
-// toasts are set aside before the other checks.
-function known(r) {
+// toasts are set aside before the other checks. When the XPath targets android.widget.Toast the toast is what it
+// looks for (`toast`), so it is neither excused nor set aside (nor taken for a class-less VIEW element).
+function known(r, toast) {
   const u = r.u.fp;
   let x = r.x.fp;
   let xOnly = x.filter(f => !u.includes(f));
   const uOnly = u.filter(f => !x.includes(f));
   if (!xOnly.length && JSON.stringify(u.filter(f => x.includes(f))) === JSON.stringify(x) && r.screen === 'deep') return 'DEPTH';
-  if (!uOnly.length && xOnly.length && xOnly.every(f => f === '||||')) return 'TOAST';
-  if (!uOnly.length) { x = x.filter(f => f !== '||||'); xOnly = xOnly.filter(f => f !== '||||'); }
-  if (!uOnly.length && xOnly.length && xOnly.every(f => f.startsWith('|')) && JSON.stringify(x.filter(f => !f.startsWith('|'))) === JSON.stringify(u)) return 'VIEW';
+  if (!toast && !uOnly.length && xOnly.length && xOnly.every(f => f === '||||')) return 'TOAST';
+  if (!toast && !uOnly.length) { x = x.filter(f => f !== '||||'); xOnly = xOnly.filter(f => f !== '||||'); }
+  if (!uOnly.length && xOnly.length && xOnly.every(f => f.startsWith('|') && f !== '||||') && JSON.stringify(x.filter(f => !f.startsWith('|'))) === JSON.stringify(u)) return 'VIEW';
   if (!uOnly.length && xOnly.length && xOnly.every(f => /^android\.widget\.(?:SeekBar|ProgressBar|RatingBar)\|/.test(f)) && JSON.stringify(x.filter(f => u.includes(f))) === JSON.stringify(u)) return 'RANGE';
   if (xOnly.length + uOnly.length && [...xOnly, ...uOnly].every(f => f.includes('\n'))) return 'LINEBREAK';
   return null;
 }
+
+const toast = xpath => /android\.widget\.Toast/.test(xpath);
 
 function summarize(doc) {
   const res = {};
   for (const it of items) {
     const rows = side => Object.values(doc.runs).filter(r => r.id === it.id && r.side === side);
     res[it.id] = { group: it.group, ref: it.ref, category: it.category, xpath: it.xpath, llm: it.llm, conv: it.conv, convWarning: it.convWarning,
-      llmVerdict: it.llm ? verdict(rows('llm'), null, /childSelector/.test(it.llm) && /\/\/[^/]|descendant::/.test(it.xpath.slice(2))) : null,
-      convVerdict: it.conv ? verdict(rows('conv'), it.convWarning) : null,
+      llmVerdict: it.llm ? verdict(rows('llm'), null, /childSelector/.test(it.llm) && /\/\/[^/]|descendant::/.test(it.xpath.slice(2)), toast(it.xpath)) : null,
+      convVerdict: it.conv ? verdict(rows('conv'), it.convWarning, false, toast(it.xpath)) : null,
       xpathFound: Math.max(0, ...Object.values(doc.runs).filter(r => r.id === it.id).map(r => r.x.n || 0)) };
   }
   doc.items = res;
