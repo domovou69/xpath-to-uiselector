@@ -223,6 +223,9 @@ go into stage 4, not into a separate round.
 In order:
 
 1. npm publish of 1.0.0 (prepared in stage 5, waits for the user's OK); then the npm badge in the README.
+   Before it, 2026-10-23, CLI hardening in 1.0.0: exit code 2 and `errors` in the report when a file or folder
+   cannot be read or written, atomic `--write` (temporary file + rename, mode kept), `--exact` (writes only
+   conversions with no warning, the rest `skipped_not_exact`), README states what `--write` changes (54 %).
 2. Coverage of skipped forms: done 2026-10-21 (below). Left from it, small: `normalize-space(@a)="v"` as an exact
    whitespace regex (1 literal), `lower-case(@a)=lower-case("v")` (2), `X/..//Y` → `fromParent` as close where the
    device shows the same first element (≈4), `(//A)[n]//B` as close (3, all with a runtime position); mutants and

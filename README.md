@@ -34,12 +34,14 @@ dependencies. The strategy call is rewritten together with the string:
 
 - **Converts** what has an exact `UiSelector`: attributes, booleans, `@index`, `contains()` / `starts-with()` /
   `ends-with()` / `matches()`, `or` on one attribute, `(//X)[n]`, `(//A//B)[1]`, existence tests such as `[@text]`.
-- **Warns** where only a close form exists, such as `//A//B` → `childSelector`.
+- **Warns** where only a close form exists, such as `//A//B` → `childSelector`. `--exact` leaves these alone.
 - **Skips** the rest with a reason, and most with a `hint` on how to rewrite it by hand: direct child `//A/B`, sibling
   positions, `/hierarchy/…` paths, parent and sibling axes, and more.
 
-Checked on 1645 real Android XPaths from 20 open-source projects: 73 % convert, and every converted one (1169
-distinct XPaths) ran on an Android emulator with **0 wrong** results.
+Checked on 1645 real Android XPaths from 20 open-source projects: 73 % convert (64 % exact, 9 % close), and every
+converted one (1169 distinct XPaths) ran on an Android emulator with **0 wrong** results. `--write` changes 54 % in
+place; the other converted ones have no strategy call around the string (a constant, a data file) and are only
+reported, with their `UiSelector`.
 
 ## Limits
 
