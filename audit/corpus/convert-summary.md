@@ -10,9 +10,9 @@ every project counts the same.
 
 | Outcome | Unique | Share | Occurrences | Share | Project-weighted |
 | --- | --- | --- | --- | --- | --- |
-| exact | 1044 | 63.5 % | 1591 | 45.8 % | 49.0 % |
+| exact | 1049 | 63.8 % | 1618 | 46.6 % | 49.2 % |
 | close (converted with a warning) | 155 | 9.4 % | 397 | 11.4 % | 6.8 % |
-| skip | 446 | 27.1 % | 1484 | 42.7 % | 44.2 % |
+| skip | 441 | 26.8 % | 1457 | 42.0 % | 44.0 % |
 | iOS (XCUIElementType inside an Android-looking literal) | 0 | 0.0 % | 0 | 0.0 % | 0.0 % |
 
 ## Warnings of the close conversions
@@ -32,14 +32,14 @@ A conversion can carry more than one warning.
 
 ## Top reasons to skip
 
-446 skipped literals; the first reason the converter meets is counted. 347 of them (1247 occurrences)
+441 skipped literals; the first reason the converter meets is counted. 348 of them (1251 occurrences)
 carry a `hint`: how to rewrite the locator by hand and how the nearest UiSelector form differs.
 
 | Reason | Unique | Share of all | Occurrences | Projects |
 | --- | --- | --- | --- | --- |
 | UiSelector has no direct-child criterion | 110 | 6.7 % | 257 | 15 |
 | absolute path from the page source root | 78 | 4.7 % | 100 | 6 |
-| a web or iOS attribute (label, id, value, data-*, …) | 77 | 4.7 % | 205 | 5 |
+| a web or iOS attribute (label, id, value, data-*, …) | 71 | 4.3 % | 174 | 5 |
 | a path that continues after a filter expression | 24 | 1.5 % | 409 | 5 |
 | the parent step is not converted | 23 | 1.4 % | 29 | 4 |
 | a position among siblings has no UiSelector form | 22 | 1.3 % | 108 | 10 |
@@ -51,8 +51,8 @@ carry a `hint`: how to rewrite the locator by hand and how the nearest UiSelecto
 | sibling axes are not converted | 9 | 0.5 % | 11 | 5 |
 | a union of different attributes has no UiSelector form | 6 | 0.4 % | 13 | 3 |
 | a position over a nested path counts within each container in UiSelector, so only [1] converts | 6 | 0.4 % | 223 | 2 |
-| a prefixed name test is not converted | 3 | 0.2 % | 3 | 1 |
-| 12 other reasons | 18 | | | |
+| classNameMatches makes findElements iterate index(i) instead of instance(i), so it loses elements | 4 | 0.2 % | 8 | 3 |
+| 11 other reasons | 18 | | | |
 
 ## What the scanner does with a converted literal
 
@@ -60,8 +60,8 @@ From the strategy call recorded with each literal (PLAN.md section 2).
 
 | Action | Unique | Share of converted | Occurrences |
 | --- | --- | --- | --- |
-| written (strategy rewritten) | 734 | 61.2 % | 1177 |
-| reported (no strategy call) | 278 | 23.2 % | 358 |
+| written (strategy rewritten) | 739 | 61.4 % | 1204 |
+| reported (no strategy call) | 278 | 23.1 % | 358 |
 | written (WebdriverIO android=) | 155 | 12.9 % | 389 |
 | reported (strategy without UiAutomator form) | 32 | 2.7 % | 64 |
 
@@ -69,7 +69,7 @@ From the strategy call recorded with each literal (PLAN.md section 2).
 
 | Language | Literals | Exact | Close | Skip |
 | --- | --- | --- | --- | --- |
-| Java | 384 | 54.2 % | 3.9 % | 41.9 % |
+| Java | 384 | 55.5 % | 3.9 % | 40.6 % |
 | Kotlin | 135 | 73.3 % | 1.5 % | 25.2 % |
 | Python | 646 | 64.7 % | 15.0 % | 20.3 % |
 | C# | 194 | 96.4 % | 0.0 % | 3.6 % |

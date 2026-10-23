@@ -145,7 +145,8 @@ function verdict(rows, warning, child, toast) {
 // source limit; TOAST, the XPath also finds the toast. Three more: VIEW, the only XPath-only elements have no class
 // name (the page source calls them android.view.View, SRV-03); RANGE, the only XPath-only elements are range widgets
 // (their value is a text only in the page source, SRV-06); LINEBREAK, every element only one side finds has a
-// line break in a value, which only the generated traps have.
+// line break in a value, which only the generated traps and a CR LF text of the attrs screen have (range widgets
+// next to them are allowed: alone they are RANGE).
 // A toast left over from the `windows` screen (it stays in the source for a few seconds) can join another kind, so
 // toasts are set aside before the other checks. When the XPath targets android.widget.Toast the toast is what it
 // looks for (`toast`), so it is neither excused nor set aside (nor taken for a class-less VIEW element).
@@ -159,7 +160,9 @@ function known(r, toast) {
   if (!toast && !uOnly.length) { x = x.filter(f => f !== '||||'); xOnly = xOnly.filter(f => f !== '||||'); }
   if (!uOnly.length && xOnly.length && xOnly.every(f => f.startsWith('|') && f !== '||||') && JSON.stringify(x.filter(f => !f.startsWith('|'))) === JSON.stringify(u)) return 'VIEW';
   if (!uOnly.length && xOnly.length && xOnly.every(f => /^android\.widget\.(?:SeekBar|ProgressBar|RatingBar)\|/.test(f)) && JSON.stringify(x.filter(f => u.includes(f))) === JSON.stringify(u)) return 'RANGE';
-  if (xOnly.length + uOnly.length && [...xOnly, ...uOnly].every(f => f.includes('\n'))) return 'LINEBREAK';
+  // line breaks, possibly next to range widgets only the XPath finds (a close form on its own): LINEBREAK
+  const range = f => /^android\.widget\.(?:SeekBar|ProgressBar|RatingBar)\|/.test(f) && xOnly.includes(f);
+  if ([...xOnly, ...uOnly].some(f => f.includes('\n')) && [...xOnly, ...uOnly].every(f => f.includes('\n') || range(f))) return 'LINEBREAK';
   return null;
 }
 

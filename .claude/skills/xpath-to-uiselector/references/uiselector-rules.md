@@ -62,15 +62,15 @@ sides.
 | `not(contains(@text,…))`, `@text!="v"` | No negation for strings |
 | `@text="A" or @content-desc="A"`, unions of different attributes or paths | No `or` across criteria; `;`-joined statements return results in statement order, not document order |
 | `contains(@class,…)`, `//Button \| //ImageButton` | `classNameMatches` makes `findElements` iterate `index(i)` and lose elements |
-| `upper-case()`, `translate()` | Do not fold the Kelvin sign; `(?i)` does |
-| `@text=""`, `contains(@text,"")` | Every element without text has `text=""` in the page source; `text("")` needs a non-null text |
+| `upper-case()` | Does not fold the Kelvin sign; `(?i)` does (`translate()` converts per character) |
+| `@text=""`, `string-length(@text)=0` | Every element without text has `text=""` in the page source; `text("")` needs a non-null text |
 | `@text="50.0"` | Range widgets (SeekBar, ProgressBar) expose their value as text in the page source only |
 | `@text=1` | Numeric comparison: fails on non-numeric text, matches `1.0` |
 | `text()`, `contains(text(),…)` | The page source has no text nodes |
-| `@bounds`, `@displayed`, `@password`, `@hint`, … | No criterion |
+| `@bounds`, `@password`, `@hint`, … | No criterion (`@displayed="true"` is dropped, close) |
 | `@name`, `@resourceId`, `@contentDescription` | Not page source attributes (aliases for `getAttribute` only): the XPath matches nothing |
 | `//android.widget.Toast` | Toasts exist only in the page source |
-| `normalize-space()`, `string-length()`, `substring()` | No criterion |
+| `normalize-space()` without an argument, `substring()`, `every` | No criterion (`normalize-space(@a)`, `string-length(@a)`, `if`, `some` convert) |
 
 ## Device facts
 

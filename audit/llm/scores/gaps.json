@@ -1,39 +1,5 @@
 [
  {
-  "id": "x004",
-  "group": "S",
-  "ref": "C14",
-  "xpath": "//*[normalize-space(@text)=\"Total\"]",
-  "converter": {
-   "outcome": "skip",
-   "reason": "normalize-space() has no UiSelector form"
-  },
-  "status": "gap",
-  "note": "normalize-space(@text)=\"…\" → textMatches with [ \\t\\n\\r]* around the value",
-  "runs": [
-   {
-    "run": "opus-medium-pilot",
-    "verdict": "CORRECT",
-    "uiselector": "new UiSelector().textMatches(\"[ \t\n\r]*Total[ \t\n\r]*\")"
-   },
-   {
-    "run": "opus-medium-rules",
-    "verdict": "CORRECT",
-    "uiselector": "new UiSelector().textMatches(\"[ \\t\\n\\r]*Total[ \\t\\n\\r]*\")"
-   },
-   {
-    "run": "sonnet-medium-rules",
-    "verdict": "CORRECT",
-    "uiselector": "new UiSelector().textMatches(\"[ \\t\\n\\r]*Total[ \\t\\n\\r]*\")"
-   },
-   {
-    "run": "haiku-medium-rules",
-    "verdict": "CORRECT",
-    "uiselector": "new UiSelector().textMatches(\"[ \\t\\n\\r]*Total[ \\t\\n\\r]*\")"
-   }
-  ]
- },
- {
   "id": "x023",
   "group": "R",
   "ref": "A1798",
@@ -59,107 +25,6 @@
   ]
  },
  {
-  "id": "x032",
-  "group": "S",
-  "ref": "A12",
-  "xpath": "//android.widget.Button[@displayed=\"true\"]",
-  "converter": {
-   "outcome": "skip",
-   "reason": "displayed has no UiSelector criterion"
-  },
-  "status": "gap",
-  "note": "@displayed=\"true\" → new UiSelector(): the page source lists only displayed elements (default settings)",
-  "runs": [
-   {
-    "run": "haiku-medium-plain",
-    "verdict": "CORRECT",
-    "uiselector": "new UiSelector().className(\"android.widget.Button\")"
-   }
-  ]
- },
- {
-  "id": "x138",
-  "group": "R",
-  "ref": "A1540",
-  "xpath": "(//*[@resource-id='io.zofujize.vikuwag.vajotin:id/danob_danob_hac'] | //*[@id='danob_danob_hac'] | //*[@resource-id='danob_danob_hac'])",
-  "converter": {
-   "outcome": "skip",
-   "reason": "id is a web or iOS attribute: the Android page source has no id"
-  },
-  "status": "gap",
-  "note": "a union branch on @id, which Android never writes, drops out",
-  "runs": [
-   {
-    "run": "opus-medium-pilot",
-    "verdict": "CORRECT",
-    "uiselector": "new UiSelector().resourceIdMatches(\"io[.]zofujize[.]vikuwag[.]vajotin:id/danob_danob_hac|danob_danob_hac\")"
-   },
-   {
-    "run": "opus-medium-rules",
-    "verdict": "CORRECT",
-    "uiselector": "new UiSelector().resourceIdMatches(\"io\\.zofujize\\.vikuwag\\.vajotin:id/danob_danob_hac|danob_danob_hac\")"
-   },
-   {
-    "run": "sonnet-medium-rules",
-    "verdict": "CORRECT",
-    "uiselector": "new UiSelector().resourceIdMatches(\"io\\.zofujize\\.vikuwag\\.vajotin:id/danob_danob_hac|danob_danob_hac\")"
-   },
-   {
-    "run": "haiku-medium-rules",
-    "verdict": "CORRECT",
-    "uiselector": "new UiSelector().resourceIdMatches(\"io\\.zofujize\\.vikuwag\\.vajotin:id/danob_danob_hac|danob_danob_hac\")"
-   }
-  ]
- },
- {
-  "id": "x211",
-  "group": "S",
-  "ref": "C08",
-  "xpath": "//*[contains(@text,\"\")]",
-  "converter": {
-   "outcome": "skip",
-   "reason": "contains() with \"\" is true for every element"
-  },
-  "status": "gap",
-  "note": "contains(@text,\"\") is true for every element → new UiSelector()",
-  "runs": [
-   {
-    "run": "opus-medium-pilot",
-    "verdict": "CORRECT",
-    "uiselector": "new UiSelector()"
-   },
-   {
-    "run": "haiku-medium-plain",
-    "verdict": "CORRECT",
-    "uiselector": "new UiSelector()"
-   }
-  ]
- },
- {
-  "id": "x217",
-  "group": "S",
-  "ref": "V04",
-  "xpath": "//*[if (@checked=\"true\") then true() else false()]",
-  "converter": {
-   "outcome": "skip",
-   "reason": "conditional expressions are not converted"
-  },
-  "status": "gap",
-  "note": "if (C) then true() else false() → C",
-  "runs": [
-   {
-    "run": "sonnet-medium-plain",
-    "verdict": "CORRECT",
-    "uiselector": "new UiSelector().checked(true)"
-   },
-   {
-    "run": "haiku-medium-rules",
-    "verdict": "CORRECT",
-    "uiselector": "new UiSelector().checked(true)"
-   }
-  ]
- },
- {
   "id": "x250",
   "group": "S",
   "ref": "E15",
@@ -176,35 +41,6 @@
     "run": "opus-medium-pilot",
     "verdict": "DRIFT",
     "uiselector": "new UiSelector().className(\"android.widget.ListView\").instance(1).childSelector(new UiSelector().className(\"android.widget.TextView\"))"
-   }
-  ]
- },
- {
-  "id": "x262",
-  "group": "S",
-  "ref": "V03",
-  "xpath": "//*[some $t in @text satisfies $t=\"OK\"]",
-  "converter": {
-   "outcome": "skip",
-   "reason": "quantified expressions are not converted"
-  },
-  "status": "gap",
-  "note": "some $t in @text satisfies $t=\"…\" → @text=\"…\"",
-  "runs": [
-   {
-    "run": "sonnet-medium-plain",
-    "verdict": "CORRECT",
-    "uiselector": "new UiSelector().text(\"OK\")"
-   },
-   {
-    "run": "haiku-medium-plain",
-    "verdict": "CORRECT",
-    "uiselector": "new UiSelector().text(\"OK\")"
-   },
-   {
-    "run": "haiku-medium-rules",
-    "verdict": "CORRECT",
-    "uiselector": "new UiSelector().text(\"OK\")"
    }
   ]
  },
@@ -268,8 +104,9 @@
    "outcome": "skip",
    "reason": "a float-shaped text may be a range widget's value, which only the page source has"
   },
-  "status": "gap",
-  "note": "close: @text=\"<float>\" → text(\"…\") with the range-widget warning, as for contains(@text,\"1.5\")",
+  "status": "false",
+  "verdict": "WRONG",
+  "note": "an equality with a float-shaped text most likely means the range widget itself, whose value text only the page source has: the UiSelector misses it (the converter skips on purpose)",
   "runs": [
    {
     "run": "sonnet-medium-plain",
@@ -280,84 +117,6 @@
     "run": "haiku-medium-plain",
     "verdict": "DRIFT",
     "uiselector": "new UiSelector().text(\"50.0\")"
-   }
-  ]
- },
- {
-  "id": "x610",
-  "group": "S",
-  "ref": "C15",
-  "xpath": "//*[string-length(@text)=5]",
-  "converter": {
-   "outcome": "skip",
-   "reason": "string-length() has no UiSelector form"
-  },
-  "status": "gap",
-  "note": "string-length(@text)=n → textMatches(\"(?s).{n}\") (code points, as XPath counts)",
-  "runs": [
-   {
-    "run": "opus-medium-pilot",
-    "verdict": "CORRECT",
-    "uiselector": "new UiSelector().textMatches(\"(?s).{5}\")"
-   },
-   {
-    "run": "opus-medium-rules",
-    "verdict": "CORRECT",
-    "uiselector": "new UiSelector().textMatches(\"(?s).{5}\")"
-   },
-   {
-    "run": "sonnet-medium-plain",
-    "verdict": "CORRECT",
-    "uiselector": "new UiSelector().textMatches(\"(?s).{5}\")"
-   },
-   {
-    "run": "sonnet-medium-rules",
-    "verdict": "CORRECT",
-    "uiselector": "new UiSelector().textMatches(\"(?s).{5}\")"
-   },
-   {
-    "run": "haiku-medium-plain",
-    "verdict": "CORRECT",
-    "uiselector": "new UiSelector().textMatches(\".{5}\")"
-   },
-   {
-    "run": "haiku-medium-rules",
-    "verdict": "CORRECT",
-    "uiselector": "new UiSelector().textMatches(\"(?s).{5}\")"
-   }
-  ]
- },
- {
-  "id": "x659",
-  "group": "S",
-  "ref": "H07",
-  "xpath": "//*[translate(@text,\"ABCDEFGHIJKLMNOPQRSTUVWXYZ\",\"abcdefghijklmnopqrstuvwxyz\")=\"ok\"]",
-  "converter": {
-   "outcome": "skip",
-   "reason": "translate() folds only the characters it lists; (?i) also folds Unicode ones such as the Kelvin sign"
-  },
-  "status": "gap",
-  "note": "translate(@text, A–Z, a–z)=\"ok\" → textMatches(\"[oO][kK]\")",
-  "runs": [
-   {
-    "run": "opus-medium-pilot",
-    "verdict": "CORRECT",
-    "uiselector": "new UiSelector().textMatches(\"[oO][kK]\")"
-   },
-   {
-    "run": "opus-medium-rules",
-    "verdict": "CORRECT",
-    "uiselector": "new UiSelector().textMatches(\"[oO][kK]\")"
-   },
-   {
-    "run": "sonnet-medium-rules",
-    "verdict": "CORRECT",
-    "uiselector": "new UiSelector().textMatches(\"[oO][kK]\")"
-   },
-   {
-    "run": "haiku-medium-rules",
-    "verdict": "CORRECT",
-    "uiselector": "new UiSelector().textMatches(\"[oO][kK]\")"
    }
   ]
  }

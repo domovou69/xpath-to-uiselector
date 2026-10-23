@@ -140,6 +140,9 @@ default settings. **Close** converts with a `warning` (printed with `!`, in the 
 | `.//X`, `/hierarchy//X`, `//descendant::X` | as `//X` | exact | SRV-02, XP-01 |
 | `[a][b]`, `[a and b]` | criteria in the order the XPath names them | exact | SEL-01 |
 | `[@text]`, `[@checked]` (any of the nine booleans), `[@index]` | dropped | exact: written on every element, so always true | SRV-05, SRV-09, SRV-10 |
+| `contains(@a,"")`, `starts-with(@a,"")`, `ends-with(@a,"")` | dropped | exact: true for every element | XP-02 |
+| `@displayed="true"` | dropped | close: with the default settings the page source lists only displayed elements; with `allowInvisibleElements` on, the XPath leaves hidden elements out and the `UiSelector` does not. `@displayed="false"` matches nothing: skipped | SRV-11, SRV-12 |
+| a union branch or an `or` side on a web or iOS attribute (`//*[@resource-id="a"] \| //*[@id="a"]`) | dropped | exact: the Android page source never has the attribute, so that branch matches nothing | XP-09 |
 | `[@content-desc]`, `[@package]` | `descriptionMatches("(?s).*")`, `packageNameMatches("(?s).*")` | exact: written when non-null, `""` included | SRV-04, SRV-08 |
 | `[@resource-id]`, `[@resource-id!=""]`, `[@content-desc!=""]` | `resourceIdMatches("(?s).+")`, `descriptionMatches("(?s).+")` | exact; an existence test next to another test on the same attribute is dropped | SRV-04, SRV-07 |
 | `[@text!=""]` | `textMatches("(?s).+")` | close: a range widget (SeekBar, ProgressBar) has a text only in the page source, so the XPath also finds it | SRV-05, SRV-06 |
@@ -166,6 +169,10 @@ also crosses line breaks.
 | `matches(@text,"total","i")` | `(?i-s:total)` inside the same wrapper | exact: ASCII case folding, as PsychoPath | XP-04 |
 | `lower-case(@text)="ok"`, `contains(lower-case(@text),"ok")` | `textMatches("(?i)ok")`, `textMatches("(?s)(?i).*ok.*")` | close: ICU `(?i)` folds Unicode letters as `lower-case()` does; one-to-many folds (`İ`, `ß`) are not checked | XP-05 |
 | `concat("Tot","al")` as a value | `text("Total")` | exact: folded | XP-01 |
+| `normalize-space(@text)="To tal"` | `textMatches("[ \t\n\r]*To[ \t\n\r]+tal[ \t\n\r]*")` | exact: XML whitespace around the value and for each space in it; a value with leading, trailing or repeated whitespace matches nothing and is skipped | XP-10 |
+| `string-length(@text)=5` | `textMatches("[\s\S]{5}")` | close on `@text` from 3 characters on (a range widget's value text such as `"10.25"`), exact below that and on the other attributes; one code point each, as XPath counts | XP-10, SRV-06 |
+| `translate(@text,"ABC…Z","abc…z")="ok"` | `textMatches("[oO][kK]")` | exact: each character of the value as the class of the characters `translate()` maps to it, deleted characters as `[…]*` between them; the Kelvin sign is none of them | XP-05 |
+| `if (C) then true() else false()`, `some $v in @a satisfies $v="OK"` | as `C`, as `@a="OK"` | exact; `then false() else true()` → `not(C)`; `every` is skipped (true without the attribute) | XP-11 |
 | `@text eq "OK"` (XPath 2.0) | `text("OK")` | exact | XP-01 |
 
 ### Quotes and backslashes in values
@@ -210,19 +217,19 @@ must have the right shape.
 | `not(contains(@text,…))`, `@text!="x"` | No negation for strings | SEL-13 |
 | `@text="A" or @content-desc="A"`, `@checked="true" or @selected="true"`, unions of different attributes or paths | No `or` across criteria (statements joined with `;` are deduplicated in statement order, not document order) | SEL-13, SRV-21 |
 | `contains(@class,"Button")`, `//Button \| //ImageButton` | `classNameMatches` makes `findElements` iterate `index(i)` instead of `instance(i)` and loses elements | SRV-33 |
-| `upper-case()`, `translate()` | They do not fold the Kelvin sign; `(?i)` does | XP-05 |
-| `@text=""`, `contains(@text,"")`, a test that holds for `""` | Every element without text has `text=""` in the page source; `text("")` needs a non-null text | SRV-05 |
+| `upper-case()` | It does not fold the Kelvin sign; `(?i)` does | XP-05 |
+| `@text=""`, `string-length(@text)=0`, a test that holds for `""` | Every element without text has `text=""` in the page source; `text("")` needs a non-null text | SRV-05 |
 | `@resource-id=""`, `@checked="TRUE"`, `@index="02"`, `@text="A" and @text="B"` | The XPath matches nothing (or always the same), so there is nothing to convert | SRV-07, SRV-09, SRV-10 |
 | `@text="50.0"` (float-shaped) | A range widget's text in the page source is its value, not `getText()` | SRV-06 |
 | `@text=1` (number) | A numeric comparison casts every text to a number: it fails on non-numeric text and also matches `1.0` | XP-06 |
 | `text()`, `contains(text(),…)` | The page source has no text nodes | XP-07 |
-| `@bounds`, `@displayed`, `@password`, `@hint`, `@a11y-…` and ~40 more | No `UiSelector` criterion | SRV-11 |
+| `@bounds`, `@password`, `@hint`, `@a11y-…` and ~40 more | No `UiSelector` criterion | SRV-11 |
 | `@name`, `@resourceId`, `@contentDescription` | Aliases of `getAttribute`, not page source attributes: the XPath matches nothing | SRV-11 |
-| `@label`, `@value`, `@id`, `@type`, `data-*`, `aria-*` … | Web or iOS attributes: the Android page source has none (a reason, not a filter) | SRV-11 |
+| `@label`, `@value`, `@id`, `@type`, `data-*`, `aria-*` … | Web or iOS attributes: the Android page source has none (a reason, not a filter; in a union or an `or` with Android tests the branch drops out) | SRV-11 |
 | `//android.widget.Toast` | Toasts exist only in the page source | SRV-13 |
 | `//com.app.Outer$Inner` | The XPath parser rejects `$` in a name test | SRV-03 |
 | control characters in a value | Replaced in the page source | SRV-14 |
-| `normalize-space()`, `string-length()`, `substring()`, quantified and `if` expressions, `matches()` with the `x` flag or an invalid flag | No `UiSelector` form, or the XPath itself fails | XP-01, XP-03 |
+| `normalize-space()` without an argument, `substring()`, `every`, `if` with other branches than `true()` / `false()`, variables outside `some`, `matches()` with the `x` flag or an invalid flag | No `UiSelector` form, or the XPath itself fails | XP-01, XP-03, XP-11 |
 | `matches()` with a pattern that matches `""` | XPath also matches elements without the attribute | XP-03 |
 | syntax errors, anything outside the parser's whitelist | `not a valid XPath` / no `UiSelector` form | SRV-01 |
 

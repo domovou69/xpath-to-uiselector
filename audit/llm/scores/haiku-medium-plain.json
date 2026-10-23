@@ -16,29 +16,29 @@
  },
  "totals": {
   "all": {
-   "agree": 385,
-   "agree-skip": 167,
-   "diff": 73,
-   "llm-only": 28,
-   "conv-only": 24,
+   "agree": 388,
+   "agree-skip": 165,
+   "diff": 76,
+   "llm-only": 22,
+   "conv-only": 26,
    "unparsed": 3,
    "missing": 0
   },
   "S": {
-   "agree": 54,
-   "agree-skip": 28,
-   "diff": 26,
-   "llm-only": 23,
-   "conv-only": 16,
+   "agree": 57,
+   "agree-skip": 27,
+   "diff": 29,
+   "llm-only": 17,
+   "conv-only": 17,
    "unparsed": 2,
    "missing": 0
   },
   "R": {
    "agree": 331,
-   "agree-skip": 139,
+   "agree-skip": 138,
    "diff": 47,
    "llm-only": 5,
-   "conv-only": 8,
+   "conv-only": 9,
    "unparsed": 1,
    "missing": 0
   }
@@ -89,13 +89,13 @@
    "ref": "C14",
    "xpath": "//*[normalize-space(@text)=\"Total\"]",
    "converter": {
-    "outcome": "skip",
-    "reason": "normalize-space() has no UiSelector form"
+    "outcome": "exact",
+    "uiselector": "new UiSelector().textMatches(\"[ \\t\\n\\r]*Total[ \\t\\n\\r]*\")"
    },
    "llm": {
     "uiselector": "new UiSelector().textMatches(\"\\\\s*Total\\\\s*\")"
    },
-   "category": "llm-only"
+   "category": "diff"
   },
   "x005": {
    "group": "R",
@@ -464,13 +464,14 @@
    "ref": "A12",
    "xpath": "//android.widget.Button[@displayed=\"true\"]",
    "converter": {
-    "outcome": "skip",
-    "reason": "displayed has no UiSelector criterion"
+    "outcome": "close",
+    "uiselector": "new UiSelector().className(\"android.widget.Button\")",
+    "warning": "displayed=\"true\" is dropped: with the default settings the page source lists only displayed elements; with allowInvisibleElements on, the XPath leaves hidden elements out and the UiSelector does not"
    },
    "llm": {
     "uiselector": "new UiSelector().className(\"android.widget.Button\")"
    },
-   "category": "llm-only"
+   "category": "agree"
   },
   "x033": {
    "group": "R",
@@ -1876,14 +1877,14 @@
    "ref": "A1540",
    "xpath": "(//*[@resource-id='io.zofujize.vikuwag.vajotin:id/danob_danob_hac'] | //*[@id='danob_danob_hac'] | //*[@resource-id='danob_danob_hac'])",
    "converter": {
-    "outcome": "skip",
-    "reason": "id is a web or iOS attribute: the Android page source has no id"
+    "outcome": "exact",
+    "uiselector": "new UiSelector().resourceIdMatches(\"io\\.zofujize\\.vikuwag\\.vajotin:id/danob_danob_hac|danob_danob_hac\")"
    },
    "llm": {
     "skip": true,
     "reason": "union (|) of XPaths using @id, which does not exist in the Android hierarchy"
    },
-   "category": "agree-skip"
+   "category": "conv-only"
   },
   "x139": {
    "group": "R",
@@ -2854,13 +2855,13 @@
    "ref": "C08",
    "xpath": "//*[contains(@text,\"\")]",
    "converter": {
-    "outcome": "skip",
-    "reason": "contains() with \"\" is true for every element"
+    "outcome": "exact",
+    "uiselector": "new UiSelector()"
    },
    "llm": {
     "uiselector": "new UiSelector()"
    },
-   "category": "llm-only"
+   "category": "agree"
   },
   "x212": {
    "group": "R",
@@ -2934,14 +2935,14 @@
    "ref": "V04",
    "xpath": "//*[if (@checked=\"true\") then true() else false()]",
    "converter": {
-    "outcome": "skip",
-    "reason": "conditional expressions are not converted"
+    "outcome": "exact",
+    "uiselector": "new UiSelector().checked(true)"
    },
    "llm": {
     "skip": true,
     "reason": "invalid XPath syntax (if/then/else is XPath 2.0 expression syntax, not valid in a predicate)"
    },
-   "category": "agree-skip"
+   "category": "conv-only"
   },
   "x218": {
    "group": "R",
@@ -3534,13 +3535,13 @@
    "ref": "V03",
    "xpath": "//*[some $t in @text satisfies $t=\"OK\"]",
    "converter": {
-    "outcome": "skip",
-    "reason": "quantified expressions are not converted"
+    "outcome": "exact",
+    "uiselector": "new UiSelector().text(\"OK\")"
    },
    "llm": {
     "uiselector": "new UiSelector().text(\"OK\")"
    },
-   "category": "llm-only"
+   "category": "agree"
   },
   "x263": {
    "group": "R",
@@ -8181,13 +8182,14 @@
    "ref": "C15",
    "xpath": "//*[string-length(@text)=5]",
    "converter": {
-    "outcome": "skip",
-    "reason": "string-length() has no UiSelector form"
+    "outcome": "close",
+    "uiselector": "new UiSelector().textMatches(\"[\\s\\S]{5}\")",
+    "warning": "a range widget (SeekBar, ProgressBar) has a text only in the page source, so the XPath also finds it"
    },
    "llm": {
     "uiselector": "new UiSelector().textMatches(\".{5}\")"
    },
-   "category": "llm-only"
+   "category": "diff"
   },
   "x611": {
    "group": "R",
@@ -8830,13 +8832,13 @@
    "ref": "H07",
    "xpath": "//*[translate(@text,\"ABCDEFGHIJKLMNOPQRSTUVWXYZ\",\"abcdefghijklmnopqrstuvwxyz\")=\"ok\"]",
    "converter": {
-    "outcome": "skip",
-    "reason": "translate() folds only the characters it lists; (?i) also folds Unicode ones such as the Kelvin sign"
+    "outcome": "exact",
+    "uiselector": "new UiSelector().textMatches(\"[oO][kK]\")"
    },
    "llm": {
     "uiselector": "new UiSelector().textMatches(\"(?i)ok\")"
    },
-   "category": "llm-only"
+   "category": "diff"
   },
   "x660": {
    "group": "R",
