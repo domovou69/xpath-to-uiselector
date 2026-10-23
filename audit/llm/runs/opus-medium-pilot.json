@@ -1,0 +1,3049 @@
+{
+ "model": "opus",
+ "modelId": "claude-opus-5-5",
+ "effort": "medium",
+ "name": "pilot",
+ "prompt": "prompt.md",
+ "started": "2026-10-23T11:00:33.483Z",
+ "wallMs": 733584,
+ "cliVersion": "2.1.308 (Claude Code)",
+ "exitCode": 0,
+ "signal": null,
+ "timedOut": false,
+ "stderr": "",
+ "error": null,
+ "files": [
+  "output-1.json",
+  "output-2.json",
+  "output-3.json",
+  "output-4.json"
+ ],
+ "parts": [
+  "output-1.json",
+  "output-2.json",
+  "output-3.json",
+  "output-4.json"
+ ],
+ "cli": {
+  "duration_api_ms": 731750,
+  "stop_reason": "end_turn",
+  "session_id": "c53a3bf3-5532-489a-ae08-c8e5871626fe",
+  "total_cost_usd": 3.0043114,
+  "usage": {
+   "input_tokens": 14,
+   "cache_creation_input_tokens": 140849,
+   "cache_read_input_tokens": 477717,
+   "output_tokens": 89096,
+   "output_tokens_details": {
+    "thinking_tokens": 46446
+   },
+   "server_tool_use": {
+    "web_search_requests": 0,
+    "web_fetch_requests": 0
+   },
+   "service_tier": "standard",
+   "cache_creation": {
+    "ephemeral_1h_input_tokens": 140849,
+    "ephemeral_5m_input_tokens": 0
+   },
+   "inference_geo": "global",
+   "iterations": [
+    {
+     "input_tokens": 2,
+     "output_tokens": 1566,
+     "cache_read_input_tokens": 132921,
+     "cache_creation_input_tokens": 9834,
+     "cache_creation": {
+      "ephemeral_5m_input_tokens": 0,
+      "ephemeral_1h_input_tokens": 9834
+     },
+     "type": "message"
+    }
+   ],
+   "speed": "standard",
+   "fallback_credit": null
+  },
+  "modelUsage": {
+   "claude-opus-5-5": {
+    "inputTokens": 14,
+    "outputTokens": 89096,
+    "cacheReadInputTokens": 477717,
+    "cacheCreationInputTokens": 140849,
+    "webSearchRequests": 0,
+    "costUSD": 3.0043114,
+    "contextWindow": 1000000,
+    "maxOutputTokens": 128000,
+    "thinkingTokens": 46446,
+    "canonicalModel": "claude-opus-5-5",
+    "provider": "firstParty",
+    "costBasis": "list"
+   }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "fast_mode_disabled_reason": "sdk_opt_in_required",
+  "subagent_stats": {
+   "spawned": 0,
+   "requested": {
+    "background": 0,
+    "foreground": 0,
+    "unset": 0
+   },
+   "started_in_background": 0,
+   "max_depth": 0,
+   "spawned_by_subagents": 0,
+   "completed": 0,
+   "failed": 0,
+   "killed": {
+    "parent": 0,
+    "user": 0,
+    "system": 0
+   },
+   "refused": {
+    "depth_limit": 0,
+    "concurrency_limit": 0,
+    "budget": 0
+   },
+   "by_type": {}
+  },
+  "safety_stops": 0,
+  "is_error": false,
+  "num_turns": 7,
+  "subtype": "success",
+  "api_error_status": null,
+  "result": "All 680 ids are written, in four parts of 170 each: `output-1.json` (x001–x170), `output-2.json` (x171–x340), `output-3.json` (x341–x510) and `output-4.json` (x511–x680). I had no shell here, so I wrote every entry by hand and couldn't run a JSON parser or test any selector on a device. Please parse the files before merging, and spot-check them against a real Appium session.\n\n**How I converted:**\n- **Attributes:** `@text`, `@content-desc`, `@resource-id`, `@class`/the element name, `@package`, `@index` and the boolean flags each map to their UiSelector method. `contains()` maps to `textContains`/`descriptionContains`, `starts-with()` to `…StartsWith`, and `contains(@resource-id)` to `resourceIdMatches`.\n- **Regexes:** I escape special characters as `[.]`, `[{]` and so on, so the regex never relies on backslash escaping inside the selector string.\n- **OR and `|` on the same attribute** become a regex alternation, e.g. `textMatches(\"A|B\")`.\n- **`(//X)[n]`** becomes `.instance(n-1)`, and `//A//B` becomes `A.childSelector(B)` (any depth, like `//`).\n- **Conditions that are always true**, such as `//*[@checked]` or `contains(@text,\"\")`, become a bare `new UiSelector()`.\n- **Literal strings** like `{conversation}`, `%s` and `${name}` are kept as they are, because the XPath matches them literally.\n\n**What I skipped, and why:**\n- **Direct-child `/` steps and absolute `/hierarchy/...` paths:** `childSelector()` matches any descendant, so \"direct child only\" can't be expressed.\n- **`[n]` or `[last()]` on a step:** these count siblings under each parent, while `instance()` counts across the whole screen.\n- **Parent, ancestor and sibling axes,** and \"element that contains X\" filters.\n- **OR across different attributes,** e.g. `@text or @content-desc`. One UiSelector can only AND its conditions.\n- **Invalid XPath:** XPath 2.0 functions (`matches`, `lower-case`, `ends-with`, `eq`, if/then and the like) and broken syntax such as a trailing `|` or an unclosed bracket. Appium's engine is XPath 1.0, so these never worked.\n- **Locators that can never match on Android:** iOS or web attributes and elements (`@name`, `@label`, `@id`, `data-testid`, `<select>`, `<tbody>`), `text()`, `@checked=\"TRUE\"` and contradictory conditions. I skipped these rather than write a selector that always finds nothing, since they are probably bugs in the tests.\n- **Things UiSelector has no option for:** `@hint`, `@password`, `@bounds`, `@displayed`, and Appium's synthetic Toast elements.\n\n**Calls that depend on how Appium builds its page source.** I worked these from memory of the UiAutomator2 server and couldn't check them:\n- I assumed `text` is always written (as `\"\"` when the text is null), while `content-desc` and `resource-id` are left out when null. On that basis I skipped `@text=\"\"`, `@text!=\"OK\"` and `not(contains(@text,…))` (x194, x361, x380, x393), but converted `@content-desc=\"\"` and `[@content-desc]`.\n- I assumed SeekBars and other range widgets put their current value into `@text` (e.g. \"50.0\"), so I skipped x009, x367, x547 and x559.\n\nIf either assumption is wrong for your Appium version, those entries should be revisited.\n\n**Limits worth knowing:**\n- With `findElements`, Appium's UiSelector handling may not return every match when the selector uses `childSelector()` or `classNameMatches()`. As I recall it, the enumeration can return only the first child per parent. Single-element lookups behave as expected.\n- `(//A)[n]//B` becomes `A.instance(n-1).childSelector(B)`. If the n-th A has no matching B, UiAutomator may return a B from a later A, where the XPath would find nothing.\n- `string-length(@text)=5` (x610) counts characters slightly differently from the regex for emoji and other surrogate pairs.",
+  "ttft_ms": 4215,
+  "type": "result",
+  "duration_ms": 732487,
+  "uuid": "96924a18-bf51-4926-8f37-1f6205117124",
+  "ttft_stream_ms": 4003,
+  "time_to_request_ms": 33,
+  "first_content_frame_ms": 4003,
+  "queued_turn_count": 0,
+  "result_index": 0
+ },
+ "output": [
+  {
+   "id": "x001",
+   "uiselector": "new UiSelector().className(\"android.widget.FrameLayout\").descriptionStartsWith(\"Zonewe in as\")"
+  },
+  {
+   "id": "x002",
+   "uiselector": "new UiSelector().className(\"android.widget.TextView\").text(\"ञदयजॉशच् ध़पच तो यमशीशइ रच ़शखि मइच ऐीजभमग\")"
+  },
+  {
+   "id": "x003",
+   "skip": true,
+   "reason": "Navigates up with '/../..' (parent axis); UiSelector cannot select an ancestor and then search its subtree."
+  },
+  {
+   "id": "x004",
+   "uiselector": "new UiSelector().textMatches(\"[ \t\n\r]*Total[ \t\n\r]*\")"
+  },
+  {
+   "id": "x005",
+   "skip": true,
+   "reason": "Direct-child step '/': UiSelector.childSelector() matches any descendant, not only direct children, so the parent/child constraint cannot be expressed."
+  },
+  {
+   "id": "x006",
+   "skip": true,
+   "reason": "Positional selection over a descendant set followed by a direct-child step (child::); UiSelector.childSelector() matches any descendant, so the direct-child constraint cannot be expressed."
+  },
+  {
+   "id": "x007",
+   "skip": true,
+   "reason": "Uses XPath 2.0 function matches(); Appium UiAutomator2 evaluates XPath 1.0, so the locator is invalid and finds nothing."
+  },
+  {
+   "id": "x008",
+   "uiselector": "new UiSelector().className(\"android.widget.FrameLayout\").resourceId(\"jp.co.app.android:id/tujOjajInuwulah\")"
+  },
+  {
+   "id": "x009",
+   "skip": true,
+   "reason": "In UiAutomator2 page source the @text of range widgets (SeekBar/ProgressBar/RatingBar) is their current value as a float string (e.g. '1.5', '21.5'), so this XPath also matches them; UiSelector text matchers only see the node's real text."
+  },
+  {
+   "id": "x010",
+   "skip": true,
+   "reason": "Absolute /hierarchy path built from direct-child steps; UiSelector cannot constrain exact parent/child structure (childSelector() matches any descendant)."
+  },
+  {
+   "id": "x011",
+   "uiselector": "new UiSelector().className(\"android.widget.TextView\").text(\"Vejace Vejace\")"
+  },
+  {
+   "id": "x012",
+   "skip": true,
+   "reason": "Attribute @name does not exist in UiAutomator2 page source (iOS/web attribute), so the XPath never matches anything."
+  },
+  {
+   "id": "x013",
+   "uiselector": "new UiSelector().className(\"android.widget.TextView\").resourceIdMatches(\".*joc[.]mehaka[.]nifi[.]uk:id/zirimumAlen.*\").index(0)"
+  },
+  {
+   "id": "x014",
+   "uiselector": "new UiSelector().className(\"android.widget.ScrollView\").description(\"dofo_popon_wepejazuk_zeru\").childSelector(new UiSelector().description(\"popon_dofiwa_wokup\"))"
+  },
+  {
+   "id": "x015",
+   "uiselector": "new UiSelector().className(\"android.widget.TextView\").resourceId(\"com.cumojejove.monukekep.socetomub.webefuf.zilolojisi:id/bedu\").text(\"Vehi Pakaf 1\")"
+  },
+  {
+   "id": "x016",
+   "skip": true,
+   "reason": "Uses XPath 2.0 function lower-case(); Appium UiAutomator2 evaluates XPath 1.0, so the locator is invalid and finds nothing."
+  },
+  {
+   "id": "x017",
+   "skip": true,
+   "reason": "HTML/web locator (<select>, @id); no such elements or attributes exist in the Android native hierarchy, so it never matches."
+  },
+  {
+   "id": "x018",
+   "skip": true,
+   "reason": "Uses the parent axis '..' plus a per-parent positional child step; UiSelector cannot select a parent or constrain direct children."
+  },
+  {
+   "id": "x019",
+   "uiselector": "new UiSelector().className(\"android.widget.TextView\").description(\"popon_paci_bedu\").instance(1)"
+  },
+  {
+   "id": "x020",
+   "uiselector": "new UiSelector().className(\"android.widget.LinearLayout\").descriptionStartsWith(\"50%\")"
+  },
+  {
+   "id": "x021",
+   "uiselector": "new UiSelector().className(\"android.widget.TextView\").resourceId(\"com.android.johifa:id/vigoc\").text(\"Mehaka rijukogaf\")"
+  },
+  {
+   "id": "x022",
+   "uiselector": "new UiSelector().className(\"android.widget.TextView\").text(\"यषेइ\")"
+  },
+  {
+   "id": "x023",
+   "uiselector": "new UiSelector().className(\"android.view.ViewGroup\").description(\"popon_wepejazuk_zeru\").instance(2).childSelector(new UiSelector().resourceId(\"com.example.app:id/item_7\"))"
+  },
+  {
+   "id": "x024",
+   "uiselector": "new UiSelector().resourceId(\"waw-wev-jemo-Gutalic\")"
+  },
+  {
+   "id": "x025",
+   "skip": true,
+   "reason": "Uses XPath 2.0 function matches() (and an XSD character-class subtraction regex); Appium UiAutomator2 evaluates XPath 1.0, so the locator is invalid and finds nothing."
+  },
+  {
+   "id": "x026",
+   "skip": true,
+   "reason": "Attribute @label does not exist in UiAutomator2 page source (iOS attribute), so the XPath never matches anything."
+  },
+  {
+   "id": "x027",
+   "uiselector": "new UiSelector().className(\"android.widget.TextView\").resourceId(\"com.cumojejove.monukekep.socetomub.webefuf.zilolojisi:id/bedu\").text(\"Canun\")"
+  },
+  {
+   "id": "x028",
+   "skip": true,
+   "reason": "OR across two different attributes (@text or @content-desc); a single UiSelector can only AND its criteria."
+  },
+  {
+   "id": "x029",
+   "uiselector": "new UiSelector().textContains(\"常见闻题\")"
+  },
+  {
+   "id": "x030",
+   "uiselector": "new UiSelector().className(\"android.widget.TextView\").resourceId(\"com.cumojejove.monukekep.socetomub.webefuf.zilolojisi:id/bedu\").text(\"Vehi Pakaf 5\")"
+  },
+  {
+   "id": "x031",
+   "uiselector": "new UiSelector().className(\"android.widget.TextView\").text(\"UK\")"
+  },
+  {
+   "id": "x032",
+   "skip": true,
+   "reason": "@displayed is an Appium-computed attribute; UiSelector has no matching criterion."
+  },
+  {
+   "id": "x033",
+   "uiselector": "new UiSelector().className(\"android.view.View\").description(\"Gurizi\")"
+  },
+  {
+   "id": "x034",
+   "uiselector": "new UiSelector().resourceId(\"cigolug.huso.refugocog:id/mejoLamic\").textContains(\":\")"
+  },
+  {
+   "id": "x035",
+   "uiselector": "new UiSelector().text(\"Fivoza JOR\")"
+  },
+  {
+   "id": "x036",
+   "uiselector": "new UiSelector().className(\"android.view.SurfaceView\").resourceId(\"com.jegifoni.android:id/dofo_zakutu_linurik_view\")"
+  },
+  {
+   "id": "x037",
+   "skip": true,
+   "reason": "Selects the parent (parent::*); UiSelector cannot return an element's parent (fromParent() searches the parent's descendants)."
+  },
+  {
+   "id": "x038",
+   "skip": true,
+   "reason": "Chain of direct-child steps with per-parent positions; UiSelector cannot constrain exact parent/child structure."
+  },
+  {
+   "id": "x039",
+   "uiselector": "new UiSelector().text(\"Fiz pin\")"
+  },
+  {
+   "id": "x040",
+   "uiselector": "new UiSelector().className(\"android.widget.TextView\").text(\"Mow bepo rop nudo Rusezu Wuda\")"
+  },
+  {
+   "id": "x041",
+   "uiselector": "new UiSelector().resourceId(\"com.lazevikema.wid:id/cb_tuwadani_tuzik\")"
+  },
+  {
+   "id": "x042",
+   "uiselector": "new UiSelector().descriptionMatches(\"(?s).+\")"
+  },
+  {
+   "id": "x043",
+   "uiselector": "new UiSelector().className(\"android.widget.ScrollView\").description(\"dofo_popon_wepejazuk_zeru\").childSelector(new UiSelector().description(\"popon_dofiwa_rizisi\"))"
+  },
+  {
+   "id": "x044",
+   "skip": true,
+   "reason": "Uses the following-sibling axis; UiSelector.fromParent() searches all descendants of the parent (including preceding siblings and nested nodes), so it is not equivalent."
+  },
+  {
+   "id": "x045",
+   "uiselector": "new UiSelector().text(\"fubi\")"
+  },
+  {
+   "id": "x046",
+   "skip": true,
+   "reason": "UiSelector has no criterion for the @hint attribute."
+  },
+  {
+   "id": "x047",
+   "uiselector": "new UiSelector().className(\"android.widget.TextView\").resourceId(\"com.cumojejove.monukekep.socetomub.webefuf.zilolojisi:id/bedu\").text(\"Lahise 5\")"
+  },
+  {
+   "id": "x048",
+   "skip": true,
+   "reason": "Attribute @value does not exist in UiAutomator2 page source (iOS attribute), so the XPath never matches anything."
+  },
+  {
+   "id": "x049",
+   "uiselector": "new UiSelector().resourceId(\"android:id/text1\").text(\"wajivuno-casufavir.kuva-app.fode\")"
+  },
+  {
+   "id": "x050",
+   "uiselector": "new UiSelector().className(\"android.widget.TextView\").text(\"यरोशअन हतथश\")"
+  },
+  {
+   "id": "x051",
+   "uiselector": "new UiSelector().className(\"android.widget.ImageView\").description(\"Fotit\")"
+  },
+  {
+   "id": "x052",
+   "uiselector": "new UiSelector().classNameMatches(\".*Button.*\")"
+  },
+  {
+   "id": "x053",
+   "uiselector": "new UiSelector().textMatches(\"允许|拒绝\")"
+  },
+  {
+   "id": "x054",
+   "uiselector": "new UiSelector().className(\"androidx.recyclerview.widget.RecyclerView\").resourceId(\"com.jegifoni.android:id/hido_to_detiweku_view\")"
+  },
+  {
+   "id": "x055",
+   "uiselector": "new UiSelector().className(\"android.widget.TextView\").resourceIdMatches(\".*joc[.]mehaka[.]nifi[.]uk[.]huticige:id/jemo_lalima_bedu.*\").index(0)"
+  },
+  {
+   "id": "x056",
+   "uiselector": "new UiSelector().text(\"f(x)\")"
+  },
+  {
+   "id": "x057",
+   "skip": true,
+   "reason": "Web locator: Android nodes have no text() child nodes and no CSS-style @class values, so it never matches."
+  },
+  {
+   "id": "x058",
+   "uiselector": "new UiSelector().className(\"android.widget.FrameLayout\").description(\"Tukani Nud Rasowaw\")"
+  },
+  {
+   "id": "x059",
+   "uiselector": "new UiSelector().resourceIdMatches(\"com[.]example[.]app:id/item_7.*\").childSelector(new UiSelector().resourceId(\"com.example.app:id/item_7\"))"
+  },
+  {
+   "id": "x060",
+   "skip": true,
+   "reason": "Sequence literal (\"A\",\"B\") is XPath 2.0 syntax; Appium UiAutomator2 evaluates XPath 1.0, so the locator is invalid."
+  },
+  {
+   "id": "x061",
+   "uiselector": "new UiSelector().className(\"android.widget.TextView\").resourceId(\"com.cumojejove.monukekep.socetomub.webefuf.zilolojisi:id/bedu\").text(\"Rah 8\")"
+  },
+  {
+   "id": "x062",
+   "uiselector": "new UiSelector().className(\"android.widget.TextView\").text(\"Gurizi\")"
+  },
+  {
+   "id": "x063",
+   "uiselector": "new UiSelector().className(\"android.widget.ListView\").childSelector(new UiSelector().className(\"android.widget.TextView\").text(\"Item\"))"
+  },
+  {
+   "id": "x064",
+   "uiselector": "new UiSelector().className(\"android.widget.TextView\").resourceId(\"com.cumojejove.monukekep.socetomub.webefuf.zilolojisi:id/bedu\").text(\"Riven\")"
+  },
+  {
+   "id": "x065",
+   "uiselector": "new UiSelector().resourceId(\"login\")"
+  },
+  {
+   "id": "x066",
+   "uiselector": "new UiSelector().textContains(\"反送线\")"
+  },
+  {
+   "id": "x067",
+   "skip": true,
+   "reason": "Union includes a parent selection ('//*[@text='fiz pin']/..'); UiSelector cannot return an element's parent."
+  },
+  {
+   "id": "x068",
+   "uiselector": "new UiSelector().className(\"android.widget.ScrollView\").childSelector(new UiSelector().className(\"android.widget.ImageView\").instance(2))"
+  },
+  {
+   "id": "x069",
+   "uiselector": "new UiSelector().className(\"android.widget.Button\").resourceId(\"com.android.johifa:id/gow_dofiwa\")"
+  },
+  {
+   "id": "x070",
+   "skip": true,
+   "reason": "Positional selection over a descendant set followed by a direct child with per-parent position (child::...[4]); UiSelector cannot express direct-child or per-parent positions."
+  },
+  {
+   "id": "x071",
+   "uiselector": "new UiSelector().className(\"android.widget.TextView\").description(\"popon_cidowitef\").instance(1)"
+  },
+  {
+   "id": "x072",
+   "uiselector": "new UiSelector().className(\"android.widget.TextView\").resourceId(\"com.cumojejove.monukekep.socetomub.webefuf.zilolojisi:id/bedu\").text(\"Rosoci Tibo 1\")"
+  },
+  {
+   "id": "x073",
+   "uiselector": "new UiSelector().description(\"发送\")"
+  },
+  {
+   "id": "x074",
+   "uiselector": "new UiSelector().className(\"android.widget.ImageButton\").description(\"Daheci to mobol mona\")"
+  },
+  {
+   "id": "x075",
+   "uiselector": "new UiSelector().className(\"android.widget.TextView\").text(\"Kaki\")"
+  },
+  {
+   "id": "x076",
+   "uiselector": "new UiSelector().description(\"Zoci Teseru\")"
+  },
+  {
+   "id": "x077",
+   "skip": true,
+   "reason": "Uses XPath 2.0 function matches(); Appium UiAutomator2 evaluates XPath 1.0, so the locator is invalid and finds nothing."
+  },
+  {
+   "id": "x078",
+   "uiselector": "new UiSelector().className(\"android.widget.TextView\").resourceId(\"com.cumojejove.monukekep.socetomub.webefuf.zilolojisi:id/bedu\").text(\"Tar Kuwu 3\")"
+  },
+  {
+   "id": "x079",
+   "uiselector": "new UiSelector().textContains(\"4、作场篇理\")"
+  },
+  {
+   "id": "x080",
+   "uiselector": "new UiSelector().text(\"Sign in\")"
+  },
+  {
+   "id": "x081",
+   "uiselector": "new UiSelector().text(\"Mikidit SIJI\")"
+  },
+  {
+   "id": "x082",
+   "skip": true,
+   "reason": "Attribute @label does not exist in UiAutomator2 page source (iOS attribute), so the XPath never matches anything."
+  },
+  {
+   "id": "x083",
+   "uiselector": "new UiSelector().description(\"popon_dofiwa_rizisi\")"
+  },
+  {
+   "id": "x084",
+   "uiselector": "new UiSelector().className(\"android.widget.TextView\").text(\"Vumi as jirisifaw bofefeb\")"
+  },
+  {
+   "id": "x085",
+   "skip": true,
+   "reason": "OR across two different attributes (@checked or @selected); a single UiSelector can only AND its criteria."
+  },
+  {
+   "id": "x086",
+   "uiselector": "new UiSelector().textMatches(\"OK|Yes\").enabled(true)"
+  },
+  {
+   "id": "x087",
+   "uiselector": "new UiSelector().text(\"送报品选认式职系了\")"
+  },
+  {
+   "id": "x088",
+   "skip": true,
+   "reason": "Absolute /hierarchy path built from direct-child steps; UiSelector cannot constrain exact parent/child structure (childSelector() matches any descendant)."
+  },
+  {
+   "id": "x089",
+   "skip": true,
+   "reason": "Direct-child steps with per-parent positions ([1]); UiSelector cannot constrain direct children or sibling positions."
+  },
+  {
+   "id": "x090",
+   "uiselector": "new UiSelector().className(\"android.widget.Button\").text(\"OK\").checked(false).index(0)"
+  },
+  {
+   "id": "x091",
+   "uiselector": "new UiSelector().className(\"android.view.View\")"
+  },
+  {
+   "id": "x092",
+   "uiselector": "new UiSelector().className(\"android.widget.TextView\").resourceId(\"com.cumojejove.monukekep.socetomub.webefuf.zilolojisi:id/bedu\").text(\"Vehi Disuvud 4\")"
+  },
+  {
+   "id": "x093",
+   "uiselector": "new UiSelector().className(\"android.widget.TextView\").resourceId(\"com.cumojejove.monukekep.socetomub.webefuf.zilolojisi:id/bedu\").text(\"Vehi Disuvud 7\")"
+  },
+  {
+   "id": "x094",
+   "uiselector": "new UiSelector().resourceId(\"com.example.app:id/sihenocesase_pumu_vil\").childSelector(new UiSelector().textContains(\"{message_contains}\"))"
+  },
+  {
+   "id": "x095",
+   "skip": true,
+   "reason": "Direct-child step '/': UiSelector.childSelector() matches any descendant, not only direct children, so the parent/child constraint cannot be expressed."
+  },
+  {
+   "id": "x096",
+   "skip": true,
+   "reason": "text() node test never matches in the UiAutomator2 page source (text is stored in the @text attribute, elements have no text children), so the XPath finds nothing."
+  },
+  {
+   "id": "x097",
+   "uiselector": "new UiSelector().resourceId(\"com.rusezu.android.lerunim:id/neno_ruwoju\")"
+  },
+  {
+   "id": "x098",
+   "skip": true,
+   "reason": "Chain of direct-child steps; UiSelector.childSelector() matches any descendant, so the parent/child constraints cannot be expressed."
+  },
+  {
+   "id": "x099",
+   "uiselector": "new UiSelector().className(\"android.widget.ListView\").childSelector(new UiSelector().className(\"android.widget.TextView\").instance(4))"
+  },
+  {
+   "id": "x100",
+   "uiselector": "new UiSelector().resourceId(\"nimepiho.wawilomode.com.SakOmore:id/daheci_hemumi\").checked(false)"
+  },
+  {
+   "id": "x101",
+   "uiselector": "new UiSelector().className(\"android.widget.Button\").description(\"Ruwoju Vetogame\")"
+  },
+  {
+   "id": "x102",
+   "uiselector": "new UiSelector().text(\"Say \\\"hi\\\"\")"
+  },
+  {
+   "id": "x103",
+   "uiselector": "new UiSelector().resourceId(\"com.rusezu.android.lerunim:id/pebajon\")"
+  },
+  {
+   "id": "x104",
+   "uiselector": "new UiSelector().className(\"android.widget.TextView\").resourceId(\"com.cumojejove.monukekep.socetomub.webefuf.zilolojisi:id/bedu\").text(\"Vehi Pakaf\")"
+  },
+  {
+   "id": "x105",
+   "uiselector": "new UiSelector().resourceIdMatches(\".*com[.]example[.]app:id/item_7.*\")"
+  },
+  {
+   "id": "x106",
+   "uiselector": "new UiSelector().text(\"Jor hadi saligek jemeworoneju\")"
+  },
+  {
+   "id": "x107",
+   "uiselector": "new UiSelector().className(\"android.widget.Button\").text(\"Grüße\")"
+  },
+  {
+   "id": "x108",
+   "uiselector": "new UiSelector().textMatches(\"A|B\")"
+  },
+  {
+   "id": "x109",
+   "uiselector": "new UiSelector().textContains(\"设置\")"
+  },
+  {
+   "id": "x110",
+   "skip": true,
+   "reason": "Absolute /hierarchy path built from direct-child steps; UiSelector cannot constrain exact parent/child structure (childSelector() matches any descendant)."
+  },
+  {
+   "id": "x111",
+   "uiselector": "new UiSelector().className(\"android.widget.Button\").instance(1)"
+  },
+  {
+   "id": "x112",
+   "uiselector": "new UiSelector().resourceId(\"com.lazevikema.wid:id/dofiwa_hido\")"
+  },
+  {
+   "id": "x113",
+   "uiselector": "new UiSelector().className(\"android.widget.TextView\").text(\"Daheci Cigolug\")"
+  },
+  {
+   "id": "x114",
+   "uiselector": "new UiSelector().className(\"android.widget.TextView\").text(\"ZOWER\")"
+  },
+  {
+   "id": "x115",
+   "uiselector": "new UiSelector().scrollable(true)"
+  },
+  {
+   "id": "x116",
+   "uiselector": "new UiSelector().className(\"android.widget.Button\")"
+  },
+  {
+   "id": "x117",
+   "uiselector": "new UiSelector().className(\"android.widget.TextView\").resourceId(\"com.cumojejove.monukekep.socetomub.webefuf.zilolojisi:id/bedu\").text(\"Fid Kuwu\")"
+  },
+  {
+   "id": "x118",
+   "skip": true,
+   "reason": "Selects a range of matches (position()<3, i.e. the first two buttons); UiSelector.instance() selects exactly one match."
+  },
+  {
+   "id": "x119",
+   "skip": true,
+   "reason": "Uses XPath 2.0 lower-case() (invalid in Appium's XPath 1.0 engine); it also filters by child content/count, which UiSelector cannot express."
+  },
+  {
+   "id": "x120",
+   "uiselector": "new UiSelector().focusable(true)"
+  },
+  {
+   "id": "x121",
+   "uiselector": "new UiSelector().className(\"android.widget.Switch\").instance(0)"
+  },
+  {
+   "id": "x122",
+   "uiselector": "new UiSelector().resourceId(\"com.example.app:id/zurebahikubad_pumu_wepejazuk\").childSelector(new UiSelector().text(\"v2.0\"))"
+  },
+  {
+   "id": "x123",
+   "uiselector": "new UiSelector().className(\"android.widget.FrameLayout\").text(\"Nud Rasowaw\")"
+  },
+  {
+   "id": "x124",
+   "skip": true,
+   "reason": "Absolute /hierarchy path built from direct-child steps with per-parent positions; UiSelector cannot constrain exact parent/child structure."
+  },
+  {
+   "id": "x125",
+   "uiselector": "new UiSelector().className(\"android.widget.FrameLayout\").description(\"Metohol\")"
+  },
+  {
+   "id": "x126",
+   "uiselector": "new UiSelector().className(\"android.widget.EditText\")"
+  },
+  {
+   "id": "x127",
+   "uiselector": "new UiSelector().className(\"android.widget.SeekBar\").packageName(\"com.android.bipecusu\")"
+  },
+  {
+   "id": "x128",
+   "uiselector": "new UiSelector().resourceId(\"com.android.votinane:id/peduwuhe_wepejazuk\")"
+  },
+  {
+   "id": "x129",
+   "uiselector": "new UiSelector().className(\"android.view.View\").description(\"Babeno tuzik\")"
+  },
+  {
+   "id": "x130",
+   "uiselector": "new UiSelector().selected(true)"
+  },
+  {
+   "id": "x131",
+   "uiselector": "new UiSelector().textContains(\"语地件功\")"
+  },
+  {
+   "id": "x132",
+   "uiselector": "new UiSelector().className(\"android.widget.TextView\").text(\"Gozo Ziwig: Wizip zilec zuruwad feho dise kado raregowupe mobol\").index(1)"
+  },
+  {
+   "id": "x133",
+   "uiselector": "new UiSelector().className(\"android.widget.TextView\").resourceId(\"com.cumojejove.monukekep.socetomub.webefuf.zilolojisi:id/bedu\").text(\"Jibe 6\")"
+  },
+  {
+   "id": "x134",
+   "uiselector": "new UiSelector().text(\"VUHEBO\")"
+  },
+  {
+   "id": "x135",
+   "skip": true,
+   "reason": "iOS/web locator (<text> element, @label); no such elements or attributes exist in the Android native hierarchy, so it never matches."
+  },
+  {
+   "id": "x136",
+   "uiselector": "new UiSelector().textContains(\".mag\")"
+  },
+  {
+   "id": "x137",
+   "uiselector": "new UiSelector().className(\"android.widget.TextView\").text(\"च़जषटपऐ यदअीरब\")"
+  },
+  {
+   "id": "x138",
+   "uiselector": "new UiSelector().resourceIdMatches(\"io[.]zofujize[.]vikuwag[.]vajotin:id/danob_danob_hac|danob_danob_hac\")"
+  },
+  {
+   "id": "x139",
+   "uiselector": "new UiSelector().className(\"android.widget.TextView\").resourceId(\"com.cumojejove.monukekep.socetomub.webefuf.zilolojisi:id/bedu\").text(\"Wotok Bavufo 6\")"
+  },
+  {
+   "id": "x140",
+   "skip": true,
+   "reason": "Malformed XPath (predicate not closed with ']'); it fails to compile and finds nothing."
+  },
+  {
+   "id": "x141",
+   "uiselector": "new UiSelector().className(\"android.widget.TextView\").resourceId(\"com.cumojejove.monukekep.socetomub.webefuf.zilolojisi:id/bedu\").text(\"Mabetim\")"
+  },
+  {
+   "id": "x142",
+   "uiselector": "new UiSelector().resourceId(\"com.lazevikema.wid:id/tv_mobol_nari\")"
+  },
+  {
+   "id": "x143",
+   "uiselector": "new UiSelector().className(\"android.widget.TextView\").text(\"GOTAZ\")"
+  },
+  {
+   "id": "x144",
+   "uiselector": "new UiSelector().clickable(true).textMatches(\"A|B\")"
+  },
+  {
+   "id": "x145",
+   "uiselector": "new UiSelector().className(\"android.widget.ImageButton\").description(\"Bomu mobol\")"
+  },
+  {
+   "id": "x146",
+   "uiselector": "new UiSelector().className(\"android.view.ViewGroup\").resourceIdMatches(\"hoci_mevodu_.*\")"
+  },
+  {
+   "id": "x147",
+   "uiselector": "new UiSelector().className(\"android.widget.ImageView\").instance(1)"
+  },
+  {
+   "id": "x148",
+   "skip": true,
+   "reason": "Attribute @id does not exist in UiAutomator2 page source (the id is in @resource-id), so the XPath never matches anything."
+  },
+  {
+   "id": "x149",
+   "uiselector": "new UiSelector().className(\"android.view.ViewGroup\").resourceIdMatches(\"mabetim_jemo_.*\")"
+  },
+  {
+   "id": "x150",
+   "uiselector": "new UiSelector().className(\"android.widget.TextView\").resourceId(\"com.cumojejove.monukekep.socetomub.webefuf.zilolojisi:id/bedu\").text(\"Dehib Rokoc 3\")"
+  },
+  {
+   "id": "x151",
+   "uiselector": "new UiSelector().text(\"Rojuno Lodo\")"
+  },
+  {
+   "id": "x152",
+   "uiselector": "new UiSelector().className(\"android.widget.Button\").text(\"允许\")"
+  },
+  {
+   "id": "x153",
+   "uiselector": "new UiSelector().textContains(\"$5.00 (incl.)\")"
+  },
+  {
+   "id": "x154",
+   "skip": true,
+   "reason": "Chain of direct-child steps with per-parent positions; UiSelector cannot constrain exact parent/child structure."
+  },
+  {
+   "id": "x155",
+   "skip": true,
+   "reason": "Selects the last direct child (/*[last()]); UiSelector cannot express direct-child or last-position constraints."
+  },
+  {
+   "id": "x156",
+   "skip": true,
+   "reason": "Absolute /hierarchy path built from direct-child steps with per-parent positions; UiSelector cannot constrain exact parent/child structure."
+  },
+  {
+   "id": "x157",
+   "skip": true,
+   "reason": "Uses XPath 2.0 function lower-case(); Appium UiAutomator2 evaluates XPath 1.0, so the locator is invalid and finds nothing."
+  },
+  {
+   "id": "x158",
+   "uiselector": "new UiSelector()"
+  },
+  {
+   "id": "x159",
+   "skip": true,
+   "reason": "HTML/web locator (<i> icon element with CSS class); no such elements exist in the Android native hierarchy, so it never matches."
+  },
+  {
+   "id": "x160",
+   "uiselector": "new UiSelector().className(\"android.widget.TextView\").text(\"Zawe\")"
+  },
+  {
+   "id": "x161",
+   "uiselector": "new UiSelector().text(\"Price: $5\")"
+  },
+  {
+   "id": "x162",
+   "uiselector": "new UiSelector().resourceIdMatches(\".*ziha.*\")"
+  },
+  {
+   "id": "x163",
+   "uiselector": "new UiSelector().text(\"C:\\\\Temp\\\\\")"
+  },
+  {
+   "id": "x164",
+   "uiselector": "new UiSelector().className(\"android.widget.ListView\").childSelector(new UiSelector().className(\"android.widget.LinearLayout\").childSelector(new UiSelector().className(\"android.widget.TextView\")))"
+  },
+  {
+   "id": "x165",
+   "uiselector": "new UiSelector().text(\"建电商城\")"
+  },
+  {
+   "id": "x166",
+   "uiselector": "new UiSelector().text(\"置项考多\")"
+  },
+  {
+   "id": "x167",
+   "uiselector": "new UiSelector().resourceId(\"com.lazevikema.wid:id/gowomoc\")"
+  },
+  {
+   "id": "x168",
+   "uiselector": "new UiSelector().className(\"android.widget.FrameLayout\").index(3)"
+  },
+  {
+   "id": "x169",
+   "skip": true,
+   "reason": "Absolute /hierarchy path built from direct-child steps; UiSelector cannot constrain exact parent/child structure (childSelector() matches any descendant)."
+  },
+  {
+   "id": "x170",
+   "uiselector": "new UiSelector().className(\"android.widget.ListView\").childSelector(new UiSelector().className(\"android.widget.LinearLayout\").childSelector(new UiSelector().className(\"android.widget.TextView\").instance(0)))"
+  },
+  {
+   "id": "x171",
+   "skip": true,
+   "reason": "Absolute /hierarchy path built from direct-child steps; UiSelector cannot constrain exact parent/child structure (childSelector() matches any descendant)."
+  },
+  {
+   "id": "x172",
+   "uiselector": "new UiSelector().className(\"android.widget.EditText\").resourceId(\"kafu_tib\")"
+  },
+  {
+   "id": "x173",
+   "uiselector": "new UiSelector().className(\"android.widget.TextView\").resourceId(\"com.cumojejove.monukekep.socetomub.webefuf.zilolojisi:id/bedu\").text(\"Tar Kuwu\")"
+  },
+  {
+   "id": "x174",
+   "uiselector": "new UiSelector().text(\"Hokahuta\")"
+  },
+  {
+   "id": "x175",
+   "uiselector": "new UiSelector().text(\"散人仅\")"
+  },
+  {
+   "id": "x176",
+   "uiselector": "new UiSelector().className(\"android.widget.TextView\").description(\"Mobol\")"
+  },
+  {
+   "id": "x177",
+   "uiselector": "new UiSelector().className(\"android.widget.TextView\").text(\"Vikuwag hezek dehifacerek\")"
+  },
+  {
+   "id": "x178",
+   "uiselector": "new UiSelector().className(\"android.widget.TextView\").resourceId(\"android:id/text1\").text(\"Jus or nudi vorevik tuzik\")"
+  },
+  {
+   "id": "x179",
+   "skip": true,
+   "reason": "Uses the ancestor axis; UiSelector cannot select ancestors of a matched element."
+  },
+  {
+   "id": "x180",
+   "skip": true,
+   "reason": "Direct-child step with a per-parent position ([1]) plus not(contains(@resource-id)) which also matches nodes without a resource-id; UiSelector cannot express these."
+  },
+  {
+   "id": "x181",
+   "skip": true,
+   "reason": "Absolute /hierarchy path built from direct-child steps with per-parent positions; UiSelector cannot constrain exact parent/child structure."
+  },
+  {
+   "id": "x182",
+   "uiselector": "new UiSelector().text(\"权场聊粘件\")"
+  },
+  {
+   "id": "x183",
+   "skip": true,
+   "reason": "Direct-child step with a per-parent position (/android.widget.LinearLayout[1]); UiSelector cannot express direct-child or sibling-position constraints."
+  },
+  {
+   "id": "x184",
+   "uiselector": "new UiSelector().text(\"a;b\")"
+  },
+  {
+   "id": "x185",
+   "uiselector": "new UiSelector().className(\"android.view.View\").resourceId(\"cuzoces-moduvu\").childSelector(new UiSelector().className(\"android.widget.TextView\").instance(1))"
+  },
+  {
+   "id": "x186",
+   "uiselector": "new UiSelector().className(\"android.widget.TextView\").resourceId(\"com.cumojejove.monukekep.socetomub.webefuf.zilolojisi:id/bedu\").text(\"Wotok Bavufo 1\")"
+  },
+  {
+   "id": "x187",
+   "uiselector": "new UiSelector().className(\"android.widget.TextView\").text(\"Rojuno Savejat\")"
+  },
+  {
+   "id": "x188",
+   "uiselector": "new UiSelector().className(\"android.widget.TextView\").resourceId(\"com.cumojejove.monukekep.socetomub.webefuf.zilolojisi:id/bedu\").text(\"Powi Lahise\")"
+  },
+  {
+   "id": "x189",
+   "skip": true,
+   "reason": "Uses XPath 2.0 function matches(); Appium UiAutomator2 evaluates XPath 1.0, so the locator is invalid and finds nothing."
+  },
+  {
+   "id": "x190",
+   "uiselector": "new UiSelector().className(\"android.view.View\").description(\"Fotit\")"
+  },
+  {
+   "id": "x191",
+   "skip": true,
+   "reason": "Returns the LinearLayout that contains a Button (has-descendant filter); UiSelector.childSelector() returns the descendant, not the container."
+  },
+  {
+   "id": "x192",
+   "uiselector": "new UiSelector().className(\"android.widget.RadioButton\").checked(true)"
+  },
+  {
+   "id": "x193",
+   "uiselector": "new UiSelector().className(\"android.widget.EditText\")"
+  },
+  {
+   "id": "x194",
+   "skip": true,
+   "reason": "@text=\"\" also matches nodes whose text is null (UiAutomator2 writes text=\"\" for them), while UiSelector text matchers never match a null text."
+  },
+  {
+   "id": "x195",
+   "uiselector": "new UiSelector().className(\"android.widget.TextView\").text(\"user01\")"
+  },
+  {
+   "id": "x196",
+   "skip": true,
+   "reason": "Absolute /hierarchy path built from direct-child steps with per-parent positions; UiSelector cannot constrain exact parent/child structure."
+  },
+  {
+   "id": "x197",
+   "skip": true,
+   "reason": "Returns the ViewGroup that contains a matching descendant (has-descendant filter); UiSelector.childSelector() returns the descendant, not the container."
+  },
+  {
+   "id": "x198",
+   "uiselector": "new UiSelector().className(\"android.widget.ImageButton\").resourceId(\"com.rusezu.android.VatewuZekoba:id/nenovi_daheci_dofiwa\")"
+  },
+  {
+   "id": "x199",
+   "uiselector": "new UiSelector().textStartsWith(\"Tot\")"
+  },
+  {
+   "id": "x200",
+   "skip": true,
+   "reason": "Direct-child step '/*': UiSelector.childSelector() matches any descendant, not only direct children."
+  },
+  {
+   "id": "x201",
+   "uiselector": "new UiSelector().className(\"android.widget.Button\").resourceId(\"com.android.zikametijazesonelibu:id/butimaziha_hilen_dofiwa\")"
+  },
+  {
+   "id": "x202",
+   "uiselector": "new UiSelector().className(\"android.widget.TextView\").resourceId(\"com.android.johifa:id/nud_waw_nalafehul_vigoc\")"
+  },
+  {
+   "id": "x203",
+   "uiselector": "new UiSelector().className(\"android.view.View\").text(\"x\")"
+  },
+  {
+   "id": "x204",
+   "uiselector": "new UiSelector().textMatches(\"A|B\").description(\"c\")"
+  },
+  {
+   "id": "x205",
+   "uiselector": "new UiSelector().className(\"android.widget.LinearLayout\").resourceId(\"com.android.johifa:id/wepejazuk\")"
+  },
+  {
+   "id": "x206",
+   "uiselector": "new UiSelector().className(\"android.widget.TextView\").text(\"Huticige Votinane\")"
+  },
+  {
+   "id": "x207",
+   "uiselector": "new UiSelector().text(\"确定\")"
+  },
+  {
+   "id": "x208",
+   "skip": true,
+   "reason": "Union of different class/attribute conditions (TextView with @content-desc or @text, or any Button); a single UiSelector can only AND its criteria."
+  },
+  {
+   "id": "x209",
+   "uiselector": "new UiSelector().textContains(\"Penuci\")"
+  },
+  {
+   "id": "x210",
+   "uiselector": "new UiSelector().classNameMatches(\"android[.]widget[.](Image)?Button\")"
+  },
+  {
+   "id": "x211",
+   "uiselector": "new UiSelector()"
+  },
+  {
+   "id": "x212",
+   "skip": true,
+   "reason": "Absolute /hierarchy path built from direct-child steps with per-parent positions; UiSelector cannot constrain exact parent/child structure."
+  },
+  {
+   "id": "x213",
+   "uiselector": "new UiSelector().className(\"android.widget.TextView\").index(0)"
+  },
+  {
+   "id": "x214",
+   "uiselector": "new UiSelector().resourceId(\"com.lazevikema.wid:id/jemo_bocic\").childSelector(new UiSelector().className(\"android.widget.TextView\"))"
+  },
+  {
+   "id": "x215",
+   "uiselector": "new UiSelector().className(\"android.widget.TextView\").text(\"My Natila\")"
+  },
+  {
+   "id": "x216",
+   "uiselector": "new UiSelector().className(\"android.widget.ImageView\").description(\"QR Hadi\")"
+  },
+  {
+   "id": "x217",
+   "skip": true,
+   "reason": "if/then/else is XPath 2.0 syntax; Appium UiAutomator2 evaluates XPath 1.0, so the locator is invalid."
+  },
+  {
+   "id": "x218",
+   "skip": true,
+   "reason": "Absolute /hierarchy path built from direct-child steps with per-parent positions; UiSelector cannot constrain exact parent/child structure."
+  },
+  {
+   "id": "x219",
+   "uiselector": "new UiSelector().resourceId(\"com.lazevikema.wid:id/jemo_misafa\").childSelector(new UiSelector().className(\"android.widget.EditText\"))"
+  },
+  {
+   "id": "x220",
+   "uiselector": "new UiSelector().resourceIdMatches(\"com[.]android[.]fahufufevewegiko:id/butimaziha_hilen_dofiwa|com[.]android[.]zikametijazesonelibu:id/butimaziha_hilen_dofiwa\")"
+  },
+  {
+   "id": "x221",
+   "uiselector": "new UiSelector().text(\"布助业必\")"
+  },
+  {
+   "id": "x222",
+   "skip": true,
+   "reason": "Absolute /hierarchy path built from direct-child steps with per-parent positions; UiSelector cannot constrain exact parent/child structure."
+  },
+  {
+   "id": "x223",
+   "uiselector": "new UiSelector().className(\"android.widget.TextView\").resourceId(\"com.cumojejove.monukekep.socetomub.webefuf.zilolojisi:id/bedu\").text(\"Rah Bavic 3\")"
+  },
+  {
+   "id": "x224",
+   "uiselector": "new UiSelector().text(\"Hidden\")"
+  },
+  {
+   "id": "x225",
+   "skip": true,
+   "reason": "Positional predicate [1] on the step selects the first match among siblings under each parent; UiSelector.instance() counts across the whole tree."
+  },
+  {
+   "id": "x226",
+   "skip": true,
+   "reason": "text() node test never matches in the UiAutomator2 page source (text is stored in the @text attribute), so the XPath finds nothing."
+  },
+  {
+   "id": "x227",
+   "uiselector": "new UiSelector().className(\"android.widget.TextView\").resourceId(\"com.cumojejove.monukekep.socetomub.webefuf.zilolojisi:id/bedu\").text(\"Cifu Tibo 7\")"
+  },
+  {
+   "id": "x228",
+   "uiselector": "new UiSelector().className(\"android.widget.TextView\").text(\"Fiz pin of PagaJuhu\")"
+  },
+  {
+   "id": "x229",
+   "uiselector": "new UiSelector().className(\"android.widget.TextView\")"
+  },
+  {
+   "id": "x230",
+   "uiselector": "new UiSelector().resourceIdMatches(\".*com[.]example[.]app:id/bulopewocemot_vil_rasowaw_bedu.*\").text(\"{conversation}\")"
+  },
+  {
+   "id": "x231",
+   "skip": true,
+   "reason": "Uses XPath 2.0 function matches(); Appium UiAutomator2 evaluates XPath 1.0, so the locator is invalid and finds nothing."
+  },
+  {
+   "id": "x232",
+   "uiselector": "new UiSelector().className(\"android.widget.TextView\").resourceId(\"com.cumojejove.monukekep.socetomub.webefuf.zilolojisi:id/bedu\").text(\"Gisopeli\")"
+  },
+  {
+   "id": "x233",
+   "uiselector": "new UiSelector().text(\"Hutag Jor Hadi\")"
+  },
+  {
+   "id": "x234",
+   "uiselector": "new UiSelector().className(\"android.widget.TextView\").resourceId(\"com.cumojejove.monukekep.socetomub.webefuf.zilolojisi:id/bedu\").text(\"Picu Faro\")"
+  },
+  {
+   "id": "x235",
+   "uiselector": "new UiSelector().className(\"android.widget.TextView\").resourceId(\"com.cumojejove.monukekep.socetomub.webefuf.zilolojisi:id/bedu\").text(\"Monuc Lahise\")"
+  },
+  {
+   "id": "x236",
+   "uiselector": "new UiSelector().text(\"Cifirod Tejok Poz\")"
+  },
+  {
+   "id": "x237",
+   "uiselector": "new UiSelector()"
+  },
+  {
+   "id": "x238",
+   "uiselector": "new UiSelector().className(\"android.widget.TextView\").resourceId(\"com.cumojejove.monukekep.socetomub.webefuf.zilolojisi:id/bedu\").text(\"Wutem Rumum 5\")"
+  },
+  {
+   "id": "x239",
+   "uiselector": "new UiSelector().resourceId(\"nimepiho.wawilomode.com.SakOmore:id/neno_hipepu\")"
+  },
+  {
+   "id": "x240",
+   "skip": true,
+   "reason": "Attributes @label and @id do not exist in UiAutomator2 page source, so the XPath never matches anything."
+  },
+  {
+   "id": "x241",
+   "skip": true,
+   "reason": "Positional selection over a descendant set followed by a direct-child step (child::); UiSelector.childSelector() matches any descendant."
+  },
+  {
+   "id": "x242",
+   "skip": true,
+   "reason": "Absolute /hierarchy path built from direct-child steps with per-parent positions; UiSelector cannot constrain exact parent/child structure."
+  },
+  {
+   "id": "x243",
+   "skip": true,
+   "reason": "Uses XPath 2.0 function matches(); Appium UiAutomator2 evaluates XPath 1.0, so the locator is invalid and finds nothing."
+  },
+  {
+   "id": "x244",
+   "skip": true,
+   "reason": "UiSelector has no criterion for the @password attribute."
+  },
+  {
+   "id": "x245",
+   "uiselector": "new UiSelector().text(\"群司信位\")"
+  },
+  {
+   "id": "x246",
+   "uiselector": "new UiSelector().className(\"android.widget.TextView\").resourceId(\"com.cumojejove.monukekep.socetomub.webefuf.zilolojisi:id/bedu\").text(\"Zupo Bavic 8\")"
+  },
+  {
+   "id": "x247",
+   "uiselector": "new UiSelector().textMatches(\"(?s).*(定位|位置).*\")"
+  },
+  {
+   "id": "x248",
+   "uiselector": "new UiSelector().descriptionMatches(\"(?s).*\")"
+  },
+  {
+   "id": "x249",
+   "skip": true,
+   "reason": "Per-parent position (descendant::android.view.View[5]) followed by a direct-child step; UiSelector cannot express either."
+  },
+  {
+   "id": "x250",
+   "uiselector": "new UiSelector().className(\"android.widget.ListView\").instance(1).childSelector(new UiSelector().className(\"android.widget.TextView\"))"
+  },
+  {
+   "id": "x251",
+   "uiselector": "new UiSelector().className(\"android.widget.TextView\").textContains(\"Votodem\")"
+  },
+  {
+   "id": "x252",
+   "uiselector": "new UiSelector().longClickable(true)"
+  },
+  {
+   "id": "x253",
+   "uiselector": "new UiSelector().className(\"android.widget.ImageButton\").description(\"Gaku\")"
+  },
+  {
+   "id": "x254",
+   "skip": true,
+   "reason": "Attribute @label does not exist in UiAutomator2 page source (iOS attribute), so the XPath never matches anything."
+  },
+  {
+   "id": "x255",
+   "uiselector": "new UiSelector().resourceId(\"com.example.app:id/login\")"
+  },
+  {
+   "id": "x256",
+   "uiselector": "new UiSelector().className(\"android.widget.TextView\").resourceId(\"com.cumojejove.monukekep.socetomub.webefuf.zilolojisi:id/bedu\").text(\"Rosoci Tibo 7\")"
+  },
+  {
+   "id": "x257",
+   "uiselector": "new UiSelector().className(\"android.widget.EditText\").resourceId(\"com.android.johifa:id/ruwoju_bef_pumu\").text(\"Ruwoju bepo laru\")"
+  },
+  {
+   "id": "x258",
+   "uiselector": "new UiSelector().className(\"android.widget.TextView\").resourceId(\"com.cumojejove.monukekep.socetomub.webefuf.zilolojisi:id/bedu\").text(\"Lahise 4\")"
+  },
+  {
+   "id": "x259",
+   "skip": true,
+   "reason": "Direct child with a per-parent position (child::android.widget.TextView[2]); UiSelector cannot express direct-child or sibling-position constraints."
+  },
+  {
+   "id": "x260",
+   "skip": true,
+   "reason": "Absolute /hierarchy path built from direct-child steps with per-parent positions; UiSelector cannot constrain exact parent/child structure."
+  },
+  {
+   "id": "x261",
+   "uiselector": "new UiSelector().className(\"android.widget.TextView\").resourceId(\"com.cumojejove.monukekep.socetomub.webefuf.zilolojisi:id/bedu\").text(\"Cipo\")"
+  },
+  {
+   "id": "x262",
+   "skip": true,
+   "reason": "Quantified expression (some ... satisfies) is XPath 2.0 syntax; Appium UiAutomator2 evaluates XPath 1.0, so the locator is invalid."
+  },
+  {
+   "id": "x263",
+   "uiselector": "new UiSelector().textContains(\"何业个定未动\")"
+  },
+  {
+   "id": "x264",
+   "uiselector": "new UiSelector().className(\"android.widget.ImageView\").resourceId(\"com.example.app:id/item_7\").text(\"50%\")"
+  },
+  {
+   "id": "x265",
+   "skip": true,
+   "reason": "Attribute @data-testid does not exist in UiAutomator2 page source (web attribute), so the XPath never matches anything."
+  },
+  {
+   "id": "x266",
+   "uiselector": "new UiSelector().textMatches(\"(?s).+\")"
+  },
+  {
+   "id": "x267",
+   "uiselector": "new UiSelector().resourceIdMatches(\"(?=.*nenovi)(?=.*gurizi).*\")"
+  },
+  {
+   "id": "x268",
+   "uiselector": "new UiSelector().textContains(\".mol\")"
+  },
+  {
+   "id": "x269",
+   "uiselector": "new UiSelector().description(\"订输先先员再客\")"
+  },
+  {
+   "id": "x270",
+   "uiselector": "new UiSelector().className(\"android.widget.TextView\").resourceId(\"com.cumojejove.monukekep.socetomub.webefuf.zilolojisi:id/bedu\").text(\"Cifu Tibo 4\")"
+  },
+  {
+   "id": "x271",
+   "skip": true,
+   "reason": "UiSelector has no criterion for the @bounds attribute."
+  },
+  {
+   "id": "x272",
+   "skip": true,
+   "reason": "HTML/web locator (tbody/tr/td/i); no such elements exist in the Android native hierarchy, so it never matches."
+  },
+  {
+   "id": "x273",
+   "skip": true,
+   "reason": "Direct-child step '/': UiSelector.childSelector() matches any descendant, not only direct children."
+  },
+  {
+   "id": "x274",
+   "uiselector": "new UiSelector().className(\"android.widget.EditText\").resourceId(\"com.android.johifa:id/gul_wev\")"
+  },
+  {
+   "id": "x275",
+   "uiselector": "new UiSelector().className(\"android.widget.TextView\").resourceId(\"com.cumojejove.monukekep.socetomub.webefuf.zilolojisi:id/bedu\").text(\"Duk Lahise 1\")"
+  },
+  {
+   "id": "x276",
+   "skip": true,
+   "reason": "Absolute /hierarchy path built from direct-child steps with per-parent positions; UiSelector cannot constrain exact parent/child structure."
+  },
+  {
+   "id": "x277",
+   "uiselector": "new UiSelector().className(\"android.widget.TextView\").text(\"FIZ IN\")"
+  },
+  {
+   "id": "x278",
+   "uiselector": "new UiSelector().textContains(\"3、接同道短\")"
+  },
+  {
+   "id": "x279",
+   "uiselector": "new UiSelector().checkable(true)"
+  },
+  {
+   "id": "x280",
+   "skip": true,
+   "reason": "Chain of direct-child steps with per-parent positions; UiSelector cannot constrain exact parent/child structure."
+  },
+  {
+   "id": "x281",
+   "uiselector": "new UiSelector().resourceId(\"com.lazevikema.wid:id/jade_deva_lafub\")"
+  },
+  {
+   "id": "x282",
+   "skip": true,
+   "reason": "Absolute /hierarchy path built from direct-child steps with per-parent positions; UiSelector cannot constrain exact parent/child structure."
+  },
+  {
+   "id": "x283",
+   "uiselector": "new UiSelector().className(\"android.widget.TextView\").text(\"Wizip\")"
+  },
+  {
+   "id": "x284",
+   "uiselector": "new UiSelector().textContains(\".biti\")"
+  },
+  {
+   "id": "x285",
+   "uiselector": "new UiSelector().textContains(\"确定\")"
+  },
+  {
+   "id": "x286",
+   "uiselector": "new UiSelector().text(\"I toka kihe it\")"
+  },
+  {
+   "id": "x287",
+   "uiselector": "new UiSelector().resourceIdMatches(\"(?=.*nenovi)(?=.*dosiwur_dofiwa).*\")"
+  },
+  {
+   "id": "x288",
+   "skip": true,
+   "reason": "Uses XPath 2.0 function matches(); Appium UiAutomator2 evaluates XPath 1.0, so the locator is invalid and finds nothing."
+  },
+  {
+   "id": "x289",
+   "uiselector": "new UiSelector().className(\"android.widget.TextView\").text(\"Lajugo waca petis\")"
+  },
+  {
+   "id": "x290",
+   "uiselector": "new UiSelector().className(\"android.widget.TextView\").resourceId(\"com.cumojejove.monukekep.socetomub.webefuf.zilolojisi:id/bedu\").text(\"Zupo Bavic 7\")"
+  },
+  {
+   "id": "x291",
+   "uiselector": "new UiSelector().text(\"Cupuna & Vovawedo\")"
+  },
+  {
+   "id": "x292",
+   "uiselector": "new UiSelector().className(\"android.widget.TextView\").resourceId(\"com.cumojejove.monukekep.socetomub.webefuf.zilolojisi:id/bedu\").text(\"Fid Kuwu 1\")"
+  },
+  {
+   "id": "x293",
+   "skip": true,
+   "reason": "Positional predicate [1] on the step selects the first match among siblings under each parent; UiSelector.instance() counts across the whole tree."
+  },
+  {
+   "id": "x294",
+   "uiselector": "new UiSelector().className(\"android.widget.ScrollView\").description(\"dofo_popon_wepejazuk_zeru\").childSelector(new UiSelector().description(\"popon_dofiwa_sino\"))"
+  },
+  {
+   "id": "x295",
+   "skip": true,
+   "reason": "Malformed XPath (unterminated string literal and predicate); it fails to compile and finds nothing."
+  },
+  {
+   "id": "x296",
+   "skip": true,
+   "reason": "Attribute values are lowercase ('true'/'false') and XPath comparison is case-sensitive, so @checked=\"TRUE\" never matches anything."
+  },
+  {
+   "id": "x297",
+   "uiselector": "new UiSelector().className(\"android.widget.ImageView\").description(\"Kaki migitic\")"
+  },
+  {
+   "id": "x298",
+   "skip": true,
+   "reason": "Generic XML/web locator (name/info/parameters/value elements, @displayName) using parent and following-sibling axes; no such elements exist in the Android native hierarchy."
+  },
+  {
+   "id": "x299",
+   "skip": true,
+   "reason": "HTML/web locator (tbody/tr); no such elements exist in the Android native hierarchy, so it never matches."
+  },
+  {
+   "id": "x300",
+   "skip": true,
+   "reason": "Direct-child step with a per-parent position (/android.widget.RelativeLayout[7]); UiSelector cannot express direct-child or sibling-position constraints."
+  },
+  {
+   "id": "x301",
+   "uiselector": "new UiSelector().className(\"android.widget.ImageButton\").description(\"Nud mevoha calule\")"
+  },
+  {
+   "id": "x302",
+   "uiselector": "new UiSelector().className(\"android.widget.TextView\").resourceId(\"com.cumojejove.monukekep.socetomub.webefuf.zilolojisi:id/bedu\").text(\"Lahise 6\")"
+  },
+  {
+   "id": "x303",
+   "skip": true,
+   "reason": "Chain of direct-child steps with per-parent positions; UiSelector cannot constrain exact parent/child structure."
+  },
+  {
+   "id": "x304",
+   "uiselector": "new UiSelector().className(\"android.view.View\").description(\"Mod faf\")"
+  },
+  {
+   "id": "x305",
+   "skip": true,
+   "reason": "Attribute @resourceId does not exist in UiAutomator2 page source (it is @resource-id), so the XPath never matches anything."
+  },
+  {
+   "id": "x306",
+   "skip": true,
+   "reason": "OR across two different attributes (@text or @content-desc); a single UiSelector can only AND its criteria."
+  },
+  {
+   "id": "x307",
+   "uiselector": "new UiSelector().className(\"android.widget.ImageButton\").description(\"Pocab mobol\")"
+  },
+  {
+   "id": "x308",
+   "uiselector": "new UiSelector().className(\"android.widget.TextView\").resourceId(\"com.cumojejove.monukekep.socetomub.webefuf.zilolojisi:id/bedu\").text(\"Jibe 11\")"
+  },
+  {
+   "id": "x309",
+   "skip": true,
+   "reason": "iOS/web locator (<text> elements, @label) using the following axis; no such elements exist in the Android native hierarchy."
+  },
+  {
+   "id": "x310",
+   "skip": true,
+   "reason": "[last()] on the step selects the last matching TextView among siblings under each parent; UiSelector cannot express per-parent or last positions."
+  },
+  {
+   "id": "x311",
+   "uiselector": "new UiSelector().className(\"android.view.ViewGroup\").description(\"popon_wepejazuk_zeru\").instance(1).childSelector(new UiSelector().description(\"Settings\"))"
+  },
+  {
+   "id": "x312",
+   "uiselector": "new UiSelector().className(\"android.widget.ScrollView\").description(\"dofo_popon_wepejazuk_zeru\").childSelector(new UiSelector().description(\"Kaki migitic\"))"
+  },
+  {
+   "id": "x313",
+   "skip": true,
+   "reason": "Selects the parent (parent::android.view.View); UiSelector cannot return an element's parent."
+  },
+  {
+   "id": "x314",
+   "uiselector": "new UiSelector().className(\"android.widget.TextView\").textContains(\"Jus Pumu\")"
+  },
+  {
+   "id": "x315",
+   "uiselector": "new UiSelector().text(\"Wasihu cebudufuw\")"
+  },
+  {
+   "id": "x316",
+   "skip": true,
+   "reason": "Absolute /hierarchy path built from direct-child steps with per-parent positions; UiSelector cannot constrain exact parent/child structure."
+  },
+  {
+   "id": "x317",
+   "skip": true,
+   "reason": "Uses XPath 2.0 function lower-case(); Appium UiAutomator2 evaluates XPath 1.0, so the locator is invalid and finds nothing."
+  },
+  {
+   "id": "x318",
+   "uiselector": "new UiSelector().resourceId(\"com.example.app:id/list\").childSelector(new UiSelector().text(\"Item\"))"
+  },
+  {
+   "id": "x319",
+   "uiselector": "new UiSelector().resourceId(\"com.hitufude:id/mevoha\")"
+  },
+  {
+   "id": "x320",
+   "uiselector": "new UiSelector().className(\"android.widget.TextView\").resourceId(\"com.cumojejove.monukekep.socetomub.webefuf.zilolojisi:id/bedu\").text(\"Vehi Disuvud 2\")"
+  },
+  {
+   "id": "x321",
+   "skip": true,
+   "reason": "Malformed XPath (dangling '|' union operator) that also uses XPath 2.0 lower-case(); it fails to compile and finds nothing."
+  },
+  {
+   "id": "x322",
+   "uiselector": "new UiSelector().className(\"android.widget.FrameLayout\").description(\"Nenovi Wisasam\")"
+  },
+  {
+   "id": "x323",
+   "skip": true,
+   "reason": "Absolute /hierarchy path built from direct-child steps with per-parent positions; UiSelector cannot constrain exact parent/child structure."
+  },
+  {
+   "id": "x324",
+   "uiselector": "new UiSelector().description(\"Hekufoki up\")"
+  },
+  {
+   "id": "x325",
+   "skip": true,
+   "reason": "Malformed XPath: XPath 1.0 has no doubled-quote escape, so \"a\"\"b\" is two adjacent literals and fails to compile."
+  },
+  {
+   "id": "x326",
+   "uiselector": "new UiSelector().descriptionContains(\"menu\")"
+  },
+  {
+   "id": "x327",
+   "skip": true,
+   "reason": "Attribute @label does not exist in UiAutomator2 page source (iOS attribute), so the XPath never matches anything."
+  },
+  {
+   "id": "x328",
+   "uiselector": "new UiSelector().className(\"android.widget.ImageView\").instance(2)"
+  },
+  {
+   "id": "x329",
+   "uiselector": "new UiSelector().resourceId(\"{zuvi.app_cerozis}:id/giduru_mona_wev\").childSelector(new UiSelector().description(\"Risupor\"))"
+  },
+  {
+   "id": "x330",
+   "uiselector": "new UiSelector().className(\"android.widget.ListView\").childSelector(new UiSelector().className(\"android.widget.TextView\"))"
+  },
+  {
+   "id": "x331",
+   "uiselector": "new UiSelector().resourceId(\"com.lazevikema.wid:id/jemo_misafa\").childSelector(new UiSelector().className(\"android.widget.TextView\"))"
+  },
+  {
+   "id": "x332",
+   "uiselector": "new UiSelector().className(\"android.widget.Button\")"
+  },
+  {
+   "id": "x333",
+   "uiselector": "new UiSelector().text(\"日志\")"
+  },
+  {
+   "id": "x334",
+   "uiselector": "new UiSelector().className(\"android.widget.FrameLayout\").description(\"Woji\")"
+  },
+  {
+   "id": "x335",
+   "uiselector": "new UiSelector().className(\"android.widget.TextView\").resourceId(\"com.cumojejove.monukekep.socetomub.webefuf.zilolojisi:id/bedu\").text(\"Jibe Bavic 1\")"
+  },
+  {
+   "id": "x336",
+   "uiselector": "new UiSelector().text(\"Deep marker\")"
+  },
+  {
+   "id": "x337",
+   "skip": true,
+   "reason": "HTML/web locator (table/tbody/tr/td); no such elements exist in the Android native hierarchy, so it never matches."
+  },
+  {
+   "id": "x338",
+   "uiselector": "new UiSelector().className(\"android.widget.TextView\").text(\"Kuva Ad\")"
+  },
+  {
+   "id": "x339",
+   "uiselector": "new UiSelector().resourceIdMatches(\".*jihos-nana-kafu.*\")"
+  },
+  {
+   "id": "x340",
+   "uiselector": "new UiSelector().text(\"Pocab hukunupi\")"
+  },
+  {
+   "id": "x341",
+   "uiselector": "new UiSelector().className(\"android.widget.TextView\").text(\"Mobol\")"
+  },
+  {
+   "id": "x342",
+   "uiselector": "new UiSelector().className(\"android.widget.TextView\").resourceId(\"com.cumojejove.monukekep.socetomub.webefuf.zilolojisi:id/bedu\").text(\"Zupo Bavic 11\")"
+  },
+  {
+   "id": "x343",
+   "uiselector": "new UiSelector().resourceId(\"towiz-of-job-zuririzi\")"
+  },
+  {
+   "id": "x344",
+   "skip": true,
+   "reason": "Chain of direct-child steps; UiSelector.childSelector() matches any descendant, so the parent/child constraints cannot be expressed."
+  },
+  {
+   "id": "x345",
+   "uiselector": "new UiSelector().textContains(\"Next\")"
+  },
+  {
+   "id": "x346",
+   "uiselector": "new UiSelector().className(\"android.widget.Button\").description(\"BAGECE\")"
+  },
+  {
+   "id": "x347",
+   "uiselector": "new UiSelector().className(\"android.widget.Button\").description(\"Zoci votinane\")"
+  },
+  {
+   "id": "x348",
+   "uiselector": "new UiSelector().text(\"Wasihu\")"
+  },
+  {
+   "id": "x349",
+   "uiselector": "new UiSelector().resourceId(\"com.lazevikema.wid:id/nudi_tinen_petis_bedu\")"
+  },
+  {
+   "id": "x350",
+   "skip": true,
+   "reason": "OR across two different attributes (@content-desc or @text); a single UiSelector can only AND its criteria."
+  },
+  {
+   "id": "x351",
+   "uiselector": "new UiSelector().className(\"android.widget.TextView\").resourceId(\"com.cumojejove.monukekep.socetomub.webefuf.zilolojisi:id/bedu\").text(\"Gisopeli 4\")"
+  },
+  {
+   "id": "x352",
+   "uiselector": "new UiSelector().text(\"添怎公扫成\")"
+  },
+  {
+   "id": "x353",
+   "skip": true,
+   "reason": "Navigates up with '/../..' (parent axis); UiSelector cannot select an ancestor and then search its subtree."
+  },
+  {
+   "id": "x354",
+   "uiselector": "new UiSelector().className(\"android.widget.Button\").description(\"QR hadi\")"
+  },
+  {
+   "id": "x355",
+   "uiselector": "new UiSelector().className(\"android.widget.Button\").text(\"Votinane\")"
+  },
+  {
+   "id": "x356",
+   "uiselector": "new UiSelector().text(\"a/b\")"
+  },
+  {
+   "id": "x357",
+   "skip": true,
+   "reason": "Direct child with a per-parent position (child::android.widget.TextView[6]); UiSelector cannot express direct-child or sibling-position constraints."
+  },
+  {
+   "id": "x358",
+   "uiselector": "new UiSelector().className(\"android.view.ViewGroup\").description(\"popon_dofiwa_pebas\").instance(1)"
+  },
+  {
+   "id": "x359",
+   "uiselector": "new UiSelector().resourceIdMatches(\"(?=.*nenovi)(?=.*fohatup).*\")"
+  },
+  {
+   "id": "x360",
+   "skip": true,
+   "reason": "Uses XPath 2.0 function matches(); Appium UiAutomator2 evaluates XPath 1.0, so the locator is invalid and finds nothing."
+  },
+  {
+   "id": "x361",
+   "skip": true,
+   "reason": "@text=\"\" also matches nodes whose text is null (UiAutomator2 writes text=\"\" for them), while UiSelector text matchers never match a null text."
+  },
+  {
+   "id": "x362",
+   "uiselector": "new UiSelector().text(\"Line 1\nLine 2\")"
+  },
+  {
+   "id": "x363",
+   "uiselector": "new UiSelector().className(\"android.widget.EditText\").resourceIdMatches(\"com[.]android[.]johifa:id/ruwoju_bef_pumu|com[.]android[.]johifa:id/gul_wev\")"
+  },
+  {
+   "id": "x364",
+   "uiselector": "new UiSelector().className(\"android.widget.ImageView\").descriptionContains(\"tesubo\")"
+  },
+  {
+   "id": "x365",
+   "uiselector": "new UiSelector().text(\"Хишуняд\")"
+  },
+  {
+   "id": "x366",
+   "uiselector": "new UiSelector().className(\"android.widget.Button\").text(\"Vovawedo\")"
+  },
+  {
+   "id": "x367",
+   "skip": true,
+   "reason": "For range widgets UiAutomator2 writes the current value (e.g. '50.0') into @text; UiSelector.text() matches the node's real text, so a SeekBar at 50 is not found."
+  },
+  {
+   "id": "x368",
+   "uiselector": "new UiSelector().className(\"android.widget.TextView\").text(\"Dowawe\")"
+  },
+  {
+   "id": "x369",
+   "uiselector": "new UiSelector().className(\"android.widget.TextView\").resourceId(\"com.cumojejove.monukekep.socetomub.webefuf.zilolojisi:id/bedu\").text(\"Petof\")"
+  },
+  {
+   "id": "x370",
+   "uiselector": "new UiSelector().className(\"android.widget.TextView\").resourceId(\"com.cumojejove.monukekep.socetomub.webefuf.zilolojisi:id/bedu\").text(\"Tar Kuwu 5\")"
+  },
+  {
+   "id": "x371",
+   "uiselector": "new UiSelector().className(\"android.widget.Button\").text(\"GO TO VOTINANE\")"
+  },
+  {
+   "id": "x372",
+   "uiselector": "new UiSelector().className(\"android.widget.ListView\").childSelector(new UiSelector().className(\"android.widget.ListView\").instance(0))"
+  },
+  {
+   "id": "x373",
+   "skip": true,
+   "reason": "Uses XPath 2.0 function ends-with(); Appium UiAutomator2 evaluates XPath 1.0, so the locator is invalid and finds nothing."
+  },
+  {
+   "id": "x374",
+   "uiselector": "new UiSelector().resourceId(\"com.lazevikema.wid:id/cohole_bafibu_copu\")"
+  },
+  {
+   "id": "x375",
+   "skip": true,
+   "reason": "Absolute /hierarchy path built from direct-child steps with per-parent positions; UiSelector cannot constrain exact parent/child structure."
+  },
+  {
+   "id": "x376",
+   "skip": true,
+   "reason": "android.widget.Toast nodes are synthesized by Appium in the XPath source and are not in the accessibility tree that UiSelector searches."
+  },
+  {
+   "id": "x377",
+   "uiselector": "new UiSelector().text(\"架看更复\")"
+  },
+  {
+   "id": "x378",
+   "uiselector": "new UiSelector().index(2)"
+  },
+  {
+   "id": "x379",
+   "skip": true,
+   "reason": "HTML/web locator (<select>, @id); no such elements or attributes exist in the Android native hierarchy, so it never matches."
+  },
+  {
+   "id": "x380",
+   "skip": true,
+   "reason": "@text!=\"OK\" also matches nodes with null text (written as text=\"\"); UiSelector text matchers never match a null text."
+  },
+  {
+   "id": "x381",
+   "skip": true,
+   "reason": "Chain of direct-child steps with per-parent positions; UiSelector cannot constrain exact parent/child structure."
+  },
+  {
+   "id": "x382",
+   "uiselector": "new UiSelector().className(\"android.widget.TextView\").text(\"LerUnim\")"
+  },
+  {
+   "id": "x383",
+   "skip": true,
+   "reason": "Direct-child step '/*': UiSelector.childSelector() matches any descendant, not only direct children."
+  },
+  {
+   "id": "x384",
+   "uiselector": "new UiSelector().text(\"粘贴\")"
+  },
+  {
+   "id": "x385",
+   "uiselector": "new UiSelector().enabled(false)"
+  },
+  {
+   "id": "x386",
+   "uiselector": "new UiSelector().className(\"android.view.ViewGroup\").description(\"Hoci\")"
+  },
+  {
+   "id": "x387",
+   "uiselector": "new UiSelector().text(\"Jepolonod fadut\")"
+  },
+  {
+   "id": "x388",
+   "uiselector": "new UiSelector().className(\"android.widget.TextView\").resourceId(\"com.example.app:id/bedu\")"
+  },
+  {
+   "id": "x389",
+   "skip": true,
+   "reason": "Direct-child step '/*': UiSelector.childSelector() matches any descendant, not only direct children."
+  },
+  {
+   "id": "x390",
+   "skip": true,
+   "reason": "Attribute @label does not exist in UiAutomator2 page source (iOS attribute), so the XPath never matches anything."
+  },
+  {
+   "id": "x391",
+   "skip": true,
+   "reason": "Selects the synthetic <hierarchy> document root, which is not a UI element and cannot be matched by a UiSelector."
+  },
+  {
+   "id": "x392",
+   "skip": true,
+   "reason": "Attribute @data-testid does not exist in UiAutomator2 page source (web attribute), so the XPath never matches anything."
+  },
+  {
+   "id": "x393",
+   "skip": true,
+   "reason": "not(contains(@text,\"Ad\")) also matches nodes with null text; UiSelector text matchers never match a null text, and there is no negated text criterion."
+  },
+  {
+   "id": "x394",
+   "skip": true,
+   "reason": "Uses the parent axis '..' to move up from the matched TextView; UiSelector cannot select a parent and search its subtree."
+  },
+  {
+   "id": "x395",
+   "uiselector": "new UiSelector().className(\"android.widget.Button\").resourceId(\"com.android.zikametijazesonelibu:id/butimaziha_hilen_sacikodola_kifa_dofiwa\")"
+  },
+  {
+   "id": "x396",
+   "skip": true,
+   "reason": "Direct-child step with a per-parent position (/android.widget.LinearLayout[1]); UiSelector cannot express direct-child or sibling-position constraints."
+  },
+  {
+   "id": "x397",
+   "skip": true,
+   "reason": "Uses the parent axis '..' and a per-parent position ([2]); UiSelector cannot express either."
+  },
+  {
+   "id": "x398",
+   "skip": true,
+   "reason": "@index is compared as a string, and index values are never zero-padded, so @index=\"02\" never matches anything."
+  },
+  {
+   "id": "x399",
+   "skip": true,
+   "reason": "Invalid XPath: '$' is not allowed in an element name test (Appium also sanitizes such class names in the source), so it fails to compile."
+  },
+  {
+   "id": "x400",
+   "uiselector": "new UiSelector().text(\"话音退知作电指容\")"
+  },
+  {
+   "id": "x401",
+   "uiselector": "new UiSelector().className(\"android.widget.EditText\").text(\"Ruwoju Falup\")"
+  },
+  {
+   "id": "x402",
+   "uiselector": "new UiSelector().className(\"android.widget.EditText\").text(\"09975446233\")"
+  },
+  {
+   "id": "x403",
+   "uiselector": "new UiSelector().className(\"android.widget.TextView\").text(\"Kupena\")"
+  },
+  {
+   "id": "x404",
+   "skip": true,
+   "reason": "Selects the parent ('..'); UiSelector cannot return an element's parent (fromParent() searches the parent's descendants)."
+  },
+  {
+   "id": "x405",
+   "uiselector": "new UiSelector().className(\"android.widget.TextView\").resourceId(\"com.cumojejove.monukekep.socetomub.webefuf.zilolojisi:id/bedu\").text(\"Rosoci Tibo 2\")"
+  },
+  {
+   "id": "x406",
+   "uiselector": "new UiSelector().resourceId(\"com.android.votinane:id/ruwoju_giduru_wev\")"
+  },
+  {
+   "id": "x407",
+   "skip": true,
+   "reason": "Chain of direct-child steps; UiSelector.childSelector() matches any descendant, so the parent/child constraints cannot be expressed."
+  },
+  {
+   "id": "x408",
+   "uiselector": "new UiSelector().className(\"android.widget.TextView\").resourceId(\"com.cumojejove.monukekep.socetomub.webefuf.zilolojisi:id/bedu\").text(\"Duk Lahise 5\")"
+  },
+  {
+   "id": "x409",
+   "uiselector": "new UiSelector().resourceId(\"nimepiho.wawilomode.com.SakOmore:id/hewevat\").childSelector(new UiSelector().className(\"android.widget.ImageButton\"))"
+  },
+  {
+   "id": "x410",
+   "uiselector": "new UiSelector().text(\"a]b\")"
+  },
+  {
+   "id": "x411",
+   "uiselector": "new UiSelector().resourceId(\"android:id/text1\").text(\"wajivuno-casufavir.app.fode\")"
+  },
+  {
+   "id": "x412",
+   "uiselector": "new UiSelector().className(\"android.view.ViewGroup\").resourceId(\"com.android.johifa:id/giduru_wev\").childSelector(new UiSelector().className(\"android.widget.TextView\").text(\"a+b\"))"
+  },
+  {
+   "id": "x413",
+   "skip": true,
+   "reason": "iOS-style locator (<textfield>, @name); no such elements or attributes exist in the Android native hierarchy, so it never matches."
+  },
+  {
+   "id": "x414",
+   "skip": true,
+   "reason": "Absolute /hierarchy path built from direct-child steps; UiSelector cannot constrain exact parent/child structure (childSelector() matches any descendant)."
+  },
+  {
+   "id": "x415",
+   "uiselector": "new UiSelector().className(\"android.widget.Button\").resourceId(\"com.rusezu.android.VatewuZekoba:id/mid_it_dofiwa\")"
+  },
+  {
+   "id": "x416",
+   "uiselector": "new UiSelector().className(\"android.widget.TextView\").text(\"Zun't pera lidezu jem, Luteca Pojo Up\")"
+  },
+  {
+   "id": "x417",
+   "uiselector": "new UiSelector().className(\"android.widget.Button\").resourceId(\"gurizi-dofiwa\")"
+  },
+  {
+   "id": "x418",
+   "uiselector": "new UiSelector().className(\"android.widget.TextView\").text(\"WOJI\")"
+  },
+  {
+   "id": "x419",
+   "uiselector": "new UiSelector().className(\"android.widget.TextView\").resourceId(\"com.cumojejove.monukekep.socetomub.webefuf.zilolojisi:id/bedu\").text(\"Duk Rokoc 2\")"
+  },
+  {
+   "id": "x420",
+   "uiselector": "new UiSelector().text(\"退拒专专群\")"
+  },
+  {
+   "id": "x421",
+   "uiselector": "new UiSelector().className(\"android.view.ViewGroup\").description(\"popon_wepejazuk_zeru\").instance(2)"
+  },
+  {
+   "id": "x422",
+   "uiselector": "new UiSelector().className(\"android.widget.ImageButton\").description(\"Kaki Migitic\")"
+  },
+  {
+   "id": "x423",
+   "uiselector": "new UiSelector().description(\"选抢行么\")"
+  },
+  {
+   "id": "x424",
+   "uiselector": "new UiSelector().className(\"android.widget.TextView\").resourceId(\"com.cumojejove.monukekep.socetomub.webefuf.zilolojisi:id/bedu\").text(\"Tar Kuwu 1\")"
+  },
+  {
+   "id": "x425",
+   "uiselector": "new UiSelector().className(\"android.widget.Button\").index(1)"
+  },
+  {
+   "id": "x426",
+   "uiselector": "new UiSelector().className(\"android.widget.ImageButton\").description(\"Go ziha\")"
+  },
+  {
+   "id": "x427",
+   "uiselector": "new UiSelector().resourceId(\"com.sucogijijozilo.lunidehasapizam:id/vuluwaNore\")"
+  },
+  {
+   "id": "x428",
+   "skip": true,
+   "reason": "Positional predicate [11] on the step counts FrameLayout siblings under each parent; UiSelector.instance() counts across the whole tree."
+  },
+  {
+   "id": "x429",
+   "uiselector": "new UiSelector().description(\"Sabutiv\").instance(1)"
+  },
+  {
+   "id": "x430",
+   "uiselector": "new UiSelector().className(\"android.widget.TextView\").text(\"Rufe nudo Povuce\")"
+  },
+  {
+   "id": "x431",
+   "skip": true,
+   "reason": "HTML/web locator (<select>, @id); no such elements or attributes exist in the Android native hierarchy, so it never matches."
+  },
+  {
+   "id": "x432",
+   "uiselector": "new UiSelector().className(\"android.widget.TextView\").text(\"Dejogo pip Fesag Petis\")"
+  },
+  {
+   "id": "x433",
+   "uiselector": "new UiSelector().className(\"android.widget.ListView\").childSelector(new UiSelector().className(\"android.widget.TextView\").instance(0))"
+  },
+  {
+   "id": "x434",
+   "uiselector": "new UiSelector().className(\"android.widget.EditText\").resourceId(\"com.jegifoni.android:id/vidumug_nudi_pumu_view\")"
+  },
+  {
+   "id": "x435",
+   "uiselector": "new UiSelector().className(\"android.widget.Button\").description(\"Buri pip view migitic\")"
+  },
+  {
+   "id": "x436",
+   "uiselector": "new UiSelector().text(\"Bocic relirelitafu rucamopa\")"
+  },
+  {
+   "id": "x437",
+   "skip": true,
+   "reason": "Absolute /hierarchy path built from direct-child steps with per-parent positions; UiSelector cannot constrain exact parent/child structure."
+  },
+  {
+   "id": "x438",
+   "uiselector": "new UiSelector().text(\"1\")"
+  },
+  {
+   "id": "x439",
+   "uiselector": "new UiSelector().className(\"android.widget.TextView\").text(\"Мугикяр госихо\")"
+  },
+  {
+   "id": "x440",
+   "skip": true,
+   "reason": "Invalid XPath: a resource id used as an element name ('joc...:id/main_view') is parsed as an undeclared namespace prefix, and [0] is never a valid position; it fails/finds nothing."
+  },
+  {
+   "id": "x441",
+   "uiselector": "new UiSelector().text(\"I mirof\")"
+  },
+  {
+   "id": "x442",
+   "uiselector": "new UiSelector().packageNameMatches(\"com[.]example.*\")"
+  },
+  {
+   "id": "x443",
+   "uiselector": "new UiSelector().className(\"android.widget.TextView\").resourceId(\"com.cumojejove.monukekep.socetomub.webefuf.zilolojisi:id/bedu\").text(\"Zupo Bavic 2\")"
+  },
+  {
+   "id": "x444",
+   "skip": true,
+   "reason": "Attribute @id does not exist in UiAutomator2 page source (the id is in @resource-id), so the XPath never matches anything."
+  },
+  {
+   "id": "x445",
+   "uiselector": "new UiSelector().className(\"android.widget.EditText\").instance(1)"
+  },
+  {
+   "id": "x446",
+   "uiselector": "new UiSelector().text(\"量视人项\")"
+  },
+  {
+   "id": "x447",
+   "uiselector": "new UiSelector().className(\"android.widget.TextView\").resourceId(\"com.cumojejove.monukekep.socetomub.webefuf.zilolojisi:id/bedu\").text(\"Gisopeli 6\")"
+  },
+  {
+   "id": "x448",
+   "skip": true,
+   "reason": "Direct-child step '/': UiSelector.childSelector() matches any descendant, not only direct children."
+  },
+  {
+   "id": "x449",
+   "uiselector": "new UiSelector().className(\"android.widget.EditText\").text(\"Hutag Jikar Misafa\")"
+  },
+  {
+   "id": "x450",
+   "uiselector": "new UiSelector().className(\"android.widget.TextView\").text(\"Шутожяшяпахез\")"
+  },
+  {
+   "id": "x451",
+   "skip": true,
+   "reason": "Uses the parent axis '..' to search the siblings' subtrees; UiSelector.fromParent() would also match the start node's own subtree, so it is not equivalent."
+  },
+  {
+   "id": "x452",
+   "skip": true,
+   "reason": "Positional predicate [2] on the step counts Button siblings under each parent; UiSelector.instance() counts across the whole tree."
+  },
+  {
+   "id": "x453",
+   "uiselector": "new UiSelector().className(\"android.widget.TextView\").text(\"Jus Malifen\")"
+  },
+  {
+   "id": "x454",
+   "skip": true,
+   "reason": "Text contains U+0007, which is not a legal XML character; UiAutomator2 strips it from the page source, so the XPath can never match."
+  },
+  {
+   "id": "x455",
+   "uiselector": "new UiSelector().description(\"Open menu\")"
+  },
+  {
+   "id": "x456",
+   "skip": true,
+   "reason": "iOS UIAutomation locator (UIATableCell, @name); no such elements or attributes exist in the Android native hierarchy."
+  },
+  {
+   "id": "x457",
+   "skip": true,
+   "reason": "android.widget.Toast nodes are synthesized by Appium in the XPath source and are not in the accessibility tree that UiSelector searches."
+  },
+  {
+   "id": "x458",
+   "skip": true,
+   "reason": "Chain of direct-child steps with per-parent positions; UiSelector cannot constrain exact parent/child structure."
+  },
+  {
+   "id": "x459",
+   "uiselector": "new UiSelector().resourceId(\"nimepiho.wawilomode.com.SakOmore:id/fibuhiLuca\")"
+  },
+  {
+   "id": "x460",
+   "uiselector": "new UiSelector().className(\"android.widget.TextView\").text(\"Mezi Suresoz\")"
+  },
+  {
+   "id": "x461",
+   "uiselector": "new UiSelector().className(\"android.widget.CheckedTextView\").resourceId(\"android:id/text1\").text(\"12\")"
+  },
+  {
+   "id": "x462",
+   "uiselector": "new UiSelector().className(\"android.widget.Button\").text(\"OK\").enabled(true)"
+  },
+  {
+   "id": "x463",
+   "uiselector": "new UiSelector().textContains(\"Total\")"
+  },
+  {
+   "id": "x464",
+   "uiselector": "new UiSelector().textStartsWith(\"Total\")"
+  },
+  {
+   "id": "x465",
+   "skip": true,
+   "reason": "Uses XPath 2.0 function lower-case(); Appium UiAutomator2 evaluates XPath 1.0, so the locator is invalid and finds nothing."
+  },
+  {
+   "id": "x466",
+   "skip": true,
+   "reason": "Positional predicate [1] on the step selects the first ImageView among siblings under each parent; UiSelector.instance() counts across the whole tree."
+  },
+  {
+   "id": "x467",
+   "uiselector": "new UiSelector().className(\"android.view.View\").description(\"Hido\")"
+  },
+  {
+   "id": "x468",
+   "uiselector": "new UiSelector().className(\"android.widget.FrameLayout\").description(\"Nud Mabetim\")"
+  },
+  {
+   "id": "x469",
+   "skip": true,
+   "reason": "Positional predicate [3] on the step counts RelativeLayout siblings under each parent; UiSelector.instance() counts across the whole tree."
+  },
+  {
+   "id": "x470",
+   "skip": true,
+   "reason": "Attribute @label does not exist in UiAutomator2 page source (iOS attribute), so the XPath never matches anything."
+  },
+  {
+   "id": "x471",
+   "uiselector": "new UiSelector().className(\"android.widget.ImageButton\").description(\"Daheci to QR Vikifa\")"
+  },
+  {
+   "id": "x472",
+   "uiselector": "new UiSelector().className(\"android.view.View\").resourceId(\"cuzoces-moduvu\").childSelector(new UiSelector().className(\"android.widget.TextView\").instance(0))"
+  },
+  {
+   "id": "x473",
+   "uiselector": "new UiSelector().resourceId(\"nimepiho.wawilomode.com.SakOmore:id/mifawuni_fijize_ketodasi_jus_nimepiho\")"
+  },
+  {
+   "id": "x474",
+   "uiselector": "new UiSelector().className(\"android.view.ViewGroup\").resourceId(\"com.jegifoni.android:id/gori_to_dofiwa_tinen_mona_view\")"
+  },
+  {
+   "id": "x475",
+   "uiselector": "new UiSelector().className(\"android.widget.Button\").text(\"Jabi Faf\")"
+  },
+  {
+   "id": "x476",
+   "uiselector": "new UiSelector().resourceId(\"com.lazevikema.wid:id/tv_waw_vigoc\").text(\"订阅/条加号\")"
+  },
+  {
+   "id": "x477",
+   "uiselector": "new UiSelector().className(\"android.widget.TextView\").resourceId(\"joc.mehaka.nifi.uk.huticige:id/piwocof\").index(2)"
+  },
+  {
+   "id": "x478",
+   "uiselector": "new UiSelector().className(\"android.widget.TextView\").resourceId(\"com.cumojejove.monukekep.socetomub.webefuf.zilolojisi:id/bedu\").text(\"Gisopeli 2\")"
+  },
+  {
+   "id": "x479",
+   "skip": true,
+   "reason": "Attribute @label does not exist in UiAutomator2 page source (iOS attribute), so the XPath never matches anything."
+  },
+  {
+   "id": "x480",
+   "skip": true,
+   "reason": "Attributes @label and @value do not exist in UiAutomator2 page source (iOS attributes), so the XPath never matches anything."
+  },
+  {
+   "id": "x481",
+   "uiselector": "new UiSelector().resourceIdMatches(\"(?=.*nenovi)(?=.*woji).*\")"
+  },
+  {
+   "id": "x482",
+   "uiselector": "new UiSelector().className(\"android.widget.TextView\").text(\"ञमओहलसनॉ\")"
+  },
+  {
+   "id": "x483",
+   "uiselector": "new UiSelector().className(\"android.widget.SeekBar\").description(\"Curu\")"
+  },
+  {
+   "id": "x484",
+   "skip": true,
+   "reason": "text() node test never matches in the UiAutomator2 page source (text is stored in the @text attribute), so the XPath finds nothing."
+  },
+  {
+   "id": "x485",
+   "skip": true,
+   "reason": "Direct-child step '/': UiSelector.childSelector() matches any descendant, so the RadioButton/TextView parent-child constraint cannot be expressed."
+  },
+  {
+   "id": "x486",
+   "uiselector": "new UiSelector().className(\"android.widget.TextView\").text(\"We gori per a hadi\")"
+  },
+  {
+   "id": "x487",
+   "skip": true,
+   "reason": "text() node test never matches in the UiAutomator2 page source (text is stored in the @text attribute), so the XPath finds nothing."
+  },
+  {
+   "id": "x488",
+   "uiselector": "new UiSelector().text(\"应电管理\")"
+  },
+  {
+   "id": "x489",
+   "skip": true,
+   "reason": "UiAutomator2 omits resource-id when a node has none and never writes an empty one, so @resource-id=\"\" never matches; UiSelector has no equivalent for 'missing resource id'."
+  },
+  {
+   "id": "x490",
+   "uiselector": "new UiSelector().className(\"android.widget.ImageView\").description(\"Ziha\")"
+  },
+  {
+   "id": "x491",
+   "skip": true,
+   "reason": "UiSelector has no criterion for the @password attribute."
+  },
+  {
+   "id": "x492",
+   "uiselector": "new UiSelector().resourceIdMatches(\".+\").clickable(true)"
+  },
+  {
+   "id": "x493",
+   "uiselector": "new UiSelector().resourceId(\"danob-zokubawe-vekar\")"
+  },
+  {
+   "id": "x494",
+   "uiselector": "new UiSelector().className(\"android.widget.FrameLayout\").descriptionMatches(\"Bedo|Cavape\")"
+  },
+  {
+   "id": "x495",
+   "uiselector": "new UiSelector().className(\"android.widget.CheckedTextView\").text(\"Bafor JOC vowu\")"
+  },
+  {
+   "id": "x496",
+   "uiselector": "new UiSelector().className(\"android.widget.TextView\").text(\"्ञऐञहरश\")"
+  },
+  {
+   "id": "x497",
+   "uiselector": "new UiSelector().className(\"android.widget.TextView\").textMatches(\"(?s).+\").instance(1)"
+  },
+  {
+   "id": "x498",
+   "uiselector": "new UiSelector().resourceId(\"com.kuz.android.puvobizil:id/widget_gowomoc\")"
+  },
+  {
+   "id": "x499",
+   "uiselector": "new UiSelector().className(\"android.widget.TextView\").resourceId(\"com.cumojejove.monukekep.socetomub.webefuf.zilolojisi:id/bedu\").text(\"Rah 4\")"
+  },
+  {
+   "id": "x500",
+   "uiselector": "new UiSelector().className(\"android.widget.Button\").resourceId(\"android:id/button2\").text(\"NO, LETIFA.\")"
+  },
+  {
+   "id": "x501",
+   "uiselector": "new UiSelector().className(\"android.widget.TextView\").resourceId(\"com.cumojejove.monukekep.socetomub.webefuf.zilolojisi:id/bedu\").text(\"Gisopeli 5\")"
+  },
+  {
+   "id": "x502",
+   "uiselector": "new UiSelector().className(\"android.widget.ImageView\").description(\"Go ziha\")"
+  },
+  {
+   "id": "x503",
+   "uiselector": "new UiSelector().text(\"Add\").instance(0)"
+  },
+  {
+   "id": "x504",
+   "uiselector": "new UiSelector().className(\"android.widget.Button\").text(\"Vufas gofofin rulola Melacomofej gofofin rulola bil mevoha calule\")"
+  },
+  {
+   "id": "x505",
+   "uiselector": "new UiSelector().text(\"文件\")"
+  },
+  {
+   "id": "x506",
+   "skip": true,
+   "reason": "Attribute @data-testid does not exist in UiAutomator2 page source (web attribute), so the XPath never matches anything."
+  },
+  {
+   "id": "x507",
+   "uiselector": "new UiSelector().textContains(\"视频\")"
+  },
+  {
+   "id": "x508",
+   "uiselector": "new UiSelector().text(\"If I honehi or femuh my wiconoleje to cikomom, my waris tac fej garosu.\")"
+  },
+  {
+   "id": "x509",
+   "uiselector": "new UiSelector().text(\"银行即\")"
+  },
+  {
+   "id": "x510",
+   "skip": true,
+   "reason": "Attribute @id does not exist in UiAutomator2 page source (the id is in @resource-id), so the XPath never matches anything."
+  },
+  {
+   "id": "x511",
+   "uiselector": "new UiSelector().descriptionStartsWith(\"DUW muvaf on\")"
+  },
+  {
+   "id": "x512",
+   "skip": true,
+   "reason": "Malformed XPath (dangling '|' union operator with no right operand); it fails to compile and finds nothing."
+  },
+  {
+   "id": "x513",
+   "uiselector": "new UiSelector().className(\"android.widget.TextView\").resourceId(\"android:id/title\").text(\"Jubajev\")"
+  },
+  {
+   "id": "x514",
+   "uiselector": "new UiSelector().className(\"android.widget.Button\").resourceId(\"android:id/button1\").text(\"OK\")"
+  },
+  {
+   "id": "x515",
+   "uiselector": "new UiSelector().className(\"android.widget.EditText\").resourceId(\"HAP__TisanoKos\")"
+  },
+  {
+   "id": "x516",
+   "uiselector": "new UiSelector().text(\"Bomu jedogun\")"
+  },
+  {
+   "id": "x517",
+   "uiselector": "new UiSelector().className(\"android.widget.LinearLayout\").resourceId(\"com.android.johifa:id/gotaz_bev_laru_neno_id\")"
+  },
+  {
+   "id": "x518",
+   "uiselector": "new UiSelector().resourceId(\"com.android.johifa:id/waw_copu_detiweku_view\")"
+  },
+  {
+   "id": "x519",
+   "uiselector": "new UiSelector().className(\"android.widget.TextView\").text(\"Mezi Sazejew\")"
+  },
+  {
+   "id": "x520",
+   "skip": true,
+   "reason": "Absolute /hierarchy path built from direct-child steps with per-parent positions; UiSelector cannot constrain exact parent/child structure."
+  },
+  {
+   "id": "x521",
+   "uiselector": "new UiSelector().textContains(\"转发\")"
+  },
+  {
+   "id": "x522",
+   "uiselector": "new UiSelector().className(\"android.widget.EditText\").text(\"Latike's Bedu\")"
+  },
+  {
+   "id": "x523",
+   "skip": true,
+   "reason": "Absolute /hierarchy path built from direct-child steps; UiSelector cannot constrain exact parent/child structure (childSelector() matches any descendant)."
+  },
+  {
+   "id": "x524",
+   "uiselector": "new UiSelector().className(\"android.widget.ImageButton\").description(\"Woji\")"
+  },
+  {
+   "id": "x525",
+   "skip": true,
+   "reason": "Uses XPath 2.0 function ends-with() (invalid in Appium's XPath 1.0 engine) and direct-child steps that UiSelector cannot express."
+  },
+  {
+   "id": "x526",
+   "skip": true,
+   "reason": "Absolute /hierarchy path built from direct-child steps with per-parent positions; UiSelector cannot constrain exact parent/child structure."
+  },
+  {
+   "id": "x527",
+   "skip": true,
+   "reason": "Absolute /hierarchy path built from direct-child steps with per-parent positions; UiSelector cannot constrain exact parent/child structure."
+  },
+  {
+   "id": "x528",
+   "uiselector": "new UiSelector().className(\"android.view.View\").description(\"Nud Gatur Dofiwa\")"
+  },
+  {
+   "id": "x529",
+   "uiselector": "new UiSelector().className(\"android.widget.Button\")"
+  },
+  {
+   "id": "x530",
+   "skip": true,
+   "reason": "Invalid XPath: a resource id used as an element name ('joc...:id/chip_item') is parsed as an undeclared namespace prefix plus a path step, so it fails to compile."
+  },
+  {
+   "id": "x531",
+   "skip": true,
+   "reason": "Chain of direct-child steps with per-parent positions and last(); UiSelector cannot constrain exact parent/child structure."
+  },
+  {
+   "id": "x532",
+   "uiselector": "new UiSelector().className(\"android.widget.TextView\").text(\"Кивят:\")"
+  },
+  {
+   "id": "x533",
+   "uiselector": "new UiSelector().textContains(\"本知司码\")"
+  },
+  {
+   "id": "x534",
+   "skip": true,
+   "reason": "Malformed XPath (dangling '|' union operator with no right operand); it fails to compile and finds nothing."
+  },
+  {
+   "id": "x535",
+   "uiselector": "new UiSelector().textContains(\"@139.com\")"
+  },
+  {
+   "id": "x536",
+   "uiselector": "new UiSelector().className(\"android.widget.TextView\").text(\"Wakuruni Gupusepot\")"
+  },
+  {
+   "id": "x537",
+   "uiselector": "new UiSelector().className(\"android.widget.TextView\").text(\"1\").index(1)"
+  },
+  {
+   "id": "x538",
+   "uiselector": "new UiSelector().textContains(\".soc\")"
+  },
+  {
+   "id": "x539",
+   "uiselector": "new UiSelector().className(\"android.widget.TextView\").resourceId(\"com.cumojejove.monukekep.socetomub.webefuf.zilolojisi:id/bedu\").text(\"Dehib Rokoc 1\")"
+  },
+  {
+   "id": "x540",
+   "uiselector": "new UiSelector().className(\"android.view.ViewGroup\").description(\"popon_dofiwa_joniheta\").instance(0)"
+  },
+  {
+   "id": "x541",
+   "skip": true,
+   "reason": "Attributes @name and @label do not exist in UiAutomator2 page source (iOS attributes), so the XPath never matches anything."
+  },
+  {
+   "id": "x542",
+   "uiselector": "new UiSelector().className(\"android.widget.TextView\").resourceId(\"joc.mehaka.nifi.uk:id/piwocof\").index(2)"
+  },
+  {
+   "id": "x543",
+   "uiselector": "new UiSelector().className(\"android.view.ViewGroup\").resourceId(\"vorevik_nudi_hehib_marofod_vekar\")"
+  },
+  {
+   "id": "x544",
+   "uiselector": "new UiSelector().text(\"使一退详式\")"
+  },
+  {
+   "id": "x545",
+   "uiselector": "new UiSelector().resourceId(\"com.lazevikema.wid:id/rasowaw_misafa\")"
+  },
+  {
+   "id": "x546",
+   "uiselector": "new UiSelector().className(\"android.widget.TextView\").resourceId(\"com.cumojejove.monukekep.socetomub.webefuf.zilolojisi:id/bedu\").text(\"Zupo Bavic 14\")"
+  },
+  {
+   "id": "x547",
+   "skip": true,
+   "reason": "Numeric comparison: matches any @text whose number() is 1 ('1', '01', '1.0', ' 1 ', ...), including range widgets whose @text is their float value; UiSelector text matchers only see the node's real text."
+  },
+  {
+   "id": "x548",
+   "skip": true,
+   "reason": "Chain of direct-child steps with per-parent positions; UiSelector cannot constrain exact parent/child structure."
+  },
+  {
+   "id": "x549",
+   "uiselector": "new UiSelector().className(\"android.widget.TextView\").text(\"Nenovi votinane\")"
+  },
+  {
+   "id": "x550",
+   "skip": true,
+   "reason": "Chain of direct-child steps with per-parent positions; UiSelector cannot constrain exact parent/child structure."
+  },
+  {
+   "id": "x551",
+   "uiselector": "new UiSelector().className(\"android.widget.TextView\").text(\"ွ်ြရနက\")"
+  },
+  {
+   "id": "x552",
+   "skip": true,
+   "reason": "Absolute /hierarchy path built from direct-child steps with per-parent positions; UiSelector cannot constrain exact parent/child structure."
+  },
+  {
+   "id": "x553",
+   "skip": true,
+   "reason": "Attribute @label does not exist in UiAutomator2 page source (iOS attribute), so the XPath never matches anything."
+  },
+  {
+   "id": "x554",
+   "uiselector": "new UiSelector().className(\"android.view.ViewGroup\").description(\"gorihawafume_jemo\").instance(0)"
+  },
+  {
+   "id": "x555",
+   "uiselector": "new UiSelector().className(\"android.widget.TextView\").resourceId(\"com.cumojejove.monukekep.socetomub.webefuf.zilolojisi:id/bedu\").text(\"Cifu Tibo 5\")"
+  },
+  {
+   "id": "x556",
+   "skip": true,
+   "reason": "Positional selection over a descendant set followed by a direct child with per-parent position (child::...[3]); UiSelector cannot express direct-child or per-parent positions."
+  },
+  {
+   "id": "x557",
+   "skip": true,
+   "reason": "Web locator: CSS-style @class values never occur in the Android native hierarchy, so it never matches."
+  },
+  {
+   "id": "x558",
+   "uiselector": "new UiSelector().className(\"android.widget.Button\").resourceId(\"android:id/button1\").text(\"OK\")"
+  },
+  {
+   "id": "x559",
+   "skip": true,
+   "reason": "For range widgets (SeekBar/ProgressBar/RatingBar) UiAutomator2 writes the current value (e.g. '50.0') into @text, so this XPath also matches them; UiSelector.text() matches only the node's real text."
+  },
+  {
+   "id": "x560",
+   "skip": true,
+   "reason": "Direct-child step '/': UiSelector.childSelector() matches any descendant, not only direct children."
+  },
+  {
+   "id": "x561",
+   "uiselector": "new UiSelector().text(\"VOVAWEDO\")"
+  },
+  {
+   "id": "x562",
+   "uiselector": "new UiSelector()"
+  },
+  {
+   "id": "x563",
+   "skip": true,
+   "reason": "Malformed XPath (dangling '|') that also uses XPath 2.0 lower-case(); it fails to compile and finds nothing."
+  },
+  {
+   "id": "x564",
+   "uiselector": "new UiSelector().className(\"android.widget.Button\").enabled(true).instance(2)"
+  },
+  {
+   "id": "x565",
+   "uiselector": "new UiSelector().resourceIdMatches(\"[{]zuvi[.]app_cerozis[}]:id/naj|[{]zuvi[.]app_cerozis[}]:id/munInuv\")"
+  },
+  {
+   "id": "x566",
+   "uiselector": "new UiSelector().textMatches(\"(?s)(?=.*a)(?=.*b).*\")"
+  },
+  {
+   "id": "x567",
+   "uiselector": "new UiSelector().text(\"OK\")"
+  },
+  {
+   "id": "x568",
+   "uiselector": "new UiSelector().checked(false)"
+  },
+  {
+   "id": "x569",
+   "skip": true,
+   "reason": "Uses the parent axis '..' followed by direct-child steps with positions; UiSelector cannot express either."
+  },
+  {
+   "id": "x570",
+   "uiselector": "new UiSelector().resourceId(\"com.lazevikema.wid:id/fiv_rubi_pumu\").text(\"制线群受\")"
+  },
+  {
+   "id": "x571",
+   "skip": true,
+   "reason": "Absolute /hierarchy path built from direct-child steps; UiSelector cannot constrain exact parent/child structure (childSelector() matches any descendant)."
+  },
+  {
+   "id": "x572",
+   "skip": true,
+   "reason": "Absolute /hierarchy path built from direct-child steps with per-parent positions; UiSelector cannot constrain exact parent/child structure."
+  },
+  {
+   "id": "x573",
+   "uiselector": "new UiSelector().className(\"android.widget.TextView\").text(\"Hutag Hadi\")"
+  },
+  {
+   "id": "x574",
+   "uiselector": "new UiSelector().textContains(\".mp4\")"
+  },
+  {
+   "id": "x575",
+   "uiselector": "new UiSelector().className(\"android.widget.Button\")"
+  },
+  {
+   "id": "x576",
+   "uiselector": "new UiSelector().className(\"android.widget.CheckBox\").checked(false)"
+  },
+  {
+   "id": "x577",
+   "uiselector": "new UiSelector().className(\"android.widget.TextView\").text(\"Tukani bepo savejat\")"
+  },
+  {
+   "id": "x578",
+   "uiselector": "new UiSelector().className(\"android.widget.Button\").resourceIdMatches(\".*nozuzepa-dofiwa.*\")"
+  },
+  {
+   "id": "x579",
+   "uiselector": "new UiSelector().description(\"popon_paci_bedu\")"
+  },
+  {
+   "id": "x580",
+   "uiselector": "new UiSelector().resourceId(\"nimepiho.wawilomode.com.SakOmore:id/naj\")"
+  },
+  {
+   "id": "x581",
+   "uiselector": "new UiSelector().descriptionContains(\"menu\")"
+  },
+  {
+   "id": "x582",
+   "uiselector": "new UiSelector().className(\"android.widget.Button\").description(\"lebitud-diguwekej-gurizi-dofiwa\")"
+  },
+  {
+   "id": "x583",
+   "uiselector": "new UiSelector().text(\"所删应的\")"
+  },
+  {
+   "id": "x584",
+   "skip": true,
+   "reason": "Per-parent position (descendant::android.view.View[3]) followed by a direct-child step; UiSelector cannot express either."
+  },
+  {
+   "id": "x585",
+   "uiselector": "new UiSelector().className(\"android.widget.Button\").instance(1)"
+  },
+  {
+   "id": "x586",
+   "uiselector": "new UiSelector().resourceId(\"com.lazevikema.wid:id/wezitOmodi\")"
+  },
+  {
+   "id": "x587",
+   "uiselector": "new UiSelector().className(\"android.widget.TextView\").text(\"Vece-Dejogo Sajocuda\")"
+  },
+  {
+   "id": "x588",
+   "skip": true,
+   "reason": "Uses the following-sibling axis with a position; UiSelector.fromParent() searches all descendants of the parent, so 'next sibling' cannot be expressed."
+  },
+  {
+   "id": "x589",
+   "uiselector": "new UiSelector().className(\"android.widget.TextView\").resourceId(\"com.cumojejove.monukekep.socetomub.webefuf.zilolojisi:id/bedu\").text(\"Zupo Bavic 6\")"
+  },
+  {
+   "id": "x590",
+   "skip": true,
+   "reason": "Filters the LinearLayout by a has-descendant predicate and then searches its other descendants; a UiSelector chain cannot combine a contains-descendant condition with a different descendant target."
+  },
+  {
+   "id": "x591",
+   "uiselector": "new UiSelector().text(\"it's\")"
+  },
+  {
+   "id": "x592",
+   "skip": true,
+   "reason": "Union across two different attributes (@text and @content-desc); a single UiSelector can only AND its criteria."
+  },
+  {
+   "id": "x593",
+   "uiselector": "new UiSelector().className(\"android.widget.Button\").description(\"Dowawe\")"
+  },
+  {
+   "id": "x594",
+   "skip": true,
+   "reason": "Attribute @data-testid does not exist in UiAutomator2 page source (web attribute), so the XPath never matches anything."
+  },
+  {
+   "id": "x595",
+   "skip": true,
+   "reason": "Direct-child step '/': UiSelector.childSelector() matches any descendant, not only direct children."
+  },
+  {
+   "id": "x596",
+   "uiselector": "new UiSelector().textContains(\"多选\")"
+  },
+  {
+   "id": "x597",
+   "uiselector": "new UiSelector().className(\"android.widget.ImageButton\").resourceId(\"com.rusezu.android.VatewuZekoba:id/dosiwur_dofiwa\")"
+  },
+  {
+   "id": "x598",
+   "skip": true,
+   "reason": "[last()] on the ViewGroup step means 'last ViewGroup among its siblings'; UiSelector cannot express per-parent or last positions."
+  },
+  {
+   "id": "x599",
+   "uiselector": "new UiSelector().className(\"android.widget.TextView\").resourceId(\"com.cumojejove.monukekep.socetomub.webefuf.zilolojisi:id/bedu\").text(\"Zupo Bare 2\")"
+  },
+  {
+   "id": "x600",
+   "skip": true,
+   "reason": "Chain of direct-child steps; UiSelector.childSelector() matches any descendant, so the parent/child constraints cannot be expressed."
+  },
+  {
+   "id": "x601",
+   "uiselector": "new UiSelector().text(\"Item 7\")"
+  },
+  {
+   "id": "x602",
+   "skip": true,
+   "reason": "Positional selection over a descendant set followed by a direct-child step (child::); UiSelector.childSelector() matches any descendant."
+  },
+  {
+   "id": "x603",
+   "uiselector": "new UiSelector().text(\"欢输删建团队\")"
+  },
+  {
+   "id": "x604",
+   "uiselector": "new UiSelector().text(\"Feguçevu\")"
+  },
+  {
+   "id": "x605",
+   "skip": true,
+   "reason": "Absolute /hierarchy path built from direct-child steps with per-parent positions; UiSelector cannot constrain exact parent/child structure."
+  },
+  {
+   "id": "x606",
+   "uiselector": "new UiSelector().className(\"android.view.View\").resourceId(\"android:id/month_view\").childSelector(new UiSelector().className(\"android.view.View\"))"
+  },
+  {
+   "id": "x607",
+   "uiselector": "new UiSelector().text(\"OK\").clickable(true)"
+  },
+  {
+   "id": "x608",
+   "skip": true,
+   "reason": "Attribute @name does not exist in UiAutomator2 page source (iOS attribute), and [3] is a per-parent position; the XPath never matches anything."
+  },
+  {
+   "id": "x609",
+   "uiselector": "new UiSelector().className(\"android.widget.TextView\").text(\"Rusezu fekiduk jupele\")"
+  },
+  {
+   "id": "x610",
+   "uiselector": "new UiSelector().textMatches(\"(?s).{5}\")"
+  },
+  {
+   "id": "x611",
+   "uiselector": "new UiSelector().text(\"Bimugome\")"
+  },
+  {
+   "id": "x612",
+   "uiselector": "new UiSelector().className(\"android.widget.TextView\").resourceId(\"com.cumojejove.monukekep.socetomub.webefuf.zilolojisi:id/bedu\").text(\"Vehi Disuvud 8\")"
+  },
+  {
+   "id": "x613",
+   "uiselector": "new UiSelector().description(\"\")"
+  },
+  {
+   "id": "x614",
+   "skip": true,
+   "reason": "Chain of direct-child steps; UiSelector.childSelector() matches any descendant, so the parent/child constraints cannot be expressed."
+  },
+  {
+   "id": "x615",
+   "uiselector": "new UiSelector().className(\"android.widget.ImageView\").description(\"Kataki lukup\")"
+  },
+  {
+   "id": "x616",
+   "skip": true,
+   "reason": "Attribute @label does not exist in UiAutomator2 page source (iOS attribute), so the ends-with emulation never matches anything."
+  },
+  {
+   "id": "x617",
+   "uiselector": "new UiSelector().className(\"android.view.ViewGroup\").resourceId(\"cukol-nud-hehib-gotaz-dofiwa\")"
+  },
+  {
+   "id": "x618",
+   "uiselector": "new UiSelector().textContains(\"Dejogo petis\")"
+  },
+  {
+   "id": "x619",
+   "skip": true,
+   "reason": "Chain of direct-child steps with per-parent positions from the <hierarchy> root; UiSelector cannot constrain exact parent/child structure."
+  },
+  {
+   "id": "x620",
+   "uiselector": "new UiSelector().text(\"%s\")"
+  },
+  {
+   "id": "x621",
+   "uiselector": "new UiSelector().className(\"android.widget.Button\").text(\"Mow\")"
+  },
+  {
+   "id": "x622",
+   "uiselector": "new UiSelector().className(\"android.widget.TextView\").text(\"हपभगथोव डेचखपओरत\")"
+  },
+  {
+   "id": "x623",
+   "uiselector": "new UiSelector().description(\"popon_dofiwa_rizisi_setil\")"
+  },
+  {
+   "id": "x624",
+   "uiselector": "new UiSelector().className(\"android.widget.TextView\").text(\"3000\")"
+  },
+  {
+   "id": "x625",
+   "uiselector": "new UiSelector().resourceId(\"com.example.app:id/second\").childSelector(new UiSelector().className(\"android.widget.TextView\").instance(2))"
+  },
+  {
+   "id": "x626",
+   "skip": true,
+   "reason": "Uses XPath 2.0 function lower-case(); Appium UiAutomator2 evaluates XPath 1.0, so the locator is invalid and finds nothing."
+  },
+  {
+   "id": "x627",
+   "uiselector": "new UiSelector().className(\"android.widget.TextView\").text(\"Zupibake\")"
+  },
+  {
+   "id": "x628",
+   "uiselector": "new UiSelector().resourceId(\"android:id/content\").childSelector(new UiSelector().className(\"android.widget.ImageView\"))"
+  },
+  {
+   "id": "x629",
+   "uiselector": "new UiSelector().className(\"android.view.ViewGroup\").description(\"popon_dofiwa_kaki\").instance(1)"
+  },
+  {
+   "id": "x630",
+   "uiselector": "new UiSelector().text(\"${name}\")"
+  },
+  {
+   "id": "x631",
+   "uiselector": "new UiSelector().className(\"android.widget.ListView\").childSelector(new UiSelector().className(\"android.widget.Button\").text(\"Add\").instance(0))"
+  },
+  {
+   "id": "x632",
+   "skip": true,
+   "reason": "Selects the last match ([last()]); UiSelector.instance() needs a fixed index counted from the start and cannot address the last match."
+  },
+  {
+   "id": "x633",
+   "uiselector": "new UiSelector().text(\"Total\")"
+  },
+  {
+   "id": "x634",
+   "uiselector": "new UiSelector().text(\"Hido LIB hadi\")"
+  },
+  {
+   "id": "x635",
+   "uiselector": "new UiSelector().className(\"android.widget.TextView\").resourceId(\"com.cumojejove.monukekep.socetomub.webefuf.zilolojisi:id/bedu\").text(\"Pot\")"
+  },
+  {
+   "id": "x636",
+   "skip": true,
+   "reason": "Attribute @name does not exist in UiAutomator2 page source (iOS attribute), so the XPath never matches anything."
+  },
+  {
+   "id": "x637",
+   "uiselector": "new UiSelector().className(\"android.widget.Button\").text(\"JOSA\").index(1)"
+  },
+  {
+   "id": "x638",
+   "skip": true,
+   "reason": "Has-descendant-or-self filter with an OR across different attributes (@text or @content-desc); UiSelector returns descendants, not the filtered container, and cannot OR across attributes."
+  },
+  {
+   "id": "x639",
+   "uiselector": "new UiSelector().className(\"android.widget.Button\").resourceId(\"android:id/button1\")"
+  },
+  {
+   "id": "x640",
+   "uiselector": "new UiSelector().className(\"android.widget.TextView\").text(\"Total\")"
+  },
+  {
+   "id": "x641",
+   "skip": true,
+   "reason": "Uses XPath 2.0 lower-case() (invalid in Appium's XPath 1.0 engine) and a direct-child step that UiSelector cannot express."
+  },
+  {
+   "id": "x642",
+   "uiselector": "new UiSelector().className(\"android.widget.TextView\").description(\"popon_paci_guvosusu\").instance(1)"
+  },
+  {
+   "id": "x643",
+   "uiselector": "new UiSelector().className(\"android.widget.Button\").description(\"Nud waw\")"
+  },
+  {
+   "id": "x644",
+   "uiselector": "new UiSelector().className(\"android.widget.TextView\").resourceId(\"com.cumojejove.monukekep.socetomub.webefuf.zilolojisi:id/bedu\").text(\"Rosoci Tibo 4\")"
+  },
+  {
+   "id": "x645",
+   "uiselector": "new UiSelector().className(\"android.widget.TextView\").text(\"Fadut\")"
+  },
+  {
+   "id": "x646",
+   "uiselector": "new UiSelector().text(\"制应团阅\")"
+  },
+  {
+   "id": "x647",
+   "uiselector": "new UiSelector().focused(true)"
+  },
+  {
+   "id": "x648",
+   "uiselector": "new UiSelector().textMatches(\"Yes|OK\")"
+  },
+  {
+   "id": "x649",
+   "uiselector": "new UiSelector().text(\"群知保\")"
+  },
+  {
+   "id": "x650",
+   "uiselector": "new UiSelector().text(\"Grüße\")"
+  },
+  {
+   "id": "x651",
+   "uiselector": "new UiSelector().className(\"android.widget.TextView\").text(\"JEJUBUBI \")"
+  },
+  {
+   "id": "x652",
+   "uiselector": "new UiSelector().className(\"android.widget.TextView\").resourceId(\"com.example.app:id/bedu\").text(\"Settings\")"
+  },
+  {
+   "id": "x653",
+   "uiselector": "new UiSelector().resourceIdMatches(\".*:id/login.*\")"
+  },
+  {
+   "id": "x654",
+   "uiselector": "new UiSelector().resourceId(\"com.lazevikema.wid:id/tv_gowomoc\").text(\"(x)\")"
+  },
+  {
+   "id": "x655",
+   "uiselector": "new UiSelector().description(\"Wokup\")"
+  },
+  {
+   "id": "x656",
+   "uiselector": "new UiSelector().className(\"android.widget.TextView\")"
+  },
+  {
+   "id": "x657",
+   "uiselector": "new UiSelector().packageName(\"com.example.app\")"
+  },
+  {
+   "id": "x658",
+   "uiselector": "new UiSelector().text(\"OK\")"
+  },
+  {
+   "id": "x659",
+   "uiselector": "new UiSelector().textMatches(\"[oO][kK]\")"
+  },
+  {
+   "id": "x660",
+   "uiselector": "new UiSelector().className(\"android.widget.TextView\").text(\"थ़य लभी\")"
+  },
+  {
+   "id": "x661",
+   "uiselector": "new UiSelector().className(\"android.widget.TextView\").text(\"NUD LEBITUD\")"
+  },
+  {
+   "id": "x662",
+   "uiselector": "new UiSelector().resourceId(\"android:id/title\").text(\"Fecupun badus\")"
+  },
+  {
+   "id": "x663",
+   "uiselector": "new UiSelector().resourceId(\"com.lazevikema.wid:id/copu_rojuno\")"
+  },
+  {
+   "id": "x664",
+   "uiselector": "new UiSelector().text(\"Wusuguf\")"
+  },
+  {
+   "id": "x665",
+   "uiselector": "new UiSelector().checked(true)"
+  },
+  {
+   "id": "x666",
+   "skip": true,
+   "reason": "Value comparison operator 'eq' is XPath 2.0 syntax; Appium UiAutomator2 evaluates XPath 1.0, so the locator is invalid."
+  },
+  {
+   "id": "x667",
+   "uiselector": "new UiSelector().className(\"android.widget.TextView\").resourceId(\"com.cumojejove.monukekep.socetomub.webefuf.zilolojisi:id/bedu\").text(\"Wutem Rumum\")"
+  },
+  {
+   "id": "x668",
+   "skip": true,
+   "reason": "Uses XPath 2.0 function lower-case(); Appium UiAutomator2 evaluates XPath 1.0, so the locator is invalid and finds nothing."
+  },
+  {
+   "id": "x669",
+   "uiselector": "new UiSelector().className(\"android.widget.ImageView\").description(\"Votinane\")"
+  },
+  {
+   "id": "x670",
+   "uiselector": "new UiSelector().description(\"请进允箱理名姓同\")"
+  },
+  {
+   "id": "x671",
+   "skip": true,
+   "reason": "Uses XPath 2.0 function lower-case(); Appium UiAutomator2 evaluates XPath 1.0, so the locator is invalid and finds nothing."
+  },
+  {
+   "id": "x672",
+   "skip": true,
+   "reason": "Uses XPath 2.0 function upper-case(); Appium UiAutomator2 evaluates XPath 1.0, so the locator is invalid and finds nothing."
+  },
+  {
+   "id": "x673",
+   "skip": true,
+   "reason": "Uses a placeholder element name 'javaClass' that never occurs in the page source, plus a count() filter on the container; it never matches and UiSelector cannot express count()."
+  },
+  {
+   "id": "x674",
+   "skip": true,
+   "reason": "Contradictory predicate (@text=\"A\" and @text=\"B\"); it never matches anything."
+  },
+  {
+   "id": "x675",
+   "uiselector": "new UiSelector().resourceId(\"com.lazevikema.wid:id/rasowaw_bedu\").text(\"user01\")"
+  },
+  {
+   "id": "x676",
+   "uiselector": "new UiSelector().textContains(\"a\\\\b\")"
+  },
+  {
+   "id": "x677",
+   "uiselector": "new UiSelector().clickable(true)"
+  },
+  {
+   "id": "x678",
+   "uiselector": "new UiSelector().className(\"android.widget.TextView\").resourceId(\"com.cumojejove.monukekep.socetomub.webefuf.zilolojisi:id/bedu\").text(\"Zupo Bare 6\")"
+  },
+  {
+   "id": "x679",
+   "uiselector": "new UiSelector().description(\"发布\")"
+  },
+  {
+   "id": "x680",
+   "uiselector": "new UiSelector().resourceIdMatches(\"(?s).*\")"
+  }
+ ]
+}
