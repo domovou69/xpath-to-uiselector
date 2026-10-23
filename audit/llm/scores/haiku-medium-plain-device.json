@@ -2,3519 +2,6 @@
  "run": "haiku-medium-plain",
  "seed": "llm-verify-1",
  "runs": {
-  "x001|llm|llm": {
-   "id": "x001",
-   "side": "llm",
-   "screen": "llm",
-   "outcome": "EQUAL",
-   "x": {
-    "n": 0,
-    "fp": []
-   },
-   "u": {
-    "n": 0,
-    "fp": []
-   }
-  },
-  "x001|conv|llm": {
-   "id": "x001",
-   "side": "conv",
-   "screen": "llm",
-   "outcome": "EQUAL",
-   "x": {
-    "n": 0,
-    "fp": []
-   },
-   "u": {
-    "n": 0,
-    "fp": []
-   }
-  },
-  "x004|llm|llm": {
-   "id": "x004",
-   "side": "llm",
-   "screen": "llm",
-   "outcome": "SET_DIFFERS",
-   "x": {
-    "n": 2,
-    "fp": [
-     "android.widget.TextView||Total\n||[0,1903][216,2087]",
-     "android.widget.TextView|| Total\t||[216,1903][432,2087]"
-    ]
-   },
-   "u": {
-    "n": 0,
-    "fp": []
-   }
-  },
-  "x007|llm|llm": {
-   "id": "x007",
-   "side": "llm",
-   "screen": "llm",
-   "outcome": "EQUAL",
-   "x": {
-    "n": 4,
-    "fp": [
-     "android.widget.TextView||Total 1.5 kg||[810,63][1080,247]",
-     "android.widget.TextView||Total\n||[0,1903][216,2087]",
-     "android.widget.TextView|| Total\t||[216,1903][432,2087]",
-     "android.widget.TextView||Totally||[864,1903][1080,2087]"
-    ]
-   },
-   "u": {
-    "n": 4,
-    "fp": [
-     "android.widget.TextView||Total 1.5 kg||[810,63][1080,247]",
-     "android.widget.TextView||Total\n||[0,1903][216,2087]",
-     "android.widget.TextView|| Total\t||[216,1903][432,2087]",
-     "android.widget.TextView||Totally||[864,1903][1080,2087]"
-    ]
-   }
-  },
-  "x007|conv|llm": {
-   "id": "x007",
-   "side": "conv",
-   "screen": "llm",
-   "outcome": "EQUAL",
-   "x": {
-    "n": 4,
-    "fp": [
-     "android.widget.TextView||Total 1.5 kg||[810,63][1080,247]",
-     "android.widget.TextView||Total\n||[0,1903][216,2087]",
-     "android.widget.TextView|| Total\t||[216,1903][432,2087]",
-     "android.widget.TextView||Totally||[864,1903][1080,2087]"
-    ]
-   },
-   "u": {
-    "n": 4,
-    "fp": [
-     "android.widget.TextView||Total 1.5 kg||[810,63][1080,247]",
-     "android.widget.TextView||Total\n||[0,1903][216,2087]",
-     "android.widget.TextView|| Total\t||[216,1903][432,2087]",
-     "android.widget.TextView||Totally||[864,1903][1080,2087]"
-    ]
-   }
-  },
-  "x009|llm|llm": {
-   "id": "x009",
-   "side": "llm",
-   "screen": "llm",
-   "outcome": "SET_DIFFERS",
-   "x": {
-    "n": 3,
-    "fp": [
-     "android.widget.SeekBar||1.5||[0,63][270,247]",
-     "android.widget.SeekBar||21.5||[270,63][540,247]",
-     "android.widget.TextView||Total 1.5 kg||[810,63][1080,247]"
-    ]
-   },
-   "u": {
-    "n": 1,
-    "fp": [
-     "android.widget.TextView||Total 1.5 kg||[810,63][1080,247]"
-    ]
-   }
-  },
-  "x009|conv|llm": {
-   "id": "x009",
-   "side": "conv",
-   "screen": "llm",
-   "outcome": "SET_DIFFERS",
-   "x": {
-    "n": 3,
-    "fp": [
-     "android.widget.SeekBar||1.5||[0,63][270,247]",
-     "android.widget.SeekBar||21.5||[270,63][540,247]",
-     "android.widget.TextView||Total 1.5 kg||[810,63][1080,247]"
-    ]
-   },
-   "u": {
-    "n": 1,
-    "fp": [
-     "android.widget.TextView||Total 1.5 kg||[810,63][1080,247]"
-    ]
-   }
-  },
-  "x013|llm|llm": {
-   "id": "x013",
-   "side": "llm",
-   "screen": "llm",
-   "outcome": "EQUAL",
-   "x": {
-    "n": 0,
-    "fp": []
-   },
-   "u": {
-    "n": 0,
-    "fp": []
-   }
-  },
-  "x013|conv|llm": {
-   "id": "x013",
-   "side": "conv",
-   "screen": "llm",
-   "outcome": "EQUAL",
-   "x": {
-    "n": 0,
-    "fp": []
-   },
-   "u": {
-    "n": 0,
-    "fp": []
-   }
-  },
-  "x020|llm|llm": {
-   "id": "x020",
-   "side": "llm",
-   "screen": "llm",
-   "outcome": "EQUAL",
-   "x": {
-    "n": 0,
-    "fp": []
-   },
-   "u": {
-    "n": 0,
-    "fp": []
-   }
-  },
-  "x020|conv|llm": {
-   "id": "x020",
-   "side": "conv",
-   "screen": "llm",
-   "outcome": "EQUAL",
-   "x": {
-    "n": 0,
-    "fp": []
-   },
-   "u": {
-    "n": 0,
-    "fp": []
-   }
-  },
-  "x023|llm|llm": {
-   "id": "x023",
-   "side": "llm",
-   "screen": "llm",
-   "outcome": "SET_DIFFERS",
-   "x": {
-    "n": 2,
-    "fp": [
-     "android.widget.TextView|com.example.app:id/item_7|c||[0,615][1080,676]",
-     "android.widget.TextView|com.example.app:id/item_7|e||[0,737][1080,798]"
-    ]
-   },
-   "u": {
-    "n": 1,
-    "fp": [
-     "android.widget.TextView|com.example.app:id/item_7|c||[0,615][1080,676]"
-    ]
-   }
-  },
-  "x025|llm|llm": {
-   "id": "x025",
-   "side": "llm",
-   "screen": "llm",
-   "outcome": "EQUAL",
-   "x": {
-    "n": 16,
-    "f0": "android.widget.TextView||Total 1.5 kg||[810,63][1080,247]"
-   },
-   "u": {
-    "n": 16,
-    "f0": "android.widget.TextView||Total 1.5 kg||[810,63][1080,247]"
-   }
-  },
-  "x025|conv|llm": {
-   "id": "x025",
-   "side": "conv",
-   "screen": "llm",
-   "outcome": "EQUAL",
-   "x": {
-    "n": 16,
-    "f0": "android.widget.TextView||Total 1.5 kg||[810,63][1080,247]"
-   },
-   "u": {
-    "n": 16,
-    "f0": "android.widget.TextView||Total 1.5 kg||[810,63][1080,247]"
-   }
-  },
-  "x029|llm|llm": {
-   "id": "x029",
-   "side": "llm",
-   "screen": "llm",
-   "outcome": "EQUAL",
-   "x": {
-    "n": 0,
-    "fp": []
-   },
-   "u": {
-    "n": 0,
-    "fp": []
-   }
-  },
-  "x029|conv|llm": {
-   "id": "x029",
-   "side": "conv",
-   "screen": "llm",
-   "outcome": "EQUAL",
-   "x": {
-    "n": 0,
-    "fp": []
-   },
-   "u": {
-    "n": 0,
-    "fp": []
-   }
-  },
-  "x032|llm|llm": {
-   "id": "x032",
-   "side": "llm",
-   "screen": "llm",
-   "outcome": "EQUAL",
-   "x": {
-    "n": 0,
-    "fp": []
-   },
-   "u": {
-    "n": 0,
-    "fp": []
-   }
-  },
-  "x034|llm|llm": {
-   "id": "x034",
-   "side": "llm",
-   "screen": "llm",
-   "outcome": "EQUAL",
-   "x": {
-    "n": 0,
-    "fp": []
-   },
-   "u": {
-    "n": 0,
-    "fp": []
-   }
-  },
-  "x034|conv|llm": {
-   "id": "x034",
-   "side": "conv",
-   "screen": "llm",
-   "outcome": "EQUAL",
-   "x": {
-    "n": 0,
-    "fp": []
-   },
-   "u": {
-    "n": 0,
-    "fp": []
-   }
-  },
-  "x042|llm|llm": {
-   "id": "x042",
-   "side": "llm",
-   "screen": "llm",
-   "outcome": "EQUAL",
-   "x": {
-    "n": 10,
-    "f0": "android.view.ViewGroup|||popon_wepejazuk_zeru|[0,247][1080,431]"
-   },
-   "u": {
-    "n": 10,
-    "f0": "android.view.ViewGroup|||popon_wepejazuk_zeru|[0,247][1080,431]"
-   }
-  },
-  "x042|conv|llm": {
-   "id": "x042",
-   "side": "conv",
-   "screen": "llm",
-   "outcome": "EQUAL",
-   "x": {
-    "n": 10,
-    "f0": "android.view.ViewGroup|||popon_wepejazuk_zeru|[0,247][1080,431]"
-   },
-   "u": {
-    "n": 10,
-    "f0": "android.view.ViewGroup|||popon_wepejazuk_zeru|[0,247][1080,431]"
-   }
-  },
-  "x052|llm|llm": {
-   "id": "x052",
-   "side": "llm",
-   "screen": "llm",
-   "outcome": "EQUAL",
-   "x": {
-    "n": 0,
-    "fp": []
-   },
-   "u": {
-    "n": 0,
-    "fp": []
-   }
-  },
-  "x053|conv|llm": {
-   "id": "x053",
-   "side": "conv",
-   "screen": "llm",
-   "outcome": "EQUAL",
-   "x": {
-    "n": 0,
-    "fp": []
-   },
-   "u": {
-    "n": 0,
-    "fp": []
-   }
-  },
-  "x055|llm|llm": {
-   "id": "x055",
-   "side": "llm",
-   "screen": "llm",
-   "outcome": "EQUAL",
-   "x": {
-    "n": 0,
-    "fp": []
-   },
-   "u": {
-    "n": 0,
-    "fp": []
-   }
-  },
-  "x055|conv|llm": {
-   "id": "x055",
-   "side": "conv",
-   "screen": "llm",
-   "outcome": "EQUAL",
-   "x": {
-    "n": 0,
-    "fp": []
-   },
-   "u": {
-    "n": 0,
-    "fp": []
-   }
-  },
-  "x057|llm|llm": {
-   "id": "x057",
-   "side": "llm",
-   "screen": "llm",
-   "outcome": "EQUAL",
-   "x": {
-    "n": 0,
-    "fp": []
-   },
-   "u": {
-    "n": 0,
-    "fp": []
-   }
-  },
-  "x059|conv|llm": {
-   "id": "x059",
-   "side": "conv",
-   "screen": "llm",
-   "outcome": "EQUAL",
-   "x": {
-    "n": 0,
-    "fp": []
-   },
-   "u": {
-    "n": 0,
-    "fp": []
-   }
-  },
-  "x060|conv|llm": {
-   "id": "x060",
-   "side": "conv",
-   "screen": "llm",
-   "outcome": "EQUAL",
-   "x": {
-    "n": 0,
-    "fp": []
-   },
-   "u": {
-    "n": 0,
-    "fp": []
-   }
-  },
-  "x063|conv|llm": {
-   "id": "x063",
-   "side": "conv",
-   "screen": "llm",
-   "outcome": "EQUAL",
-   "x": {
-    "n": 0,
-    "fp": []
-   },
-   "u": {
-    "n": 0,
-    "fp": []
-   }
-  },
-  "x066|llm|llm": {
-   "id": "x066",
-   "side": "llm",
-   "screen": "llm",
-   "outcome": "EQUAL",
-   "x": {
-    "n": 0,
-    "fp": []
-   },
-   "u": {
-    "n": 0,
-    "fp": []
-   }
-  },
-  "x066|conv|llm": {
-   "id": "x066",
-   "side": "conv",
-   "screen": "llm",
-   "outcome": "EQUAL",
-   "x": {
-    "n": 0,
-    "fp": []
-   },
-   "u": {
-    "n": 0,
-    "fp": []
-   }
-  },
-  "x077|llm|llm": {
-   "id": "x077",
-   "side": "llm",
-   "screen": "llm",
-   "outcome": "SET_DIFFERS",
-   "x": {
-    "n": 53,
-    "fp": [
-     "android.widget.FrameLayout||||[0,0][1080,2400]",
-     "android.widget.LinearLayout||||[0,0][1080,2400]",
-     "android.widget.FrameLayout|android:id/content|||[0,0][1080,2400]",
-     "android.widget.FrameLayout||||[0,0][1080,2400]",
-     "android.widget.LinearLayout||||[0,63][1080,2274]",
-     "android.widget.LinearLayout||||[0,63][1080,247]",
-     "android.widget.SeekBar||1.5||[0,63][270,247]",
-     "android.widget.SeekBar||21.5||[270,63][540,247]",
-     "android.widget.ProgressBar||50.0||[540,63][810,247]",
-     "android.widget.TextView||Total 1.5 kg||[810,63][1080,247]",
-     "android.view.ViewGroup|||popon_wepejazuk_zeru|[0,247][1080,431]",
-     "android.widget.TextView|com.example.app:id/item_7|a||[0,247][1080,431]",
-     "android.view.ViewGroup|||popon_wepejazuk_zeru|[0,431][1080,615]",
-     "android.widget.TextView||b||[0,431][1080,615]",
-     "android.view.ViewGroup|||popon_wepejazuk_zeru|[0,615][1080,799]",
-     "android.widget.TextView|com.example.app:id/item_7|c||[0,615][1080,676]",
-     "android.widget.TextView||d|Settings|[0,676][1080,737]",
-     "android.widget.TextView|com.example.app:id/item_7|e||[0,737][1080,798]",
-     "android.view.ViewGroup|||popon_wepejazuk_zeru|[0,799][1080,983]",
-     "android.widget.ImageView|com.example.app:id/item_7||Settings|[0,799][1080,983]",
-     "android.widget.ScrollView||||[0,983][1080,1167]",
-     "android.widget.LinearLayout||||[0,983][1080,1167]",
-     "android.widget.ImageView|||i1|[0,983][540,1167]",
-     "android.widget.ImageView|||i2|[540,983][1080,1167]",
-     "android.widget.ScrollView||||[0,1167][1080,1351]",
-     "android.widget.LinearLayout||||[0,1167][1080,1351]",
-     "android.widget.ImageView|||i3|[0,1167][540,1351]",
-     "android.widget.ImageView|||i4|[540,1167][1080,1351]",
-     "android.view.View|cuzoces-moduvu|||[0,1351][1080,1535]",
-     "android.widget.LinearLayout||||[0,1351][1080,1535]",
-     "android.widget.TextView||m1||[0,1351][540,1535]",
-     "android.widget.TextView||m2||[540,1351][1080,1535]",
-     "android.view.View|cuzoces-moduvu|||[0,1535][1080,1719]",
-     "android.widget.LinearLayout||||[0,1535][1080,1719]",
-     "android.widget.TextView||m3||[0,1535][540,1719]",
-     "android.widget.TextView||m4||[540,1535][1080,1719]",
-     "android.widget.LinearLayout||||[0,1719][1080,1903]",
-     "android.widget.TextView|io.zofujize.vikuwag.vajotin:id/danob_danob_hac|u1||[0,1719][360,1903]",
-     "android.widget.TextView|danob_danob_hac|u2||[360,1719][720,1903]",
-     "android.widget.TextView|x:id/danob_danob_hac_2|u3||[720,1719][1080,1903]",
-     "android.widget.LinearLayout||||[0,1903][1080,2087]",
-     "android.widget.TextView||Total\n||[0,1903][216,2087]",
-     "android.widget.TextView|| Total\t||[216,1903][432,2087]",
-     "android.widget.TextView||To tal||[432,1903][648,2087]",
-     "android.widget.TextView||Tot||[648,1903][864,2087]",
-     "android.widget.TextView||Totally||[864,1903][1080,2087]",
-     "android.widget.LinearLayout||||[0,2087][1080,2271]",
-     "android.widget.TextView||😀😀😀😀😀||[0,2087][180,2271]",
-     "android.widget.TextView||abcde||[180,2087][360,2271]",
-     "android.widget.TextView||abcd||[360,2087][540,2271]",
-     "android.widget.TextView||OK||[540,2087][720,2271]",
-     "android.widget.TextView||oK||[720,2087][900,2271]",
-     "android.widget.TextView||OkK||[900,2087][1080,2271]"
-    ]
-   },
-   "u": {
-    "n": 24,
-    "fp": [
-     "android.widget.TextView||Total 1.5 kg||[810,63][1080,247]",
-     "android.widget.TextView|com.example.app:id/item_7|a||[0,247][1080,431]",
-     "android.widget.TextView||b||[0,431][1080,615]",
-     "android.widget.TextView|com.example.app:id/item_7|c||[0,615][1080,676]",
-     "android.widget.TextView||d|Settings|[0,676][1080,737]",
-     "android.widget.TextView|com.example.app:id/item_7|e||[0,737][1080,798]",
-     "android.widget.TextView||m1||[0,1351][540,1535]",
-     "android.widget.TextView||m2||[540,1351][1080,1535]",
-     "android.widget.TextView||m3||[0,1535][540,1719]",
-     "android.widget.TextView||m4||[540,1535][1080,1719]",
-     "android.widget.TextView|io.zofujize.vikuwag.vajotin:id/danob_danob_hac|u1||[0,1719][360,1903]",
-     "android.widget.TextView|danob_danob_hac|u2||[360,1719][720,1903]",
-     "android.widget.TextView|x:id/danob_danob_hac_2|u3||[720,1719][1080,1903]",
-     "android.widget.TextView||Total\n||[0,1903][216,2087]",
-     "android.widget.TextView|| Total\t||[216,1903][432,2087]",
-     "android.widget.TextView||To tal||[432,1903][648,2087]",
-     "android.widget.TextView||Tot||[648,1903][864,2087]",
-     "android.widget.TextView||Totally||[864,1903][1080,2087]",
-     "android.widget.TextView||😀😀😀😀😀||[0,2087][180,2271]",
-     "android.widget.TextView||abcde||[180,2087][360,2271]",
-     "android.widget.TextView||abcd||[360,2087][540,2271]",
-     "android.widget.TextView||OK||[540,2087][720,2271]",
-     "android.widget.TextView||oK||[720,2087][900,2271]",
-     "android.widget.TextView||OkK||[900,2087][1080,2271]"
-    ]
-   }
-  },
-  "x079|llm|llm": {
-   "id": "x079",
-   "side": "llm",
-   "screen": "llm",
-   "outcome": "EQUAL",
-   "x": {
-    "n": 0,
-    "fp": []
-   },
-   "u": {
-    "n": 0,
-    "fp": []
-   }
-  },
-  "x079|conv|llm": {
-   "id": "x079",
-   "side": "conv",
-   "screen": "llm",
-   "outcome": "EQUAL",
-   "x": {
-    "n": 0,
-    "fp": []
-   },
-   "u": {
-    "n": 0,
-    "fp": []
-   }
-  },
-  "x086|conv|llm": {
-   "id": "x086",
-   "side": "conv",
-   "screen": "llm",
-   "outcome": "EQUAL",
-   "x": {
-    "n": 1,
-    "fp": [
-     "android.widget.TextView||OK||[540,2087][720,2271]"
-    ]
-   },
-   "u": {
-    "n": 1,
-    "fp": [
-     "android.widget.TextView||OK||[540,2087][720,2271]"
-    ]
-   }
-  },
-  "x094|llm|llm": {
-   "id": "x094",
-   "side": "llm",
-   "screen": "llm",
-   "outcome": "EQUAL",
-   "x": {
-    "n": 0,
-    "fp": []
-   },
-   "u": {
-    "n": 0,
-    "fp": []
-   }
-  },
-  "x094|conv|llm": {
-   "id": "x094",
-   "side": "conv",
-   "screen": "llm",
-   "outcome": "EQUAL",
-   "x": {
-    "n": 0,
-    "fp": []
-   },
-   "u": {
-    "n": 0,
-    "fp": []
-   }
-  },
-  "x096|llm|llm": {
-   "id": "x096",
-   "side": "llm",
-   "screen": "llm",
-   "outcome": "EQUAL",
-   "x": {
-    "n": 0,
-    "fp": []
-   },
-   "u": {
-    "n": 0,
-    "fp": []
-   }
-  },
-  "x102|llm|llm": {
-   "id": "x102",
-   "side": "llm",
-   "screen": "llm",
-   "outcome": "EQUAL",
-   "x": {
-    "n": 0,
-    "fp": []
-   },
-   "u": {
-    "n": 0,
-    "fp": []
-   }
-  },
-  "x102|conv|llm": {
-   "id": "x102",
-   "side": "conv",
-   "screen": "llm",
-   "outcome": "EQUAL",
-   "x": {
-    "n": 0,
-    "fp": []
-   },
-   "u": {
-    "n": 0,
-    "fp": []
-   }
-  },
-  "x105|llm|llm": {
-   "id": "x105",
-   "side": "llm",
-   "screen": "llm",
-   "outcome": "EQUAL",
-   "x": {
-    "n": 4,
-    "fp": [
-     "android.widget.TextView|com.example.app:id/item_7|a||[0,247][1080,431]",
-     "android.widget.TextView|com.example.app:id/item_7|c||[0,615][1080,676]",
-     "android.widget.TextView|com.example.app:id/item_7|e||[0,737][1080,798]",
-     "android.widget.ImageView|com.example.app:id/item_7||Settings|[0,799][1080,983]"
-    ]
-   },
-   "u": {
-    "n": 4,
-    "fp": [
-     "android.widget.TextView|com.example.app:id/item_7|a||[0,247][1080,431]",
-     "android.widget.TextView|com.example.app:id/item_7|c||[0,615][1080,676]",
-     "android.widget.TextView|com.example.app:id/item_7|e||[0,737][1080,798]",
-     "android.widget.ImageView|com.example.app:id/item_7||Settings|[0,799][1080,983]"
-    ]
-   }
-  },
-  "x105|conv|llm": {
-   "id": "x105",
-   "side": "conv",
-   "screen": "llm",
-   "outcome": "EQUAL",
-   "x": {
-    "n": 4,
-    "fp": [
-     "android.widget.TextView|com.example.app:id/item_7|a||[0,247][1080,431]",
-     "android.widget.TextView|com.example.app:id/item_7|c||[0,615][1080,676]",
-     "android.widget.TextView|com.example.app:id/item_7|e||[0,737][1080,798]",
-     "android.widget.ImageView|com.example.app:id/item_7||Settings|[0,799][1080,983]"
-    ]
-   },
-   "u": {
-    "n": 4,
-    "fp": [
-     "android.widget.TextView|com.example.app:id/item_7|a||[0,247][1080,431]",
-     "android.widget.TextView|com.example.app:id/item_7|c||[0,615][1080,676]",
-     "android.widget.TextView|com.example.app:id/item_7|e||[0,737][1080,798]",
-     "android.widget.ImageView|com.example.app:id/item_7||Settings|[0,799][1080,983]"
-    ]
-   }
-  },
-  "x108|conv|llm": {
-   "id": "x108",
-   "side": "conv",
-   "screen": "llm",
-   "outcome": "EQUAL",
-   "x": {
-    "n": 0,
-    "fp": []
-   },
-   "u": {
-    "n": 0,
-    "fp": []
-   }
-  },
-  "x109|llm|llm": {
-   "id": "x109",
-   "side": "llm",
-   "screen": "llm",
-   "outcome": "EQUAL",
-   "x": {
-    "n": 0,
-    "fp": []
-   },
-   "u": {
-    "n": 0,
-    "fp": []
-   }
-  },
-  "x109|conv|llm": {
-   "id": "x109",
-   "side": "conv",
-   "screen": "llm",
-   "outcome": "EQUAL",
-   "x": {
-    "n": 0,
-    "fp": []
-   },
-   "u": {
-    "n": 0,
-    "fp": []
-   }
-  },
-  "x131|llm|llm": {
-   "id": "x131",
-   "side": "llm",
-   "screen": "llm",
-   "outcome": "EQUAL",
-   "x": {
-    "n": 0,
-    "fp": []
-   },
-   "u": {
-    "n": 0,
-    "fp": []
-   }
-  },
-  "x131|conv|llm": {
-   "id": "x131",
-   "side": "conv",
-   "screen": "llm",
-   "outcome": "EQUAL",
-   "x": {
-    "n": 0,
-    "fp": []
-   },
-   "u": {
-    "n": 0,
-    "fp": []
-   }
-  },
-  "x136|llm|llm": {
-   "id": "x136",
-   "side": "llm",
-   "screen": "llm",
-   "outcome": "EQUAL",
-   "x": {
-    "n": 0,
-    "fp": []
-   },
-   "u": {
-    "n": 0,
-    "fp": []
-   }
-  },
-  "x136|conv|llm": {
-   "id": "x136",
-   "side": "conv",
-   "screen": "llm",
-   "outcome": "EQUAL",
-   "x": {
-    "n": 0,
-    "fp": []
-   },
-   "u": {
-    "n": 0,
-    "fp": []
-   }
-  },
-  "x144|conv|llm": {
-   "id": "x144",
-   "side": "conv",
-   "screen": "llm",
-   "outcome": "EQUAL",
-   "x": {
-    "n": 0,
-    "fp": []
-   },
-   "u": {
-    "n": 0,
-    "fp": []
-   }
-  },
-  "x146|llm|llm": {
-   "id": "x146",
-   "side": "llm",
-   "screen": "llm",
-   "outcome": "EQUAL",
-   "x": {
-    "n": 0,
-    "fp": []
-   },
-   "u": {
-    "n": 0,
-    "fp": []
-   }
-  },
-  "x146|conv|llm": {
-   "id": "x146",
-   "side": "conv",
-   "screen": "llm",
-   "outcome": "EQUAL",
-   "x": {
-    "n": 0,
-    "fp": []
-   },
-   "u": {
-    "n": 0,
-    "fp": []
-   }
-  },
-  "x149|llm|llm": {
-   "id": "x149",
-   "side": "llm",
-   "screen": "llm",
-   "outcome": "EQUAL",
-   "x": {
-    "n": 0,
-    "fp": []
-   },
-   "u": {
-    "n": 0,
-    "fp": []
-   }
-  },
-  "x149|conv|llm": {
-   "id": "x149",
-   "side": "conv",
-   "screen": "llm",
-   "outcome": "EQUAL",
-   "x": {
-    "n": 0,
-    "fp": []
-   },
-   "u": {
-    "n": 0,
-    "fp": []
-   }
-  },
-  "x153|llm|llm": {
-   "id": "x153",
-   "side": "llm",
-   "screen": "llm",
-   "outcome": "EQUAL",
-   "x": {
-    "n": 0,
-    "fp": []
-   },
-   "u": {
-    "n": 0,
-    "fp": []
-   }
-  },
-  "x153|conv|llm": {
-   "id": "x153",
-   "side": "conv",
-   "screen": "llm",
-   "outcome": "EQUAL",
-   "x": {
-    "n": 0,
-    "fp": []
-   },
-   "u": {
-    "n": 0,
-    "fp": []
-   }
-  },
-  "x157|llm|llm": {
-   "id": "x157",
-   "side": "llm",
-   "screen": "llm",
-   "outcome": "EQUAL",
-   "x": {
-    "n": 0,
-    "fp": []
-   },
-   "u": {
-    "n": 0,
-    "fp": []
-   }
-  },
-  "x157|conv|llm": {
-   "id": "x157",
-   "side": "conv",
-   "screen": "llm",
-   "outcome": "EQUAL",
-   "x": {
-    "n": 0,
-    "fp": []
-   },
-   "u": {
-    "n": 0,
-    "fp": []
-   }
-  },
-  "x162|llm|llm": {
-   "id": "x162",
-   "side": "llm",
-   "screen": "llm",
-   "outcome": "EQUAL",
-   "x": {
-    "n": 0,
-    "fp": []
-   },
-   "u": {
-    "n": 0,
-    "fp": []
-   }
-  },
-  "x162|conv|llm": {
-   "id": "x162",
-   "side": "conv",
-   "screen": "llm",
-   "outcome": "EQUAL",
-   "x": {
-    "n": 0,
-    "fp": []
-   },
-   "u": {
-    "n": 0,
-    "fp": []
-   }
-  },
-  "x163|llm|llm": {
-   "id": "x163",
-   "side": "llm",
-   "screen": "llm",
-   "outcome": "UISEL_ERROR",
-   "x": {
-    "n": 0,
-    "fp": []
-   },
-   "u": {
-    "error": "invalid selector: Could not parse selector expression `new UiSelector().text(\"C:\\\\Temp\\\\\")`: Unclosed paren in expression"
-   }
-  },
-  "x163|conv|llm": {
-   "id": "x163",
-   "side": "conv",
-   "screen": "llm",
-   "outcome": "EQUAL",
-   "x": {
-    "n": 0,
-    "fp": []
-   },
-   "u": {
-    "n": 0,
-    "fp": []
-   }
-  },
-  "x164|conv|llm": {
-   "id": "x164",
-   "side": "conv",
-   "screen": "llm",
-   "outcome": "EQUAL",
-   "x": {
-    "n": 0,
-    "fp": []
-   },
-   "u": {
-    "n": 0,
-    "fp": []
-   }
-  },
-  "x170|conv|llm": {
-   "id": "x170",
-   "side": "conv",
-   "screen": "llm",
-   "outcome": "EQUAL",
-   "x": {
-    "n": 0,
-    "fp": []
-   },
-   "u": {
-    "n": 0,
-    "fp": []
-   }
-  },
-  "x189|llm|llm": {
-   "id": "x189",
-   "side": "llm",
-   "screen": "llm",
-   "outcome": "EQUAL",
-   "x": {
-    "n": 0,
-    "fp": []
-   },
-   "u": {
-    "n": 0,
-    "fp": []
-   }
-  },
-  "x189|conv|llm": {
-   "id": "x189",
-   "side": "conv",
-   "screen": "llm",
-   "outcome": "EQUAL",
-   "x": {
-    "n": 0,
-    "fp": []
-   },
-   "u": {
-    "n": 0,
-    "fp": []
-   }
-  },
-  "x194|llm|llm": {
-   "id": "x194",
-   "side": "llm",
-   "screen": "llm",
-   "outcome": "EQUAL",
-   "x": {
-    "n": 0,
-    "fp": []
-   },
-   "u": {
-    "n": 0,
-    "fp": []
-   }
-  },
-  "x194|conv|llm": {
-   "id": "x194",
-   "side": "conv",
-   "screen": "llm",
-   "outcome": "EQUAL",
-   "x": {
-    "n": 0,
-    "fp": []
-   },
-   "u": {
-    "n": 0,
-    "fp": []
-   }
-  },
-  "x199|llm|llm": {
-   "id": "x199",
-   "side": "llm",
-   "screen": "llm",
-   "outcome": "EQUAL",
-   "x": {
-    "n": 4,
-    "fp": [
-     "android.widget.TextView||Total 1.5 kg||[810,63][1080,247]",
-     "android.widget.TextView||Total\n||[0,1903][216,2087]",
-     "android.widget.TextView||Tot||[648,1903][864,2087]",
-     "android.widget.TextView||Totally||[864,1903][1080,2087]"
-    ]
-   },
-   "u": {
-    "n": 4,
-    "fp": [
-     "android.widget.TextView||Total 1.5 kg||[810,63][1080,247]",
-     "android.widget.TextView||Total\n||[0,1903][216,2087]",
-     "android.widget.TextView||Tot||[648,1903][864,2087]",
-     "android.widget.TextView||Totally||[864,1903][1080,2087]"
-    ]
-   }
-  },
-  "x204|conv|llm": {
-   "id": "x204",
-   "side": "conv",
-   "screen": "llm",
-   "outcome": "EQUAL",
-   "x": {
-    "n": 0,
-    "fp": []
-   },
-   "u": {
-    "n": 0,
-    "fp": []
-   }
-  },
-  "x209|llm|llm": {
-   "id": "x209",
-   "side": "llm",
-   "screen": "llm",
-   "outcome": "EQUAL",
-   "x": {
-    "n": 0,
-    "fp": []
-   },
-   "u": {
-    "n": 0,
-    "fp": []
-   }
-  },
-  "x209|conv|llm": {
-   "id": "x209",
-   "side": "conv",
-   "screen": "llm",
-   "outcome": "EQUAL",
-   "x": {
-    "n": 0,
-    "fp": []
-   },
-   "u": {
-    "n": 0,
-    "fp": []
-   }
-  },
-  "x211|llm|llm": {
-   "id": "x211",
-   "side": "llm",
-   "screen": "llm",
-   "outcome": "EQUAL",
-   "x": {
-    "n": 53,
-    "f0": "android.widget.FrameLayout||||[0,0][1080,2400]"
-   },
-   "u": {
-    "n": 53,
-    "f0": "android.widget.FrameLayout||||[0,0][1080,2400]"
-   }
-  },
-  "x220|conv|llm": {
-   "id": "x220",
-   "side": "conv",
-   "screen": "llm",
-   "outcome": "EQUAL",
-   "x": {
-    "n": 0,
-    "fp": []
-   },
-   "u": {
-    "n": 0,
-    "fp": []
-   }
-  },
-  "x225|llm|llm": {
-   "id": "x225",
-   "side": "llm",
-   "screen": "llm",
-   "outcome": "EQUAL",
-   "x": {
-    "n": 0,
-    "fp": []
-   },
-   "u": {
-    "n": 0,
-    "fp": []
-   }
-  },
-  "x226|llm|llm": {
-   "id": "x226",
-   "side": "llm",
-   "screen": "llm",
-   "outcome": "EQUAL",
-   "x": {
-    "n": 0,
-    "fp": []
-   },
-   "u": {
-    "n": 0,
-    "fp": []
-   }
-  },
-  "x230|llm|llm": {
-   "id": "x230",
-   "side": "llm",
-   "screen": "llm",
-   "outcome": "EQUAL",
-   "x": {
-    "n": 0,
-    "fp": []
-   },
-   "u": {
-    "n": 0,
-    "fp": []
-   }
-  },
-  "x230|conv|llm": {
-   "id": "x230",
-   "side": "conv",
-   "screen": "llm",
-   "outcome": "EQUAL",
-   "x": {
-    "n": 0,
-    "fp": []
-   },
-   "u": {
-    "n": 0,
-    "fp": []
-   }
-  },
-  "x231|llm|llm": {
-   "id": "x231",
-   "side": "llm",
-   "screen": "llm",
-   "outcome": "XPATH_ERROR",
-   "x": {
-    "error": "unknown error: Invalid regular expression flag parameter.. Try changing the 'enforceXPath1' driver setting to 'true' in order to workaround the problem."
-   },
-   "u": {
-    "n": 0,
-    "fp": []
-   }
-  },
-  "x243|llm|llm": {
-   "id": "x243",
-   "side": "llm",
-   "screen": "llm",
-   "outcome": "EQUAL",
-   "x": {
-    "n": 0,
-    "fp": []
-   },
-   "u": {
-    "n": 0,
-    "fp": []
-   }
-  },
-  "x243|conv|llm": {
-   "id": "x243",
-   "side": "conv",
-   "screen": "llm",
-   "outcome": "EQUAL",
-   "x": {
-    "n": 0,
-    "fp": []
-   },
-   "u": {
-    "n": 0,
-    "fp": []
-   }
-  },
-  "x244|llm|llm": {
-   "id": "x244",
-   "side": "llm",
-   "screen": "llm",
-   "outcome": "UISEL_ERROR",
-   "x": {
-    "n": 0,
-    "fp": []
-   },
-   "u": {
-    "error": "invalid selector: Could not parse selector expression `new UiSelector().password(true)`: UiSelector has no `password` method"
-   }
-  },
-  "x247|conv|llm": {
-   "id": "x247",
-   "side": "conv",
-   "screen": "llm",
-   "outcome": "EQUAL",
-   "x": {
-    "n": 0,
-    "fp": []
-   },
-   "u": {
-    "n": 0,
-    "fp": []
-   }
-  },
-  "x248|llm|llm": {
-   "id": "x248",
-   "side": "llm",
-   "screen": "llm",
-   "outcome": "SET_DIFFERS",
-   "x": {
-    "n": 10,
-    "fp": [
-     "android.view.ViewGroup|||popon_wepejazuk_zeru|[0,247][1080,431]",
-     "android.view.ViewGroup|||popon_wepejazuk_zeru|[0,431][1080,615]",
-     "android.view.ViewGroup|||popon_wepejazuk_zeru|[0,615][1080,799]",
-     "android.widget.TextView||d|Settings|[0,676][1080,737]",
-     "android.view.ViewGroup|||popon_wepejazuk_zeru|[0,799][1080,983]",
-     "android.widget.ImageView|com.example.app:id/item_7||Settings|[0,799][1080,983]",
-     "android.widget.ImageView|||i1|[0,983][540,1167]",
-     "android.widget.ImageView|||i2|[540,983][1080,1167]",
-     "android.widget.ImageView|||i3|[0,1167][540,1351]",
-     "android.widget.ImageView|||i4|[540,1167][1080,1351]"
-    ]
-   },
-   "u": {
-    "n": 53,
-    "fp": [
-     "android.widget.FrameLayout||||[0,0][1080,2400]",
-     "android.widget.LinearLayout||||[0,0][1080,2400]",
-     "android.widget.FrameLayout|android:id/content|||[0,0][1080,2400]",
-     "android.widget.FrameLayout||||[0,0][1080,2400]",
-     "android.widget.LinearLayout||||[0,63][1080,2274]",
-     "android.widget.LinearLayout||||[0,63][1080,247]",
-     "android.widget.SeekBar||1.5||[0,63][270,247]",
-     "android.widget.SeekBar||21.5||[270,63][540,247]",
-     "android.widget.ProgressBar||50.0||[540,63][810,247]",
-     "android.widget.TextView||Total 1.5 kg||[810,63][1080,247]",
-     "android.view.ViewGroup|||popon_wepejazuk_zeru|[0,247][1080,431]",
-     "android.widget.TextView|com.example.app:id/item_7|a||[0,247][1080,431]",
-     "android.view.ViewGroup|||popon_wepejazuk_zeru|[0,431][1080,615]",
-     "android.widget.TextView||b||[0,431][1080,615]",
-     "android.view.ViewGroup|||popon_wepejazuk_zeru|[0,615][1080,799]",
-     "android.widget.TextView|com.example.app:id/item_7|c||[0,615][1080,676]",
-     "android.widget.TextView||d|Settings|[0,676][1080,737]",
-     "android.widget.TextView|com.example.app:id/item_7|e||[0,737][1080,798]",
-     "android.view.ViewGroup|||popon_wepejazuk_zeru|[0,799][1080,983]",
-     "android.widget.ImageView|com.example.app:id/item_7||Settings|[0,799][1080,983]",
-     "android.widget.ScrollView||||[0,983][1080,1167]",
-     "android.widget.LinearLayout||||[0,983][1080,1167]",
-     "android.widget.ImageView|||i1|[0,983][540,1167]",
-     "android.widget.ImageView|||i2|[540,983][1080,1167]",
-     "android.widget.ScrollView||||[0,1167][1080,1351]",
-     "android.widget.LinearLayout||||[0,1167][1080,1351]",
-     "android.widget.ImageView|||i3|[0,1167][540,1351]",
-     "android.widget.ImageView|||i4|[540,1167][1080,1351]",
-     "android.view.View|cuzoces-moduvu|||[0,1351][1080,1535]",
-     "android.widget.LinearLayout||||[0,1351][1080,1535]",
-     "android.widget.TextView||m1||[0,1351][540,1535]",
-     "android.widget.TextView||m2||[540,1351][1080,1535]",
-     "android.view.View|cuzoces-moduvu|||[0,1535][1080,1719]",
-     "android.widget.LinearLayout||||[0,1535][1080,1719]",
-     "android.widget.TextView||m3||[0,1535][540,1719]",
-     "android.widget.TextView||m4||[540,1535][1080,1719]",
-     "android.widget.LinearLayout||||[0,1719][1080,1903]",
-     "android.widget.TextView|io.zofujize.vikuwag.vajotin:id/danob_danob_hac|u1||[0,1719][360,1903]",
-     "android.widget.TextView|danob_danob_hac|u2||[360,1719][720,1903]",
-     "android.widget.TextView|x:id/danob_danob_hac_2|u3||[720,1719][1080,1903]",
-     "android.widget.LinearLayout||||[0,1903][1080,2087]",
-     "android.widget.TextView||Total\n||[0,1903][216,2087]",
-     "android.widget.TextView|| Total\t||[216,1903][432,2087]",
-     "android.widget.TextView||To tal||[432,1903][648,2087]",
-     "android.widget.TextView||Tot||[648,1903][864,2087]",
-     "android.widget.TextView||Totally||[864,1903][1080,2087]",
-     "android.widget.LinearLayout||||[0,2087][1080,2271]",
-     "android.widget.TextView||😀😀😀😀😀||[0,2087][180,2271]",
-     "android.widget.TextView||abcde||[180,2087][360,2271]",
-     "android.widget.TextView||abcd||[360,2087][540,2271]",
-     "android.widget.TextView||OK||[540,2087][720,2271]",
-     "android.widget.TextView||oK||[720,2087][900,2271]",
-     "android.widget.TextView||OkK||[900,2087][1080,2271]"
-    ]
-   }
-  },
-  "x248|conv|llm": {
-   "id": "x248",
-   "side": "conv",
-   "screen": "llm",
-   "outcome": "EQUAL",
-   "x": {
-    "n": 10,
-    "f0": "android.view.ViewGroup|||popon_wepejazuk_zeru|[0,247][1080,431]"
-   },
-   "u": {
-    "n": 10,
-    "f0": "android.view.ViewGroup|||popon_wepejazuk_zeru|[0,247][1080,431]"
-   }
-  },
-  "x251|llm|llm": {
-   "id": "x251",
-   "side": "llm",
-   "screen": "llm",
-   "outcome": "EQUAL",
-   "x": {
-    "n": 0,
-    "fp": []
-   },
-   "u": {
-    "n": 0,
-    "fp": []
-   }
-  },
-  "x251|conv|llm": {
-   "id": "x251",
-   "side": "conv",
-   "screen": "llm",
-   "outcome": "EQUAL",
-   "x": {
-    "n": 0,
-    "fp": []
-   },
-   "u": {
-    "n": 0,
-    "fp": []
-   }
-  },
-  "x262|llm|llm": {
-   "id": "x262",
-   "side": "llm",
-   "screen": "llm",
-   "outcome": "EQUAL",
-   "x": {
-    "n": 1,
-    "fp": [
-     "android.widget.TextView||OK||[540,2087][720,2271]"
-    ]
-   },
-   "u": {
-    "n": 1,
-    "fp": [
-     "android.widget.TextView||OK||[540,2087][720,2271]"
-    ]
-   }
-  },
-  "x263|llm|llm": {
-   "id": "x263",
-   "side": "llm",
-   "screen": "llm",
-   "outcome": "EQUAL",
-   "x": {
-    "n": 0,
-    "fp": []
-   },
-   "u": {
-    "n": 0,
-    "fp": []
-   }
-  },
-  "x263|conv|llm": {
-   "id": "x263",
-   "side": "conv",
-   "screen": "llm",
-   "outcome": "EQUAL",
-   "x": {
-    "n": 0,
-    "fp": []
-   },
-   "u": {
-    "n": 0,
-    "fp": []
-   }
-  },
-  "x266|llm|llm": {
-   "id": "x266",
-   "side": "llm",
-   "screen": "llm",
-   "outcome": "SET_DIFFERS",
-   "x": {
-    "n": 27,
-    "fp": [
-     "android.widget.SeekBar||1.5||[0,63][270,247]",
-     "android.widget.SeekBar||21.5||[270,63][540,247]",
-     "android.widget.ProgressBar||50.0||[540,63][810,247]",
-     "android.widget.TextView||Total 1.5 kg||[810,63][1080,247]",
-     "android.widget.TextView|com.example.app:id/item_7|a||[0,247][1080,431]",
-     "android.widget.TextView||b||[0,431][1080,615]",
-     "android.widget.TextView|com.example.app:id/item_7|c||[0,615][1080,676]",
-     "android.widget.TextView||d|Settings|[0,676][1080,737]",
-     "android.widget.TextView|com.example.app:id/item_7|e||[0,737][1080,798]",
-     "android.widget.TextView||m1||[0,1351][540,1535]",
-     "android.widget.TextView||m2||[540,1351][1080,1535]",
-     "android.widget.TextView||m3||[0,1535][540,1719]",
-     "android.widget.TextView||m4||[540,1535][1080,1719]",
-     "android.widget.TextView|io.zofujize.vikuwag.vajotin:id/danob_danob_hac|u1||[0,1719][360,1903]",
-     "android.widget.TextView|danob_danob_hac|u2||[360,1719][720,1903]",
-     "android.widget.TextView|x:id/danob_danob_hac_2|u3||[720,1719][1080,1903]",
-     "android.widget.TextView||Total\n||[0,1903][216,2087]",
-     "android.widget.TextView|| Total\t||[216,1903][432,2087]",
-     "android.widget.TextView||To tal||[432,1903][648,2087]",
-     "android.widget.TextView||Tot||[648,1903][864,2087]",
-     "android.widget.TextView||Totally||[864,1903][1080,2087]",
-     "android.widget.TextView||😀😀😀😀😀||[0,2087][180,2271]",
-     "android.widget.TextView||abcde||[180,2087][360,2271]",
-     "android.widget.TextView||abcd||[360,2087][540,2271]",
-     "android.widget.TextView||OK||[540,2087][720,2271]",
-     "android.widget.TextView||oK||[720,2087][900,2271]",
-     "android.widget.TextView||OkK||[900,2087][1080,2271]"
-    ]
-   },
-   "u": {
-    "n": 24,
-    "fp": [
-     "android.widget.TextView||Total 1.5 kg||[810,63][1080,247]",
-     "android.widget.TextView|com.example.app:id/item_7|a||[0,247][1080,431]",
-     "android.widget.TextView||b||[0,431][1080,615]",
-     "android.widget.TextView|com.example.app:id/item_7|c||[0,615][1080,676]",
-     "android.widget.TextView||d|Settings|[0,676][1080,737]",
-     "android.widget.TextView|com.example.app:id/item_7|e||[0,737][1080,798]",
-     "android.widget.TextView||m1||[0,1351][540,1535]",
-     "android.widget.TextView||m2||[540,1351][1080,1535]",
-     "android.widget.TextView||m3||[0,1535][540,1719]",
-     "android.widget.TextView||m4||[540,1535][1080,1719]",
-     "android.widget.TextView|io.zofujize.vikuwag.vajotin:id/danob_danob_hac|u1||[0,1719][360,1903]",
-     "android.widget.TextView|danob_danob_hac|u2||[360,1719][720,1903]",
-     "android.widget.TextView|x:id/danob_danob_hac_2|u3||[720,1719][1080,1903]",
-     "android.widget.TextView||Total\n||[0,1903][216,2087]",
-     "android.widget.TextView|| Total\t||[216,1903][432,2087]",
-     "android.widget.TextView||To tal||[432,1903][648,2087]",
-     "android.widget.TextView||Tot||[648,1903][864,2087]",
-     "android.widget.TextView||Totally||[864,1903][1080,2087]",
-     "android.widget.TextView||😀😀😀😀😀||[0,2087][180,2271]",
-     "android.widget.TextView||abcde||[180,2087][360,2271]",
-     "android.widget.TextView||abcd||[360,2087][540,2271]",
-     "android.widget.TextView||OK||[540,2087][720,2271]",
-     "android.widget.TextView||oK||[720,2087][900,2271]",
-     "android.widget.TextView||OkK||[900,2087][1080,2271]"
-    ]
-   }
-  },
-  "x266|conv|llm": {
-   "id": "x266",
-   "side": "conv",
-   "screen": "llm",
-   "outcome": "SET_DIFFERS",
-   "x": {
-    "n": 27,
-    "fp": [
-     "android.widget.SeekBar||1.5||[0,63][270,247]",
-     "android.widget.SeekBar||21.5||[270,63][540,247]",
-     "android.widget.ProgressBar||50.0||[540,63][810,247]",
-     "android.widget.TextView||Total 1.5 kg||[810,63][1080,247]",
-     "android.widget.TextView|com.example.app:id/item_7|a||[0,247][1080,431]",
-     "android.widget.TextView||b||[0,431][1080,615]",
-     "android.widget.TextView|com.example.app:id/item_7|c||[0,615][1080,676]",
-     "android.widget.TextView||d|Settings|[0,676][1080,737]",
-     "android.widget.TextView|com.example.app:id/item_7|e||[0,737][1080,798]",
-     "android.widget.TextView||m1||[0,1351][540,1535]",
-     "android.widget.TextView||m2||[540,1351][1080,1535]",
-     "android.widget.TextView||m3||[0,1535][540,1719]",
-     "android.widget.TextView||m4||[540,1535][1080,1719]",
-     "android.widget.TextView|io.zofujize.vikuwag.vajotin:id/danob_danob_hac|u1||[0,1719][360,1903]",
-     "android.widget.TextView|danob_danob_hac|u2||[360,1719][720,1903]",
-     "android.widget.TextView|x:id/danob_danob_hac_2|u3||[720,1719][1080,1903]",
-     "android.widget.TextView||Total\n||[0,1903][216,2087]",
-     "android.widget.TextView|| Total\t||[216,1903][432,2087]",
-     "android.widget.TextView||To tal||[432,1903][648,2087]",
-     "android.widget.TextView||Tot||[648,1903][864,2087]",
-     "android.widget.TextView||Totally||[864,1903][1080,2087]",
-     "android.widget.TextView||😀😀😀😀😀||[0,2087][180,2271]",
-     "android.widget.TextView||abcde||[180,2087][360,2271]",
-     "android.widget.TextView||abcd||[360,2087][540,2271]",
-     "android.widget.TextView||OK||[540,2087][720,2271]",
-     "android.widget.TextView||oK||[720,2087][900,2271]",
-     "android.widget.TextView||OkK||[900,2087][1080,2271]"
-    ]
-   },
-   "u": {
-    "n": 24,
-    "fp": [
-     "android.widget.TextView||Total 1.5 kg||[810,63][1080,247]",
-     "android.widget.TextView|com.example.app:id/item_7|a||[0,247][1080,431]",
-     "android.widget.TextView||b||[0,431][1080,615]",
-     "android.widget.TextView|com.example.app:id/item_7|c||[0,615][1080,676]",
-     "android.widget.TextView||d|Settings|[0,676][1080,737]",
-     "android.widget.TextView|com.example.app:id/item_7|e||[0,737][1080,798]",
-     "android.widget.TextView||m1||[0,1351][540,1535]",
-     "android.widget.TextView||m2||[540,1351][1080,1535]",
-     "android.widget.TextView||m3||[0,1535][540,1719]",
-     "android.widget.TextView||m4||[540,1535][1080,1719]",
-     "android.widget.TextView|io.zofujize.vikuwag.vajotin:id/danob_danob_hac|u1||[0,1719][360,1903]",
-     "android.widget.TextView|danob_danob_hac|u2||[360,1719][720,1903]",
-     "android.widget.TextView|x:id/danob_danob_hac_2|u3||[720,1719][1080,1903]",
-     "android.widget.TextView||Total\n||[0,1903][216,2087]",
-     "android.widget.TextView|| Total\t||[216,1903][432,2087]",
-     "android.widget.TextView||To tal||[432,1903][648,2087]",
-     "android.widget.TextView||Tot||[648,1903][864,2087]",
-     "android.widget.TextView||Totally||[864,1903][1080,2087]",
-     "android.widget.TextView||😀😀😀😀😀||[0,2087][180,2271]",
-     "android.widget.TextView||abcde||[180,2087][360,2271]",
-     "android.widget.TextView||abcd||[360,2087][540,2271]",
-     "android.widget.TextView||OK||[540,2087][720,2271]",
-     "android.widget.TextView||oK||[720,2087][900,2271]",
-     "android.widget.TextView||OkK||[900,2087][1080,2271]"
-    ]
-   }
-  },
-  "x267|llm|llm": {
-   "id": "x267",
-   "side": "llm",
-   "screen": "llm",
-   "outcome": "EQUAL",
-   "x": {
-    "n": 0,
-    "fp": []
-   },
-   "u": {
-    "n": 0,
-    "fp": []
-   }
-  },
-  "x267|conv|llm": {
-   "id": "x267",
-   "side": "conv",
-   "screen": "llm",
-   "outcome": "EQUAL",
-   "x": {
-    "n": 0,
-    "fp": []
-   },
-   "u": {
-    "n": 0,
-    "fp": []
-   }
-  },
-  "x268|llm|llm": {
-   "id": "x268",
-   "side": "llm",
-   "screen": "llm",
-   "outcome": "EQUAL",
-   "x": {
-    "n": 0,
-    "fp": []
-   },
-   "u": {
-    "n": 0,
-    "fp": []
-   }
-  },
-  "x268|conv|llm": {
-   "id": "x268",
-   "side": "conv",
-   "screen": "llm",
-   "outcome": "EQUAL",
-   "x": {
-    "n": 0,
-    "fp": []
-   },
-   "u": {
-    "n": 0,
-    "fp": []
-   }
-  },
-  "x278|llm|llm": {
-   "id": "x278",
-   "side": "llm",
-   "screen": "llm",
-   "outcome": "EQUAL",
-   "x": {
-    "n": 0,
-    "fp": []
-   },
-   "u": {
-    "n": 0,
-    "fp": []
-   }
-  },
-  "x278|conv|llm": {
-   "id": "x278",
-   "side": "conv",
-   "screen": "llm",
-   "outcome": "EQUAL",
-   "x": {
-    "n": 0,
-    "fp": []
-   },
-   "u": {
-    "n": 0,
-    "fp": []
-   }
-  },
-  "x284|llm|llm": {
-   "id": "x284",
-   "side": "llm",
-   "screen": "llm",
-   "outcome": "EQUAL",
-   "x": {
-    "n": 0,
-    "fp": []
-   },
-   "u": {
-    "n": 0,
-    "fp": []
-   }
-  },
-  "x284|conv|llm": {
-   "id": "x284",
-   "side": "conv",
-   "screen": "llm",
-   "outcome": "EQUAL",
-   "x": {
-    "n": 0,
-    "fp": []
-   },
-   "u": {
-    "n": 0,
-    "fp": []
-   }
-  },
-  "x285|llm|llm": {
-   "id": "x285",
-   "side": "llm",
-   "screen": "llm",
-   "outcome": "EQUAL",
-   "x": {
-    "n": 0,
-    "fp": []
-   },
-   "u": {
-    "n": 0,
-    "fp": []
-   }
-  },
-  "x285|conv|llm": {
-   "id": "x285",
-   "side": "conv",
-   "screen": "llm",
-   "outcome": "EQUAL",
-   "x": {
-    "n": 0,
-    "fp": []
-   },
-   "u": {
-    "n": 0,
-    "fp": []
-   }
-  },
-  "x287|llm|llm": {
-   "id": "x287",
-   "side": "llm",
-   "screen": "llm",
-   "outcome": "EQUAL",
-   "x": {
-    "n": 0,
-    "fp": []
-   },
-   "u": {
-    "n": 0,
-    "fp": []
-   }
-  },
-  "x287|conv|llm": {
-   "id": "x287",
-   "side": "conv",
-   "screen": "llm",
-   "outcome": "EQUAL",
-   "x": {
-    "n": 0,
-    "fp": []
-   },
-   "u": {
-    "n": 0,
-    "fp": []
-   }
-  },
-  "x288|llm|llm": {
-   "id": "x288",
-   "side": "llm",
-   "screen": "llm",
-   "outcome": "EQUAL",
-   "x": {
-    "n": 0,
-    "fp": []
-   },
-   "u": {
-    "n": 0,
-    "fp": []
-   }
-  },
-  "x288|conv|llm": {
-   "id": "x288",
-   "side": "conv",
-   "screen": "llm",
-   "outcome": "EQUAL",
-   "x": {
-    "n": 0,
-    "fp": []
-   },
-   "u": {
-    "n": 0,
-    "fp": []
-   }
-  },
-  "x311|llm|llm": {
-   "id": "x311",
-   "side": "llm",
-   "screen": "llm",
-   "outcome": "SET_DIFFERS",
-   "x": {
-    "n": 0,
-    "fp": []
-   },
-   "u": {
-    "n": 1,
-    "fp": [
-     "android.widget.TextView||d|Settings|[0,676][1080,737]"
-    ]
-   }
-  },
-  "x314|llm|llm": {
-   "id": "x314",
-   "side": "llm",
-   "screen": "llm",
-   "outcome": "EQUAL",
-   "x": {
-    "n": 0,
-    "fp": []
-   },
-   "u": {
-    "n": 0,
-    "fp": []
-   }
-  },
-  "x314|conv|llm": {
-   "id": "x314",
-   "side": "conv",
-   "screen": "llm",
-   "outcome": "EQUAL",
-   "x": {
-    "n": 0,
-    "fp": []
-   },
-   "u": {
-    "n": 0,
-    "fp": []
-   }
-  },
-  "x317|llm|llm": {
-   "id": "x317",
-   "side": "llm",
-   "screen": "llm",
-   "outcome": "EQUAL",
-   "x": {
-    "n": 4,
-    "fp": [
-     "android.widget.TextView||Total 1.5 kg||[810,63][1080,247]",
-     "android.widget.TextView||Total\n||[0,1903][216,2087]",
-     "android.widget.TextView|| Total\t||[216,1903][432,2087]",
-     "android.widget.TextView||Totally||[864,1903][1080,2087]"
-    ]
-   },
-   "u": {
-    "n": 4,
-    "fp": [
-     "android.widget.TextView||Total 1.5 kg||[810,63][1080,247]",
-     "android.widget.TextView||Total\n||[0,1903][216,2087]",
-     "android.widget.TextView|| Total\t||[216,1903][432,2087]",
-     "android.widget.TextView||Totally||[864,1903][1080,2087]"
-    ]
-   }
-  },
-  "x317|conv|llm": {
-   "id": "x317",
-   "side": "conv",
-   "screen": "llm",
-   "outcome": "EQUAL",
-   "x": {
-    "n": 4,
-    "fp": [
-     "android.widget.TextView||Total 1.5 kg||[810,63][1080,247]",
-     "android.widget.TextView||Total\n||[0,1903][216,2087]",
-     "android.widget.TextView|| Total\t||[216,1903][432,2087]",
-     "android.widget.TextView||Totally||[864,1903][1080,2087]"
-    ]
-   },
-   "u": {
-    "n": 4,
-    "fp": [
-     "android.widget.TextView||Total 1.5 kg||[810,63][1080,247]",
-     "android.widget.TextView||Total\n||[0,1903][216,2087]",
-     "android.widget.TextView|| Total\t||[216,1903][432,2087]",
-     "android.widget.TextView||Totally||[864,1903][1080,2087]"
-    ]
-   }
-  },
-  "x325|conv|llm": {
-   "id": "x325",
-   "side": "conv",
-   "screen": "llm",
-   "outcome": "EQUAL",
-   "x": {
-    "n": 0,
-    "fp": []
-   },
-   "u": {
-    "n": 0,
-    "fp": []
-   }
-  },
-  "x326|llm|llm": {
-   "id": "x326",
-   "side": "llm",
-   "screen": "llm",
-   "outcome": "EQUAL",
-   "x": {
-    "n": 0,
-    "fp": []
-   },
-   "u": {
-    "n": 0,
-    "fp": []
-   }
-  },
-  "x326|conv|llm": {
-   "id": "x326",
-   "side": "conv",
-   "screen": "llm",
-   "outcome": "EQUAL",
-   "x": {
-    "n": 0,
-    "fp": []
-   },
-   "u": {
-    "n": 0,
-    "fp": []
-   }
-  },
-  "x330|conv|llm": {
-   "id": "x330",
-   "side": "conv",
-   "screen": "llm",
-   "outcome": "EQUAL",
-   "x": {
-    "n": 0,
-    "fp": []
-   },
-   "u": {
-    "n": 0,
-    "fp": []
-   }
-  },
-  "x339|llm|llm": {
-   "id": "x339",
-   "side": "llm",
-   "screen": "llm",
-   "outcome": "EQUAL",
-   "x": {
-    "n": 0,
-    "fp": []
-   },
-   "u": {
-    "n": 0,
-    "fp": []
-   }
-  },
-  "x339|conv|llm": {
-   "id": "x339",
-   "side": "conv",
-   "screen": "llm",
-   "outcome": "EQUAL",
-   "x": {
-    "n": 0,
-    "fp": []
-   },
-   "u": {
-    "n": 0,
-    "fp": []
-   }
-  },
-  "x345|llm|llm": {
-   "id": "x345",
-   "side": "llm",
-   "screen": "llm",
-   "outcome": "EQUAL",
-   "x": {
-    "n": 0,
-    "fp": []
-   },
-   "u": {
-    "n": 0,
-    "fp": []
-   }
-  },
-  "x345|conv|llm": {
-   "id": "x345",
-   "side": "conv",
-   "screen": "llm",
-   "outcome": "EQUAL",
-   "x": {
-    "n": 0,
-    "fp": []
-   },
-   "u": {
-    "n": 0,
-    "fp": []
-   }
-  },
-  "x359|llm|llm": {
-   "id": "x359",
-   "side": "llm",
-   "screen": "llm",
-   "outcome": "EQUAL",
-   "x": {
-    "n": 0,
-    "fp": []
-   },
-   "u": {
-    "n": 0,
-    "fp": []
-   }
-  },
-  "x359|conv|llm": {
-   "id": "x359",
-   "side": "conv",
-   "screen": "llm",
-   "outcome": "EQUAL",
-   "x": {
-    "n": 0,
-    "fp": []
-   },
-   "u": {
-    "n": 0,
-    "fp": []
-   }
-  },
-  "x360|llm|llm": {
-   "id": "x360",
-   "side": "llm",
-   "screen": "llm",
-   "outcome": "EQUAL",
-   "x": {
-    "n": 0,
-    "fp": []
-   },
-   "u": {
-    "n": 0,
-    "fp": []
-   }
-  },
-  "x360|conv|llm": {
-   "id": "x360",
-   "side": "conv",
-   "screen": "llm",
-   "outcome": "EQUAL",
-   "x": {
-    "n": 0,
-    "fp": []
-   },
-   "u": {
-    "n": 0,
-    "fp": []
-   }
-  },
-  "x361|llm|llm": {
-   "id": "x361",
-   "side": "llm",
-   "screen": "llm",
-   "outcome": "SET_DIFFERS",
-   "x": {
-    "n": 26,
-    "fp": [
-     "android.widget.FrameLayout||||[0,0][1080,2400]",
-     "android.widget.LinearLayout||||[0,0][1080,2400]",
-     "android.widget.FrameLayout|android:id/content|||[0,0][1080,2400]",
-     "android.widget.FrameLayout||||[0,0][1080,2400]",
-     "android.widget.LinearLayout||||[0,63][1080,2274]",
-     "android.widget.LinearLayout||||[0,63][1080,247]",
-     "android.view.ViewGroup|||popon_wepejazuk_zeru|[0,247][1080,431]",
-     "android.view.ViewGroup|||popon_wepejazuk_zeru|[0,431][1080,615]",
-     "android.view.ViewGroup|||popon_wepejazuk_zeru|[0,615][1080,799]",
-     "android.view.ViewGroup|||popon_wepejazuk_zeru|[0,799][1080,983]",
-     "android.widget.ImageView|com.example.app:id/item_7||Settings|[0,799][1080,983]",
-     "android.widget.ScrollView||||[0,983][1080,1167]",
-     "android.widget.LinearLayout||||[0,983][1080,1167]",
-     "android.widget.ImageView|||i1|[0,983][540,1167]",
-     "android.widget.ImageView|||i2|[540,983][1080,1167]",
-     "android.widget.ScrollView||||[0,1167][1080,1351]",
-     "android.widget.LinearLayout||||[0,1167][1080,1351]",
-     "android.widget.ImageView|||i3|[0,1167][540,1351]",
-     "android.widget.ImageView|||i4|[540,1167][1080,1351]",
-     "android.view.View|cuzoces-moduvu|||[0,1351][1080,1535]",
-     "android.widget.LinearLayout||||[0,1351][1080,1535]",
-     "android.view.View|cuzoces-moduvu|||[0,1535][1080,1719]",
-     "android.widget.LinearLayout||||[0,1535][1080,1719]",
-     "android.widget.LinearLayout||||[0,1719][1080,1903]",
-     "android.widget.LinearLayout||||[0,1903][1080,2087]",
-     "android.widget.LinearLayout||||[0,2087][1080,2271]"
-    ]
-   },
-   "u": {
-    "n": 0,
-    "fp": []
-   }
-  },
-  "x362|llm|llm": {
-   "id": "x362",
-   "side": "llm",
-   "screen": "llm",
-   "outcome": "EQUAL",
-   "x": {
-    "n": 0,
-    "fp": []
-   },
-   "u": {
-    "n": 0,
-    "fp": []
-   }
-  },
-  "x362|conv|llm": {
-   "id": "x362",
-   "side": "conv",
-   "screen": "llm",
-   "outcome": "EQUAL",
-   "x": {
-    "n": 0,
-    "fp": []
-   },
-   "u": {
-    "n": 0,
-    "fp": []
-   }
-  },
-  "x363|conv|llm": {
-   "id": "x363",
-   "side": "conv",
-   "screen": "llm",
-   "outcome": "EQUAL",
-   "x": {
-    "n": 0,
-    "fp": []
-   },
-   "u": {
-    "n": 0,
-    "fp": []
-   }
-  },
-  "x364|llm|llm": {
-   "id": "x364",
-   "side": "llm",
-   "screen": "llm",
-   "outcome": "EQUAL",
-   "x": {
-    "n": 0,
-    "fp": []
-   },
-   "u": {
-    "n": 0,
-    "fp": []
-   }
-  },
-  "x364|conv|llm": {
-   "id": "x364",
-   "side": "conv",
-   "screen": "llm",
-   "outcome": "EQUAL",
-   "x": {
-    "n": 0,
-    "fp": []
-   },
-   "u": {
-    "n": 0,
-    "fp": []
-   }
-  },
-  "x367|llm|llm": {
-   "id": "x367",
-   "side": "llm",
-   "screen": "llm",
-   "outcome": "EQUAL",
-   "x": {
-    "n": 0,
-    "fp": []
-   },
-   "u": {
-    "n": 0,
-    "fp": []
-   }
-  },
-  "x372|conv|llm": {
-   "id": "x372",
-   "side": "conv",
-   "screen": "llm",
-   "outcome": "EQUAL",
-   "x": {
-    "n": 0,
-    "fp": []
-   },
-   "u": {
-    "n": 0,
-    "fp": []
-   }
-  },
-  "x373|llm|llm": {
-   "id": "x373",
-   "side": "llm",
-   "screen": "llm",
-   "outcome": "EQUAL",
-   "x": {
-    "n": 0,
-    "fp": []
-   },
-   "u": {
-    "n": 0,
-    "fp": []
-   }
-  },
-  "x373|conv|llm": {
-   "id": "x373",
-   "side": "conv",
-   "screen": "llm",
-   "outcome": "EQUAL",
-   "x": {
-    "n": 0,
-    "fp": []
-   },
-   "u": {
-    "n": 0,
-    "fp": []
-   }
-  },
-  "x376|llm|llm": {
-   "id": "x376",
-   "side": "llm",
-   "screen": "llm",
-   "outcome": "EQUAL",
-   "x": {
-    "n": 0,
-    "fp": []
-   },
-   "u": {
-    "n": 0,
-    "fp": []
-   }
-  },
-  "x380|llm|llm": {
-   "id": "x380",
-   "side": "llm",
-   "screen": "llm",
-   "outcome": "SET_DIFFERS",
-   "x": {
-    "n": 52,
-    "fp": [
-     "android.widget.FrameLayout||||[0,0][1080,2400]",
-     "android.widget.LinearLayout||||[0,0][1080,2400]",
-     "android.widget.FrameLayout|android:id/content|||[0,0][1080,2400]",
-     "android.widget.FrameLayout||||[0,0][1080,2400]",
-     "android.widget.LinearLayout||||[0,63][1080,2274]",
-     "android.widget.LinearLayout||||[0,63][1080,247]",
-     "android.widget.SeekBar||1.5||[0,63][270,247]",
-     "android.widget.SeekBar||21.5||[270,63][540,247]",
-     "android.widget.ProgressBar||50.0||[540,63][810,247]",
-     "android.widget.TextView||Total 1.5 kg||[810,63][1080,247]",
-     "android.view.ViewGroup|||popon_wepejazuk_zeru|[0,247][1080,431]",
-     "android.widget.TextView|com.example.app:id/item_7|a||[0,247][1080,431]",
-     "android.view.ViewGroup|||popon_wepejazuk_zeru|[0,431][1080,615]",
-     "android.widget.TextView||b||[0,431][1080,615]",
-     "android.view.ViewGroup|||popon_wepejazuk_zeru|[0,615][1080,799]",
-     "android.widget.TextView|com.example.app:id/item_7|c||[0,615][1080,676]",
-     "android.widget.TextView||d|Settings|[0,676][1080,737]",
-     "android.widget.TextView|com.example.app:id/item_7|e||[0,737][1080,798]",
-     "android.view.ViewGroup|||popon_wepejazuk_zeru|[0,799][1080,983]",
-     "android.widget.ImageView|com.example.app:id/item_7||Settings|[0,799][1080,983]",
-     "android.widget.ScrollView||||[0,983][1080,1167]",
-     "android.widget.LinearLayout||||[0,983][1080,1167]",
-     "android.widget.ImageView|||i1|[0,983][540,1167]",
-     "android.widget.ImageView|||i2|[540,983][1080,1167]",
-     "android.widget.ScrollView||||[0,1167][1080,1351]",
-     "android.widget.LinearLayout||||[0,1167][1080,1351]",
-     "android.widget.ImageView|||i3|[0,1167][540,1351]",
-     "android.widget.ImageView|||i4|[540,1167][1080,1351]",
-     "android.view.View|cuzoces-moduvu|||[0,1351][1080,1535]",
-     "android.widget.LinearLayout||||[0,1351][1080,1535]",
-     "android.widget.TextView||m1||[0,1351][540,1535]",
-     "android.widget.TextView||m2||[540,1351][1080,1535]",
-     "android.view.View|cuzoces-moduvu|||[0,1535][1080,1719]",
-     "android.widget.LinearLayout||||[0,1535][1080,1719]",
-     "android.widget.TextView||m3||[0,1535][540,1719]",
-     "android.widget.TextView||m4||[540,1535][1080,1719]",
-     "android.widget.LinearLayout||||[0,1719][1080,1903]",
-     "android.widget.TextView|io.zofujize.vikuwag.vajotin:id/danob_danob_hac|u1||[0,1719][360,1903]",
-     "android.widget.TextView|danob_danob_hac|u2||[360,1719][720,1903]",
-     "android.widget.TextView|x:id/danob_danob_hac_2|u3||[720,1719][1080,1903]",
-     "android.widget.LinearLayout||||[0,1903][1080,2087]",
-     "android.widget.TextView||Total\n||[0,1903][216,2087]",
-     "android.widget.TextView|| Total\t||[216,1903][432,2087]",
-     "android.widget.TextView||To tal||[432,1903][648,2087]",
-     "android.widget.TextView||Tot||[648,1903][864,2087]",
-     "android.widget.TextView||Totally||[864,1903][1080,2087]",
-     "android.widget.LinearLayout||||[0,2087][1080,2271]",
-     "android.widget.TextView||😀😀😀😀😀||[0,2087][180,2271]",
-     "android.widget.TextView||abcde||[180,2087][360,2271]",
-     "android.widget.TextView||abcd||[360,2087][540,2271]",
-     "android.widget.TextView||oK||[720,2087][900,2271]",
-     "android.widget.TextView||OkK||[900,2087][1080,2271]"
-    ]
-   },
-   "u": {
-    "n": 23,
-    "fp": [
-     "android.widget.TextView||Total 1.5 kg||[810,63][1080,247]",
-     "android.widget.TextView|com.example.app:id/item_7|a||[0,247][1080,431]",
-     "android.widget.TextView||b||[0,431][1080,615]",
-     "android.widget.TextView|com.example.app:id/item_7|c||[0,615][1080,676]",
-     "android.widget.TextView||d|Settings|[0,676][1080,737]",
-     "android.widget.TextView|com.example.app:id/item_7|e||[0,737][1080,798]",
-     "android.widget.TextView||m1||[0,1351][540,1535]",
-     "android.widget.TextView||m2||[540,1351][1080,1535]",
-     "android.widget.TextView||m3||[0,1535][540,1719]",
-     "android.widget.TextView||m4||[540,1535][1080,1719]",
-     "android.widget.TextView|io.zofujize.vikuwag.vajotin:id/danob_danob_hac|u1||[0,1719][360,1903]",
-     "android.widget.TextView|danob_danob_hac|u2||[360,1719][720,1903]",
-     "android.widget.TextView|x:id/danob_danob_hac_2|u3||[720,1719][1080,1903]",
-     "android.widget.TextView||Total\n||[0,1903][216,2087]",
-     "android.widget.TextView|| Total\t||[216,1903][432,2087]",
-     "android.widget.TextView||To tal||[432,1903][648,2087]",
-     "android.widget.TextView||Tot||[648,1903][864,2087]",
-     "android.widget.TextView||Totally||[864,1903][1080,2087]",
-     "android.widget.TextView||😀😀😀😀😀||[0,2087][180,2271]",
-     "android.widget.TextView||abcde||[180,2087][360,2271]",
-     "android.widget.TextView||abcd||[360,2087][540,2271]",
-     "android.widget.TextView||oK||[720,2087][900,2271]",
-     "android.widget.TextView||OkK||[900,2087][1080,2271]"
-    ]
-   }
-  },
-  "x393|llm|llm": {
-   "id": "x393",
-   "side": "llm",
-   "screen": "llm",
-   "outcome": "SET_DIFFERS",
-   "x": {
-    "n": 53,
-    "fp": [
-     "android.widget.FrameLayout||||[0,0][1080,2400]",
-     "android.widget.LinearLayout||||[0,0][1080,2400]",
-     "android.widget.FrameLayout|android:id/content|||[0,0][1080,2400]",
-     "android.widget.FrameLayout||||[0,0][1080,2400]",
-     "android.widget.LinearLayout||||[0,63][1080,2274]",
-     "android.widget.LinearLayout||||[0,63][1080,247]",
-     "android.widget.SeekBar||1.5||[0,63][270,247]",
-     "android.widget.SeekBar||21.5||[270,63][540,247]",
-     "android.widget.ProgressBar||50.0||[540,63][810,247]",
-     "android.widget.TextView||Total 1.5 kg||[810,63][1080,247]",
-     "android.view.ViewGroup|||popon_wepejazuk_zeru|[0,247][1080,431]",
-     "android.widget.TextView|com.example.app:id/item_7|a||[0,247][1080,431]",
-     "android.view.ViewGroup|||popon_wepejazuk_zeru|[0,431][1080,615]",
-     "android.widget.TextView||b||[0,431][1080,615]",
-     "android.view.ViewGroup|||popon_wepejazuk_zeru|[0,615][1080,799]",
-     "android.widget.TextView|com.example.app:id/item_7|c||[0,615][1080,676]",
-     "android.widget.TextView||d|Settings|[0,676][1080,737]",
-     "android.widget.TextView|com.example.app:id/item_7|e||[0,737][1080,798]",
-     "android.view.ViewGroup|||popon_wepejazuk_zeru|[0,799][1080,983]",
-     "android.widget.ImageView|com.example.app:id/item_7||Settings|[0,799][1080,983]",
-     "android.widget.ScrollView||||[0,983][1080,1167]",
-     "android.widget.LinearLayout||||[0,983][1080,1167]",
-     "android.widget.ImageView|||i1|[0,983][540,1167]",
-     "android.widget.ImageView|||i2|[540,983][1080,1167]",
-     "android.widget.ScrollView||||[0,1167][1080,1351]",
-     "android.widget.LinearLayout||||[0,1167][1080,1351]",
-     "android.widget.ImageView|||i3|[0,1167][540,1351]",
-     "android.widget.ImageView|||i4|[540,1167][1080,1351]",
-     "android.view.View|cuzoces-moduvu|||[0,1351][1080,1535]",
-     "android.widget.LinearLayout||||[0,1351][1080,1535]",
-     "android.widget.TextView||m1||[0,1351][540,1535]",
-     "android.widget.TextView||m2||[540,1351][1080,1535]",
-     "android.view.View|cuzoces-moduvu|||[0,1535][1080,1719]",
-     "android.widget.LinearLayout||||[0,1535][1080,1719]",
-     "android.widget.TextView||m3||[0,1535][540,1719]",
-     "android.widget.TextView||m4||[540,1535][1080,1719]",
-     "android.widget.LinearLayout||||[0,1719][1080,1903]",
-     "android.widget.TextView|io.zofujize.vikuwag.vajotin:id/danob_danob_hac|u1||[0,1719][360,1903]",
-     "android.widget.TextView|danob_danob_hac|u2||[360,1719][720,1903]",
-     "android.widget.TextView|x:id/danob_danob_hac_2|u3||[720,1719][1080,1903]",
-     "android.widget.LinearLayout||||[0,1903][1080,2087]",
-     "android.widget.TextView||Total\n||[0,1903][216,2087]",
-     "android.widget.TextView|| Total\t||[216,1903][432,2087]",
-     "android.widget.TextView||To tal||[432,1903][648,2087]",
-     "android.widget.TextView||Tot||[648,1903][864,2087]",
-     "android.widget.TextView||Totally||[864,1903][1080,2087]",
-     "android.widget.LinearLayout||||[0,2087][1080,2271]",
-     "android.widget.TextView||😀😀😀😀😀||[0,2087][180,2271]",
-     "android.widget.TextView||abcde||[180,2087][360,2271]",
-     "android.widget.TextView||abcd||[360,2087][540,2271]",
-     "android.widget.TextView||OK||[540,2087][720,2271]",
-     "android.widget.TextView||oK||[720,2087][900,2271]",
-     "android.widget.TextView||OkK||[900,2087][1080,2271]"
-    ]
-   },
-   "u": {
-    "n": 24,
-    "fp": [
-     "android.widget.TextView||Total 1.5 kg||[810,63][1080,247]",
-     "android.widget.TextView|com.example.app:id/item_7|a||[0,247][1080,431]",
-     "android.widget.TextView||b||[0,431][1080,615]",
-     "android.widget.TextView|com.example.app:id/item_7|c||[0,615][1080,676]",
-     "android.widget.TextView||d|Settings|[0,676][1080,737]",
-     "android.widget.TextView|com.example.app:id/item_7|e||[0,737][1080,798]",
-     "android.widget.TextView||m1||[0,1351][540,1535]",
-     "android.widget.TextView||m2||[540,1351][1080,1535]",
-     "android.widget.TextView||m3||[0,1535][540,1719]",
-     "android.widget.TextView||m4||[540,1535][1080,1719]",
-     "android.widget.TextView|io.zofujize.vikuwag.vajotin:id/danob_danob_hac|u1||[0,1719][360,1903]",
-     "android.widget.TextView|danob_danob_hac|u2||[360,1719][720,1903]",
-     "android.widget.TextView|x:id/danob_danob_hac_2|u3||[720,1719][1080,1903]",
-     "android.widget.TextView||Total\n||[0,1903][216,2087]",
-     "android.widget.TextView|| Total\t||[216,1903][432,2087]",
-     "android.widget.TextView||To tal||[432,1903][648,2087]",
-     "android.widget.TextView||Tot||[648,1903][864,2087]",
-     "android.widget.TextView||Totally||[864,1903][1080,2087]",
-     "android.widget.TextView||😀😀😀😀😀||[0,2087][180,2271]",
-     "android.widget.TextView||abcde||[180,2087][360,2271]",
-     "android.widget.TextView||abcd||[360,2087][540,2271]",
-     "android.widget.TextView||OK||[540,2087][720,2271]",
-     "android.widget.TextView||oK||[720,2087][900,2271]",
-     "android.widget.TextView||OkK||[900,2087][1080,2271]"
-    ]
-   }
-  },
-  "x433|conv|llm": {
-   "id": "x433",
-   "side": "conv",
-   "screen": "llm",
-   "outcome": "EQUAL",
-   "x": {
-    "n": 0,
-    "fp": []
-   },
-   "u": {
-    "n": 0,
-    "fp": []
-   }
-  },
-  "x442|llm|llm": {
-   "id": "x442",
-   "side": "llm",
-   "screen": "llm",
-   "outcome": "EQUAL",
-   "x": {
-    "n": 0,
-    "fp": []
-   },
-   "u": {
-    "n": 0,
-    "fp": []
-   }
-  },
-  "x442|conv|llm": {
-   "id": "x442",
-   "side": "conv",
-   "screen": "llm",
-   "outcome": "EQUAL",
-   "x": {
-    "n": 0,
-    "fp": []
-   },
-   "u": {
-    "n": 0,
-    "fp": []
-   }
-  },
-  "x454|llm|llm": {
-   "id": "x454",
-   "side": "llm",
-   "screen": "llm",
-   "outcome": "EQUAL",
-   "x": {
-    "n": 0,
-    "fp": []
-   },
-   "u": {
-    "n": 0,
-    "fp": []
-   }
-  },
-  "x463|llm|llm": {
-   "id": "x463",
-   "side": "llm",
-   "screen": "llm",
-   "outcome": "EQUAL",
-   "x": {
-    "n": 4,
-    "fp": [
-     "android.widget.TextView||Total 1.5 kg||[810,63][1080,247]",
-     "android.widget.TextView||Total\n||[0,1903][216,2087]",
-     "android.widget.TextView|| Total\t||[216,1903][432,2087]",
-     "android.widget.TextView||Totally||[864,1903][1080,2087]"
-    ]
-   },
-   "u": {
-    "n": 4,
-    "fp": [
-     "android.widget.TextView||Total 1.5 kg||[810,63][1080,247]",
-     "android.widget.TextView||Total\n||[0,1903][216,2087]",
-     "android.widget.TextView|| Total\t||[216,1903][432,2087]",
-     "android.widget.TextView||Totally||[864,1903][1080,2087]"
-    ]
-   }
-  },
-  "x463|conv|llm": {
-   "id": "x463",
-   "side": "conv",
-   "screen": "llm",
-   "outcome": "EQUAL",
-   "x": {
-    "n": 4,
-    "fp": [
-     "android.widget.TextView||Total 1.5 kg||[810,63][1080,247]",
-     "android.widget.TextView||Total\n||[0,1903][216,2087]",
-     "android.widget.TextView|| Total\t||[216,1903][432,2087]",
-     "android.widget.TextView||Totally||[864,1903][1080,2087]"
-    ]
-   },
-   "u": {
-    "n": 4,
-    "fp": [
-     "android.widget.TextView||Total 1.5 kg||[810,63][1080,247]",
-     "android.widget.TextView||Total\n||[0,1903][216,2087]",
-     "android.widget.TextView|| Total\t||[216,1903][432,2087]",
-     "android.widget.TextView||Totally||[864,1903][1080,2087]"
-    ]
-   }
-  },
-  "x464|llm|llm": {
-   "id": "x464",
-   "side": "llm",
-   "screen": "llm",
-   "outcome": "EQUAL",
-   "x": {
-    "n": 3,
-    "fp": [
-     "android.widget.TextView||Total 1.5 kg||[810,63][1080,247]",
-     "android.widget.TextView||Total\n||[0,1903][216,2087]",
-     "android.widget.TextView||Totally||[864,1903][1080,2087]"
-    ]
-   },
-   "u": {
-    "n": 3,
-    "fp": [
-     "android.widget.TextView||Total 1.5 kg||[810,63][1080,247]",
-     "android.widget.TextView||Total\n||[0,1903][216,2087]",
-     "android.widget.TextView||Totally||[864,1903][1080,2087]"
-    ]
-   }
-  },
-  "x464|conv|llm": {
-   "id": "x464",
-   "side": "conv",
-   "screen": "llm",
-   "outcome": "EQUAL",
-   "x": {
-    "n": 3,
-    "fp": [
-     "android.widget.TextView||Total 1.5 kg||[810,63][1080,247]",
-     "android.widget.TextView||Total\n||[0,1903][216,2087]",
-     "android.widget.TextView||Totally||[864,1903][1080,2087]"
-    ]
-   },
-   "u": {
-    "n": 3,
-    "fp": [
-     "android.widget.TextView||Total 1.5 kg||[810,63][1080,247]",
-     "android.widget.TextView||Total\n||[0,1903][216,2087]",
-     "android.widget.TextView||Totally||[864,1903][1080,2087]"
-    ]
-   }
-  },
-  "x472|conv|llm": {
-   "id": "x472",
-   "side": "conv",
-   "screen": "llm",
-   "outcome": "EQUAL",
-   "x": {
-    "n": 1,
-    "fp": [
-     "android.widget.TextView||m1||[0,1351][540,1535]"
-    ]
-   },
-   "u": {
-    "n": 1,
-    "fp": [
-     "android.widget.TextView||m1||[0,1351][540,1535]"
-    ]
-   }
-  },
-  "x481|llm|llm": {
-   "id": "x481",
-   "side": "llm",
-   "screen": "llm",
-   "outcome": "EQUAL",
-   "x": {
-    "n": 0,
-    "fp": []
-   },
-   "u": {
-    "n": 0,
-    "fp": []
-   }
-  },
-  "x481|conv|llm": {
-   "id": "x481",
-   "side": "conv",
-   "screen": "llm",
-   "outcome": "EQUAL",
-   "x": {
-    "n": 0,
-    "fp": []
-   },
-   "u": {
-    "n": 0,
-    "fp": []
-   }
-  },
-  "x484|llm|llm": {
-   "id": "x484",
-   "side": "llm",
-   "screen": "llm",
-   "outcome": "XPATH_ERROR",
-   "x": {
-    "error": "unknown error: Value does not match a required type.. Try changing the 'enforceXPath1' driver setting to 'true' in order to workaround the problem."
-   },
-   "u": {
-    "n": 4,
-    "fp": [
-     "android.widget.TextView||Total 1.5 kg||[810,63][1080,247]",
-     "android.widget.TextView||Total\n||[0,1903][216,2087]",
-     "android.widget.TextView|| Total\t||[216,1903][432,2087]",
-     "android.widget.TextView||Totally||[864,1903][1080,2087]"
-    ]
-   }
-  },
-  "x487|llm|llm": {
-   "id": "x487",
-   "side": "llm",
-   "screen": "llm",
-   "outcome": "EQUAL",
-   "x": {
-    "n": 0,
-    "fp": []
-   },
-   "u": {
-    "n": 0,
-    "fp": []
-   }
-  },
-  "x489|llm|llm": {
-   "id": "x489",
-   "side": "llm",
-   "screen": "llm",
-   "outcome": "EQUAL",
-   "x": {
-    "n": 0,
-    "fp": []
-   },
-   "u": {
-    "n": 0,
-    "fp": []
-   }
-  },
-  "x491|llm|llm": {
-   "id": "x491",
-   "side": "llm",
-   "screen": "llm",
-   "outcome": "UISEL_ERROR",
-   "x": {
-    "n": 0,
-    "fp": []
-   },
-   "u": {
-    "error": "invalid selector: Could not parse selector expression `new UiSelector().resourceId(\"com.rusezu.android.vowu.nola:id/rej_bibok\").childSelector(new UiSelector().password(false))`: `UiSelector` doesn't have suitable method `childSelector` with arguments [new UiSelector().password(false)]: Could not par"
-   }
-  },
-  "x492|llm|llm": {
-   "id": "x492",
-   "side": "llm",
-   "screen": "llm",
-   "outcome": "EQUAL",
-   "x": {
-    "n": 0,
-    "fp": []
-   },
-   "u": {
-    "n": 0,
-    "fp": []
-   }
-  },
-  "x492|conv|llm": {
-   "id": "x492",
-   "side": "conv",
-   "screen": "llm",
-   "outcome": "EQUAL",
-   "x": {
-    "n": 0,
-    "fp": []
-   },
-   "u": {
-    "n": 0,
-    "fp": []
-   }
-  },
-  "x494|conv|llm": {
-   "id": "x494",
-   "side": "conv",
-   "screen": "llm",
-   "outcome": "EQUAL",
-   "x": {
-    "n": 0,
-    "fp": []
-   },
-   "u": {
-    "n": 0,
-    "fp": []
-   }
-  },
-  "x497|conv|llm": {
-   "id": "x497",
-   "side": "conv",
-   "screen": "llm",
-   "outcome": "EQUAL",
-   "x": {
-    "n": 1,
-    "fp": [
-     "android.widget.TextView|com.example.app:id/item_7|a||[0,247][1080,431]"
-    ]
-   },
-   "u": {
-    "n": 1,
-    "fp": [
-     "android.widget.TextView|com.example.app:id/item_7|a||[0,247][1080,431]"
-    ]
-   }
-  },
-  "x507|llm|llm": {
-   "id": "x507",
-   "side": "llm",
-   "screen": "llm",
-   "outcome": "EQUAL",
-   "x": {
-    "n": 0,
-    "fp": []
-   },
-   "u": {
-    "n": 0,
-    "fp": []
-   }
-  },
-  "x507|conv|llm": {
-   "id": "x507",
-   "side": "conv",
-   "screen": "llm",
-   "outcome": "EQUAL",
-   "x": {
-    "n": 0,
-    "fp": []
-   },
-   "u": {
-    "n": 0,
-    "fp": []
-   }
-  },
-  "x511|llm|llm": {
-   "id": "x511",
-   "side": "llm",
-   "screen": "llm",
-   "outcome": "EQUAL",
-   "x": {
-    "n": 0,
-    "fp": []
-   },
-   "u": {
-    "n": 0,
-    "fp": []
-   }
-  },
-  "x511|conv|llm": {
-   "id": "x511",
-   "side": "conv",
-   "screen": "llm",
-   "outcome": "EQUAL",
-   "x": {
-    "n": 0,
-    "fp": []
-   },
-   "u": {
-    "n": 0,
-    "fp": []
-   }
-  },
-  "x521|llm|llm": {
-   "id": "x521",
-   "side": "llm",
-   "screen": "llm",
-   "outcome": "EQUAL",
-   "x": {
-    "n": 0,
-    "fp": []
-   },
-   "u": {
-    "n": 0,
-    "fp": []
-   }
-  },
-  "x521|conv|llm": {
-   "id": "x521",
-   "side": "conv",
-   "screen": "llm",
-   "outcome": "EQUAL",
-   "x": {
-    "n": 0,
-    "fp": []
-   },
-   "u": {
-    "n": 0,
-    "fp": []
-   }
-  },
-  "x533|llm|llm": {
-   "id": "x533",
-   "side": "llm",
-   "screen": "llm",
-   "outcome": "EQUAL",
-   "x": {
-    "n": 0,
-    "fp": []
-   },
-   "u": {
-    "n": 0,
-    "fp": []
-   }
-  },
-  "x533|conv|llm": {
-   "id": "x533",
-   "side": "conv",
-   "screen": "llm",
-   "outcome": "EQUAL",
-   "x": {
-    "n": 0,
-    "fp": []
-   },
-   "u": {
-    "n": 0,
-    "fp": []
-   }
-  },
-  "x535|llm|llm": {
-   "id": "x535",
-   "side": "llm",
-   "screen": "llm",
-   "outcome": "EQUAL",
-   "x": {
-    "n": 0,
-    "fp": []
-   },
-   "u": {
-    "n": 0,
-    "fp": []
-   }
-  },
-  "x535|conv|llm": {
-   "id": "x535",
-   "side": "conv",
-   "screen": "llm",
-   "outcome": "EQUAL",
-   "x": {
-    "n": 0,
-    "fp": []
-   },
-   "u": {
-    "n": 0,
-    "fp": []
-   }
-  },
-  "x538|llm|llm": {
-   "id": "x538",
-   "side": "llm",
-   "screen": "llm",
-   "outcome": "EQUAL",
-   "x": {
-    "n": 0,
-    "fp": []
-   },
-   "u": {
-    "n": 0,
-    "fp": []
-   }
-  },
-  "x538|conv|llm": {
-   "id": "x538",
-   "side": "conv",
-   "screen": "llm",
-   "outcome": "EQUAL",
-   "x": {
-    "n": 0,
-    "fp": []
-   },
-   "u": {
-    "n": 0,
-    "fp": []
-   }
-  },
-  "x547|llm|llm": {
-   "id": "x547",
-   "side": "llm",
-   "screen": "llm",
-   "outcome": "XPATH_ERROR",
-   "x": {
-    "error": "unknown error: Can't cast to required type.. Try changing the 'enforceXPath1' driver setting to 'true' in order to workaround the problem."
-   },
-   "u": {
-    "n": 0,
-    "fp": []
-   }
-  },
-  "x559|llm|llm": {
-   "id": "x559",
-   "side": "llm",
-   "screen": "llm",
-   "outcome": "SET_DIFFERS",
-   "x": {
-    "n": 1,
-    "fp": [
-     "android.widget.ProgressBar||50.0||[540,63][810,247]"
-    ]
-   },
-   "u": {
-    "n": 0,
-    "fp": []
-   }
-  },
-  "x562|conv|llm": {
-   "id": "x562",
-   "side": "conv",
-   "screen": "llm",
-   "outcome": "EQUAL",
-   "x": {
-    "n": 53,
-    "f0": "android.widget.FrameLayout||||[0,0][1080,2400]"
-   },
-   "u": {
-    "n": 53,
-    "f0": "android.widget.FrameLayout||||[0,0][1080,2400]"
-   }
-  },
-  "x565|conv|llm": {
-   "id": "x565",
-   "side": "conv",
-   "screen": "llm",
-   "outcome": "EQUAL",
-   "x": {
-    "n": 0,
-    "fp": []
-   },
-   "u": {
-    "n": 0,
-    "fp": []
-   }
-  },
-  "x566|llm|llm": {
-   "id": "x566",
-   "side": "llm",
-   "screen": "llm",
-   "outcome": "EQUAL",
-   "x": {
-    "n": 2,
-    "fp": [
-     "android.widget.TextView||abcde||[180,2087][360,2271]",
-     "android.widget.TextView||abcd||[360,2087][540,2271]"
-    ]
-   },
-   "u": {
-    "n": 2,
-    "fp": [
-     "android.widget.TextView||abcde||[180,2087][360,2271]",
-     "android.widget.TextView||abcd||[360,2087][540,2271]"
-    ]
-   }
-  },
-  "x566|conv|llm": {
-   "id": "x566",
-   "side": "conv",
-   "screen": "llm",
-   "outcome": "EQUAL",
-   "x": {
-    "n": 2,
-    "fp": [
-     "android.widget.TextView||abcde||[180,2087][360,2271]",
-     "android.widget.TextView||abcd||[360,2087][540,2271]"
-    ]
-   },
-   "u": {
-    "n": 2,
-    "fp": [
-     "android.widget.TextView||abcde||[180,2087][360,2271]",
-     "android.widget.TextView||abcd||[360,2087][540,2271]"
-    ]
-   }
-  },
-  "x574|llm|llm": {
-   "id": "x574",
-   "side": "llm",
-   "screen": "llm",
-   "outcome": "EQUAL",
-   "x": {
-    "n": 0,
-    "fp": []
-   },
-   "u": {
-    "n": 0,
-    "fp": []
-   }
-  },
-  "x574|conv|llm": {
-   "id": "x574",
-   "side": "conv",
-   "screen": "llm",
-   "outcome": "EQUAL",
-   "x": {
-    "n": 0,
-    "fp": []
-   },
-   "u": {
-    "n": 0,
-    "fp": []
-   }
-  },
-  "x578|llm|llm": {
-   "id": "x578",
-   "side": "llm",
-   "screen": "llm",
-   "outcome": "EQUAL",
-   "x": {
-    "n": 0,
-    "fp": []
-   },
-   "u": {
-    "n": 0,
-    "fp": []
-   }
-  },
-  "x578|conv|llm": {
-   "id": "x578",
-   "side": "conv",
-   "screen": "llm",
-   "outcome": "EQUAL",
-   "x": {
-    "n": 0,
-    "fp": []
-   },
-   "u": {
-    "n": 0,
-    "fp": []
-   }
-  },
-  "x581|llm|llm": {
-   "id": "x581",
-   "side": "llm",
-   "screen": "llm",
-   "outcome": "EQUAL",
-   "x": {
-    "n": 0,
-    "fp": []
-   },
-   "u": {
-    "n": 0,
-    "fp": []
-   }
-  },
-  "x581|conv|llm": {
-   "id": "x581",
-   "side": "conv",
-   "screen": "llm",
-   "outcome": "EQUAL",
-   "x": {
-    "n": 0,
-    "fp": []
-   },
-   "u": {
-    "n": 0,
-    "fp": []
-   }
-  },
-  "x596|llm|llm": {
-   "id": "x596",
-   "side": "llm",
-   "screen": "llm",
-   "outcome": "EQUAL",
-   "x": {
-    "n": 0,
-    "fp": []
-   },
-   "u": {
-    "n": 0,
-    "fp": []
-   }
-  },
-  "x596|conv|llm": {
-   "id": "x596",
-   "side": "conv",
-   "screen": "llm",
-   "outcome": "EQUAL",
-   "x": {
-    "n": 0,
-    "fp": []
-   },
-   "u": {
-    "n": 0,
-    "fp": []
-   }
-  },
-  "x606|llm|llm": {
-   "id": "x606",
-   "side": "llm",
-   "screen": "llm",
-   "outcome": "EQUAL",
-   "x": {
-    "n": 0,
-    "fp": []
-   },
-   "u": {
-    "n": 0,
-    "fp": []
-   }
-  },
-  "x606|conv|llm": {
-   "id": "x606",
-   "side": "conv",
-   "screen": "llm",
-   "outcome": "EQUAL",
-   "x": {
-    "n": 0,
-    "fp": []
-   },
-   "u": {
-    "n": 0,
-    "fp": []
-   }
-  },
-  "x610|llm|llm": {
-   "id": "x610",
-   "side": "llm",
-   "screen": "llm",
-   "outcome": "EQUAL",
-   "x": {
-    "n": 2,
-    "fp": [
-     "android.widget.TextView||😀😀😀😀😀||[0,2087][180,2271]",
-     "android.widget.TextView||abcde||[180,2087][360,2271]"
-    ]
-   },
-   "u": {
-    "n": 2,
-    "fp": [
-     "android.widget.TextView||😀😀😀😀😀||[0,2087][180,2271]",
-     "android.widget.TextView||abcde||[180,2087][360,2271]"
-    ]
-   }
-  },
-  "x618|llm|llm": {
-   "id": "x618",
-   "side": "llm",
-   "screen": "llm",
-   "outcome": "EQUAL",
-   "x": {
-    "n": 0,
-    "fp": []
-   },
-   "u": {
-    "n": 0,
-    "fp": []
-   }
-  },
-  "x618|conv|llm": {
-   "id": "x618",
-   "side": "conv",
-   "screen": "llm",
-   "outcome": "EQUAL",
-   "x": {
-    "n": 0,
-    "fp": []
-   },
-   "u": {
-    "n": 0,
-    "fp": []
-   }
-  },
-  "x626|llm|llm": {
-   "id": "x626",
-   "side": "llm",
-   "screen": "llm",
-   "outcome": "EQUAL",
-   "x": {
-    "n": 0,
-    "fp": []
-   },
-   "u": {
-    "n": 0,
-    "fp": []
-   }
-  },
-  "x626|conv|llm": {
-   "id": "x626",
-   "side": "conv",
-   "screen": "llm",
-   "outcome": "EQUAL",
-   "x": {
-    "n": 0,
-    "fp": []
-   },
-   "u": {
-    "n": 0,
-    "fp": []
-   }
-  },
-  "x631|conv|llm": {
-   "id": "x631",
-   "side": "conv",
-   "screen": "llm",
-   "outcome": "EQUAL",
-   "x": {
-    "n": 0,
-    "fp": []
-   },
-   "u": {
-    "n": 0,
-    "fp": []
-   }
-  },
-  "x648|conv|llm": {
-   "id": "x648",
-   "side": "conv",
-   "screen": "llm",
-   "outcome": "EQUAL",
-   "x": {
-    "n": 1,
-    "fp": [
-     "android.widget.TextView||OK||[540,2087][720,2271]"
-    ]
-   },
-   "u": {
-    "n": 1,
-    "fp": [
-     "android.widget.TextView||OK||[540,2087][720,2271]"
-    ]
-   }
-  },
-  "x653|llm|llm": {
-   "id": "x653",
-   "side": "llm",
-   "screen": "llm",
-   "outcome": "EQUAL",
-   "x": {
-    "n": 0,
-    "fp": []
-   },
-   "u": {
-    "n": 0,
-    "fp": []
-   }
-  },
-  "x653|conv|llm": {
-   "id": "x653",
-   "side": "conv",
-   "screen": "llm",
-   "outcome": "EQUAL",
-   "x": {
-    "n": 0,
-    "fp": []
-   },
-   "u": {
-    "n": 0,
-    "fp": []
-   }
-  },
-  "x658|llm|llm": {
-   "id": "x658",
-   "side": "llm",
-   "screen": "llm",
-   "outcome": "EQUAL",
-   "x": {
-    "n": 1,
-    "fp": [
-     "android.widget.TextView||OK||[540,2087][720,2271]"
-    ]
-   },
-   "u": {
-    "n": 1,
-    "fp": [
-     "android.widget.TextView||OK||[540,2087][720,2271]"
-    ]
-   }
-  },
-  "x658|conv|llm": {
-   "id": "x658",
-   "side": "conv",
-   "screen": "llm",
-   "outcome": "EQUAL",
-   "x": {
-    "n": 1,
-    "fp": [
-     "android.widget.TextView||OK||[540,2087][720,2271]"
-    ]
-   },
-   "u": {
-    "n": 1,
-    "fp": [
-     "android.widget.TextView||OK||[540,2087][720,2271]"
-    ]
-   }
-  },
-  "x659|llm|llm": {
-   "id": "x659",
-   "side": "llm",
-   "screen": "llm",
-   "outcome": "EQUAL",
-   "x": {
-    "n": 2,
-    "fp": [
-     "android.widget.TextView||OK||[540,2087][720,2271]",
-     "android.widget.TextView||oK||[720,2087][900,2271]"
-    ]
-   },
-   "u": {
-    "n": 2,
-    "fp": [
-     "android.widget.TextView||OK||[540,2087][720,2271]",
-     "android.widget.TextView||oK||[720,2087][900,2271]"
-    ]
-   }
-  },
-  "x660|llm|llm": {
-   "id": "x660",
-   "side": "llm",
-   "screen": "llm",
-   "outcome": "EQUAL",
-   "x": {
-    "n": 0,
-    "fp": []
-   },
-   "u": {
-    "n": 0,
-    "fp": []
-   }
-  },
-  "x660|conv|llm": {
-   "id": "x660",
-   "side": "conv",
-   "screen": "llm",
-   "outcome": "EQUAL",
-   "x": {
-    "n": 0,
-    "fp": []
-   },
-   "u": {
-    "n": 0,
-    "fp": []
-   }
-  },
-  "x672|llm|llm": {
-   "id": "x672",
-   "side": "llm",
-   "screen": "llm",
-   "outcome": "EQUAL",
-   "x": {
-    "n": 2,
-    "fp": [
-     "android.widget.TextView||OK||[540,2087][720,2271]",
-     "android.widget.TextView||oK||[720,2087][900,2271]"
-    ]
-   },
-   "u": {
-    "n": 2,
-    "fp": [
-     "android.widget.TextView||OK||[540,2087][720,2271]",
-     "android.widget.TextView||oK||[720,2087][900,2271]"
-    ]
-   }
-  },
-  "x676|llm|llm": {
-   "id": "x676",
-   "side": "llm",
-   "screen": "llm",
-   "outcome": "EQUAL",
-   "x": {
-    "n": 0,
-    "fp": []
-   },
-   "u": {
-    "n": 0,
-    "fp": []
-   }
-  },
-  "x676|conv|llm": {
-   "id": "x676",
-   "side": "conv",
-   "screen": "llm",
-   "outcome": "EQUAL",
-   "x": {
-    "n": 0,
-    "fp": []
-   },
-   "u": {
-    "n": 0,
-    "fp": []
-   }
-  },
-  "x680|llm|llm": {
-   "id": "x680",
-   "side": "llm",
-   "screen": "llm",
-   "outcome": "SET_DIFFERS",
-   "x": {
-    "n": 10,
-    "fp": [
-     "android.widget.FrameLayout|android:id/content|||[0,0][1080,2400]",
-     "android.widget.TextView|com.example.app:id/item_7|a||[0,247][1080,431]",
-     "android.widget.TextView|com.example.app:id/item_7|c||[0,615][1080,676]",
-     "android.widget.TextView|com.example.app:id/item_7|e||[0,737][1080,798]",
-     "android.widget.ImageView|com.example.app:id/item_7||Settings|[0,799][1080,983]",
-     "android.view.View|cuzoces-moduvu|||[0,1351][1080,1535]",
-     "android.view.View|cuzoces-moduvu|||[0,1535][1080,1719]",
-     "android.widget.TextView|io.zofujize.vikuwag.vajotin:id/danob_danob_hac|u1||[0,1719][360,1903]",
-     "android.widget.TextView|danob_danob_hac|u2||[360,1719][720,1903]",
-     "android.widget.TextView|x:id/danob_danob_hac_2|u3||[720,1719][1080,1903]"
-    ]
-   },
-   "u": {
-    "n": 53,
-    "fp": [
-     "android.widget.FrameLayout||||[0,0][1080,2400]",
-     "android.widget.LinearLayout||||[0,0][1080,2400]",
-     "android.widget.FrameLayout|android:id/content|||[0,0][1080,2400]",
-     "android.widget.FrameLayout||||[0,0][1080,2400]",
-     "android.widget.LinearLayout||||[0,63][1080,2274]",
-     "android.widget.LinearLayout||||[0,63][1080,247]",
-     "android.widget.SeekBar||1.5||[0,63][270,247]",
-     "android.widget.SeekBar||21.5||[270,63][540,247]",
-     "android.widget.ProgressBar||50.0||[540,63][810,247]",
-     "android.widget.TextView||Total 1.5 kg||[810,63][1080,247]",
-     "android.view.ViewGroup|||popon_wepejazuk_zeru|[0,247][1080,431]",
-     "android.widget.TextView|com.example.app:id/item_7|a||[0,247][1080,431]",
-     "android.view.ViewGroup|||popon_wepejazuk_zeru|[0,431][1080,615]",
-     "android.widget.TextView||b||[0,431][1080,615]",
-     "android.view.ViewGroup|||popon_wepejazuk_zeru|[0,615][1080,799]",
-     "android.widget.TextView|com.example.app:id/item_7|c||[0,615][1080,676]",
-     "android.widget.TextView||d|Settings|[0,676][1080,737]",
-     "android.widget.TextView|com.example.app:id/item_7|e||[0,737][1080,798]",
-     "android.view.ViewGroup|||popon_wepejazuk_zeru|[0,799][1080,983]",
-     "android.widget.ImageView|com.example.app:id/item_7||Settings|[0,799][1080,983]",
-     "android.widget.ScrollView||||[0,983][1080,1167]",
-     "android.widget.LinearLayout||||[0,983][1080,1167]",
-     "android.widget.ImageView|||i1|[0,983][540,1167]",
-     "android.widget.ImageView|||i2|[540,983][1080,1167]",
-     "android.widget.ScrollView||||[0,1167][1080,1351]",
-     "android.widget.LinearLayout||||[0,1167][1080,1351]",
-     "android.widget.ImageView|||i3|[0,1167][540,1351]",
-     "android.widget.ImageView|||i4|[540,1167][1080,1351]",
-     "android.view.View|cuzoces-moduvu|||[0,1351][1080,1535]",
-     "android.widget.LinearLayout||||[0,1351][1080,1535]",
-     "android.widget.TextView||m1||[0,1351][540,1535]",
-     "android.widget.TextView||m2||[540,1351][1080,1535]",
-     "android.view.View|cuzoces-moduvu|||[0,1535][1080,1719]",
-     "android.widget.LinearLayout||||[0,1535][1080,1719]",
-     "android.widget.TextView||m3||[0,1535][540,1719]",
-     "android.widget.TextView||m4||[540,1535][1080,1719]",
-     "android.widget.LinearLayout||||[0,1719][1080,1903]",
-     "android.widget.TextView|io.zofujize.vikuwag.vajotin:id/danob_danob_hac|u1||[0,1719][360,1903]",
-     "android.widget.TextView|danob_danob_hac|u2||[360,1719][720,1903]",
-     "android.widget.TextView|x:id/danob_danob_hac_2|u3||[720,1719][1080,1903]",
-     "android.widget.LinearLayout||||[0,1903][1080,2087]",
-     "android.widget.TextView||Total\n||[0,1903][216,2087]",
-     "android.widget.TextView|| Total\t||[216,1903][432,2087]",
-     "android.widget.TextView||To tal||[432,1903][648,2087]",
-     "android.widget.TextView||Tot||[648,1903][864,2087]",
-     "android.widget.TextView||Totally||[864,1903][1080,2087]",
-     "android.widget.LinearLayout||||[0,2087][1080,2271]",
-     "android.widget.TextView||😀😀😀😀😀||[0,2087][180,2271]",
-     "android.widget.TextView||abcde||[180,2087][360,2271]",
-     "android.widget.TextView||abcd||[360,2087][540,2271]",
-     "android.widget.TextView||OK||[540,2087][720,2271]",
-     "android.widget.TextView||oK||[720,2087][900,2271]",
-     "android.widget.TextView||OkK||[900,2087][1080,2271]"
-    ]
-   }
-  },
-  "x680|conv|llm": {
-   "id": "x680",
-   "side": "conv",
-   "screen": "llm",
-   "outcome": "EQUAL",
-   "x": {
-    "n": 10,
-    "f0": "android.widget.FrameLayout|android:id/content|||[0,0][1080,2400]"
-   },
-   "u": {
-    "n": 10,
-    "f0": "android.widget.FrameLayout|android:id/content|||[0,0][1080,2400]"
-   }
-  },
   "x001|llm|L0s0": {
    "id": "x001",
    "side": "llm",
@@ -24449,6 +20936,3593 @@
      "android.widget.TextView|com.example.app:id/sihenocesase_pumu_vil|थ़य लभी||[900,2086][1080,2147]"
     ]
    }
+  },
+  "x001|llm|llm": {
+   "id": "x001",
+   "side": "llm",
+   "screen": "llm",
+   "outcome": "EQUAL",
+   "x": {
+    "n": 0,
+    "fp": []
+   },
+   "u": {
+    "n": 0,
+    "fp": []
+   }
+  },
+  "x001|conv|llm": {
+   "id": "x001",
+   "side": "conv",
+   "screen": "llm",
+   "outcome": "EQUAL",
+   "x": {
+    "n": 0,
+    "fp": []
+   },
+   "u": {
+    "n": 0,
+    "fp": []
+   }
+  },
+  "x004|llm|llm": {
+   "id": "x004",
+   "side": "llm",
+   "screen": "llm",
+   "outcome": "SET_DIFFERS",
+   "x": {
+    "n": 2,
+    "fp": [
+     "android.widget.TextView||Total\n||[0,1947][216,2104]",
+     "android.widget.TextView|| Total\t||[216,1947][432,2104]"
+    ]
+   },
+   "u": {
+    "n": 0,
+    "fp": []
+   }
+  },
+  "x007|llm|llm": {
+   "id": "x007",
+   "side": "llm",
+   "screen": "llm",
+   "outcome": "EQUAL",
+   "x": {
+    "n": 4,
+    "fp": [
+     "android.widget.TextView||Total 1.5 kg||[810,63][1080,220]",
+     "android.widget.TextView||Total\n||[0,1947][216,2104]",
+     "android.widget.TextView|| Total\t||[216,1947][432,2104]",
+     "android.widget.TextView||Totally||[864,1947][1080,2104]"
+    ]
+   },
+   "u": {
+    "n": 4,
+    "fp": [
+     "android.widget.TextView||Total 1.5 kg||[810,63][1080,220]",
+     "android.widget.TextView||Total\n||[0,1947][216,2104]",
+     "android.widget.TextView|| Total\t||[216,1947][432,2104]",
+     "android.widget.TextView||Totally||[864,1947][1080,2104]"
+    ]
+   }
+  },
+  "x007|conv|llm": {
+   "id": "x007",
+   "side": "conv",
+   "screen": "llm",
+   "outcome": "EQUAL",
+   "x": {
+    "n": 4,
+    "fp": [
+     "android.widget.TextView||Total 1.5 kg||[810,63][1080,220]",
+     "android.widget.TextView||Total\n||[0,1947][216,2104]",
+     "android.widget.TextView|| Total\t||[216,1947][432,2104]",
+     "android.widget.TextView||Totally||[864,1947][1080,2104]"
+    ]
+   },
+   "u": {
+    "n": 4,
+    "fp": [
+     "android.widget.TextView||Total 1.5 kg||[810,63][1080,220]",
+     "android.widget.TextView||Total\n||[0,1947][216,2104]",
+     "android.widget.TextView|| Total\t||[216,1947][432,2104]",
+     "android.widget.TextView||Totally||[864,1947][1080,2104]"
+    ]
+   }
+  },
+  "x009|llm|llm": {
+   "id": "x009",
+   "side": "llm",
+   "screen": "llm",
+   "outcome": "SET_DIFFERS",
+   "x": {
+    "n": 3,
+    "fp": [
+     "android.widget.SeekBar||1.5||[0,63][270,220]",
+     "android.widget.SeekBar||21.5||[270,63][540,220]",
+     "android.widget.TextView||Total 1.5 kg||[810,63][1080,220]"
+    ]
+   },
+   "u": {
+    "n": 1,
+    "fp": [
+     "android.widget.TextView||Total 1.5 kg||[810,63][1080,220]"
+    ]
+   }
+  },
+  "x009|conv|llm": {
+   "id": "x009",
+   "side": "conv",
+   "screen": "llm",
+   "outcome": "SET_DIFFERS",
+   "x": {
+    "n": 3,
+    "fp": [
+     "android.widget.SeekBar||1.5||[0,63][270,220]",
+     "android.widget.SeekBar||21.5||[270,63][540,220]",
+     "android.widget.TextView||Total 1.5 kg||[810,63][1080,220]"
+    ]
+   },
+   "u": {
+    "n": 1,
+    "fp": [
+     "android.widget.TextView||Total 1.5 kg||[810,63][1080,220]"
+    ]
+   }
+  },
+  "x013|llm|llm": {
+   "id": "x013",
+   "side": "llm",
+   "screen": "llm",
+   "outcome": "EQUAL",
+   "x": {
+    "n": 0,
+    "fp": []
+   },
+   "u": {
+    "n": 0,
+    "fp": []
+   }
+  },
+  "x013|conv|llm": {
+   "id": "x013",
+   "side": "conv",
+   "screen": "llm",
+   "outcome": "EQUAL",
+   "x": {
+    "n": 0,
+    "fp": []
+   },
+   "u": {
+    "n": 0,
+    "fp": []
+   }
+  },
+  "x020|llm|llm": {
+   "id": "x020",
+   "side": "llm",
+   "screen": "llm",
+   "outcome": "EQUAL",
+   "x": {
+    "n": 0,
+    "fp": []
+   },
+   "u": {
+    "n": 0,
+    "fp": []
+   }
+  },
+  "x020|conv|llm": {
+   "id": "x020",
+   "side": "conv",
+   "screen": "llm",
+   "outcome": "EQUAL",
+   "x": {
+    "n": 0,
+    "fp": []
+   },
+   "u": {
+    "n": 0,
+    "fp": []
+   }
+  },
+  "x023|llm|llm": {
+   "id": "x023",
+   "side": "llm",
+   "screen": "llm",
+   "outcome": "SET_DIFFERS",
+   "x": {
+    "n": 2,
+    "fp": [
+     "android.widget.TextView|com.example.app:id/item_7|c||[0,534][1080,586]",
+     "android.widget.TextView|com.example.app:id/item_7|e||[0,638][1080,690]"
+    ]
+   },
+   "u": {
+    "n": 1,
+    "fp": [
+     "android.widget.TextView|com.example.app:id/item_7|c||[0,534][1080,586]"
+    ]
+   }
+  },
+  "x025|llm|llm": {
+   "id": "x025",
+   "side": "llm",
+   "screen": "llm",
+   "outcome": "EQUAL",
+   "x": {
+    "n": 21,
+    "f0": "android.widget.TextView||Total 1.5 kg||[810,63][1080,220]"
+   },
+   "u": {
+    "n": 21,
+    "f0": "android.widget.TextView||Total 1.5 kg||[810,63][1080,220]"
+   }
+  },
+  "x025|conv|llm": {
+   "id": "x025",
+   "side": "conv",
+   "screen": "llm",
+   "outcome": "EQUAL",
+   "x": {
+    "n": 21,
+    "f0": "android.widget.TextView||Total 1.5 kg||[810,63][1080,220]"
+   },
+   "u": {
+    "n": 21,
+    "f0": "android.widget.TextView||Total 1.5 kg||[810,63][1080,220]"
+   }
+  },
+  "x029|llm|llm": {
+   "id": "x029",
+   "side": "llm",
+   "screen": "llm",
+   "outcome": "EQUAL",
+   "x": {
+    "n": 0,
+    "fp": []
+   },
+   "u": {
+    "n": 0,
+    "fp": []
+   }
+  },
+  "x029|conv|llm": {
+   "id": "x029",
+   "side": "conv",
+   "screen": "llm",
+   "outcome": "EQUAL",
+   "x": {
+    "n": 0,
+    "fp": []
+   },
+   "u": {
+    "n": 0,
+    "fp": []
+   }
+  },
+  "x032|llm|llm": {
+   "id": "x032",
+   "side": "llm",
+   "screen": "llm",
+   "outcome": "EQUAL",
+   "x": {
+    "n": 0,
+    "fp": []
+   },
+   "u": {
+    "n": 0,
+    "fp": []
+   }
+  },
+  "x034|llm|llm": {
+   "id": "x034",
+   "side": "llm",
+   "screen": "llm",
+   "outcome": "EQUAL",
+   "x": {
+    "n": 0,
+    "fp": []
+   },
+   "u": {
+    "n": 0,
+    "fp": []
+   }
+  },
+  "x034|conv|llm": {
+   "id": "x034",
+   "side": "conv",
+   "screen": "llm",
+   "outcome": "EQUAL",
+   "x": {
+    "n": 0,
+    "fp": []
+   },
+   "u": {
+    "n": 0,
+    "fp": []
+   }
+  },
+  "x042|llm|llm": {
+   "id": "x042",
+   "side": "llm",
+   "screen": "llm",
+   "outcome": "EQUAL",
+   "x": {
+    "n": 10,
+    "f0": "android.view.ViewGroup|||popon_wepejazuk_zeru|[0,220][1080,377]"
+   },
+   "u": {
+    "n": 10,
+    "f0": "android.view.ViewGroup|||popon_wepejazuk_zeru|[0,220][1080,377]"
+   }
+  },
+  "x042|conv|llm": {
+   "id": "x042",
+   "side": "conv",
+   "screen": "llm",
+   "outcome": "EQUAL",
+   "x": {
+    "n": 10,
+    "f0": "android.view.ViewGroup|||popon_wepejazuk_zeru|[0,220][1080,377]"
+   },
+   "u": {
+    "n": 10,
+    "f0": "android.view.ViewGroup|||popon_wepejazuk_zeru|[0,220][1080,377]"
+   }
+  },
+  "x052|llm|llm": {
+   "id": "x052",
+   "side": "llm",
+   "screen": "llm",
+   "outcome": "EQUAL",
+   "x": {
+    "n": 0,
+    "fp": []
+   },
+   "u": {
+    "n": 0,
+    "fp": []
+   }
+  },
+  "x053|conv|llm": {
+   "id": "x053",
+   "side": "conv",
+   "screen": "llm",
+   "outcome": "EQUAL",
+   "x": {
+    "n": 0,
+    "fp": []
+   },
+   "u": {
+    "n": 0,
+    "fp": []
+   }
+  },
+  "x055|llm|llm": {
+   "id": "x055",
+   "side": "llm",
+   "screen": "llm",
+   "outcome": "EQUAL",
+   "x": {
+    "n": 0,
+    "fp": []
+   },
+   "u": {
+    "n": 0,
+    "fp": []
+   }
+  },
+  "x055|conv|llm": {
+   "id": "x055",
+   "side": "conv",
+   "screen": "llm",
+   "outcome": "EQUAL",
+   "x": {
+    "n": 0,
+    "fp": []
+   },
+   "u": {
+    "n": 0,
+    "fp": []
+   }
+  },
+  "x057|llm|llm": {
+   "id": "x057",
+   "side": "llm",
+   "screen": "llm",
+   "outcome": "EQUAL",
+   "x": {
+    "n": 0,
+    "fp": []
+   },
+   "u": {
+    "n": 0,
+    "fp": []
+   }
+  },
+  "x059|conv|llm": {
+   "id": "x059",
+   "side": "conv",
+   "screen": "llm",
+   "outcome": "EQUAL",
+   "x": {
+    "n": 0,
+    "fp": []
+   },
+   "u": {
+    "n": 0,
+    "fp": []
+   }
+  },
+  "x060|conv|llm": {
+   "id": "x060",
+   "side": "conv",
+   "screen": "llm",
+   "outcome": "EQUAL",
+   "x": {
+    "n": 0,
+    "fp": []
+   },
+   "u": {
+    "n": 0,
+    "fp": []
+   }
+  },
+  "x063|conv|llm": {
+   "id": "x063",
+   "side": "conv",
+   "screen": "llm",
+   "outcome": "EQUAL",
+   "x": {
+    "n": 0,
+    "fp": []
+   },
+   "u": {
+    "n": 0,
+    "fp": []
+   }
+  },
+  "x066|llm|llm": {
+   "id": "x066",
+   "side": "llm",
+   "screen": "llm",
+   "outcome": "EQUAL",
+   "x": {
+    "n": 0,
+    "fp": []
+   },
+   "u": {
+    "n": 0,
+    "fp": []
+   }
+  },
+  "x066|conv|llm": {
+   "id": "x066",
+   "side": "conv",
+   "screen": "llm",
+   "outcome": "EQUAL",
+   "x": {
+    "n": 0,
+    "fp": []
+   },
+   "u": {
+    "n": 0,
+    "fp": []
+   }
+  },
+  "x077|llm|llm": {
+   "id": "x077",
+   "side": "llm",
+   "screen": "llm",
+   "outcome": "SET_DIFFERS",
+   "x": {
+    "n": 60,
+    "fp": [
+     "android.widget.FrameLayout||||[0,0][1080,2400]",
+     "android.widget.LinearLayout||||[0,0][1080,2400]",
+     "android.widget.FrameLayout|android:id/content|||[0,0][1080,2400]",
+     "android.widget.FrameLayout||||[0,0][1080,2400]",
+     "android.widget.LinearLayout||||[0,63][1080,2274]",
+     "android.widget.LinearLayout||||[0,63][1080,220]",
+     "android.widget.SeekBar||1.5||[0,63][270,220]",
+     "android.widget.SeekBar||21.5||[270,63][540,220]",
+     "android.widget.ProgressBar||50.0||[540,63][810,220]",
+     "android.widget.TextView||Total 1.5 kg||[810,63][1080,220]",
+     "android.view.ViewGroup|||popon_wepejazuk_zeru|[0,220][1080,377]",
+     "android.widget.TextView|com.example.app:id/item_7|a||[0,220][1080,377]",
+     "android.view.ViewGroup|||popon_wepejazuk_zeru|[0,377][1080,534]",
+     "android.widget.TextView||b||[0,377][1080,534]",
+     "android.view.ViewGroup|||popon_wepejazuk_zeru|[0,534][1080,691]",
+     "android.widget.TextView|com.example.app:id/item_7|c||[0,534][1080,586]",
+     "android.widget.TextView||d|Settings|[0,586][1080,638]",
+     "android.widget.TextView|com.example.app:id/item_7|e||[0,638][1080,690]",
+     "android.view.ViewGroup|||popon_wepejazuk_zeru|[0,691][1080,848]",
+     "android.widget.ImageView|com.example.app:id/item_7||Settings|[0,691][1080,848]",
+     "android.widget.ScrollView||||[0,848][1080,1005]",
+     "android.widget.LinearLayout||||[0,848][1080,1005]",
+     "android.widget.ImageView|||i1|[0,848][540,1005]",
+     "android.widget.ImageView|||i2|[540,848][1080,1005]",
+     "android.widget.ScrollView||||[0,1005][1080,1162]",
+     "android.widget.LinearLayout||||[0,1005][1080,1162]",
+     "android.widget.ImageView|||i3|[0,1005][540,1162]",
+     "android.widget.ImageView|||i4|[540,1005][1080,1162]",
+     "android.view.View|cuzoces-moduvu|||[0,1162][1080,1319]",
+     "android.widget.LinearLayout||||[0,1162][1080,1319]",
+     "android.widget.TextView||m1||[0,1162][540,1319]",
+     "android.widget.TextView||m2||[540,1162][1080,1319]",
+     "android.view.View|cuzoces-moduvu|||[0,1319][1080,1476]",
+     "android.widget.LinearLayout||||[0,1319][1080,1476]",
+     "android.widget.TextView||m3||[0,1319][540,1476]",
+     "android.widget.TextView||m4||[540,1319][1080,1476]",
+     "android.widget.LinearLayout|com.example.app:id/second|||[0,1476][1080,1633]",
+     "android.widget.TextView||s1||[0,1476][1080,1554]",
+     "android.widget.TextView||s2||[0,1554][1080,1632]",
+     "android.widget.LinearLayout|com.example.app:id/second|||[0,1633][1080,1790]",
+     "android.widget.TextView||s3||[0,1633][1080,1685]",
+     "android.widget.TextView||s4||[0,1685][1080,1737]",
+     "android.widget.TextView||s5||[0,1737][1080,1789]",
+     "android.widget.LinearLayout||||[0,1790][1080,1947]",
+     "android.widget.TextView|io.zofujize.vikuwag.vajotin:id/danob_danob_hac|u1||[0,1790][360,1947]",
+     "android.widget.TextView|danob_danob_hac|u2||[360,1790][720,1947]",
+     "android.widget.TextView|x:id/danob_danob_hac_2|u3||[720,1790][1080,1947]",
+     "android.widget.LinearLayout||||[0,1947][1080,2104]",
+     "android.widget.TextView||Total\n||[0,1947][216,2104]",
+     "android.widget.TextView|| Total\t||[216,1947][432,2104]",
+     "android.widget.TextView||To tal||[432,1947][648,2104]",
+     "android.widget.TextView||Tot||[648,1947][864,2104]",
+     "android.widget.TextView||Totally||[864,1947][1080,2104]",
+     "android.widget.LinearLayout||||[0,2104][1080,2261]",
+     "android.widget.TextView||😀😀😀😀😀||[0,2104][180,2261]",
+     "android.widget.TextView||abcde||[180,2104][360,2261]",
+     "android.widget.TextView||abcd||[360,2104][540,2261]",
+     "android.widget.TextView||OK||[540,2104][720,2261]",
+     "android.widget.TextView||oK||[720,2104][900,2261]",
+     "android.widget.TextView||OkK||[900,2104][1080,2261]"
+    ]
+   },
+   "u": {
+    "n": 29,
+    "fp": [
+     "android.widget.TextView||Total 1.5 kg||[810,63][1080,220]",
+     "android.widget.TextView|com.example.app:id/item_7|a||[0,220][1080,377]",
+     "android.widget.TextView||b||[0,377][1080,534]",
+     "android.widget.TextView|com.example.app:id/item_7|c||[0,534][1080,586]",
+     "android.widget.TextView||d|Settings|[0,586][1080,638]",
+     "android.widget.TextView|com.example.app:id/item_7|e||[0,638][1080,690]",
+     "android.widget.TextView||m1||[0,1162][540,1319]",
+     "android.widget.TextView||m2||[540,1162][1080,1319]",
+     "android.widget.TextView||m3||[0,1319][540,1476]",
+     "android.widget.TextView||m4||[540,1319][1080,1476]",
+     "android.widget.TextView||s1||[0,1476][1080,1554]",
+     "android.widget.TextView||s2||[0,1554][1080,1632]",
+     "android.widget.TextView||s3||[0,1633][1080,1685]",
+     "android.widget.TextView||s4||[0,1685][1080,1737]",
+     "android.widget.TextView||s5||[0,1737][1080,1789]",
+     "android.widget.TextView|io.zofujize.vikuwag.vajotin:id/danob_danob_hac|u1||[0,1790][360,1947]",
+     "android.widget.TextView|danob_danob_hac|u2||[360,1790][720,1947]",
+     "android.widget.TextView|x:id/danob_danob_hac_2|u3||[720,1790][1080,1947]",
+     "android.widget.TextView||Total\n||[0,1947][216,2104]",
+     "android.widget.TextView|| Total\t||[216,1947][432,2104]",
+     "android.widget.TextView||To tal||[432,1947][648,2104]",
+     "android.widget.TextView||Tot||[648,1947][864,2104]",
+     "android.widget.TextView||Totally||[864,1947][1080,2104]",
+     "android.widget.TextView||😀😀😀😀😀||[0,2104][180,2261]",
+     "android.widget.TextView||abcde||[180,2104][360,2261]",
+     "android.widget.TextView||abcd||[360,2104][540,2261]",
+     "android.widget.TextView||OK||[540,2104][720,2261]",
+     "android.widget.TextView||oK||[720,2104][900,2261]",
+     "android.widget.TextView||OkK||[900,2104][1080,2261]"
+    ]
+   }
+  },
+  "x079|llm|llm": {
+   "id": "x079",
+   "side": "llm",
+   "screen": "llm",
+   "outcome": "EQUAL",
+   "x": {
+    "n": 0,
+    "fp": []
+   },
+   "u": {
+    "n": 0,
+    "fp": []
+   }
+  },
+  "x079|conv|llm": {
+   "id": "x079",
+   "side": "conv",
+   "screen": "llm",
+   "outcome": "EQUAL",
+   "x": {
+    "n": 0,
+    "fp": []
+   },
+   "u": {
+    "n": 0,
+    "fp": []
+   }
+  },
+  "x086|conv|llm": {
+   "id": "x086",
+   "side": "conv",
+   "screen": "llm",
+   "outcome": "EQUAL",
+   "x": {
+    "n": 1,
+    "fp": [
+     "android.widget.TextView||OK||[540,2104][720,2261]"
+    ]
+   },
+   "u": {
+    "n": 1,
+    "fp": [
+     "android.widget.TextView||OK||[540,2104][720,2261]"
+    ]
+   }
+  },
+  "x094|llm|llm": {
+   "id": "x094",
+   "side": "llm",
+   "screen": "llm",
+   "outcome": "EQUAL",
+   "x": {
+    "n": 0,
+    "fp": []
+   },
+   "u": {
+    "n": 0,
+    "fp": []
+   }
+  },
+  "x094|conv|llm": {
+   "id": "x094",
+   "side": "conv",
+   "screen": "llm",
+   "outcome": "EQUAL",
+   "x": {
+    "n": 0,
+    "fp": []
+   },
+   "u": {
+    "n": 0,
+    "fp": []
+   }
+  },
+  "x096|llm|llm": {
+   "id": "x096",
+   "side": "llm",
+   "screen": "llm",
+   "outcome": "EQUAL",
+   "x": {
+    "n": 0,
+    "fp": []
+   },
+   "u": {
+    "n": 0,
+    "fp": []
+   }
+  },
+  "x102|llm|llm": {
+   "id": "x102",
+   "side": "llm",
+   "screen": "llm",
+   "outcome": "EQUAL",
+   "x": {
+    "n": 0,
+    "fp": []
+   },
+   "u": {
+    "n": 0,
+    "fp": []
+   }
+  },
+  "x102|conv|llm": {
+   "id": "x102",
+   "side": "conv",
+   "screen": "llm",
+   "outcome": "EQUAL",
+   "x": {
+    "n": 0,
+    "fp": []
+   },
+   "u": {
+    "n": 0,
+    "fp": []
+   }
+  },
+  "x105|llm|llm": {
+   "id": "x105",
+   "side": "llm",
+   "screen": "llm",
+   "outcome": "EQUAL",
+   "x": {
+    "n": 4,
+    "fp": [
+     "android.widget.TextView|com.example.app:id/item_7|a||[0,220][1080,377]",
+     "android.widget.TextView|com.example.app:id/item_7|c||[0,534][1080,586]",
+     "android.widget.TextView|com.example.app:id/item_7|e||[0,638][1080,690]",
+     "android.widget.ImageView|com.example.app:id/item_7||Settings|[0,691][1080,848]"
+    ]
+   },
+   "u": {
+    "n": 4,
+    "fp": [
+     "android.widget.TextView|com.example.app:id/item_7|a||[0,220][1080,377]",
+     "android.widget.TextView|com.example.app:id/item_7|c||[0,534][1080,586]",
+     "android.widget.TextView|com.example.app:id/item_7|e||[0,638][1080,690]",
+     "android.widget.ImageView|com.example.app:id/item_7||Settings|[0,691][1080,848]"
+    ]
+   }
+  },
+  "x105|conv|llm": {
+   "id": "x105",
+   "side": "conv",
+   "screen": "llm",
+   "outcome": "EQUAL",
+   "x": {
+    "n": 4,
+    "fp": [
+     "android.widget.TextView|com.example.app:id/item_7|a||[0,220][1080,377]",
+     "android.widget.TextView|com.example.app:id/item_7|c||[0,534][1080,586]",
+     "android.widget.TextView|com.example.app:id/item_7|e||[0,638][1080,690]",
+     "android.widget.ImageView|com.example.app:id/item_7||Settings|[0,691][1080,848]"
+    ]
+   },
+   "u": {
+    "n": 4,
+    "fp": [
+     "android.widget.TextView|com.example.app:id/item_7|a||[0,220][1080,377]",
+     "android.widget.TextView|com.example.app:id/item_7|c||[0,534][1080,586]",
+     "android.widget.TextView|com.example.app:id/item_7|e||[0,638][1080,690]",
+     "android.widget.ImageView|com.example.app:id/item_7||Settings|[0,691][1080,848]"
+    ]
+   }
+  },
+  "x108|conv|llm": {
+   "id": "x108",
+   "side": "conv",
+   "screen": "llm",
+   "outcome": "EQUAL",
+   "x": {
+    "n": 0,
+    "fp": []
+   },
+   "u": {
+    "n": 0,
+    "fp": []
+   }
+  },
+  "x109|llm|llm": {
+   "id": "x109",
+   "side": "llm",
+   "screen": "llm",
+   "outcome": "EQUAL",
+   "x": {
+    "n": 0,
+    "fp": []
+   },
+   "u": {
+    "n": 0,
+    "fp": []
+   }
+  },
+  "x109|conv|llm": {
+   "id": "x109",
+   "side": "conv",
+   "screen": "llm",
+   "outcome": "EQUAL",
+   "x": {
+    "n": 0,
+    "fp": []
+   },
+   "u": {
+    "n": 0,
+    "fp": []
+   }
+  },
+  "x131|llm|llm": {
+   "id": "x131",
+   "side": "llm",
+   "screen": "llm",
+   "outcome": "EQUAL",
+   "x": {
+    "n": 0,
+    "fp": []
+   },
+   "u": {
+    "n": 0,
+    "fp": []
+   }
+  },
+  "x131|conv|llm": {
+   "id": "x131",
+   "side": "conv",
+   "screen": "llm",
+   "outcome": "EQUAL",
+   "x": {
+    "n": 0,
+    "fp": []
+   },
+   "u": {
+    "n": 0,
+    "fp": []
+   }
+  },
+  "x136|llm|llm": {
+   "id": "x136",
+   "side": "llm",
+   "screen": "llm",
+   "outcome": "EQUAL",
+   "x": {
+    "n": 0,
+    "fp": []
+   },
+   "u": {
+    "n": 0,
+    "fp": []
+   }
+  },
+  "x136|conv|llm": {
+   "id": "x136",
+   "side": "conv",
+   "screen": "llm",
+   "outcome": "EQUAL",
+   "x": {
+    "n": 0,
+    "fp": []
+   },
+   "u": {
+    "n": 0,
+    "fp": []
+   }
+  },
+  "x144|conv|llm": {
+   "id": "x144",
+   "side": "conv",
+   "screen": "llm",
+   "outcome": "EQUAL",
+   "x": {
+    "n": 0,
+    "fp": []
+   },
+   "u": {
+    "n": 0,
+    "fp": []
+   }
+  },
+  "x146|llm|llm": {
+   "id": "x146",
+   "side": "llm",
+   "screen": "llm",
+   "outcome": "EQUAL",
+   "x": {
+    "n": 0,
+    "fp": []
+   },
+   "u": {
+    "n": 0,
+    "fp": []
+   }
+  },
+  "x146|conv|llm": {
+   "id": "x146",
+   "side": "conv",
+   "screen": "llm",
+   "outcome": "EQUAL",
+   "x": {
+    "n": 0,
+    "fp": []
+   },
+   "u": {
+    "n": 0,
+    "fp": []
+   }
+  },
+  "x149|llm|llm": {
+   "id": "x149",
+   "side": "llm",
+   "screen": "llm",
+   "outcome": "EQUAL",
+   "x": {
+    "n": 0,
+    "fp": []
+   },
+   "u": {
+    "n": 0,
+    "fp": []
+   }
+  },
+  "x149|conv|llm": {
+   "id": "x149",
+   "side": "conv",
+   "screen": "llm",
+   "outcome": "EQUAL",
+   "x": {
+    "n": 0,
+    "fp": []
+   },
+   "u": {
+    "n": 0,
+    "fp": []
+   }
+  },
+  "x153|llm|llm": {
+   "id": "x153",
+   "side": "llm",
+   "screen": "llm",
+   "outcome": "EQUAL",
+   "x": {
+    "n": 0,
+    "fp": []
+   },
+   "u": {
+    "n": 0,
+    "fp": []
+   }
+  },
+  "x153|conv|llm": {
+   "id": "x153",
+   "side": "conv",
+   "screen": "llm",
+   "outcome": "EQUAL",
+   "x": {
+    "n": 0,
+    "fp": []
+   },
+   "u": {
+    "n": 0,
+    "fp": []
+   }
+  },
+  "x157|llm|llm": {
+   "id": "x157",
+   "side": "llm",
+   "screen": "llm",
+   "outcome": "EQUAL",
+   "x": {
+    "n": 0,
+    "fp": []
+   },
+   "u": {
+    "n": 0,
+    "fp": []
+   }
+  },
+  "x157|conv|llm": {
+   "id": "x157",
+   "side": "conv",
+   "screen": "llm",
+   "outcome": "EQUAL",
+   "x": {
+    "n": 0,
+    "fp": []
+   },
+   "u": {
+    "n": 0,
+    "fp": []
+   }
+  },
+  "x162|llm|llm": {
+   "id": "x162",
+   "side": "llm",
+   "screen": "llm",
+   "outcome": "EQUAL",
+   "x": {
+    "n": 0,
+    "fp": []
+   },
+   "u": {
+    "n": 0,
+    "fp": []
+   }
+  },
+  "x162|conv|llm": {
+   "id": "x162",
+   "side": "conv",
+   "screen": "llm",
+   "outcome": "EQUAL",
+   "x": {
+    "n": 0,
+    "fp": []
+   },
+   "u": {
+    "n": 0,
+    "fp": []
+   }
+  },
+  "x163|llm|llm": {
+   "id": "x163",
+   "side": "llm",
+   "screen": "llm",
+   "outcome": "UISEL_ERROR",
+   "x": {
+    "n": 0,
+    "fp": []
+   },
+   "u": {
+    "error": "invalid selector: Could not parse selector expression `new UiSelector().text(\"C:\\\\Temp\\\\\")`: Unclosed paren in expression"
+   }
+  },
+  "x163|conv|llm": {
+   "id": "x163",
+   "side": "conv",
+   "screen": "llm",
+   "outcome": "EQUAL",
+   "x": {
+    "n": 0,
+    "fp": []
+   },
+   "u": {
+    "n": 0,
+    "fp": []
+   }
+  },
+  "x164|conv|llm": {
+   "id": "x164",
+   "side": "conv",
+   "screen": "llm",
+   "outcome": "EQUAL",
+   "x": {
+    "n": 0,
+    "fp": []
+   },
+   "u": {
+    "n": 0,
+    "fp": []
+   }
+  },
+  "x170|conv|llm": {
+   "id": "x170",
+   "side": "conv",
+   "screen": "llm",
+   "outcome": "EQUAL",
+   "x": {
+    "n": 0,
+    "fp": []
+   },
+   "u": {
+    "n": 0,
+    "fp": []
+   }
+  },
+  "x189|llm|llm": {
+   "id": "x189",
+   "side": "llm",
+   "screen": "llm",
+   "outcome": "EQUAL",
+   "x": {
+    "n": 0,
+    "fp": []
+   },
+   "u": {
+    "n": 0,
+    "fp": []
+   }
+  },
+  "x189|conv|llm": {
+   "id": "x189",
+   "side": "conv",
+   "screen": "llm",
+   "outcome": "EQUAL",
+   "x": {
+    "n": 0,
+    "fp": []
+   },
+   "u": {
+    "n": 0,
+    "fp": []
+   }
+  },
+  "x194|llm|llm": {
+   "id": "x194",
+   "side": "llm",
+   "screen": "llm",
+   "outcome": "EQUAL",
+   "x": {
+    "n": 0,
+    "fp": []
+   },
+   "u": {
+    "n": 0,
+    "fp": []
+   }
+  },
+  "x194|conv|llm": {
+   "id": "x194",
+   "side": "conv",
+   "screen": "llm",
+   "outcome": "EQUAL",
+   "x": {
+    "n": 0,
+    "fp": []
+   },
+   "u": {
+    "n": 0,
+    "fp": []
+   }
+  },
+  "x199|llm|llm": {
+   "id": "x199",
+   "side": "llm",
+   "screen": "llm",
+   "outcome": "EQUAL",
+   "x": {
+    "n": 4,
+    "fp": [
+     "android.widget.TextView||Total 1.5 kg||[810,63][1080,220]",
+     "android.widget.TextView||Total\n||[0,1947][216,2104]",
+     "android.widget.TextView||Tot||[648,1947][864,2104]",
+     "android.widget.TextView||Totally||[864,1947][1080,2104]"
+    ]
+   },
+   "u": {
+    "n": 4,
+    "fp": [
+     "android.widget.TextView||Total 1.5 kg||[810,63][1080,220]",
+     "android.widget.TextView||Total\n||[0,1947][216,2104]",
+     "android.widget.TextView||Tot||[648,1947][864,2104]",
+     "android.widget.TextView||Totally||[864,1947][1080,2104]"
+    ]
+   }
+  },
+  "x204|conv|llm": {
+   "id": "x204",
+   "side": "conv",
+   "screen": "llm",
+   "outcome": "EQUAL",
+   "x": {
+    "n": 0,
+    "fp": []
+   },
+   "u": {
+    "n": 0,
+    "fp": []
+   }
+  },
+  "x209|llm|llm": {
+   "id": "x209",
+   "side": "llm",
+   "screen": "llm",
+   "outcome": "EQUAL",
+   "x": {
+    "n": 0,
+    "fp": []
+   },
+   "u": {
+    "n": 0,
+    "fp": []
+   }
+  },
+  "x209|conv|llm": {
+   "id": "x209",
+   "side": "conv",
+   "screen": "llm",
+   "outcome": "EQUAL",
+   "x": {
+    "n": 0,
+    "fp": []
+   },
+   "u": {
+    "n": 0,
+    "fp": []
+   }
+  },
+  "x211|llm|llm": {
+   "id": "x211",
+   "side": "llm",
+   "screen": "llm",
+   "outcome": "EQUAL",
+   "x": {
+    "n": 60,
+    "f0": "android.widget.FrameLayout||||[0,0][1080,2400]"
+   },
+   "u": {
+    "n": 60,
+    "f0": "android.widget.FrameLayout||||[0,0][1080,2400]"
+   }
+  },
+  "x220|conv|llm": {
+   "id": "x220",
+   "side": "conv",
+   "screen": "llm",
+   "outcome": "EQUAL",
+   "x": {
+    "n": 0,
+    "fp": []
+   },
+   "u": {
+    "n": 0,
+    "fp": []
+   }
+  },
+  "x225|llm|llm": {
+   "id": "x225",
+   "side": "llm",
+   "screen": "llm",
+   "outcome": "EQUAL",
+   "x": {
+    "n": 0,
+    "fp": []
+   },
+   "u": {
+    "n": 0,
+    "fp": []
+   }
+  },
+  "x226|llm|llm": {
+   "id": "x226",
+   "side": "llm",
+   "screen": "llm",
+   "outcome": "EQUAL",
+   "x": {
+    "n": 0,
+    "fp": []
+   },
+   "u": {
+    "n": 0,
+    "fp": []
+   }
+  },
+  "x230|llm|llm": {
+   "id": "x230",
+   "side": "llm",
+   "screen": "llm",
+   "outcome": "EQUAL",
+   "x": {
+    "n": 0,
+    "fp": []
+   },
+   "u": {
+    "n": 0,
+    "fp": []
+   }
+  },
+  "x230|conv|llm": {
+   "id": "x230",
+   "side": "conv",
+   "screen": "llm",
+   "outcome": "EQUAL",
+   "x": {
+    "n": 0,
+    "fp": []
+   },
+   "u": {
+    "n": 0,
+    "fp": []
+   }
+  },
+  "x231|llm|llm": {
+   "id": "x231",
+   "side": "llm",
+   "screen": "llm",
+   "outcome": "XPATH_ERROR",
+   "x": {
+    "error": "unknown error: Invalid regular expression flag parameter.. Try changing the 'enforceXPath1' driver setting to 'true' in order to workaround the problem."
+   },
+   "u": {
+    "n": 0,
+    "fp": []
+   }
+  },
+  "x243|llm|llm": {
+   "id": "x243",
+   "side": "llm",
+   "screen": "llm",
+   "outcome": "EQUAL",
+   "x": {
+    "n": 0,
+    "fp": []
+   },
+   "u": {
+    "n": 0,
+    "fp": []
+   }
+  },
+  "x243|conv|llm": {
+   "id": "x243",
+   "side": "conv",
+   "screen": "llm",
+   "outcome": "EQUAL",
+   "x": {
+    "n": 0,
+    "fp": []
+   },
+   "u": {
+    "n": 0,
+    "fp": []
+   }
+  },
+  "x244|llm|llm": {
+   "id": "x244",
+   "side": "llm",
+   "screen": "llm",
+   "outcome": "UISEL_ERROR",
+   "x": {
+    "n": 0,
+    "fp": []
+   },
+   "u": {
+    "error": "invalid selector: Could not parse selector expression `new UiSelector().password(true)`: UiSelector has no `password` method"
+   }
+  },
+  "x247|conv|llm": {
+   "id": "x247",
+   "side": "conv",
+   "screen": "llm",
+   "outcome": "EQUAL",
+   "x": {
+    "n": 0,
+    "fp": []
+   },
+   "u": {
+    "n": 0,
+    "fp": []
+   }
+  },
+  "x248|llm|llm": {
+   "id": "x248",
+   "side": "llm",
+   "screen": "llm",
+   "outcome": "SET_DIFFERS",
+   "x": {
+    "n": 10,
+    "fp": [
+     "android.view.ViewGroup|||popon_wepejazuk_zeru|[0,220][1080,377]",
+     "android.view.ViewGroup|||popon_wepejazuk_zeru|[0,377][1080,534]",
+     "android.view.ViewGroup|||popon_wepejazuk_zeru|[0,534][1080,691]",
+     "android.widget.TextView||d|Settings|[0,586][1080,638]",
+     "android.view.ViewGroup|||popon_wepejazuk_zeru|[0,691][1080,848]",
+     "android.widget.ImageView|com.example.app:id/item_7||Settings|[0,691][1080,848]",
+     "android.widget.ImageView|||i1|[0,848][540,1005]",
+     "android.widget.ImageView|||i2|[540,848][1080,1005]",
+     "android.widget.ImageView|||i3|[0,1005][540,1162]",
+     "android.widget.ImageView|||i4|[540,1005][1080,1162]"
+    ]
+   },
+   "u": {
+    "n": 60,
+    "fp": [
+     "android.widget.FrameLayout||||[0,0][1080,2400]",
+     "android.widget.LinearLayout||||[0,0][1080,2400]",
+     "android.widget.FrameLayout|android:id/content|||[0,0][1080,2400]",
+     "android.widget.FrameLayout||||[0,0][1080,2400]",
+     "android.widget.LinearLayout||||[0,63][1080,2274]",
+     "android.widget.LinearLayout||||[0,63][1080,220]",
+     "android.widget.SeekBar||1.5||[0,63][270,220]",
+     "android.widget.SeekBar||21.5||[270,63][540,220]",
+     "android.widget.ProgressBar||50.0||[540,63][810,220]",
+     "android.widget.TextView||Total 1.5 kg||[810,63][1080,220]",
+     "android.view.ViewGroup|||popon_wepejazuk_zeru|[0,220][1080,377]",
+     "android.widget.TextView|com.example.app:id/item_7|a||[0,220][1080,377]",
+     "android.view.ViewGroup|||popon_wepejazuk_zeru|[0,377][1080,534]",
+     "android.widget.TextView||b||[0,377][1080,534]",
+     "android.view.ViewGroup|||popon_wepejazuk_zeru|[0,534][1080,691]",
+     "android.widget.TextView|com.example.app:id/item_7|c||[0,534][1080,586]",
+     "android.widget.TextView||d|Settings|[0,586][1080,638]",
+     "android.widget.TextView|com.example.app:id/item_7|e||[0,638][1080,690]",
+     "android.view.ViewGroup|||popon_wepejazuk_zeru|[0,691][1080,848]",
+     "android.widget.ImageView|com.example.app:id/item_7||Settings|[0,691][1080,848]",
+     "android.widget.ScrollView||||[0,848][1080,1005]",
+     "android.widget.LinearLayout||||[0,848][1080,1005]",
+     "android.widget.ImageView|||i1|[0,848][540,1005]",
+     "android.widget.ImageView|||i2|[540,848][1080,1005]",
+     "android.widget.ScrollView||||[0,1005][1080,1162]",
+     "android.widget.LinearLayout||||[0,1005][1080,1162]",
+     "android.widget.ImageView|||i3|[0,1005][540,1162]",
+     "android.widget.ImageView|||i4|[540,1005][1080,1162]",
+     "android.view.View|cuzoces-moduvu|||[0,1162][1080,1319]",
+     "android.widget.LinearLayout||||[0,1162][1080,1319]",
+     "android.widget.TextView||m1||[0,1162][540,1319]",
+     "android.widget.TextView||m2||[540,1162][1080,1319]",
+     "android.view.View|cuzoces-moduvu|||[0,1319][1080,1476]",
+     "android.widget.LinearLayout||||[0,1319][1080,1476]",
+     "android.widget.TextView||m3||[0,1319][540,1476]",
+     "android.widget.TextView||m4||[540,1319][1080,1476]",
+     "android.widget.LinearLayout|com.example.app:id/second|||[0,1476][1080,1633]",
+     "android.widget.TextView||s1||[0,1476][1080,1554]",
+     "android.widget.TextView||s2||[0,1554][1080,1632]",
+     "android.widget.LinearLayout|com.example.app:id/second|||[0,1633][1080,1790]",
+     "android.widget.TextView||s3||[0,1633][1080,1685]",
+     "android.widget.TextView||s4||[0,1685][1080,1737]",
+     "android.widget.TextView||s5||[0,1737][1080,1789]",
+     "android.widget.LinearLayout||||[0,1790][1080,1947]",
+     "android.widget.TextView|io.zofujize.vikuwag.vajotin:id/danob_danob_hac|u1||[0,1790][360,1947]",
+     "android.widget.TextView|danob_danob_hac|u2||[360,1790][720,1947]",
+     "android.widget.TextView|x:id/danob_danob_hac_2|u3||[720,1790][1080,1947]",
+     "android.widget.LinearLayout||||[0,1947][1080,2104]",
+     "android.widget.TextView||Total\n||[0,1947][216,2104]",
+     "android.widget.TextView|| Total\t||[216,1947][432,2104]",
+     "android.widget.TextView||To tal||[432,1947][648,2104]",
+     "android.widget.TextView||Tot||[648,1947][864,2104]",
+     "android.widget.TextView||Totally||[864,1947][1080,2104]",
+     "android.widget.LinearLayout||||[0,2104][1080,2261]",
+     "android.widget.TextView||😀😀😀😀😀||[0,2104][180,2261]",
+     "android.widget.TextView||abcde||[180,2104][360,2261]",
+     "android.widget.TextView||abcd||[360,2104][540,2261]",
+     "android.widget.TextView||OK||[540,2104][720,2261]",
+     "android.widget.TextView||oK||[720,2104][900,2261]",
+     "android.widget.TextView||OkK||[900,2104][1080,2261]"
+    ]
+   }
+  },
+  "x248|conv|llm": {
+   "id": "x248",
+   "side": "conv",
+   "screen": "llm",
+   "outcome": "EQUAL",
+   "x": {
+    "n": 10,
+    "f0": "android.view.ViewGroup|||popon_wepejazuk_zeru|[0,220][1080,377]"
+   },
+   "u": {
+    "n": 10,
+    "f0": "android.view.ViewGroup|||popon_wepejazuk_zeru|[0,220][1080,377]"
+   }
+  },
+  "x251|llm|llm": {
+   "id": "x251",
+   "side": "llm",
+   "screen": "llm",
+   "outcome": "EQUAL",
+   "x": {
+    "n": 0,
+    "fp": []
+   },
+   "u": {
+    "n": 0,
+    "fp": []
+   }
+  },
+  "x251|conv|llm": {
+   "id": "x251",
+   "side": "conv",
+   "screen": "llm",
+   "outcome": "EQUAL",
+   "x": {
+    "n": 0,
+    "fp": []
+   },
+   "u": {
+    "n": 0,
+    "fp": []
+   }
+  },
+  "x262|llm|llm": {
+   "id": "x262",
+   "side": "llm",
+   "screen": "llm",
+   "outcome": "EQUAL",
+   "x": {
+    "n": 1,
+    "fp": [
+     "android.widget.TextView||OK||[540,2104][720,2261]"
+    ]
+   },
+   "u": {
+    "n": 1,
+    "fp": [
+     "android.widget.TextView||OK||[540,2104][720,2261]"
+    ]
+   }
+  },
+  "x263|llm|llm": {
+   "id": "x263",
+   "side": "llm",
+   "screen": "llm",
+   "outcome": "EQUAL",
+   "x": {
+    "n": 0,
+    "fp": []
+   },
+   "u": {
+    "n": 0,
+    "fp": []
+   }
+  },
+  "x263|conv|llm": {
+   "id": "x263",
+   "side": "conv",
+   "screen": "llm",
+   "outcome": "EQUAL",
+   "x": {
+    "n": 0,
+    "fp": []
+   },
+   "u": {
+    "n": 0,
+    "fp": []
+   }
+  },
+  "x266|llm|llm": {
+   "id": "x266",
+   "side": "llm",
+   "screen": "llm",
+   "outcome": "SET_DIFFERS",
+   "x": {
+    "n": 32,
+    "fp": [
+     "android.widget.SeekBar||1.5||[0,63][270,220]",
+     "android.widget.SeekBar||21.5||[270,63][540,220]",
+     "android.widget.ProgressBar||50.0||[540,63][810,220]",
+     "android.widget.TextView||Total 1.5 kg||[810,63][1080,220]",
+     "android.widget.TextView|com.example.app:id/item_7|a||[0,220][1080,377]",
+     "android.widget.TextView||b||[0,377][1080,534]",
+     "android.widget.TextView|com.example.app:id/item_7|c||[0,534][1080,586]",
+     "android.widget.TextView||d|Settings|[0,586][1080,638]",
+     "android.widget.TextView|com.example.app:id/item_7|e||[0,638][1080,690]",
+     "android.widget.TextView||m1||[0,1162][540,1319]",
+     "android.widget.TextView||m2||[540,1162][1080,1319]",
+     "android.widget.TextView||m3||[0,1319][540,1476]",
+     "android.widget.TextView||m4||[540,1319][1080,1476]",
+     "android.widget.TextView||s1||[0,1476][1080,1554]",
+     "android.widget.TextView||s2||[0,1554][1080,1632]",
+     "android.widget.TextView||s3||[0,1633][1080,1685]",
+     "android.widget.TextView||s4||[0,1685][1080,1737]",
+     "android.widget.TextView||s5||[0,1737][1080,1789]",
+     "android.widget.TextView|io.zofujize.vikuwag.vajotin:id/danob_danob_hac|u1||[0,1790][360,1947]",
+     "android.widget.TextView|danob_danob_hac|u2||[360,1790][720,1947]",
+     "android.widget.TextView|x:id/danob_danob_hac_2|u3||[720,1790][1080,1947]",
+     "android.widget.TextView||Total\n||[0,1947][216,2104]",
+     "android.widget.TextView|| Total\t||[216,1947][432,2104]",
+     "android.widget.TextView||To tal||[432,1947][648,2104]",
+     "android.widget.TextView||Tot||[648,1947][864,2104]",
+     "android.widget.TextView||Totally||[864,1947][1080,2104]",
+     "android.widget.TextView||😀😀😀😀😀||[0,2104][180,2261]",
+     "android.widget.TextView||abcde||[180,2104][360,2261]",
+     "android.widget.TextView||abcd||[360,2104][540,2261]",
+     "android.widget.TextView||OK||[540,2104][720,2261]",
+     "android.widget.TextView||oK||[720,2104][900,2261]",
+     "android.widget.TextView||OkK||[900,2104][1080,2261]"
+    ]
+   },
+   "u": {
+    "n": 29,
+    "fp": [
+     "android.widget.TextView||Total 1.5 kg||[810,63][1080,220]",
+     "android.widget.TextView|com.example.app:id/item_7|a||[0,220][1080,377]",
+     "android.widget.TextView||b||[0,377][1080,534]",
+     "android.widget.TextView|com.example.app:id/item_7|c||[0,534][1080,586]",
+     "android.widget.TextView||d|Settings|[0,586][1080,638]",
+     "android.widget.TextView|com.example.app:id/item_7|e||[0,638][1080,690]",
+     "android.widget.TextView||m1||[0,1162][540,1319]",
+     "android.widget.TextView||m2||[540,1162][1080,1319]",
+     "android.widget.TextView||m3||[0,1319][540,1476]",
+     "android.widget.TextView||m4||[540,1319][1080,1476]",
+     "android.widget.TextView||s1||[0,1476][1080,1554]",
+     "android.widget.TextView||s2||[0,1554][1080,1632]",
+     "android.widget.TextView||s3||[0,1633][1080,1685]",
+     "android.widget.TextView||s4||[0,1685][1080,1737]",
+     "android.widget.TextView||s5||[0,1737][1080,1789]",
+     "android.widget.TextView|io.zofujize.vikuwag.vajotin:id/danob_danob_hac|u1||[0,1790][360,1947]",
+     "android.widget.TextView|danob_danob_hac|u2||[360,1790][720,1947]",
+     "android.widget.TextView|x:id/danob_danob_hac_2|u3||[720,1790][1080,1947]",
+     "android.widget.TextView||Total\n||[0,1947][216,2104]",
+     "android.widget.TextView|| Total\t||[216,1947][432,2104]",
+     "android.widget.TextView||To tal||[432,1947][648,2104]",
+     "android.widget.TextView||Tot||[648,1947][864,2104]",
+     "android.widget.TextView||Totally||[864,1947][1080,2104]",
+     "android.widget.TextView||😀😀😀😀😀||[0,2104][180,2261]",
+     "android.widget.TextView||abcde||[180,2104][360,2261]",
+     "android.widget.TextView||abcd||[360,2104][540,2261]",
+     "android.widget.TextView||OK||[540,2104][720,2261]",
+     "android.widget.TextView||oK||[720,2104][900,2261]",
+     "android.widget.TextView||OkK||[900,2104][1080,2261]"
+    ]
+   }
+  },
+  "x266|conv|llm": {
+   "id": "x266",
+   "side": "conv",
+   "screen": "llm",
+   "outcome": "SET_DIFFERS",
+   "x": {
+    "n": 32,
+    "fp": [
+     "android.widget.SeekBar||1.5||[0,63][270,220]",
+     "android.widget.SeekBar||21.5||[270,63][540,220]",
+     "android.widget.ProgressBar||50.0||[540,63][810,220]",
+     "android.widget.TextView||Total 1.5 kg||[810,63][1080,220]",
+     "android.widget.TextView|com.example.app:id/item_7|a||[0,220][1080,377]",
+     "android.widget.TextView||b||[0,377][1080,534]",
+     "android.widget.TextView|com.example.app:id/item_7|c||[0,534][1080,586]",
+     "android.widget.TextView||d|Settings|[0,586][1080,638]",
+     "android.widget.TextView|com.example.app:id/item_7|e||[0,638][1080,690]",
+     "android.widget.TextView||m1||[0,1162][540,1319]",
+     "android.widget.TextView||m2||[540,1162][1080,1319]",
+     "android.widget.TextView||m3||[0,1319][540,1476]",
+     "android.widget.TextView||m4||[540,1319][1080,1476]",
+     "android.widget.TextView||s1||[0,1476][1080,1554]",
+     "android.widget.TextView||s2||[0,1554][1080,1632]",
+     "android.widget.TextView||s3||[0,1633][1080,1685]",
+     "android.widget.TextView||s4||[0,1685][1080,1737]",
+     "android.widget.TextView||s5||[0,1737][1080,1789]",
+     "android.widget.TextView|io.zofujize.vikuwag.vajotin:id/danob_danob_hac|u1||[0,1790][360,1947]",
+     "android.widget.TextView|danob_danob_hac|u2||[360,1790][720,1947]",
+     "android.widget.TextView|x:id/danob_danob_hac_2|u3||[720,1790][1080,1947]",
+     "android.widget.TextView||Total\n||[0,1947][216,2104]",
+     "android.widget.TextView|| Total\t||[216,1947][432,2104]",
+     "android.widget.TextView||To tal||[432,1947][648,2104]",
+     "android.widget.TextView||Tot||[648,1947][864,2104]",
+     "android.widget.TextView||Totally||[864,1947][1080,2104]",
+     "android.widget.TextView||😀😀😀😀😀||[0,2104][180,2261]",
+     "android.widget.TextView||abcde||[180,2104][360,2261]",
+     "android.widget.TextView||abcd||[360,2104][540,2261]",
+     "android.widget.TextView||OK||[540,2104][720,2261]",
+     "android.widget.TextView||oK||[720,2104][900,2261]",
+     "android.widget.TextView||OkK||[900,2104][1080,2261]"
+    ]
+   },
+   "u": {
+    "n": 29,
+    "fp": [
+     "android.widget.TextView||Total 1.5 kg||[810,63][1080,220]",
+     "android.widget.TextView|com.example.app:id/item_7|a||[0,220][1080,377]",
+     "android.widget.TextView||b||[0,377][1080,534]",
+     "android.widget.TextView|com.example.app:id/item_7|c||[0,534][1080,586]",
+     "android.widget.TextView||d|Settings|[0,586][1080,638]",
+     "android.widget.TextView|com.example.app:id/item_7|e||[0,638][1080,690]",
+     "android.widget.TextView||m1||[0,1162][540,1319]",
+     "android.widget.TextView||m2||[540,1162][1080,1319]",
+     "android.widget.TextView||m3||[0,1319][540,1476]",
+     "android.widget.TextView||m4||[540,1319][1080,1476]",
+     "android.widget.TextView||s1||[0,1476][1080,1554]",
+     "android.widget.TextView||s2||[0,1554][1080,1632]",
+     "android.widget.TextView||s3||[0,1633][1080,1685]",
+     "android.widget.TextView||s4||[0,1685][1080,1737]",
+     "android.widget.TextView||s5||[0,1737][1080,1789]",
+     "android.widget.TextView|io.zofujize.vikuwag.vajotin:id/danob_danob_hac|u1||[0,1790][360,1947]",
+     "android.widget.TextView|danob_danob_hac|u2||[360,1790][720,1947]",
+     "android.widget.TextView|x:id/danob_danob_hac_2|u3||[720,1790][1080,1947]",
+     "android.widget.TextView||Total\n||[0,1947][216,2104]",
+     "android.widget.TextView|| Total\t||[216,1947][432,2104]",
+     "android.widget.TextView||To tal||[432,1947][648,2104]",
+     "android.widget.TextView||Tot||[648,1947][864,2104]",
+     "android.widget.TextView||Totally||[864,1947][1080,2104]",
+     "android.widget.TextView||😀😀😀😀😀||[0,2104][180,2261]",
+     "android.widget.TextView||abcde||[180,2104][360,2261]",
+     "android.widget.TextView||abcd||[360,2104][540,2261]",
+     "android.widget.TextView||OK||[540,2104][720,2261]",
+     "android.widget.TextView||oK||[720,2104][900,2261]",
+     "android.widget.TextView||OkK||[900,2104][1080,2261]"
+    ]
+   }
+  },
+  "x267|llm|llm": {
+   "id": "x267",
+   "side": "llm",
+   "screen": "llm",
+   "outcome": "EQUAL",
+   "x": {
+    "n": 0,
+    "fp": []
+   },
+   "u": {
+    "n": 0,
+    "fp": []
+   }
+  },
+  "x267|conv|llm": {
+   "id": "x267",
+   "side": "conv",
+   "screen": "llm",
+   "outcome": "EQUAL",
+   "x": {
+    "n": 0,
+    "fp": []
+   },
+   "u": {
+    "n": 0,
+    "fp": []
+   }
+  },
+  "x268|llm|llm": {
+   "id": "x268",
+   "side": "llm",
+   "screen": "llm",
+   "outcome": "EQUAL",
+   "x": {
+    "n": 0,
+    "fp": []
+   },
+   "u": {
+    "n": 0,
+    "fp": []
+   }
+  },
+  "x268|conv|llm": {
+   "id": "x268",
+   "side": "conv",
+   "screen": "llm",
+   "outcome": "EQUAL",
+   "x": {
+    "n": 0,
+    "fp": []
+   },
+   "u": {
+    "n": 0,
+    "fp": []
+   }
+  },
+  "x278|llm|llm": {
+   "id": "x278",
+   "side": "llm",
+   "screen": "llm",
+   "outcome": "EQUAL",
+   "x": {
+    "n": 0,
+    "fp": []
+   },
+   "u": {
+    "n": 0,
+    "fp": []
+   }
+  },
+  "x278|conv|llm": {
+   "id": "x278",
+   "side": "conv",
+   "screen": "llm",
+   "outcome": "EQUAL",
+   "x": {
+    "n": 0,
+    "fp": []
+   },
+   "u": {
+    "n": 0,
+    "fp": []
+   }
+  },
+  "x284|llm|llm": {
+   "id": "x284",
+   "side": "llm",
+   "screen": "llm",
+   "outcome": "EQUAL",
+   "x": {
+    "n": 0,
+    "fp": []
+   },
+   "u": {
+    "n": 0,
+    "fp": []
+   }
+  },
+  "x284|conv|llm": {
+   "id": "x284",
+   "side": "conv",
+   "screen": "llm",
+   "outcome": "EQUAL",
+   "x": {
+    "n": 0,
+    "fp": []
+   },
+   "u": {
+    "n": 0,
+    "fp": []
+   }
+  },
+  "x285|llm|llm": {
+   "id": "x285",
+   "side": "llm",
+   "screen": "llm",
+   "outcome": "EQUAL",
+   "x": {
+    "n": 0,
+    "fp": []
+   },
+   "u": {
+    "n": 0,
+    "fp": []
+   }
+  },
+  "x285|conv|llm": {
+   "id": "x285",
+   "side": "conv",
+   "screen": "llm",
+   "outcome": "EQUAL",
+   "x": {
+    "n": 0,
+    "fp": []
+   },
+   "u": {
+    "n": 0,
+    "fp": []
+   }
+  },
+  "x287|llm|llm": {
+   "id": "x287",
+   "side": "llm",
+   "screen": "llm",
+   "outcome": "EQUAL",
+   "x": {
+    "n": 0,
+    "fp": []
+   },
+   "u": {
+    "n": 0,
+    "fp": []
+   }
+  },
+  "x287|conv|llm": {
+   "id": "x287",
+   "side": "conv",
+   "screen": "llm",
+   "outcome": "EQUAL",
+   "x": {
+    "n": 0,
+    "fp": []
+   },
+   "u": {
+    "n": 0,
+    "fp": []
+   }
+  },
+  "x288|llm|llm": {
+   "id": "x288",
+   "side": "llm",
+   "screen": "llm",
+   "outcome": "EQUAL",
+   "x": {
+    "n": 0,
+    "fp": []
+   },
+   "u": {
+    "n": 0,
+    "fp": []
+   }
+  },
+  "x288|conv|llm": {
+   "id": "x288",
+   "side": "conv",
+   "screen": "llm",
+   "outcome": "EQUAL",
+   "x": {
+    "n": 0,
+    "fp": []
+   },
+   "u": {
+    "n": 0,
+    "fp": []
+   }
+  },
+  "x311|llm|llm": {
+   "id": "x311",
+   "side": "llm",
+   "screen": "llm",
+   "outcome": "SET_DIFFERS",
+   "x": {
+    "n": 0,
+    "fp": []
+   },
+   "u": {
+    "n": 1,
+    "fp": [
+     "android.widget.TextView||d|Settings|[0,586][1080,638]"
+    ]
+   }
+  },
+  "x314|llm|llm": {
+   "id": "x314",
+   "side": "llm",
+   "screen": "llm",
+   "outcome": "EQUAL",
+   "x": {
+    "n": 0,
+    "fp": []
+   },
+   "u": {
+    "n": 0,
+    "fp": []
+   }
+  },
+  "x314|conv|llm": {
+   "id": "x314",
+   "side": "conv",
+   "screen": "llm",
+   "outcome": "EQUAL",
+   "x": {
+    "n": 0,
+    "fp": []
+   },
+   "u": {
+    "n": 0,
+    "fp": []
+   }
+  },
+  "x317|llm|llm": {
+   "id": "x317",
+   "side": "llm",
+   "screen": "llm",
+   "outcome": "EQUAL",
+   "x": {
+    "n": 4,
+    "fp": [
+     "android.widget.TextView||Total 1.5 kg||[810,63][1080,220]",
+     "android.widget.TextView||Total\n||[0,1947][216,2104]",
+     "android.widget.TextView|| Total\t||[216,1947][432,2104]",
+     "android.widget.TextView||Totally||[864,1947][1080,2104]"
+    ]
+   },
+   "u": {
+    "n": 4,
+    "fp": [
+     "android.widget.TextView||Total 1.5 kg||[810,63][1080,220]",
+     "android.widget.TextView||Total\n||[0,1947][216,2104]",
+     "android.widget.TextView|| Total\t||[216,1947][432,2104]",
+     "android.widget.TextView||Totally||[864,1947][1080,2104]"
+    ]
+   }
+  },
+  "x317|conv|llm": {
+   "id": "x317",
+   "side": "conv",
+   "screen": "llm",
+   "outcome": "EQUAL",
+   "x": {
+    "n": 4,
+    "fp": [
+     "android.widget.TextView||Total 1.5 kg||[810,63][1080,220]",
+     "android.widget.TextView||Total\n||[0,1947][216,2104]",
+     "android.widget.TextView|| Total\t||[216,1947][432,2104]",
+     "android.widget.TextView||Totally||[864,1947][1080,2104]"
+    ]
+   },
+   "u": {
+    "n": 4,
+    "fp": [
+     "android.widget.TextView||Total 1.5 kg||[810,63][1080,220]",
+     "android.widget.TextView||Total\n||[0,1947][216,2104]",
+     "android.widget.TextView|| Total\t||[216,1947][432,2104]",
+     "android.widget.TextView||Totally||[864,1947][1080,2104]"
+    ]
+   }
+  },
+  "x325|conv|llm": {
+   "id": "x325",
+   "side": "conv",
+   "screen": "llm",
+   "outcome": "EQUAL",
+   "x": {
+    "n": 0,
+    "fp": []
+   },
+   "u": {
+    "n": 0,
+    "fp": []
+   }
+  },
+  "x326|llm|llm": {
+   "id": "x326",
+   "side": "llm",
+   "screen": "llm",
+   "outcome": "EQUAL",
+   "x": {
+    "n": 0,
+    "fp": []
+   },
+   "u": {
+    "n": 0,
+    "fp": []
+   }
+  },
+  "x326|conv|llm": {
+   "id": "x326",
+   "side": "conv",
+   "screen": "llm",
+   "outcome": "EQUAL",
+   "x": {
+    "n": 0,
+    "fp": []
+   },
+   "u": {
+    "n": 0,
+    "fp": []
+   }
+  },
+  "x330|conv|llm": {
+   "id": "x330",
+   "side": "conv",
+   "screen": "llm",
+   "outcome": "EQUAL",
+   "x": {
+    "n": 0,
+    "fp": []
+   },
+   "u": {
+    "n": 0,
+    "fp": []
+   }
+  },
+  "x339|llm|llm": {
+   "id": "x339",
+   "side": "llm",
+   "screen": "llm",
+   "outcome": "EQUAL",
+   "x": {
+    "n": 0,
+    "fp": []
+   },
+   "u": {
+    "n": 0,
+    "fp": []
+   }
+  },
+  "x339|conv|llm": {
+   "id": "x339",
+   "side": "conv",
+   "screen": "llm",
+   "outcome": "EQUAL",
+   "x": {
+    "n": 0,
+    "fp": []
+   },
+   "u": {
+    "n": 0,
+    "fp": []
+   }
+  },
+  "x345|llm|llm": {
+   "id": "x345",
+   "side": "llm",
+   "screen": "llm",
+   "outcome": "EQUAL",
+   "x": {
+    "n": 0,
+    "fp": []
+   },
+   "u": {
+    "n": 0,
+    "fp": []
+   }
+  },
+  "x345|conv|llm": {
+   "id": "x345",
+   "side": "conv",
+   "screen": "llm",
+   "outcome": "EQUAL",
+   "x": {
+    "n": 0,
+    "fp": []
+   },
+   "u": {
+    "n": 0,
+    "fp": []
+   }
+  },
+  "x359|llm|llm": {
+   "id": "x359",
+   "side": "llm",
+   "screen": "llm",
+   "outcome": "EQUAL",
+   "x": {
+    "n": 0,
+    "fp": []
+   },
+   "u": {
+    "n": 0,
+    "fp": []
+   }
+  },
+  "x359|conv|llm": {
+   "id": "x359",
+   "side": "conv",
+   "screen": "llm",
+   "outcome": "EQUAL",
+   "x": {
+    "n": 0,
+    "fp": []
+   },
+   "u": {
+    "n": 0,
+    "fp": []
+   }
+  },
+  "x360|llm|llm": {
+   "id": "x360",
+   "side": "llm",
+   "screen": "llm",
+   "outcome": "EQUAL",
+   "x": {
+    "n": 0,
+    "fp": []
+   },
+   "u": {
+    "n": 0,
+    "fp": []
+   }
+  },
+  "x360|conv|llm": {
+   "id": "x360",
+   "side": "conv",
+   "screen": "llm",
+   "outcome": "EQUAL",
+   "x": {
+    "n": 0,
+    "fp": []
+   },
+   "u": {
+    "n": 0,
+    "fp": []
+   }
+  },
+  "x361|llm|llm": {
+   "id": "x361",
+   "side": "llm",
+   "screen": "llm",
+   "outcome": "SET_DIFFERS",
+   "x": {
+    "n": 28,
+    "fp": [
+     "android.widget.FrameLayout||||[0,0][1080,2400]",
+     "android.widget.LinearLayout||||[0,0][1080,2400]",
+     "android.widget.FrameLayout|android:id/content|||[0,0][1080,2400]",
+     "android.widget.FrameLayout||||[0,0][1080,2400]",
+     "android.widget.LinearLayout||||[0,63][1080,2274]",
+     "android.widget.LinearLayout||||[0,63][1080,220]",
+     "android.view.ViewGroup|||popon_wepejazuk_zeru|[0,220][1080,377]",
+     "android.view.ViewGroup|||popon_wepejazuk_zeru|[0,377][1080,534]",
+     "android.view.ViewGroup|||popon_wepejazuk_zeru|[0,534][1080,691]",
+     "android.view.ViewGroup|||popon_wepejazuk_zeru|[0,691][1080,848]",
+     "android.widget.ImageView|com.example.app:id/item_7||Settings|[0,691][1080,848]",
+     "android.widget.ScrollView||||[0,848][1080,1005]",
+     "android.widget.LinearLayout||||[0,848][1080,1005]",
+     "android.widget.ImageView|||i1|[0,848][540,1005]",
+     "android.widget.ImageView|||i2|[540,848][1080,1005]",
+     "android.widget.ScrollView||||[0,1005][1080,1162]",
+     "android.widget.LinearLayout||||[0,1005][1080,1162]",
+     "android.widget.ImageView|||i3|[0,1005][540,1162]",
+     "android.widget.ImageView|||i4|[540,1005][1080,1162]",
+     "android.view.View|cuzoces-moduvu|||[0,1162][1080,1319]",
+     "android.widget.LinearLayout||||[0,1162][1080,1319]",
+     "android.view.View|cuzoces-moduvu|||[0,1319][1080,1476]",
+     "android.widget.LinearLayout||||[0,1319][1080,1476]",
+     "android.widget.LinearLayout|com.example.app:id/second|||[0,1476][1080,1633]",
+     "android.widget.LinearLayout|com.example.app:id/second|||[0,1633][1080,1790]",
+     "android.widget.LinearLayout||||[0,1790][1080,1947]",
+     "android.widget.LinearLayout||||[0,1947][1080,2104]",
+     "android.widget.LinearLayout||||[0,2104][1080,2261]"
+    ]
+   },
+   "u": {
+    "n": 0,
+    "fp": []
+   }
+  },
+  "x362|llm|llm": {
+   "id": "x362",
+   "side": "llm",
+   "screen": "llm",
+   "outcome": "EQUAL",
+   "x": {
+    "n": 0,
+    "fp": []
+   },
+   "u": {
+    "n": 0,
+    "fp": []
+   }
+  },
+  "x362|conv|llm": {
+   "id": "x362",
+   "side": "conv",
+   "screen": "llm",
+   "outcome": "EQUAL",
+   "x": {
+    "n": 0,
+    "fp": []
+   },
+   "u": {
+    "n": 0,
+    "fp": []
+   }
+  },
+  "x363|conv|llm": {
+   "id": "x363",
+   "side": "conv",
+   "screen": "llm",
+   "outcome": "EQUAL",
+   "x": {
+    "n": 0,
+    "fp": []
+   },
+   "u": {
+    "n": 0,
+    "fp": []
+   }
+  },
+  "x364|llm|llm": {
+   "id": "x364",
+   "side": "llm",
+   "screen": "llm",
+   "outcome": "EQUAL",
+   "x": {
+    "n": 0,
+    "fp": []
+   },
+   "u": {
+    "n": 0,
+    "fp": []
+   }
+  },
+  "x364|conv|llm": {
+   "id": "x364",
+   "side": "conv",
+   "screen": "llm",
+   "outcome": "EQUAL",
+   "x": {
+    "n": 0,
+    "fp": []
+   },
+   "u": {
+    "n": 0,
+    "fp": []
+   }
+  },
+  "x367|llm|llm": {
+   "id": "x367",
+   "side": "llm",
+   "screen": "llm",
+   "outcome": "EQUAL",
+   "x": {
+    "n": 0,
+    "fp": []
+   },
+   "u": {
+    "n": 0,
+    "fp": []
+   }
+  },
+  "x372|conv|llm": {
+   "id": "x372",
+   "side": "conv",
+   "screen": "llm",
+   "outcome": "EQUAL",
+   "x": {
+    "n": 0,
+    "fp": []
+   },
+   "u": {
+    "n": 0,
+    "fp": []
+   }
+  },
+  "x373|llm|llm": {
+   "id": "x373",
+   "side": "llm",
+   "screen": "llm",
+   "outcome": "EQUAL",
+   "x": {
+    "n": 0,
+    "fp": []
+   },
+   "u": {
+    "n": 0,
+    "fp": []
+   }
+  },
+  "x373|conv|llm": {
+   "id": "x373",
+   "side": "conv",
+   "screen": "llm",
+   "outcome": "EQUAL",
+   "x": {
+    "n": 0,
+    "fp": []
+   },
+   "u": {
+    "n": 0,
+    "fp": []
+   }
+  },
+  "x376|llm|llm": {
+   "id": "x376",
+   "side": "llm",
+   "screen": "llm",
+   "outcome": "EQUAL",
+   "x": {
+    "n": 0,
+    "fp": []
+   },
+   "u": {
+    "n": 0,
+    "fp": []
+   }
+  },
+  "x380|llm|llm": {
+   "id": "x380",
+   "side": "llm",
+   "screen": "llm",
+   "outcome": "SET_DIFFERS",
+   "x": {
+    "n": 59,
+    "fp": [
+     "android.widget.FrameLayout||||[0,0][1080,2400]",
+     "android.widget.LinearLayout||||[0,0][1080,2400]",
+     "android.widget.FrameLayout|android:id/content|||[0,0][1080,2400]",
+     "android.widget.FrameLayout||||[0,0][1080,2400]",
+     "android.widget.LinearLayout||||[0,63][1080,2274]",
+     "android.widget.LinearLayout||||[0,63][1080,220]",
+     "android.widget.SeekBar||1.5||[0,63][270,220]",
+     "android.widget.SeekBar||21.5||[270,63][540,220]",
+     "android.widget.ProgressBar||50.0||[540,63][810,220]",
+     "android.widget.TextView||Total 1.5 kg||[810,63][1080,220]",
+     "android.view.ViewGroup|||popon_wepejazuk_zeru|[0,220][1080,377]",
+     "android.widget.TextView|com.example.app:id/item_7|a||[0,220][1080,377]",
+     "android.view.ViewGroup|||popon_wepejazuk_zeru|[0,377][1080,534]",
+     "android.widget.TextView||b||[0,377][1080,534]",
+     "android.view.ViewGroup|||popon_wepejazuk_zeru|[0,534][1080,691]",
+     "android.widget.TextView|com.example.app:id/item_7|c||[0,534][1080,586]",
+     "android.widget.TextView||d|Settings|[0,586][1080,638]",
+     "android.widget.TextView|com.example.app:id/item_7|e||[0,638][1080,690]",
+     "android.view.ViewGroup|||popon_wepejazuk_zeru|[0,691][1080,848]",
+     "android.widget.ImageView|com.example.app:id/item_7||Settings|[0,691][1080,848]",
+     "android.widget.ScrollView||||[0,848][1080,1005]",
+     "android.widget.LinearLayout||||[0,848][1080,1005]",
+     "android.widget.ImageView|||i1|[0,848][540,1005]",
+     "android.widget.ImageView|||i2|[540,848][1080,1005]",
+     "android.widget.ScrollView||||[0,1005][1080,1162]",
+     "android.widget.LinearLayout||||[0,1005][1080,1162]",
+     "android.widget.ImageView|||i3|[0,1005][540,1162]",
+     "android.widget.ImageView|||i4|[540,1005][1080,1162]",
+     "android.view.View|cuzoces-moduvu|||[0,1162][1080,1319]",
+     "android.widget.LinearLayout||||[0,1162][1080,1319]",
+     "android.widget.TextView||m1||[0,1162][540,1319]",
+     "android.widget.TextView||m2||[540,1162][1080,1319]",
+     "android.view.View|cuzoces-moduvu|||[0,1319][1080,1476]",
+     "android.widget.LinearLayout||||[0,1319][1080,1476]",
+     "android.widget.TextView||m3||[0,1319][540,1476]",
+     "android.widget.TextView||m4||[540,1319][1080,1476]",
+     "android.widget.LinearLayout|com.example.app:id/second|||[0,1476][1080,1633]",
+     "android.widget.TextView||s1||[0,1476][1080,1554]",
+     "android.widget.TextView||s2||[0,1554][1080,1632]",
+     "android.widget.LinearLayout|com.example.app:id/second|||[0,1633][1080,1790]",
+     "android.widget.TextView||s3||[0,1633][1080,1685]",
+     "android.widget.TextView||s4||[0,1685][1080,1737]",
+     "android.widget.TextView||s5||[0,1737][1080,1789]",
+     "android.widget.LinearLayout||||[0,1790][1080,1947]",
+     "android.widget.TextView|io.zofujize.vikuwag.vajotin:id/danob_danob_hac|u1||[0,1790][360,1947]",
+     "android.widget.TextView|danob_danob_hac|u2||[360,1790][720,1947]",
+     "android.widget.TextView|x:id/danob_danob_hac_2|u3||[720,1790][1080,1947]",
+     "android.widget.LinearLayout||||[0,1947][1080,2104]",
+     "android.widget.TextView||Total\n||[0,1947][216,2104]",
+     "android.widget.TextView|| Total\t||[216,1947][432,2104]",
+     "android.widget.TextView||To tal||[432,1947][648,2104]",
+     "android.widget.TextView||Tot||[648,1947][864,2104]",
+     "android.widget.TextView||Totally||[864,1947][1080,2104]",
+     "android.widget.LinearLayout||||[0,2104][1080,2261]",
+     "android.widget.TextView||😀😀😀😀😀||[0,2104][180,2261]",
+     "android.widget.TextView||abcde||[180,2104][360,2261]",
+     "android.widget.TextView||abcd||[360,2104][540,2261]",
+     "android.widget.TextView||oK||[720,2104][900,2261]",
+     "android.widget.TextView||OkK||[900,2104][1080,2261]"
+    ]
+   },
+   "u": {
+    "n": 28,
+    "fp": [
+     "android.widget.TextView||Total 1.5 kg||[810,63][1080,220]",
+     "android.widget.TextView|com.example.app:id/item_7|a||[0,220][1080,377]",
+     "android.widget.TextView||b||[0,377][1080,534]",
+     "android.widget.TextView|com.example.app:id/item_7|c||[0,534][1080,586]",
+     "android.widget.TextView||d|Settings|[0,586][1080,638]",
+     "android.widget.TextView|com.example.app:id/item_7|e||[0,638][1080,690]",
+     "android.widget.TextView||m1||[0,1162][540,1319]",
+     "android.widget.TextView||m2||[540,1162][1080,1319]",
+     "android.widget.TextView||m3||[0,1319][540,1476]",
+     "android.widget.TextView||m4||[540,1319][1080,1476]",
+     "android.widget.TextView||s1||[0,1476][1080,1554]",
+     "android.widget.TextView||s2||[0,1554][1080,1632]",
+     "android.widget.TextView||s3||[0,1633][1080,1685]",
+     "android.widget.TextView||s4||[0,1685][1080,1737]",
+     "android.widget.TextView||s5||[0,1737][1080,1789]",
+     "android.widget.TextView|io.zofujize.vikuwag.vajotin:id/danob_danob_hac|u1||[0,1790][360,1947]",
+     "android.widget.TextView|danob_danob_hac|u2||[360,1790][720,1947]",
+     "android.widget.TextView|x:id/danob_danob_hac_2|u3||[720,1790][1080,1947]",
+     "android.widget.TextView||Total\n||[0,1947][216,2104]",
+     "android.widget.TextView|| Total\t||[216,1947][432,2104]",
+     "android.widget.TextView||To tal||[432,1947][648,2104]",
+     "android.widget.TextView||Tot||[648,1947][864,2104]",
+     "android.widget.TextView||Totally||[864,1947][1080,2104]",
+     "android.widget.TextView||😀😀😀😀😀||[0,2104][180,2261]",
+     "android.widget.TextView||abcde||[180,2104][360,2261]",
+     "android.widget.TextView||abcd||[360,2104][540,2261]",
+     "android.widget.TextView||oK||[720,2104][900,2261]",
+     "android.widget.TextView||OkK||[900,2104][1080,2261]"
+    ]
+   }
+  },
+  "x393|llm|llm": {
+   "id": "x393",
+   "side": "llm",
+   "screen": "llm",
+   "outcome": "SET_DIFFERS",
+   "x": {
+    "n": 60,
+    "fp": [
+     "android.widget.FrameLayout||||[0,0][1080,2400]",
+     "android.widget.LinearLayout||||[0,0][1080,2400]",
+     "android.widget.FrameLayout|android:id/content|||[0,0][1080,2400]",
+     "android.widget.FrameLayout||||[0,0][1080,2400]",
+     "android.widget.LinearLayout||||[0,63][1080,2274]",
+     "android.widget.LinearLayout||||[0,63][1080,220]",
+     "android.widget.SeekBar||1.5||[0,63][270,220]",
+     "android.widget.SeekBar||21.5||[270,63][540,220]",
+     "android.widget.ProgressBar||50.0||[540,63][810,220]",
+     "android.widget.TextView||Total 1.5 kg||[810,63][1080,220]",
+     "android.view.ViewGroup|||popon_wepejazuk_zeru|[0,220][1080,377]",
+     "android.widget.TextView|com.example.app:id/item_7|a||[0,220][1080,377]",
+     "android.view.ViewGroup|||popon_wepejazuk_zeru|[0,377][1080,534]",
+     "android.widget.TextView||b||[0,377][1080,534]",
+     "android.view.ViewGroup|||popon_wepejazuk_zeru|[0,534][1080,691]",
+     "android.widget.TextView|com.example.app:id/item_7|c||[0,534][1080,586]",
+     "android.widget.TextView||d|Settings|[0,586][1080,638]",
+     "android.widget.TextView|com.example.app:id/item_7|e||[0,638][1080,690]",
+     "android.view.ViewGroup|||popon_wepejazuk_zeru|[0,691][1080,848]",
+     "android.widget.ImageView|com.example.app:id/item_7||Settings|[0,691][1080,848]",
+     "android.widget.ScrollView||||[0,848][1080,1005]",
+     "android.widget.LinearLayout||||[0,848][1080,1005]",
+     "android.widget.ImageView|||i1|[0,848][540,1005]",
+     "android.widget.ImageView|||i2|[540,848][1080,1005]",
+     "android.widget.ScrollView||||[0,1005][1080,1162]",
+     "android.widget.LinearLayout||||[0,1005][1080,1162]",
+     "android.widget.ImageView|||i3|[0,1005][540,1162]",
+     "android.widget.ImageView|||i4|[540,1005][1080,1162]",
+     "android.view.View|cuzoces-moduvu|||[0,1162][1080,1319]",
+     "android.widget.LinearLayout||||[0,1162][1080,1319]",
+     "android.widget.TextView||m1||[0,1162][540,1319]",
+     "android.widget.TextView||m2||[540,1162][1080,1319]",
+     "android.view.View|cuzoces-moduvu|||[0,1319][1080,1476]",
+     "android.widget.LinearLayout||||[0,1319][1080,1476]",
+     "android.widget.TextView||m3||[0,1319][540,1476]",
+     "android.widget.TextView||m4||[540,1319][1080,1476]",
+     "android.widget.LinearLayout|com.example.app:id/second|||[0,1476][1080,1633]",
+     "android.widget.TextView||s1||[0,1476][1080,1554]",
+     "android.widget.TextView||s2||[0,1554][1080,1632]",
+     "android.widget.LinearLayout|com.example.app:id/second|||[0,1633][1080,1790]",
+     "android.widget.TextView||s3||[0,1633][1080,1685]",
+     "android.widget.TextView||s4||[0,1685][1080,1737]",
+     "android.widget.TextView||s5||[0,1737][1080,1789]",
+     "android.widget.LinearLayout||||[0,1790][1080,1947]",
+     "android.widget.TextView|io.zofujize.vikuwag.vajotin:id/danob_danob_hac|u1||[0,1790][360,1947]",
+     "android.widget.TextView|danob_danob_hac|u2||[360,1790][720,1947]",
+     "android.widget.TextView|x:id/danob_danob_hac_2|u3||[720,1790][1080,1947]",
+     "android.widget.LinearLayout||||[0,1947][1080,2104]",
+     "android.widget.TextView||Total\n||[0,1947][216,2104]",
+     "android.widget.TextView|| Total\t||[216,1947][432,2104]",
+     "android.widget.TextView||To tal||[432,1947][648,2104]",
+     "android.widget.TextView||Tot||[648,1947][864,2104]",
+     "android.widget.TextView||Totally||[864,1947][1080,2104]",
+     "android.widget.LinearLayout||||[0,2104][1080,2261]",
+     "android.widget.TextView||😀😀😀😀😀||[0,2104][180,2261]",
+     "android.widget.TextView||abcde||[180,2104][360,2261]",
+     "android.widget.TextView||abcd||[360,2104][540,2261]",
+     "android.widget.TextView||OK||[540,2104][720,2261]",
+     "android.widget.TextView||oK||[720,2104][900,2261]",
+     "android.widget.TextView||OkK||[900,2104][1080,2261]"
+    ]
+   },
+   "u": {
+    "n": 29,
+    "fp": [
+     "android.widget.TextView||Total 1.5 kg||[810,63][1080,220]",
+     "android.widget.TextView|com.example.app:id/item_7|a||[0,220][1080,377]",
+     "android.widget.TextView||b||[0,377][1080,534]",
+     "android.widget.TextView|com.example.app:id/item_7|c||[0,534][1080,586]",
+     "android.widget.TextView||d|Settings|[0,586][1080,638]",
+     "android.widget.TextView|com.example.app:id/item_7|e||[0,638][1080,690]",
+     "android.widget.TextView||m1||[0,1162][540,1319]",
+     "android.widget.TextView||m2||[540,1162][1080,1319]",
+     "android.widget.TextView||m3||[0,1319][540,1476]",
+     "android.widget.TextView||m4||[540,1319][1080,1476]",
+     "android.widget.TextView||s1||[0,1476][1080,1554]",
+     "android.widget.TextView||s2||[0,1554][1080,1632]",
+     "android.widget.TextView||s3||[0,1633][1080,1685]",
+     "android.widget.TextView||s4||[0,1685][1080,1737]",
+     "android.widget.TextView||s5||[0,1737][1080,1789]",
+     "android.widget.TextView|io.zofujize.vikuwag.vajotin:id/danob_danob_hac|u1||[0,1790][360,1947]",
+     "android.widget.TextView|danob_danob_hac|u2||[360,1790][720,1947]",
+     "android.widget.TextView|x:id/danob_danob_hac_2|u3||[720,1790][1080,1947]",
+     "android.widget.TextView||Total\n||[0,1947][216,2104]",
+     "android.widget.TextView|| Total\t||[216,1947][432,2104]",
+     "android.widget.TextView||To tal||[432,1947][648,2104]",
+     "android.widget.TextView||Tot||[648,1947][864,2104]",
+     "android.widget.TextView||Totally||[864,1947][1080,2104]",
+     "android.widget.TextView||😀😀😀😀😀||[0,2104][180,2261]",
+     "android.widget.TextView||abcde||[180,2104][360,2261]",
+     "android.widget.TextView||abcd||[360,2104][540,2261]",
+     "android.widget.TextView||OK||[540,2104][720,2261]",
+     "android.widget.TextView||oK||[720,2104][900,2261]",
+     "android.widget.TextView||OkK||[900,2104][1080,2261]"
+    ]
+   }
+  },
+  "x433|conv|llm": {
+   "id": "x433",
+   "side": "conv",
+   "screen": "llm",
+   "outcome": "EQUAL",
+   "x": {
+    "n": 0,
+    "fp": []
+   },
+   "u": {
+    "n": 0,
+    "fp": []
+   }
+  },
+  "x442|llm|llm": {
+   "id": "x442",
+   "side": "llm",
+   "screen": "llm",
+   "outcome": "EQUAL",
+   "x": {
+    "n": 0,
+    "fp": []
+   },
+   "u": {
+    "n": 0,
+    "fp": []
+   }
+  },
+  "x442|conv|llm": {
+   "id": "x442",
+   "side": "conv",
+   "screen": "llm",
+   "outcome": "EQUAL",
+   "x": {
+    "n": 0,
+    "fp": []
+   },
+   "u": {
+    "n": 0,
+    "fp": []
+   }
+  },
+  "x454|llm|llm": {
+   "id": "x454",
+   "side": "llm",
+   "screen": "llm",
+   "outcome": "EQUAL",
+   "x": {
+    "n": 0,
+    "fp": []
+   },
+   "u": {
+    "n": 0,
+    "fp": []
+   }
+  },
+  "x463|llm|llm": {
+   "id": "x463",
+   "side": "llm",
+   "screen": "llm",
+   "outcome": "EQUAL",
+   "x": {
+    "n": 4,
+    "fp": [
+     "android.widget.TextView||Total 1.5 kg||[810,63][1080,220]",
+     "android.widget.TextView||Total\n||[0,1947][216,2104]",
+     "android.widget.TextView|| Total\t||[216,1947][432,2104]",
+     "android.widget.TextView||Totally||[864,1947][1080,2104]"
+    ]
+   },
+   "u": {
+    "n": 4,
+    "fp": [
+     "android.widget.TextView||Total 1.5 kg||[810,63][1080,220]",
+     "android.widget.TextView||Total\n||[0,1947][216,2104]",
+     "android.widget.TextView|| Total\t||[216,1947][432,2104]",
+     "android.widget.TextView||Totally||[864,1947][1080,2104]"
+    ]
+   }
+  },
+  "x463|conv|llm": {
+   "id": "x463",
+   "side": "conv",
+   "screen": "llm",
+   "outcome": "EQUAL",
+   "x": {
+    "n": 4,
+    "fp": [
+     "android.widget.TextView||Total 1.5 kg||[810,63][1080,220]",
+     "android.widget.TextView||Total\n||[0,1947][216,2104]",
+     "android.widget.TextView|| Total\t||[216,1947][432,2104]",
+     "android.widget.TextView||Totally||[864,1947][1080,2104]"
+    ]
+   },
+   "u": {
+    "n": 4,
+    "fp": [
+     "android.widget.TextView||Total 1.5 kg||[810,63][1080,220]",
+     "android.widget.TextView||Total\n||[0,1947][216,2104]",
+     "android.widget.TextView|| Total\t||[216,1947][432,2104]",
+     "android.widget.TextView||Totally||[864,1947][1080,2104]"
+    ]
+   }
+  },
+  "x464|llm|llm": {
+   "id": "x464",
+   "side": "llm",
+   "screen": "llm",
+   "outcome": "EQUAL",
+   "x": {
+    "n": 3,
+    "fp": [
+     "android.widget.TextView||Total 1.5 kg||[810,63][1080,220]",
+     "android.widget.TextView||Total\n||[0,1947][216,2104]",
+     "android.widget.TextView||Totally||[864,1947][1080,2104]"
+    ]
+   },
+   "u": {
+    "n": 3,
+    "fp": [
+     "android.widget.TextView||Total 1.5 kg||[810,63][1080,220]",
+     "android.widget.TextView||Total\n||[0,1947][216,2104]",
+     "android.widget.TextView||Totally||[864,1947][1080,2104]"
+    ]
+   }
+  },
+  "x464|conv|llm": {
+   "id": "x464",
+   "side": "conv",
+   "screen": "llm",
+   "outcome": "EQUAL",
+   "x": {
+    "n": 3,
+    "fp": [
+     "android.widget.TextView||Total 1.5 kg||[810,63][1080,220]",
+     "android.widget.TextView||Total\n||[0,1947][216,2104]",
+     "android.widget.TextView||Totally||[864,1947][1080,2104]"
+    ]
+   },
+   "u": {
+    "n": 3,
+    "fp": [
+     "android.widget.TextView||Total 1.5 kg||[810,63][1080,220]",
+     "android.widget.TextView||Total\n||[0,1947][216,2104]",
+     "android.widget.TextView||Totally||[864,1947][1080,2104]"
+    ]
+   }
+  },
+  "x472|conv|llm": {
+   "id": "x472",
+   "side": "conv",
+   "screen": "llm",
+   "outcome": "EQUAL",
+   "x": {
+    "n": 1,
+    "fp": [
+     "android.widget.TextView||m1||[0,1162][540,1319]"
+    ]
+   },
+   "u": {
+    "n": 1,
+    "fp": [
+     "android.widget.TextView||m1||[0,1162][540,1319]"
+    ]
+   }
+  },
+  "x481|llm|llm": {
+   "id": "x481",
+   "side": "llm",
+   "screen": "llm",
+   "outcome": "EQUAL",
+   "x": {
+    "n": 0,
+    "fp": []
+   },
+   "u": {
+    "n": 0,
+    "fp": []
+   }
+  },
+  "x481|conv|llm": {
+   "id": "x481",
+   "side": "conv",
+   "screen": "llm",
+   "outcome": "EQUAL",
+   "x": {
+    "n": 0,
+    "fp": []
+   },
+   "u": {
+    "n": 0,
+    "fp": []
+   }
+  },
+  "x484|llm|llm": {
+   "id": "x484",
+   "side": "llm",
+   "screen": "llm",
+   "outcome": "XPATH_ERROR",
+   "x": {
+    "error": "unknown error: Value does not match a required type.. Try changing the 'enforceXPath1' driver setting to 'true' in order to workaround the problem."
+   },
+   "u": {
+    "n": 4,
+    "fp": [
+     "android.widget.TextView||Total 1.5 kg||[810,63][1080,220]",
+     "android.widget.TextView||Total\n||[0,1947][216,2104]",
+     "android.widget.TextView|| Total\t||[216,1947][432,2104]",
+     "android.widget.TextView||Totally||[864,1947][1080,2104]"
+    ]
+   }
+  },
+  "x487|llm|llm": {
+   "id": "x487",
+   "side": "llm",
+   "screen": "llm",
+   "outcome": "EQUAL",
+   "x": {
+    "n": 0,
+    "fp": []
+   },
+   "u": {
+    "n": 0,
+    "fp": []
+   }
+  },
+  "x489|llm|llm": {
+   "id": "x489",
+   "side": "llm",
+   "screen": "llm",
+   "outcome": "EQUAL",
+   "x": {
+    "n": 0,
+    "fp": []
+   },
+   "u": {
+    "n": 0,
+    "fp": []
+   }
+  },
+  "x491|llm|llm": {
+   "id": "x491",
+   "side": "llm",
+   "screen": "llm",
+   "outcome": "UISEL_ERROR",
+   "x": {
+    "n": 0,
+    "fp": []
+   },
+   "u": {
+    "error": "invalid selector: Could not parse selector expression `new UiSelector().resourceId(\"com.rusezu.android.vowu.nola:id/rej_bibok\").childSelector(new UiSelector().password(false))`: `UiSelector` doesn't have suitable method `childSelector` with arguments [new UiSelector().password(false)]: Could not par"
+   }
+  },
+  "x492|llm|llm": {
+   "id": "x492",
+   "side": "llm",
+   "screen": "llm",
+   "outcome": "EQUAL",
+   "x": {
+    "n": 0,
+    "fp": []
+   },
+   "u": {
+    "n": 0,
+    "fp": []
+   }
+  },
+  "x492|conv|llm": {
+   "id": "x492",
+   "side": "conv",
+   "screen": "llm",
+   "outcome": "EQUAL",
+   "x": {
+    "n": 0,
+    "fp": []
+   },
+   "u": {
+    "n": 0,
+    "fp": []
+   }
+  },
+  "x494|conv|llm": {
+   "id": "x494",
+   "side": "conv",
+   "screen": "llm",
+   "outcome": "EQUAL",
+   "x": {
+    "n": 0,
+    "fp": []
+   },
+   "u": {
+    "n": 0,
+    "fp": []
+   }
+  },
+  "x497|conv|llm": {
+   "id": "x497",
+   "side": "conv",
+   "screen": "llm",
+   "outcome": "EQUAL",
+   "x": {
+    "n": 1,
+    "fp": [
+     "android.widget.TextView|com.example.app:id/item_7|a||[0,220][1080,377]"
+    ]
+   },
+   "u": {
+    "n": 1,
+    "fp": [
+     "android.widget.TextView|com.example.app:id/item_7|a||[0,220][1080,377]"
+    ]
+   }
+  },
+  "x507|llm|llm": {
+   "id": "x507",
+   "side": "llm",
+   "screen": "llm",
+   "outcome": "EQUAL",
+   "x": {
+    "n": 0,
+    "fp": []
+   },
+   "u": {
+    "n": 0,
+    "fp": []
+   }
+  },
+  "x507|conv|llm": {
+   "id": "x507",
+   "side": "conv",
+   "screen": "llm",
+   "outcome": "EQUAL",
+   "x": {
+    "n": 0,
+    "fp": []
+   },
+   "u": {
+    "n": 0,
+    "fp": []
+   }
+  },
+  "x511|llm|llm": {
+   "id": "x511",
+   "side": "llm",
+   "screen": "llm",
+   "outcome": "EQUAL",
+   "x": {
+    "n": 0,
+    "fp": []
+   },
+   "u": {
+    "n": 0,
+    "fp": []
+   }
+  },
+  "x511|conv|llm": {
+   "id": "x511",
+   "side": "conv",
+   "screen": "llm",
+   "outcome": "EQUAL",
+   "x": {
+    "n": 0,
+    "fp": []
+   },
+   "u": {
+    "n": 0,
+    "fp": []
+   }
+  },
+  "x521|llm|llm": {
+   "id": "x521",
+   "side": "llm",
+   "screen": "llm",
+   "outcome": "EQUAL",
+   "x": {
+    "n": 0,
+    "fp": []
+   },
+   "u": {
+    "n": 0,
+    "fp": []
+   }
+  },
+  "x521|conv|llm": {
+   "id": "x521",
+   "side": "conv",
+   "screen": "llm",
+   "outcome": "EQUAL",
+   "x": {
+    "n": 0,
+    "fp": []
+   },
+   "u": {
+    "n": 0,
+    "fp": []
+   }
+  },
+  "x533|llm|llm": {
+   "id": "x533",
+   "side": "llm",
+   "screen": "llm",
+   "outcome": "EQUAL",
+   "x": {
+    "n": 0,
+    "fp": []
+   },
+   "u": {
+    "n": 0,
+    "fp": []
+   }
+  },
+  "x533|conv|llm": {
+   "id": "x533",
+   "side": "conv",
+   "screen": "llm",
+   "outcome": "EQUAL",
+   "x": {
+    "n": 0,
+    "fp": []
+   },
+   "u": {
+    "n": 0,
+    "fp": []
+   }
+  },
+  "x535|llm|llm": {
+   "id": "x535",
+   "side": "llm",
+   "screen": "llm",
+   "outcome": "EQUAL",
+   "x": {
+    "n": 0,
+    "fp": []
+   },
+   "u": {
+    "n": 0,
+    "fp": []
+   }
+  },
+  "x535|conv|llm": {
+   "id": "x535",
+   "side": "conv",
+   "screen": "llm",
+   "outcome": "EQUAL",
+   "x": {
+    "n": 0,
+    "fp": []
+   },
+   "u": {
+    "n": 0,
+    "fp": []
+   }
+  },
+  "x538|llm|llm": {
+   "id": "x538",
+   "side": "llm",
+   "screen": "llm",
+   "outcome": "EQUAL",
+   "x": {
+    "n": 0,
+    "fp": []
+   },
+   "u": {
+    "n": 0,
+    "fp": []
+   }
+  },
+  "x538|conv|llm": {
+   "id": "x538",
+   "side": "conv",
+   "screen": "llm",
+   "outcome": "EQUAL",
+   "x": {
+    "n": 0,
+    "fp": []
+   },
+   "u": {
+    "n": 0,
+    "fp": []
+   }
+  },
+  "x547|llm|llm": {
+   "id": "x547",
+   "side": "llm",
+   "screen": "llm",
+   "outcome": "XPATH_ERROR",
+   "x": {
+    "error": "unknown error: Can't cast to required type.. Try changing the 'enforceXPath1' driver setting to 'true' in order to workaround the problem."
+   },
+   "u": {
+    "n": 0,
+    "fp": []
+   }
+  },
+  "x559|llm|llm": {
+   "id": "x559",
+   "side": "llm",
+   "screen": "llm",
+   "outcome": "SET_DIFFERS",
+   "x": {
+    "n": 1,
+    "fp": [
+     "android.widget.ProgressBar||50.0||[540,63][810,220]"
+    ]
+   },
+   "u": {
+    "n": 0,
+    "fp": []
+   }
+  },
+  "x562|conv|llm": {
+   "id": "x562",
+   "side": "conv",
+   "screen": "llm",
+   "outcome": "EQUAL",
+   "x": {
+    "n": 60,
+    "f0": "android.widget.FrameLayout||||[0,0][1080,2400]"
+   },
+   "u": {
+    "n": 60,
+    "f0": "android.widget.FrameLayout||||[0,0][1080,2400]"
+   }
+  },
+  "x565|conv|llm": {
+   "id": "x565",
+   "side": "conv",
+   "screen": "llm",
+   "outcome": "EQUAL",
+   "x": {
+    "n": 0,
+    "fp": []
+   },
+   "u": {
+    "n": 0,
+    "fp": []
+   }
+  },
+  "x566|llm|llm": {
+   "id": "x566",
+   "side": "llm",
+   "screen": "llm",
+   "outcome": "EQUAL",
+   "x": {
+    "n": 2,
+    "fp": [
+     "android.widget.TextView||abcde||[180,2104][360,2261]",
+     "android.widget.TextView||abcd||[360,2104][540,2261]"
+    ]
+   },
+   "u": {
+    "n": 2,
+    "fp": [
+     "android.widget.TextView||abcde||[180,2104][360,2261]",
+     "android.widget.TextView||abcd||[360,2104][540,2261]"
+    ]
+   }
+  },
+  "x566|conv|llm": {
+   "id": "x566",
+   "side": "conv",
+   "screen": "llm",
+   "outcome": "EQUAL",
+   "x": {
+    "n": 2,
+    "fp": [
+     "android.widget.TextView||abcde||[180,2104][360,2261]",
+     "android.widget.TextView||abcd||[360,2104][540,2261]"
+    ]
+   },
+   "u": {
+    "n": 2,
+    "fp": [
+     "android.widget.TextView||abcde||[180,2104][360,2261]",
+     "android.widget.TextView||abcd||[360,2104][540,2261]"
+    ]
+   }
+  },
+  "x574|llm|llm": {
+   "id": "x574",
+   "side": "llm",
+   "screen": "llm",
+   "outcome": "EQUAL",
+   "x": {
+    "n": 0,
+    "fp": []
+   },
+   "u": {
+    "n": 0,
+    "fp": []
+   }
+  },
+  "x574|conv|llm": {
+   "id": "x574",
+   "side": "conv",
+   "screen": "llm",
+   "outcome": "EQUAL",
+   "x": {
+    "n": 0,
+    "fp": []
+   },
+   "u": {
+    "n": 0,
+    "fp": []
+   }
+  },
+  "x578|llm|llm": {
+   "id": "x578",
+   "side": "llm",
+   "screen": "llm",
+   "outcome": "EQUAL",
+   "x": {
+    "n": 0,
+    "fp": []
+   },
+   "u": {
+    "n": 0,
+    "fp": []
+   }
+  },
+  "x578|conv|llm": {
+   "id": "x578",
+   "side": "conv",
+   "screen": "llm",
+   "outcome": "EQUAL",
+   "x": {
+    "n": 0,
+    "fp": []
+   },
+   "u": {
+    "n": 0,
+    "fp": []
+   }
+  },
+  "x581|llm|llm": {
+   "id": "x581",
+   "side": "llm",
+   "screen": "llm",
+   "outcome": "EQUAL",
+   "x": {
+    "n": 0,
+    "fp": []
+   },
+   "u": {
+    "n": 0,
+    "fp": []
+   }
+  },
+  "x581|conv|llm": {
+   "id": "x581",
+   "side": "conv",
+   "screen": "llm",
+   "outcome": "EQUAL",
+   "x": {
+    "n": 0,
+    "fp": []
+   },
+   "u": {
+    "n": 0,
+    "fp": []
+   }
+  },
+  "x596|llm|llm": {
+   "id": "x596",
+   "side": "llm",
+   "screen": "llm",
+   "outcome": "EQUAL",
+   "x": {
+    "n": 0,
+    "fp": []
+   },
+   "u": {
+    "n": 0,
+    "fp": []
+   }
+  },
+  "x596|conv|llm": {
+   "id": "x596",
+   "side": "conv",
+   "screen": "llm",
+   "outcome": "EQUAL",
+   "x": {
+    "n": 0,
+    "fp": []
+   },
+   "u": {
+    "n": 0,
+    "fp": []
+   }
+  },
+  "x606|llm|llm": {
+   "id": "x606",
+   "side": "llm",
+   "screen": "llm",
+   "outcome": "EQUAL",
+   "x": {
+    "n": 0,
+    "fp": []
+   },
+   "u": {
+    "n": 0,
+    "fp": []
+   }
+  },
+  "x606|conv|llm": {
+   "id": "x606",
+   "side": "conv",
+   "screen": "llm",
+   "outcome": "EQUAL",
+   "x": {
+    "n": 0,
+    "fp": []
+   },
+   "u": {
+    "n": 0,
+    "fp": []
+   }
+  },
+  "x610|llm|llm": {
+   "id": "x610",
+   "side": "llm",
+   "screen": "llm",
+   "outcome": "EQUAL",
+   "x": {
+    "n": 2,
+    "fp": [
+     "android.widget.TextView||😀😀😀😀😀||[0,2104][180,2261]",
+     "android.widget.TextView||abcde||[180,2104][360,2261]"
+    ]
+   },
+   "u": {
+    "n": 2,
+    "fp": [
+     "android.widget.TextView||😀😀😀😀😀||[0,2104][180,2261]",
+     "android.widget.TextView||abcde||[180,2104][360,2261]"
+    ]
+   }
+  },
+  "x618|llm|llm": {
+   "id": "x618",
+   "side": "llm",
+   "screen": "llm",
+   "outcome": "EQUAL",
+   "x": {
+    "n": 0,
+    "fp": []
+   },
+   "u": {
+    "n": 0,
+    "fp": []
+   }
+  },
+  "x618|conv|llm": {
+   "id": "x618",
+   "side": "conv",
+   "screen": "llm",
+   "outcome": "EQUAL",
+   "x": {
+    "n": 0,
+    "fp": []
+   },
+   "u": {
+    "n": 0,
+    "fp": []
+   }
+  },
+  "x626|llm|llm": {
+   "id": "x626",
+   "side": "llm",
+   "screen": "llm",
+   "outcome": "EQUAL",
+   "x": {
+    "n": 0,
+    "fp": []
+   },
+   "u": {
+    "n": 0,
+    "fp": []
+   }
+  },
+  "x626|conv|llm": {
+   "id": "x626",
+   "side": "conv",
+   "screen": "llm",
+   "outcome": "EQUAL",
+   "x": {
+    "n": 0,
+    "fp": []
+   },
+   "u": {
+    "n": 0,
+    "fp": []
+   }
+  },
+  "x631|conv|llm": {
+   "id": "x631",
+   "side": "conv",
+   "screen": "llm",
+   "outcome": "EQUAL",
+   "x": {
+    "n": 0,
+    "fp": []
+   },
+   "u": {
+    "n": 0,
+    "fp": []
+   }
+  },
+  "x648|conv|llm": {
+   "id": "x648",
+   "side": "conv",
+   "screen": "llm",
+   "outcome": "EQUAL",
+   "x": {
+    "n": 1,
+    "fp": [
+     "android.widget.TextView||OK||[540,2104][720,2261]"
+    ]
+   },
+   "u": {
+    "n": 1,
+    "fp": [
+     "android.widget.TextView||OK||[540,2104][720,2261]"
+    ]
+   }
+  },
+  "x653|llm|llm": {
+   "id": "x653",
+   "side": "llm",
+   "screen": "llm",
+   "outcome": "EQUAL",
+   "x": {
+    "n": 0,
+    "fp": []
+   },
+   "u": {
+    "n": 0,
+    "fp": []
+   }
+  },
+  "x653|conv|llm": {
+   "id": "x653",
+   "side": "conv",
+   "screen": "llm",
+   "outcome": "EQUAL",
+   "x": {
+    "n": 0,
+    "fp": []
+   },
+   "u": {
+    "n": 0,
+    "fp": []
+   }
+  },
+  "x658|llm|llm": {
+   "id": "x658",
+   "side": "llm",
+   "screen": "llm",
+   "outcome": "EQUAL",
+   "x": {
+    "n": 1,
+    "fp": [
+     "android.widget.TextView||OK||[540,2104][720,2261]"
+    ]
+   },
+   "u": {
+    "n": 1,
+    "fp": [
+     "android.widget.TextView||OK||[540,2104][720,2261]"
+    ]
+   }
+  },
+  "x658|conv|llm": {
+   "id": "x658",
+   "side": "conv",
+   "screen": "llm",
+   "outcome": "EQUAL",
+   "x": {
+    "n": 1,
+    "fp": [
+     "android.widget.TextView||OK||[540,2104][720,2261]"
+    ]
+   },
+   "u": {
+    "n": 1,
+    "fp": [
+     "android.widget.TextView||OK||[540,2104][720,2261]"
+    ]
+   }
+  },
+  "x659|llm|llm": {
+   "id": "x659",
+   "side": "llm",
+   "screen": "llm",
+   "outcome": "EQUAL",
+   "x": {
+    "n": 2,
+    "fp": [
+     "android.widget.TextView||OK||[540,2104][720,2261]",
+     "android.widget.TextView||oK||[720,2104][900,2261]"
+    ]
+   },
+   "u": {
+    "n": 2,
+    "fp": [
+     "android.widget.TextView||OK||[540,2104][720,2261]",
+     "android.widget.TextView||oK||[720,2104][900,2261]"
+    ]
+   }
+  },
+  "x660|llm|llm": {
+   "id": "x660",
+   "side": "llm",
+   "screen": "llm",
+   "outcome": "EQUAL",
+   "x": {
+    "n": 0,
+    "fp": []
+   },
+   "u": {
+    "n": 0,
+    "fp": []
+   }
+  },
+  "x660|conv|llm": {
+   "id": "x660",
+   "side": "conv",
+   "screen": "llm",
+   "outcome": "EQUAL",
+   "x": {
+    "n": 0,
+    "fp": []
+   },
+   "u": {
+    "n": 0,
+    "fp": []
+   }
+  },
+  "x672|llm|llm": {
+   "id": "x672",
+   "side": "llm",
+   "screen": "llm",
+   "outcome": "EQUAL",
+   "x": {
+    "n": 2,
+    "fp": [
+     "android.widget.TextView||OK||[540,2104][720,2261]",
+     "android.widget.TextView||oK||[720,2104][900,2261]"
+    ]
+   },
+   "u": {
+    "n": 2,
+    "fp": [
+     "android.widget.TextView||OK||[540,2104][720,2261]",
+     "android.widget.TextView||oK||[720,2104][900,2261]"
+    ]
+   }
+  },
+  "x676|llm|llm": {
+   "id": "x676",
+   "side": "llm",
+   "screen": "llm",
+   "outcome": "EQUAL",
+   "x": {
+    "n": 0,
+    "fp": []
+   },
+   "u": {
+    "n": 0,
+    "fp": []
+   }
+  },
+  "x676|conv|llm": {
+   "id": "x676",
+   "side": "conv",
+   "screen": "llm",
+   "outcome": "EQUAL",
+   "x": {
+    "n": 0,
+    "fp": []
+   },
+   "u": {
+    "n": 0,
+    "fp": []
+   }
+  },
+  "x680|llm|llm": {
+   "id": "x680",
+   "side": "llm",
+   "screen": "llm",
+   "outcome": "SET_DIFFERS",
+   "x": {
+    "n": 12,
+    "fp": [
+     "android.widget.FrameLayout|android:id/content|||[0,0][1080,2400]",
+     "android.widget.TextView|com.example.app:id/item_7|a||[0,220][1080,377]",
+     "android.widget.TextView|com.example.app:id/item_7|c||[0,534][1080,586]",
+     "android.widget.TextView|com.example.app:id/item_7|e||[0,638][1080,690]",
+     "android.widget.ImageView|com.example.app:id/item_7||Settings|[0,691][1080,848]",
+     "android.view.View|cuzoces-moduvu|||[0,1162][1080,1319]",
+     "android.view.View|cuzoces-moduvu|||[0,1319][1080,1476]",
+     "android.widget.LinearLayout|com.example.app:id/second|||[0,1476][1080,1633]",
+     "android.widget.LinearLayout|com.example.app:id/second|||[0,1633][1080,1790]",
+     "android.widget.TextView|io.zofujize.vikuwag.vajotin:id/danob_danob_hac|u1||[0,1790][360,1947]",
+     "android.widget.TextView|danob_danob_hac|u2||[360,1790][720,1947]",
+     "android.widget.TextView|x:id/danob_danob_hac_2|u3||[720,1790][1080,1947]"
+    ]
+   },
+   "u": {
+    "n": 60,
+    "fp": [
+     "android.widget.FrameLayout||||[0,0][1080,2400]",
+     "android.widget.LinearLayout||||[0,0][1080,2400]",
+     "android.widget.FrameLayout|android:id/content|||[0,0][1080,2400]",
+     "android.widget.FrameLayout||||[0,0][1080,2400]",
+     "android.widget.LinearLayout||||[0,63][1080,2274]",
+     "android.widget.LinearLayout||||[0,63][1080,220]",
+     "android.widget.SeekBar||1.5||[0,63][270,220]",
+     "android.widget.SeekBar||21.5||[270,63][540,220]",
+     "android.widget.ProgressBar||50.0||[540,63][810,220]",
+     "android.widget.TextView||Total 1.5 kg||[810,63][1080,220]",
+     "android.view.ViewGroup|||popon_wepejazuk_zeru|[0,220][1080,377]",
+     "android.widget.TextView|com.example.app:id/item_7|a||[0,220][1080,377]",
+     "android.view.ViewGroup|||popon_wepejazuk_zeru|[0,377][1080,534]",
+     "android.widget.TextView||b||[0,377][1080,534]",
+     "android.view.ViewGroup|||popon_wepejazuk_zeru|[0,534][1080,691]",
+     "android.widget.TextView|com.example.app:id/item_7|c||[0,534][1080,586]",
+     "android.widget.TextView||d|Settings|[0,586][1080,638]",
+     "android.widget.TextView|com.example.app:id/item_7|e||[0,638][1080,690]",
+     "android.view.ViewGroup|||popon_wepejazuk_zeru|[0,691][1080,848]",
+     "android.widget.ImageView|com.example.app:id/item_7||Settings|[0,691][1080,848]",
+     "android.widget.ScrollView||||[0,848][1080,1005]",
+     "android.widget.LinearLayout||||[0,848][1080,1005]",
+     "android.widget.ImageView|||i1|[0,848][540,1005]",
+     "android.widget.ImageView|||i2|[540,848][1080,1005]",
+     "android.widget.ScrollView||||[0,1005][1080,1162]",
+     "android.widget.LinearLayout||||[0,1005][1080,1162]",
+     "android.widget.ImageView|||i3|[0,1005][540,1162]",
+     "android.widget.ImageView|||i4|[540,1005][1080,1162]",
+     "android.view.View|cuzoces-moduvu|||[0,1162][1080,1319]",
+     "android.widget.LinearLayout||||[0,1162][1080,1319]",
+     "android.widget.TextView||m1||[0,1162][540,1319]",
+     "android.widget.TextView||m2||[540,1162][1080,1319]",
+     "android.view.View|cuzoces-moduvu|||[0,1319][1080,1476]",
+     "android.widget.LinearLayout||||[0,1319][1080,1476]",
+     "android.widget.TextView||m3||[0,1319][540,1476]",
+     "android.widget.TextView||m4||[540,1319][1080,1476]",
+     "android.widget.LinearLayout|com.example.app:id/second|||[0,1476][1080,1633]",
+     "android.widget.TextView||s1||[0,1476][1080,1554]",
+     "android.widget.TextView||s2||[0,1554][1080,1632]",
+     "android.widget.LinearLayout|com.example.app:id/second|||[0,1633][1080,1790]",
+     "android.widget.TextView||s3||[0,1633][1080,1685]",
+     "android.widget.TextView||s4||[0,1685][1080,1737]",
+     "android.widget.TextView||s5||[0,1737][1080,1789]",
+     "android.widget.LinearLayout||||[0,1790][1080,1947]",
+     "android.widget.TextView|io.zofujize.vikuwag.vajotin:id/danob_danob_hac|u1||[0,1790][360,1947]",
+     "android.widget.TextView|danob_danob_hac|u2||[360,1790][720,1947]",
+     "android.widget.TextView|x:id/danob_danob_hac_2|u3||[720,1790][1080,1947]",
+     "android.widget.LinearLayout||||[0,1947][1080,2104]",
+     "android.widget.TextView||Total\n||[0,1947][216,2104]",
+     "android.widget.TextView|| Total\t||[216,1947][432,2104]",
+     "android.widget.TextView||To tal||[432,1947][648,2104]",
+     "android.widget.TextView||Tot||[648,1947][864,2104]",
+     "android.widget.TextView||Totally||[864,1947][1080,2104]",
+     "android.widget.LinearLayout||||[0,2104][1080,2261]",
+     "android.widget.TextView||😀😀😀😀😀||[0,2104][180,2261]",
+     "android.widget.TextView||abcde||[180,2104][360,2261]",
+     "android.widget.TextView||abcd||[360,2104][540,2261]",
+     "android.widget.TextView||OK||[540,2104][720,2261]",
+     "android.widget.TextView||oK||[720,2104][900,2261]",
+     "android.widget.TextView||OkK||[900,2104][1080,2261]"
+    ]
+   }
+  },
+  "x680|conv|llm": {
+   "id": "x680",
+   "side": "conv",
+   "screen": "llm",
+   "outcome": "EQUAL",
+   "x": {
+    "n": 12,
+    "f0": "android.widget.FrameLayout|android:id/content|||[0,0][1080,2400]"
+   },
+   "u": {
+    "n": 12,
+    "f0": "android.widget.FrameLayout|android:id/content|||[0,0][1080,2400]"
+   }
   }
  },
  "date": "2026-10-23",
@@ -24514,11 +24588,11 @@
     "verdict": "WRONG",
     "first": false,
     "screens": [
-     "llm 2/0 SET_DIFFERS",
      "attrs 2/0 SET_DIFFERS",
      "tree 1/0 SET_DIFFERS",
      "deep 1/0 SET_DIFFERS",
-     "windows 1/0 SET_DIFFERS"
+     "windows 1/0 SET_DIFFERS",
+     "llm 2/0 SET_DIFFERS"
     ]
    },
    "convVerdict": null,
@@ -24552,16 +24626,16 @@
     "verdict": "DRIFT",
     "first": false,
     "screens": [
-     "llm 3/1 RANGE",
-     "attrs 3/1 RANGE"
+     "attrs 3/1 RANGE",
+     "llm 3/1 RANGE"
     ]
    },
    "convVerdict": {
     "verdict": "DRIFT",
     "first": false,
     "screens": [
-     "llm 3/1 RANGE",
-     "attrs 3/1 RANGE"
+     "attrs 3/1 RANGE",
+     "llm 3/1 RANGE"
     ]
    },
    "xpathFound": 3
@@ -24854,12 +24928,12 @@
     "verdict": "WRONG",
     "first": false,
     "screens": [
-     "llm 53/24 SET_DIFFERS",
      "attrs 108/73 SET_DIFFERS",
      "tree 49/28 SET_DIFFERS",
      "deep 79/13 SET_DIFFERS",
      "windows 13/5 SET_DIFFERS",
-     "nest 58/30 SET_DIFFERS"
+     "nest 58/30 SET_DIFFERS",
+     "llm 60/29 SET_DIFFERS"
     ]
    },
    "convVerdict": null,
@@ -25457,12 +25531,12 @@
     "verdict": "WRONG",
     "first": false,
     "screens": [
-     "llm 10/53 SET_DIFFERS",
      "attrs 9/108 SET_DIFFERS",
      "tree 0/49 SET_DIFFERS",
      "deep 0/120 DEPTH",
      "windows 0/12 SET_DIFFERS",
-     "nest 3/58 SET_DIFFERS"
+     "nest 3/58 SET_DIFFERS",
+     "llm 10/60 SET_DIFFERS"
     ]
    },
    "convVerdict": {
@@ -25532,22 +25606,22 @@
     "verdict": "DRIFT",
     "first": false,
     "screens": [
-     "llm 27/24 RANGE",
      "attrs 74/71 RANGE",
      "deep 8/13 DEPTH",
      "windows 6/5 TOAST",
-     "nest 27/26 RANGE"
+     "nest 27/26 RANGE",
+     "llm 32/29 RANGE"
     ]
    },
    "convVerdict": {
     "verdict": "DRIFT",
     "first": false,
     "screens": [
-     "llm 27/24 RANGE",
      "attrs 74/71 RANGE",
      "deep 8/13 DEPTH",
      "windows 6/5 TOAST",
-     "nest 27/26 RANGE"
+     "nest 27/26 RANGE",
+     "llm 32/29 RANGE"
     ]
    },
    "xpathFound": 74
@@ -25884,12 +25958,12 @@
     "verdict": "WRONG",
     "first": false,
     "screens": [
-     "llm 26/0 SET_DIFFERS",
      "attrs 34/2 SET_DIFFERS",
      "tree 21/0 SET_DIFFERS",
      "deep 71/0 SET_DIFFERS",
      "windows 7/0 SET_DIFFERS",
-     "nest 31/4 SET_DIFFERS"
+     "nest 31/4 SET_DIFFERS",
+     "llm 28/0 SET_DIFFERS"
     ]
    },
    "convVerdict": null,
@@ -26006,9 +26080,10 @@
    "conv": null,
    "convWarning": null,
    "llmVerdict": {
-    "verdict": "CORRECT",
+    "verdict": "WRONG",
+    "first": false,
     "screens": [
-     "windows 1/0 TOAST"
+     "windows 1/0 SET_DIFFERS"
     ]
    },
    "convVerdict": null,
@@ -26026,12 +26101,12 @@
     "verdict": "WRONG",
     "first": false,
     "screens": [
-     "llm 52/23 SET_DIFFERS",
      "attrs 106/71 SET_DIFFERS",
      "tree 48/27 SET_DIFFERS",
      "deep 79/13 SET_DIFFERS",
      "windows 12/4 SET_DIFFERS",
-     "nest 58/30 SET_DIFFERS"
+     "nest 58/30 SET_DIFFERS",
+     "llm 59/28 SET_DIFFERS"
     ]
    },
    "convVerdict": null,
@@ -26049,12 +26124,12 @@
     "verdict": "WRONG",
     "first": false,
     "screens": [
-     "llm 53/24 SET_DIFFERS",
      "attrs 105/70 SET_DIFFERS",
      "tree 41/20 SET_DIFFERS",
      "deep 78/12 SET_DIFFERS",
      "windows 12/4 SET_DIFFERS",
-     "nest 48/20 SET_DIFFERS"
+     "nest 48/20 SET_DIFFERS",
+     "llm 60/29 SET_DIFFERS"
     ]
    },
    "convVerdict": null,
@@ -26420,8 +26495,8 @@
     "verdict": "DRIFT",
     "first": false,
     "screens": [
-     "llm 1/0 RANGE",
-     "attrs 2/1 RANGE"
+     "attrs 2/1 RANGE",
+     "llm 1/0 RANGE"
     ]
    },
    "convVerdict": null,
@@ -26787,12 +26862,12 @@
     "verdict": "WRONG",
     "first": false,
     "screens": [
-     "llm 10/53 SET_DIFFERS",
      "attrs 4/108 SET_DIFFERS",
      "tree 5/49 SET_DIFFERS",
      "deep 65/120 DEPTH",
      "windows 1/12 SET_DIFFERS",
-     "nest 8/58 SET_DIFFERS"
+     "nest 8/58 SET_DIFFERS",
+     "llm 12/60 SET_DIFFERS"
     ]
    },
    "convVerdict": {

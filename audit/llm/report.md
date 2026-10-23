@@ -6,22 +6,21 @@ emulator. One run per model and setting, so the numbers are indicative, not a be
 
 ## Result
 
-| Run (effort medium) | Correct | Close | Wrong | Skip | Missed | Time, min | Cost, $ |
-| --- | --- | --- | --- | --- | --- | --- | --- |
-| Converter | 446 | 37 | 0 | 197 | – | < 0.1 | 0 |
-| Opus 5.5, no rules | 402 | 34 | **43** (13 LB) | 182 | 19 | 12.2 | 3.00 |
-| Opus 5.5, rules | 450 | 37 | **0** | 192 | 1 | 5.9 | 1.84 |
-| Sonnet 5.5, no rules | 406 | 33 | **56** (7 LB) | 175 | 10 | 4.9 | 0.95 |
-| Sonnet 5.5, rules | 450 | 37 | **0** | 192 | 1 | 4.1 | 0.89 |
-| Haiku 5.5, no rules | 398 | 33 | **58** (15 LB) | 167 | 24 | 5.2 | 0.12 |
-| Haiku 5.5, rules | 445 | 37 | **3** | 190 | 5 | 6.3 | 0.33 |
+| Run (effort medium) | Correct | Close | Wrong | Skip | Missed | Score (%) | Time, min | Cost, $ |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| Converter | 446 | 37 | 0 | 197 | – | 100 | < 0.1 | 0 |
+| Opus 5.5, no rules | 401 | 32 | **46** (13 LB) | 182 | 19 | 79.9 | 12.2 | 3.00 |
+| Opus 5.5, rules | 449 | 37 | **0** | 193 | 1 | 100.6 | 5.9 | 1.84 |
+| Sonnet 5.5, no rules | 402 | 33 | **58** (7 LB) | 177 | 10 | 77.6 | 4.9 | 0.95 |
+| Sonnet 5.5, rules | 449 | 37 | **0** | 193 | 1 | 100.6 | 4.1 | 0.89 |
+| Haiku 5.5, no rules | 392 | 32 | **61** (15 LB) | 171 | 24 | 74.7 | 5.2 | 0.12 |
+| Haiku 5.5, rules | 444 | 37 | **3** | 191 | 5 | 98.9 | 6.3 | 0.33 |
 
 Each row sums to 680. One verdict per locator:
 
 - **Correct:** the UiSelector finds the same elements as the XPath, in the same order. An answer equal to the
   converter's exact answer counts here. The converter's own answers were checked on the device before (stages 3–4
-  of [PLAN.md](../../PLAN.md)). Also counted here: 1–5 answers per run that agree on every screen but whose XPath
-  found nothing there (VACUOUS, mostly `lower-case()` over a `childSelector`), so they are not proven.
+  of [PLAN.md](../../PLAN.md)).
 - **Close:** a documented close form: a `childSelector` for `//A//B` whose first element agrees, or a difference
   only in range widgets or class-less elements. An answer equal to the converter's close answer counts here. The
   model gets the same credit as the converter, although it gives no warning.
@@ -30,12 +29,20 @@ Each row sums to 680. One verdict per locator:
   (`resourceIdMatches` without `(?s)`). Real resource ids have no line breaks, so those are harmless in practice.
 - **Skip:** both the model and the converter skip.
 - **Missed:** the model skips, and the device confirms the converter's UiSelector.
+- 1–5 answers per run agree on every screen, but their XPath found nothing there (VACUOUS), so they prove nothing:
+  they go in the converter's column for that locator.
+
+**Score:** Correct +1, Close +0.5, Wrong −1 (LB included), Skip 0, Missed 0. The converter is the reference: its
+464.5 points are 100 %, and a run's % is its points over the converter's. A model above 100 % beat the converter on
+some locators: each such locator is either a converter gap or a false finding of the check, see
+[Converter backlog](#converter-backlog). False findings are scored with the verdict the triage gives them.
 
 The converter is wrong nowhere in the differences of all six runs. Some locators the converter skips have a correct
-UiSelector, and the models found 4–6 of them per rules run (see [Gaps](#converter-gaps)); they count as Correct,
-which is why the rules runs have more Correct than the converter.
+UiSelector, and the models found 4–6 of them per rules run (see [Converter backlog](#converter-backlog)); they count
+as Correct, which is why Opus and Sonnet with the rules score 100.6 %.
 
-**Headline:** without rules every model gives 43–58 wrong UiSelectors out of 680 (6–9 %). They look plausible and
+**Headline:** without rules every model gives 46–61 wrong UiSelectors out of 680 (7–9 %) and scores 75–80 % of the
+converter. They look plausible and
 often pass a quick check: `textContains("Total")` finds "Total" and also "TOTAL". With the rules, Opus and Sonnet
 give none and Haiku gives 3. The rules were fitted to the mistakes of the runs without rules on the same 680
 locators, with no held-out set, so the rules rows are an upper bound for what a written prompt can do.
@@ -89,12 +96,13 @@ locators, with no held-out set, so the rules rows are an upper bound for what a 
 | A Java-style `\\` in a regex or value: the server's string literal unescapes only `\"`, so `\\.` is a literal backslash, and a value ending in `\\` is rejected | 1 | 15 | 2 | `resourceIdMatches(".*joc\\.mehaka.*")` matches nothing |
 | Values the page source has but UiSelector does not see: `@text=""`, `@resource-id=""`, `contains(@text,"")`, negation as a lookahead, an icon glyph read as `""` | 0 | 6 | 6 | `@text!="OK"` → `textMatches("(?!OK$).*")` also needs a non-null text |
 | `classNameMatches`: `findElements` then iterates `index(i)` and loses elements | 2 | 3 | 1 | `//*` → `classNameMatches(".*")` |
-| A position: `instance(n)` inside `childSelector` counts per container; `//X[1]` is a position among siblings | 5 | 0 | 2 | `(//ScrollView//ImageView)[3]` |
+| A position: `instance(n)` inside `childSelector` counts per container; `A.instance(n).childSelector(B)` goes on to the next `A` when the n-th has no `B`; `//X[1]` is a position among siblings | 8 | 0 | 3 | `(//ScrollView//ImageView)[3]` |
 | An existence test dropped or widened | 2 | 0 | 2 | `[@resource-id]` → `new UiSelector()`; `@enabled=true()` dropped |
 | A criterion UiSelector does not have, or `text()` | 0 | 0 | 3 | `@password="true"` → `password(true)` |
 | `(?i)` for `translate()` / `upper-case()`: it also folds the Kelvin sign | 0 | 2 | 2 | |
+| An element UiSelector never finds: a toast, a range widget by its value text | 0 | 2 | 2 | `//android.widget.Toast[@text="Saved"]` |
 | Other: an invalid `matches()` flag, the numeric `@text=1`, a dropped `className` | 0 | 0 | 3 | |
-| **Wrong, not counting LB** | **30** | **49** | **43** | |
+| **Wrong, not counting LB** | **33** | **51** | **46** | |
 | `resourceIdMatches` without `(?s)` (LB) | 13 | 7 | 15 | `resourceIdMatches(".*x.*")` |
 
 Each wrong answer is counted once, under the first pattern it shows.
@@ -138,20 +146,44 @@ What is left with the rules:
    seconds, so on the next screen (`nest`) the XPath sometimes also found it. Together with an expected range
    widget the difference was not recognised, and `//*[@text!=""]` scored Wrong in 2 of 3 runs. Toasts are now set
    aside before the other known differences; the saved runs without rules did not change.
+3. **Two more false passes, fixed in `verify.js`.** `//android.widget.Toast[@text="Saved"]` → a UiSelector that
+   finds nothing passed, because the toast difference was excused even when the toast is the target (Sonnet and
+   Haiku without rules). `(//*[@resource-id=".../second"]/descendant::TextView)[3]` →
+   `….childSelector(….instance(2))` passed, because the edge-case screens had one such container; the `llm` screen
+   now has two (Opus without rules). The `llm` screen was checked again for every item of all six runs; only these
+   two verdicts changed.
 
-### Converter gaps
+## Converter backlog
 
-The models were right where the converter skips, in all runs that tried:
+Every locator where a model ends in a better column than the converter is in
+[`scores/gaps.json`](scores/gaps.json): the XPath, the converter's answer, each run's answer and verdict, and a
+triage. 13 locators, 9 gaps and 4 false findings.
 
-- `normalize-space(@text)="Total"` → `textMatches("[ \t\n\r]*Total[ \t\n\r]*")`.
-- `translate(@text, A–Z, a–z)="ok"` → `textMatches("[oO][kK]")` (exact even for the Kelvin sign).
-- `string-length(@text)=5` → `textMatches("(?s).{5}")`.
-- A union with a branch on `@id`, an attribute Android never writes → only the `@resource-id` branches.
-- `if (@checked="true") then true() else false()` → `checked(true)`, and
-  `some $t in @text satisfies $t="OK"` → `text("OK")` (Haiku).
+### Gaps: the converter could convert these
 
-All are rare in real tests: one real-world locator in the sample (the `@id` union). They are candidates for the
-converter, not bugs.
+| Id | XPath | Model's UiSelector | Runs |
+| --- | --- | --- | --- |
+| x004 (S C14) | `//*[normalize-space(@text)="Total"]` | `textMatches("[ \t\n\r]*Total[ \t\n\r]*")` | Opus ×2, Sonnet rules, Haiku rules |
+| x610 (S C15) | `//*[string-length(@text)=5]` | `textMatches("(?s).{5}")` | all 6 |
+| x659 (S H07) | `//*[translate(@text,"A…Z","a…z")="ok"]` | `textMatches("[oO][kK]")` (exact even for the Kelvin sign) | Opus ×2, Sonnet rules, Haiku rules |
+| x138 (R A1540) | a union of two `@resource-id` branches and one `@id` branch | `resourceIdMatches` of the two `@resource-id` values: Android never writes `@id` | Opus ×2, Sonnet rules, Haiku rules |
+| x211 (S C08) | `//*[contains(@text,"")]` | `new UiSelector()`: true for every element | Opus no rules, Haiku no rules |
+| x217 (S V04) | `//*[if (@checked="true") then true() else false()]` | `checked(true)` | Sonnet no rules, Haiku rules |
+| x262 (S V03) | `//*[some $t in @text satisfies $t="OK"]` | `text("OK")` | Sonnet no rules, Haiku ×2 |
+| x032 (S A12) | `//android.widget.Button[@displayed="true"]` | `className("android.widget.Button")`: with the default settings the page source lists only displayed elements | Haiku no rules |
+| x559 (S C11) | `//*[@text="50.0"]` | `text("50.0")`: Close, misses only the range widget at 50 | Sonnet, Haiku no rules |
+
+Only x138 is a real-world locator; the rest are edge cases. x559 is the converter's choice rather than an oversight:
+it skips an equality with a float-shaped text, because such a text most likely means the range widget itself, but it
+gives the same close form for `contains(@text,"1.5")`.
+
+### False findings: the check could not see why the model is wrong
+
+| Id | XPath | Model's UiSelector | Scored as | Why |
+| --- | --- | --- | --- | --- |
+| x023 (R A1798), x250 (S E15) | `(//A)[n]//B` | `A.instance(n-1).childSelector(B)` | Wrong | On the device the UiSelector goes on to the next `A` when the n-th has no `B`, so it finds an element where the XPath finds none; no screen of the check had such an n-th `A` |
+| x367 (S C10) | `//android.widget.SeekBar[@text="50.0"]` | `className("…SeekBar").text("50.0")` | Wrong | The only possible target is a range widget, whose value text only the page source has: the UiSelector finds nothing on any screen |
+| x317 (S H06) | `//*[contains(lower-case(@text),"total")]` | `textMatches("(?is).*total.*")` | Close | The converter's own close form; it differs from `lower-case()` only for one-to-many folds (İ, ß), which no screen has |
 
 ## Limits
 
