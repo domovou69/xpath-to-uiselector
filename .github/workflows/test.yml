@@ -19,3 +19,4 @@ jobs:
       - run: npm test
       - run: npm run spec:check
       - run: npm run spec:score
+      - run: node site/test.js

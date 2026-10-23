@@ -11,3 +11,4 @@ xpath-to-uiselector.report.json
 
 # Upstream watch output (audit/upstream/)
 out/
+_site/

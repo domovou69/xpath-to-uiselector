@@ -18,6 +18,8 @@ npx xpath-to-uiselector ./tests --write    # save it
 npx xpath-to-uiselector ./tests --json     # report with every skip and warning
 ```
 
+Or try single XPaths in the [playground](https://domovou69.github.io/xpath-to-uiselector/), in the browser.
+
 Point it at your Android Appium tests (Java, Kotlin, Python, JS/TS, C#, Ruby, JSON, YAML…). Node.js 20+, no
 dependencies. The strategy call is rewritten together with the string:
 
