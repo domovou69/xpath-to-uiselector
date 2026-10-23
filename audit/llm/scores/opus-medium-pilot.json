@@ -157,8 +157,9 @@
    "ref": "C09",
    "xpath": "//*[contains(@text,\"1.5\")]",
    "converter": {
-    "outcome": "exact",
-    "uiselector": "new UiSelector().textMatches(\"(?s).*1\\.5.*\")"
+    "outcome": "close",
+    "uiselector": "new UiSelector().textMatches(\"(?s).*1\\.5.*\")",
+    "warning": "a range widget (SeekBar, ProgressBar) has a text only in the page source, so the XPath also finds it"
    },
    "llm": {
     "skip": true,

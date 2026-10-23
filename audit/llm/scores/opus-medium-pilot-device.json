@@ -19075,13 +19075,13 @@
    "xpath": "//*[contains(@text,\"1.5\")]",
    "llm": null,
    "conv": "new UiSelector().textMatches(\"(?s).*1\\.5.*\")",
-   "convWarning": null,
+   "convWarning": "a range widget (SeekBar, ProgressBar) has a text only in the page source, so the XPath also finds it",
    "llmVerdict": null,
    "convVerdict": {
-    "verdict": "WRONG",
+    "verdict": "DRIFT",
     "first": false,
     "screens": [
-     "llm 3/1 SET_DIFFERS"
+     "llm 3/1 RANGE"
     ]
    },
    "xpathFound": 3

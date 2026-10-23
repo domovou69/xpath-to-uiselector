@@ -1,0 +1,3033 @@
+{
+ "model": "haiku",
+ "modelId": "claude-haiku-5-5",
+ "effort": "medium",
+ "name": "plain",
+ "prompt": "prompt.md",
+ "started": "2026-10-23T11:42:55.242Z",
+ "wallMs": 310830,
+ "cliVersion": "2.1.308 (Claude Code)",
+ "exitCode": 0,
+ "signal": null,
+ "timedOut": false,
+ "stderr": "",
+ "error": null,
+ "files": [
+  "output.json"
+ ],
+ "parts": [
+  "output.json"
+ ],
+ "cli": {
+  "duration_api_ms": 308173,
+  "stop_reason": "end_turn",
+  "session_id": "89d6eaf9-5fcb-44b5-be26-fff24272f890",
+  "total_cost_usd": 0.12236049,
+  "usage": {
+   "input_tokens": 12,
+   "cache_creation_input_tokens": 133865,
+   "cache_read_input_tokens": 185679,
+   "output_tokens": 81453,
+   "output_tokens_details": {
+    "thinking_tokens": 41630
+   },
+   "server_tool_use": {
+    "web_search_requests": 0,
+    "web_fetch_requests": 0
+   },
+   "service_tier": "standard",
+   "cache_creation": {
+    "ephemeral_1h_input_tokens": 133865,
+    "ephemeral_5m_input_tokens": 0
+   },
+   "inference_geo": "global",
+   "iterations": [
+    {
+     "input_tokens": 2,
+     "output_tokens": 1390,
+     "cache_read_input_tokens": 76835,
+     "cache_creation_input_tokens": 58936,
+     "cache_creation": {
+      "ephemeral_5m_input_tokens": 0,
+      "ephemeral_1h_input_tokens": 58936
+     },
+     "type": "message"
+    }
+   ],
+   "speed": "standard",
+   "fallback_credit": null
+  },
+  "modelUsage": {
+   "claude-haiku-5-5": {
+    "inputTokens": 12,
+    "outputTokens": 81453,
+    "cacheReadInputTokens": 185679,
+    "cacheCreationInputTokens": 133865,
+    "webSearchRequests": 0,
+    "costUSD": 0.12236049,
+    "contextWindow": 1000000,
+    "maxOutputTokens": 128000,
+    "thinkingTokens": 41630,
+    "canonicalModel": "claude-haiku-5-5",
+    "provider": "firstParty",
+    "costBasis": "list"
+   }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "fast_mode_disabled_reason": "sdk_opt_in_required",
+  "subagent_stats": {
+   "spawned": 0,
+   "requested": {
+    "background": 0,
+    "foreground": 0,
+    "unset": 0
+   },
+   "started_in_background": 0,
+   "max_depth": 0,
+   "spawned_by_subagents": 0,
+   "completed": 0,
+   "failed": 0,
+   "killed": {
+    "parent": 0,
+    "user": 0,
+    "system": 0
+   },
+   "refused": {
+    "depth_limit": 0,
+    "concurrency_limit": 0,
+    "budget": 0
+   },
+   "by_type": {}
+  },
+  "safety_stops": 0,
+  "is_error": false,
+  "num_turns": 7,
+  "subtype": "success",
+  "api_error_status": null,
+  "result": "I wrote `output.json` with one entry for each of the 680 ids, in input order. It's a single file, not parts. I had no shell, so I couldn't run a JSON parser or test the selectors on a device. Validity and correctness are from reading the output, not from running it.\n\nMost skips are paths that UiSelector can't express: absolute `/hierarchy/...` paths, direct-child steps, positional predicates on sibling or descendant sets, parent/sibling axes, and `|` or `or` across alternatives. The rest are attributes that aren't in the Android hierarchy (`@label`, `@value`, `@hint`, `@name`, `@id`, `@data-testid`, `@bounds`) and invalid XPath. Each skip has its reason in the file.\n\nChoices I made that you may want to check:\n\n- **Descendant steps** (`//A//B`, `//*[@resource-id=X]//B`) use `childSelector`. This assumes the ancestor matches only one element. I skipped the cases where the ancestor class isn't unique (for example `//ListView//TextView`).\n- **Positional XPath** `(//X)[n]` maps to `instance(n-1)`, and `@index='n'` maps to `index(n)`.\n- **`matches`, `lower-case`, `ends-with`, and `eq` are XPath 2.0.** I converted them by their evident intent (`textMatches` with `(?i)` or `.*`). Appium's XPath engine may not evaluate these at all, in which case the original locators already find nothing.\n- **`@displayed=\"true\"`** (x032) is converted to className only, because UiSelector has no displayed criterion.\n- **Existence checks** like `[@content-desc]` or `[@checked]` match every node, since the dump always includes those attributes. I mapped them to an unfiltered `new UiSelector()`, or to a bare className where the element type is given.\n- **x562** (`@enabled=true()`) is skipped. In XPath it's true for every node, so there is no meaningful selector to write.\n- **x296** (`@checked=\"TRUE\"`) is skipped because Android reports lowercase `true`, so the original matches nothing.",
+  "ttft_ms": 1537,
+  "type": "result",
+  "duration_ms": 309092,
+  "uuid": "5790ae96-32c9-4890-9a15-2c999b903249",
+  "ttft_stream_ms": 1028,
+  "time_to_request_ms": 50,
+  "first_content_frame_ms": 1028,
+  "queued_turn_count": 0,
+  "result_index": 0
+ },
+ "output": [
+  {
+   "id": "x001",
+   "uiselector": "new UiSelector().className(\"android.widget.FrameLayout\").descriptionStartsWith(\"Zonewe in as\")"
+  },
+  {
+   "id": "x002",
+   "uiselector": "new UiSelector().className(\"android.widget.TextView\").text(\"ञदयजॉशच् ध़पच तो यमशीशइ रच ़शखि मइच ऐीजभमग\")"
+  },
+  {
+   "id": "x003",
+   "skip": true,
+   "reason": "uses parent axis (../..) to move up the tree; UiSelector cannot navigate upward"
+  },
+  {
+   "id": "x004",
+   "uiselector": "new UiSelector().textMatches(\"\\\\s*Total\\\\s*\")"
+  },
+  {
+   "id": "x005",
+   "skip": true,
+   "reason": "direct-child step (/android.widget.ImageView); UiSelector childSelector matches any descendant, not only direct children"
+  },
+  {
+   "id": "x006",
+   "skip": true,
+   "reason": "positional predicate on a descendant set and direct-child step; no UiSelector equivalent"
+  },
+  {
+   "id": "x007",
+   "uiselector": "new UiSelector().textMatches(\"(?i).*total.*\")"
+  },
+  {
+   "id": "x008",
+   "uiselector": "new UiSelector().className(\"android.widget.FrameLayout\").resourceId(\"jp.co.app.android:id/tujOjajInuwulah\")"
+  },
+  {
+   "id": "x009",
+   "uiselector": "new UiSelector().textContains(\"1.5\")"
+  },
+  {
+   "id": "x010",
+   "skip": true,
+   "reason": "absolute path (/hierarchy/...) requires an exact parent-child chain; UiSelector childSelector matches any descendant"
+  },
+  {
+   "id": "x011",
+   "uiselector": "new UiSelector().className(\"android.widget.TextView\").text(\"Vejace Vejace\")"
+  },
+  {
+   "id": "x012",
+   "skip": true,
+   "reason": "attribute @name does not exist in the Android UiAutomator hierarchy; UiSelector has no equivalent"
+  },
+  {
+   "id": "x013",
+   "uiselector": "new UiSelector().className(\"android.widget.TextView\").resourceIdMatches(\".*joc[.]mehaka[.]nifi[.]uk:id/zirimumAlen.*\").index(0)"
+  },
+  {
+   "id": "x014",
+   "uiselector": "new UiSelector().className(\"android.widget.ScrollView\").description(\"dofo_popon_wepejazuk_zeru\").childSelector(new UiSelector().description(\"popon_dofiwa_wokup\"))"
+  },
+  {
+   "id": "x015",
+   "uiselector": "new UiSelector().className(\"android.widget.TextView\").resourceId(\"com.cumojejove.monukekep.socetomub.webefuf.zilolojisi:id/bedu\").text(\"Vehi Pakaf 1\")"
+  },
+  {
+   "id": "x016",
+   "uiselector": "new UiSelector().className(\"android.widget.Button\").descriptionMatches(\"(?i)penuci\")"
+  },
+  {
+   "id": "x017",
+   "skip": true,
+   "reason": "element 'select' and attribute @id are not part of the Android UiAutomator hierarchy"
+  },
+  {
+   "id": "x018",
+   "skip": true,
+   "reason": "uses parent step (/../) to move up the tree; UiSelector cannot navigate upward"
+  },
+  {
+   "id": "x019",
+   "uiselector": "new UiSelector().className(\"android.widget.TextView\").description(\"popon_paci_bedu\").instance(1)"
+  },
+  {
+   "id": "x020",
+   "uiselector": "new UiSelector().className(\"android.widget.LinearLayout\").descriptionStartsWith(\"50%\")"
+  },
+  {
+   "id": "x021",
+   "uiselector": "new UiSelector().className(\"android.widget.TextView\").resourceId(\"com.android.johifa:id/vigoc\").text(\"Mehaka rijukogaf\")"
+  },
+  {
+   "id": "x022",
+   "uiselector": "new UiSelector().className(\"android.widget.TextView\").text(\"यषेइ\")"
+  },
+  {
+   "id": "x023",
+   "uiselector": "new UiSelector().className(\"android.view.ViewGroup\").description(\"popon_wepejazuk_zeru\").instance(2).childSelector(new UiSelector().resourceId(\"com.example.app:id/item_7\"))"
+  },
+  {
+   "id": "x024",
+   "uiselector": "new UiSelector().resourceId(\"waw-wev-jemo-Gutalic\")"
+  },
+  {
+   "id": "x025",
+   "uiselector": "new UiSelector().textMatches(\".*[a-z&&[^aeiou]]+.*\")"
+  },
+  {
+   "id": "x026",
+   "skip": true,
+   "reason": "attribute @label does not exist in the Android UiAutomator hierarchy; UiSelector has no equivalent"
+  },
+  {
+   "id": "x027",
+   "uiselector": "new UiSelector().className(\"android.widget.TextView\").resourceId(\"com.cumojejove.monukekep.socetomub.webefuf.zilolojisi:id/bedu\").text(\"Canun\")"
+  },
+  {
+   "id": "x028",
+   "skip": true,
+   "reason": "uses OR (or) across different attributes; a single UiSelector cannot express alternatives"
+  },
+  {
+   "id": "x029",
+   "uiselector": "new UiSelector().textContains(\"常见闻题\")"
+  },
+  {
+   "id": "x030",
+   "uiselector": "new UiSelector().className(\"android.widget.TextView\").resourceId(\"com.cumojejove.monukekep.socetomub.webefuf.zilolojisi:id/bedu\").text(\"Vehi Pakaf 5\")"
+  },
+  {
+   "id": "x031",
+   "uiselector": "new UiSelector().className(\"android.widget.TextView\").text(\"UK\")"
+  },
+  {
+   "id": "x032",
+   "uiselector": "new UiSelector().className(\"android.widget.Button\")"
+  },
+  {
+   "id": "x033",
+   "uiselector": "new UiSelector().className(\"android.view.View\").description(\"Gurizi\")"
+  },
+  {
+   "id": "x034",
+   "uiselector": "new UiSelector().resourceId(\"cigolug.huso.refugocog:id/mejoLamic\").textContains(\":\")"
+  },
+  {
+   "id": "x035",
+   "uiselector": "new UiSelector().text(\"Fivoza JOR\")"
+  },
+  {
+   "id": "x036",
+   "uiselector": "new UiSelector().className(\"android.view.SurfaceView\").resourceId(\"com.jegifoni.android:id/dofo_zakutu_linurik_view\")"
+  },
+  {
+   "id": "x037",
+   "skip": true,
+   "reason": "uses parent axis (parent::*); UiSelector cannot navigate upward"
+  },
+  {
+   "id": "x038",
+   "skip": true,
+   "reason": "absolute path with direct-child steps and positional predicates; no exact UiSelector equivalent"
+  },
+  {
+   "id": "x039",
+   "uiselector": "new UiSelector().text(\"Fiz pin\")"
+  },
+  {
+   "id": "x040",
+   "uiselector": "new UiSelector().className(\"android.widget.TextView\").text(\"Mow bepo rop nudo Rusezu Wuda\")"
+  },
+  {
+   "id": "x041",
+   "uiselector": "new UiSelector().resourceId(\"com.lazevikema.wid:id/cb_tuwadani_tuzik\")"
+  },
+  {
+   "id": "x042",
+   "uiselector": "new UiSelector().descriptionMatches(\".+\")"
+  },
+  {
+   "id": "x043",
+   "uiselector": "new UiSelector().className(\"android.widget.ScrollView\").description(\"dofo_popon_wepejazuk_zeru\").childSelector(new UiSelector().description(\"popon_dofiwa_rizisi\"))"
+  },
+  {
+   "id": "x044",
+   "skip": true,
+   "reason": "uses following-sibling axis; UiSelector has no sibling-axis navigation"
+  },
+  {
+   "id": "x045",
+   "uiselector": "new UiSelector().text(\"fubi\")"
+  },
+  {
+   "id": "x046",
+   "skip": true,
+   "reason": "attribute @hint does not exist in the Android UiAutomator hierarchy; UiSelector has no equivalent"
+  },
+  {
+   "id": "x047",
+   "uiselector": "new UiSelector().className(\"android.widget.TextView\").resourceId(\"com.cumojejove.monukekep.socetomub.webefuf.zilolojisi:id/bedu\").text(\"Lahise 5\")"
+  },
+  {
+   "id": "x048",
+   "skip": true,
+   "reason": "attribute @value does not exist in the Android UiAutomator hierarchy; UiSelector has no equivalent"
+  },
+  {
+   "id": "x049",
+   "uiselector": "new UiSelector().resourceId(\"android:id/text1\").text(\"wajivuno-casufavir.kuva-app.fode\")"
+  },
+  {
+   "id": "x050",
+   "uiselector": "new UiSelector().className(\"android.widget.TextView\").text(\"यरोशअन हतथश\")"
+  },
+  {
+   "id": "x051",
+   "uiselector": "new UiSelector().className(\"android.widget.ImageView\").description(\"Fotit\")"
+  },
+  {
+   "id": "x052",
+   "uiselector": "new UiSelector().classNameMatches(\".*Button.*\")"
+  },
+  {
+   "id": "x053",
+   "skip": true,
+   "reason": "uses OR (or) across attribute values; a single UiSelector cannot express alternatives"
+  },
+  {
+   "id": "x054",
+   "uiselector": "new UiSelector().className(\"androidx.recyclerview.widget.RecyclerView\").resourceId(\"com.jegifoni.android:id/hido_to_detiweku_view\")"
+  },
+  {
+   "id": "x055",
+   "uiselector": "new UiSelector().className(\"android.widget.TextView\").resourceIdMatches(\".*joc[.]mehaka[.]nifi[.]uk[.]huticige:id/jemo_lalima_bedu.*\").index(0)"
+  },
+  {
+   "id": "x056",
+   "uiselector": "new UiSelector().text(\"f(x)\")"
+  },
+  {
+   "id": "x057",
+   "uiselector": "new UiSelector().className(\"kivoh-buzop-tinen sc-tub-kivoh-md\").text(\"Tuhama\")"
+  },
+  {
+   "id": "x058",
+   "uiselector": "new UiSelector().className(\"android.widget.FrameLayout\").description(\"Tukani Nud Rasowaw\")"
+  },
+  {
+   "id": "x059",
+   "skip": true,
+   "reason": "ancestor and target share the same resource-id prefix, so nested matches cannot be reproduced by a single childSelector chain"
+  },
+  {
+   "id": "x060",
+   "skip": true,
+   "reason": "invalid XPath syntax (sequence literal ('A','B') is not valid in an attribute comparison)"
+  },
+  {
+   "id": "x061",
+   "uiselector": "new UiSelector().className(\"android.widget.TextView\").resourceId(\"com.cumojejove.monukekep.socetomub.webefuf.zilolojisi:id/bedu\").text(\"Rah 8\")"
+  },
+  {
+   "id": "x062",
+   "uiselector": "new UiSelector().className(\"android.widget.TextView\").text(\"Gurizi\")"
+  },
+  {
+   "id": "x063",
+   "skip": true,
+   "reason": "descendant of a non-unique ancestor class (//ListView); childSelector only searches under one ListView, not all of them"
+  },
+  {
+   "id": "x064",
+   "uiselector": "new UiSelector().className(\"android.widget.TextView\").resourceId(\"com.cumojejove.monukekep.socetomub.webefuf.zilolojisi:id/bedu\").text(\"Riven\")"
+  },
+  {
+   "id": "x065",
+   "uiselector": "new UiSelector().resourceId(\"login\")"
+  },
+  {
+   "id": "x066",
+   "uiselector": "new UiSelector().textContains(\"反送线\")"
+  },
+  {
+   "id": "x067",
+   "skip": true,
+   "reason": "union (|) of several XPaths, including a parent step; a single UiSelector cannot express it"
+  },
+  {
+   "id": "x068",
+   "skip": true,
+   "reason": "positional predicate on a descendant set; UiSelector has no way to select the Nth of a descendant set"
+  },
+  {
+   "id": "x069",
+   "uiselector": "new UiSelector().className(\"android.widget.Button\").resourceId(\"com.android.johifa:id/gow_dofiwa\")"
+  },
+  {
+   "id": "x070",
+   "skip": true,
+   "reason": "positional predicates on descendant set and direct-child step; no UiSelector equivalent"
+  },
+  {
+   "id": "x071",
+   "uiselector": "new UiSelector().className(\"android.widget.TextView\").description(\"popon_cidowitef\").instance(1)"
+  },
+  {
+   "id": "x072",
+   "uiselector": "new UiSelector().className(\"android.widget.TextView\").resourceId(\"com.cumojejove.monukekep.socetomub.webefuf.zilolojisi:id/bedu\").text(\"Rosoci Tibo 1\")"
+  },
+  {
+   "id": "x073",
+   "uiselector": "new UiSelector().description(\"发送\")"
+  },
+  {
+   "id": "x074",
+   "uiselector": "new UiSelector().className(\"android.widget.ImageButton\").description(\"Daheci to mobol mona\")"
+  },
+  {
+   "id": "x075",
+   "uiselector": "new UiSelector().className(\"android.widget.TextView\").text(\"Kaki\")"
+  },
+  {
+   "id": "x076",
+   "uiselector": "new UiSelector().description(\"Zoci Teseru\")"
+  },
+  {
+   "id": "x077",
+   "uiselector": "new UiSelector().textMatches(\".*\")"
+  },
+  {
+   "id": "x078",
+   "uiselector": "new UiSelector().className(\"android.widget.TextView\").resourceId(\"com.cumojejove.monukekep.socetomub.webefuf.zilolojisi:id/bedu\").text(\"Tar Kuwu 3\")"
+  },
+  {
+   "id": "x079",
+   "uiselector": "new UiSelector().textContains(\"4、作场篇理\")"
+  },
+  {
+   "id": "x080",
+   "uiselector": "new UiSelector().text(\"Sign in\")"
+  },
+  {
+   "id": "x081",
+   "uiselector": "new UiSelector().text(\"Mikidit SIJI\")"
+  },
+  {
+   "id": "x082",
+   "skip": true,
+   "reason": "attribute @label does not exist in the Android UiAutomator hierarchy; UiSelector has no equivalent"
+  },
+  {
+   "id": "x083",
+   "uiselector": "new UiSelector().description(\"popon_dofiwa_rizisi\")"
+  },
+  {
+   "id": "x084",
+   "uiselector": "new UiSelector().className(\"android.widget.TextView\").text(\"Vumi as jirisifaw bofefeb\")"
+  },
+  {
+   "id": "x085",
+   "skip": true,
+   "reason": "uses OR (or) across different attributes; a single UiSelector cannot express alternatives"
+  },
+  {
+   "id": "x086",
+   "skip": true,
+   "reason": "uses OR (or) across attribute values; a single UiSelector cannot express alternatives"
+  },
+  {
+   "id": "x087",
+   "uiselector": "new UiSelector().text(\"送报品选认式职系了\")"
+  },
+  {
+   "id": "x088",
+   "skip": true,
+   "reason": "absolute path with direct-child steps and positional predicates; no exact UiSelector equivalent"
+  },
+  {
+   "id": "x089",
+   "skip": true,
+   "reason": "direct-child steps with positional predicates after a resource-id match; no exact UiSelector equivalent"
+  },
+  {
+   "id": "x090",
+   "uiselector": "new UiSelector().className(\"android.widget.Button\").text(\"OK\").checked(false).index(0)"
+  },
+  {
+   "id": "x091",
+   "uiselector": "new UiSelector().className(\"android.view.View\")"
+  },
+  {
+   "id": "x092",
+   "uiselector": "new UiSelector().className(\"android.widget.TextView\").resourceId(\"com.cumojejove.monukekep.socetomub.webefuf.zilolojisi:id/bedu\").text(\"Vehi Disuvud 4\")"
+  },
+  {
+   "id": "x093",
+   "uiselector": "new UiSelector().className(\"android.widget.TextView\").resourceId(\"com.cumojejove.monukekep.socetomub.webefuf.zilolojisi:id/bedu\").text(\"Vehi Disuvud 7\")"
+  },
+  {
+   "id": "x094",
+   "uiselector": "new UiSelector().resourceId(\"com.example.app:id/sihenocesase_pumu_vil\").childSelector(new UiSelector().textContains(\"{message_contains}\"))"
+  },
+  {
+   "id": "x095",
+   "skip": true,
+   "reason": "direct-child step with positional predicate on the parent; no exact UiSelector equivalent"
+  },
+  {
+   "id": "x096",
+   "uiselector": "new UiSelector().text(\"Vikuwag\")"
+  },
+  {
+   "id": "x097",
+   "uiselector": "new UiSelector().resourceId(\"com.rusezu.android.lerunim:id/neno_ruwoju\")"
+  },
+  {
+   "id": "x098",
+   "skip": true,
+   "reason": "absolute path with direct-child steps and positional predicates; no exact UiSelector equivalent"
+  },
+  {
+   "id": "x099",
+   "skip": true,
+   "reason": "positional predicate on a descendant set (//ListView//TextView)[5]; UiSelector cannot select the Nth of many"
+  },
+  {
+   "id": "x100",
+   "uiselector": "new UiSelector().resourceId(\"nimepiho.wawilomode.com.SakOmore:id/daheci_hemumi\").checked(false)"
+  },
+  {
+   "id": "x101",
+   "uiselector": "new UiSelector().className(\"android.widget.Button\").description(\"Ruwoju Vetogame\")"
+  },
+  {
+   "id": "x102",
+   "uiselector": "new UiSelector().text(\"Say \\\"hi\\\"\")"
+  },
+  {
+   "id": "x103",
+   "uiselector": "new UiSelector().resourceId(\"com.rusezu.android.lerunim:id/pebajon\")"
+  },
+  {
+   "id": "x104",
+   "uiselector": "new UiSelector().className(\"android.widget.TextView\").resourceId(\"com.cumojejove.monukekep.socetomub.webefuf.zilolojisi:id/bedu\").text(\"Vehi Pakaf\")"
+  },
+  {
+   "id": "x105",
+   "uiselector": "new UiSelector().resourceIdMatches(\".*com[.]example[.]app:id/item_7.*\")"
+  },
+  {
+   "id": "x106",
+   "uiselector": "new UiSelector().text(\"Jor hadi saligek jemeworoneju\")"
+  },
+  {
+   "id": "x107",
+   "uiselector": "new UiSelector().className(\"android.widget.Button\").text(\"Grüße\")"
+  },
+  {
+   "id": "x108",
+   "skip": true,
+   "reason": "union (|) of two XPaths; a single UiSelector cannot express alternatives"
+  },
+  {
+   "id": "x109",
+   "uiselector": "new UiSelector().textContains(\"设置\")"
+  },
+  {
+   "id": "x110",
+   "skip": true,
+   "reason": "absolute path (/hierarchy/...) requires an exact parent-child chain; UiSelector childSelector matches any descendant"
+  },
+  {
+   "id": "x111",
+   "uiselector": "new UiSelector().className(\"android.widget.Button\").instance(1)"
+  },
+  {
+   "id": "x112",
+   "uiselector": "new UiSelector().resourceId(\"com.lazevikema.wid:id/dofiwa_hido\")"
+  },
+  {
+   "id": "x113",
+   "uiselector": "new UiSelector().className(\"android.widget.TextView\").text(\"Daheci Cigolug\")"
+  },
+  {
+   "id": "x114",
+   "uiselector": "new UiSelector().className(\"android.widget.TextView\").text(\"ZOWER\")"
+  },
+  {
+   "id": "x115",
+   "uiselector": "new UiSelector().scrollable(true)"
+  },
+  {
+   "id": "x116",
+   "uiselector": "new UiSelector().className(\"android.widget.Button\")"
+  },
+  {
+   "id": "x117",
+   "uiselector": "new UiSelector().className(\"android.widget.TextView\").resourceId(\"com.cumojejove.monukekep.socetomub.webefuf.zilolojisi:id/bedu\").text(\"Fid Kuwu\")"
+  },
+  {
+   "id": "x118",
+   "skip": true,
+   "reason": "(//Button)[position()<3] selects the first two matches; a single UiSelector returns one element"
+  },
+  {
+   "id": "x119",
+   "skip": true,
+   "reason": "uses count() and lower-case() over child steps; no UiSelector equivalent"
+  },
+  {
+   "id": "x120",
+   "uiselector": "new UiSelector().focusable(true)"
+  },
+  {
+   "id": "x121",
+   "uiselector": "new UiSelector().className(\"android.widget.Switch\").instance(0)"
+  },
+  {
+   "id": "x122",
+   "uiselector": "new UiSelector().resourceId(\"com.example.app:id/zurebahikubad_pumu_wepejazuk\").childSelector(new UiSelector().text(\"v2.0\"))"
+  },
+  {
+   "id": "x123",
+   "uiselector": "new UiSelector().className(\"android.widget.FrameLayout\").text(\"Nud Rasowaw\")"
+  },
+  {
+   "id": "x124",
+   "skip": true,
+   "reason": "absolute path with direct-child steps and positional predicates; no exact UiSelector equivalent"
+  },
+  {
+   "id": "x125",
+   "uiselector": "new UiSelector().className(\"android.widget.FrameLayout\").description(\"Metohol\")"
+  },
+  {
+   "id": "x126",
+   "uiselector": "new UiSelector().className(\"android.widget.EditText\")"
+  },
+  {
+   "id": "x127",
+   "uiselector": "new UiSelector().className(\"android.widget.SeekBar\").packageName(\"com.android.bipecusu\")"
+  },
+  {
+   "id": "x128",
+   "uiselector": "new UiSelector().resourceId(\"com.android.votinane:id/peduwuhe_wepejazuk\")"
+  },
+  {
+   "id": "x129",
+   "uiselector": "new UiSelector().className(\"android.view.View\").description(\"Babeno tuzik\")"
+  },
+  {
+   "id": "x130",
+   "uiselector": "new UiSelector().selected(true)"
+  },
+  {
+   "id": "x131",
+   "uiselector": "new UiSelector().textContains(\"语地件功\")"
+  },
+  {
+   "id": "x132",
+   "uiselector": "new UiSelector().className(\"android.widget.TextView\").text(\"Gozo Ziwig: Wizip zilec zuruwad feho dise kado raregowupe mobol\").index(1)"
+  },
+  {
+   "id": "x133",
+   "uiselector": "new UiSelector().className(\"android.widget.TextView\").resourceId(\"com.cumojejove.monukekep.socetomub.webefuf.zilolojisi:id/bedu\").text(\"Jibe 6\")"
+  },
+  {
+   "id": "x134",
+   "uiselector": "new UiSelector().text(\"VUHEBO\")"
+  },
+  {
+   "id": "x135",
+   "skip": true,
+   "reason": "element 'text' and attribute @label are not part of the Android UiAutomator hierarchy"
+  },
+  {
+   "id": "x136",
+   "uiselector": "new UiSelector().textContains(\".mag\")"
+  },
+  {
+   "id": "x137",
+   "uiselector": "new UiSelector().className(\"android.widget.TextView\").text(\"च़जषटपऐ यदअीरब\")"
+  },
+  {
+   "id": "x138",
+   "skip": true,
+   "reason": "union (|) of XPaths using @id, which does not exist in the Android hierarchy"
+  },
+  {
+   "id": "x139",
+   "uiselector": "new UiSelector().className(\"android.widget.TextView\").resourceId(\"com.cumojejove.monukekep.socetomub.webefuf.zilolojisi:id/bedu\").text(\"Wotok Bavufo 6\")"
+  },
+  {
+   "id": "x140",
+   "skip": true,
+   "reason": "invalid XPath syntax (unclosed predicate)"
+  },
+  {
+   "id": "x141",
+   "uiselector": "new UiSelector().className(\"android.widget.TextView\").resourceId(\"com.cumojejove.monukekep.socetomub.webefuf.zilolojisi:id/bedu\").text(\"Mabetim\")"
+  },
+  {
+   "id": "x142",
+   "uiselector": "new UiSelector().resourceId(\"com.lazevikema.wid:id/tv_mobol_nari\")"
+  },
+  {
+   "id": "x143",
+   "uiselector": "new UiSelector().className(\"android.widget.TextView\").text(\"GOTAZ\")"
+  },
+  {
+   "id": "x144",
+   "skip": true,
+   "reason": "uses OR (or) across text values inside an AND; a single UiSelector cannot express alternatives"
+  },
+  {
+   "id": "x145",
+   "uiselector": "new UiSelector().className(\"android.widget.ImageButton\").description(\"Bomu mobol\")"
+  },
+  {
+   "id": "x146",
+   "uiselector": "new UiSelector().className(\"android.view.ViewGroup\").resourceIdMatches(\"hoci_mevodu_.*\")"
+  },
+  {
+   "id": "x147",
+   "uiselector": "new UiSelector().className(\"android.widget.ImageView\").instance(1)"
+  },
+  {
+   "id": "x148",
+   "skip": true,
+   "reason": "attribute @id does not exist in the Android UiAutomator hierarchy; UiSelector has no equivalent"
+  },
+  {
+   "id": "x149",
+   "uiselector": "new UiSelector().className(\"android.view.ViewGroup\").resourceIdMatches(\"mabetim_jemo_.*\")"
+  },
+  {
+   "id": "x150",
+   "uiselector": "new UiSelector().className(\"android.widget.TextView\").resourceId(\"com.cumojejove.monukekep.socetomub.webefuf.zilolojisi:id/bedu\").text(\"Dehib Rokoc 3\")"
+  },
+  {
+   "id": "x151",
+   "uiselector": "new UiSelector().text(\"Rojuno Lodo\")"
+  },
+  {
+   "id": "x152",
+   "uiselector": "new UiSelector().className(\"android.widget.Button\").text(\"允许\")"
+  },
+  {
+   "id": "x153",
+   "uiselector": "new UiSelector().textContains(\"$5.00 (incl.)\")"
+  },
+  {
+   "id": "x154",
+   "skip": true,
+   "reason": "absolute path with direct-child steps and positional predicates; no exact UiSelector equivalent"
+  },
+  {
+   "id": "x155",
+   "skip": true,
+   "reason": "direct child selected by last() position; UiSelector cannot select by position among children"
+  },
+  {
+   "id": "x156",
+   "skip": true,
+   "reason": "absolute path with direct-child steps and positional predicates; no exact UiSelector equivalent"
+  },
+  {
+   "id": "x157",
+   "uiselector": "new UiSelector().className(\"android.view.View\").descriptionMatches(\"(?i).*[{]sihenocesase[.]zesor[(][)][}].*\")"
+  },
+  {
+   "id": "x158",
+   "uiselector": "new UiSelector()"
+  },
+  {
+   "id": "x159",
+   "skip": true,
+   "reason": "element 'i' is not an Android UiAutomator element name; the XPath matches nothing"
+  },
+  {
+   "id": "x160",
+   "uiselector": "new UiSelector().className(\"android.widget.TextView\").text(\"Zawe\")"
+  },
+  {
+   "id": "x161",
+   "uiselector": "new UiSelector().text(\"Price: $5\")"
+  },
+  {
+   "id": "x162",
+   "uiselector": "new UiSelector().resourceIdMatches(\".*ziha.*\")"
+  },
+  {
+   "id": "x163",
+   "uiselector": "new UiSelector().text(\"C:\\\\Temp\\\\\")"
+  },
+  {
+   "id": "x164",
+   "skip": true,
+   "reason": "descendant of a non-unique ancestor class (//ListView); childSelector only searches under one ListView"
+  },
+  {
+   "id": "x165",
+   "uiselector": "new UiSelector().text(\"建电商城\")"
+  },
+  {
+   "id": "x166",
+   "uiselector": "new UiSelector().text(\"置项考多\")"
+  },
+  {
+   "id": "x167",
+   "uiselector": "new UiSelector().resourceId(\"com.lazevikema.wid:id/gowomoc\")"
+  },
+  {
+   "id": "x168",
+   "uiselector": "new UiSelector().className(\"android.widget.FrameLayout\").index(3)"
+  },
+  {
+   "id": "x169",
+   "skip": true,
+   "reason": "absolute path with direct-child steps; no exact UiSelector equivalent"
+  },
+  {
+   "id": "x170",
+   "skip": true,
+   "reason": "positional predicate on a descendant set (//ListView//LinearLayout//TextView)[1]; not expressible as an exact UiSelector"
+  },
+  {
+   "id": "x171",
+   "skip": true,
+   "reason": "absolute path with direct-child steps; no exact UiSelector equivalent"
+  },
+  {
+   "id": "x172",
+   "uiselector": "new UiSelector().className(\"android.widget.EditText\").resourceId(\"kafu_tib\")"
+  },
+  {
+   "id": "x173",
+   "uiselector": "new UiSelector().className(\"android.widget.TextView\").resourceId(\"com.cumojejove.monukekep.socetomub.webefuf.zilolojisi:id/bedu\").text(\"Tar Kuwu\")"
+  },
+  {
+   "id": "x174",
+   "uiselector": "new UiSelector().text(\"Hokahuta\")"
+  },
+  {
+   "id": "x175",
+   "uiselector": "new UiSelector().text(\"散人仅\")"
+  },
+  {
+   "id": "x176",
+   "uiselector": "new UiSelector().className(\"android.widget.TextView\").description(\"Mobol\")"
+  },
+  {
+   "id": "x177",
+   "uiselector": "new UiSelector().className(\"android.widget.TextView\").text(\"Vikuwag hezek dehifacerek\")"
+  },
+  {
+   "id": "x178",
+   "uiselector": "new UiSelector().className(\"android.widget.TextView\").resourceId(\"android:id/text1\").text(\"Jus or nudi vorevik tuzik\")"
+  },
+  {
+   "id": "x179",
+   "skip": true,
+   "reason": "uses ancestor axis (ancestor::); UiSelector cannot navigate upward"
+  },
+  {
+   "id": "x180",
+   "skip": true,
+   "reason": "direct-child step with a not(contains()) predicate; UiSelector cannot express exact child position"
+  },
+  {
+   "id": "x181",
+   "skip": true,
+   "reason": "absolute path with direct-child steps and positional predicate; no exact UiSelector equivalent"
+  },
+  {
+   "id": "x182",
+   "uiselector": "new UiSelector().text(\"权场聊粘件\")"
+  },
+  {
+   "id": "x183",
+   "skip": true,
+   "reason": "direct-child step with positional predicate; no exact UiSelector equivalent"
+  },
+  {
+   "id": "x184",
+   "uiselector": "new UiSelector().text(\"a;b\")"
+  },
+  {
+   "id": "x185",
+   "skip": true,
+   "reason": "positional predicate on a descendant set; UiSelector cannot select the Nth of many"
+  },
+  {
+   "id": "x186",
+   "uiselector": "new UiSelector().className(\"android.widget.TextView\").resourceId(\"com.cumojejove.monukekep.socetomub.webefuf.zilolojisi:id/bedu\").text(\"Wotok Bavufo 1\")"
+  },
+  {
+   "id": "x187",
+   "uiselector": "new UiSelector().className(\"android.widget.TextView\").text(\"Rojuno Savejat\")"
+  },
+  {
+   "id": "x188",
+   "uiselector": "new UiSelector().className(\"android.widget.TextView\").resourceId(\"com.cumojejove.monukekep.socetomub.webefuf.zilolojisi:id/bedu\").text(\"Powi Lahise\")"
+  },
+  {
+   "id": "x189",
+   "uiselector": "new UiSelector().textMatches(\"(?s).*Line 1.Line 2.*\")"
+  },
+  {
+   "id": "x190",
+   "uiselector": "new UiSelector().className(\"android.view.View\").description(\"Fotit\")"
+  },
+  {
+   "id": "x191",
+   "skip": true,
+   "reason": "predicate on descendant existence across all LinearLayouts; a childSelector only checks the first match"
+  },
+  {
+   "id": "x192",
+   "uiselector": "new UiSelector().className(\"android.widget.RadioButton\").checked(true)"
+  },
+  {
+   "id": "x193",
+   "uiselector": "new UiSelector().className(\"android.widget.EditText\")"
+  },
+  {
+   "id": "x194",
+   "uiselector": "new UiSelector().className(\"android.widget.TextView\").resourceId(\"HAP__COFA__Busapuloj\").text(\"\")"
+  },
+  {
+   "id": "x195",
+   "uiselector": "new UiSelector().className(\"android.widget.TextView\").text(\"user01\")"
+  },
+  {
+   "id": "x196",
+   "skip": true,
+   "reason": "absolute path with direct-child steps and positional predicate; no exact UiSelector equivalent"
+  },
+  {
+   "id": "x197",
+   "skip": true,
+   "reason": "predicate on descendant existence across all ViewGroups; a childSelector only checks the first match"
+  },
+  {
+   "id": "x198",
+   "uiselector": "new UiSelector().className(\"android.widget.ImageButton\").resourceId(\"com.rusezu.android.VatewuZekoba:id/nenovi_daheci_dofiwa\")"
+  },
+  {
+   "id": "x199",
+   "uiselector": "new UiSelector().textStartsWith(\"Tot\")"
+  },
+  {
+   "id": "x200",
+   "skip": true,
+   "reason": "selects direct children (/*) of an element; UiSelector childSelector matches any descendant"
+  },
+  {
+   "id": "x201",
+   "uiselector": "new UiSelector().className(\"android.widget.Button\").resourceId(\"com.android.zikametijazesonelibu:id/butimaziha_hilen_dofiwa\")"
+  },
+  {
+   "id": "x202",
+   "uiselector": "new UiSelector().className(\"android.widget.TextView\").resourceId(\"com.android.johifa:id/nud_waw_nalafehul_vigoc\")"
+  },
+  {
+   "id": "x203",
+   "uiselector": "new UiSelector().className(\"android.view.View\").text(\"x\")"
+  },
+  {
+   "id": "x204",
+   "skip": true,
+   "reason": "uses OR (or) across text values inside an AND; a single UiSelector cannot express alternatives"
+  },
+  {
+   "id": "x205",
+   "uiselector": "new UiSelector().className(\"android.widget.LinearLayout\").resourceId(\"com.android.johifa:id/wepejazuk\")"
+  },
+  {
+   "id": "x206",
+   "uiselector": "new UiSelector().className(\"android.widget.TextView\").text(\"Huticige Votinane\")"
+  },
+  {
+   "id": "x207",
+   "uiselector": "new UiSelector().text(\"确定\")"
+  },
+  {
+   "id": "x208",
+   "skip": true,
+   "reason": "union (|) of two XPaths with OR inside; a single UiSelector cannot express alternatives"
+  },
+  {
+   "id": "x209",
+   "uiselector": "new UiSelector().textContains(\"Penuci\")"
+  },
+  {
+   "id": "x210",
+   "skip": true,
+   "reason": "union (|) of two element types; a single UiSelector cannot express alternatives"
+  },
+  {
+   "id": "x211",
+   "uiselector": "new UiSelector()"
+  },
+  {
+   "id": "x212",
+   "skip": true,
+   "reason": "absolute path with direct-child steps and positional predicate; no exact UiSelector equivalent"
+  },
+  {
+   "id": "x213",
+   "uiselector": "new UiSelector().className(\"android.widget.TextView\").index(0)"
+  },
+  {
+   "id": "x214",
+   "uiselector": "new UiSelector().resourceId(\"com.lazevikema.wid:id/jemo_bocic\").childSelector(new UiSelector().className(\"android.widget.TextView\"))"
+  },
+  {
+   "id": "x215",
+   "uiselector": "new UiSelector().className(\"android.widget.TextView\").text(\"My Natila\")"
+  },
+  {
+   "id": "x216",
+   "uiselector": "new UiSelector().className(\"android.widget.ImageView\").description(\"QR Hadi\")"
+  },
+  {
+   "id": "x217",
+   "skip": true,
+   "reason": "invalid XPath syntax (if/then/else is XPath 2.0 expression syntax, not valid in a predicate)"
+  },
+  {
+   "id": "x218",
+   "skip": true,
+   "reason": "absolute path with direct-child steps and positional predicate; no exact UiSelector equivalent"
+  },
+  {
+   "id": "x219",
+   "uiselector": "new UiSelector().resourceId(\"com.lazevikema.wid:id/jemo_misafa\").childSelector(new UiSelector().className(\"android.widget.EditText\"))"
+  },
+  {
+   "id": "x220",
+   "skip": true,
+   "reason": "uses OR (or) across resource-id values; a single UiSelector cannot express alternatives"
+  },
+  {
+   "id": "x221",
+   "uiselector": "new UiSelector().text(\"布助业必\")"
+  },
+  {
+   "id": "x222",
+   "skip": true,
+   "reason": "absolute path with direct-child steps and positional predicates; no exact UiSelector equivalent"
+  },
+  {
+   "id": "x223",
+   "uiselector": "new UiSelector().className(\"android.widget.TextView\").resourceId(\"com.cumojejove.monukekep.socetomub.webefuf.zilolojisi:id/bedu\").text(\"Rah Bavic 3\")"
+  },
+  {
+   "id": "x224",
+   "uiselector": "new UiSelector().text(\"Hidden\")"
+  },
+  {
+   "id": "x225",
+   "uiselector": "new UiSelector().text(\"Add\").instance(0)"
+  },
+  {
+   "id": "x226",
+   "uiselector": "new UiSelector().text(\"Total\")"
+  },
+  {
+   "id": "x227",
+   "uiselector": "new UiSelector().className(\"android.widget.TextView\").resourceId(\"com.cumojejove.monukekep.socetomub.webefuf.zilolojisi:id/bedu\").text(\"Cifu Tibo 7\")"
+  },
+  {
+   "id": "x228",
+   "uiselector": "new UiSelector().className(\"android.widget.TextView\").text(\"Fiz pin of PagaJuhu\")"
+  },
+  {
+   "id": "x229",
+   "uiselector": "new UiSelector().className(\"android.widget.TextView\")"
+  },
+  {
+   "id": "x230",
+   "uiselector": "new UiSelector().resourceIdMatches(\".*com[.]example[.]app:id/bulopewocemot_vil_rasowaw_bedu.*\").text(\"{conversation}\")"
+  },
+  {
+   "id": "x231",
+   "uiselector": "new UiSelector().textMatches(\".*x.*\")"
+  },
+  {
+   "id": "x232",
+   "uiselector": "new UiSelector().className(\"android.widget.TextView\").resourceId(\"com.cumojejove.monukekep.socetomub.webefuf.zilolojisi:id/bedu\").text(\"Gisopeli\")"
+  },
+  {
+   "id": "x233",
+   "uiselector": "new UiSelector().text(\"Hutag Jor Hadi\")"
+  },
+  {
+   "id": "x234",
+   "uiselector": "new UiSelector().className(\"android.widget.TextView\").resourceId(\"com.cumojejove.monukekep.socetomub.webefuf.zilolojisi:id/bedu\").text(\"Picu Faro\")"
+  },
+  {
+   "id": "x235",
+   "uiselector": "new UiSelector().className(\"android.widget.TextView\").resourceId(\"com.cumojejove.monukekep.socetomub.webefuf.zilolojisi:id/bedu\").text(\"Monuc Lahise\")"
+  },
+  {
+   "id": "x236",
+   "uiselector": "new UiSelector().text(\"Cifirod Tejok Poz\")"
+  },
+  {
+   "id": "x237",
+   "uiselector": "new UiSelector()"
+  },
+  {
+   "id": "x238",
+   "uiselector": "new UiSelector().className(\"android.widget.TextView\").resourceId(\"com.cumojejove.monukekep.socetomub.webefuf.zilolojisi:id/bedu\").text(\"Wutem Rumum 5\")"
+  },
+  {
+   "id": "x239",
+   "uiselector": "new UiSelector().resourceId(\"nimepiho.wawilomode.com.SakOmore:id/neno_hipepu\")"
+  },
+  {
+   "id": "x240",
+   "skip": true,
+   "reason": "union (|) of XPaths using @id and @label, which do not exist in the Android hierarchy"
+  },
+  {
+   "id": "x241",
+   "skip": true,
+   "reason": "positional predicate on a descendant set followed by a direct-child step; no exact UiSelector equivalent"
+  },
+  {
+   "id": "x242",
+   "skip": true,
+   "reason": "absolute path with direct-child steps and positional predicate; no exact UiSelector equivalent"
+  },
+  {
+   "id": "x243",
+   "uiselector": "new UiSelector().textMatches(\"Total: [0-9]+\")"
+  },
+  {
+   "id": "x244",
+   "uiselector": "new UiSelector().password(true)"
+  },
+  {
+   "id": "x245",
+   "uiselector": "new UiSelector().text(\"群司信位\")"
+  },
+  {
+   "id": "x246",
+   "uiselector": "new UiSelector().className(\"android.widget.TextView\").resourceId(\"com.cumojejove.monukekep.socetomub.webefuf.zilolojisi:id/bedu\").text(\"Zupo Bavic 8\")"
+  },
+  {
+   "id": "x247",
+   "skip": true,
+   "reason": "union (|) of two XPaths; a single UiSelector cannot express alternatives"
+  },
+  {
+   "id": "x248",
+   "uiselector": "new UiSelector()"
+  },
+  {
+   "id": "x249",
+   "skip": true,
+   "reason": "positional predicate on a descendant set followed by a direct-child step; no exact UiSelector equivalent"
+  },
+  {
+   "id": "x250",
+   "skip": true,
+   "reason": "positional predicate on a ListView selects the second ListView; descendant of a positional match cannot be expressed exactly"
+  },
+  {
+   "id": "x251",
+   "uiselector": "new UiSelector().className(\"android.widget.TextView\").textContains(\"Votodem\")"
+  },
+  {
+   "id": "x252",
+   "uiselector": "new UiSelector().longClickable(true)"
+  },
+  {
+   "id": "x253",
+   "uiselector": "new UiSelector().className(\"android.widget.ImageButton\").description(\"Gaku\")"
+  },
+  {
+   "id": "x254",
+   "skip": true,
+   "reason": "attribute @label does not exist in the Android UiAutomator hierarchy; UiSelector has no equivalent"
+  },
+  {
+   "id": "x255",
+   "uiselector": "new UiSelector().resourceId(\"com.example.app:id/login\")"
+  },
+  {
+   "id": "x256",
+   "uiselector": "new UiSelector().className(\"android.widget.TextView\").resourceId(\"com.cumojejove.monukekep.socetomub.webefuf.zilolojisi:id/bedu\").text(\"Rosoci Tibo 7\")"
+  },
+  {
+   "id": "x257",
+   "uiselector": "new UiSelector().className(\"android.widget.EditText\").resourceId(\"com.android.johifa:id/ruwoju_bef_pumu\").text(\"Ruwoju bepo laru\")"
+  },
+  {
+   "id": "x258",
+   "uiselector": "new UiSelector().className(\"android.widget.TextView\").resourceId(\"com.cumojejove.monukekep.socetomub.webefuf.zilolojisi:id/bedu\").text(\"Lahise 4\")"
+  },
+  {
+   "id": "x259",
+   "skip": true,
+   "reason": "direct-child step after a descendant set; UiSelector childSelector matches any descendant and cannot select a positional child"
+  },
+  {
+   "id": "x260",
+   "skip": true,
+   "reason": "absolute path with direct-child steps and positional predicates; no exact UiSelector equivalent"
+  },
+  {
+   "id": "x261",
+   "uiselector": "new UiSelector().className(\"android.widget.TextView\").resourceId(\"com.cumojejove.monukekep.socetomub.webefuf.zilolojisi:id/bedu\").text(\"Cipo\")"
+  },
+  {
+   "id": "x262",
+   "uiselector": "new UiSelector().text(\"OK\")"
+  },
+  {
+   "id": "x263",
+   "uiselector": "new UiSelector().textContains(\"何业个定未动\")"
+  },
+  {
+   "id": "x264",
+   "uiselector": "new UiSelector().className(\"android.widget.ImageView\").resourceId(\"com.example.app:id/item_7\").text(\"50%\")"
+  },
+  {
+   "id": "x265",
+   "skip": true,
+   "reason": "attribute @data-testid does not exist in the Android UiAutomator hierarchy; UiSelector has no equivalent"
+  },
+  {
+   "id": "x266",
+   "uiselector": "new UiSelector().textMatches(\".+\")"
+  },
+  {
+   "id": "x267",
+   "uiselector": "new UiSelector().resourceIdMatches(\"(?=.*nenovi)(?=.*gurizi).*\")"
+  },
+  {
+   "id": "x268",
+   "uiselector": "new UiSelector().textContains(\".mol\")"
+  },
+  {
+   "id": "x269",
+   "uiselector": "new UiSelector().description(\"订输先先员再客\")"
+  },
+  {
+   "id": "x270",
+   "uiselector": "new UiSelector().className(\"android.widget.TextView\").resourceId(\"com.cumojejove.monukekep.socetomub.webefuf.zilolojisi:id/bedu\").text(\"Cifu Tibo 4\")"
+  },
+  {
+   "id": "x271",
+   "skip": true,
+   "reason": "attribute @bounds is not a UiSelector criterion"
+  },
+  {
+   "id": "x272",
+   "skip": true,
+   "reason": "element 'tbody'/'tr'/'td'/'i' and attribute data-bind are not part of the Android hierarchy; positional predicates also used"
+  },
+  {
+   "id": "x273",
+   "skip": true,
+   "reason": "direct-child step (ListView/TextView); UiSelector childSelector matches any descendant"
+  },
+  {
+   "id": "x274",
+   "uiselector": "new UiSelector().className(\"android.widget.EditText\").resourceId(\"com.android.johifa:id/gul_wev\")"
+  },
+  {
+   "id": "x275",
+   "uiselector": "new UiSelector().className(\"android.widget.TextView\").resourceId(\"com.cumojejove.monukekep.socetomub.webefuf.zilolojisi:id/bedu\").text(\"Duk Lahise 1\")"
+  },
+  {
+   "id": "x276",
+   "skip": true,
+   "reason": "absolute path with direct-child steps and positional predicate; no exact UiSelector equivalent"
+  },
+  {
+   "id": "x277",
+   "uiselector": "new UiSelector().className(\"android.widget.TextView\").text(\"FIZ IN\")"
+  },
+  {
+   "id": "x278",
+   "uiselector": "new UiSelector().textContains(\"3、接同道短\")"
+  },
+  {
+   "id": "x279",
+   "uiselector": "new UiSelector().checkable(true)"
+  },
+  {
+   "id": "x280",
+   "skip": true,
+   "reason": "absolute path with direct-child steps and positional predicates; no exact UiSelector equivalent"
+  },
+  {
+   "id": "x281",
+   "uiselector": "new UiSelector().resourceId(\"com.lazevikema.wid:id/jade_deva_lafub\")"
+  },
+  {
+   "id": "x282",
+   "skip": true,
+   "reason": "absolute path with direct-child steps and positional predicates; no exact UiSelector equivalent"
+  },
+  {
+   "id": "x283",
+   "uiselector": "new UiSelector().className(\"android.widget.TextView\").text(\"Wizip\")"
+  },
+  {
+   "id": "x284",
+   "uiselector": "new UiSelector().textContains(\".biti\")"
+  },
+  {
+   "id": "x285",
+   "uiselector": "new UiSelector().textContains(\"确定\")"
+  },
+  {
+   "id": "x286",
+   "uiselector": "new UiSelector().text(\"I toka kihe it\")"
+  },
+  {
+   "id": "x287",
+   "uiselector": "new UiSelector().resourceIdMatches(\"(?=.*nenovi)(?=.*dosiwur_dofiwa).*\")"
+  },
+  {
+   "id": "x288",
+   "uiselector": "new UiSelector().descriptionStartsWith(\"Menu\")"
+  },
+  {
+   "id": "x289",
+   "uiselector": "new UiSelector().className(\"android.widget.TextView\").text(\"Lajugo waca petis\")"
+  },
+  {
+   "id": "x290",
+   "uiselector": "new UiSelector().className(\"android.widget.TextView\").resourceId(\"com.cumojejove.monukekep.socetomub.webefuf.zilolojisi:id/bedu\").text(\"Zupo Bavic 7\")"
+  },
+  {
+   "id": "x291",
+   "uiselector": "new UiSelector().text(\"Cupuna & Vovawedo\")"
+  },
+  {
+   "id": "x292",
+   "uiselector": "new UiSelector().className(\"android.widget.TextView\").resourceId(\"com.cumojejove.monukekep.socetomub.webefuf.zilolojisi:id/bedu\").text(\"Fid Kuwu 1\")"
+  },
+  {
+   "id": "x293",
+   "skip": true,
+   "reason": "positional predicate [1] on the first-level match followed by a descendant step with a clickable filter; no exact UiSelector equivalent"
+  },
+  {
+   "id": "x294",
+   "uiselector": "new UiSelector().className(\"android.widget.ScrollView\").description(\"dofo_popon_wepejazuk_zeru\").childSelector(new UiSelector().description(\"popon_dofiwa_sino\"))"
+  },
+  {
+   "id": "x295",
+   "skip": true,
+   "reason": "invalid XPath syntax (unterminated string literal)"
+  },
+  {
+   "id": "x296",
+   "skip": true,
+   "reason": "compares checked to 'TRUE'; Android reports 'true'/'false' in lowercase, so the XPath matches no element"
+  },
+  {
+   "id": "x297",
+   "uiselector": "new UiSelector().className(\"android.widget.ImageView\").description(\"Kaki migitic\")"
+  },
+  {
+   "id": "x298",
+   "skip": true,
+   "reason": "elements name/info/parameters/value and attribute @displayName are not part of the Android hierarchy"
+  },
+  {
+   "id": "x299",
+   "skip": true,
+   "reason": "element 'tbody'/'tr' is not part of the Android hierarchy; positional predicate also used"
+  },
+  {
+   "id": "x300",
+   "skip": true,
+   "reason": "direct-child step with positional predicate; no exact UiSelector equivalent"
+  },
+  {
+   "id": "x301",
+   "uiselector": "new UiSelector().className(\"android.widget.ImageButton\").description(\"Nud mevoha calule\")"
+  },
+  {
+   "id": "x302",
+   "uiselector": "new UiSelector().className(\"android.widget.TextView\").resourceId(\"com.cumojejove.monukekep.socetomub.webefuf.zilolojisi:id/bedu\").text(\"Lahise 6\")"
+  },
+  {
+   "id": "x303",
+   "skip": true,
+   "reason": "absolute path with direct-child steps and positional predicate; no exact UiSelector equivalent"
+  },
+  {
+   "id": "x304",
+   "uiselector": "new UiSelector().className(\"android.view.View\").description(\"Mod faf\")"
+  },
+  {
+   "id": "x305",
+   "skip": true,
+   "reason": "attribute @resourceId does not exist (the Android attribute is resource-id); the XPath matches no element"
+  },
+  {
+   "id": "x306",
+   "skip": true,
+   "reason": "uses OR (or) across different attributes; a single UiSelector cannot express alternatives"
+  },
+  {
+   "id": "x307",
+   "uiselector": "new UiSelector().className(\"android.widget.ImageButton\").description(\"Pocab mobol\")"
+  },
+  {
+   "id": "x308",
+   "uiselector": "new UiSelector().className(\"android.widget.TextView\").resourceId(\"com.cumojejove.monukekep.socetomub.webefuf.zilolojisi:id/bedu\").text(\"Jibe 11\")"
+  },
+  {
+   "id": "x309",
+   "skip": true,
+   "reason": "element 'text' and attribute @label are not part of the Android hierarchy; uses following axis"
+  },
+  {
+   "id": "x310",
+   "skip": true,
+   "reason": "positional predicate [last()] on a descendant set; UiSelector cannot select the last of many"
+  },
+  {
+   "id": "x311",
+   "uiselector": "new UiSelector().className(\"android.view.ViewGroup\").description(\"popon_wepejazuk_zeru\").instance(1).childSelector(new UiSelector().description(\"Settings\"))"
+  },
+  {
+   "id": "x312",
+   "uiselector": "new UiSelector().className(\"android.widget.ScrollView\").description(\"dofo_popon_wepejazuk_zeru\").childSelector(new UiSelector().description(\"Kaki migitic\"))"
+  },
+  {
+   "id": "x313",
+   "skip": true,
+   "reason": "uses parent axis (parent::); UiSelector cannot navigate upward"
+  },
+  {
+   "id": "x314",
+   "uiselector": "new UiSelector().className(\"android.widget.TextView\").textContains(\"Jus Pumu\")"
+  },
+  {
+   "id": "x315",
+   "uiselector": "new UiSelector().text(\"Wasihu cebudufuw\")"
+  },
+  {
+   "id": "x316",
+   "skip": true,
+   "reason": "absolute path with direct-child steps and positional predicates; no exact UiSelector equivalent"
+  },
+  {
+   "id": "x317",
+   "uiselector": "new UiSelector().textMatches(\"(?i).*total.*\")"
+  },
+  {
+   "id": "x318",
+   "uiselector": "new UiSelector().resourceId(\"com.example.app:id/list\").childSelector(new UiSelector().text(\"Item\"))"
+  },
+  {
+   "id": "x319",
+   "uiselector": "new UiSelector().resourceId(\"com.hitufude:id/mevoha\")"
+  },
+  {
+   "id": "x320",
+   "uiselector": "new UiSelector().className(\"android.widget.TextView\").resourceId(\"com.cumojejove.monukekep.socetomub.webefuf.zilolojisi:id/bedu\").text(\"Vehi Disuvud 2\")"
+  },
+  {
+   "id": "x321",
+   "skip": true,
+   "reason": "invalid XPath syntax (dangling union operator '|' with no right-hand expression)"
+  },
+  {
+   "id": "x322",
+   "uiselector": "new UiSelector().className(\"android.widget.FrameLayout\").description(\"Nenovi Wisasam\")"
+  },
+  {
+   "id": "x323",
+   "skip": true,
+   "reason": "absolute path with direct-child steps and positional predicates; no exact UiSelector equivalent"
+  },
+  {
+   "id": "x324",
+   "uiselector": "new UiSelector().description(\"Hekufoki up\")"
+  },
+  {
+   "id": "x325",
+   "skip": true,
+   "reason": "invalid XPath syntax (adjacent string literals \"a\"\"b\" are not valid)"
+  },
+  {
+   "id": "x326",
+   "uiselector": "new UiSelector().descriptionContains(\"menu\")"
+  },
+  {
+   "id": "x327",
+   "skip": true,
+   "reason": "attribute @label does not exist in the Android UiAutomator hierarchy; UiSelector has no equivalent"
+  },
+  {
+   "id": "x328",
+   "uiselector": "new UiSelector().className(\"android.widget.ImageView\").instance(2)"
+  },
+  {
+   "id": "x329",
+   "uiselector": "new UiSelector().resourceId(\"{zuvi.app_cerozis}:id/giduru_mona_wev\").childSelector(new UiSelector().description(\"Risupor\"))"
+  },
+  {
+   "id": "x330",
+   "skip": true,
+   "reason": "descendant of a non-unique ancestor class (//ListView); childSelector only searches under one ListView"
+  },
+  {
+   "id": "x331",
+   "uiselector": "new UiSelector().resourceId(\"com.lazevikema.wid:id/jemo_misafa\").childSelector(new UiSelector().className(\"android.widget.TextView\"))"
+  },
+  {
+   "id": "x332",
+   "uiselector": "new UiSelector().className(\"android.widget.Button\")"
+  },
+  {
+   "id": "x333",
+   "uiselector": "new UiSelector().text(\"日志\")"
+  },
+  {
+   "id": "x334",
+   "uiselector": "new UiSelector().className(\"android.widget.FrameLayout\").description(\"Woji\")"
+  },
+  {
+   "id": "x335",
+   "uiselector": "new UiSelector().className(\"android.widget.TextView\").resourceId(\"com.cumojejove.monukekep.socetomub.webefuf.zilolojisi:id/bedu\").text(\"Jibe Bavic 1\")"
+  },
+  {
+   "id": "x336",
+   "uiselector": "new UiSelector().text(\"Deep marker\")"
+  },
+  {
+   "id": "x337",
+   "skip": true,
+   "reason": "element 'table'/'tbody'/'tr'/'td' is not part of the Android hierarchy; positional predicates also used"
+  },
+  {
+   "id": "x338",
+   "uiselector": "new UiSelector().className(\"android.widget.TextView\").text(\"Kuva Ad\")"
+  },
+  {
+   "id": "x339",
+   "uiselector": "new UiSelector().resourceIdMatches(\".*jihos-nana-kafu.*\")"
+  },
+  {
+   "id": "x340",
+   "uiselector": "new UiSelector().text(\"Pocab hukunupi\")"
+  },
+  {
+   "id": "x341",
+   "uiselector": "new UiSelector().className(\"android.widget.TextView\").text(\"Mobol\")"
+  },
+  {
+   "id": "x342",
+   "uiselector": "new UiSelector().className(\"android.widget.TextView\").resourceId(\"com.cumojejove.monukekep.socetomub.webefuf.zilolojisi:id/bedu\").text(\"Zupo Bavic 11\")"
+  },
+  {
+   "id": "x343",
+   "uiselector": "new UiSelector().resourceId(\"towiz-of-job-zuririzi\")"
+  },
+  {
+   "id": "x344",
+   "skip": true,
+   "reason": "direct-child steps with positional-style index predicates on each level; no exact UiSelector equivalent"
+  },
+  {
+   "id": "x345",
+   "uiselector": "new UiSelector().textContains(\"Next\")"
+  },
+  {
+   "id": "x346",
+   "uiselector": "new UiSelector().className(\"android.widget.Button\").description(\"BAGECE\")"
+  },
+  {
+   "id": "x347",
+   "uiselector": "new UiSelector().className(\"android.widget.Button\").description(\"Zoci votinane\")"
+  },
+  {
+   "id": "x348",
+   "uiselector": "new UiSelector().text(\"Wasihu\")"
+  },
+  {
+   "id": "x349",
+   "uiselector": "new UiSelector().resourceId(\"com.lazevikema.wid:id/nudi_tinen_petis_bedu\")"
+  },
+  {
+   "id": "x350",
+   "skip": true,
+   "reason": "uses OR (or) across different attributes; a single UiSelector cannot express alternatives"
+  },
+  {
+   "id": "x351",
+   "uiselector": "new UiSelector().className(\"android.widget.TextView\").resourceId(\"com.cumojejove.monukekep.socetomub.webefuf.zilolojisi:id/bedu\").text(\"Gisopeli 4\")"
+  },
+  {
+   "id": "x352",
+   "uiselector": "new UiSelector().text(\"添怎公扫成\")"
+  },
+  {
+   "id": "x353",
+   "skip": true,
+   "reason": "uses parent steps (/../..) to move up the tree; UiSelector cannot navigate upward"
+  },
+  {
+   "id": "x354",
+   "uiselector": "new UiSelector().className(\"android.widget.Button\").description(\"QR hadi\")"
+  },
+  {
+   "id": "x355",
+   "uiselector": "new UiSelector().className(\"android.widget.Button\").text(\"Votinane\")"
+  },
+  {
+   "id": "x356",
+   "uiselector": "new UiSelector().text(\"a/b\")"
+  },
+  {
+   "id": "x357",
+   "skip": true,
+   "reason": "positional predicate on a descendant set followed by a direct-child step; no exact UiSelector equivalent"
+  },
+  {
+   "id": "x358",
+   "uiselector": "new UiSelector().className(\"android.view.ViewGroup\").description(\"popon_dofiwa_pebas\").instance(1)"
+  },
+  {
+   "id": "x359",
+   "uiselector": "new UiSelector().resourceIdMatches(\"(?=.*nenovi)(?=.*fohatup).*\")"
+  },
+  {
+   "id": "x360",
+   "uiselector": "new UiSelector().textMatches(\".*Line 1.Line 2.*\")"
+  },
+  {
+   "id": "x361",
+   "uiselector": "new UiSelector().text(\"\")"
+  },
+  {
+   "id": "x362",
+   "uiselector": "new UiSelector().text(\"Line 1\\nLine 2\")"
+  },
+  {
+   "id": "x363",
+   "skip": true,
+   "reason": "uses OR (or) across resource-id values; a single UiSelector cannot express alternatives"
+  },
+  {
+   "id": "x364",
+   "uiselector": "new UiSelector().className(\"android.widget.ImageView\").descriptionContains(\"tesubo\")"
+  },
+  {
+   "id": "x365",
+   "uiselector": "new UiSelector().text(\"Хишуняд\")"
+  },
+  {
+   "id": "x366",
+   "uiselector": "new UiSelector().className(\"android.widget.Button\").text(\"Vovawedo\")"
+  },
+  {
+   "id": "x367",
+   "uiselector": "new UiSelector().className(\"android.widget.SeekBar\").text(\"50.0\")"
+  },
+  {
+   "id": "x368",
+   "uiselector": "new UiSelector().className(\"android.widget.TextView\").text(\"Dowawe\")"
+  },
+  {
+   "id": "x369",
+   "uiselector": "new UiSelector().className(\"android.widget.TextView\").resourceId(\"com.cumojejove.monukekep.socetomub.webefuf.zilolojisi:id/bedu\").text(\"Petof\")"
+  },
+  {
+   "id": "x370",
+   "uiselector": "new UiSelector().className(\"android.widget.TextView\").resourceId(\"com.cumojejove.monukekep.socetomub.webefuf.zilolojisi:id/bedu\").text(\"Tar Kuwu 5\")"
+  },
+  {
+   "id": "x371",
+   "uiselector": "new UiSelector().className(\"android.widget.Button\").text(\"GO TO VOTINANE\")"
+  },
+  {
+   "id": "x372",
+   "skip": true,
+   "reason": "nested ListView descendant with positional predicate; no exact UiSelector equivalent"
+  },
+  {
+   "id": "x373",
+   "uiselector": "new UiSelector().textMatches(\".*USD\")"
+  },
+  {
+   "id": "x374",
+   "uiselector": "new UiSelector().resourceId(\"com.lazevikema.wid:id/cohole_bafibu_copu\")"
+  },
+  {
+   "id": "x375",
+   "skip": true,
+   "reason": "absolute path with direct-child steps and positional predicate; no exact UiSelector equivalent"
+  },
+  {
+   "id": "x376",
+   "uiselector": "new UiSelector().className(\"android.widget.Toast\").text(\"Saved\")"
+  },
+  {
+   "id": "x377",
+   "uiselector": "new UiSelector().text(\"架看更复\")"
+  },
+  {
+   "id": "x378",
+   "uiselector": "new UiSelector().index(2)"
+  },
+  {
+   "id": "x379",
+   "skip": true,
+   "reason": "element 'select' and attribute @id are not part of the Android UiAutomator hierarchy"
+  },
+  {
+   "id": "x380",
+   "uiselector": "new UiSelector().textMatches(\"(?!OK$).*\")"
+  },
+  {
+   "id": "x381",
+   "skip": true,
+   "reason": "absolute path with direct-child steps; no exact UiSelector equivalent"
+  },
+  {
+   "id": "x382",
+   "uiselector": "new UiSelector().className(\"android.widget.TextView\").text(\"LerUnim\")"
+  },
+  {
+   "id": "x383",
+   "skip": true,
+   "reason": "selects direct children (/*) of an element; UiSelector childSelector matches any descendant"
+  },
+  {
+   "id": "x384",
+   "uiselector": "new UiSelector().text(\"粘贴\")"
+  },
+  {
+   "id": "x385",
+   "uiselector": "new UiSelector().enabled(false)"
+  },
+  {
+   "id": "x386",
+   "uiselector": "new UiSelector().className(\"android.view.ViewGroup\").description(\"Hoci\")"
+  },
+  {
+   "id": "x387",
+   "uiselector": "new UiSelector().text(\"Jepolonod fadut\")"
+  },
+  {
+   "id": "x388",
+   "uiselector": "new UiSelector().className(\"android.widget.TextView\").resourceId(\"com.example.app:id/bedu\")"
+  },
+  {
+   "id": "x389",
+   "skip": true,
+   "reason": "selects direct children (/*) of an element; UiSelector childSelector matches any descendant"
+  },
+  {
+   "id": "x390",
+   "skip": true,
+   "reason": "attribute @label does not exist in the Android UiAutomator hierarchy; UiSelector has no equivalent"
+  },
+  {
+   "id": "x391",
+   "skip": true,
+   "reason": "matches only the XML root element 'hierarchy', which is not a UiAutomator node"
+  },
+  {
+   "id": "x392",
+   "skip": true,
+   "reason": "attribute @data-testid does not exist in the Android UiAutomator hierarchy; UiSelector has no equivalent"
+  },
+  {
+   "id": "x393",
+   "uiselector": "new UiSelector().textMatches(\"(?!.*Ad).*\")"
+  },
+  {
+   "id": "x394",
+   "skip": true,
+   "reason": "uses parent step (/..) and a descendant chain anchored on a non-unique text match; no exact UiSelector equivalent"
+  },
+  {
+   "id": "x395",
+   "uiselector": "new UiSelector().className(\"android.widget.Button\").resourceId(\"com.android.zikametijazesonelibu:id/butimaziha_hilen_sacikodola_kifa_dofiwa\")"
+  },
+  {
+   "id": "x396",
+   "skip": true,
+   "reason": "direct-child step with positional predicate; no exact UiSelector equivalent"
+  },
+  {
+   "id": "x397",
+   "skip": true,
+   "reason": "uses parent step (/..) followed by a positional descendant; no exact UiSelector equivalent"
+  },
+  {
+   "id": "x398",
+   "skip": true,
+   "reason": "index value '02' never equals the attribute string '2' in XPath comparison, so the XPath matches no element"
+  },
+  {
+   "id": "x399",
+   "skip": true,
+   "reason": "invalid XPath syntax ('$' is not valid in an element name)"
+  },
+  {
+   "id": "x400",
+   "uiselector": "new UiSelector().text(\"话音退知作电指容\")"
+  },
+  {
+   "id": "x401",
+   "uiselector": "new UiSelector().className(\"android.widget.EditText\").text(\"Ruwoju Falup\")"
+  },
+  {
+   "id": "x402",
+   "uiselector": "new UiSelector().className(\"android.widget.EditText\").text(\"09975446233\")"
+  },
+  {
+   "id": "x403",
+   "uiselector": "new UiSelector().className(\"android.widget.TextView\").text(\"Kupena\")"
+  },
+  {
+   "id": "x404",
+   "skip": true,
+   "reason": "uses parent step (/..) to move up the tree; UiSelector cannot navigate upward"
+  },
+  {
+   "id": "x405",
+   "uiselector": "new UiSelector().className(\"android.widget.TextView\").resourceId(\"com.cumojejove.monukekep.socetomub.webefuf.zilolojisi:id/bedu\").text(\"Rosoci Tibo 2\")"
+  },
+  {
+   "id": "x406",
+   "uiselector": "new UiSelector().resourceId(\"com.android.votinane:id/ruwoju_giduru_wev\")"
+  },
+  {
+   "id": "x407",
+   "skip": true,
+   "reason": "direct-child steps with positional-style index predicates on each level; no exact UiSelector equivalent"
+  },
+  {
+   "id": "x408",
+   "uiselector": "new UiSelector().className(\"android.widget.TextView\").resourceId(\"com.cumojejove.monukekep.socetomub.webefuf.zilolojisi:id/bedu\").text(\"Duk Lahise 5\")"
+  },
+  {
+   "id": "x409",
+   "uiselector": "new UiSelector().resourceId(\"nimepiho.wawilomode.com.SakOmore:id/hewevat\").childSelector(new UiSelector().className(\"android.widget.ImageButton\"))"
+  },
+  {
+   "id": "x410",
+   "uiselector": "new UiSelector().text(\"a]b\")"
+  },
+  {
+   "id": "x411",
+   "uiselector": "new UiSelector().resourceId(\"android:id/text1\").text(\"wajivuno-casufavir.app.fode\")"
+  },
+  {
+   "id": "x412",
+   "uiselector": "new UiSelector().className(\"android.view.ViewGroup\").resourceId(\"com.android.johifa:id/giduru_wev\").childSelector(new UiSelector().className(\"android.widget.TextView\").text(\"a+b\"))"
+  },
+  {
+   "id": "x413",
+   "skip": true,
+   "reason": "element 'textfield' and attribute @name are not part of the Android UiAutomator hierarchy"
+  },
+  {
+   "id": "x414",
+   "skip": true,
+   "reason": "absolute path with direct-child steps and positional predicates; no exact UiSelector equivalent"
+  },
+  {
+   "id": "x415",
+   "uiselector": "new UiSelector().className(\"android.widget.Button\").resourceId(\"com.rusezu.android.VatewuZekoba:id/mid_it_dofiwa\")"
+  },
+  {
+   "id": "x416",
+   "uiselector": "new UiSelector().className(\"android.widget.TextView\").text(\"Zun't pera lidezu jem, Luteca Pojo Up\")"
+  },
+  {
+   "id": "x417",
+   "uiselector": "new UiSelector().className(\"android.widget.Button\").resourceId(\"gurizi-dofiwa\")"
+  },
+  {
+   "id": "x418",
+   "uiselector": "new UiSelector().className(\"android.widget.TextView\").text(\"WOJI\")"
+  },
+  {
+   "id": "x419",
+   "uiselector": "new UiSelector().className(\"android.widget.TextView\").resourceId(\"com.cumojejove.monukekep.socetomub.webefuf.zilolojisi:id/bedu\").text(\"Duk Rokoc 2\")"
+  },
+  {
+   "id": "x420",
+   "uiselector": "new UiSelector().text(\"退拒专专群\")"
+  },
+  {
+   "id": "x421",
+   "uiselector": "new UiSelector().className(\"android.view.ViewGroup\").description(\"popon_wepejazuk_zeru\").instance(2)"
+  },
+  {
+   "id": "x422",
+   "uiselector": "new UiSelector().className(\"android.widget.ImageButton\").description(\"Kaki Migitic\")"
+  },
+  {
+   "id": "x423",
+   "uiselector": "new UiSelector().description(\"选抢行么\")"
+  },
+  {
+   "id": "x424",
+   "uiselector": "new UiSelector().className(\"android.widget.TextView\").resourceId(\"com.cumojejove.monukekep.socetomub.webefuf.zilolojisi:id/bedu\").text(\"Tar Kuwu 1\")"
+  },
+  {
+   "id": "x425",
+   "uiselector": "new UiSelector().className(\"android.widget.Button\").index(1)"
+  },
+  {
+   "id": "x426",
+   "uiselector": "new UiSelector().className(\"android.widget.ImageButton\").description(\"Go ziha\")"
+  },
+  {
+   "id": "x427",
+   "uiselector": "new UiSelector().resourceId(\"com.sucogijijozilo.lunidehasapizam:id/vuluwaNore\")"
+  },
+  {
+   "id": "x428",
+   "skip": true,
+   "reason": "positional predicate [11] on direct children; UiSelector cannot select by position among siblings"
+  },
+  {
+   "id": "x429",
+   "uiselector": "new UiSelector().description(\"Sabutiv\").instance(1)"
+  },
+  {
+   "id": "x430",
+   "uiselector": "new UiSelector().className(\"android.widget.TextView\").text(\"Rufe nudo Povuce\")"
+  },
+  {
+   "id": "x431",
+   "skip": true,
+   "reason": "element 'select' and attribute @id are not part of the Android UiAutomator hierarchy"
+  },
+  {
+   "id": "x432",
+   "uiselector": "new UiSelector().className(\"android.widget.TextView\").text(\"Dejogo pip Fesag Petis\")"
+  },
+  {
+   "id": "x433",
+   "skip": true,
+   "reason": "positional predicate on a descendant set (//ListView//TextView)[1]; not expressible as an exact UiSelector"
+  },
+  {
+   "id": "x434",
+   "uiselector": "new UiSelector().className(\"android.widget.EditText\").resourceId(\"com.jegifoni.android:id/vidumug_nudi_pumu_view\")"
+  },
+  {
+   "id": "x435",
+   "uiselector": "new UiSelector().className(\"android.widget.Button\").description(\"Buri pip view migitic\")"
+  },
+  {
+   "id": "x436",
+   "uiselector": "new UiSelector().text(\"Bocic relirelitafu rucamopa\")"
+  },
+  {
+   "id": "x437",
+   "skip": true,
+   "reason": "absolute path with direct-child steps and positional predicates; no exact UiSelector equivalent"
+  },
+  {
+   "id": "x438",
+   "uiselector": "new UiSelector().text(\"1\")"
+  },
+  {
+   "id": "x439",
+   "uiselector": "new UiSelector().className(\"android.widget.TextView\").text(\"Мугикяр госихо\")"
+  },
+  {
+   "id": "x440",
+   "skip": true,
+   "reason": "element 'joc.mehaka...:id/main_view' is a namespace-prefixed tag and direct-child steps are used; the XPath matches no element"
+  },
+  {
+   "id": "x441",
+   "uiselector": "new UiSelector().text(\"I mirof\")"
+  },
+  {
+   "id": "x442",
+   "uiselector": "new UiSelector().packageNameMatches(\"com[.]example.*\")"
+  },
+  {
+   "id": "x443",
+   "uiselector": "new UiSelector().className(\"android.widget.TextView\").resourceId(\"com.cumojejove.monukekep.socetomub.webefuf.zilolojisi:id/bedu\").text(\"Zupo Bavic 2\")"
+  },
+  {
+   "id": "x444",
+   "skip": true,
+   "reason": "attribute @id does not exist in the Android UiAutomator hierarchy; UiSelector has no equivalent"
+  },
+  {
+   "id": "x445",
+   "uiselector": "new UiSelector().className(\"android.widget.EditText\").instance(1)"
+  },
+  {
+   "id": "x446",
+   "uiselector": "new UiSelector().text(\"量视人项\")"
+  },
+  {
+   "id": "x447",
+   "uiselector": "new UiSelector().className(\"android.widget.TextView\").resourceId(\"com.cumojejove.monukekep.socetomub.webefuf.zilolojisi:id/bedu\").text(\"Gisopeli 6\")"
+  },
+  {
+   "id": "x448",
+   "skip": true,
+   "reason": "direct-child steps; UiSelector childSelector matches any descendant"
+  },
+  {
+   "id": "x449",
+   "uiselector": "new UiSelector().className(\"android.widget.EditText\").text(\"Hutag Jikar Misafa\")"
+  },
+  {
+   "id": "x450",
+   "uiselector": "new UiSelector().className(\"android.widget.TextView\").text(\"Шутожяшяпахез\")"
+  },
+  {
+   "id": "x451",
+   "skip": true,
+   "reason": "uses parent step (/..) to move up the tree; UiSelector cannot navigate upward"
+  },
+  {
+   "id": "x452",
+   "skip": true,
+   "reason": "positional predicate [2] on siblings (//Button[2]); UiSelector cannot select by position among siblings"
+  },
+  {
+   "id": "x453",
+   "uiselector": "new UiSelector().className(\"android.widget.TextView\").text(\"Jus Malifen\")"
+  },
+  {
+   "id": "x454",
+   "uiselector": "new UiSelector().text(\"bell\\u0007\")"
+  },
+  {
+   "id": "x455",
+   "uiselector": "new UiSelector().description(\"Open menu\")"
+  },
+  {
+   "id": "x456",
+   "skip": true,
+   "reason": "element 'UIATableCell' is an iOS class and attribute @name does not exist on Android"
+  },
+  {
+   "id": "x457",
+   "skip": true,
+   "reason": "absolute path (/hierarchy/Toast[1]) with root-level positional predicate; no exact UiSelector equivalent"
+  },
+  {
+   "id": "x458",
+   "skip": true,
+   "reason": "absolute path with direct-child steps and positional predicates; no exact UiSelector equivalent"
+  },
+  {
+   "id": "x459",
+   "uiselector": "new UiSelector().resourceId(\"nimepiho.wawilomode.com.SakOmore:id/fibuhiLuca\")"
+  },
+  {
+   "id": "x460",
+   "uiselector": "new UiSelector().className(\"android.widget.TextView\").text(\"Mezi Suresoz\")"
+  },
+  {
+   "id": "x461",
+   "uiselector": "new UiSelector().className(\"android.widget.CheckedTextView\").resourceId(\"android:id/text1\").text(\"12\")"
+  },
+  {
+   "id": "x462",
+   "uiselector": "new UiSelector().className(\"android.widget.Button\").text(\"OK\").enabled(true)"
+  },
+  {
+   "id": "x463",
+   "uiselector": "new UiSelector().textContains(\"Total\")"
+  },
+  {
+   "id": "x464",
+   "uiselector": "new UiSelector().textStartsWith(\"Total\")"
+  },
+  {
+   "id": "x465",
+   "uiselector": "new UiSelector().descriptionMatches(\"(?i)nudi joniheta\")"
+  },
+  {
+   "id": "x466",
+   "skip": true,
+   "reason": "positional predicate [1] on children (//ImageView[1]) selects the first child of each parent, not the first match overall"
+  },
+  {
+   "id": "x467",
+   "uiselector": "new UiSelector().className(\"android.view.View\").description(\"Hido\")"
+  },
+  {
+   "id": "x468",
+   "uiselector": "new UiSelector().className(\"android.widget.FrameLayout\").description(\"Nud Mabetim\")"
+  },
+  {
+   "id": "x469",
+   "skip": true,
+   "reason": "positional predicate [3] on children (//RelativeLayout[3]); UiSelector cannot select by position among siblings"
+  },
+  {
+   "id": "x470",
+   "skip": true,
+   "reason": "attribute @label does not exist in the Android UiAutomator hierarchy; UiSelector has no equivalent"
+  },
+  {
+   "id": "x471",
+   "uiselector": "new UiSelector().className(\"android.widget.ImageButton\").description(\"Daheci to QR Vikifa\")"
+  },
+  {
+   "id": "x472",
+   "skip": true,
+   "reason": "positional predicate on a descendant set following a resource-id match; no exact UiSelector equivalent"
+  },
+  {
+   "id": "x473",
+   "uiselector": "new UiSelector().resourceId(\"nimepiho.wawilomode.com.SakOmore:id/mifawuni_fijize_ketodasi_jus_nimepiho\")"
+  },
+  {
+   "id": "x474",
+   "uiselector": "new UiSelector().className(\"android.view.ViewGroup\").resourceId(\"com.jegifoni.android:id/gori_to_dofiwa_tinen_mona_view\")"
+  },
+  {
+   "id": "x475",
+   "uiselector": "new UiSelector().className(\"android.widget.Button\").text(\"Jabi Faf\")"
+  },
+  {
+   "id": "x476",
+   "uiselector": "new UiSelector().resourceId(\"com.lazevikema.wid:id/tv_waw_vigoc\").text(\"订阅/条加号\")"
+  },
+  {
+   "id": "x477",
+   "uiselector": "new UiSelector().className(\"android.widget.TextView\").resourceId(\"joc.mehaka.nifi.uk.huticige:id/piwocof\").index(2)"
+  },
+  {
+   "id": "x478",
+   "uiselector": "new UiSelector().className(\"android.widget.TextView\").resourceId(\"com.cumojejove.monukekep.socetomub.webefuf.zilolojisi:id/bedu\").text(\"Gisopeli 2\")"
+  },
+  {
+   "id": "x479",
+   "skip": true,
+   "reason": "attribute @label does not exist in the Android UiAutomator hierarchy; UiSelector has no equivalent"
+  },
+  {
+   "id": "x480",
+   "skip": true,
+   "reason": "uses @label, which does not exist in the Android hierarchy, combined with OR"
+  },
+  {
+   "id": "x481",
+   "uiselector": "new UiSelector().resourceIdMatches(\"(?=.*nenovi)(?=.*woji).*\")"
+  },
+  {
+   "id": "x482",
+   "uiselector": "new UiSelector().className(\"android.widget.TextView\").text(\"ञमओहलसनॉ\")"
+  },
+  {
+   "id": "x483",
+   "uiselector": "new UiSelector().className(\"android.widget.SeekBar\").description(\"Curu\")"
+  },
+  {
+   "id": "x484",
+   "uiselector": "new UiSelector().textContains(\"Total\")"
+  },
+  {
+   "id": "x485",
+   "skip": true,
+   "reason": "direct-child step (RadioButton/TextView) with positional predicate; no exact UiSelector equivalent"
+  },
+  {
+   "id": "x486",
+   "uiselector": "new UiSelector().className(\"android.widget.TextView\").text(\"We gori per a hadi\")"
+  },
+  {
+   "id": "x487",
+   "uiselector": "new UiSelector().text(\"Jina\")"
+  },
+  {
+   "id": "x488",
+   "uiselector": "new UiSelector().text(\"应电管理\")"
+  },
+  {
+   "id": "x489",
+   "uiselector": "new UiSelector().resourceId(\"\")"
+  },
+  {
+   "id": "x490",
+   "uiselector": "new UiSelector().className(\"android.widget.ImageView\").description(\"Ziha\")"
+  },
+  {
+   "id": "x491",
+   "uiselector": "new UiSelector().resourceId(\"com.rusezu.android.vowu.nola:id/rej_bibok\").childSelector(new UiSelector().password(false))"
+  },
+  {
+   "id": "x492",
+   "uiselector": "new UiSelector().resourceIdMatches(\".+\").clickable(true)"
+  },
+  {
+   "id": "x493",
+   "uiselector": "new UiSelector().resourceId(\"danob-zokubawe-vekar\")"
+  },
+  {
+   "id": "x494",
+   "skip": true,
+   "reason": "uses OR (or) across content-desc values; a single UiSelector cannot express alternatives"
+  },
+  {
+   "id": "x495",
+   "uiselector": "new UiSelector().className(\"android.widget.CheckedTextView\").text(\"Bafor JOC vowu\")"
+  },
+  {
+   "id": "x496",
+   "uiselector": "new UiSelector().className(\"android.widget.TextView\").text(\"्ञऐञहरश\")"
+  },
+  {
+   "id": "x497",
+   "skip": true,
+   "reason": "positional predicate [2] on a filtered set; UiSelector cannot select the Nth of many"
+  },
+  {
+   "id": "x498",
+   "uiselector": "new UiSelector().resourceId(\"com.kuz.android.puvobizil:id/widget_gowomoc\")"
+  },
+  {
+   "id": "x499",
+   "uiselector": "new UiSelector().className(\"android.widget.TextView\").resourceId(\"com.cumojejove.monukekep.socetomub.webefuf.zilolojisi:id/bedu\").text(\"Rah 4\")"
+  },
+  {
+   "id": "x500",
+   "uiselector": "new UiSelector().className(\"android.widget.Button\").resourceId(\"android:id/button2\").text(\"NO, LETIFA.\")"
+  },
+  {
+   "id": "x501",
+   "uiselector": "new UiSelector().className(\"android.widget.TextView\").resourceId(\"com.cumojejove.monukekep.socetomub.webefuf.zilolojisi:id/bedu\").text(\"Gisopeli 5\")"
+  },
+  {
+   "id": "x502",
+   "uiselector": "new UiSelector().className(\"android.widget.ImageView\").description(\"Go ziha\")"
+  },
+  {
+   "id": "x503",
+   "uiselector": "new UiSelector().text(\"Add\").instance(0)"
+  },
+  {
+   "id": "x504",
+   "uiselector": "new UiSelector().className(\"android.widget.Button\").text(\"Vufas gofofin rulola Melacomofej gofofin rulola bil mevoha calule\")"
+  },
+  {
+   "id": "x505",
+   "uiselector": "new UiSelector().text(\"文件\")"
+  },
+  {
+   "id": "x506",
+   "skip": true,
+   "reason": "attribute @data-testid does not exist in the Android UiAutomator hierarchy; UiSelector has no equivalent"
+  },
+  {
+   "id": "x507",
+   "uiselector": "new UiSelector().textContains(\"视频\")"
+  },
+  {
+   "id": "x508",
+   "uiselector": "new UiSelector().text(\"If I honehi or femuh my wiconoleje to cikomom, my waris tac fej garosu.\")"
+  },
+  {
+   "id": "x509",
+   "uiselector": "new UiSelector().text(\"银行即\")"
+  },
+  {
+   "id": "x510",
+   "skip": true,
+   "reason": "attribute @id does not exist in the Android UiAutomator hierarchy; UiSelector has no equivalent"
+  },
+  {
+   "id": "x511",
+   "uiselector": "new UiSelector().descriptionStartsWith(\"DUW muvaf on\")"
+  },
+  {
+   "id": "x512",
+   "skip": true,
+   "reason": "union (|) with a dangling operator; invalid XPath and a single UiSelector cannot express alternatives"
+  },
+  {
+   "id": "x513",
+   "uiselector": "new UiSelector().className(\"android.widget.TextView\").resourceId(\"android:id/title\").text(\"Jubajev\")"
+  },
+  {
+   "id": "x514",
+   "uiselector": "new UiSelector().className(\"android.widget.Button\").resourceId(\"android:id/button1\").text(\"OK\")"
+  },
+  {
+   "id": "x515",
+   "uiselector": "new UiSelector().className(\"android.widget.EditText\").resourceId(\"HAP__TisanoKos\")"
+  },
+  {
+   "id": "x516",
+   "uiselector": "new UiSelector().text(\"Bomu jedogun\")"
+  },
+  {
+   "id": "x517",
+   "uiselector": "new UiSelector().className(\"android.widget.LinearLayout\").resourceId(\"com.android.johifa:id/gotaz_bev_laru_neno_id\")"
+  },
+  {
+   "id": "x518",
+   "uiselector": "new UiSelector().resourceId(\"com.android.johifa:id/waw_copu_detiweku_view\")"
+  },
+  {
+   "id": "x519",
+   "uiselector": "new UiSelector().className(\"android.widget.TextView\").text(\"Mezi Sazejew\")"
+  },
+  {
+   "id": "x520",
+   "skip": true,
+   "reason": "absolute path with direct-child steps and positional predicates; no exact UiSelector equivalent"
+  },
+  {
+   "id": "x521",
+   "uiselector": "new UiSelector().textContains(\"转发\")"
+  },
+  {
+   "id": "x522",
+   "uiselector": "new UiSelector().className(\"android.widget.EditText\").text(\"Latike's Bedu\")"
+  },
+  {
+   "id": "x523",
+   "skip": true,
+   "reason": "absolute path with direct-child steps; no exact UiSelector equivalent"
+  },
+  {
+   "id": "x524",
+   "uiselector": "new UiSelector().className(\"android.widget.ImageButton\").description(\"Woji\")"
+  },
+  {
+   "id": "x525",
+   "skip": true,
+   "reason": "uses ends-with() on a LinearLayout and a direct-child step; no exact UiSelector equivalent"
+  },
+  {
+   "id": "x526",
+   "skip": true,
+   "reason": "absolute path with direct-child steps and positional predicate; no exact UiSelector equivalent"
+  },
+  {
+   "id": "x527",
+   "skip": true,
+   "reason": "absolute path with direct-child steps and positional predicates; no exact UiSelector equivalent"
+  },
+  {
+   "id": "x528",
+   "uiselector": "new UiSelector().className(\"android.view.View\").description(\"Nud Gatur Dofiwa\")"
+  },
+  {
+   "id": "x529",
+   "uiselector": "new UiSelector().className(\"android.widget.Button\")"
+  },
+  {
+   "id": "x530",
+   "skip": true,
+   "reason": "namespace-prefixed element name 'joc.mehaka.nifi.uk.huticige:id' is not a valid Android class; the XPath matches no element"
+  },
+  {
+   "id": "x531",
+   "skip": true,
+   "reason": "absolute path with direct-child steps and positional predicates; no exact UiSelector equivalent"
+  },
+  {
+   "id": "x532",
+   "uiselector": "new UiSelector().className(\"android.widget.TextView\").text(\"Кивят:\")"
+  },
+  {
+   "id": "x533",
+   "uiselector": "new UiSelector().textContains(\"本知司码\")"
+  },
+  {
+   "id": "x534",
+   "skip": true,
+   "reason": "union (|) with a dangling operator; invalid XPath and a single UiSelector cannot express alternatives"
+  },
+  {
+   "id": "x535",
+   "uiselector": "new UiSelector().textContains(\"@139.com\")"
+  },
+  {
+   "id": "x536",
+   "uiselector": "new UiSelector().className(\"android.widget.TextView\").text(\"Wakuruni Gupusepot\")"
+  },
+  {
+   "id": "x537",
+   "uiselector": "new UiSelector().className(\"android.widget.TextView\").text(\"1\").index(1)"
+  },
+  {
+   "id": "x538",
+   "uiselector": "new UiSelector().textContains(\".soc\")"
+  },
+  {
+   "id": "x539",
+   "uiselector": "new UiSelector().className(\"android.widget.TextView\").resourceId(\"com.cumojejove.monukekep.socetomub.webefuf.zilolojisi:id/bedu\").text(\"Dehib Rokoc 1\")"
+  },
+  {
+   "id": "x540",
+   "uiselector": "new UiSelector().className(\"android.view.ViewGroup\").description(\"popon_dofiwa_joniheta\").instance(0)"
+  },
+  {
+   "id": "x541",
+   "skip": true,
+   "reason": "attributes @name and @label do not exist in the Android UiAutomator hierarchy"
+  },
+  {
+   "id": "x542",
+   "uiselector": "new UiSelector().className(\"android.widget.TextView\").resourceId(\"joc.mehaka.nifi.uk:id/piwocof\").index(2)"
+  },
+  {
+   "id": "x543",
+   "uiselector": "new UiSelector().className(\"android.view.ViewGroup\").resourceId(\"vorevik_nudi_hehib_marofod_vekar\")"
+  },
+  {
+   "id": "x544",
+   "uiselector": "new UiSelector().text(\"使一退详式\")"
+  },
+  {
+   "id": "x545",
+   "uiselector": "new UiSelector().resourceId(\"com.lazevikema.wid:id/rasowaw_misafa\")"
+  },
+  {
+   "id": "x546",
+   "uiselector": "new UiSelector().className(\"android.widget.TextView\").resourceId(\"com.cumojejove.monukekep.socetomub.webefuf.zilolojisi:id/bedu\").text(\"Zupo Bavic 14\")"
+  },
+  {
+   "id": "x547",
+   "uiselector": "new UiSelector().textMatches(\"[ ]*0*1([.]0*)?[ ]*\")"
+  },
+  {
+   "id": "x548",
+   "skip": true,
+   "reason": "absolute path with direct-child steps and positional predicate; no exact UiSelector equivalent"
+  },
+  {
+   "id": "x549",
+   "uiselector": "new UiSelector().className(\"android.widget.TextView\").text(\"Nenovi votinane\")"
+  },
+  {
+   "id": "x550",
+   "skip": true,
+   "reason": "absolute path with a long chain of direct-child steps and positional predicates; no exact UiSelector equivalent"
+  },
+  {
+   "id": "x551",
+   "uiselector": "new UiSelector().className(\"android.widget.TextView\").text(\"ွ်ြရနက\")"
+  },
+  {
+   "id": "x552",
+   "skip": true,
+   "reason": "absolute path with direct-child steps and positional predicates; no exact UiSelector equivalent"
+  },
+  {
+   "id": "x553",
+   "skip": true,
+   "reason": "attribute @label does not exist in the Android UiAutomator hierarchy; UiSelector has no equivalent"
+  },
+  {
+   "id": "x554",
+   "uiselector": "new UiSelector().className(\"android.view.ViewGroup\").description(\"gorihawafume_jemo\").instance(0)"
+  },
+  {
+   "id": "x555",
+   "uiselector": "new UiSelector().className(\"android.widget.TextView\").resourceId(\"com.cumojejove.monukekep.socetomub.webefuf.zilolojisi:id/bedu\").text(\"Cifu Tibo 5\")"
+  },
+  {
+   "id": "x556",
+   "skip": true,
+   "reason": "positional predicate on a descendant set followed by a direct-child step; no exact UiSelector equivalent"
+  },
+  {
+   "id": "x557",
+   "uiselector": "new UiSelector().className(\"ng-kuhisicug ng-zupuhijo ng-besel tub-kuhisicug tub-zupuhijo tub-besel tub-zibac tub-zibac-dujezuzih in-jemo codujege\")"
+  },
+  {
+   "id": "x558",
+   "uiselector": "new UiSelector().className(\"android.widget.Button\").resourceId(\"android:id/button1\").text(\"OK\")"
+  },
+  {
+   "id": "x559",
+   "uiselector": "new UiSelector().text(\"50.0\")"
+  },
+  {
+   "id": "x560",
+   "skip": true,
+   "reason": "direct-child step (/android.widget.TextView); UiSelector childSelector matches any descendant"
+  },
+  {
+   "id": "x561",
+   "uiselector": "new UiSelector().text(\"VOVAWEDO\")"
+  },
+  {
+   "id": "x562",
+   "skip": true,
+   "reason": "boolean comparison @enabled=true() is true for every node that has an enabled attribute, which is all nodes; no meaningful selector to express"
+  },
+  {
+   "id": "x563",
+   "skip": true,
+   "reason": "union (|) with a dangling operator; invalid XPath and a single UiSelector cannot express alternatives"
+  },
+  {
+   "id": "x564",
+   "uiselector": "new UiSelector().className(\"android.widget.Button\").enabled(true).instance(2)"
+  },
+  {
+   "id": "x565",
+   "skip": true,
+   "reason": "uses OR (or) across resource-id values; a single UiSelector cannot express alternatives"
+  },
+  {
+   "id": "x566",
+   "uiselector": "new UiSelector().textMatches(\"(?=.*a)(?=.*b).*\")"
+  },
+  {
+   "id": "x567",
+   "uiselector": "new UiSelector().text(\"OK\")"
+  },
+  {
+   "id": "x568",
+   "uiselector": "new UiSelector().checked(false)"
+  },
+  {
+   "id": "x569",
+   "skip": true,
+   "reason": "uses parent step (/..) followed by sibling-relative direct-child steps; no exact UiSelector equivalent"
+  },
+  {
+   "id": "x570",
+   "uiselector": "new UiSelector().resourceId(\"com.lazevikema.wid:id/fiv_rubi_pumu\").text(\"制线群受\")"
+  },
+  {
+   "id": "x571",
+   "skip": true,
+   "reason": "absolute path with direct-child steps; no exact UiSelector equivalent"
+  },
+  {
+   "id": "x572",
+   "skip": true,
+   "reason": "absolute path with direct-child steps and positional predicates; no exact UiSelector equivalent"
+  },
+  {
+   "id": "x573",
+   "uiselector": "new UiSelector().className(\"android.widget.TextView\").text(\"Hutag Hadi\")"
+  },
+  {
+   "id": "x574",
+   "uiselector": "new UiSelector().textContains(\".mp4\")"
+  },
+  {
+   "id": "x575",
+   "uiselector": "new UiSelector().className(\"android.widget.Button\")"
+  },
+  {
+   "id": "x576",
+   "uiselector": "new UiSelector().className(\"android.widget.CheckBox\").checked(false)"
+  },
+  {
+   "id": "x577",
+   "uiselector": "new UiSelector().className(\"android.widget.TextView\").text(\"Tukani bepo savejat\")"
+  },
+  {
+   "id": "x578",
+   "uiselector": "new UiSelector().className(\"android.widget.Button\").resourceIdMatches(\".*nozuzepa-dofiwa.*\")"
+  },
+  {
+   "id": "x579",
+   "uiselector": "new UiSelector().description(\"popon_paci_bedu\")"
+  },
+  {
+   "id": "x580",
+   "uiselector": "new UiSelector().resourceId(\"nimepiho.wawilomode.com.SakOmore:id/naj\")"
+  },
+  {
+   "id": "x581",
+   "uiselector": "new UiSelector().descriptionContains(\"menu\")"
+  },
+  {
+   "id": "x582",
+   "uiselector": "new UiSelector().className(\"android.widget.Button\").description(\"lebitud-diguwekej-gurizi-dofiwa\")"
+  },
+  {
+   "id": "x583",
+   "uiselector": "new UiSelector().text(\"所删应的\")"
+  },
+  {
+   "id": "x584",
+   "skip": true,
+   "reason": "positional predicate on a descendant set followed by a direct-child step; no exact UiSelector equivalent"
+  },
+  {
+   "id": "x585",
+   "uiselector": "new UiSelector().className(\"android.widget.Button\").instance(1)"
+  },
+  {
+   "id": "x586",
+   "uiselector": "new UiSelector().resourceId(\"com.lazevikema.wid:id/wezitOmodi\")"
+  },
+  {
+   "id": "x587",
+   "uiselector": "new UiSelector().className(\"android.widget.TextView\").text(\"Vece-Dejogo Sajocuda\")"
+  },
+  {
+   "id": "x588",
+   "skip": true,
+   "reason": "uses following-sibling axis; UiSelector has no sibling-axis navigation"
+  },
+  {
+   "id": "x589",
+   "uiselector": "new UiSelector().className(\"android.widget.TextView\").resourceId(\"com.cumojejove.monukekep.socetomub.webefuf.zilolojisi:id/bedu\").text(\"Zupo Bavic 6\")"
+  },
+  {
+   "id": "x590",
+   "skip": true,
+   "reason": "predicate on descendant existence across all LinearLayouts combined with a chained descendant step; a childSelector only checks the first match"
+  },
+  {
+   "id": "x591",
+   "uiselector": "new UiSelector().text(\"it's\")"
+  },
+  {
+   "id": "x592",
+   "skip": true,
+   "reason": "union (|) of two XPaths; a single UiSelector cannot express alternatives"
+  },
+  {
+   "id": "x593",
+   "uiselector": "new UiSelector().className(\"android.widget.Button\").description(\"Dowawe\")"
+  },
+  {
+   "id": "x594",
+   "skip": true,
+   "reason": "attribute @data-testid does not exist in the Android UiAutomator hierarchy; UiSelector has no equivalent"
+  },
+  {
+   "id": "x595",
+   "skip": true,
+   "reason": "direct-child step with positional-style index predicates on each level; no exact UiSelector equivalent"
+  },
+  {
+   "id": "x596",
+   "uiselector": "new UiSelector().textContains(\"多选\")"
+  },
+  {
+   "id": "x597",
+   "uiselector": "new UiSelector().className(\"android.widget.ImageButton\").resourceId(\"com.rusezu.android.VatewuZekoba:id/dosiwur_dofiwa\")"
+  },
+  {
+   "id": "x598",
+   "skip": true,
+   "reason": "positional predicate [last()] on a direct-child step; no exact UiSelector equivalent"
+  },
+  {
+   "id": "x599",
+   "uiselector": "new UiSelector().className(\"android.widget.TextView\").resourceId(\"com.cumojejove.monukekep.socetomub.webefuf.zilolojisi:id/bedu\").text(\"Zupo Bare 2\")"
+  },
+  {
+   "id": "x600",
+   "skip": true,
+   "reason": "direct-child steps with positional-style index predicates on each level; no exact UiSelector equivalent"
+  },
+  {
+   "id": "x601",
+   "uiselector": "new UiSelector().text(\"Item 7\")"
+  },
+  {
+   "id": "x602",
+   "skip": true,
+   "reason": "positional predicate on a descendant set followed by a direct-child step; no exact UiSelector equivalent"
+  },
+  {
+   "id": "x603",
+   "uiselector": "new UiSelector().text(\"欢输删建团队\")"
+  },
+  {
+   "id": "x604",
+   "uiselector": "new UiSelector().text(\"Feguçevu\")"
+  },
+  {
+   "id": "x605",
+   "skip": true,
+   "reason": "absolute path with direct-child steps and positional predicate; no exact UiSelector equivalent"
+  },
+  {
+   "id": "x606",
+   "uiselector": "new UiSelector().resourceId(\"android:id/month_view\").childSelector(new UiSelector().className(\"android.view.View\"))"
+  },
+  {
+   "id": "x607",
+   "uiselector": "new UiSelector().text(\"OK\").clickable(true)"
+  },
+  {
+   "id": "x608",
+   "skip": true,
+   "reason": "attribute @name does not exist in the Android UiAutomator hierarchy; positional predicate also used"
+  },
+  {
+   "id": "x609",
+   "uiselector": "new UiSelector().className(\"android.widget.TextView\").text(\"Rusezu fekiduk jupele\")"
+  },
+  {
+   "id": "x610",
+   "uiselector": "new UiSelector().textMatches(\".{5}\")"
+  },
+  {
+   "id": "x611",
+   "uiselector": "new UiSelector().text(\"Bimugome\")"
+  },
+  {
+   "id": "x612",
+   "uiselector": "new UiSelector().className(\"android.widget.TextView\").resourceId(\"com.cumojejove.monukekep.socetomub.webefuf.zilolojisi:id/bedu\").text(\"Vehi Disuvud 8\")"
+  },
+  {
+   "id": "x613",
+   "uiselector": "new UiSelector().description(\"\")"
+  },
+  {
+   "id": "x614",
+   "skip": true,
+   "reason": "direct-child steps under a content-desc match; UiSelector childSelector matches any descendant"
+  },
+  {
+   "id": "x615",
+   "uiselector": "new UiSelector().className(\"android.widget.ImageView\").description(\"Kataki lukup\")"
+  },
+  {
+   "id": "x616",
+   "skip": true,
+   "reason": "uses normalize-space(substring(...string-length...)) arithmetic on @label, which does not exist in the Android hierarchy"
+  },
+  {
+   "id": "x617",
+   "uiselector": "new UiSelector().className(\"android.view.ViewGroup\").resourceId(\"cukol-nud-hehib-gotaz-dofiwa\")"
+  },
+  {
+   "id": "x618",
+   "uiselector": "new UiSelector().textContains(\"Dejogo petis\")"
+  },
+  {
+   "id": "x619",
+   "skip": true,
+   "reason": "absolute path with direct-child steps and positional predicates; no exact UiSelector equivalent"
+  },
+  {
+   "id": "x620",
+   "uiselector": "new UiSelector().text(\"%s\")"
+  },
+  {
+   "id": "x621",
+   "uiselector": "new UiSelector().className(\"android.widget.Button\").text(\"Mow\")"
+  },
+  {
+   "id": "x622",
+   "uiselector": "new UiSelector().className(\"android.widget.TextView\").text(\"हपभगथोव डेचखपओरत\")"
+  },
+  {
+   "id": "x623",
+   "uiselector": "new UiSelector().description(\"popon_dofiwa_rizisi_setil\")"
+  },
+  {
+   "id": "x624",
+   "uiselector": "new UiSelector().className(\"android.widget.TextView\").text(\"3000\")"
+  },
+  {
+   "id": "x625",
+   "skip": true,
+   "reason": "positional predicate on a descendant set following a resource-id match; no exact UiSelector equivalent"
+  },
+  {
+   "id": "x626",
+   "uiselector": "new UiSelector().className(\"android.view.View\").descriptionMatches(\"(?i)tucuhotub id:.*\")"
+  },
+  {
+   "id": "x627",
+   "uiselector": "new UiSelector().className(\"android.widget.TextView\").text(\"Zupibake\")"
+  },
+  {
+   "id": "x628",
+   "uiselector": "new UiSelector().resourceId(\"android:id/content\").childSelector(new UiSelector().className(\"android.widget.ImageView\"))"
+  },
+  {
+   "id": "x629",
+   "uiselector": "new UiSelector().className(\"android.view.ViewGroup\").description(\"popon_dofiwa_kaki\").instance(1)"
+  },
+  {
+   "id": "x630",
+   "uiselector": "new UiSelector().text(\"${name}\")"
+  },
+  {
+   "id": "x631",
+   "skip": true,
+   "reason": "positional predicate on a descendant set (//ListView//Button)[1] with a descendant step; not expressible as an exact UiSelector"
+  },
+  {
+   "id": "x632",
+   "skip": true,
+   "reason": "uses last() over all matches; UiSelector has no last-match selector"
+  },
+  {
+   "id": "x633",
+   "uiselector": "new UiSelector().text(\"Total\")"
+  },
+  {
+   "id": "x634",
+   "uiselector": "new UiSelector().text(\"Hido LIB hadi\")"
+  },
+  {
+   "id": "x635",
+   "uiselector": "new UiSelector().className(\"android.widget.TextView\").resourceId(\"com.cumojejove.monukekep.socetomub.webefuf.zilolojisi:id/bedu\").text(\"Pot\")"
+  },
+  {
+   "id": "x636",
+   "skip": true,
+   "reason": "attribute @name does not exist in the Android UiAutomator hierarchy; UiSelector has no equivalent"
+  },
+  {
+   "id": "x637",
+   "uiselector": "new UiSelector().className(\"android.widget.Button\").text(\"JOSA\").index(1)"
+  },
+  {
+   "id": "x638",
+   "skip": true,
+   "reason": "uses descendant-or-self axis with OR inside a predicate; no exact UiSelector equivalent"
+  },
+  {
+   "id": "x639",
+   "uiselector": "new UiSelector().className(\"android.widget.Button\").resourceId(\"android:id/button1\")"
+  },
+  {
+   "id": "x640",
+   "uiselector": "new UiSelector().className(\"android.widget.TextView\").text(\"Total\")"
+  },
+  {
+   "id": "x641",
+   "skip": true,
+   "reason": "direct-child step (RadioButton/TextView); UiSelector childSelector matches any descendant"
+  },
+  {
+   "id": "x642",
+   "uiselector": "new UiSelector().className(\"android.widget.TextView\").description(\"popon_paci_guvosusu\").instance(1)"
+  },
+  {
+   "id": "x643",
+   "uiselector": "new UiSelector().className(\"android.widget.Button\").description(\"Nud waw\")"
+  },
+  {
+   "id": "x644",
+   "uiselector": "new UiSelector().className(\"android.widget.TextView\").resourceId(\"com.cumojejove.monukekep.socetomub.webefuf.zilolojisi:id/bedu\").text(\"Rosoci Tibo 4\")"
+  },
+  {
+   "id": "x645",
+   "uiselector": "new UiSelector().className(\"android.widget.TextView\").text(\"Fadut\")"
+  },
+  {
+   "id": "x646",
+   "uiselector": "new UiSelector().text(\"制应团阅\")"
+  },
+  {
+   "id": "x647",
+   "uiselector": "new UiSelector().focused(true)"
+  },
+  {
+   "id": "x648",
+   "skip": true,
+   "reason": "uses OR (or) across text values; a single UiSelector cannot express alternatives"
+  },
+  {
+   "id": "x649",
+   "uiselector": "new UiSelector().text(\"群知保\")"
+  },
+  {
+   "id": "x650",
+   "uiselector": "new UiSelector().text(\"Grüße\")"
+  },
+  {
+   "id": "x651",
+   "uiselector": "new UiSelector().className(\"android.widget.TextView\").text(\"JEJUBUBI \")"
+  },
+  {
+   "id": "x652",
+   "uiselector": "new UiSelector().className(\"android.widget.TextView\").resourceId(\"com.example.app:id/bedu\").text(\"Settings\")"
+  },
+  {
+   "id": "x653",
+   "uiselector": "new UiSelector().resourceIdMatches(\".*[:]id/login.*\")"
+  },
+  {
+   "id": "x654",
+   "uiselector": "new UiSelector().resourceId(\"com.lazevikema.wid:id/tv_gowomoc\").text(\"(x)\")"
+  },
+  {
+   "id": "x655",
+   "uiselector": "new UiSelector().description(\"Wokup\")"
+  },
+  {
+   "id": "x656",
+   "uiselector": "new UiSelector().className(\"android.widget.TextView\")"
+  },
+  {
+   "id": "x657",
+   "uiselector": "new UiSelector().packageName(\"com.example.app\")"
+  },
+  {
+   "id": "x658",
+   "uiselector": "new UiSelector().text(\"OK\")"
+  },
+  {
+   "id": "x659",
+   "uiselector": "new UiSelector().textMatches(\"(?i)ok\")"
+  },
+  {
+   "id": "x660",
+   "uiselector": "new UiSelector().text(\"थ़य लभी\")"
+  },
+  {
+   "id": "x661",
+   "uiselector": "new UiSelector().className(\"android.widget.TextView\").text(\"NUD LEBITUD\")"
+  },
+  {
+   "id": "x662",
+   "uiselector": "new UiSelector().resourceId(\"android:id/title\").text(\"Fecupun badus\")"
+  },
+  {
+   "id": "x663",
+   "uiselector": "new UiSelector().resourceId(\"com.lazevikema.wid:id/copu_rojuno\")"
+  },
+  {
+   "id": "x664",
+   "uiselector": "new UiSelector().text(\"Wusuguf\")"
+  },
+  {
+   "id": "x665",
+   "uiselector": "new UiSelector().checked(true)"
+  },
+  {
+   "id": "x666",
+   "uiselector": "new UiSelector().text(\"OK\")"
+  },
+  {
+   "id": "x667",
+   "uiselector": "new UiSelector().className(\"android.widget.TextView\").resourceId(\"com.cumojejove.monukekep.socetomub.webefuf.zilolojisi:id/bedu\").text(\"Wutem Rumum\")"
+  },
+  {
+   "id": "x668",
+   "uiselector": "new UiSelector().textMatches(\"(?i)ok\")"
+  },
+  {
+   "id": "x669",
+   "uiselector": "new UiSelector().className(\"android.widget.ImageView\").description(\"Votinane\")"
+  },
+  {
+   "id": "x670",
+   "uiselector": "new UiSelector().description(\"请进允箱理名姓同\")"
+  },
+  {
+   "id": "x671",
+   "skip": true,
+   "reason": "descendant of a non-unique ancestor class (//RecyclerView); childSelector only searches under one RecyclerView"
+  },
+  {
+   "id": "x672",
+   "uiselector": "new UiSelector().textMatches(\"(?i)ok\")"
+  },
+  {
+   "id": "x673",
+   "skip": true,
+   "reason": "uses count() over child elements and the non-Android element 'javaClass'; no UiSelector equivalent"
+  },
+  {
+   "id": "x674",
+   "skip": true,
+   "reason": "contradictory predicates (@text equals both 'A' and 'B'); the XPath matches no element"
+  },
+  {
+   "id": "x675",
+   "uiselector": "new UiSelector().resourceId(\"com.lazevikema.wid:id/rasowaw_bedu\").text(\"user01\")"
+  },
+  {
+   "id": "x676",
+   "uiselector": "new UiSelector().textContains(\"a\\\\b\")"
+  },
+  {
+   "id": "x677",
+   "uiselector": "new UiSelector().clickable(true)"
+  },
+  {
+   "id": "x678",
+   "uiselector": "new UiSelector().className(\"android.widget.TextView\").resourceId(\"com.cumojejove.monukekep.socetomub.webefuf.zilolojisi:id/bedu\").text(\"Zupo Bare 6\")"
+  },
+  {
+   "id": "x679",
+   "uiselector": "new UiSelector().description(\"发布\")"
+  },
+  {
+   "id": "x680",
+   "uiselector": "new UiSelector()"
+  }
+ ]
+}

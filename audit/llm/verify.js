@@ -18,6 +18,7 @@
 //   WRONG-LB  differs only on elements with a line break in a value (generated traps; real ids have none)
 //   WRONG     a different set or order on some screen (`first` says whether the first element still agrees)
 //   INVALID   the server rejects the UiSelector
+//             (a UiSelector for an XPath that the server rejects is WRONG: the locator would start to find elements)
 //   VACUOUS   EQUAL everywhere, but the XPath finds nothing on any screen: no evidence
 //
 // Results: scores/<run>-device.json, saved as it goes; --resume skips the lookups already there.
@@ -120,23 +121,26 @@ const short = (l, o) => (l.error ? { error: l.error } : { n: l.n, ...(o !== 'EQU
 function verdict(rows, warning, child) {
   if (!rows.length) return null;
   if (rows.some(r => r.outcome === 'UISEL_ERROR')) return { verdict: 'INVALID', error: rows.find(r => r.u && r.u.error).u.error };
-  if (rows.some(r => r.outcome === 'XPATH_ERROR')) return { verdict: 'XPATH_ERROR' };
+  // the XPath itself fails (e.g. an invalid matches() flag): a UiSelector that runs behaves differently
+  if (rows.some(r => r.outcome === 'XPATH_ERROR')) return { verdict: 'WRONG', xpathError: true };
   const bad = rows.filter(r => r.outcome !== 'EQUAL').map(r => ({ r, why: known(r) }));
   const first = bad.every(({ r }) => (r.x.fp[0] || null) === (r.u.fp[0] || null));
   const screens = bad.map(({ r, why }) => `${r.screen} ${r.x.n}/${r.u.n} ${why || r.outcome}`);
   const left = bad.filter(b => !['DEPTH', 'TOAST'].includes(b.why));
   if (!left.length) return { verdict: rows.some(r => r.x.n > 0) ? 'CORRECT' : 'VACUOUS', ...(bad.length ? { screens } : {}) };
   // a documented close form: the first element agrees (childSelector), or the difference is the class-less elements
-  // that the page source calls android.view.View (the converter warns about both)
-  const drift = (warning && (first || /android\.view\.View/.test(warning))) || left.every(b => b.why === 'VIEW') || (child && first);
+  // that the page source calls android.view.View, or range widgets whose value text only the page source has
+  // (the converter warns about all three)
+  const drift = (warning && (first || /android\.view\.View/.test(warning))) || left.every(b => b.why === 'VIEW' || b.why === 'RANGE') || (child && first);
   if (drift) return { verdict: 'DRIFT', first, screens };
   if (left.every(b => b.why === 'LINEBREAK' || b.why === 'VIEW')) return { verdict: 'WRONG-LB', first, screens };
   return { verdict: 'WRONG', first, screens };
 }
 
 // Known differences (as audit/device/run.js): DEPTH, the UiSelector also finds elements below the 70-level page
-// source limit; TOAST, the XPath also finds the toast. Two more: VIEW, the only XPath-only elements have no class
-// name (the page source calls them android.view.View, SRV-03); LINEBREAK, every element only one side finds has a
+// source limit; TOAST, the XPath also finds the toast. Three more: VIEW, the only XPath-only elements have no class
+// name (the page source calls them android.view.View, SRV-03); RANGE, the only XPath-only elements are range widgets
+// (their value is a text only in the page source, SRV-06); LINEBREAK, every element only one side finds has a
 // line break in a value, which only the generated traps have.
 function known(r) {
   const x = r.x.fp, u = r.u.fp;
@@ -144,6 +148,7 @@ function known(r) {
   if (!xOnly.length && JSON.stringify(u.filter(f => x.includes(f))) === JSON.stringify(x) && r.screen === 'deep') return 'DEPTH';
   if (!uOnly.length && xOnly.length && xOnly.every(f => f === '||||')) return 'TOAST';
   if (!uOnly.length && xOnly.length && xOnly.every(f => f.startsWith('|')) && JSON.stringify(x.filter(f => !f.startsWith('|'))) === JSON.stringify(u)) return 'VIEW';
+  if (!uOnly.length && xOnly.length && xOnly.every(f => /^android\.widget\.(?:SeekBar|ProgressBar|RatingBar)\|/.test(f)) && JSON.stringify(x.filter(f => u.includes(f))) === JSON.stringify(u)) return 'RANGE';
   if (xOnly.length + uOnly.length && [...xOnly, ...uOnly].every(f => f.includes('\n'))) return 'LINEBREAK';
   return null;
 }
