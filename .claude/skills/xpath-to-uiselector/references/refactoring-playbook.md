@@ -29,9 +29,9 @@ or keeps the XPath. Code samples are illustrative: write them in the language an
 | `UiSelector has no has-descendant filter` (`//Row[.//*[@text="x"]]`) | Find the inner element, then act on it, or two lookups from the container list. Keep the XPath if the container itself must be returned. |
 | `UiSelector has no negation for text`, `or across attributes` | Look up the alternatives in test code and take the first found, or keep the XPath. |
 | `classNameMatches …` (`contains(@class,…)`, class unions) | Name the real class (`className("android.widget.Button")`) and look up each class separately. |
-| `upper-case()`, `translate()` | If the text is ASCII, `matches(@text,"ok","i")` converts exactly; suggest it as a rewrite of the XPath first. |
+| `upper-case()` | If the text is ASCII, `matches(@text,"ok","i")` converts exactly; suggest it as a rewrite of the XPath first. |
 | `every element without text has text=""` | Say what the user wants: an empty field is usually better found by its resource id. |
-| an attribute without a UiSelector criterion (`bounds`, `displayed`, `hint`, …) | Drop the attribute if the rest of the locator is unique (confirm on the page source); read the attribute in test code after the lookup; or keep the XPath. |
+| an attribute without a UiSelector criterion (`bounds`, `hint`, …) | Drop the attribute if the rest of the locator is unique (confirm on the page source); read the attribute in test code after the lookup; or keep the XPath. |
 | alias attribute (`@name`, `@resourceId`) | The XPath matches nothing as written: `@name` → `@text` or `@content-desc`, `@resourceId` → `@resource-id`. Fix the XPath, then run the engine again. |
 | `text()` | Replace `text()` with `@text` and run the engine again. |
 | `a runtime value outside a string literal`, `a runtime position in this kind of string literal` | Move the runtime part into a string value, or build the `UiSelector` in code (`"new UiSelector().….instance(" + (i - 1) + ")"`). |

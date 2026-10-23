@@ -201,7 +201,7 @@ console.log('— CONVERTER: more rows —');
     ['//*[matches(@text,"a") and contains(@text,"b")]', null],
     ['//*[lower-case(@text)="OK"]', null],
     ['//*[lower-case(@text)="ok" and @text="ok"]', null],
-    ['//*[starts-with(@content-desc,"")]', null],
+    ['//*[starts-with(@content-desc,"")]', U],
     ['//*[@package=""]', null],
     ['//*[@index=-1]', null],
     ['//*[@text=$x]', null],
@@ -223,6 +223,29 @@ console.log('— CONVERTER: more rows —');
     ['', null],
     ['//*[@text="a"]]', null],
     [`//*[matches(@text,"${R}")]`, null, false, RT],
+    // a test on an attribute the page source never writes drops out only from a union or an or
+    ['//*[@id="a"]', null],
+    ['//*[not(@id="a")]', null],
+    ['//*[matches(@id,"x")]', null],
+    ['//*[contains(@id,"")]', U],
+    ['(//*[@id="a"])[1] | //*[@text="b"]', `${U}.text("b")`],
+    ['//android.view.View[@id="a"] | //*[@text="b"]', `${U}.text("b")`],
+    ['//*[@id="a" or @text]', U],
+    ['//*[@label="a"] | //*[@id="b"]', null],
+    // if / some / variables
+    ['//*[$x]', null],
+    ['//*[if (1) then true() else false()]', null],
+    ['//*[if (@checked="true") then true() else true()]', null],
+    ['//*[some $t in @text satisfies ../*[@text=$t]]', null],
+    ['//*[some $t in @text, $u in @content-desc satisfies $t=$u]', null],
+    // string functions
+    ['//*[translate(@text,"a","b")="a"]', null],
+    ['//*[string-length(@text)=1.5]', null],
+    ['//*[string-length(@text)="5"]', null],
+    ['//*[contains(normalize-space(@text),"a")]', null],
+    ['//*[normalize-space(@text)="50.0"]', null],
+    ['//*[normalize-space(@content-desc)="a b"]', `${U}.descriptionMatches("[ \\t\\n\\r]*a[ \\t\\n\\r]+b[ \\t\\n\\r]*")`],
+    ['//*[string-length(@content-desc)=5]', `${U}.descriptionMatches("[\\s\\S]{5}")`],
   ];
   for (const [xpath, want, warn, opts] of CONVERT_CASES) {
     const res = convertXpathToUiSelector(xpath, opts);

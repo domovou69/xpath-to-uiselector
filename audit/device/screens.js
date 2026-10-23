@@ -42,6 +42,11 @@ const attrs = {
     TV('v1.5'), TV('1x5'), n('android.widget.SeekBar', undefined, { range: 50 }), TV('50.0'),
     n('android.widget.SeekBar', undefined, { range: 1.5 }), n('android.widget.SeekBar', undefined, { range: 21.5 }), TV('21 items'),
     n('android.widget.RadioButton', 'Radio'),
+    // normalize-space, string-length, translate: whitespace runs, a tab, CR LF, a character outside the BMP, a
+    // 5-character float string, deleted characters
+    TV('To tal'), TV('To  tal'), TV('To\ttal'), TV('Total\t'), TV('ab\r\nc'), TV('\u{1F600}abcd'),
+    n('android.widget.SeekBar', undefined, { range: 10.25 }), TV('-A-b-'), TV('a-b'), TV('AB'),
+    BTN('Hidden button', { hide: true }),
     // D: logic
     BTN('OK', { b: { clickable: true } }), BTN('OK', { b: { enabled: false } }), TV('Yes'), TV(undefined, { d: 'OK' }),
     TV('A', { b: { clickable: true } }), TV('B', { d: 'c' }), TV('A', { d: 'c' }), TV('B'), TV(undefined, { d: 'B' }),

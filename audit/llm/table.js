@@ -32,21 +32,13 @@ const read = f => JSON.parse(fs.readFileSync(path.join(__dirname, 'scores', f), 
 const write = (f, v) => fs.writeFileSync(path.join(__dirname, 'scores', f), JSON.stringify(v, null, 1) + '\n');
 
 const TRIAGE = {
-  x004: { status: 'gap', note: 'normalize-space(@text)="…" → textMatches with [ \\t\\n\\r]* around the value' },
   x023: { status: 'false', verdict: 'WRONG', note: '(//A)[n]//B → A.instance(n-1).childSelector(B) goes on to the next A when the n-th has no B (found on the device), so it finds an element where the XPath finds none; the screens had no such n-th A' },
-  x032: { status: 'gap', note: '@displayed="true" → new UiSelector(): the page source lists only displayed elements (default settings)' },
-  x138: { status: 'gap', note: 'a union branch on @id, which Android never writes, drops out' },
-  x211: { status: 'gap', note: 'contains(@text,"") is true for every element → new UiSelector()' },
-  x217: { status: 'gap', note: 'if (C) then true() else false() → C' },
   x250: { status: 'false', verdict: 'WRONG', note: '(//A)[n]//B, as x023' },
-  x262: { status: 'gap', note: 'some $t in @text satisfies $t="…" → @text="…"' },
   x317: { status: 'false', verdict: 'DRIFT', note: 'the converter\'s own close form ((?i) and one-to-many folds); the screens have no İ or ß' },
   x367: { status: 'false', verdict: 'WRONG', note: 'the only possible target is a range widget, which UiSelector never finds: it finds nothing on any screen' },
   x376: { status: 'false', verdict: 'WRONG', note: 'toasts are only in the page source; verify.js excused the toast although it is the target (fixed)' },
-  x559: { status: 'gap', note: 'close: @text="<float>" → text("…") with the range-widget warning, as for contains(@text,"1.5")' },
-  x610: { status: 'gap', note: 'string-length(@text)=n → textMatches("(?s).{n}") (code points, as XPath counts)' },
+  x559: { status: 'false', verdict: 'WRONG', note: 'an equality with a float-shaped text most likely means the range widget itself, whose value text only the page source has: the UiSelector misses it (the converter skips on purpose)' },
   x625: { status: 'false', verdict: 'WRONG', note: 'instance(n) in childSelector counts per container; the edge-case screens had one container (fixed: the llm screen has two)' },
-  x659: { status: 'gap', note: 'translate(@text, A–Z, a–z)="ok" → textMatches("[oO][kK]")' },
 };
 
 function finals(run) {

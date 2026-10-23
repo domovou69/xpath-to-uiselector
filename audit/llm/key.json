@@ -38,8 +38,8 @@
   "xpath": "//*[normalize-space(@text)=\"Total\"]",
   "expect": "skip",
   "converter": {
-   "outcome": "skip",
-   "reason": "normalize-space() has no UiSelector form"
+   "outcome": "exact",
+   "uiselector": "new UiSelector().textMatches(\"[ \\t\\n\\r]*Total[ \\t\\n\\r]*\")"
   }
  },
  "x005": {
@@ -348,8 +348,9 @@
   "xpath": "//android.widget.Button[@displayed=\"true\"]",
   "expect": "skip",
   "converter": {
-   "outcome": "skip",
-   "reason": "displayed has no UiSelector criterion"
+   "outcome": "close",
+   "uiselector": "new UiSelector().className(\"android.widget.Button\")",
+   "warning": "displayed=\"true\" is dropped: with the default settings the page source lists only displayed elements; with allowInvisibleElements on, the XPath leaves hidden elements out and the UiSelector does not"
   }
  },
  "x033": {
@@ -1505,8 +1506,8 @@
   "project": "PerfectoCode/Community-Samples",
   "projects": 1,
   "converter": {
-   "outcome": "skip",
-   "reason": "id is a web or iOS attribute: the Android page source has no id"
+   "outcome": "exact",
+   "uiselector": "new UiSelector().resourceIdMatches(\"io\\.zofujize\\.vikuwag\\.vajotin:id/danob_danob_hac|danob_danob_hac\")"
   }
  },
  "x139": {
@@ -2295,8 +2296,8 @@
   "xpath": "//*[contains(@text,\"\")]",
   "expect": "skip",
   "converter": {
-   "outcome": "skip",
-   "reason": "contains() with \"\" is true for every element"
+   "outcome": "exact",
+   "uiselector": "new UiSelector()"
   }
  },
  "x212": {
@@ -2360,8 +2361,8 @@
   "xpath": "//*[if (@checked=\"true\") then true() else false()]",
   "expect": "skip",
   "converter": {
-   "outcome": "skip",
-   "reason": "conditional expressions are not converted"
+   "outcome": "exact",
+   "uiselector": "new UiSelector().checked(true)"
   }
  },
  "x218": {
@@ -2844,8 +2845,8 @@
   "xpath": "//*[some $t in @text satisfies $t=\"OK\"]",
   "expect": "skip",
   "converter": {
-   "outcome": "skip",
-   "reason": "quantified expressions are not converted"
+   "outcome": "exact",
+   "uiselector": "new UiSelector().text(\"OK\")"
   }
  },
  "x263": {
@@ -6641,8 +6642,9 @@
   "xpath": "//*[string-length(@text)=5]",
   "expect": "skip",
   "converter": {
-   "outcome": "skip",
-   "reason": "string-length() has no UiSelector form"
+   "outcome": "close",
+   "uiselector": "new UiSelector().textMatches(\"[\\s\\S]{5}\")",
+   "warning": "a range widget (SeekBar, ProgressBar) has a text only in the page source, so the XPath also finds it"
   }
  },
  "x611": {
@@ -7171,8 +7173,8 @@
   "xpath": "//*[translate(@text,\"ABCDEFGHIJKLMNOPQRSTUVWXYZ\",\"abcdefghijklmnopqrstuvwxyz\")=\"ok\"]",
   "expect": "skip",
   "converter": {
-   "outcome": "skip",
-   "reason": "translate() folds only the characters it lists; (?i) also folds Unicode ones such as the Kelvin sign"
+   "outcome": "exact",
+   "uiselector": "new UiSelector().textMatches(\"[oO][kK]\")"
   }
  },
  "x660": {
