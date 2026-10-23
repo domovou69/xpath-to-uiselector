@@ -13,7 +13,7 @@ this report uses.
 | Edge cases on the device | 150 of 150 expectations confirmed or explained (89 confirmed, 52 skip cases run as XPath only, 6 close forms that differ as warned, 3 where nothing matched) | [s-summary.md](device/results/s-summary.md) |
 | Real-world locators (emulator fuzz) | **96.6** over 1169 XPaths, **96.6** over their 1198 literals: 1089 correct, 80 close matches, **0 wrong** | [r-fuzz-summary.md](device/results/r-fuzz-summary.md) |
 | Real-world locators by form | 95 forms, none with a wrong XPath or one where nothing matched | same |
-| Conversion rate (converted / real Android literals) | **72.9 %** (1199 of 1645); exact only 63.7 % | [convert-summary.md](corpus/convert-summary.md) |
+| Conversion rate (converted / real Android literals) | **72.9 %** (1199 of 1645); exact only 63.5 % | [convert-summary.md](corpus/convert-summary.md) |
 | Another Android version (Android 17, API 37) | Before the skipped-form coverage: same verdicts for all 134 edge cases and all 1142 real-world XPaths of the time on the matrix screens (1065 correct, 77 close matches, 0 wrong); compared pair by pair with Android 16, only bounds moved, and the 7 other differences are explained: none comes from the OS | [compare-api37.md](device/results/compare-api37.md) |
 | Strength of the check (mutants killed) | **99.5 %** of 1718 wrong UiSelectors on the matrix screens (62.4 % on the random screens alone); run before the skipped-form coverage, whose 27 new XPaths ran on random and matrix screens without mutants | r-fuzz-summary.md, "Mutants" |
 | Skips with a rewrite hint | 347 of the 446 skipped literals (1247 of 1484 occurrences) | [convert-summary.md](corpus/convert-summary.md) |

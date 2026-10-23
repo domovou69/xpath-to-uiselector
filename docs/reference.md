@@ -143,6 +143,7 @@ default settings. **Close** converts with a `warning` (printed with `!`, in the 
 | `[@content-desc]`, `[@package]` | `descriptionMatches("(?s).*")`, `packageNameMatches("(?s).*")` | exact: written when non-null, `""` included | SRV-04, SRV-08 |
 | `[@resource-id]`, `[@resource-id!=""]`, `[@content-desc!=""]` | `resourceIdMatches("(?s).+")`, `descriptionMatches("(?s).+")` | exact; an existence test next to another test on the same attribute is dropped | SRV-04, SRV-07 |
 | `[@text!=""]` | `textMatches("(?s).+")` | close: a range widget (SeekBar, ProgressBar) has a text only in the page source, so the XPath also finds it | SRV-05, SRV-06 |
+| `contains` / `starts-with` / `ends-with` on `@text` with a literal that can be part of a number (`"1.5"`, `"21"`, `".0"`) | `textMatches(…)` | close: same reason, a range widget at 1.5 or 21.5 has that text in the page source | SRV-06 |
 
 Output order: `className`, then the criteria in XPath order, then `instance`, then `childSelector`.
 

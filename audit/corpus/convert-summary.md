@@ -10,8 +10,8 @@ every project counts the same.
 
 | Outcome | Unique | Share | Occurrences | Share | Project-weighted |
 | --- | --- | --- | --- | --- | --- |
-| exact | 1048 | 63.7 % | 1599 | 46.1 % | 49.2 % |
-| close (converted with a warning) | 151 | 9.2 % | 389 | 11.2 % | 6.6 % |
+| exact | 1044 | 63.5 % | 1591 | 45.8 % | 49.0 % |
+| close (converted with a warning) | 155 | 9.4 % | 397 | 11.4 % | 6.8 % |
 | skip | 446 | 27.1 % | 1484 | 42.7 % | 44.2 % |
 | iOS (XCUIElementType inside an Android-looking literal) | 0 | 0.0 % | 0 | 0.0 % | 0.0 % |
 
@@ -27,8 +27,8 @@ A conversion can carry more than one warning.
 | runtime position | 17 | 1.0 % | 18 |
 | lower-case() | 12 | 0.7 % | 12 |
 | runtime class name | 6 | 0.4 % | 6 |
+| range widget (a number in the text) | 5 | 0.3 % | 9 |
 | runtime index | 1 | 0.1 % | 1 |
-| range widget (@text!="") | 1 | 0.1 % | 1 |
 
 ## Top reasons to skip
 
@@ -69,7 +69,7 @@ From the strategy call recorded with each literal (PLAN.md section 2).
 
 | Language | Literals | Exact | Close | Skip |
 | --- | --- | --- | --- | --- |
-| Java | 384 | 55.2 % | 2.9 % | 41.9 % |
+| Java | 384 | 54.2 % | 3.9 % | 41.9 % |
 | Kotlin | 135 | 73.3 % | 1.5 % | 25.2 % |
 | Python | 646 | 64.7 % | 15.0 % | 20.3 % |
 | C# | 194 | 96.4 % | 0.0 % | 3.6 % |
