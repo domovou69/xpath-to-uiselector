@@ -56,7 +56,7 @@ else {
   }
 }
 const rec = {
-  model, modelId: MODELS[model], effort, name, prompt: path.basename(process.env.PROMPT || 'prompt.md'), started, wallMs,
+  model, modelId: MODELS[model], effort, name, prompt: path.basename(process.env.PROMPT || 'prompt.md'), promptText: prompt, started, wallMs,
   cliVersion: spawnSync(CLI, ['--version'], { encoding: 'utf8' }).stdout.trim(),
   exitCode: p.status, signal: p.signal, timedOut: !!(p.error && p.error.code === 'ETIMEDOUT'), stderr: (p.stderr || '').slice(-4000),
   error, files, parts, cli: cli || { rawStdout: (p.stdout || '').slice(-4000) }, output,

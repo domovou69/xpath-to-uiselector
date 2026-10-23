@@ -57,6 +57,10 @@ Every id gets one verdict for the model:
 6.3 % of its UiSelectors and 4.4 % of all locators. 18 of the 30 come from real-world locators. Another 13 fail only
 on line-break traps. Among the 100 differences the converter had 1 wrong UiSelector (C09, below).
 
+After the C09 fix (PR #18) the converter's answer for C09 is close with the range-widget warning, so its device
+result counts as DRIFT, and the model's skip there moves from right skip to missed: missed 19, right skip 0, and no
+converter UiSelector among the differences is wrong. The other numbers do not change.
+
 `same` was not re-checked here. Where the model gave the converter's answer, it inherits the converter's verdict from
 the earlier device runs.
 
