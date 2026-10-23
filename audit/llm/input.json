@@ -1,0 +1,2722 @@
+[
+ {
+  "id": "x001",
+  "xpath": "//android.widget.FrameLayout[starts-with(@content-desc, \"Zonewe in as\")]"
+ },
+ {
+  "id": "x002",
+  "xpath": "//android.widget.TextView[@text='ञदयजॉशच् ध़पच तो यमशीशइ रच ़शखि मइच ऐीजभमग']"
+ },
+ {
+  "id": "x003",
+  "xpath": "//*[@text=\"JitofakureLawOsafiZunijeja\"]/../..//*[@text=\"Migafiz\"]"
+ },
+ {
+  "id": "x004",
+  "xpath": "//*[normalize-space(@text)=\"Total\"]"
+ },
+ {
+  "id": "x005",
+  "xpath": "//*[@resource-id=\"com.lazevikema.wid:id/vp_tirurem\"]/android.widget.ImageView"
+ },
+ {
+  "id": "x006",
+  "xpath": "(//android.view.View[@resource-id='cuzoces-moduvu']/descendant::android.view.View)[3]/child::android.view.View[@resource-id='tub-kuf-1']"
+ },
+ {
+  "id": "x007",
+  "xpath": "//*[matches(@text,\"total\",\"i\")]"
+ },
+ {
+  "id": "x008",
+  "xpath": "//android.widget.FrameLayout[@resource-id='jp.co.app.android:id/tujOjajInuwulah']"
+ },
+ {
+  "id": "x009",
+  "xpath": "//*[contains(@text,\"1.5\")]"
+ },
+ {
+  "id": "x010",
+  "xpath": "/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/androidx.compose.ui.platform.ComposeView/android.view.View/android.view.View/android.widget.ScrollView/android.view.View/android.widget.EditText"
+ },
+ {
+  "id": "x011",
+  "xpath": "//android.widget.TextView[@text=\"Vejace Vejace\"]"
+ },
+ {
+  "id": "x012",
+  "xpath": "//*[@name='mekos-en-tinen']"
+ },
+ {
+  "id": "x013",
+  "xpath": "//android.widget.TextView[contains(@resource-id,'joc.mehaka.nifi.uk:id/zirimumAlen') and @index='0']"
+ },
+ {
+  "id": "x014",
+  "xpath": "//android.widget.ScrollView[@content-desc=\"dofo_popon_wepejazuk_zeru\"]//*[@content-desc=\"popon_dofiwa_wokup\"]"
+ },
+ {
+  "id": "x015",
+  "xpath": "//android.widget.TextView[@resource-id=\"com.cumojejove.monukekep.socetomub.webefuf.zilolojisi:id/bedu\" and @text=\"Vehi Pakaf 1\"]"
+ },
+ {
+  "id": "x016",
+  "xpath": "//android.widget.Button[lower-case(@content-desc)=\"penuci\"]"
+ },
+ {
+  "id": "x017",
+  "xpath": "//select[@id='id_fake']"
+ },
+ {
+  "id": "x018",
+  "xpath": "//android.widget.TextView[@text=\"Шалолебип редузомаф\"]/../android.view.ViewGroup[1]"
+ },
+ {
+  "id": "x019",
+  "xpath": "(//android.widget.TextView[@content-desc=\"popon_paci_bedu\"])[2]"
+ },
+ {
+  "id": "x020",
+  "xpath": "//android.widget.LinearLayout[starts-with(@content-desc, \"50%\")]"
+ },
+ {
+  "id": "x021",
+  "xpath": "//android.widget.TextView[@resource-id=\"com.android.johifa:id/vigoc\" and @text=\"Mehaka rijukogaf\"]"
+ },
+ {
+  "id": "x022",
+  "xpath": "//android.widget.TextView[@text='यषेइ']"
+ },
+ {
+  "id": "x023",
+  "xpath": "(//android.view.ViewGroup[@content-desc=\"popon_wepejazuk_zeru\"])[3]//*[@resource-id=\"com.example.app:id/item_7\"]"
+ },
+ {
+  "id": "x024",
+  "xpath": "//*[@resource-id=\"waw-wev-jemo-Gutalic\"]"
+ },
+ {
+  "id": "x025",
+  "xpath": "//*[matches(@text,\"[a-z-[aeiou]]+\")]"
+ },
+ {
+  "id": "x026",
+  "xpath": "//*[@label=\"semaze\"]"
+ },
+ {
+  "id": "x027",
+  "xpath": "//android.widget.TextView[@resource-id=\"com.cumojejove.monukekep.socetomub.webefuf.zilolojisi:id/bedu\" and @text=\"Canun\"]"
+ },
+ {
+  "id": "x028",
+  "xpath": "//*[@text=\"v2.0\" or @content-desc=\"(x)\"]"
+ },
+ {
+  "id": "x029",
+  "xpath": "//*[contains(@text, '常见闻题')]"
+ },
+ {
+  "id": "x030",
+  "xpath": "//android.widget.TextView[@resource-id=\"com.cumojejove.monukekep.socetomub.webefuf.zilolojisi:id/bedu\" and @text=\"Vehi Pakaf 5\"]"
+ },
+ {
+  "id": "x031",
+  "xpath": "//android.widget.TextView[@text='UK']"
+ },
+ {
+  "id": "x032",
+  "xpath": "//android.widget.Button[@displayed=\"true\"]"
+ },
+ {
+  "id": "x033",
+  "xpath": "//android.view.View[@content-desc=\"Gurizi\"]"
+ },
+ {
+  "id": "x034",
+  "xpath": "//*[@resource-id='cigolug.huso.refugocog:id/mejoLamic' and contains(@text, ':')]"
+ },
+ {
+  "id": "x035",
+  "xpath": "//*[@text='Fivoza JOR']"
+ },
+ {
+  "id": "x036",
+  "xpath": "//android.view.SurfaceView[@resource-id=\"com.jegifoni.android:id/dofo_zakutu_linurik_view\"]"
+ },
+ {
+  "id": "x037",
+  "xpath": "//*[@text=\"Name\"]/parent::*"
+ },
+ {
+  "id": "x038",
+  "xpath": "//android.widget.FrameLayout[@resource-id=\"android:id/content\"]/android.widget.FrameLayout/android.widget.FrameLayout/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View[1]/android.view.View[2]/android.view.View[1][@content-desc]"
+ },
+ {
+  "id": "x039",
+  "xpath": "//*[@text='Fiz pin']"
+ },
+ {
+  "id": "x040",
+  "xpath": "//android.widget.TextView[@text=\"Mow bepo rop nudo Rusezu Wuda\"]"
+ },
+ {
+  "id": "x041",
+  "xpath": "//*[@resource-id=\"com.lazevikema.wid:id/cb_tuwadani_tuzik\"]"
+ },
+ {
+  "id": "x042",
+  "xpath": "//*[@content-desc!=\"\"]"
+ },
+ {
+  "id": "x043",
+  "xpath": "//android.widget.ScrollView[@content-desc=\"dofo_popon_wepejazuk_zeru\"]//*[@content-desc=\"popon_dofiwa_rizisi\"]"
+ },
+ {
+  "id": "x044",
+  "xpath": "//android.widget.TextView[@text=\"Togagel Bocebofurelow\"]//following-sibling::android.widget.ImageView[@resource-id=\"org.pagajuhu.sadoto:id/dofiwa\"]\n"
+ },
+ {
+  "id": "x045",
+  "xpath": "//*[@text='fubi']"
+ },
+ {
+  "id": "x046",
+  "xpath": "//*[@hint=\"Email\"]"
+ },
+ {
+  "id": "x047",
+  "xpath": "//android.widget.TextView[@resource-id=\"com.cumojejove.monukekep.socetomub.webefuf.zilolojisi:id/bedu\" and @text=\"Lahise 5\"]"
+ },
+ {
+  "id": "x048",
+  "xpath": "//*[@value='Jubajev']"
+ },
+ {
+  "id": "x049",
+  "xpath": "//*[@resource-id=\"android:id/text1\" and @text=\"wajivuno-casufavir.kuva-app.fode\"]"
+ },
+ {
+  "id": "x050",
+  "xpath": "//android.widget.TextView[@text='यरोशअन हतथश']"
+ },
+ {
+  "id": "x051",
+  "xpath": "//android.widget.ImageView[@content-desc=\"Fotit\"]"
+ },
+ {
+  "id": "x052",
+  "xpath": "//*[contains(@class,\"Button\")]"
+ },
+ {
+  "id": "x053",
+  "xpath": "//*[@text=\"允许\" or @text=\"拒绝\"]"
+ },
+ {
+  "id": "x054",
+  "xpath": "//androidx.recyclerview.widget.RecyclerView[@resource-id=\"com.jegifoni.android:id/hido_to_detiweku_view\"]"
+ },
+ {
+  "id": "x055",
+  "xpath": "//android.widget.TextView[contains(@resource-id,'joc.mehaka.nifi.uk.huticige:id/jemo_lalima_bedu') and @index='0']"
+ },
+ {
+  "id": "x056",
+  "xpath": "//*[@text=\"f(x)\"]"
+ },
+ {
+  "id": "x057",
+  "xpath": "(//*[@class=\"kivoh-buzop-tinen sc-tub-kivoh-md\" and text()=\"Tuhama\"])"
+ },
+ {
+  "id": "x058",
+  "xpath": "//android.widget.FrameLayout[@content-desc=\"Tukani Nud Rasowaw\"]"
+ },
+ {
+  "id": "x059",
+  "xpath": "//*[starts-with(@resource-id, \"com.example.app:id/item_7\")]//*[@resource-id=\"com.example.app:id/item_7\"]"
+ },
+ {
+  "id": "x060",
+  "xpath": "//*[@text=(\"A\",\"B\")]"
+ },
+ {
+  "id": "x061",
+  "xpath": "//android.widget.TextView[@resource-id=\"com.cumojejove.monukekep.socetomub.webefuf.zilolojisi:id/bedu\" and @text=\"Rah 8\"]"
+ },
+ {
+  "id": "x062",
+  "xpath": "//android.widget.TextView[@text=\"Gurizi\"]"
+ },
+ {
+  "id": "x063",
+  "xpath": "//android.widget.ListView//android.widget.TextView[@text=\"Item\"]"
+ },
+ {
+  "id": "x064",
+  "xpath": "//android.widget.TextView[@resource-id=\"com.cumojejove.monukekep.socetomub.webefuf.zilolojisi:id/bedu\" and @text=\"Riven\"]"
+ },
+ {
+  "id": "x065",
+  "xpath": "//*[@resource-id=\"login\"]"
+ },
+ {
+  "id": "x066",
+  "xpath": "//*[contains(@text, '反送线')]"
+ },
+ {
+  "id": "x067",
+  "xpath": "(//*[@text='Vuhebo'] | //*[@class='in-copu jemo tub-dovovonuh jemo-tinen codujege'] | //*[@text='fiz pin']/..)"
+ },
+ {
+  "id": "x068",
+  "xpath": "(//android.widget.ScrollView//android.widget.ImageView)[3]"
+ },
+ {
+  "id": "x069",
+  "xpath": "//android.widget.Button[@resource-id=\"com.android.johifa:id/gow_dofiwa\"]"
+ },
+ {
+  "id": "x070",
+  "xpath": "(//android.view.View[@resource-id='jelu-tub-gowomoc']/descendant::android.view.View)[2]/child::android.widget.TextView[4]"
+ },
+ {
+  "id": "x071",
+  "xpath": "(//android.widget.TextView[@content-desc=\"popon_cidowitef\"])[2]"
+ },
+ {
+  "id": "x072",
+  "xpath": "//android.widget.TextView[@resource-id=\"com.cumojejove.monukekep.socetomub.webefuf.zilolojisi:id/bedu\" and @text=\"Rosoci Tibo 1\"]"
+ },
+ {
+  "id": "x073",
+  "xpath": "//*[@content-desc=\"发送\"]"
+ },
+ {
+  "id": "x074",
+  "xpath": "//android.widget.ImageButton[@content-desc=\"Daheci to mobol mona\"]"
+ },
+ {
+  "id": "x075",
+  "xpath": "//android.widget.TextView[@text=\"Kaki\"]"
+ },
+ {
+  "id": "x076",
+  "xpath": "//*[@content-desc='Zoci Teseru']"
+ },
+ {
+  "id": "x077",
+  "xpath": "//*[matches(@text,\"a*\")]"
+ },
+ {
+  "id": "x078",
+  "xpath": "//android.widget.TextView[@resource-id=\"com.cumojejove.monukekep.socetomub.webefuf.zilolojisi:id/bedu\" and @text=\"Tar Kuwu 3\"]"
+ },
+ {
+  "id": "x079",
+  "xpath": "//*[contains(@text,'4、作场篇理')]"
+ },
+ {
+  "id": "x080",
+  "xpath": "//*[@text=\"Sign in\"]"
+ },
+ {
+  "id": "x081",
+  "xpath": "//*[@text='Mikidit SIJI']"
+ },
+ {
+  "id": "x082",
+  "xpath": "//*[@label=\"bofefeb1\"]"
+ },
+ {
+  "id": "x083",
+  "xpath": "//*[@content-desc=\"popon_dofiwa_rizisi\"]"
+ },
+ {
+  "id": "x084",
+  "xpath": "//android.widget.TextView[@text=\"Vumi as jirisifaw bofefeb\"]"
+ },
+ {
+  "id": "x085",
+  "xpath": "//*[@checked=\"true\" or @selected=\"true\"]"
+ },
+ {
+  "id": "x086",
+  "xpath": "//*[@text=\"OK\" or @text=\"Yes\"][@enabled=\"true\"]"
+ },
+ {
+  "id": "x087",
+  "xpath": "//*[@text =\"送报品选认式职系了\"]"
+ },
+ {
+  "id": "x088",
+  "xpath": "/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.FrameLayout[2]/android.widget.FrameLayout/android.view.ViewGroup/android.view.ViewGroup/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout"
+ },
+ {
+  "id": "x089",
+  "xpath": "//*[@resource-id=\"nimepiho.wawilomode.com.SakOmore:id/sidiFeca\"]/android.widget.FrameLayout[1]/android.widget.RelativeLayout[1]/android.widget.CheckBox[1]"
+ },
+ {
+  "id": "x090",
+  "xpath": "//android.widget.Button[@text=\"OK\"][@checked=\"false\"][@index=\"0\"]"
+ },
+ {
+  "id": "x091",
+  "xpath": "//android.view.View"
+ },
+ {
+  "id": "x092",
+  "xpath": "//android.widget.TextView[@resource-id=\"com.cumojejove.monukekep.socetomub.webefuf.zilolojisi:id/bedu\" and @text=\"Vehi Disuvud 4\"]"
+ },
+ {
+  "id": "x093",
+  "xpath": "//android.widget.TextView[@resource-id=\"com.cumojejove.monukekep.socetomub.webefuf.zilolojisi:id/bedu\" and @text=\"Vehi Disuvud 7\"]"
+ },
+ {
+  "id": "x094",
+  "xpath": "//*[@resource-id='com.example.app:id/sihenocesase_pumu_vil']//*[contains(@text,'{message_contains}')]"
+ },
+ {
+  "id": "x095",
+  "xpath": "//android.widget.FrameLayout[@index='3']/android.widget.TextView[@text='1' and @index='1']"
+ },
+ {
+  "id": "x096",
+  "xpath": "//*[text()='Vikuwag']"
+ },
+ {
+  "id": "x097",
+  "xpath": "//*[@resource-id='com.rusezu.android.lerunim:id/neno_ruwoju']"
+ },
+ {
+  "id": "x098",
+  "xpath": "//android.widget.FrameLayout[@index='0']/android.widget.RelativeLayout[@index='0']/android.widget.LinearLayout[@index='1']/android.widget.TextView[@index='0']"
+ },
+ {
+  "id": "x099",
+  "xpath": "(//android.widget.ListView//android.widget.TextView)[5]"
+ },
+ {
+  "id": "x100",
+  "xpath": "//*[@resource-id=\"nimepiho.wawilomode.com.SakOmore:id/daheci_hemumi\" and @checked=\"false\"]"
+ },
+ {
+  "id": "x101",
+  "xpath": "//android.widget.Button[@content-desc=\"Ruwoju Vetogame\"]"
+ },
+ {
+  "id": "x102",
+  "xpath": "//*[@text='Say \"hi\"']"
+ },
+ {
+  "id": "x103",
+  "xpath": "//*[@resource-id='com.rusezu.android.lerunim:id/pebajon']"
+ },
+ {
+  "id": "x104",
+  "xpath": "//android.widget.TextView[@resource-id=\"com.cumojejove.monukekep.socetomub.webefuf.zilolojisi:id/bedu\" and @text=\"Vehi Pakaf\"]"
+ },
+ {
+  "id": "x105",
+  "xpath": "//*[contains(@resource-id, \"com.example.app:id/item_7\")]"
+ },
+ {
+  "id": "x106",
+  "xpath": "//*[@text='Jor hadi saligek jemeworoneju']"
+ },
+ {
+  "id": "x107",
+  "xpath": "//android.widget.Button[@text=\"Grüße\"]"
+ },
+ {
+  "id": "x108",
+  "xpath": "//*[@text=\"A\"] | //*[@text=\"B\"]"
+ },
+ {
+  "id": "x109",
+  "xpath": "//*[contains(@text,'设置')]"
+ },
+ {
+  "id": "x110",
+  "xpath": "/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.Button"
+ },
+ {
+  "id": "x111",
+  "xpath": "(//android.widget.Button)[2]"
+ },
+ {
+  "id": "x112",
+  "xpath": "//*[@resource-id=\"com.lazevikema.wid:id/dofiwa_hido\"]"
+ },
+ {
+  "id": "x113",
+  "xpath": "//android.widget.TextView[@text=\"Daheci Cigolug\"]"
+ },
+ {
+  "id": "x114",
+  "xpath": "//android.widget.TextView[@text='ZOWER']"
+ },
+ {
+  "id": "x115",
+  "xpath": "//*[@scrollable=\"true\"]"
+ },
+ {
+  "id": "x116",
+  "xpath": "/hierarchy//android.widget.Button"
+ },
+ {
+  "id": "x117",
+  "xpath": "//android.widget.TextView[@resource-id=\"com.cumojejove.monukekep.socetomub.webefuf.zilolojisi:id/bedu\" and @text=\"Fid Kuwu\"]"
+ },
+ {
+  "id": "x118",
+  "xpath": "(//android.widget.Button)[position()<3]"
+ },
+ {
+  "id": "x119",
+  "xpath": "//androidx.recyclerview.widget.RecyclerView/android.widget.FrameLayout[android.view.View and count(android.widget.TextView) >= 2 and android.widget.TextView[lower-case(@text)=lower-case(\"v2.0\")]]"
+ },
+ {
+  "id": "x120",
+  "xpath": "//*[@focusable=\"true\"]"
+ },
+ {
+  "id": "x121",
+  "xpath": "(//android.widget.Switch)[1]"
+ },
+ {
+  "id": "x122",
+  "xpath": "//*[@resource-id='com.example.app:id/zurebahikubad_pumu_wepejazuk']//*[@text='v2.0']"
+ },
+ {
+  "id": "x123",
+  "xpath": "//android.widget.FrameLayout[@text=\"Nud Rasowaw\"]"
+ },
+ {
+  "id": "x124",
+  "xpath": "/hierarchy/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.ScrollView/android.widget.LinearLayout/android.widget.LinearLayout/android.widget.LinearLayout[2]/android.widget.Button[1]"
+ },
+ {
+  "id": "x125",
+  "xpath": "//android.widget.FrameLayout[@content-desc=\"Metohol\"]"
+ },
+ {
+  "id": "x126",
+  "xpath": "//*[@class=\"android.widget.EditText\"]"
+ },
+ {
+  "id": "x127",
+  "xpath": "//android.widget.SeekBar[@package=\"com.android.bipecusu\"]"
+ },
+ {
+  "id": "x128",
+  "xpath": "//*[@resource-id=\"com.android.votinane:id/peduwuhe_wepejazuk\"]"
+ },
+ {
+  "id": "x129",
+  "xpath": "//android.view.View[@content-desc=\"Babeno tuzik\"]"
+ },
+ {
+  "id": "x130",
+  "xpath": "//*[@selected=\"true\"]"
+ },
+ {
+  "id": "x131",
+  "xpath": "//*[contains(@text, '语地件功')]"
+ },
+ {
+  "id": "x132",
+  "xpath": "//android.widget.TextView[@text='Gozo Ziwig: Wizip zilec zuruwad feho dise kado raregowupe mobol' and @index='1']"
+ },
+ {
+  "id": "x133",
+  "xpath": "//android.widget.TextView[@resource-id=\"com.cumojejove.monukekep.socetomub.webefuf.zilolojisi:id/bedu\" and @text=\"Jibe 6\"]"
+ },
+ {
+  "id": "x134",
+  "xpath": "//*[@text='VUHEBO']"
+ },
+ {
+  "id": "x135",
+  "xpath": "//text[@label='Jogaw']"
+ },
+ {
+  "id": "x136",
+  "xpath": "//*[contains(@text,\".mag\")]"
+ },
+ {
+  "id": "x137",
+  "xpath": "//android.widget.TextView[@text='च़जषटपऐ यदअीरब']"
+ },
+ {
+  "id": "x138",
+  "xpath": "(//*[@resource-id='io.zofujize.vikuwag.vajotin:id/danob_danob_hac'] | //*[@id='danob_danob_hac'] | //*[@resource-id='danob_danob_hac'])"
+ },
+ {
+  "id": "x139",
+  "xpath": "//android.widget.TextView[@resource-id=\"com.cumojejove.monukekep.socetomub.webefuf.zilolojisi:id/bedu\" and @text=\"Wotok Bavufo 6\"]"
+ },
+ {
+  "id": "x140",
+  "xpath": "//*[@text=\"OK\""
+ },
+ {
+  "id": "x141",
+  "xpath": "//android.widget.TextView[@resource-id=\"com.cumojejove.monukekep.socetomub.webefuf.zilolojisi:id/bedu\" and @text=\"Mabetim\"]"
+ },
+ {
+  "id": "x142",
+  "xpath": "//*[@resource-id=\"com.lazevikema.wid:id/tv_mobol_nari\"]"
+ },
+ {
+  "id": "x143",
+  "xpath": "//android.widget.TextView[@text=\"GOTAZ\"]"
+ },
+ {
+  "id": "x144",
+  "xpath": "//*[@clickable=\"true\" and (@text=\"A\" or @text=\"B\")]"
+ },
+ {
+  "id": "x145",
+  "xpath": "//android.widget.ImageButton[@content-desc=\"Bomu mobol\"]"
+ },
+ {
+  "id": "x146",
+  "xpath": "//android.view.ViewGroup[starts-with(@resource-id, \"hoci_mevodu_\")]"
+ },
+ {
+  "id": "x147",
+  "xpath": "(//android.widget.ImageView)[2]\n"
+ },
+ {
+  "id": "x148",
+  "xpath": "(//*[@id=\"jus_jina_hac\"])"
+ },
+ {
+  "id": "x149",
+  "xpath": "//android.view.ViewGroup[starts-with(@resource-id, \"mabetim_jemo_\")]"
+ },
+ {
+  "id": "x150",
+  "xpath": "//android.widget.TextView[@resource-id=\"com.cumojejove.monukekep.socetomub.webefuf.zilolojisi:id/bedu\" and @text=\"Dehib Rokoc 3\"]"
+ },
+ {
+  "id": "x151",
+  "xpath": "//*[@text='Rojuno Lodo']"
+ },
+ {
+  "id": "x152",
+  "xpath": "//android.widget.Button[@text=\"允许\"]"
+ },
+ {
+  "id": "x153",
+  "xpath": "//*[contains(@text,\"$5.00 (incl.)\")]"
+ },
+ {
+  "id": "x154",
+  "xpath": "//android.widget.ScrollView/android.view.ViewGroup/android.view.ViewGroup[2]/android.view.ViewGroup[1]/android.view.ViewGroup/android.widget.ImageView"
+ },
+ {
+  "id": "x155",
+  "xpath": "//*[@resource-id=\"com.lazevikema.wid:id/cohole_bafibu_copu\"]/*[last()]"
+ },
+ {
+  "id": "x156",
+  "xpath": "/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.ScrollView/android.widget.TabHost/android.widget.LinearLayout/android.widget.FrameLayout/androidx.viewpager.widget.ViewPager/android.widget.RelativeLayout/android.widget.GridView/android.widget.LinearLayout/android.widget.LinearLayout[2]"
+ },
+ {
+  "id": "x157",
+  "xpath": "//android.view.View[contains(lower-case(@content-desc), \"{sihenocesase.zesor()}\")]"
+ },
+ {
+  "id": "x158",
+  "xpath": "//*[@checked]"
+ },
+ {
+  "id": "x159",
+  "xpath": "//i[contains(@class,'fa-jupi')]"
+ },
+ {
+  "id": "x160",
+  "xpath": "//android.widget.TextView[@text='Zawe']"
+ },
+ {
+  "id": "x161",
+  "xpath": "//*[@text=\"Price: $5\"]"
+ },
+ {
+  "id": "x162",
+  "xpath": "//*[contains(@resource-id, \"ziha\")]"
+ },
+ {
+  "id": "x163",
+  "xpath": "//*[@text=\"C:\\Temp\\\"]"
+ },
+ {
+  "id": "x164",
+  "xpath": "//android.widget.ListView//android.widget.LinearLayout//android.widget.TextView"
+ },
+ {
+  "id": "x165",
+  "xpath": "//*[@text=\"建电商城\"]"
+ },
+ {
+  "id": "x166",
+  "xpath": "//*[@text=\"置项考多\"]"
+ },
+ {
+  "id": "x167",
+  "xpath": "//*[@resource-id=\"com.lazevikema.wid:id/gowomoc\"]"
+ },
+ {
+  "id": "x168",
+  "xpath": "//android.widget.FrameLayout[@index='3']"
+ },
+ {
+  "id": "x169",
+  "xpath": "/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.LinearLayout/android.widget.LinearLayout/android.widget.Button"
+ },
+ {
+  "id": "x170",
+  "xpath": "(//android.widget.ListView//android.widget.LinearLayout//android.widget.TextView)[1]"
+ },
+ {
+  "id": "x171",
+  "xpath": "/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.view.ViewGroup/android.widget.FrameLayout/android.view.ViewGroup/android.widget.TextView"
+ },
+ {
+  "id": "x172",
+  "xpath": "//android.widget.EditText[@resource-id=\"kafu_tib\"]"
+ },
+ {
+  "id": "x173",
+  "xpath": "//android.widget.TextView[@resource-id=\"com.cumojejove.monukekep.socetomub.webefuf.zilolojisi:id/bedu\" and @text=\"Tar Kuwu\"]"
+ },
+ {
+  "id": "x174",
+  "xpath": "//*[@text='Hokahuta']"
+ },
+ {
+  "id": "x175",
+  "xpath": "//*[@text=\"散人仅\"]"
+ },
+ {
+  "id": "x176",
+  "xpath": "//android.widget.TextView[@content-desc=\"Mobol\"]"
+ },
+ {
+  "id": "x177",
+  "xpath": "//android.widget.TextView[@text='Vikuwag hezek dehifacerek']"
+ },
+ {
+  "id": "x178",
+  "xpath": "//android.widget.TextView[@resource-id=\"android:id/text1\" and @text=\"Jus or nudi vorevik tuzik\"]"
+ },
+ {
+  "id": "x179",
+  "xpath": "//*[@text=\"Item\"]/ancestor::android.widget.LinearLayout"
+ },
+ {
+  "id": "x180",
+  "xpath": "//android.widget.RelativeLayout[@resource-id='com.lazevikema.wid:id/rl_gum']/android.widget.RelativeLayout[1][not(contains(@resource-id,'com.lazevikema.wid:id/iv_mobol_cofa'))]"
+ },
+ {
+  "id": "x181",
+  "xpath": "/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.RelativeLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.ScrollView/android.widget.LinearLayout/android.widget.TextView[3]"
+ },
+ {
+  "id": "x182",
+  "xpath": "//*[@text =\"权场聊粘件\"]"
+ },
+ {
+  "id": "x183",
+  "xpath": "//android.support.v7.widget.RecyclerView[@resource-id=\"com.rusezu.android.vowu.nola:id/japuh_rifujog_wepejazuk\"]/android.widget.LinearLayout[1]"
+ },
+ {
+  "id": "x184",
+  "xpath": "//*[@text=\"a;b\"]"
+ },
+ {
+  "id": "x185",
+  "xpath": "(//android.view.View[@resource-id='cuzoces-moduvu']/descendant::android.widget.TextView)[2]"
+ },
+ {
+  "id": "x186",
+  "xpath": "//android.widget.TextView[@resource-id=\"com.cumojejove.monukekep.socetomub.webefuf.zilolojisi:id/bedu\" and @text=\"Wotok Bavufo 1\"]"
+ },
+ {
+  "id": "x187",
+  "xpath": "(//android.widget.TextView[@text=\"Rojuno Savejat\"])"
+ },
+ {
+  "id": "x188",
+  "xpath": "//android.widget.TextView[@resource-id=\"com.cumojejove.monukekep.socetomub.webefuf.zilolojisi:id/bedu\" and @text=\"Powi Lahise\"]"
+ },
+ {
+  "id": "x189",
+  "xpath": "//*[matches(@text,\"Line 1.Line 2\",\"s\")]"
+ },
+ {
+  "id": "x190",
+  "xpath": "//android.view.View[@content-desc=\"Fotit\"]"
+ },
+ {
+  "id": "x191",
+  "xpath": "//android.widget.LinearLayout[.//android.widget.Button]"
+ },
+ {
+  "id": "x192",
+  "xpath": "//android.widget.RadioButton[@checked=\"true\"]"
+ },
+ {
+  "id": "x193",
+  "xpath": "//android.widget.EditText[@text]"
+ },
+ {
+  "id": "x194",
+  "xpath": "//android.widget.TextView[@resource-id=\"HAP__COFA__Busapuloj\" and @text=\"\"]"
+ },
+ {
+  "id": "x195",
+  "xpath": "//android.widget.TextView[@text='user01']"
+ },
+ {
+  "id": "x196",
+  "xpath": "/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.view.ViewGroup/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.FrameLayout/androidx.compose.ui.platform.ComposeView/android.view.View/android.view.View/android.view.View[2]/android.widget.Button"
+ },
+ {
+  "id": "x197",
+  "xpath": "//android.view.ViewGroup[.//*[@resource-id=\"com.lazevikema.wid:id/depe_vigoc\"]]"
+ },
+ {
+  "id": "x198",
+  "xpath": "//android.widget.ImageButton[@resource-id=\"com.rusezu.android.VatewuZekoba:id/nenovi_daheci_dofiwa\"]"
+ },
+ {
+  "id": "x199",
+  "xpath": "//*[substring(@text,1,3)=\"Tot\"]"
+ },
+ {
+  "id": "x200",
+  "xpath": "//*[@resource-id=\"com.lazevikema.wid:id/gufevikaFowe\"]/*"
+ },
+ {
+  "id": "x201",
+  "xpath": "//android.widget.Button[@resource-id=\"com.android.zikametijazesonelibu:id/butimaziha_hilen_dofiwa\"]"
+ },
+ {
+  "id": "x202",
+  "xpath": "//android.widget.TextView[@resource-id=\"com.android.johifa:id/nud_waw_nalafehul_vigoc\"]"
+ },
+ {
+  "id": "x203",
+  "xpath": "//android.view.View[@text=\"x\"]"
+ },
+ {
+  "id": "x204",
+  "xpath": "//*[(@text=\"A\" or @text=\"B\") and @content-desc=\"c\"]"
+ },
+ {
+  "id": "x205",
+  "xpath": "//android.widget.LinearLayout[@resource-id=\"com.android.johifa:id/wepejazuk\"]"
+ },
+ {
+  "id": "x206",
+  "xpath": "//android.widget.TextView[@text='Huticige Votinane']"
+ },
+ {
+  "id": "x207",
+  "xpath": "//*[@text =\"确定\"]"
+ },
+ {
+  "id": "x208",
+  "xpath": "//android.widget.TextView[(@content-desc='gotaz' or @text='×')] | //android.widget.Button"
+ },
+ {
+  "id": "x209",
+  "xpath": "//*[contains(@text, 'Penuci')]"
+ },
+ {
+  "id": "x210",
+  "xpath": "//android.widget.Button | //android.widget.ImageButton"
+ },
+ {
+  "id": "x211",
+  "xpath": "//*[contains(@text,\"\")]"
+ },
+ {
+  "id": "x212",
+  "xpath": "/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.view.ViewGroup/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.FrameLayout/androidx.compose.ui.platform.ComposeView/android.view.View/android.view.View/android.widget.ScrollView/android.view.View/android.view.View[2]/android.widget.TextView[3]"
+ },
+ {
+  "id": "x213",
+  "xpath": "//android.widget.TextView[@index=0]"
+ },
+ {
+  "id": "x214",
+  "xpath": "//*[@resource-id=\"com.lazevikema.wid:id/jemo_bocic\"]//android.widget.TextView"
+ },
+ {
+  "id": "x215",
+  "xpath": "//android.widget.TextView[@text='My Natila']"
+ },
+ {
+  "id": "x216",
+  "xpath": "//android.widget.ImageView[@content-desc=\"QR Hadi\"]"
+ },
+ {
+  "id": "x217",
+  "xpath": "//*[if (@checked=\"true\") then true() else false()]"
+ },
+ {
+  "id": "x218",
+  "xpath": "/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.widget.FrameLayout/android.view.ViewGroup/android.widget.RelativeLayout/android.view.ViewGroup/android.widget.FrameLayout/androidx.recyclerview.widget.RecyclerView/android.view.ViewGroup[5]"
+ },
+ {
+  "id": "x219",
+  "xpath": "//*[@resource-id=\"com.lazevikema.wid:id/jemo_misafa\"]//android.widget.EditText"
+ },
+ {
+  "id": "x220",
+  "xpath": "//*[@resource-id=\"com.android.fahufufevewegiko:id/butimaziha_hilen_dofiwa\" or @resource-id=\"com.android.zikametijazesonelibu:id/butimaziha_hilen_dofiwa\"]"
+ },
+ {
+  "id": "x221",
+  "xpath": "//*[@text=\"布助业必\"]"
+ },
+ {
+  "id": "x222",
+  "xpath": "/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.view.ViewGroup/android.view.ViewGroup/android.widget.ScrollView/android.webkit.WebView/android.webkit.WebView/android.view.View/android.view.View[1]/android.view.View[3]/android.widget.Button"
+ },
+ {
+  "id": "x223",
+  "xpath": "//android.widget.TextView[@resource-id=\"com.cumojejove.monukekep.socetomub.webefuf.zilolojisi:id/bedu\" and @text=\"Rah Bavic 3\"]"
+ },
+ {
+  "id": "x224",
+  "xpath": "//*[@text=\"Hidden\"]"
+ },
+ {
+  "id": "x225",
+  "xpath": "//*[@text=\"Add\"][1]"
+ },
+ {
+  "id": "x226",
+  "xpath": "//*[text()=\"Total\"]"
+ },
+ {
+  "id": "x227",
+  "xpath": "//android.widget.TextView[@resource-id=\"com.cumojejove.monukekep.socetomub.webefuf.zilolojisi:id/bedu\" and @text=\"Cifu Tibo 7\"]"
+ },
+ {
+  "id": "x228",
+  "xpath": "//android.widget.TextView[@text='Fiz pin of PagaJuhu']"
+ },
+ {
+  "id": "x229",
+  "xpath": "//android.widget.TextView[@index]"
+ },
+ {
+  "id": "x230",
+  "xpath": "//*[contains(@resource-id,\"com.example.app:id/bulopewocemot_vil_rasowaw_bedu\") and @text=\"{conversation}\"]"
+ },
+ {
+  "id": "x231",
+  "xpath": "//*[matches(@text,\"x\",\"q\")]"
+ },
+ {
+  "id": "x232",
+  "xpath": "//android.widget.TextView[@resource-id=\"com.cumojejove.monukekep.socetomub.webefuf.zilolojisi:id/bedu\" and @text=\"Gisopeli\"]"
+ },
+ {
+  "id": "x233",
+  "xpath": "//*[@text='Hutag Jor Hadi']"
+ },
+ {
+  "id": "x234",
+  "xpath": "//android.widget.TextView[@resource-id=\"com.cumojejove.monukekep.socetomub.webefuf.zilolojisi:id/bedu\" and @text=\"Picu Faro\"]"
+ },
+ {
+  "id": "x235",
+  "xpath": "//android.widget.TextView[@resource-id=\"com.cumojejove.monukekep.socetomub.webefuf.zilolojisi:id/bedu\" and @text=\"Monuc Lahise\"]"
+ },
+ {
+  "id": "x236",
+  "xpath": "//*[@text='Cifirod Tejok Poz']"
+ },
+ {
+  "id": "x237",
+  "xpath": "//*"
+ },
+ {
+  "id": "x238",
+  "xpath": "//android.widget.TextView[@resource-id=\"com.cumojejove.monukekep.socetomub.webefuf.zilolojisi:id/bedu\" and @text=\"Wutem Rumum 5\"]"
+ },
+ {
+  "id": "x239",
+  "xpath": "//*[@resource-id=\"nimepiho.wawilomode.com.SakOmore:id/neno_hipepu\"]"
+ },
+ {
+  "id": "x240",
+  "xpath": "(//*[@label='Danob'] | //*[@id='danob_danob_hac'])"
+ },
+ {
+  "id": "x241",
+  "xpath": "(//android.app.Dialog/descendant::android.view.View)[5]/child::android.view.View"
+ },
+ {
+  "id": "x242",
+  "xpath": "/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.RelativeLayout/android.widget.LinearLayout/android.widget.LinearLayout/android.widget.TextView[2]"
+ },
+ {
+  "id": "x243",
+  "xpath": "//*[matches(@text,\"^Total: \\d+$\")]"
+ },
+ {
+  "id": "x244",
+  "xpath": "//*[@password=\"true\"]"
+ },
+ {
+  "id": "x245",
+  "xpath": "//*[@text=\"群司信位\"]"
+ },
+ {
+  "id": "x246",
+  "xpath": "//android.widget.TextView[@resource-id=\"com.cumojejove.monukekep.socetomub.webefuf.zilolojisi:id/bedu\" and @text=\"Zupo Bavic 8\"]"
+ },
+ {
+  "id": "x247",
+  "xpath": "//*[contains(@text,\"定位\")] | //*[contains(@text,\"位置\")]"
+ },
+ {
+  "id": "x248",
+  "xpath": "//*[@content-desc]"
+ },
+ {
+  "id": "x249",
+  "xpath": "(//android.app.Dialog/descendant::android.view.View[5]/child::android.widget.TextView)"
+ },
+ {
+  "id": "x250",
+  "xpath": "(//android.widget.ListView)[2]//android.widget.TextView"
+ },
+ {
+  "id": "x251",
+  "xpath": "//android.widget.TextView[contains(@text,'Votodem')]"
+ },
+ {
+  "id": "x252",
+  "xpath": "//*[@long-clickable=\"true\"]"
+ },
+ {
+  "id": "x253",
+  "xpath": "//android.widget.ImageButton[@content-desc=\"Gaku\"]"
+ },
+ {
+  "id": "x254",
+  "xpath": "//*[@label=\"Go\"]"
+ },
+ {
+  "id": "x255",
+  "xpath": "//*[@resource-id=\"com.example.app:id/login\"]"
+ },
+ {
+  "id": "x256",
+  "xpath": "//android.widget.TextView[@resource-id=\"com.cumojejove.monukekep.socetomub.webefuf.zilolojisi:id/bedu\" and @text=\"Rosoci Tibo 7\"]"
+ },
+ {
+  "id": "x257",
+  "xpath": "//android.widget.EditText[@resource-id=\"com.android.johifa:id/ruwoju_bef_pumu\" and @text=\"Ruwoju bepo laru\"]"
+ },
+ {
+  "id": "x258",
+  "xpath": "//android.widget.TextView[@resource-id=\"com.cumojejove.monukekep.socetomub.webefuf.zilolojisi:id/bedu\" and @text=\"Lahise 4\"]"
+ },
+ {
+  "id": "x259",
+  "xpath": "(//android.view.View[@resource-id='jelu-tub-gowomoc']/descendant::android.view.View)/child::android.widget.TextView[2]"
+ },
+ {
+  "id": "x260",
+  "xpath": "/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.view.ViewGroup/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.FrameLayout/androidx.compose.ui.platform.ComposeView/android.view.View/android.view.View/android.widget.ScrollView/android.view.View[1]/android.view.View[1]"
+ },
+ {
+  "id": "x261",
+  "xpath": "//android.widget.TextView[@resource-id=\"com.cumojejove.monukekep.socetomub.webefuf.zilolojisi:id/bedu\" and @text=\"Cipo\"]"
+ },
+ {
+  "id": "x262",
+  "xpath": "//*[some $t in @text satisfies $t=\"OK\"]"
+ },
+ {
+  "id": "x263",
+  "xpath": "//*[contains(@text, '何业个定未动')]"
+ },
+ {
+  "id": "x264",
+  "xpath": "//android.widget.ImageView[@resource-id=\"com.example.app:id/item_7\" and @text=\"50%\"]"
+ },
+ {
+  "id": "x265",
+  "xpath": "//*[@data-testid=\"bimugome-pojo-dofiwa\"]"
+ },
+ {
+  "id": "x266",
+  "xpath": "//*[@text!=\"\"]"
+ },
+ {
+  "id": "x267",
+  "xpath": "//*[contains(@resource-id, 'nenovi') and contains(@resource-id, 'gurizi')]"
+ },
+ {
+  "id": "x268",
+  "xpath": "//*[contains(@text,\".mol\")]"
+ },
+ {
+  "id": "x269",
+  "xpath": "//*[@content-desc=\"订输先先员再客\"]"
+ },
+ {
+  "id": "x270",
+  "xpath": "//android.widget.TextView[@resource-id=\"com.cumojejove.monukekep.socetomub.webefuf.zilolojisi:id/bedu\" and @text=\"Cifu Tibo 4\"]"
+ },
+ {
+  "id": "x271",
+  "xpath": "//*[@bounds=\"[0,0][100,100]\"]"
+ },
+ {
+  "id": "x272",
+  "xpath": "//tbody[@data-bind='devogamo: niwa_sejisu']//tr[last()]//td[last()]//i[@class='fa fa-wafek']"
+ },
+ {
+  "id": "x273",
+  "xpath": "//android.widget.ListView/android.widget.TextView"
+ },
+ {
+  "id": "x274",
+  "xpath": "//android.widget.EditText[@resource-id=\"com.android.johifa:id/gul_wev\"]"
+ },
+ {
+  "id": "x275",
+  "xpath": "//android.widget.TextView[@resource-id=\"com.cumojejove.monukekep.socetomub.webefuf.zilolojisi:id/bedu\" and @text=\"Duk Lahise 1\"]"
+ },
+ {
+  "id": "x276",
+  "xpath": "/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.RelativeLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.ScrollView/android.widget.LinearLayout/android.widget.LinearLayout[3]/android.widget.TextView"
+ },
+ {
+  "id": "x277",
+  "xpath": "//android.widget.TextView[@text=\"FIZ IN\"]"
+ },
+ {
+  "id": "x278",
+  "xpath": "//*[contains(@text,'3、接同道短')]"
+ },
+ {
+  "id": "x279",
+  "xpath": "//*[@checkable=\"true\"]"
+ },
+ {
+  "id": "x280",
+  "xpath": "//android.widget.ScrollView/android.view.ViewGroup/android.view.ViewGroup[2]/android.view.ViewGroup[2]"
+ },
+ {
+  "id": "x281",
+  "xpath": "//*[@resource-id=\"com.lazevikema.wid:id/jade_deva_lafub\"]"
+ },
+ {
+  "id": "x282",
+  "xpath": "/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.view.ViewGroup/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.FrameLayout/androidx.compose.ui.platform.ComposeView/android.view.View/android.view.View/android.widget.ScrollView/android.view.View[1]/android.view.View[3]"
+ },
+ {
+  "id": "x283",
+  "xpath": "//android.widget.TextView[@text='Wizip']"
+ },
+ {
+  "id": "x284",
+  "xpath": "//*[contains(@text,\".biti\")]"
+ },
+ {
+  "id": "x285",
+  "xpath": "//*[contains(@text, '确定')]"
+ },
+ {
+  "id": "x286",
+  "xpath": "//*[@text='I toka kihe it']"
+ },
+ {
+  "id": "x287",
+  "xpath": "//*[contains(@resource-id, 'nenovi') and contains(@resource-id, 'dosiwur_dofiwa')]"
+ },
+ {
+  "id": "x288",
+  "xpath": "//*[matches(@content-desc,\"^Menu\")]"
+ },
+ {
+  "id": "x289",
+  "xpath": "//android.widget.TextView[@text=\"Lajugo waca petis\"]"
+ },
+ {
+  "id": "x290",
+  "xpath": "//android.widget.TextView[@resource-id=\"com.cumojejove.monukekep.socetomub.webefuf.zilolojisi:id/bedu\" and @text=\"Zupo Bavic 7\"]"
+ },
+ {
+  "id": "x291",
+  "xpath": "//*[@text='Cupuna & Vovawedo']"
+ },
+ {
+  "id": "x292",
+  "xpath": "//android.widget.TextView[@resource-id=\"com.cumojejove.monukekep.socetomub.webefuf.zilolojisi:id/bedu\" and @text=\"Fid Kuwu 1\"]"
+ },
+ {
+  "id": "x293",
+  "xpath": "//android.view.ViewGroup[@content-desc=\"popon_wepejazuk_zeru\"][1]//android.view.ViewGroup[@content-desc=\"\"][@clickable=\"true\"]"
+ },
+ {
+  "id": "x294",
+  "xpath": "//android.widget.ScrollView[@content-desc=\"dofo_popon_wepejazuk_zeru\"]//*[@content-desc=\"popon_dofiwa_sino\"]"
+ },
+ {
+  "id": "x295",
+  "xpath": "(//android.widget.ScrollView)[2]//android.widget.CheckBox/android.widget.TextView[@text='"
+ },
+ {
+  "id": "x296",
+  "xpath": "//*[@checked=\"TRUE\"]"
+ },
+ {
+  "id": "x297",
+  "xpath": "//android.widget.ImageView[@content-desc=\"Kaki migitic\"]"
+ },
+ {
+  "id": "x298",
+  "xpath": "//name[@displayName=\"Tahig sadawa\"]/parent::info/following-sibling::parameters/*/name[@displayName=\"Bafibu\"]/following-sibling::value"
+ },
+ {
+  "id": "x299",
+  "xpath": "//tbody/tr[1]"
+ },
+ {
+  "id": "x300",
+  "xpath": "//android.support.v7.widget.RecyclerView/android.widget.RelativeLayout[7]"
+ },
+ {
+  "id": "x301",
+  "xpath": "//android.widget.ImageButton[@content-desc=\"Nud mevoha calule\"]"
+ },
+ {
+  "id": "x302",
+  "xpath": "//android.widget.TextView[@resource-id=\"com.cumojejove.monukekep.socetomub.webefuf.zilolojisi:id/bedu\" and @text=\"Lahise 6\"]"
+ },
+ {
+  "id": "x303",
+  "xpath": "//android.widget.FrameLayout[@resource-id=\"android:id/content\"]/android.widget.FrameLayout/android.widget.FrameLayout/android.view.View/android.view.View/android.view.View/android.view.View/android.widget.ImageView[2]"
+ },
+ {
+  "id": "x304",
+  "xpath": "//android.view.View[@content-desc=\"Mod faf\"]"
+ },
+ {
+  "id": "x305",
+  "xpath": "//*[@resourceId=\"com.example.app:id/login\"]"
+ },
+ {
+  "id": "x306",
+  "xpath": "//*[@text=\"OK\" or @content-desc=\"OK\"]"
+ },
+ {
+  "id": "x307",
+  "xpath": "//android.widget.ImageButton[@content-desc=\"Pocab mobol\"]"
+ },
+ {
+  "id": "x308",
+  "xpath": "//android.widget.TextView[@resource-id=\"com.cumojejove.monukekep.socetomub.webefuf.zilolojisi:id/bedu\" and @text=\"Jibe 11\"]"
+ },
+ {
+  "id": "x309",
+  "xpath": "//text[@label='Savejat Fokib']/following::*//text[1]"
+ },
+ {
+  "id": "x310",
+  "xpath": "//android.view.ViewGroup[@content-desc=\"popon_wepejazuk_kodore\"]//android.widget.TextView[last()]"
+ },
+ {
+  "id": "x311",
+  "xpath": "(//android.view.ViewGroup[@content-desc=\"popon_wepejazuk_zeru\"])[2]//*[@content-desc=\"Settings\"]"
+ },
+ {
+  "id": "x312",
+  "xpath": "//android.widget.ScrollView[@content-desc=\"dofo_popon_wepejazuk_zeru\"]//*[@content-desc=\"Kaki migitic\"]"
+ },
+ {
+  "id": "x313",
+  "xpath": "//android.widget.TextView[@text=\"Mabetim\"]/parent::android.view.View"
+ },
+ {
+  "id": "x314",
+  "xpath": "//android.widget.TextView[contains(@text,'Jus Pumu')]"
+ },
+ {
+  "id": "x315",
+  "xpath": "//*[@text='Wasihu cebudufuw']"
+ },
+ {
+  "id": "x316",
+  "xpath": "/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.FrameLayout/androidx.compose.ui.platform.ComposeView/android.view.View/android.view.View/android.view.View[1]/android.view.View"
+ },
+ {
+  "id": "x317",
+  "xpath": "//*[contains(lower-case(@text),\"total\")]"
+ },
+ {
+  "id": "x318",
+  "xpath": "//*[@resource-id=\"com.example.app:id/list\"]//*[@text=\"Item\"]"
+ },
+ {
+  "id": "x319",
+  "xpath": "//*[@resource-id='com.hitufude:id/mevoha']"
+ },
+ {
+  "id": "x320",
+  "xpath": "//android.widget.TextView[@resource-id=\"com.cumojejove.monukekep.socetomub.webefuf.zilolojisi:id/bedu\" and @text=\"Vehi Disuvud 2\"]"
+ },
+ {
+  "id": "x321",
+  "xpath": "//android.widget.TextView[@resource-id=\"com.example.app:id/rasowaw_vigoc\" and contains(lower-case(@text), \"{conversation}\")] | "
+ },
+ {
+  "id": "x322",
+  "xpath": "//android.widget.FrameLayout[@content-desc=\"Nenovi Wisasam\"]"
+ },
+ {
+  "id": "x323",
+  "xpath": "/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.widget.FrameLayout/android.view.ViewGroup/android.widget.LinearLayout/android.widget.LinearLayout/androidx.recyclerview.widget.RecyclerView/android.view.ViewGroup[1]/android.widget.TextView[1]"
+ },
+ {
+  "id": "x324",
+  "xpath": "//*[@content-desc=\"Hekufoki up\"]"
+ },
+ {
+  "id": "x325",
+  "xpath": "//*[@text=\"a\"\"b\"]"
+ },
+ {
+  "id": "x326",
+  "xpath": "//*[contains(@content-desc,\"menu\")]"
+ },
+ {
+  "id": "x327",
+  "xpath": "//*[@label=\"dofiwa_hekufoki1\"]"
+ },
+ {
+  "id": "x328",
+  "xpath": "(//android.widget.ImageView)[3]"
+ },
+ {
+  "id": "x329",
+  "xpath": "//*[@resource-id='{zuvi.app_cerozis}:id/giduru_mona_wev']//*[@content-desc='Risupor']"
+ },
+ {
+  "id": "x330",
+  "xpath": "//android.widget.ListView/descendant::android.widget.TextView"
+ },
+ {
+  "id": "x331",
+  "xpath": "//*[@resource-id=\"com.lazevikema.wid:id/jemo_misafa\"]//android.widget.TextView"
+ },
+ {
+  "id": "x332",
+  "xpath": "//android.widget.Button"
+ },
+ {
+  "id": "x333",
+  "xpath": "//*[@text=\"日志\"]"
+ },
+ {
+  "id": "x334",
+  "xpath": "//android.widget.FrameLayout[@content-desc=\"Woji\"]"
+ },
+ {
+  "id": "x335",
+  "xpath": "//android.widget.TextView[@resource-id=\"com.cumojejove.monukekep.socetomub.webefuf.zilolojisi:id/bedu\" and @text=\"Jibe Bavic 1\"]"
+ },
+ {
+  "id": "x336",
+  "xpath": "//*[@text=\"Deep marker\"]"
+ },
+ {
+  "id": "x337",
+  "xpath": "(//table[@class=\"SifupugoMoleg_zuhac SifupugoMoleg_zuhac_1\"])[4]/tbody/tr[2]/td[4]"
+ },
+ {
+  "id": "x338",
+  "xpath": "//android.widget.TextView[@text=\"Kuva Ad\"]"
+ },
+ {
+  "id": "x339",
+  "xpath": "//*[contains(@resource-id, \"jihos-nana-kafu\")]"
+ },
+ {
+  "id": "x340",
+  "xpath": "//*[@text='Pocab hukunupi']"
+ },
+ {
+  "id": "x341",
+  "xpath": "//android.widget.TextView[@text='Mobol']"
+ },
+ {
+  "id": "x342",
+  "xpath": "//android.widget.TextView[@resource-id=\"com.cumojejove.monukekep.socetomub.webefuf.zilolojisi:id/bedu\" and @text=\"Zupo Bavic 11\"]"
+ },
+ {
+  "id": "x343",
+  "xpath": "//*[@resource-id=\"towiz-of-job-zuririzi\"]"
+ },
+ {
+  "id": "x344",
+  "xpath": "//android.support.v7.widget.RecyclerView[@index='1']/android.widget.RelativeLayout[@index='3']/android.widget.TextView[@index='1']"
+ },
+ {
+  "id": "x345",
+  "xpath": "//*[contains(@text, 'Next')]"
+ },
+ {
+  "id": "x346",
+  "xpath": "//android.widget.Button[@content-desc=\"BAGECE\"]"
+ },
+ {
+  "id": "x347",
+  "xpath": "//android.widget.Button[@content-desc=\"Zoci votinane\"]"
+ },
+ {
+  "id": "x348",
+  "xpath": "//*[@text='Wasihu']"
+ },
+ {
+  "id": "x349",
+  "xpath": "//*[@resource-id=\"com.lazevikema.wid:id/nudi_tinen_petis_bedu\"]"
+ },
+ {
+  "id": "x350",
+  "xpath": "//*[@content-desc='Lukup resale' or @text='2']"
+ },
+ {
+  "id": "x351",
+  "xpath": "//android.widget.TextView[@resource-id=\"com.cumojejove.monukekep.socetomub.webefuf.zilolojisi:id/bedu\" and @text=\"Gisopeli 4\"]"
+ },
+ {
+  "id": "x352",
+  "xpath": "//*[@text=\"添怎公扫成\"]"
+ },
+ {
+  "id": "x353",
+  "xpath": "//*[@text=\"JitofakureLawOsafiZunijeja\"]/../..//*[@text=\"Pedege\"]"
+ },
+ {
+  "id": "x354",
+  "xpath": "//android.widget.Button[@content-desc=\"QR hadi\"]"
+ },
+ {
+  "id": "x355",
+  "xpath": "//android.widget.Button[@text='Votinane']"
+ },
+ {
+  "id": "x356",
+  "xpath": "//*[@text=\"a/b\"]"
+ },
+ {
+  "id": "x357",
+  "xpath": "(//android.view.View[@resource-id='jelu-tub-gowomoc']/descendant::android.view.View)/child::android.widget.TextView[6]"
+ },
+ {
+  "id": "x358",
+  "xpath": "(//android.view.ViewGroup[@content-desc=\"popon_dofiwa_pebas\"])[2]"
+ },
+ {
+  "id": "x359",
+  "xpath": "//*[contains(@resource-id, 'nenovi') and contains(@resource-id, 'fohatup')]"
+ },
+ {
+  "id": "x360",
+  "xpath": "//*[matches(@text,\"Line 1.Line 2\")]"
+ },
+ {
+  "id": "x361",
+  "xpath": "//*[@text=\"\"]"
+ },
+ {
+  "id": "x362",
+  "xpath": "//*[@text=\"Line 1\nLine 2\"]"
+ },
+ {
+  "id": "x363",
+  "xpath": "//android.widget.EditText[@resource-id=\"com.android.johifa:id/ruwoju_bef_pumu\" or @resource-id=\"com.android.johifa:id/gul_wev\"]"
+ },
+ {
+  "id": "x364",
+  "xpath": "//android.widget.ImageView[contains(@content-desc, \"tesubo\")]"
+ },
+ {
+  "id": "x365",
+  "xpath": "//*[@text='Хишуняд']"
+ },
+ {
+  "id": "x366",
+  "xpath": "//android.widget.Button[@text='Vovawedo']"
+ },
+ {
+  "id": "x367",
+  "xpath": "//android.widget.SeekBar[@text=\"50.0\"]"
+ },
+ {
+  "id": "x368",
+  "xpath": "//android.widget.TextView[@text=\"Dowawe\"]"
+ },
+ {
+  "id": "x369",
+  "xpath": "//android.widget.TextView[@resource-id=\"com.cumojejove.monukekep.socetomub.webefuf.zilolojisi:id/bedu\" and @text=\"Petof\"]"
+ },
+ {
+  "id": "x370",
+  "xpath": "//android.widget.TextView[@resource-id=\"com.cumojejove.monukekep.socetomub.webefuf.zilolojisi:id/bedu\" and @text=\"Tar Kuwu 5\"]"
+ },
+ {
+  "id": "x371",
+  "xpath": "//android.widget.Button[@text='GO TO VOTINANE']"
+ },
+ {
+  "id": "x372",
+  "xpath": "(//android.widget.ListView//android.widget.ListView)[1]"
+ },
+ {
+  "id": "x373",
+  "xpath": "//*[ends-with(@text,\"USD\")]"
+ },
+ {
+  "id": "x374",
+  "xpath": "//*[@resource-id=\"com.lazevikema.wid:id/cohole_bafibu_copu\"]"
+ },
+ {
+  "id": "x375",
+  "xpath": "/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.RelativeLayout/android.widget.LinearLayout/android.widget.LinearLayout/android.widget.TextView[3]"
+ },
+ {
+  "id": "x376",
+  "xpath": "//android.widget.Toast[@text=\"Saved\"]"
+ },
+ {
+  "id": "x377",
+  "xpath": "//*[@text =\"架看更复\"]"
+ },
+ {
+  "id": "x378",
+  "xpath": "//*[@index=\"2\"]"
+ },
+ {
+  "id": "x379",
+  "xpath": "//select[@id='nud-kalo-rupi-figokefa']"
+ },
+ {
+  "id": "x380",
+  "xpath": "//*[@text!=\"OK\"]"
+ },
+ {
+  "id": "x381",
+  "xpath": "//android.widget.ScrollView/android.view.ViewGroup/android.widget.HorizontalScrollView/android.view.ViewGroup/android.view.ViewGroup[1]/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.ImageView"
+ },
+ {
+  "id": "x382",
+  "xpath": "//android.widget.TextView[@text='LerUnim']"
+ },
+ {
+  "id": "x383",
+  "xpath": "//*[@resource-id=\"com.lazevikema.wid:id/rv_mabetim_hoci\"]/*"
+ },
+ {
+  "id": "x384",
+  "xpath": "//*[@text=\"粘贴\"]"
+ },
+ {
+  "id": "x385",
+  "xpath": "//*[@enabled=\"false\"]"
+ },
+ {
+  "id": "x386",
+  "xpath": "//android.view.ViewGroup[@content-desc=\"Hoci\"]"
+ },
+ {
+  "id": "x387",
+  "xpath": "//*[@text='Jepolonod fadut']"
+ },
+ {
+  "id": "x388",
+  "xpath": "//android.widget.TextView[@resource-id=\"com.example.app:id/bedu\"]"
+ },
+ {
+  "id": "x389",
+  "xpath": "//android.support.v7.widget.RecyclerView/*"
+ },
+ {
+  "id": "x390",
+  "xpath": "//*[@label='bofefeb1']"
+ },
+ {
+  "id": "x391",
+  "xpath": "//hierarchy"
+ },
+ {
+  "id": "x392",
+  "xpath": "//*[@data-testid=\"daheci-degujas-dofiwa\"]"
+ },
+ {
+  "id": "x393",
+  "xpath": "//*[not(contains(@text,\"Ad\"))]"
+ },
+ {
+  "id": "x394",
+  "xpath": "//android.widget.TextView[contains(@text, 'Вы лучузул')]/..//android.view.ViewGroup[@resource-id=\"HAP_DOFIWA_TESIWIZ\"]//android.widget.Button"
+ },
+ {
+  "id": "x395",
+  "xpath": "//android.widget.Button[@resource-id=\"com.android.zikametijazesonelibu:id/butimaziha_hilen_sacikodola_kifa_dofiwa\"]"
+ },
+ {
+  "id": "x396",
+  "xpath": "//android.support.v7.widget.RecyclerView[@resource-id=\"com.rusezu.android.vowu.nola:id/detiweku_view\"]/android.widget.LinearLayout[1]"
+ },
+ {
+  "id": "x397",
+  "xpath": "//android.widget.SeekBar[@content-desc=\"Mivuzu Wodon\"]/..//android.view.ViewGroup[2]"
+ },
+ {
+  "id": "x398",
+  "xpath": "//*[@index=\"02\"]"
+ },
+ {
+  "id": "x399",
+  "xpath": "//com.example.app.Outer$Inner"
+ },
+ {
+  "id": "x400",
+  "xpath": "//*[@text=\"话音退知作电指容\"]"
+ },
+ {
+  "id": "x401",
+  "xpath": "//android.widget.EditText[@text=\"Ruwoju Falup\"]"
+ },
+ {
+  "id": "x402",
+  "xpath": "//android.widget.EditText[@text=\"09975446233\"]"
+ },
+ {
+  "id": "x403",
+  "xpath": "//android.widget.TextView[@text=\"Kupena\"]"
+ },
+ {
+  "id": "x404",
+  "xpath": "//*[@text=\"Name\"]/.."
+ },
+ {
+  "id": "x405",
+  "xpath": "//android.widget.TextView[@resource-id=\"com.cumojejove.monukekep.socetomub.webefuf.zilolojisi:id/bedu\" and @text=\"Rosoci Tibo 2\"]"
+ },
+ {
+  "id": "x406",
+  "xpath": "//*[@resource-id=\"com.android.votinane:id/ruwoju_giduru_wev\"]"
+ },
+ {
+  "id": "x407",
+  "xpath": "//android.widget.FrameLayout[@index='5']/android.view.ViewGroup[@index='0']/android.widget.TextView[@index='1']"
+ },
+ {
+  "id": "x408",
+  "xpath": "//android.widget.TextView[@resource-id=\"com.cumojejove.monukekep.socetomub.webefuf.zilolojisi:id/bedu\" and @text=\"Duk Lahise 5\"]"
+ },
+ {
+  "id": "x409",
+  "xpath": "//*[@resource-id=\"nimepiho.wawilomode.com.SakOmore:id/hewevat\"]//*[@class=\"android.widget.ImageButton\"]"
+ },
+ {
+  "id": "x410",
+  "xpath": "//*[@text=\"a]b\"]"
+ },
+ {
+  "id": "x411",
+  "xpath": "//*[@resource-id=\"android:id/text1\" and @text=\"wajivuno-casufavir.app.fode\"]"
+ },
+ {
+  "id": "x412",
+  "xpath": "//android.view.ViewGroup[@resource-id=\"com.android.johifa:id/giduru_wev\"]//android.widget.TextView[@text=\"a+b\"]"
+ },
+ {
+  "id": "x413",
+  "xpath": "//textfield[@name='Savejat Bedu']"
+ },
+ {
+  "id": "x414",
+  "xpath": "/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.view.ViewGroup/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.FrameLayout/androidx.compose.ui.platform.ComposeView/android.view.View/android.view.View/android.view.View/android.widget.Button"
+ },
+ {
+  "id": "x415",
+  "xpath": "//android.widget.Button[@resource-id=\"com.rusezu.android.VatewuZekoba:id/mid_it_dofiwa\"]"
+ },
+ {
+  "id": "x416",
+  "xpath": "//android.widget.TextView[@text=\"Zun't pera lidezu jem, Luteca Pojo Up\"]"
+ },
+ {
+  "id": "x417",
+  "xpath": "//android.widget.Button[@resource-id=\"gurizi-dofiwa\"]"
+ },
+ {
+  "id": "x418",
+  "xpath": "//android.widget.TextView[@text=\"WOJI\"]"
+ },
+ {
+  "id": "x419",
+  "xpath": "//android.widget.TextView[@resource-id=\"com.cumojejove.monukekep.socetomub.webefuf.zilolojisi:id/bedu\" and @text=\"Duk Rokoc 2\"]"
+ },
+ {
+  "id": "x420",
+  "xpath": "//*[@text =\"退拒专专群\"]"
+ },
+ {
+  "id": "x421",
+  "xpath": "(//android.view.ViewGroup[@content-desc=\"popon_wepejazuk_zeru\"])[3]"
+ },
+ {
+  "id": "x422",
+  "xpath": "//android.widget.ImageButton[@content-desc=\"Kaki Migitic\"]"
+ },
+ {
+  "id": "x423",
+  "xpath": "//*[@content-desc=\"选抢行么\"]"
+ },
+ {
+  "id": "x424",
+  "xpath": "//android.widget.TextView[@resource-id=\"com.cumojejove.monukekep.socetomub.webefuf.zilolojisi:id/bedu\" and @text=\"Tar Kuwu 1\"]"
+ },
+ {
+  "id": "x425",
+  "xpath": "//android.widget.Button[@index=1]"
+ },
+ {
+  "id": "x426",
+  "xpath": "//android.widget.ImageButton[@content-desc=\"Go ziha\"]"
+ },
+ {
+  "id": "x427",
+  "xpath": "//*[@resource-id='com.sucogijijozilo.lunidehasapizam:id/vuluwaNore']"
+ },
+ {
+  "id": "x428",
+  "xpath": "//android.widget.FrameLayout[11]"
+ },
+ {
+  "id": "x429",
+  "xpath": "(//*[@content-desc='Sabutiv'])[2]"
+ },
+ {
+  "id": "x430",
+  "xpath": "//android.widget.TextView[@text='Rufe nudo Povuce']"
+ },
+ {
+  "id": "x431",
+  "xpath": "(//select[@id='PikAmagohomUjeluni'])"
+ },
+ {
+  "id": "x432",
+  "xpath": "//android.widget.TextView[@text=\"Dejogo pip Fesag Petis\"]"
+ },
+ {
+  "id": "x433",
+  "xpath": "(//android.widget.ListView//android.widget.TextView)[1]"
+ },
+ {
+  "id": "x434",
+  "xpath": "//android.widget.EditText[@resource-id=\"com.jegifoni.android:id/vidumug_nudi_pumu_view\"]"
+ },
+ {
+  "id": "x435",
+  "xpath": "//android.widget.Button[@content-desc=\"Buri pip view migitic\"]"
+ },
+ {
+  "id": "x436",
+  "xpath": "//*[@text='Bocic relirelitafu rucamopa']"
+ },
+ {
+  "id": "x437",
+  "xpath": "/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.view.ViewGroup/android.view.ViewGroup[2]/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup[4]/android.view.ViewGroup/android.widget.Button[2]/android.view.ViewGroup/android.view.ViewGroup/android.widget.TextView"
+ },
+ {
+  "id": "x438",
+  "xpath": "//*[@text=\"1\"]"
+ },
+ {
+  "id": "x439",
+  "xpath": "//android.widget.TextView[@text=\"Мугикяр госихо\"]"
+ },
+ {
+  "id": "x440",
+  "xpath": "//android.widget.FrameLayout[1]/joc.mehaka.nifi.uk.huticige:id/main_view[0]/android.widget.ImageView[@index='0']"
+ },
+ {
+  "id": "x441",
+  "xpath": "//*[@text=\"I mirof\"]"
+ },
+ {
+  "id": "x442",
+  "xpath": "//*[starts-with(@package,\"com.example\")]"
+ },
+ {
+  "id": "x443",
+  "xpath": "//android.widget.TextView[@resource-id=\"com.cumojejove.monukekep.socetomub.webefuf.zilolojisi:id/bedu\" and @text=\"Zupo Bavic 2\"]"
+ },
+ {
+  "id": "x444",
+  "xpath": "//*[@id=\"dazet-fode\"]"
+ },
+ {
+  "id": "x445",
+  "xpath": "(//android.widget.EditText)[2]"
+ },
+ {
+  "id": "x446",
+  "xpath": "//*[@text=\"量视人项\"]"
+ },
+ {
+  "id": "x447",
+  "xpath": "//android.widget.TextView[@resource-id=\"com.cumojejove.monukekep.socetomub.webefuf.zilolojisi:id/bedu\" and @text=\"Gisopeli 6\"]"
+ },
+ {
+  "id": "x448",
+  "xpath": "//android.widget.ScrollView/android.widget.LinearLayout"
+ },
+ {
+  "id": "x449",
+  "xpath": "//android.widget.EditText[@text=\"Hutag Jikar Misafa\"]"
+ },
+ {
+  "id": "x450",
+  "xpath": "//android.widget.TextView[@text=\"Шутожяшяпахез\"]"
+ },
+ {
+  "id": "x451",
+  "xpath": "//*[@resource-id=\"com.lazevikema.wid:id/iv_huven\"]/..//*[@resource-id=\"com.lazevikema.wid:id/mobol_govituvi\"]"
+ },
+ {
+  "id": "x452",
+  "xpath": "//android.widget.Button[2]"
+ },
+ {
+  "id": "x453",
+  "xpath": "//android.widget.TextView[@text=\"Jus Malifen\"]"
+ },
+ {
+  "id": "x454",
+  "xpath": "//*[@text=\"bell\u0007\"]"
+ },
+ {
+  "id": "x455",
+  "xpath": "//*[@content-desc=\"Open menu\"]"
+ },
+ {
+  "id": "x456",
+  "xpath": "//UIATableCell[@name='Wi-Fi']"
+ },
+ {
+  "id": "x457",
+  "xpath": "/hierarchy/android.widget.Toast[1]"
+ },
+ {
+  "id": "x458",
+  "xpath": "//androidx.compose.ui.platform.ComposeView/android.view.View/android.view.View/android.view.View[5]/android.view.View[3]/android.widget.Button"
+ },
+ {
+  "id": "x459",
+  "xpath": "//*[@resource-id=\"nimepiho.wawilomode.com.SakOmore:id/fibuhiLuca\"]"
+ },
+ {
+  "id": "x460",
+  "xpath": "//android.widget.TextView[@text='Mezi Suresoz']"
+ },
+ {
+  "id": "x461",
+  "xpath": "//android.widget.CheckedTextView[@resource-id=\"android:id/text1\" and @text=\"12\"]"
+ },
+ {
+  "id": "x462",
+  "xpath": "//android.widget.Button[@text=\"OK\" and @enabled=\"true\"]"
+ },
+ {
+  "id": "x463",
+  "xpath": "//*[contains(@text,\"Total\")]"
+ },
+ {
+  "id": "x464",
+  "xpath": "//*[starts-with(@text,\"Total\")]"
+ },
+ {
+  "id": "x465",
+  "xpath": "//*[lower-case(@content-desc)=\"nudi joniheta\"]"
+ },
+ {
+  "id": "x466",
+  "xpath": "//android.widget.ImageView[1]"
+ },
+ {
+  "id": "x467",
+  "xpath": "//android.view.View[@content-desc=\"Hido\"]"
+ },
+ {
+  "id": "x468",
+  "xpath": "//android.widget.FrameLayout[@content-desc=\"Nud Mabetim\"]"
+ },
+ {
+  "id": "x469",
+  "xpath": "//android.widget.RelativeLayout[3]"
+ },
+ {
+  "id": "x470",
+  "xpath": "//*[@label=\"Hama Hebegu\"]"
+ },
+ {
+  "id": "x471",
+  "xpath": "//android.widget.ImageButton[@content-desc=\"Daheci to QR Vikifa\"]"
+ },
+ {
+  "id": "x472",
+  "xpath": "(//android.view.View[@resource-id='cuzoces-moduvu']/descendant::android.widget.TextView)[1]"
+ },
+ {
+  "id": "x473",
+  "xpath": "//*[@resource-id=\"nimepiho.wawilomode.com.SakOmore:id/mifawuni_fijize_ketodasi_jus_nimepiho\"]"
+ },
+ {
+  "id": "x474",
+  "xpath": "//android.view.ViewGroup[@resource-id=\"com.jegifoni.android:id/gori_to_dofiwa_tinen_mona_view\"]"
+ },
+ {
+  "id": "x475",
+  "xpath": "//android.widget.Button[@text='Jabi Faf']"
+ },
+ {
+  "id": "x476",
+  "xpath": "//*[@resource-id=\"com.lazevikema.wid:id/tv_waw_vigoc\" and @text=\"订阅/条加号\"]"
+ },
+ {
+  "id": "x477",
+  "xpath": "//android.widget.TextView[@resource-id='joc.mehaka.nifi.uk.huticige:id/piwocof' and @index='2']"
+ },
+ {
+  "id": "x478",
+  "xpath": "//android.widget.TextView[@resource-id=\"com.cumojejove.monukekep.socetomub.webefuf.zilolojisi:id/bedu\" and @text=\"Gisopeli 2\"]"
+ },
+ {
+  "id": "x479",
+  "xpath": "//*[@label='bofefeb2']"
+ },
+ {
+  "id": "x480",
+  "xpath": "//*[contains(@label,\"q?\") or contains(@value, \"50%\")]"
+ },
+ {
+  "id": "x481",
+  "xpath": "//*[contains(@resource-id, 'nenovi') and contains(@resource-id, 'woji')]"
+ },
+ {
+  "id": "x482",
+  "xpath": "//android.widget.TextView[@text='ञमओहलसनॉ']"
+ },
+ {
+  "id": "x483",
+  "xpath": "//android.widget.SeekBar[@content-desc=\"Curu\"]"
+ },
+ {
+  "id": "x484",
+  "xpath": "//*[contains(text(),\"Total\")]"
+ },
+ {
+  "id": "x485",
+  "xpath": "(//android.widget.RadioButton/android.widget.TextView[@text])[1]"
+ },
+ {
+  "id": "x486",
+  "xpath": "//android.widget.TextView[@text=\"We gori per a hadi\"]"
+ },
+ {
+  "id": "x487",
+  "xpath": "//*[text()='Jina']"
+ },
+ {
+  "id": "x488",
+  "xpath": "//*[@text=\"应电管理\"]"
+ },
+ {
+  "id": "x489",
+  "xpath": "//*[@resource-id=\"\"]"
+ },
+ {
+  "id": "x490",
+  "xpath": "//android.widget.ImageView[@content-desc=\"Ziha\"]"
+ },
+ {
+  "id": "x491",
+  "xpath": "//*[@resource-id='com.rusezu.android.vowu.nola:id/rej_bibok']//*[@password='false']"
+ },
+ {
+  "id": "x492",
+  "xpath": "//*[@resource-id!=\"\"][@clickable=\"true\"]"
+ },
+ {
+  "id": "x493",
+  "xpath": "//*[@resource-id=\"danob-zokubawe-vekar\"]"
+ },
+ {
+  "id": "x494",
+  "xpath": "//android.widget.FrameLayout[@content-desc=\"Bedo\" or @content-desc=\"Cavape\"]"
+ },
+ {
+  "id": "x495",
+  "xpath": "//android.widget.CheckedTextView[@text='Bafor JOC vowu']"
+ },
+ {
+  "id": "x496",
+  "xpath": "//android.widget.TextView[@text='्ञऐञहरश']"
+ },
+ {
+  "id": "x497",
+  "xpath": "(//android.widget.TextView[@text and @text!=\"\"])[2]"
+ },
+ {
+  "id": "x498",
+  "xpath": "//*[@resource-id='com.kuz.android.puvobizil:id/widget_gowomoc']"
+ },
+ {
+  "id": "x499",
+  "xpath": "//android.widget.TextView[@resource-id=\"com.cumojejove.monukekep.socetomub.webefuf.zilolojisi:id/bedu\" and @text=\"Rah 4\"]"
+ },
+ {
+  "id": "x500",
+  "xpath": "//android.widget.Button[@resource-id='android:id/button2' and @text='NO, LETIFA.']"
+ },
+ {
+  "id": "x501",
+  "xpath": "//android.widget.TextView[@resource-id=\"com.cumojejove.monukekep.socetomub.webefuf.zilolojisi:id/bedu\" and @text=\"Gisopeli 5\"]"
+ },
+ {
+  "id": "x502",
+  "xpath": "//android.widget.ImageView[@content-desc=\"Go ziha\"]"
+ },
+ {
+  "id": "x503",
+  "xpath": "(//*[@text=\"Add\"])[1]"
+ },
+ {
+  "id": "x504",
+  "xpath": "//android.widget.Button[@text='Vufas gofofin rulola Melacomofej gofofin rulola bil mevoha calule']"
+ },
+ {
+  "id": "x505",
+  "xpath": "//*[@text=\"文件\"]"
+ },
+ {
+  "id": "x506",
+  "xpath": "//*[@data-testid=\"daheci-hahab-dofiwa\"]"
+ },
+ {
+  "id": "x507",
+  "xpath": "//*[contains(@text, '视频')]"
+ },
+ {
+  "id": "x508",
+  "xpath": "//*[@text='If I honehi or femuh my wiconoleje to cikomom, my waris tac fej garosu.']"
+ },
+ {
+  "id": "x509",
+  "xpath": "//*[@text=\"银行即\"]"
+ },
+ {
+  "id": "x510",
+  "xpath": "(//*[@id=\"jus_vobuhaha\"])"
+ },
+ {
+  "id": "x511",
+  "xpath": "//*[starts-with(@content-desc, \"DUW muvaf on\")]"
+ },
+ {
+  "id": "x512",
+  "xpath": "//android.widget.ImageView[@content-desc='Ad roviju'] | "
+ },
+ {
+  "id": "x513",
+  "xpath": "//android.widget.TextView[@resource-id=\"android:id/title\" and @text=\"Jubajev\"]"
+ },
+ {
+  "id": "x514",
+  "xpath": "//android.widget.Button[@resource-id='android:id/button1' and @text='OK']"
+ },
+ {
+  "id": "x515",
+  "xpath": "//android.widget.EditText[@resource-id=\"HAP__TisanoKos\"]"
+ },
+ {
+  "id": "x516",
+  "xpath": "//*[@text='Bomu jedogun']"
+ },
+ {
+  "id": "x517",
+  "xpath": "//android.widget.LinearLayout[@resource-id=\"com.android.johifa:id/gotaz_bev_laru_neno_id\"]"
+ },
+ {
+  "id": "x518",
+  "xpath": "//*[@resource-id=\"com.android.johifa:id/waw_copu_detiweku_view\"]"
+ },
+ {
+  "id": "x519",
+  "xpath": "//android.widget.TextView[@text='Mezi Sazejew']"
+ },
+ {
+  "id": "x520",
+  "xpath": "/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.view.ViewGroup/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.FrameLayout/androidx.compose.ui.platform.ComposeView/android.view.View/android.view.View/android.view.View[1]/android.view.View/android.widget.EditText[1]"
+ },
+ {
+  "id": "x521",
+  "xpath": "//*[contains(@text, '转发')]"
+ },
+ {
+  "id": "x522",
+  "xpath": "//android.widget.EditText[@text=\"Latike's Bedu\"]"
+ },
+ {
+  "id": "x523",
+  "xpath": "/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.widget.Button"
+ },
+ {
+  "id": "x524",
+  "xpath": "//android.widget.ImageButton[@content-desc=\"Woji\"]"
+ },
+ {
+  "id": "x525",
+  "xpath": "//android.widget.LinearLayout[ends-with(@text, \"Jikuviwa Gaku\")]/android.widget.FrameLayout/android.widget.TextView"
+ },
+ {
+  "id": "x526",
+  "xpath": "/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.RelativeLayout/android.widget.LinearLayout/android.widget.LinearLayout/android.widget.TextView[1]"
+ },
+ {
+  "id": "x527",
+  "xpath": "/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.view.ViewGroup/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.FrameLayout/androidx.compose.ui.platform.ComposeView/android.view.View/android.view.View/android.view.ViewGroup/android.webkit.WebView/android.webkit.WebView/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View[2]/android.view.View/android.view.View[2]/android.widget.EditText"
+ },
+ {
+  "id": "x528",
+  "xpath": "//android.view.View[@content-desc=\"Nud Gatur Dofiwa\"]"
+ },
+ {
+  "id": "x529",
+  "xpath": "//descendant::android.widget.Button"
+ },
+ {
+  "id": "x530",
+  "xpath": "//joc.mehaka.nifi.uk.huticige:id/chip_item[@index='1']"
+ },
+ {
+  "id": "x531",
+  "xpath": "//android.widget.FrameLayout[@resource-id=\"android:id/content\"]/android.widget.FrameLayout/android.widget.FrameLayout/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View[1]/android.view.View[2]/android.widget.ImageView[last()]"
+ },
+ {
+  "id": "x532",
+  "xpath": "//android.widget.TextView[@text=\"Кивят:\"]"
+ },
+ {
+  "id": "x533",
+  "xpath": "//*[contains(@text,\"本知司码\")]"
+ },
+ {
+  "id": "x534",
+  "xpath": "//android.widget.ImageButton[@content-desc=\"Nud hoci\"] | "
+ },
+ {
+  "id": "x535",
+  "xpath": "//*[contains(@text, \"@139.com\")]"
+ },
+ {
+  "id": "x536",
+  "xpath": "//android.widget.TextView[@text=\"Wakuruni Gupusepot\"]"
+ },
+ {
+  "id": "x537",
+  "xpath": "//android.widget.TextView[@text='1' and @index='1']"
+ },
+ {
+  "id": "x538",
+  "xpath": "//*[contains(@text,\".soc\")]"
+ },
+ {
+  "id": "x539",
+  "xpath": "//android.widget.TextView[@resource-id=\"com.cumojejove.monukekep.socetomub.webefuf.zilolojisi:id/bedu\" and @text=\"Dehib Rokoc 1\"]"
+ },
+ {
+  "id": "x540",
+  "xpath": "(//android.view.ViewGroup[@content-desc=\"popon_dofiwa_joniheta\"])[1]"
+ },
+ {
+  "id": "x541",
+  "xpath": "//*[@name=\"user01\"][contains(@label, \"user01\")]"
+ },
+ {
+  "id": "x542",
+  "xpath": "//android.widget.TextView[@resource-id='joc.mehaka.nifi.uk:id/piwocof' and @index='2']"
+ },
+ {
+  "id": "x543",
+  "xpath": "//android.view.ViewGroup[@resource-id=\"vorevik_nudi_hehib_marofod_vekar\"]"
+ },
+ {
+  "id": "x544",
+  "xpath": "//*[@text=\"使一退详式\"]"
+ },
+ {
+  "id": "x545",
+  "xpath": "//*[@resource-id=\"com.lazevikema.wid:id/rasowaw_misafa\"]"
+ },
+ {
+  "id": "x546",
+  "xpath": "//android.widget.TextView[@resource-id=\"com.cumojejove.monukekep.socetomub.webefuf.zilolojisi:id/bedu\" and @text=\"Zupo Bavic 14\"]"
+ },
+ {
+  "id": "x547",
+  "xpath": "//*[@text=1]"
+ },
+ {
+  "id": "x548",
+  "xpath": "//android.widget.FrameLayout[@resource-id=\"android:id/content\"]/android.widget.FrameLayout/android.widget.FrameLayout/android.view.View/android.view.View/android.view.View/android.view.View/android.widget.ImageView[4]"
+ },
+ {
+  "id": "x549",
+  "xpath": "//android.widget.TextView[@text=\"Nenovi votinane\"]"
+ },
+ {
+  "id": "x550",
+  "xpath": "//android.widget.FrameLayout[@resource-id=\"android:id/content\"]/android.widget.FrameLayout/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup[1]/android.view.ViewGroup/android.view.ViewGroup[2]/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup[1]/android.view.ViewGroup/android.view.ViewGroup[1]/android.view.ViewGroup"
+ },
+ {
+  "id": "x551",
+  "xpath": "//android.widget.TextView[@text=\"ွ်ြရနက\"]"
+ },
+ {
+  "id": "x552",
+  "xpath": "/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.view.ViewGroup/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.FrameLayout/androidx.compose.ui.platform.ComposeView/android.view.View/android.view.View/android.view.View[1]/android.view.View[2]/android.widget.TextView[2]"
+ },
+ {
+  "id": "x553",
+  "xpath": "//*[@label=\"dofiwa_hekufoki2\"]"
+ },
+ {
+  "id": "x554",
+  "xpath": "(//android.view.ViewGroup[@content-desc=\"gorihawafume_jemo\"])[1]"
+ },
+ {
+  "id": "x555",
+  "xpath": "//android.widget.TextView[@resource-id=\"com.cumojejove.monukekep.socetomub.webefuf.zilolojisi:id/bedu\" and @text=\"Cifu Tibo 5\"]"
+ },
+ {
+  "id": "x556",
+  "xpath": "(//android.view.View[@resource-id='jelu-tub-gowomoc']/descendant::android.view.View)[2]/child::android.widget.TextView[3]"
+ },
+ {
+  "id": "x557",
+  "xpath": "//*[@class=\"ng-kuhisicug ng-zupuhijo ng-besel tub-kuhisicug tub-zupuhijo tub-besel tub-zibac tub-zibac-dujezuzih in-jemo codujege\"]"
+ },
+ {
+  "id": "x558",
+  "xpath": "//android.widget.Button[@resource-id=\"android:id/button1\" and @text=\"OK\"]"
+ },
+ {
+  "id": "x559",
+  "xpath": "//*[@text=\"50.0\"]"
+ },
+ {
+  "id": "x560",
+  "xpath": "//*[@resource-id=\"com.lazevikema.wid:id/rasowaw_mifum_wev_wepejazuk\"]/android.widget.TextView"
+ },
+ {
+  "id": "x561",
+  "xpath": "//*[@text='VOVAWEDO']"
+ },
+ {
+  "id": "x562",
+  "xpath": "//*[@enabled=true()]"
+ },
+ {
+  "id": "x563",
+  "xpath": "//android.widget.ImageView[contains(lower-case(@content-desc), \"{sihenocesase.zesor()}\")] | "
+ },
+ {
+  "id": "x564",
+  "xpath": "(//android.widget.Button[@enabled=\"true\"])[3]"
+ },
+ {
+  "id": "x565",
+  "xpath": "//*[@resource-id='{zuvi.app_cerozis}:id/naj' or @resource-id='{zuvi.app_cerozis}:id/munInuv']"
+ },
+ {
+  "id": "x566",
+  "xpath": "//*[contains(@text,\"a\") and contains(@text,\"b\")]"
+ },
+ {
+  "id": "x567",
+  "xpath": "//*[ @text = 'OK' ]"
+ },
+ {
+  "id": "x568",
+  "xpath": "//*[not(@checked=\"true\")]"
+ },
+ {
+  "id": "x569",
+  "xpath": "//*[@content-desc=\"选抢行么\"]/../android.view.View/android.view.View[2]"
+ },
+ {
+  "id": "x570",
+  "xpath": "//*[@resource-id =\"com.lazevikema.wid:id/fiv_rubi_pumu\" and @text =\"制线群受\"]"
+ },
+ {
+  "id": "x571",
+  "xpath": "/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.EditText"
+ },
+ {
+  "id": "x572",
+  "xpath": "/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.view.ViewGroup/android.view.ViewGroup[2]/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup[3]/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup[3]/android.widget.Button/android.widget.TextView[2]"
+ },
+ {
+  "id": "x573",
+  "xpath": "//android.widget.TextView[@text='Hutag Hadi']"
+ },
+ {
+  "id": "x574",
+  "xpath": "//*[contains(@text,\".mp4\")]"
+ },
+ {
+  "id": "x575",
+  "xpath": ".//android.widget.Button"
+ },
+ {
+  "id": "x576",
+  "xpath": "//android.widget.CheckBox[@checked=\"false\"]"
+ },
+ {
+  "id": "x577",
+  "xpath": "//android.widget.TextView[@text=\"Tukani bepo savejat\"]"
+ },
+ {
+  "id": "x578",
+  "xpath": "//android.widget.Button[contains(@resource-id, \"nozuzepa-dofiwa\")]"
+ },
+ {
+  "id": "x579",
+  "xpath": "//*[@content-desc=\"popon_paci_bedu\"]"
+ },
+ {
+  "id": "x580",
+  "xpath": "//*[@resource-id=\"nimepiho.wawilomode.com.SakOmore:id/naj\"]"
+ },
+ {
+  "id": "x581",
+  "xpath": "//*[@content-desc and contains(@content-desc,\"menu\")]"
+ },
+ {
+  "id": "x582",
+  "xpath": "//android.widget.Button[@content-desc=\"lebitud-diguwekej-gurizi-dofiwa\"]"
+ },
+ {
+  "id": "x583",
+  "xpath": "//*[@text=\"所删应的\"]"
+ },
+ {
+  "id": "x584",
+  "xpath": "(//android.app.Dialog/descendant::android.view.View[3]/child::android.widget.Button)"
+ },
+ {
+  "id": "x585",
+  "xpath": "(//android.widget.Button)[position()=2]"
+ },
+ {
+  "id": "x586",
+  "xpath": "//*[@resource-id=\"com.lazevikema.wid:id/wezitOmodi\"]"
+ },
+ {
+  "id": "x587",
+  "xpath": "//android.widget.TextView[@text=\"Vece-Dejogo Sajocuda\"]"
+ },
+ {
+  "id": "x588",
+  "xpath": "//*[@text=\"Name\"]/following-sibling::*[1]"
+ },
+ {
+  "id": "x589",
+  "xpath": "//android.widget.TextView[@resource-id=\"com.cumojejove.monukekep.socetomub.webefuf.zilolojisi:id/bedu\" and @text=\"Zupo Bavic 6\"]"
+ },
+ {
+  "id": "x590",
+  "xpath": "//android.widget.LinearLayout[.//android.widget.TextView[@content-desc=\"Sihenocesase copu jemo\" and @text=\"v2.0\"]]//android.widget.TextView[@resource-id=\"cigolug.huso.refugocog:id/fasabowOtinUseh\" and @text=\"a+b\"]"
+ },
+ {
+  "id": "x591",
+  "xpath": "//*[@text=\"it's\"]"
+ },
+ {
+  "id": "x592",
+  "xpath": "//*[@text=\"A\"] | //*[@content-desc=\"B\"]"
+ },
+ {
+  "id": "x593",
+  "xpath": "//android.widget.Button[@content-desc=\"Dowawe\"]"
+ },
+ {
+  "id": "x594",
+  "xpath": "//*[@data-testid=\"wepac-ui-dofiwa\"]"
+ },
+ {
+  "id": "x595",
+  "xpath": "//android.widget.RelativeLayout[@index='0']/android.widget.TextView[@index='2']"
+ },
+ {
+  "id": "x596",
+  "xpath": "//*[contains(@text, '多选')]"
+ },
+ {
+  "id": "x597",
+  "xpath": "//android.widget.ImageButton[@resource-id=\"com.rusezu.android.VatewuZekoba:id/dosiwur_dofiwa\"]"
+ },
+ {
+  "id": "x598",
+  "xpath": "//android.view.ViewGroup[last()]//*[@resource-id=\"com.lazevikema.wid:id/depe_vigoc\"]"
+ },
+ {
+  "id": "x599",
+  "xpath": "//android.widget.TextView[@resource-id=\"com.cumojejove.monukekep.socetomub.webefuf.zilolojisi:id/bedu\" and @text=\"Zupo Bare 2\"]"
+ },
+ {
+  "id": "x600",
+  "xpath": "//android.widget.FrameLayout[@index='3']/android.view.ViewGroup[@index='0']/android.widget.ImageView[@index='0']"
+ },
+ {
+  "id": "x601",
+  "xpath": "//*[@text='Item 7']"
+ },
+ {
+  "id": "x602",
+  "xpath": "(//android.view.View[@resource-id='jelu-tub-gowomoc']/descendant::android.app.Dialog/descendant::android.view.View)[4]/child::android.widget.TextView"
+ },
+ {
+  "id": "x603",
+  "xpath": "//*[@text=\"欢输删建团队\"]"
+ },
+ {
+  "id": "x604",
+  "xpath": "//*[@text='Feguçevu']"
+ },
+ {
+  "id": "x605",
+  "xpath": "/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.RelativeLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.ScrollView/android.widget.LinearLayout/android.widget.TextView[7]"
+ },
+ {
+  "id": "x606",
+  "xpath": "//android.view.View[@resource-id=\"android:id/month_view\"]//android.view.View"
+ },
+ {
+  "id": "x607",
+  "xpath": "//*[@text=\"OK\"][@clickable=\"true\"]"
+ },
+ {
+  "id": "x608",
+  "xpath": "//*[@name='Zokubawe'][3]"
+ },
+ {
+  "id": "x609",
+  "xpath": "//android.widget.TextView[@text=\"Rusezu fekiduk jupele\"]"
+ },
+ {
+  "id": "x610",
+  "xpath": "//*[string-length(@text)=5]"
+ },
+ {
+  "id": "x611",
+  "xpath": "//*[@text='Bimugome']"
+ },
+ {
+  "id": "x612",
+  "xpath": "//android.widget.TextView[@resource-id=\"com.cumojejove.monukekep.socetomub.webefuf.zilolojisi:id/bedu\" and @text=\"Vehi Disuvud 8\"]"
+ },
+ {
+  "id": "x613",
+  "xpath": "//*[@content-desc=\"\"]"
+ },
+ {
+  "id": "x614",
+  "xpath": "//android.view.ViewGroup[@content-desc=\"kuva-Neno\"]/android.view.ViewGroup/android.widget.ImageView"
+ },
+ {
+  "id": "x615",
+  "xpath": "//android.widget.ImageView[@content-desc=\"Kataki lukup\"]"
+ },
+ {
+  "id": "x616",
+  "xpath": "//*[normalize-space(substring(@label,string-length(@label)-string-length('cahazi')+1))='cahazi']"
+ },
+ {
+  "id": "x617",
+  "xpath": "//android.view.ViewGroup[@resource-id=\"cukol-nud-hehib-gotaz-dofiwa\"]"
+ },
+ {
+  "id": "x618",
+  "xpath": "//*[contains(@text,\"Dejogo petis\")]"
+ },
+ {
+  "id": "x619",
+  "xpath": "//hierarchy/android.widget.FrameLayout[1]/android.widget.LinearLayout[1]/android.widget.FrameLayout[1]/android.widget.RelativeLayout[1]"
+ },
+ {
+  "id": "x620",
+  "xpath": "//*[@text=\"%s\"]"
+ },
+ {
+  "id": "x621",
+  "xpath": "//android.widget.Button[@text=\"Mow\"]"
+ },
+ {
+  "id": "x622",
+  "xpath": "//android.widget.TextView[@text='हपभगथोव डेचखपओरत']"
+ },
+ {
+  "id": "x623",
+  "xpath": "//*[@content-desc=\"popon_dofiwa_rizisi_setil\"]"
+ },
+ {
+  "id": "x624",
+  "xpath": "//android.widget.TextView[@text=\"3000\"]"
+ },
+ {
+  "id": "x625",
+  "xpath": "(//*[@resource-id=\"com.example.app:id/second\"]/descendant::android.widget.TextView)[3]"
+ },
+ {
+  "id": "x626",
+  "xpath": "//android.view.View[starts-with(lower-case(@content-desc), \"tucuhotub id:\")]"
+ },
+ {
+  "id": "x627",
+  "xpath": "//android.widget.TextView[@text='Zupibake']"
+ },
+ {
+  "id": "x628",
+  "xpath": "//*[@resource-id=\"android:id/content\"]//android.widget.ImageView\n"
+ },
+ {
+  "id": "x629",
+  "xpath": "(//android.view.ViewGroup[@content-desc=\"popon_dofiwa_kaki\"])[2]"
+ },
+ {
+  "id": "x630",
+  "xpath": "//*[@text=\"${name}\"]"
+ },
+ {
+  "id": "x631",
+  "xpath": "(//android.widget.ListView//android.widget.Button[@text=\"Add\"])[1]"
+ },
+ {
+  "id": "x632",
+  "xpath": "(//*[@text=\"Add\"])[last()]"
+ },
+ {
+  "id": "x633",
+  "xpath": "//*[@text=concat(\"Tot\",\"al\")]"
+ },
+ {
+  "id": "x634",
+  "xpath": "//*[@text='Hido LIB hadi']"
+ },
+ {
+  "id": "x635",
+  "xpath": "//android.widget.TextView[@resource-id=\"com.cumojejove.monukekep.socetomub.webefuf.zilolojisi:id/bedu\" and @text=\"Pot\"]"
+ },
+ {
+  "id": "x636",
+  "xpath": "//*[@name=\"OK\"]"
+ },
+ {
+  "id": "x637",
+  "xpath": "//android.widget.Button[@text='JOSA' and @index='1']"
+ },
+ {
+  "id": "x638",
+  "xpath": "//*[starts-with(@resource-id, \"com.example.app:id/item_7\")][descendant-or-self::*[@text=\"Settings\" or @content-desc=\"Next\"]]"
+ },
+ {
+  "id": "x639",
+  "xpath": "//android.widget.Button[@resource-id=\"android:id/button1\"]"
+ },
+ {
+  "id": "x640",
+  "xpath": "//android.widget.TextView[@text=\"Total\"]"
+ },
+ {
+  "id": "x641",
+  "xpath": "//android.widget.RadioButton/android.widget.TextView[contains(lower-case(@text), lower-case(\"Settings\"))]"
+ },
+ {
+  "id": "x642",
+  "xpath": "(//android.widget.TextView[@content-desc=\"popon_paci_guvosusu\"])[2]"
+ },
+ {
+  "id": "x643",
+  "xpath": "//android.widget.Button[@content-desc=\"Nud waw\"]"
+ },
+ {
+  "id": "x644",
+  "xpath": "//android.widget.TextView[@resource-id=\"com.cumojejove.monukekep.socetomub.webefuf.zilolojisi:id/bedu\" and @text=\"Rosoci Tibo 4\"]"
+ },
+ {
+  "id": "x645",
+  "xpath": "//android.widget.TextView[@text=\"Fadut\"]"
+ },
+ {
+  "id": "x646",
+  "xpath": "//*[@text=\"制应团阅\"]"
+ },
+ {
+  "id": "x647",
+  "xpath": "//*[@focused=\"true\"]"
+ },
+ {
+  "id": "x648",
+  "xpath": "//*[@text=\"Yes\" or @text=\"OK\"]"
+ },
+ {
+  "id": "x649",
+  "xpath": "//*[@text=\"群知保\"]"
+ },
+ {
+  "id": "x650",
+  "xpath": "//*[@text=\"Grüße\"]"
+ },
+ {
+  "id": "x651",
+  "xpath": "//android.widget.TextView[@text=\"JEJUBUBI \"]"
+ },
+ {
+  "id": "x652",
+  "xpath": "//android.widget.TextView[@resource-id=\"com.example.app:id/bedu\" and @text=\"Settings\"]"
+ },
+ {
+  "id": "x653",
+  "xpath": "//*[contains(@resource-id,\":id/login\")]"
+ },
+ {
+  "id": "x654",
+  "xpath": "//*[@resource-id=\"com.lazevikema.wid:id/tv_gowomoc\" and @text=\"(x)\"]"
+ },
+ {
+  "id": "x655",
+  "xpath": "//*[@content-desc=\"Wokup\"]"
+ },
+ {
+  "id": "x656",
+  "xpath": "//android.widget.TextView"
+ },
+ {
+  "id": "x657",
+  "xpath": "//*[@package=\"com.example.app\"]"
+ },
+ {
+  "id": "x658",
+  "xpath": "//*[@text=\"OK\" and contains(@text,\"O\")]"
+ },
+ {
+  "id": "x659",
+  "xpath": "//*[translate(@text,\"ABCDEFGHIJKLMNOPQRSTUVWXYZ\",\"abcdefghijklmnopqrstuvwxyz\")=\"ok\"]"
+ },
+ {
+  "id": "x660",
+  "xpath": "//android.widget.TextView[@text='थ़य लभी']"
+ },
+ {
+  "id": "x661",
+  "xpath": "//android.widget.TextView[@text=\"NUD LEBITUD\"]"
+ },
+ {
+  "id": "x662",
+  "xpath": "//*[@resource-id=\"android:id/title\" and @text=\"Fecupun badus\"]"
+ },
+ {
+  "id": "x663",
+  "xpath": "//*[@resource-id=\"com.lazevikema.wid:id/copu_rojuno\"]"
+ },
+ {
+  "id": "x664",
+  "xpath": "//*[@text='Wusuguf']"
+ },
+ {
+  "id": "x665",
+  "xpath": "//*[@checked=\"true\"]"
+ },
+ {
+  "id": "x666",
+  "xpath": "//*[@text eq \"OK\"]"
+ },
+ {
+  "id": "x667",
+  "xpath": "//android.widget.TextView[@resource-id=\"com.cumojejove.monukekep.socetomub.webefuf.zilolojisi:id/bedu\" and @text=\"Wutem Rumum\"]"
+ },
+ {
+  "id": "x668",
+  "xpath": "//*[lower-case(@text)=\"ok\"]"
+ },
+ {
+  "id": "x669",
+  "xpath": "//android.widget.ImageView[@content-desc=\"Votinane\"]"
+ },
+ {
+  "id": "x670",
+  "xpath": "//*[@content-desc=\"请进允箱理名姓同\"]"
+ },
+ {
+  "id": "x671",
+  "xpath": "//androidx.recyclerview.widget.RecyclerView//android.widget.TextView[lower-case(@text)=lower-case(\"Ok\")]"
+ },
+ {
+  "id": "x672",
+  "xpath": "//*[upper-case(@text)=\"OK\"]"
+ },
+ {
+  "id": "x673",
+  "xpath": "//android.view.View[count(.//javaClass)=1]//javaClass[@text=\"50%\"]"
+ },
+ {
+  "id": "x674",
+  "xpath": "//*[@text=\"A\" and @text=\"B\"]"
+ },
+ {
+  "id": "x675",
+  "xpath": "//*[@resource-id=\"com.lazevikema.wid:id/rasowaw_bedu\" and @text =\"user01\"]"
+ },
+ {
+  "id": "x676",
+  "xpath": "//*[contains(@text,\"a\\b\")]"
+ },
+ {
+  "id": "x677",
+  "xpath": "//*[@clickable=\"true\"]"
+ },
+ {
+  "id": "x678",
+  "xpath": "//android.widget.TextView[@resource-id=\"com.cumojejove.monukekep.socetomub.webefuf.zilolojisi:id/bedu\" and @text=\"Zupo Bare 6\"]"
+ },
+ {
+  "id": "x679",
+  "xpath": "//*[@content-desc=\"发布\"]"
+ },
+ {
+  "id": "x680",
+  "xpath": "//*[@resource-id]"
+ }
+]
