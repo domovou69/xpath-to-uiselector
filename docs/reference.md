@@ -21,12 +21,17 @@ Node.js 20 or newer, no dependencies. The path is a folder or one file; with no 
 | Flag | Effect |
 | --- | --- |
 | `--dry-run` | Preview only, the default. Wins over `--write` |
-| `--write` | Rewrite the files in place. Needs an explicit path. There is no undo: run it on a clean working tree and let `git diff` be the undo |
+| `--write` | Rewrite the files in place. Needs an explicit path. There is no undo: run it on a clean working tree and let `git diff` be the undo. Each file is written to a temporary file and renamed over the original, so an interrupted write leaves it whole |
+| `--exact` | Change only locators converted with no warning. Close forms and runtime values are left as they are and reported with their `UiSelector` (`skipped_not_exact`) |
 | `--json` | Write `xpath-to-uiselector.report.json` in the current directory. Implies `--quiet` |
 | `--quiet` | No per-match diff and banner; the summary still prints |
 | `-h`, `--help` / `-V`, `--version` | Help / version |
 
 An unknown flag is an error, so a typo such as `--wirte` does not silently preview.
+
+Exit code: `0` done, `1` bad arguments or a missing path, `2` some files or folders could not be read or written.
+They are printed on stderr as `[error]` and listed under `errors` in the JSON report; the rest of the tree is still
+scanned. A file that is not valid UTF-8 and a symlink are skipped on purpose and do not count as errors.
 
 ## What it scans
 
@@ -256,10 +261,12 @@ elements at the default settings (SRV-12, SEL-07). Details: [coverage-report.md]
 ```json
 {
   "mode": "dry-run",
+  "exact": false,
   "path": "/abs/path/tests",
   "stats": { "filesScanned": 5, "locatorsFound": 13, "locatorsUpdated": 10, "warnings": 3,
              "skipped": { "ios": 0, "xpathStrategy": 0, "unknownStrategy": 1, "validationFailed": 0,
-                          "unsupportedLogic": 2, "notXpath": 0, "noChangeNeeded": 0 } },
+                          "unsupportedLogic": 2, "notXpath": 0, "noChangeNeeded": 0,
+                          "notExact": 0 } },
   "updated": [
     { "file": "test_cart.py", "old": "//*[@resource-id=\"com.shop:id/list\"]//android.widget.CheckBox",
       "new": "new UiSelector().resourceId(\"com.shop:id/list\").childSelector(new UiSelector().className(\"android.widget.CheckBox\"))",
@@ -272,6 +279,9 @@ elements at the default settings (SRV-12, SEL-07). Details: [coverage-report.md]
     { "file": "LoginPage.java", "locator": "//*[@text='%s']", "status": "skipped_unknown_strategy",
       "reason": "no strategy call around the string: …", "uiselector": "new UiSelector().text(\"%s\")",
       "warning": "a runtime value goes into a string literal: a \" or a trailing \\ in it breaks the UiSelector" }
+  ],
+  "errors": [
+    { "path": "/abs/path/tests/private", "error": "cannot read directory: EACCES" }
   ]
 }
 ```
@@ -282,6 +292,7 @@ elements at the default settings (SRV-12, SEL-07). Details: [coverage-report.md]
 | `skipped_unsupported_logic` | No exact `UiSelector`; `reason` says why, `hint` (when there is one) how to rewrite it by hand |
 | `skipped_unknown_strategy` | Converted, but not written: no strategy call around the string; `uiselector` holds the result |
 | `skipped_xpath_strategy` | Converted, but not written: the call's client has no UiAutomator strategy; `uiselector` holds the result |
+| `skipped_not_exact` | Converted with a `warning`, not written because of `--exact`; `uiselector` holds the result |
 | `skipped_validation_failed` | The `UiSelector` would not parse, or cannot be written in that kind of literal |
 | `skipped_ios` | iOS locator |
 | `skipped_not_xpath` | Not an XPath (listed in the report, not printed) |

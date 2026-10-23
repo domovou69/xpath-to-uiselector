@@ -6,7 +6,7 @@
 // rewrites, refusals — independent of the conversion rules. The rules are
 // tested on the converter itself: every S case (audit/spec/score.js) plus the
 // CONVERTER rows below.
-const { mkdtempSync, mkdirSync, writeFileSync, readFileSync, rmSync, symlinkSync } = require('fs');
+const { mkdtempSync, mkdirSync, writeFileSync, readFileSync, rmSync, symlinkSync, chmodSync, statSync, readdirSync } = require('fs');
 const { tmpdir } = require('os');
 const { join } = require('path');
 const { execFileSync } = require('child_process');
@@ -103,6 +103,8 @@ const FLAGS_CASES = [
   { argv: ['--nope', '-x'], expect: { unknown: ['--nope', '-x'] } },
   { argv: ['./src', '-h'], expect: { positionals: ['./src'] } },
   { argv: ['./src', '--write', '--json'], expect: { unknown: [] } },
+  { argv: ['./src'], expect: { exact: false } },
+  { argv: ['./src', '--write', '--exact'], expect: { exact: true, dryRun: false, unknown: [] } },
 ];
 
 console.log('— FLAGS —');
@@ -445,7 +447,65 @@ console.log('— SCANNER: walkDir —');
   }
 }
 
+// An unreadable folder is reported through onError and the walk goes on.
+// chmod has no effect for root or on Windows, so the check runs only where
+// the folder really is unreadable.
+{
+  const root = makeTempRoot('uisel-walk-err-');
+  try {
+    mkdirSync(join(root, 'locked'));
+    writeFileSync(join(root, 'a.js'), '// a');
+    chmodSync(join(root, 'locked'), 0o000);
+    let locked = true;
+    try { readdirSync(join(root, 'locked')); locked = false; } catch {}
+    if (locked) {
+      const visited = [];
+      const errors = [];
+      const log = console.error;
+      console.error = () => {};
+      try {
+        walkDir(root, p => visited.push(p), (path, error) => errors.push({ path, error }));
+      } finally {
+        console.error = log;
+      }
+      if (visited.length === 1 && errors.length === 1 && errors[0].path === join(root, 'locked')
+        && errors[0].error.startsWith('cannot read directory')) ok();
+      else fail(`walkDir onError: visited ${JSON.stringify(visited)}, errors ${JSON.stringify(errors)}`);
+    }
+  } finally {
+    try { chmodSync(join(root, 'locked'), 0o755); } catch {}
+    rmSync(root, { recursive: true, force: true });
+  }
+}
+
 console.log('— SCANNER: processFile —');
+{
+  // --exact: a conversion with a warning is reported with its UiSelector, not written
+  const source = `const a = '(//android.widget.Button)[2]';\nconst b = '//android.widget.Button';\n`;
+  const { records, stats, after } = scan('a.js', source, { exact: true });
+  const skip = records.find(r => !r.changed);
+  if (stats.locatorsUpdated === 1 && stats.skipped.notExact === 1 && stats.warnings === 0
+    && after.includes(`'(//android.widget.Button)[2]'`) && !after.includes(`'//android.widget.Button'`)
+    && skip && skip.status === STATUS.SKIPPED_NOT_EXACT && skip.uiselector === OUT && skip.warning === 'close form') ok();
+  else fail(`--exact: stats ${JSON.stringify(stats)}, records ${JSON.stringify(records)}`);
+}
+{
+  // --write goes through a temporary file: the mode is kept and nothing is left behind
+  const root = makeTempRoot();
+  try {
+    const file = join(root, 'a.js');
+    writeFileSync(file, `const a = '//android.widget.Button';\n`);
+    chmodSync(file, 0o640);
+    const before = statSync(file).mode & 0o777;
+    processFile(file, { dryRun: false, quiet: true, convert: FAKE }, [], makeStats());
+    const files = readdirSync(root);
+    if (readFileSync(file, 'utf8').includes(OUT) && (statSync(file).mode & 0o777) === before
+      && files.length === 1) ok();
+    else fail(`atomic write: files ${JSON.stringify(files)}, mode ${(statSync(file).mode & 0o777).toString(8)}`);
+  } finally {
+    rmSync(root, { recursive: true, force: true });
+  }
+}
 {
   // dry-run: the file stays untouched even when locators convert
   const source = `const loc = '//android.widget.Button[@text="OK"]';`;
@@ -887,6 +947,50 @@ console.log('— CLI —');
     const b = runInFixture(['./missing']);
     if (a.status === 1 && b.status === 1) ok();
     else fail(`CLI refusals: unknown flag exit ${a.status}, missing path exit ${b.status}`);
+  }
+  // --exact keeps a close form and lists it in the report.
+  {
+    const root = makeTempRoot('uisel-cli-exact-');
+    try {
+      mkdirSync(join(root, 'tests'));
+      const file = join(root, 'tests', 'spec.js');
+      const src = 'const a = "//*[@resource-id=\'com.app:id/list\']//android.widget.CheckBox";\n';
+      writeFileSync(file, src);
+      execFileSync(process.execPath, [CLI, './tests', '--write', '--exact', '--json'], { cwd: root, stdio: 'pipe', timeout: 20000 });
+      const report = JSON.parse(readFileSync(join(root, 'xpath-to-uiselector.report.json'), 'utf8'));
+      if (readFileSync(file, 'utf8') === src && report.exact === true && report.updated.length === 0
+        && report.skipped[0].status === 'skipped_not_exact' && report.skipped[0].uiselector && report.errors.length === 0) ok();
+      else fail(`CLI --exact: report ${JSON.stringify(report)}`);
+    } finally {
+      rmSync(root, { recursive: true, force: true });
+    }
+  }
+  // An unreadable file: the rest is still scanned, the report lists it, exit 2.
+  {
+    const root = makeTempRoot('uisel-cli-err-');
+    try {
+      mkdirSync(join(root, 'tests'));
+      writeFileSync(join(root, 'tests', 'a.js'), SOURCE);
+      writeFileSync(join(root, 'tests', 'b.js'), SOURCE);
+      chmodSync(join(root, 'tests', 'b.js'), 0o000);
+      let locked = true;
+      try { readFileSync(join(root, 'tests', 'b.js')); locked = false; } catch {}
+      if (locked) {
+        let status = 0;
+        try {
+          execFileSync(process.execPath, [CLI, './tests', '--json'], { cwd: root, stdio: 'pipe', timeout: 20000 });
+        } catch (e) {
+          status = e.status;
+        }
+        const report = JSON.parse(readFileSync(join(root, 'xpath-to-uiselector.report.json'), 'utf8'));
+        if (status === 2 && report.stats.filesScanned === 1 && report.errors.length === 1
+          && report.errors[0].path.endsWith('b.js') && report.errors[0].error.startsWith('cannot read')) ok();
+        else fail(`CLI unreadable file: exit ${status}, report ${JSON.stringify(report)}`);
+      }
+    } finally {
+      try { chmodSync(join(root, 'tests', 'b.js'), 0o644); } catch {}
+      rmSync(root, { recursive: true, force: true });
+    }
   }
   // --version prints the package version.
   {

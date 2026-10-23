@@ -11,7 +11,8 @@ export type Status =
   | 'skipped_unknown_strategy'
   | 'skipped_unsupported_logic'
   | 'skipped_validation_failed'
-  | 'skipped_no_change';
+  | 'skipped_no_change'
+  | 'skipped_not_exact';
 
 export interface ConvertResult {
   /** The converted locator on success, or the original input when skipped. */
@@ -55,6 +56,8 @@ export interface ParsedFlags {
   json: boolean;
   quiet: boolean;
   dryRun: boolean;
+  /** Write only conversions with no warning (`--exact`). */
+  exact: boolean;
 }
 
 /** Parse CLI argv (without `node`/script) into the flag object the CLI uses. */
@@ -76,6 +79,8 @@ export interface ScanStats {
     unsupportedLogic: number;
     notXpath: number;
     noChangeNeeded: number;
+    /** Converted with a warning, left untouched under `--exact`. */
+    notExact: number;
   };
 }
 
@@ -95,13 +100,20 @@ export interface ScanRecord {
   hint?: string;
   /** The XPath strategy call around the string, as found (e.g. `AppiumBy.xpath(`). */
   strategy?: string | null;
-  /** The UiSelector for a converted locator that was not written (skipped_*_strategy). */
+  /** The UiSelector for a converted locator that was not written (skipped_*_strategy, skipped_not_exact). */
   uiselector?: string;
+}
+
+/** A file or folder that could not be read or written; the CLI exits 2. */
+export interface ScanError {
+  path: string;
+  error: string;
 }
 
 export interface MainResult {
   stats: ScanStats;
   records: ScanRecord[];
+  errors: ScanError[];
 }
 
 /**
@@ -123,4 +135,5 @@ export const STATUS: Readonly<{
   SKIPPED_UNSUPPORTED_LOGIC: 'skipped_unsupported_logic';
   SKIPPED_VALIDATION_FAILED: 'skipped_validation_failed';
   SKIPPED_NO_CHANGE: 'skipped_no_change';
+  SKIPPED_NOT_EXACT: 'skipped_not_exact';
 }>;
