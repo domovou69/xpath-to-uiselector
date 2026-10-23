@@ -2,6 +2,7 @@
 // browser, plus the page. No dependencies; the core is read, never copied into the repo.
 const fs = require('fs');
 const path = require('path');
+const { parsePlan, renderPlan } = require('./plan');
 
 const ROOT = path.join(__dirname, '..');
 const OUT = path.join(ROOT, '_site');
@@ -36,6 +37,8 @@ function build() {
   fs.mkdirSync(OUT, { recursive: true });
   fs.writeFileSync(path.join(OUT, 'converter.js'), bundle());
   for (const f of ['index.html', 'playground.js']) fs.copyFileSync(path.join(__dirname, f), path.join(OUT, f));
+  const plan = parsePlan(fs.readFileSync(path.join(ROOT, 'PLAN.md'), 'utf8'));
+  fs.writeFileSync(path.join(OUT, 'plan.html'), renderPlan(plan, fs.readFileSync(path.join(__dirname, 'plan.template.html'), 'utf8')));
   fs.writeFileSync(path.join(OUT, '.nojekyll'), '');
 }
 

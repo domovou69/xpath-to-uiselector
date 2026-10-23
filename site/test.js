@@ -36,8 +36,25 @@ assert.deepStrictEqual(plain(rows.map(r => r.xpath)), ['//a', '//b']);
 for (const e of ctx.Playground.EXAMPLES) {
   for (const r of convertLines(e.text, browser, bStatus)) assert.strictEqual(r.kind, e.label, `example ${e.label}: ${r.xpath}`);
 }
+// plan page: PLAN.md parses, every stage and backlog item is on the page, bad input throws
+const { parsePlan, renderPlan } = require('./plan');
+const md = fs.readFileSync(path.join(__dirname, '..', 'PLAN.md'), 'utf8');
+const plan = parsePlan(md);
+const page = fs.readFileSync(path.join(OUT, 'plan.html'), 'utf8');
+assert(plan.stages.length >= 7 && plan.backlog.length >= 1);
+assert(!/<!--[A-Z]+-->/.test(page), 'plan.html has an unfilled placeholder');
+assert.strictEqual((page.match(/<details /g) || []).length, plan.stages.length + plan.backlog.length);
+for (const s of plan.stages) assert(page.includes(`<span class="num">${s.n}</span>`), `stage ${s.n} missing`);
+const tpl = '<!--PROGRESS--><!--PCT--><!--STAGES--><!--BACKLOG-->';
+assert.throws(() => parsePlan(md.replace('| 0 | Scaffold and carry-over | done |', '| 0 | Scaffold and carry-over | finished |')), /unknown status/);
+assert.throws(() => parsePlan(md.replace('| Status |', '| State |')), /no "status" column/);
+assert.throws(() => parsePlan(md.replace('[done] npm publish', 'npm publish')), /backlog item 1/);
+assert(renderPlan({ stages: [{ n: '0', title: '<b>x</b>', status: 'done', result: 'a `c` [l](docs/x.md)', estimate: '1' }], backlog: [] }, tpl)
+  .includes('&lt;b&gt;x&lt;/b&gt;'), 'titles are escaped');
+assert(renderPlan({ stages: [{ n: '0', title: 't', status: 'done', result: '[l](docs/x.md)', estimate: '1' }], backlog: [] }, tpl)
+  .includes('https://github.com/domovou69/xpath-to-uiselector/blob/main/docs/x.md'));
 // the bundle carries the whole core and nothing of Node
 const src = fs.readFileSync(path.join(OUT, 'converter.js'), 'utf8');
 assert(!/require\(['"](?:fs|path|os|child_process)['"]\)/.test(src));
 fs.rmSync(OUT, { recursive: true, force: true });
-console.log(`playground: ${CASES.length} S cases match convertXpathToUiSelector (${skipped} with a line break checked on the bundle only)`);
+console.log(`plan page: ${plan.stages.length} stages, ${plan.backlog.length} backlog items\nplayground: ${CASES.length} S cases match convertXpathToUiSelector (${skipped} with a line break checked on the bundle only)`);
