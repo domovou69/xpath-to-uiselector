@@ -40,6 +40,7 @@ const attrs = {
     TV('Password', { b: { password: true } }),
     // C: string functions
     TV('v1.5'), TV('1x5'), n('android.widget.SeekBar', undefined, { range: 50 }), TV('50.0'),
+    n('android.widget.SeekBar', undefined, { range: 1.5 }), n('android.widget.SeekBar', undefined, { range: 21.5 }), TV('21 items'),
     n('android.widget.RadioButton', 'Radio'),
     // D: logic
     BTN('OK', { b: { clickable: true } }), BTN('OK', { b: { enabled: false } }), TV('Yes'), TV(undefined, { d: 'OK' }),

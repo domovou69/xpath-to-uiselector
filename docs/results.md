@@ -9,7 +9,7 @@ files (S, R, C, DRIFT, …): [how-it-works.md](how-it-works.md).
 | --- | --- |
 | Edge cases, written from the server and androidx sources | 150 of 150 correct (98 converted as expected, 52 correctly skipped), 0 wrong, 0 missed (`npm run spec:score`) |
 | Real-world locators, 20 open-source projects | 1169 converted XPaths (95 forms) on random and matrix screens: **0 wrong**; score 96.6 of 100, where a close match counts half |
-| Conversion rate | 72.9 % of 1645 Android XPath literals (exact 63.7 %); most skips have no exact `UiSelector` at all, and 347 of the 446 skips come with a rewrite hint |
+| Conversion rate | 72.9 % of 1645 Android XPath literals (exact 63.5 %); most skips have no exact `UiSelector` at all, and 347 of the 446 skips come with a rewrite hint |
 | Strength of the check | 99.5 % of 1718 deliberately wrong `UiSelector`s (mutants) were caught by the matrix screens (before the skipped-form coverage) |
 | Checked with | Appium 3.8.0, appium-uiautomator2-driver 8.7.0, UiAutomator2 server 10.6.6, androidx uiautomator 2.3.0; Android 16 emulator (API 36), and Android 17 (API 37) for the 134 edge cases and the matrix slice of the real-world fuzz before the skipped-form coverage, with the same results ([compare-api37.md](../audit/device/results/compare-api37.md)); default settings |
 

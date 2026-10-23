@@ -92,7 +92,9 @@ const CASES = [
     'findElements: XPath 8, UiSelector 1 to 3 (attrs, two runs); 13 vs 4 (tree); the first element is the same'),
   exact('C07', '//*[starts-with(@package,"com.example")]', r`${U}.packageNameMatches("(?s)com\.example.*")`, ['XP-02', 'SEL-03']),
   skip('C08', '//*[contains(@text,"")]', 'contains() with "" is true for every element', ['XP-02']),
-  exact('C09', '//*[contains(@text,"1.5")]', r`${U}.textMatches("(?s).*1\.5.*")`, ['XP-02', 'SEL-03'], 'range widgets expose their value as text in the page source only (SRV-06)'),
+  dev(close('C09', '//*[contains(@text,"1.5")]', r`${U}.textMatches("(?s).*1\.5.*")`, ['XP-02', 'SEL-03', 'SRV-06'],
+    'a range widget (SeekBar, ProgressBar) has a text only in the page source, so the XPath also finds it'),
+    'a SeekBar at 1.5 and one at 21.5 (attrs) match the XPath only; found by the LLM comparison pilot (audit/llm/)'),
   skip('C10', '//android.widget.SeekBar[@text="50.0"]', 'a range widget\'s text in the page source is its current value, not getText()', ['SRV-06']),
   skip('C11', '//*[@text="50.0"]', 'a float-shaped text may be a range widget\'s value, which only the page source has', ['SRV-06']),
   dev(skip('C12', '//*[contains(text(),"Total")]', 'the page source has no text nodes; on the device the XPath fails with a type error', ['XP-07']),
@@ -102,6 +104,8 @@ const CASES = [
   skip('C15', '//*[string-length(@text)=5]', 'string-length() has no UiSelector form', ['XP-01']),
   exact('C16', '//*[@text=concat("Tot","al")]', `${U}.text("Total")`, ['XP-01']),
   skip('C17', '//*[substring(@text,1,3)="Tot"]', 'substring() is not converted', ['XP-01']),
+  close('C18', '//*[starts-with(@text,"21")]', r`${U}.textMatches("(?s)21.*")`, ['XP-02', 'SRV-06'],
+    'a range widget (SeekBar, ProgressBar) has a text only in the page source, so the XPath also finds it'),
 
   // --- D: logic ---
   exact('D01', '//android.widget.Button[@text="OK" and @enabled="true"]', `${U}.className("android.widget.Button").text("OK").enabled(true)`, ['SEL-01', 'SEL-04']),

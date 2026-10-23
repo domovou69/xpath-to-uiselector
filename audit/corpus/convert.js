@@ -51,7 +51,7 @@ const WARNING_LABEL = {
 };
 const warningLabel = w => WARNING_LABEL[w] || (w.startsWith('a runtime value goes into index') ? 'runtime index'
   : w.startsWith('a runtime value') ? 'runtime value in a literal' : w.startsWith('a runtime class name') ? 'runtime class name'
-    : w.startsWith('a runtime position') ? 'runtime position' : w.startsWith('a range widget') ? 'range widget (@text!="")'
+    : w.startsWith('a runtime position') ? 'runtime position' : w.startsWith('a range widget') ? 'range widget (a number in the text)'
       : w.startsWith('Android regexes') ? 'lower-case()' : w);
 
 // Reasons that differ only in an attribute name are counted together.
