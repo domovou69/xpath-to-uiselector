@@ -142,11 +142,16 @@ function verdict(rows, warning, child) {
 // name (the page source calls them android.view.View, SRV-03); RANGE, the only XPath-only elements are range widgets
 // (their value is a text only in the page source, SRV-06); LINEBREAK, every element only one side finds has a
 // line break in a value, which only the generated traps have.
+// A toast left over from the `windows` screen (it stays in the source for a few seconds) can join another kind, so
+// toasts are set aside before the other checks.
 function known(r) {
-  const x = r.x.fp, u = r.u.fp;
-  const xOnly = x.filter(f => !u.includes(f)), uOnly = u.filter(f => !x.includes(f));
+  const u = r.u.fp;
+  let x = r.x.fp;
+  let xOnly = x.filter(f => !u.includes(f));
+  const uOnly = u.filter(f => !x.includes(f));
   if (!xOnly.length && JSON.stringify(u.filter(f => x.includes(f))) === JSON.stringify(x) && r.screen === 'deep') return 'DEPTH';
   if (!uOnly.length && xOnly.length && xOnly.every(f => f === '||||')) return 'TOAST';
+  if (!uOnly.length) { x = x.filter(f => f !== '||||'); xOnly = xOnly.filter(f => f !== '||||'); }
   if (!uOnly.length && xOnly.length && xOnly.every(f => f.startsWith('|')) && JSON.stringify(x.filter(f => !f.startsWith('|'))) === JSON.stringify(u)) return 'VIEW';
   if (!uOnly.length && xOnly.length && xOnly.every(f => /^android\.widget\.(?:SeekBar|ProgressBar|RatingBar)\|/.test(f)) && JSON.stringify(x.filter(f => u.includes(f))) === JSON.stringify(u)) return 'RANGE';
   if (xOnly.length + uOnly.length && [...xOnly, ...uOnly].every(f => f.includes('\n'))) return 'LINEBREAK';

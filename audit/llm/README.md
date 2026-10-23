@@ -2,7 +2,7 @@
 
 Claude models convert the same 680 XPaths as the converter when simply asked to. Their answers are compared with the
 converter's by text; every difference is then checked on the emulator. The comparison is indicative, not a benchmark:
-one run per model, no averaging. The iOS version of this comparison:
+one run per model and setting, no averaging. Result: [report.md](report.md). The iOS version of this comparison:
 [xpath-to-class-chain, audit/llm](https://github.com/domovou69/xpath-to-class-chain/tree/main/audit/llm).
 
 | File | Role |
@@ -14,9 +14,9 @@ one run per model, no averaging. The iOS version of this comparison:
 | `refresh-key.js` | `node audit/llm/refresh-key.js` refreshes only the converter's answers in `key.json` after a converter change; `input.json` and the sample stay as they are (re-running `build-input.js` would draw a new sample once `audit/spec/cases.js` changes) |
 | `run.js` | One run: `node audit/llm/run.js <haiku\|sonnet\|opus> <low\|medium\|high\|xhigh> <name>` → `runs/<model>-<effort>-<name>.json`. A fresh temp folder outside the repository with `input.json` only; tools Read + Write; no settings, hooks, MCP servers or saved session; the parent session's environment is not passed on. Time, tokens and cost come from the CLI's JSON result (`total_cost_usd` is the API price, not what a subscription is charged) |
 | `compare.js` | `node audit/llm/compare.js <run> [details]` → `scores/<run>.json` and a table: agree, both skip, different UiSelector, UiSelector only from the model, only from the converter, unparsed, missing. Calls are compared as a set, so their order does not matter |
-| `verify.js` | `node audit/llm/verify.js <run> [--resume]` checks every difference on the emulator: the XPath, the model's UiSelector and the converter's, on the edge-case screens (edge cases) or on generated random and matrix screens (real-world locators), plus a hand-made `llm` screen → `scores/<run>-device.json`. Needs what `audit/device/` needs; with Appium on 4724 set `APPIUM_URL`; `--summary` re-scores the saved lookups without a device. A difference only in range widgets (their value is a page-source text) is DRIFT, like the converter's close form; a UiSelector for an XPath the server rejects is WRONG |
+| `verify.js` | `node audit/llm/verify.js <run> [--resume]` checks every difference on the emulator: the XPath, the model's UiSelector and the converter's, on the edge-case screens (edge cases) or on generated random and matrix screens (real-world locators), plus a hand-made `llm` screen → `scores/<run>-device.json`. Needs what `audit/device/` needs; with Appium on 4724 set `APPIUM_URL`; `--summary` re-scores the saved lookups without a device. A difference only in range widgets (their value is a page-source text) is DRIFT, like the converter's close form; a UiSelector for an XPath the server rejects is WRONG. A toast left over from the previous screen is set aside before the other known differences |
 | `table.js` | `node audit/llm/table.js <run>`: one final verdict per id (same, CORRECT, DRIFT, WRONG, WRONG-LB, INVALID, missed, right skip) → table and `scores/<run>-final.json` |
-| `pilot-report.md` | Step 1: Opus 5.5 medium, no rules — results, the model's mistakes, converter findings |
+| [`report.md`](report.md) | The result: Opus, Sonnet and Haiku 5.5 (medium), each without and with the rules, against the converter; the models' mistakes, time and cost, converter findings |
 | `runs/`, `scores/` | Raw run records, per-id categories and device results |
 
 Requirements: the Claude Code CLI. `run.js` looks for the binary bundled with the VS Code extension; set `CLAUDE_BIN`

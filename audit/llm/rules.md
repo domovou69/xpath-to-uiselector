@@ -11,6 +11,9 @@ The XPath engine
   "a""b" (one " inside the literal) are valid: convert them. Never skip a
   locator for "XPath 1.0 has no ..." or "invalid syntax" when XPath 2.0 has it.
 - An XPath literal has no escapes: "a\b" is a, backslash, b.
+- Copy every character of a literal as is, invisible and private-use ones
+  (U+E000-U+F8FF icon glyphs) included. A literal that looks empty may not
+  be: check its characters before treating it as "".
 - @a=true() compares the attribute's "true"/"false" as a boolean:
   @enabled=true() -> enabled(true), never dropped.
 
@@ -39,17 +42,22 @@ The UiSelector string
 Steps and attributes
 - //X, .//X, /hierarchy//X, //descendant::X -> className("X"); //* ->
   new UiSelector() (never classNameMatches(".*")). //*[@class="X"] ->
-  className("X"). Keep the className of every step.
+  className("X"), whatever X looks like (a web CSS class value too: both
+  sides then match nothing). Keep the className of every step.
 - @text -> text, @content-desc -> description, @resource-id -> resourceId,
   @package -> packageName. Booleans (checked, checkable, clickable, enabled,
   focusable, focused, long-clickable, scrollable, selected) ="true"/"false" ->
-  checked(true) ...; not(@checked="true") -> checked(false). @index="2" ->
-  index(2).
+  checked(true) ...; not(@checked="true") -> checked(false) (any of the nine
+  booleans). @index="2", @index=2 -> index(2).
+- @content-desc="" -> description("") (an empty description is written and
+  UiSelector matches it; unlike @text="", see below).
 - Existence: [@text], [@index] and [@<boolean>] are always true: drop them.
-  [@content-desc] -> descriptionMatches("(?s).*") (not dropped: elements
-  without a description have none); [@resource-id], [@resource-id!=""] ->
-  resourceIdMatches("(?s).+") (".+", not ".*": ".*" also matches elements
-  without an id); [@content-desc!=""] -> descriptionMatches("(?s).+").
+  [@content-desc] -> descriptionMatches("(?s).*"), [@package] ->
+  packageNameMatches("(?s).*") (not dropped: elements without one have
+  none); [@resource-id], [@resource-id!=""] -> resourceIdMatches("(?s).+")
+  (".+", not ".*": ".*" also matches elements without an id);
+  [@content-desc!=""] -> descriptionMatches("(?s).+"); [@text!=""] ->
+  textMatches("(?s).+") (close: range widgets, below).
 - SKIP @bounds, @displayed, @password, @hint, @name, @resourceId,
   @contentDescription, @label, @value, @id, @type and web attributes: they
   have no criterion or are not in the page source. In a union, a branch on an
@@ -89,13 +97,21 @@ Text tests and regexes
 
 Values the page source does not share with UiSelector
 - Every element without text has text "" in the page source; UiSelector
-  sees no text at all. So SKIP @text="", contains(@text,""), any negation
-  (@a!="x", not(...); no lookahead workaround), and any text test that ""
-  passes.
+  sees no text at all. So SKIP @text="", contains(@text,""), and any text
+  test that "" passes.
+- Negation: only the forms above convert (not(@<boolean>="true"),
+  [@resource-id!=""], [@content-desc!=""], [@text!=""]). SKIP every other
+  one: @a!="x", not(contains(...)), not(@text=...); no lookahead workaround.
 - Range widgets (SeekBar, ProgressBar, RatingBar) have their value as text in
-  the page source only (1.5, 21.5, 50.0). SKIP @text="<a number>" and
-  @text=<number> (a numeric comparison). contains / starts-with / ends-with
-  on @text with digits or "." convert as usual.
+  the page source only, written as a Java float: 1.5, 21.5, 50.0, -1.0,
+  1.0E10, NaN, Infinity. SKIP @text equal to such a float string, and
+  @text=<number> without quotes (a numeric comparison). Whole numbers and
+  other digit strings in quotes (@text="1", "12", "0997544623") are never a
+  float string: convert them as usual. contains / starts-with / ends-with on
+  @text with digits or "." convert as usual.
+- Control characters (U+0000-U+001F other than tab, line feed, carriage
+  return) are not valid XML and are replaced in the page source: SKIP a
+  literal that has one (e.g. U+0007).
 - @resource-id="", @checked="TRUE", @index="02", @text="A" and @text="B"
   match nothing: SKIP.
 
