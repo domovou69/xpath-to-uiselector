@@ -1,6 +1,6 @@
 {
   "name": "xpath-to-uiselector",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "XPath to Android UiSelector converter for Appium (UiAutomator2): rewrites the locators that have an exact UiSelector, skips the rest with a reason",
   "license": "MIT",
   "author": "Mikhail Yesipchuk (https://github.com/domovou69)",
