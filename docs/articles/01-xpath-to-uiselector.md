@@ -1,7 +1,7 @@
 ---
 title: "XPath to Android UiSelector: can Claude 5.5 replace a converter?"
 published: false
-description: "I built a converter from Appium XPath locators to Android UiSelector, checked it on an emulator against 1645 real locators, then gave 680 of them to Claude Opus, Sonnet and Haiku 5.5. Without rules, 7–9 % of their UiSelectors were wrong."
+description: "I built an XPath → Android UiSelector converter, checked it on an emulator, and gave 680 locators to Claude Opus, Sonnet and Haiku 5.5. Without rules, 7–9 % of their answers were wrong."
 tags: android, appium, testing, ai
 # cover_image: upload img/cover.png (1000×420) in the dev.to editor
 ---
@@ -16,7 +16,7 @@ and the benchmark's REPORT.md (github.com/domovou69/appium-android-locator-bench
 ## TL;DR
 
 - **UiSelector is faster than XPath on Android:** it won all 30 benchmark cases. It saved 49 % per lookup at 100 elements and 12 % at 2000 (emulator). Below level 70 of the tree, XPath finds nothing at all.
-- **73 % of 1645 real XPath locators convert** to a `UiSelector`. Every converted one ran on an emulator with **0 wrong** results; the rest are skipped with a reason.
+- **73 % of 1645 real XPath locators convert** to a `UiSelector`. Every converted one ran on an emulator with **0 wrong** results; the rest are skipped with a reason. Strict by default; `--loose` gives simpler, case-insensitive forms.
 - **Claude 5.5 without rules: 47–63 wrong UiSelectors out of 680** (7–9 %). They look right and often pass a quick check. 65 of the 170 are `textContains`, which ignores case: wrong by a strict definition, and [open to debate](#is-textcontains-really-wrong). With a rules prompt, Opus and Sonnet made 1 and Haiku 4, and still no model beat the converter.
 
 ```bash
@@ -24,7 +24,7 @@ npx xpath-to-uiselector ./tests          # preview the diff
 npx xpath-to-uiselector ./tests --write  # apply it
 ```
 
-Or paste a single XPath into the [online converter](https://domovou69.github.io/xpath-to-uiselector/).
+Or paste your XPaths into the [online converter](https://domovou69.github.io/xpath-to-uiselector/).
 
 ---
 
@@ -50,7 +50,7 @@ On Android I did both in one go: I built [xpath-to-uiselector](https://github.co
 
 ## Why leave XPath on Android
 
-With the Appium UiAutomator2 driver, an XPath lookup first serializes the whole UI tree to XML and then runs the query on it. A `UiSelector` (the `-android uiautomator` strategy) walks the live tree and stops at the first match. I measured both in a [separate benchmark](https://github.com/domovou69/appium-android-locator-benchmark): 30 cases (10 XPath shapes × 3 targets), each found by both strategies, on screens of 100 to 2000 elements.
+With the Appium UiAutomator2 driver, an XPath lookup first serializes the whole UI tree to XML and then runs the query on it. A `UiSelector` (the `-android uiautomator` strategy) walks the live tree and, for `findElement`, stops at the first match. I measured both in a [separate benchmark](https://github.com/domovou69/appium-android-locator-benchmark): 30 cases (10 XPath shapes × 3 targets), each found by both strategies, on screens of 100 to 2000 elements.
 
 ![Time per lookup against elements in the tree, and the deepest element each strategy finds](img/speed-chart.png)
 
@@ -86,7 +86,7 @@ The simple rows above are what everyone converts correctly. The trouble is the m
 | `//ListView/TextView` | `…childSelector(…)` | That is any descendant. UiSelector has no direct child, so there is no exact form |
 | `ends-with(@text,"USD")` | "skip: XPath 2.0" | The driver runs XPath 2.0 unless `enforceXPath1` is set. `matches()`, `ends-with()`, `lower-case()` all work |
 
-None of these fails loudly. The first one is debatable (more on that [below](#is-textcontains-really-wrong)), but it changes what the locator finds without anyone noticing: the test passes today and taps another element when someone adds a "TOTAL" label above it.
+The server accepts all of these: no syntax error, just other elements (or none). The first one is debatable (more on that [below](#is-textcontains-really-wrong)), but it changes what the locator finds without anyone noticing: the test passes today and taps another element when someone adds a "TOTAL" label above it.
 
 ## What the converter does
 
@@ -117,7 +117,7 @@ The bare command only previews. `--write` saves, `--json` writes a report with e
 The order was facts first, the converter last:
 
 1. **The source code:** the UiAutomator2 server, androidx `UiSelector` and the XPath engine the driver uses, at pinned versions. That is where the case-insensitive `Contains` and the `\"`-only unescaping came from.
-2. **162 edge cases**, each with a hand-written expected answer, **ran on an Android emulator before the converter existed**: XPath and `UiSelector` side by side, comparing the elements they find. Where the device disagreed with me, the case was corrected.
+2. **170 edge cases** (6 of them for `--loose`), each with a hand-written expected answer, **ran on an Android emulator before the converter existed**: XPath and `UiSelector` side by side, comparing the elements they find. Where the device disagreed with me, the case was corrected.
 3. **1645 real XPath locators from 20 open-source Appium projects.** Every converted one (1169 distinct XPaths) ran on random screens built from its own values and on screens built to break each condition. **0 wrong.**
 4. **Checking the check:** 1718 deliberately wrong `UiSelector`s; the screens caught 99.5 % of them.
 
@@ -172,15 +172,15 @@ Each wrong answer is counted once, under the first mistake it shows.
 
 ### Is textContains really wrong?
 
-By the definition of this test, yes: `contains(@text,"Total")` does not find "TOTAL", and `textContains("Total")` does. The judge screens include such traps on purpose, so every one of the 65 answers found an extra element there.
+By the definition of this test, yes: `contains(@text,"Total")` does not find "TOTAL", and `textContains("Total")` does. The judge screens include such traps on purpose, so every one of the 65 answers found other elements than the XPath there.
 
 In a real app it is less clear. Many people who write `contains(@text,"Total")` probably never thought about case, and a case-insensitive locator survives a designer switching a label to upper case. The cost is the other side of the same thing: a migration of hundreds of locators quietly makes each one wider. Where a "TOTAL" header sits above the "Total: $5" line, `findElement` now returns the header. And a check that the label reads "Total" no longer catches a change to "TOTAL".
 
-That is why the converter is strict by default and `--loose` is a flag you turn on knowingly. If you count `textContains` as acceptable, the models made **27, 37 and 41** wrong answers without rules instead of 47, 60 and 63. Which side are you on? Tell me in the comments.
+That is why the converter is strict by default and `--loose` is a flag you turn on knowingly. In fact, 55 of the 65 answers are character for character what the converter writes with `--loose`; the other 10 are edge cases where `--loose` keeps the strict form (`substring()`, `matches()`, `text()`, a value with `\`). So without rules, Claude converts the way `--loose` does, only without saying that the locator became wider. If you count `textContains` as acceptable, the models made **at least 27, 37 and 41** wrong answers without rules instead of 47, 60 and 63. Which side are you on? Tell me in the comments.
 
 ### A prompt with rules
 
-As on iOS, most of these mistakes are about knowing the driver, not about intelligence. So I wrote them down as general rules (8 k characters, [`rules.md`](https://github.com/domovou69/xpath-to-uiselector/blob/main/audit/llm/rules.md), no answers for particular locators) and ran the three models again:
+As on iOS, most of these mistakes are about knowing the driver, not about intelligence. So I wrote them down as general rules (about 8,000 characters, [`rules.md`](https://github.com/domovou69/xpath-to-uiselector/blob/main/audit/llm/rules.md), no answers for particular locators) and ran the three models again:
 
 | Run | Correct | Close | Wrong | Skip | Missed | Score | Min | Cost |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
@@ -199,7 +199,7 @@ The comparison also tested the converter. The first Opus run found **one real co
 
 ## Android is harder than iOS
 
-On iOS, the same three Claude 5.5 models with a plain request made **4–7 wrong class chains out of 676**. On Android they made **47–63 out of 680**, roughly ten times as many, and still 27–41 if `textContains` counts as fine.
+On iOS, the same three Claude 5.5 models with a plain request made **4–7 wrong class chains out of 676**. On Android they made **47–63 out of 680**, roughly ten times as many, and still at least 27–41 if `textContains` counts as fine.
 
 My explanation: a class chain filter is an NSPredicate, a language the models know well, and its `CONTAINS` is case-sensitive unless you add `[c]`, just like XPath. `UiSelector` reuses XPath-like names with different meanings: `textContains` ignores case, the string literal is not Java, `instance` inside `childSelector` counts per container. Those are exactly the mistakes in the chart above. A model that "knows" UiSelector from Java code samples has seen these methods used, but rarely with the details that make them differ from XPath.
 
@@ -209,12 +209,12 @@ The two runs are not identical (iOS ran at `low` and `medium` effort, Android at
 
 Google plans to [deprecate and remove](https://developer.android.com/training/testing/other-components/ui-automator-legacy#ui-automator) `UiSelector` from UiAutomator, and the UiAutomator2 driver warns that every `-android uiautomator` locator will then stop working. No date or version is set: UiAutomator 2.4.0 (July 2026) still ships it, and the driver's server bundles 2.3.0. Appium has not announced a replacement yet ([appium-uiautomator2-driver#812](https://github.com/appium/appium-uiautomator2-driver/issues/812) is open).
 
-So converting today is a bet on a few more years of speed, not forever. XPath locators are not affected, and the converter only rewrites strings, so going back is a `git revert`. The repository has a monthly job that opens an issue when the driver changes a file the conversion rules depend on.
+So converting today is a bet that `UiSelector` stays until Appium moves on; no date is set yet. XPath locators are not affected, and the converter only rewrites strings, so going back is a `git revert`. The repository has a monthly job that opens an issue when the driver changes a file the conversion rules depend on.
 
 ## What I would use
 
 1. **The converter first.** It is free, offline, takes under a second for 680 locators, gives the same answer every time and made no wrong `UiSelector`.
-2. **A model only for what the converter skips**, with [the rules](https://github.com/domovou69/xpath-to-uiselector/blob/main/audit/llm/rules.md) in the prompt. Sonnet 5.5 at `medium` was as good as Opus for half the cost. Most skips have no exact `UiSelector` at all, so expect an explanation rather than a conversion.
+2. **A model only for what the converter skips**, with [the rules](https://github.com/domovou69/xpath-to-uiselector/blob/main/audit/llm/rules.md) in the prompt. With the rules, Sonnet 5.5 at `medium` scored the same as Opus for half the cost. Most skips have no exact `UiSelector` at all, so expect an explanation rather than a conversion.
 3. **Never paste a model's `UiSelector` into a test without running it** on the screen it is meant for. Without the rules, about one in twelve was wrong, and none of them looked wrong.
 4. **Run `--exact` first** if you want only conversions with no caveats, then review the close ones. Add `--loose` only if you want case-insensitive locators and accept that they find more.
 
@@ -222,7 +222,7 @@ If you use Claude Code, the repository has a [skill](https://github.com/domovou6
 
 ## Limits
 
-- **Emulator only.** Android 16 and 17, AOSP and Google Play images on an M1 Pro. No real phone, no older Android versions, no OEM builds.
+- **Emulator only.** Android 16 (and 17 for part of the checks), AOSP and Google Play images on an M1 Pro. No real phone, no older Android versions, no OEM builds.
 - **Default driver settings only.** `enforceXPath1`, `allowInvisibleElements` and similar settings change the answers.
 - **Speed was measured on one synthetic View-based app.** Compose and WebView screens were not measured.
 - **One run per model.** Two runs with the same rules gave Haiku different mistakes.
