@@ -18,7 +18,18 @@ npx xpath-to-uiselector ./tests --write    # save it
 npx xpath-to-uiselector ./tests --json     # report with every skip and warning
 ```
 
-Or try single XPaths in the [playground](https://domovou69.github.io/xpath-to-uiselector/), in the browser.
+Three modes, from strictest to widest; each previews until you add `--write`:
+
+| Mode | Command | Writes | Converts* |
+| --- | --- | --- | --- |
+| Exact only | `npx xpath-to-uiselector ./tests --exact` | only conversions that find the same elements as the XPath | 64 % |
+| Default | `npx xpath-to-uiselector ./tests` | exact ones, and close ones with a warning (`//A//B` → `childSelector`) | 73 % |
+| Loose | `npx xpath-to-uiselector ./tests --loose` | also simpler, wider forms with a warning: case-insensitive `textContains` / `textStartsWith`, `//A/B` → `childSelector` | 77 % |
+
+\* of 1645 real Android XPaths. The rest is skipped with a reason. `--exact` wins over `--loose`.
+
+Or try XPaths in the [playground](https://domovou69.github.io/xpath-to-uiselector/), in the browser (the `loose` box
+switches the mode).
 
 Point it at your Android Appium tests (Java, Kotlin, Python, JS/TS, C#, Ruby, JSON, YAML…). Node.js 20+, no
 dependencies. The strategy call is rewritten together with the string:
@@ -39,8 +50,7 @@ dependencies. The strategy call is rewritten together with the string:
   `ends-with()` / `matches()`, `or` on one attribute, `(//X)[n]`, `(//A//B)[1]`, existence tests such as `[@text]`.
 - **Warns** where only a close form exists, such as `//A//B` → `childSelector`. `--exact` leaves these alone.
 - **Strict by default:** `contains(@text,"Total")` becomes `textMatches("(?s).*Total.*")`, case-sensitive like the
-  XPath. `--loose` gives simpler, wider forms instead (`textContains`, which ignores case; `childSelector` for a
-  direct child), each with a warning.
+  XPath. `--loose` writes `textContains` instead, which ignores case (see the modes above).
 - **Skips** the rest with a reason, and most with a `hint` on how to rewrite it by hand: direct child `//A/B`, sibling
   positions, `/hierarchy/…` paths, parent and sibling axes, and more.
 
