@@ -30,7 +30,7 @@ const write = (name, s) => fs.writeFileSync(path.join(out, name), s);
   const y = (ms) => Y0 - (ms / 1200) * (Y0 - Y1);
   let b = '';
   b += t(40, 48, 'Time per element lookup vs elements in the tree', { size: 22, weight: 600 });
-  b += t(40, 76, 'Emulator, not a phone: Android 16 (AOSP, API 36) on an Apple M1 Pro', { fill: C.ink2, weight: 600 });
+  b += t(40, 76, 'Emulator: Android 16 (AOSP, API 36) on an Apple M1 Pro', { fill: C.ink2, weight: 600 });
   b += t(40, 98, 'Appium 3.8.0, UiAutomator2 driver 8.7.0 (server 10.6.6), default settings · 30 cases per size, median of 3 runs', { fill: C.ink2, size: 14 });
   b += '<g transform="translate(0,24)">';
   // legend
