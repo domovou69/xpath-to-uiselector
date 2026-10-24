@@ -72,7 +72,7 @@ locators are not affected. The monthly [upstream watch](audit/upstream/README.md
 - [How it works](docs/how-it-works.md): diagrams of the converter, how it was checked, and the monthly upstream watch
 - [Results](docs/results.md): scores, versions checked, the [coverage report](audit/coverage-report.md)
 - [Claude Code skill](.claude/skills/xpath-to-uiselector/SKILL.md): runs the converter and reviews the skips
-- [Article](docs/articles/README.md): the dev.to post on the converter and Claude 5.5 against it
+- [Article](https://dev.to/mikhail_yesipchuk/xpath-to-android-uiselector-can-claude-55-replace-a-converter-g75) on dev.to: the converter and Claude 5.5 against it ([source](docs/articles/README.md))
 
 iOS counterpart: [xpath-to-class-chain](https://github.com/domovou69/xpath-to-class-chain).
 
