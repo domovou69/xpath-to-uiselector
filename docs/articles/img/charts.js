@@ -30,7 +30,9 @@ const write = (name, s) => fs.writeFileSync(path.join(out, name), s);
   const y = (ms) => Y0 - (ms / 1200) * (Y0 - Y1);
   let b = '';
   b += t(40, 48, 'Time per element lookup vs elements in the tree', { size: 22, weight: 600 });
-  b += t(40, 76, 'Android 16 emulator, Appium UiAutomator2 driver, 30 cases per size, median of 3 runs, default settings', { fill: C.ink2 });
+  b += t(40, 76, 'Emulator, not a phone: Android 16 (AOSP, API 36) on an Apple M1 Pro', { fill: C.ink2, weight: 600 });
+  b += t(40, 98, 'Appium 3.8.0, UiAutomator2 driver 8.7.0 (server 10.6.6), default settings · 30 cases per size, median of 3 runs', { fill: C.ink2, size: 14 });
+  b += '<g transform="translate(0,24)">';
   // legend
   b += `<line x1="40" y1="104" x2="62" y2="104" stroke="${C.xpath}" stroke-width="3" stroke-linecap="round"/>` + t(70, 109, 'XPath', { fill: C.ink2 });
   b += `<line x1="130" y1="104" x2="152" y2="104" stroke="${C.uis}" stroke-width="3" stroke-linecap="round"/>` + t(160, 109, 'UiSelector', { fill: C.ink2 });
@@ -73,7 +75,8 @@ const write = (name, s) => fs.writeFileSync(path.join(out, name), s);
   b += bar(DX + 170, 100, C.uis, 'UiSelector');
   b += t(DX, DY0 + 56, 'XPath finds nothing below level 66;', { fill: C.ink2, size: 14 });
   b += t(DX, DY0 + 76, 'UiSelector found every marker.', { fill: C.ink2, size: 14 });
-  write('speed-chart.svg', svg(940, 520, 'Time per element lookup vs elements in the tree, XPath and UiSelector', b));
+  b += '</g>';
+  write('speed-chart.svg', svg(940, 544, 'Time per element lookup vs elements in the tree, XPath and UiSelector', b));
 }
 
 // 2. Claude 5.5 runs: score (% of the converter) vs cost per run, no rules and with rules.
