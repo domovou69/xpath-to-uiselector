@@ -13,7 +13,7 @@
 const { existsSync, readFileSync, statSync } = require('fs');
 const { dirname, join, resolve } = require('path');
 
-const USAGE = `Usage: convert.js [--file <list> | --stdin | --scan <file-or-dir>] [locator ...]`;
+const USAGE = `Usage: convert.js [--loose] [--file <list> | --stdin | --scan <file-or-dir>] [locator ...]`;
 const NAME = 'xpath-to-uiselector';
 
 // Where the engine comes from, in order: an explicit checkout, the repository
@@ -70,7 +70,7 @@ function convertOne(input, lib, uiselector) {
   if (input.includes('XCUIElementType')) {
     return { ...entry, status: STATUS.SKIPPED_IOS, reason: 'iOS locator' };
   }
-  const r = convertXpathToUiSelector(input);
+  const r = convertXpathToUiSelector(input, { loose: LOOSE });
   const out = { ...entry, status: r.status };
   if (r.status === STATUS.SUCCESS) out.uiselector = r.locator;
   if (r.reason) out.reason = r.reason;
@@ -82,7 +82,7 @@ function convertOne(input, lib, uiselector) {
 function scan(target, scanner) {
   const records = [];
   const stats = scanner.makeStats();
-  const opts = { dryRun: true, quiet: true };
+  const opts = { dryRun: true, quiet: true, loose: LOOSE };
   if (statSync(target).isDirectory()) {
     scanner.walkDir(target, f => scanner.processFile(f, { ...opts, rootDir: target }, records, stats));
   } else {
@@ -100,6 +100,9 @@ function scan(target, scanner) {
   });
 }
 
+// --loose: the engine's loose mode (wider forms, each with a warning); only when the user asks for it
+let LOOSE = false;
+
 function main(argv) {
   const args = [...argv];
   const lines = [];
@@ -107,6 +110,7 @@ function main(argv) {
   while (args.length) {
     const a = args.shift();
     if (a === '-h' || a === '--help') { console.log(USAGE); return 0; }
+    if (a === '--loose') { LOOSE = true; continue; }
     if (a === '--file') {
       const f = args.shift();
       if (!f) { console.error(USAGE); return 2; }

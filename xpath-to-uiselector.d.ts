@@ -39,6 +39,13 @@ export interface ConvertOptions {
    * position `(//X)[${i}]` converts only through it, to `instance(${i - 1})`.
    */
   decrement?: Map<string, string>;
+  /**
+   * Loose mode (`--loose`): simpler, wider forms, each with a warning. contains() / starts-with() on text and
+   * content-desc → textContains / textStartsWith / descriptionContains / descriptionStartsWith (case-insensitive),
+   * a direct child //A/B → A.childSelector(B), translate(@a, "A…Z", "a…z") = "v" → (?i)v. Default false: the
+   * UiSelector finds the same elements as the XPath, or the locator is skipped.
+   */
+  loose?: boolean;
 }
 
 /** Convert a single Android XPath locator to a UiSelector. */
@@ -58,6 +65,8 @@ export interface ParsedFlags {
   dryRun: boolean;
   /** Write only conversions with no warning (`--exact`). */
   exact: boolean;
+  /** Simpler, wider forms with a warning (`--loose`). */
+  loose: boolean;
 }
 
 /** Parse CLI argv (without `node`/script) into the flag object the CLI uses. */

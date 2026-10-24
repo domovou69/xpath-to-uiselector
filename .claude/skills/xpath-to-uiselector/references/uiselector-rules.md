@@ -26,7 +26,7 @@ Android 16 emulator with `findElements`: same elements, same order (and again on
 | `contains(@text,"v")` / `starts-with` / `ends-with` | `textMatches("(?s).*v.*")` / `"(?s)v.*"` / `"(?s).*v"`, metacharacters escaped |
 | `@text="A" or @text="B"`, `@text=("A","B")`, `//*[@text="A"] \| //*[@text="B"]` | `textMatches("A\|B")` |
 | `contains(@text,"a") and contains(@text,"b")` | `textMatches("(?s)(?=.*a)(?=.*b).*")` |
-| `matches(@text,"p")`, `matches(@text,"p","i")` | `textMatches("(?d)(?s:.*)(?-s:p)(?s:.*)")`, `(?i-s:p)` with `i` |
+| `matches(@text,"p")`, `matches(@text,"p","i")` | `textMatches("(?d)(?s:.*)(?-s:p)(?s:.*)")`, `(?i-s:p)` with `i`; `^X$` (no top-level `\|`, no `m` flag) → `textMatches("(?d)X\n?")`, with `(?-s:X)` when X has a `.` |
 | `(//X)[n]`, `(//X)[position()=n]` | `….instance(n-1)` (pre-order = document order) |
 | `(//A//B)[1]` | `A.instance(0).childSelector(B.instance(0))` (`[2]` and later: no, `instance` counts within each A) |
 | `[@text]`, `[@checked]`, `[@index]` | dropped (written on every element) |
@@ -35,7 +35,7 @@ Android 16 emulator with `findElements`: same elements, same order (and again on
 | `@text='Say "hi"'`, `@text="C:\T"` | `textMatches("Say \x22hi\x22")`, `textMatches("C:\x5cT")` |
 
 Never emit `textContains` / `textStartsWith` / `descriptionContains` / `descriptionStartsWith`: they lower-case both
-sides.
+sides. Loose mode (`--loose`, only on the user's request) emits them as close forms with a warning.
 
 ## Close (converted with a warning)
 

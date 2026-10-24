@@ -28,12 +28,12 @@ function decodeEntry(e) {
   return decoded && { ...decoded, kind };
 }
 
-function convertEntry(e) {
+function convertEntry(e, loose = false) {
   const decoded = decodeEntry(e);
   if (!decoded) return { outcome: 'skip', reason: 'the string literal has an escape this tool does not read' };
   const keys = new Set(decoded.placeholders.keys());
   const decrement = decrementHoles(decoded.placeholders, decoded.kind, decoded.free);
-  const res = convertXpathToUiSelector(decoded.value, { placeholders: keys, decrement });
+  const res = convertXpathToUiSelector(decoded.value, { placeholders: keys, decrement, loose });
   if (res.status !== STATUS.SUCCESS) return { outcome: res.status === STATUS.SKIPPED_IOS ? 'ios' : 'skip', reason: res.reason, hint: res.hint };
   const warnings = res.warning ? res.warning.split('; ') : [];
   return { outcome: warnings.length ? 'close' : 'exact', warnings, xpath: decoded.value, uiselector: res.locator, placeholders: decoded.placeholders, decrement };
@@ -131,6 +131,22 @@ function run() {
   out.push('| Action | Unique | Share of converted | Occurrences |', '| --- | --- | --- | --- |');
   for (const [a, list] of [...byAction].sort((x, y) => y[1].length - x[1].length)) out.push(`| ${a} | ${list.length} | ${pct(list.length, converted.length)} | ${occ(list)} |`);
   out.push('');
+
+  out.push('## With --loose', '');
+  out.push('Loose mode adds wider forms, each with a warning (lib/converter.js). Literals whose outcome changes:', '');
+  const looseRows = rows.map(r => ({ ...r, loose: convertEntry(r.e, true) }));
+  const looseLabel = w => (w.startsWith('loose: textContains') ? 'case-insensitive textContains / textStartsWith'
+    : w.startsWith('loose: a direct child') ? 'direct child → childSelector' : w.startsWith('loose: (?i)') ? 'translate() → (?i)' : null);
+  const byLoose = new Map();
+  for (const r of looseRows) {
+    if (r.loose.outcome === r.outcome && r.loose.uiselector === r.uiselector) continue;
+    const label = `${r.outcome} → ${r.loose.outcome}: ${[...new Set((r.loose.warnings || []).map(looseLabel).filter(Boolean))].join(', ')}`;
+    byLoose.set(label, [...(byLoose.get(label) || []), r]);
+  }
+  out.push('| Change | Unique | Share of all | Occurrences |', '| --- | --- | --- | --- |');
+  for (const [k, list] of [...byLoose].sort((a, b) => b[1].length - a[1].length)) out.push(`| ${k} | ${list.length} | ${pct(list.length, total)} | ${occ(list)} |`);
+  const lc = o => looseRows.filter(r => r.loose.outcome === o).length;
+  out.push('', `With --loose: ${lc('exact')} exact (${pct(lc('exact'), total)}), ${lc('close')} close (${pct(lc('close'), total)}), ${lc('skip')} skip (${pct(lc('skip'), total)}).`, '');
 
   out.push('## By language', '');
   out.push('| Language | Literals | Exact | Close | Skip |', '| --- | --- | --- | --- | --- |');

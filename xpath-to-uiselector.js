@@ -36,7 +36,7 @@ function main(target = DEFAULT_TARGET, opts) {
   if (!opts.quiet) {
     console.log(`\n=== Android Locator Migration ===`);
     console.log(`Scanning: ${fullPath}`);
-    console.log(`Mode: ${opts.dryRun ? 'DRY RUN (no files written)' : 'WRITE'}${opts.exact ? ', exact only' : ''}\n`);
+    console.log(`Mode: ${opts.dryRun ? 'DRY RUN (no files written)' : 'WRITE'}${opts.exact ? ', exact only' : ''}${opts.loose ? ', loose' : ''}\n`);
   }
 
   const stats = makeStats();
@@ -82,7 +82,7 @@ function main(target = DEFAULT_TARGET, opts) {
         if (uiselector && warning) entry.warning = warning;
         return entry;
       });
-    const payload = { mode: opts.dryRun ? 'dry-run' : 'write', exact: !!opts.exact, path: fullPath, stats, updated, skipped, errors };
+    const payload = { mode: opts.dryRun ? 'dry-run' : 'write', exact: !!opts.exact, loose: !!opts.loose, path: fullPath, stats, updated, skipped, errors };
     const reportPath = join(process.cwd(), REPORT_NAME);
     writeFileSync(reportPath, JSON.stringify(payload, null, 2), 'utf8');
     console.log(`Report written to ${reportPath}`);
@@ -122,7 +122,7 @@ function resolveBool(flags, onFlag, offFlag, fallback) {
 // Every flag the CLI understands. An unrecognised flag is rejected rather than
 // ignored: a typo'd `--wirte` would otherwise preview instead of writing while
 // looking like it worked.
-const KNOWN_FLAGS = new Set(['--dry-run', '--write', '--exact', '--json', '--quiet', '--help', '-h', '--version', '-V']);
+const KNOWN_FLAGS = new Set(['--dry-run', '--write', '--exact', '--loose', '--json', '--quiet', '--help', '-h', '--version', '-V']);
 
 const USAGE = `xpath-to-uiselector — convert Android XPath locators to UiSelector
 
@@ -139,6 +139,10 @@ Flags:
   --write      Save the changes in place. Requires an explicit path.
   --exact      Change only locators converted with no warning; report the rest
                (close forms and runtime values) with their UiSelector.
+  --loose      Simpler, wider forms, each with a warning: textContains /
+               textStartsWith (ignore case) for contains() / starts-with(),
+               childSelector for a direct child //A/B, (?i) for translate().
+               Off by default: the default finds the same elements as the XPath.
   --json       Write ${REPORT_NAME} in the current directory. Implies --quiet.
   --quiet      Drop per-match diffs and banner; keep the final summary.
   -h, --help   Show this help.
@@ -163,6 +167,7 @@ function parseFlags(argv) {
     quiet: json || flags.has('--quiet'),
     dryRun: resolveBool(flags, '--dry-run', '--write', DRY_RUN),
     exact: flags.has('--exact'),
+    loose: flags.has('--loose'),
   };
 }
 

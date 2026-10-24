@@ -56,6 +56,8 @@ const attrs = {
     TV('Line 1\nLine 2'), TV('Grüße'), TV('a;b'), TV('f(x)'), TV('bell\u0007'), TV('a"b'), TV('%s'), TV('${name}'), TV('xa\\by'),
     // H: regexes and case
     TV('Ok'), TV('ok'), TV('O\u212A'), TV('xyz'), TV('aeiou'), TV('Total: 4x'),
+    // ^X$: $ also matches before a final \n, not before \r or a second \n; ^ only at the start
+    TV('Total: 7\n'), TV('Total: 8\n\n'), TV('Total: 9\r'), TV('x\nTotal: 3'), TV('ok\n'),
     // V: numbers
     TV('1'), TV('1.0'), TV('01'),
     // E, X: classes and positions

@@ -18,10 +18,10 @@ const plain = v => JSON.parse(JSON.stringify(v));
 assert.deepStrictEqual(plain(bStatus), plain(STATUS));
 let skipped = 0;
 for (const c of CASES) {
-  const want = convertXpathToUiSelector(c.xpath);
-  assert.deepStrictEqual(plain(browser(c.xpath)), plain(want), `${c.id}: bundle differs`);
+  const want = convertXpathToUiSelector(c.xpath, c.opts);
+  assert.deepStrictEqual(plain(browser(c.xpath, c.opts)), plain(want), `${c.id}: bundle differs`);
   if (/[\r\n]/.test(c.xpath)) { skipped++; continue; } // the page takes one XPath per line, so it cannot hold a line break
-  const [row] = plain(convertLines(c.xpath, browser, bStatus));
+  const [row] = plain(convertLines(c.xpath, browser, bStatus, c.opts));
   const kind = want.status !== STATUS.SUCCESS ? 'skip' : want.warning ? 'close' : 'exact';
   assert.strictEqual(row.kind, kind, `${c.id}: kind`);
   assert.strictEqual(row.locator, want.status === STATUS.SUCCESS ? want.locator : null, `${c.id}: locator`);

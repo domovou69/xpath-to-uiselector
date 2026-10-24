@@ -23,6 +23,7 @@ Node.js 20 or newer, no dependencies. The path is a folder or one file; with no 
 | `--dry-run` | Preview only, the default. Wins over `--write` |
 | `--write` | Rewrite the files in place. Needs an explicit path. There is no undo: run it on a clean working tree and let `git diff` be the undo. Each file is written to a temporary file and renamed over the original, so an interrupted write leaves it whole |
 | `--exact` | Change only locators converted with no warning. Close forms and runtime values are left as they are and reported with their `UiSelector` (`skipped_not_exact`) |
+| `--loose` | Simpler, wider forms, each with a warning: see [Loose mode](#loose-mode). Off by default. `--exact` still leaves them alone |
 | `--json` | Write `xpath-to-uiselector.report.json` in the current directory. Implies `--quiet` |
 | `--quiet` | No per-match diff and banner; the summary still prints |
 | `-h`, `--help` / `-V`, `--version` | Help / version |
@@ -153,7 +154,8 @@ Output order: `className`, then the criteria in XPath order, then `instance`, th
 ### String functions and regexes
 
 `textContains`, `textStartsWith`, `descriptionContains`, `descriptionStartsWith` are **case-insensitive** (SEL-02),
-XPath's `contains()` and `starts-with()` are not, so they are never emitted. String functions become a `…Matches`
+XPath's `contains()` and `starts-with()` are not, so the default mode never emits them ([Loose mode](#loose-mode)
+does). String functions become a `…Matches`
 regex (`textMatches`, `descriptionMatches`, `resourceIdMatches`, `packageNameMatches`), which must match the
 whole value (SEL-03). Every regex metacharacter of the value is escaped; `(?s)` leads a regex that adds `.*`, so it
 also crosses line breaks.
@@ -165,7 +167,8 @@ also crosses line breaks.
 | `ends-with(@text,"USD")` (XPath 2.0) | `textMatches("(?s).*USD")` | exact | XP-02 |
 | `@text="A" or @text="B"`, `@text=("A","B")`, `//*[@text="A"] \| //*[@text="B"]` | `textMatches("A\|B")` | exact | SEL-03, XP-06, XP-09 |
 | two tests on one attribute: `contains(@text,"a") and contains(@text,"b")` | `textMatches("(?s)(?=.*a)(?=.*b).*")` | exact: one criterion per attribute, so lookaheads | SEL-05 |
-| `matches(@text,"^Total: \d+$")` | `textMatches("(?d)(?s:.*)(?-s:^Total: \d+$)(?s:.*)")` | exact: PsychoPath's `find()` with `UNIX_LINES`, as a whole-string match; `.` stays off line breaks unless the `s` flag is given | XP-03, SEL-03 |
+| `matches(@text,"Total: \d+")` | `textMatches("(?d)(?s:.*)(?-s:Total: \d+)(?s:.*)")` | exact: PsychoPath's `find()` with `UNIX_LINES`, as a whole-string match; `.` stays off line breaks unless the `s` flag is given | XP-03, SEL-03 |
+| `matches(@text,"^Total: \d+$")` | `textMatches("(?d)Total: \d+\n?")` | exact: anchored at both ends, `find()` is a whole-string match of the inside, and `$` also matches before a final `\n`; the `(?-s:…)` group stays only when the inside has a `.`; not with a `\|` outside a group or the `m` flag | XP-03, SEL-03 |
 | `matches(@text,"total","i")` | `(?i-s:total)` inside the same wrapper | exact: ASCII case folding, as PsychoPath | XP-04 |
 | `lower-case(@text)="ok"`, `contains(lower-case(@text),"ok")` | `textMatches("(?i)ok")`, `textMatches("(?s)(?i).*ok.*")` | close: ICU `(?i)` folds Unicode letters as `lower-case()` does; one-to-many folds (`İ`, `ß`) are not checked | XP-05 |
 | `concat("Tot","al")` as a value | `text("Total")` | exact: folded | XP-01 |
@@ -240,6 +243,25 @@ locate the element by its resource id, text or content description; `text()` →
 `@resource-id`; an `or` across attributes → one lookup per side.
 
 The full list of skip reasons with their frequencies on real projects: [convert-summary.md](../audit/corpus/convert-summary.md).
+
+## Loose mode
+
+The default mode converts only what finds the same elements as the XPath. `--loose` (library: `{ loose: true }`)
+trades that for simpler, more tolerant locators. Every loose form is a close form with a warning, so `--exact` leaves
+it alone and the JSON report lists it under `warnings`.
+
+| XPath | Default | `--loose` | How it is wider |
+| --- | --- | --- | --- |
+| `contains(@text,"Total")` | `textMatches("(?s).*Total.*")` | `textContains("Total")` | ignores case: also finds "TOTAL" |
+| `starts-with(@text,"Tot")` | `textMatches("(?s)Tot.*")` | `textStartsWith("Tot")` | ignores case |
+| the same on `@content-desc` | `descriptionMatches(…)` | `descriptionContains(…)`, `descriptionStartsWith(…)` | ignores case |
+| `//A/B` | skipped | `A.childSelector(B)` | any descendant B, not only a direct child; one match per container with `findElements` |
+| `translate(@text,"A…Z","a…z")="ok"` | `textMatches("[oO][kK]")` | `textMatches("(?i)ok")` | also folds non-ASCII letters and the Kelvin sign |
+
+`ends-with()` has no case-insensitive criterion and stays `textMatches`; so do a value with `"` or `\`, two tests
+on one attribute, and `contains()` on `@resource-id` and `@package`. A direct child with a sibling position
+(`//A/B[2]`) and absolute `/hierarchy/…` paths stay skipped. On the real-world locators `--loose` converts 76.7 %
+instead of 73.2 % ([convert-summary.md](../audit/corpus/convert-summary.md#with---loose)).
 
 ## What the device showed
 
@@ -318,6 +340,9 @@ const r = convertXpathToUiSelector('(//android.widget.Button[@enabled="true"])[3
 convertXpathToUiSelector('//android.widget.ListView/android.widget.TextView');
 // { status: 'skipped_unsupported_logic', reason: 'UiSelector has no direct-child criterion', locator: <the input>,
 //   hint: 'A.childSelector(B) is the closest form, but it also finds B deeper below A: …' }
+
+convertXpathToUiSelector('//*[contains(@text,"Total")]', { loose: true });
+// { status: 'success', locator: 'new UiSelector().textContains("Total")', warning: 'loose: textContains … ignore case, …' }
 ```
 
 `locator` is the bare `UiSelector` (no `android=` prefix and no source-language escaping). TypeScript declarations:
