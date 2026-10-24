@@ -62,14 +62,14 @@ With the Appium UiAutomator2 driver, an XPath lookup first serializes the whole 
 
 `UiSelector` is the androidx UiAutomator query builder. Appium takes it as a Java-like string and evaluates it on the device:
 
-| XPath | UiSelector |
-| --- | --- |
-| `//android.widget.Button` | `new UiSelector().className("android.widget.Button")` |
-| `//*[@text="Pay"]` | `new UiSelector().text("Pay")` |
-| `//*[@content-desc="Cart"]` | `new UiSelector().description("Cart")` |
-| `//*[@resource-id="com.app:id/ok"]` | `new UiSelector().resourceId("com.app:id/ok")` |
-| `//*[@checked="true"]` | `new UiSelector().checked(true)` |
-| `(//android.widget.EditText)[2]` | `new UiSelector().className("android.widget.EditText").instance(1)` |
+| XPath                               | UiSelector                                                          |
+| ----------------------------------- | ------------------------------------------------------------------- |
+| `//android.widget.Button`           | `new UiSelector().className("android.widget.Button")`               |
+| `//*[@text="Pay"]`                  | `new UiSelector().text("Pay")`                                      |
+| `//*[@content-desc="Cart"]`         | `new UiSelector().description("Cart")`                              |
+| `//*[@resource-id="com.app:id/ok"]` | `new UiSelector().resourceId("com.app:id/ok")`                      |
+| `//*[@checked="true"]`              | `new UiSelector().checked(true)`                                    |
+| `(//android.widget.EditText)[2]`    | `new UiSelector().className("android.widget.EditText").instance(1)` |
 
 It has no direct-child or parent step and no position among siblings: `childSelector` means any descendant, and `fromParent` searches among the siblings.
 
@@ -77,14 +77,18 @@ It has no direct-child or parent step and no position among siblings: `childSele
 
 The simple rows above are what everyone converts correctly. The trouble is the methods whose names promise the same thing as XPath but behave differently. All of these were checked on the emulator:
 
-| XPath | Looks right | How it differs |
-| --- | --- | --- |
-| `contains(@text,"Total")` | `textContains("Total")` | `textContains` and `textStartsWith` **ignore case**: this also finds "TOTAL". Exact: `textMatches("(?s).*Total.*")` |
-| `matches(@resource-id,".*\.ok")` | `resourceIdMatches(".*\\.ok")` in the locator text | The server's string literal unescapes only `\"`, so the regex gets `\\.`, a literal backslash. It matches nothing |
-| `(//ScrollView//ImageView)[3]` | `…childSelector(…ImageView.instance(2))` | Inside `childSelector`, `instance()` counts per container, not across the screen |
-| `//*` | `classNameMatches(".*")` | With `classNameMatches`, `findElements` iterates `index(i)` and loses elements |
-| `//ListView/TextView` | `…childSelector(…)` | That is any descendant. UiSelector has no direct child, so there is no exact form |
-| `ends-with(@text,"USD")` | "skip: XPath 2.0" | The driver runs XPath 2.0 unless `enforceXPath1` is set. `matches()`, `ends-with()`, `lower-case()` all work |
+- `contains(@text,"Total")` → `textContains("Total")`<br>
+  `textContains` and `textStartsWith` **ignore case**: this also finds "TOTAL". Exact: `textMatches("(?s).*Total.*")`.
+- `matches(@resource-id,".*\.ok")` → `resourceIdMatches(".*\\.ok")` (in the locator text)<br>
+  The server's string literal unescapes only `\"`, so the regex gets `\\.`, a literal backslash. It matches nothing.
+- `(//ScrollView//ImageView)[3]` → `…childSelector(…ImageView.instance(2))`<br>
+  Inside `childSelector`, `instance()` counts per container, not across the screen.
+- `//*` → `classNameMatches(".*")`<br>
+  With `classNameMatches`, `findElements` iterates `index(i)` and loses elements. Exact: `new UiSelector()`.
+- `//ListView/TextView` → `…childSelector(…)`<br>
+  That is any descendant. UiSelector has no direct child, so there is no exact form.
+- `ends-with(@text,"USD")` → "skip: XPath 2.0"<br>
+  The driver runs XPath 2.0 unless `enforceXPath1` is set: `matches()`, `ends-with()`, `lower-case()` all work.
 
 The server accepts all of these: no syntax error, just other elements (or none). The first one is debatable (more on that [below](#is-textcontains-really-wrong)), but it changes what the locator finds without anyone noticing: the test passes today and taps another element when someone adds a "TOTAL" label above it.
 
@@ -135,12 +139,12 @@ I used the same setup as in the [iOS comparison](https://dev.to/mikhail_yesipchu
 
 ![Score against cost for three Claude 5.5 models, with and without the rules prompt](img/llm-chart.png)
 
-| Run | Correct | Close | Wrong | Skip | Missed | Score | Min | Cost |
-| --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| **Converter** | 452 | 39 | **0** | 189 | – | **100 %** | < 0.1 | free |
-| Opus 5.5 | 400 | 32 | 47 | 179 | 22 | 78.3 % | 12.2 | $3.00 |
-| Sonnet 5.5 | 401 | 32 | 60 | 176 | 11 | 75.7 % | 4.9 | $0.95 |
-| Haiku 5.5 | 390 | 32 | 63 | 169 | 26 | 72.7 % | 5.2 | $0.12 |
+| Run           | Correct | Close | Wrong | Skip | Missed | Score     | Min   | Cost  |
+| ------------- | ------- | ----- | ----- | ---- | ------ | --------- | ----- | ----- |
+| **Converter** | 452     | 39    | **0** | 189  | –      | **100&nbsp;%** | <&nbsp;0.1 | free  |
+| Opus 5.5      | 400     | 32    | 47    | 179  | 22     | 78.3&nbsp;%    | 12.2  | $3.00 |
+| Sonnet 5.5    | 401     | 32    | 60    | 176  | 11     | 75.7&nbsp;%    | 4.9   | $0.95 |
+| Haiku 5.5     | 390     | 32    | 63    | 169  | 26     | 72.7&nbsp;%    | 5.2   | $0.12 |
 
 "Missed" means the model skipped a locator that the converter converts correctly. Cost is the API list price the CLI reports.
 
@@ -156,15 +160,15 @@ More than a third of all wrong answers are one pattern: `textContains` for `cont
 
 {% details Mistakes per model %}
 
-| Mistake | Opus | Sonnet | Haiku |
-| --- | --- | --- | --- |
-| Case-insensitive `textContains` / `descriptionContains` / `textStartsWith` | 20 | 23 | 22 |
-| Missing `(?s)` in a regex | 14 | 8 | 16 |
-| Java-style `\\` in a regex or value | 1 | 15 | 2 |
-| Values only the page source has (`@text=""`, a toast, a range widget's value) | 0 | 9 | 9 |
-| Positions: `instance()` in `childSelector`, `//X[1]` | 8 | 0 | 3 |
-| `classNameMatches`, `(?i)` for `translate()`, dropped existence tests, criteria UiSelector does not have | 4 | 5 | 11 |
-| **Wrong** | **47** | **60** | **63** |
+| Mistake                                                                                                  | Opus   | Sonnet | Haiku  |
+| -------------------------------------------------------------------------------------------------------- | ------ | ------ | ------ |
+| Case-insensitive `textContains` / `descriptionContains` / `textStartsWith`                               | 20     | 23     | 22     |
+| Missing `(?s)` in a regex                                                                                | 14     | 8      | 16     |
+| Java-style `\\` in a regex or value                                                                      | 1      | 15     | 2      |
+| Values only the page source has (`@text=""`, a toast, a range widget's value)                            | 0      | 9      | 9      |
+| Positions: `instance()` in `childSelector`, `//X[1]`                                                     | 8      | 0      | 3      |
+| `classNameMatches`, `(?i)` for `translate()`, dropped existence tests, criteria UiSelector does not have | 4      | 5      | 11     |
+| **Wrong**                                                                                                | **47** | **60** | **63** |
 
 Each wrong answer is counted once, under the first mistake it shows.
 
@@ -182,12 +186,12 @@ That is why the converter is strict by default and `--loose` is a flag you turn 
 
 As on iOS, most of these mistakes are about knowing the driver, not about intelligence. So I wrote them down as general rules (about 8,000 characters, [`rules.md`](https://github.com/domovou69/xpath-to-uiselector/blob/main/audit/llm/rules.md), no answers for particular locators) and ran the three models again:
 
-| Run | Correct | Close | Wrong | Skip | Missed | Score | Min | Cost |
-| --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| **Converter** | 452 | 39 | **0** | 189 | – | **100 %** | < 0.1 | free |
-| Opus 5.5 + rules | 448 | 37 | 1 | 189 | 5 | 98.7 % | 5.9 | $1.84 |
-| Sonnet 5.5 + rules | 448 | 37 | 1 | 189 | 5 | 98.7 % | 4.1 | $0.89 |
-| Haiku 5.5 + rules | 443 | 37 | 4 | 189 | 7 | 97.0 % | 6.3 | $0.33 |
+| Run                | Correct | Close | Wrong | Skip | Missed | Score     | Min   | Cost  |
+| ------------------ | ------- | ----- | ----- | ---- | ------ | --------- | ----- | ----- |
+| **Converter**      | 452     | 39    | **0** | 189  | –      | **100&nbsp;%** | <&nbsp;0.1 | free  |
+| Opus 5.5 + rules   | 448     | 37    | 1     | 189  | 5      | 98.7&nbsp;%    | 5.9   | $1.84 |
+| Sonnet 5.5 + rules | 448     | 37    | 1     | 189  | 5      | 98.7&nbsp;%    | 4.1   | $0.89 |
+| Haiku 5.5 + rules  | 443     | 37    | 4     | 189  | 7      | 97.0&nbsp;%    | 6.3   | $0.33 |
 
 - **Wrong answers dropped from 47–63 to 1–4.** The one left for Opus and Sonnet is a line-break case: `string-length(@text)=5` → `textMatches("(?s).{5}")`, where ICU's `.` takes CR LF as one character. Haiku also dropped the `className` three times, against an explicit rule.
 - **Opus got cheaper and faster with the rules:** half the time, 60 % of the cost, a quarter of the thinking.
@@ -216,7 +220,7 @@ So converting today is a bet that `UiSelector` stays until Appium moves on; no d
 1. **The converter first.** It is free, offline, takes under a second for 680 locators, gives the same answer every time and made no wrong `UiSelector`.
 2. **A model only for what the converter skips**, with [the rules](https://github.com/domovou69/xpath-to-uiselector/blob/main/audit/llm/rules.md) in the prompt. With the rules, Sonnet 5.5 at `medium` scored the same as Opus for half the cost. Most skips have no exact `UiSelector` at all, so expect an explanation rather than a conversion.
 3. **Never paste a model's `UiSelector` into a test without running it** on the screen it is meant for. Without the rules, about one in twelve was wrong, and none of them looked wrong.
-4. **Run `--exact` first** if you want only conversions with no caveats, then review the close ones. Add `--loose` only if you want case-insensitive locators and accept that they find more.
+4. **Pick the strictness you want.** By default the converter writes exact conversions and close ones with a warning (`//A//B` → `childSelector`); `--exact` writes only the exact ones. `--loose` adds simpler, case-insensitive forms, also as close with a warning. That is roughly how Claude converts without rules (55 of its 65 `textContains` answers are the same as `--loose`), except that the converter tells you the locator became wider.
 
 If you use Claude Code, the repository has a [skill](https://github.com/domovou69/xpath-to-uiselector/tree/main/.claude/skills/xpath-to-uiselector) that does exactly that: it runs the converter, then reviews each skipped locator and suggests a rewrite, marked as unverified.
 
