@@ -88,13 +88,13 @@ const write = (name, s) => fs.writeFileSync(path.join(out, name), s);
     { name: 'Haiku 5.5', col: C.haiku, plain: { s: 37.0, r: 78.7, w: 63, tok: '81k (42k)', min: 5.2, cost: 0.12 }, rules: { s: 87.5, r: 94.7, w: 4, tok: '103k (47k)', min: 6.3, cost: 0.33 } },
   ];
   const CONV = { s: 94.2, r: 96.5 };
-  const X0 = 66, X1 = 476, Y0 = 452, Y1 = 118;
+  const X0 = 66, X1 = 476, Y0 = 432, Y1 = 92;
   const lmin = Math.log10(0.1), lmax = Math.log10(3.5);
   const x = (c) => X0 + ((Math.log10(c) - lmin) / (lmax - lmin)) * (X1 - X0);
   const y = (v) => Y0 - ((v - 30) / 70) * (Y0 - Y1);
   let b = '';
   b += t(40, 46, 'Claude 5.5 against the converter on 680 Android XPath locators', { size: 22, weight: 600 });
-  b += t(40, 78, 'S: edge cases, 0–100 (100 = every one that has a UiSelector found exactly). Filled: no rules; ring: with the rules prompt.', { fill: C.ink2, size: 14 });
+  b += t(18, (Y0 + Y1) / 2, 'S, edge cases', { anchor: 'middle', fill: C.ink2, size: 14, extra: ` transform="rotate(-90 18 ${(Y0 + Y1) / 2})"` });
   for (const v of [30, 40, 50, 60, 70, 80, 90, 100]) {
     b += `<line x1="${X0}" y1="${y(v)}" x2="${X1}" y2="${y(v)}" stroke="${v === 30 ? C.axis : C.grid}"/>`;
     b += t(X0 - 8, y(v) + 5, v, { anchor: 'end', fill: C.muted, size: 13 });
@@ -118,11 +118,11 @@ const write = (name, s) => fs.writeFileSync(path.join(out, name), s);
   const [opus, sonnet, haiku] = runs;
   // no rules: beside the filled points
   b += lab(x(haiku.plain.cost) + 14, y(haiku.plain.s) - 2, haiku.name, haiku.plain);
-  b += lab(x(sonnet.plain.cost) + 14, y(sonnet.plain.s) - 2, sonnet.name, sonnet.plain);
-  b += lab(x(opus.plain.cost) - 14, y(opus.plain.s) - 2, opus.name, opus.plain, 'end');
+  b += lab(x(sonnet.plain.cost), y(sonnet.plain.s) + 26, sonnet.name, sonnet.plain, 'middle');
+  b += lab(x(opus.plain.cost), y(opus.plain.s) + 26, opus.name, opus.plain, 'middle');
   // with the rules: below the rings, on the side away from each connector
-  b += lab(x(haiku.rules.cost) + 10, y(haiku.rules.s) + 24, '+ rules', haiku.rules);
-  b += lab(x(sonnet.rules.cost) + 10, y(sonnet.rules.s) + 40, '+ rules', sonnet.rules);
+  b += lab(x(haiku.rules.cost) + 10, y(haiku.rules.s) + 22, '+ rules', haiku.rules);
+  b += lab(x(sonnet.rules.cost) + 10, y(sonnet.rules.s) + 24, '+ rules', sonnet.rules);
   b += lab(x(opus.rules.cost) + 14, y(opus.rules.s) - 2, '+ rules', opus.rules);
 
   // table on the right, as tall as the plot
@@ -149,9 +149,9 @@ const write = (name, s) => fs.writeFileSync(path.join(out, name), s);
     b += row('+ rules', m.col, true, m.rules);
     ty += 6;
   }
-  b += t(40, 532, 'S = edge cases (104 of 149 have a UiSelector), R = real-world locators (387 of 531). Points over those: correct +1, close +0.5, wrong −1, skip 0;', { fill: C.muted, size: 12.5 });
-  b += t(40, 550, 'so the converter, which has only a close form for some, is below 100. Wrong = other elements than the XPath, checked on an Android emulator.', { fill: C.muted, size: 12.5 });
-  write('llm-chart.svg', svg(1020, 566, 'Claude 5.5 models against the converter: S score vs cost, no rules and with rules, with S, R, wrong answers, tokens, time and cost', b));
+  b += t(40, 520, 'S = edge cases (104 of 149 have a UiSelector), R = real-world locators (387 of 531). Points over those: correct +1, close +0.5, wrong −1, skip 0;', { fill: C.muted, size: 12.5 });
+  b += t(40, 538, 'so the converter, which has only a close form for some, is below 100. Wrong = other elements than the XPath, checked on an Android emulator.', { fill: C.muted, size: 12.5 });
+  write('llm-chart.svg', svg(1020, 554, 'Claude 5.5 models against the converter: S score vs cost, no rules and with rules, with S, R, wrong answers, tokens, time and cost', b));
 }
 
 // 3. Mistakes of the three no-rules runs, by kind (donut).
