@@ -141,10 +141,10 @@ I used the same setup as in the [iOS comparison](https://dev.to/mikhail_yesipchu
 
 | Run           | Correct | Close | Wrong | Skip | Missed | Score     | Min   | Cost  |
 | ------------- | ------- | ----- | ----- | ---- | ------ | --------- | ----- | ----- |
-| **Converter** | 452     | 39    | **0** | 189  | –      | **100 %** | < 0.1 | free  |
-| Opus 5.5      | 400     | 32    | 47    | 179  | 22     | 78.3 %    | 12.2  | $3.00 |
-| Sonnet 5.5    | 401     | 32    | 60    | 176  | 11     | 75.7 %    | 4.9   | $0.95 |
-| Haiku 5.5     | 390     | 32    | 63    | 169  | 26     | 72.7 %    | 5.2   | $0.12 |
+| **Converter** | 452     | 39    | **0** | 189  | –      | **100&nbsp;%** | <&nbsp;0.1 | free  |
+| Opus 5.5      | 400     | 32    | 47    | 179  | 22     | 78.3&nbsp;%    | 12.2  | $3.00 |
+| Sonnet 5.5    | 401     | 32    | 60    | 176  | 11     | 75.7&nbsp;%    | 4.9   | $0.95 |
+| Haiku 5.5     | 390     | 32    | 63    | 169  | 26     | 72.7&nbsp;%    | 5.2   | $0.12 |
 
 "Missed" means the model skipped a locator that the converter converts correctly. Cost is the API list price the CLI reports.
 
@@ -188,10 +188,10 @@ As on iOS, most of these mistakes are about knowing the driver, not about intell
 
 | Run                | Correct | Close | Wrong | Skip | Missed | Score     | Min   | Cost  |
 | ------------------ | ------- | ----- | ----- | ---- | ------ | --------- | ----- | ----- |
-| **Converter**      | 452     | 39    | **0** | 189  | –      | **100 %** | < 0.1 | free  |
-| Opus 5.5 + rules   | 448     | 37    | 1     | 189  | 5      | 98.7 %    | 5.9   | $1.84 |
-| Sonnet 5.5 + rules | 448     | 37    | 1     | 189  | 5      | 98.7 %    | 4.1   | $0.89 |
-| Haiku 5.5 + rules  | 443     | 37    | 4     | 189  | 7      | 97.0 %    | 6.3   | $0.33 |
+| **Converter**      | 452     | 39    | **0** | 189  | –      | **100&nbsp;%** | <&nbsp;0.1 | free  |
+| Opus 5.5 + rules   | 448     | 37    | 1     | 189  | 5      | 98.7&nbsp;%    | 5.9   | $1.84 |
+| Sonnet 5.5 + rules | 448     | 37    | 1     | 189  | 5      | 98.7&nbsp;%    | 4.1   | $0.89 |
+| Haiku 5.5 + rules  | 443     | 37    | 4     | 189  | 7      | 97.0&nbsp;%    | 6.3   | $0.33 |
 
 - **Wrong answers dropped from 47–63 to 1–4.** The one left for Opus and Sonnet is a line-break case: `string-length(@text)=5` → `textMatches("(?s).{5}")`, where ICU's `.` takes CR LF as one character. Haiku also dropped the `className` three times, against an explicit rule.
 - **Opus got cheaper and faster with the rules:** half the time, 60 % of the cost, a quarter of the thinking.
