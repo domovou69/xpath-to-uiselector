@@ -4,9 +4,10 @@
   'use strict';
 
   // kind: exact (no warning), close (converted with a warning), skip (no UiSelector)
-  function convertLines(text, convert, STATUS) {
+  // opts: converter options, e.g. { loose: true }
+  function convertLines(text, convert, STATUS, opts) {
     return String(text).split(/\r?\n/).map(l => l.trim()).filter(Boolean).map(xpath => {
-      const r = convert(xpath);
+      const r = convert(xpath, opts);
       const ok = r.status === STATUS.SUCCESS;
       return {
         xpath,
@@ -71,7 +72,7 @@
 
   function render() {
     const { convertXpathToUiSelector, STATUS } = root.XpathToUiSelector;
-    const results = convertLines($('input').value, convertXpathToUiSelector, STATUS);
+    const results = convertLines($('input').value, convertXpathToUiSelector, STATUS, { loose: $('loose').checked });
     const out = $('results');
     out.replaceChildren(...results.map(card));
     $('summary').textContent = results.length
@@ -80,6 +81,7 @@
   }
 
   $('input').addEventListener('input', render);
+  $('loose').addEventListener('change', render);
   const ex = $('examples');
   EXAMPLES.forEach(e => {
     const b = el('button', 'chip', e.label);

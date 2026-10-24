@@ -13,7 +13,9 @@ converts first; you review only what it cannot convert exactly.
 - Output **only** `new UiSelector()…` locators, used with the client's UiAutomator strategy
   (`AppiumBy.androidUIAutomator`, `AppiumBy.ANDROID_UIAUTOMATOR`, `android=` in WebdriverIO, …).
 - Never emit `textContains`, `textStartsWith`, `descriptionContains`, `descriptionStartsWith`: they are
-  case-insensitive, XPath is not. The engine uses `…Matches` instead.
+  case-insensitive, XPath is not. The engine uses `…Matches` instead. Only when the user asks for loose mode
+  (case-insensitive, simpler locators) run the engine with `--loose`: it emits them, and `childSelector` for a
+  direct child `//A/B`, each with a warning.
 - iOS locators, web / WebView XPaths and non-XPath strategies (`id`, `accessibility id`) are out of scope: list
   them as untouched. The engine cannot tell a web XPath from an Android one; if a locator looks like HTML
   (`//div`, `//input[@name=…]`, `@id`, `@href`), say so and leave it.

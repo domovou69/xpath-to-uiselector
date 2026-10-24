@@ -65,6 +65,18 @@ From the strategy call recorded with each literal (PLAN.md section 2).
 | written (WebdriverIO android=) | 155 | 12.9 % | 389 |
 | reported (strategy without UiAutomator form) | 32 | 2.7 % | 64 |
 
+## With --loose
+
+Loose mode adds wider forms, each with a warning (lib/converter.js). Literals whose outcome changes:
+
+| Change | Unique | Share of all | Occurrences |
+| --- | --- | --- | --- |
+| exact → close: case-insensitive textContains / textStartsWith | 76 | 4.6 % | 132 |
+| skip → close: direct child → childSelector | 58 | 3.5 % | 182 |
+| close → close: case-insensitive textContains / textStartsWith | 16 | 1.0 % | 39 |
+
+With --loose: 973 exact (59.1 %), 289 close (17.6 %), 383 skip (23.3 %).
+
 ## By language
 
 | Language | Literals | Exact | Close | Skip |

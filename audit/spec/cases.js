@@ -23,6 +23,8 @@ const exact = (id, xpath, uiselector, refs, note) => ({ id, xpath, expect: 'exac
 const close = (id, xpath, uiselector, refs, warning) => ({ id, xpath, expect: 'close', uiselector, refs, warning });
 const skip = (id, xpath, reason, refs) => ({ id, xpath, expect: 'skip', reason, refs });
 const dev = (c, device) => ({ ...c, device });
+// a case for loose mode (`opts.loose`, `--loose`): a wider form with a warning, never exact
+const loose = (id, xpath, uiselector, refs, warning) => ({ ...close(id, xpath, uiselector, refs, warning), opts: { loose: true } });
 
 const CASES = [
   // --- A: attributes and class steps ---
@@ -194,7 +196,10 @@ const CASES = [
   exact('G16', r`//*[contains(@text,"a\b")]`, r`${U}.textMatches("(?s).*a\x5cb.*")`, ['SRV-23', 'SEL-03']),
 
   // --- H: regexes and case ---
-  exact('H01', r`//*[matches(@text,"^Total: \d+$")]`, r`${U}.textMatches("(?d)(?s:.*)(?-s:^Total: \d+$)(?s:.*)")`, ['XP-03']),
+  exact('H01', r`//*[matches(@text,"^Total: \d+$")]`, r`${U}.textMatches("(?d)Total: \d+\n?")`, ['XP-03'],
+    '^X$ under find() is a whole-string match of X, and $ also matches before a final \n (UNIX_LINES): X\n?'),
+  exact('H14', '//*[matches(@text,"^Total.*$")]', r`${U}.textMatches("(?d)(?-s:Total.*)\n?")`, ['XP-03', 'SEL-03'], 'a . keeps the (?-s:…) group'),
+  exact('H15', '//*[matches(@text,"^ok$","i")]', r`${U}.textMatches("(?d)(?i-s:ok)\n?")`, ['XP-03', 'XP-04']),
   exact('H02', '//*[matches(@text,"total","i")]', `${U}.textMatches("(?d)(?s:.*)(?i-s:total)(?s:.*)")`, ['XP-03', 'XP-04']),
   skip('H03', '//*[matches(@text,"a*")]', 'the pattern matches "", which XPath also matches on elements without the attribute', ['XP-03']),
   exact('H04', '//*[matches(@text,"[a-z-[aeiou]]+")]', `${U}.textMatches("(?d)(?s:.*)(?-s:[a-z&&[^aeiou]]+)(?s:.*)")`, ['XP-03'], 'PsychoPath rewrites -[ to &&[^'),
@@ -215,6 +220,20 @@ const CASES = [
   exact('H11', '//*[matches(@text,"Line 1.Line 2")]', `${U}.textMatches("(?d)(?s:.*)(?-s:Line 1.Line 2)(?s:.*)")`, ['XP-03', 'SEL-03'],
     'found by the R fuzz mutants (stage 4b): without (?-s:…) the UiSelector also finds "Line 1\\nLine 2"'),
   exact('H12', '//*[matches(@text,"Line 1.Line 2","s")]', `${U}.textMatches("(?d)(?s:.*)(?s:Line 1.Line 2)(?s:.*)")`, ['XP-03', 'XP-04', 'SEL-03']),
+
+  // --- L: loose mode (wider forms, each with a warning) ---
+  loose('L01', '//*[contains(@text,"Total")]', `${U}.textContains("Total")`, ['SEL-03'],
+    'loose: textContains / textStartsWith / descriptionContains / descriptionStartsWith ignore case, so the UiSelector also finds other casings ("TOTAL" for "Total")'),
+  loose('L02', '//*[starts-with(@text,"Total")]', `${U}.textStartsWith("Total")`, ['SEL-03'],
+    'loose: textContains / textStartsWith / descriptionContains / descriptionStartsWith ignore case, so the UiSelector also finds other casings ("TOTAL" for "Total")'),
+  loose('L03', '//*[contains(@content-desc,"menu")]', `${U}.descriptionContains("menu")`, ['SEL-03'],
+    'loose: textContains / textStartsWith / descriptionContains / descriptionStartsWith ignore case, so the UiSelector also finds other casings ("TOTAL" for "Total")'),
+  loose('L04', '//*[starts-with(@content-desc,"Menu")]', `${U}.descriptionStartsWith("Menu")`, ['SEL-03'],
+    'loose: textContains / textStartsWith / descriptionContains / descriptionStartsWith ignore case, so the UiSelector also finds other casings ("TOTAL" for "Total")'),
+  loose('L05', '//android.widget.ListView/android.widget.TextView', `${U}.className("android.widget.ListView").childSelector(${U}.className("android.widget.TextView"))`, ['SEL-14'],
+    'loose: a direct child step became childSelector, which also finds deeper descendants; findElements returns at most one match per container'),
+  loose('L06', '//*[translate(@text,"ABCDEFGHIJKLMNOPQRSTUVWXYZ","abcdefghijklmnopqrstuvwxyz")="ok"]', `${U}.textMatches("(?i)ok")`, ['XP-05'],
+    'loose: (?i) folds every letter, so it also matches non-ASCII case variants and the Kelvin sign, which translate() leaves as they are'),
 
   // --- X: unions and sequences ---
   exact('X01', '//*[@text="A"] | //*[@text="B"]', `${U}.textMatches("A|B")`, ['XP-09', 'SEL-03']),

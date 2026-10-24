@@ -26,7 +26,7 @@ function verdict(c, res) {
 
 function score(cases = CASES) {
   const rows = cases.map(c => {
-    const res = convertXpathToUiSelector(c.xpath);
+    const res = convertXpathToUiSelector(c.xpath, c.opts);
     return { c, res, verdict: verdict(c, res) };
   });
   const count = v => rows.filter(r => r.verdict === v).length;

@@ -29,6 +29,7 @@ label { font-weight: 600; display: block; margin-bottom: 6px; }
 textarea { width: 100%; min-height: 120px; padding: 10px; border: 1px solid var(--line); border-radius: 8px; background: var(--panel); color: var(--text); font: 14px/1.4 ui-monospace, SFMono-Regular, Menlo, monospace; resize: vertical; }
 .bar { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin: 10px 0 16px; }
 .bar .sum { color: var(--muted); margin-left: auto; }
+.bar .opt { display: inline-flex; align-items: center; gap: 4px; margin: 0; font-weight: normal; }
 button { font: inherit; cursor: pointer; }
 .chip, .copy { border: 1px solid var(--line); background: var(--panel); color: var(--text); border-radius: 999px; padding: 4px 12px; }
 .copy { border-radius: 6px; padding: 2px 10px; flex: none; }
@@ -58,10 +59,11 @@ footer { margin-top: 28px; color: var(--muted); font-size: 14px; }
   </nav>
   <label for="input">XPath locators, one per line</label>
   <textarea id="input" spellcheck="false" autocapitalize="off" autocomplete="off"></textarea>
-  <div class="bar"><span>Examples:</span><span id="examples"></span><span class="sum" id="summary" aria-live="polite"></span></div>
+  <div class="bar"><span>Examples:</span><span id="examples"></span><label class="opt"><input type="checkbox" id="loose"> loose</label><span class="sum" id="summary" aria-live="polite"></span></div>
   <section id="results" aria-label="Results"></section>
   <footer>
     <strong>exact</strong>: same elements, same order. <strong>close</strong>: converts, with a warning about a difference. <strong>skipped</strong>: no exact <code>UiSelector</code>; the hint says how to rewrite it by hand.
+    <strong>loose</strong>: simpler, wider forms, each with a warning: <code>textContains</code> / <code>textStartsWith</code> ignore case, a direct child becomes <code>childSelector</code>, <code>translate()</code> becomes <code>(?i)</code>.
     Exact for the default UiAutomator2 driver settings only. <code>UiSelector</code> is <a href="https://github.com/domovou69/xpath-to-uiselector#future-of-uiselector">planned for removal</a> upstream.
   </footer>
 </main>

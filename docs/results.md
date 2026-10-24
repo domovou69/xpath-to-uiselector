@@ -7,7 +7,7 @@ files (S, R, C, DRIFT, …): [how-it-works.md](how-it-works.md).
 
 | | |
 | --- | --- |
-| Edge cases, written from the server and androidx sources | 162 of 162 correct (113 converted as expected, 49 correctly skipped), 0 wrong, 0 missed (`npm run spec:score`) |
+| Edge cases, written from the server and androidx sources | 170 of 170 correct (121 converted as expected, 49 correctly skipped; 6 of them in loose mode), 0 wrong, 0 missed (`npm run spec:score`) |
 | Real-world locators, 20 open-source projects | 1169 converted XPaths (95 forms) on random and matrix screens: **0 wrong**; score 96.4 of 100, where a close match counts half (5 more that the screen builder cannot read, unions with `@id` / `@label` and `normalize-space()`, on a hand-made screen: 0 wrong) |
 | Conversion rate | 73.2 % of 1645 Android XPath literals (exact 63.8 %); most skips have no exact `UiSelector` at all, and 348 of the 441 skips come with a rewrite hint |
 | Strength of the check | 99.5 % of 1718 deliberately wrong `UiSelector`s (mutants) were caught by the matrix screens (before the skipped-form coverage) |
@@ -26,6 +26,10 @@ issue when a new driver or server release changes a file the rules cite.
 | C# | 194 | 96.4 % | 0.0 % | 3.6 % |
 | TypeScript | 199 | 53.3 % | 18.6 % | 28.1 % |
 | JavaScript | 87 | 29.9 % | 4.6 % | 65.5 % |
+
+With `--loose` ([Loose mode](reference.md#loose-mode)), 76.7 % convert: 76 exact literals become close
+(case-insensitive `textContains` / `textStartsWith`), and 58 skipped direct-child paths become `childSelector` (close).
+The default results above do not change.
 
 Top skip reasons: no direct-child criterion (6.7 % of all literals), absolute `/hierarchy/…` paths (4.7 %), web or
 iOS attributes such as `@label` and `@id` (4.7 %). Full list: [convert-summary.md](../audit/corpus/convert-summary.md).

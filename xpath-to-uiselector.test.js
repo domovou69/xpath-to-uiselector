@@ -105,6 +105,8 @@ const FLAGS_CASES = [
   { argv: ['./src', '--write', '--json'], expect: { unknown: [] } },
   { argv: ['./src'], expect: { exact: false } },
   { argv: ['./src', '--write', '--exact'], expect: { exact: true, dryRun: false, unknown: [] } },
+  { argv: ['./src'], expect: { loose: false } },
+  { argv: ['./src', '--loose', '--exact'], expect: { loose: true, exact: true, unknown: [] } },
 ];
 
 console.log('— FLAGS —');
@@ -135,6 +137,7 @@ console.log('— CONVERTER: more rows —');
   const U = 'new UiSelector()';
   const R = '\uF8FF'; // a runtime value, as the scanner passes it
   const RT = { placeholders: new Set([R]) };
+  const LOOSE = { loose: true };
   const CONVERT_CASES = [
     ['(//*[@text="A"] | //*[@text="B"])[2]', `${U}.textMatches("A|B").instance(1)`],
     ['//*[@text="A"] | //*[@text="B"] | //*[@text="C"]', `${U}.textMatches("A|B|C")`],
@@ -149,7 +152,7 @@ console.log('— CONVERTER: more rows —');
     ['//android.widget.Button[@class="android.widget.Button"]', `${U}.className("android.widget.Button")`],
     ['//*[@class="android.widget.Button"][@text="OK"]', `${U}.className("android.widget.Button").text("OK")`],
     ['//*[fn:contains(@text,"a")]', `${U}.textMatches("(?s).*a.*")`],
-    ['//*[matches(@resource-id,"^id/x$")]', `${U}.resourceIdMatches("(?d)(?s:.*)(?-s:^id/x$)(?s:.*)")`],
+    ['//*[matches(@resource-id,"^id/x$")]', `${U}.resourceIdMatches("(?d)id/x\\n?")`],
     [`//*[matches(@text,'say \\"hi\\"')]`, String.raw`${U}.textMatches("(?d)(?s:.*)(?-s:say \x22hi\x22)(?s:.*)")`],
     ['//*[@text="a"]//*[@text="b"]//*[@text="c"]', `${U}.text("a").childSelector(${U}.text("b").childSelector(${U}.text("c")))`, true],
     ['//*[@content-desc=("a","")]', `${U}.descriptionMatches("a|")`],
@@ -246,6 +249,31 @@ console.log('— CONVERTER: more rows —');
     ['//*[normalize-space(@text)="50.0"]', null],
     ['//*[normalize-space(@content-desc)="a b"]', `${U}.descriptionMatches("[ \\t\\n\\r]*a[ \\t\\n\\r]+b[ \\t\\n\\r]*")`],
     ['//*[string-length(@content-desc)=5]', `${U}.descriptionMatches("[\\s\\S]{5}")`],
+    // matches(): only ^X$ with no | outside a group and no m flag drops the wrapper
+    ['//*[matches(@text,"^ab$")]', `${U}.textMatches("(?d)ab\\n?")`],
+    ['//*[matches(@text,"^a.b$","s")]', `${U}.textMatches("(?d)(?s:a.b)\\n?")`],
+    ['//*[matches(@text,"^(a|b)$")]', `${U}.textMatches("(?d)(a|b)\\n?")`],
+    ['//*[matches(@text,"^[.]x$")]', `${U}.textMatches("(?d)[.]x\\n?")`],
+    ['//*[matches(@text,"^a|b$")]', `${U}.textMatches("(?d)(?s:.*)(?-s:^a|b$)(?s:.*)")`],
+    ['//*[matches(@text,"^a$","m")]', `${U}.textMatches("(?d)(?s:.*)(?m-s:^a$)(?s:.*)")`],
+    [String.raw`//*[matches(@text,"^a\$")]`, String.raw`${U}.textMatches("(?d)(?s:.*)(?-s:^a\$)(?s:.*)")`],
+    ['//*[matches(@text,"^ab")]', `${U}.textMatches("(?d)(?s:.*)(?-s:^ab)(?s:.*)")`],
+    // loose: wider forms, each with a warning; what has no wider form stays as in the default mode
+    ['//*[contains(@text,"Total")]', `${U}.textContains("Total")`, true, LOOSE],
+    ['//*[starts-with(@content-desc,"Me")]', `${U}.descriptionStartsWith("Me")`, true, LOOSE],
+    ['//*[ends-with(@text,"USD")]', `${U}.textMatches("(?s).*USD")`, false, LOOSE],
+    ['//*[contains(@resource-id,"ok")]', `${U}.resourceIdMatches("(?s).*ok.*")`, false, LOOSE],
+    [`//*[contains(@text,'a"b')]`, `${U}.textMatches("(?s).*a\\x22b.*")`, false, LOOSE],
+    ['//*[contains(@text,"a") and contains(@text,"b")]', `${U}.textMatches("(?s)(?=.*a)(?=.*b).*")`, false, LOOSE],
+    ['//*[contains(lower-case(@text),"total")]', `${U}.textMatches("(?s)(?i).*total.*")`, true, LOOSE],
+    ['//*[contains(@text,"Total")]', `${U}.textMatches("(?s).*Total.*")`],
+    ['//A/B', `${U}.className("A").childSelector(${U}.className("B"))`, true, LOOSE],
+    ['//A/B/C', `${U}.className("A").childSelector(${U}.className("B").childSelector(${U}.className("C")))`, true, LOOSE],
+    ['//A/B[2]', null, false, LOOSE],
+    ['/hierarchy/A/B', null, false, LOOSE],
+    ['//A/parent::B', null, false, LOOSE],
+    ['//*[translate(@text,"ABCDEFGHIJKLMNOPQRSTUVWXYZ","abcdefghijklmnopqrstuvwxyz")="ok"]', `${U}.textMatches("(?i)ok")`, true, LOOSE],
+    ['//*[translate(@text,"AB","ab")="ab"]', `${U}.textMatches("[aA][bB]")`, false, LOOSE],
   ];
   for (const [xpath, want, warn, opts] of CONVERT_CASES) {
     const res = convertXpathToUiSelector(xpath, opts);
@@ -502,6 +530,13 @@ console.log('— SCANNER: walkDir —');
 }
 
 console.log('— SCANNER: processFile —');
+{
+  // --loose reaches the converter
+  const seen = [];
+  scan('a.js', `const a = '//android.widget.Button';\n`, { loose: true, convert: (x, o) => { seen.push(o.loose); return FAKE(x, o); } });
+  if (seen.length === 1 && seen[0] === true) ok();
+  else fail(`--loose: converter saw ${JSON.stringify(seen)}`);
+}
 {
   // --exact: a conversion with a warning is reported with its UiSelector, not written
   const source = `const a = '(//android.widget.Button)[2]';\nconst b = '//android.widget.Button';\n`;

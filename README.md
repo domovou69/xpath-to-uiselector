@@ -38,6 +38,9 @@ dependencies. The strategy call is rewritten together with the string:
 - **Converts** what has an exact `UiSelector`: attributes, booleans, `@index`, `contains()` / `starts-with()` /
   `ends-with()` / `matches()`, `or` on one attribute, `(//X)[n]`, `(//A//B)[1]`, existence tests such as `[@text]`.
 - **Warns** where only a close form exists, such as `//A//B` → `childSelector`. `--exact` leaves these alone.
+- **Strict by default:** `contains(@text,"Total")` becomes `textMatches("(?s).*Total.*")`, case-sensitive like the
+  XPath. `--loose` gives simpler, wider forms instead (`textContains`, which ignores case; `childSelector` for a
+  direct child), each with a warning.
 - **Skips** the rest with a reason, and most with a `hint` on how to rewrite it by hand: direct child `//A/B`, sibling
   positions, `/hierarchy/…` paths, parent and sibling axes, and more.
 
