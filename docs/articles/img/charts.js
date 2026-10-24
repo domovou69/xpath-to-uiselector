@@ -149,9 +149,10 @@ const write = (name, s) => fs.writeFileSync(path.join(out, name), s);
     b += row('+ rules', m.col, true, m.rules);
     ty += 6;
   }
-  b += t(40, 520, 'S = edge cases (104 of 149 have a UiSelector), R = real-world locators (387 of 531). Points over those: correct +1, close +0.5, wrong −1, skip 0;', { fill: C.muted, size: 12.5 });
-  b += t(40, 538, 'so the converter, which has only a close form for some, is below 100. Wrong = other elements than the XPath, checked on an Android emulator.', { fill: C.muted, size: 12.5 });
-  write('llm-chart.svg', svg(1020, 554, 'Claude 5.5 models against the converter: S score vs cost, no rules and with rules, with S, R, wrong answers, tokens, time and cost', b));
+  b += t(40, 520, 'Strict scoring: a UiSelector must find the same elements as the XPath (textContains for contains() counts as wrong). S = edge cases (104 of 149 have a', { fill: C.muted, size: 12.5 });
+  b += t(40, 538, 'UiSelector), R = real-world locators (387 of 531). Correct +1, close +0.5, wrong −1, skip 0; the converter is below 100 where it has only a close form.', { fill: C.muted, size: 12.5 });
+  b += t(40, 556, 'Every difference from the converter was checked on an Android emulator.', { fill: C.muted, size: 12.5 });
+  write('llm-chart.svg', svg(1020, 572, 'Claude 5.5 models against the converter: S score vs cost, no rules and with rules, with S, R, wrong answers, tokens, time and cost', b));
 }
 
 // 3. Mistakes of the three no-rules runs, by kind (donut).
