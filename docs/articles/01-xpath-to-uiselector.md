@@ -220,6 +220,8 @@ So converting today is a bet that `UiSelector` stays until Appium moves on; no d
 
 ## What I would use
 
+**The short answer:** without rules, no Claude model is safe for a bulk migration; with rules, all three get close to the converter. But the rules are what building and device-checking the converter taught me. Without that work, there would be nothing to put in the prompt.
+
 1. **The converter first.** It is free, offline, takes under a second for 680 locators, gives the same answer every time and made no wrong `UiSelector`.
 2. **A model only for what the converter skips**, with [the rules](https://github.com/domovou69/xpath-to-uiselector/blob/main/audit/llm/rules.md) in the prompt. With the rules, Sonnet 5.5 at `medium` scored the same as Opus for half the cost. Most skips have no exact `UiSelector` at all, so expect an explanation rather than a conversion.
 3. **Never paste a model's `UiSelector` into a test without running it** on the screen it is meant for. Without the rules, about one in twelve was wrong, and none of them looked wrong.
