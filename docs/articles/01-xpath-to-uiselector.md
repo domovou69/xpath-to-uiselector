@@ -135,21 +135,22 @@ I used the same setup as in the [iOS comparison](https://dev.to/mikhail_yesipchu
 - **One request per run:** "convert each one to a UiSelector, or skip it with a reason". Claude Code CLI in an empty folder, Read and Write tools only, effort `medium`, one run per model.
 - **The judge:** every answer that differs from the converter's ran on the emulator next to the XPath.
 
-**Scoring:** a correct `UiSelector` earns 1 point, a close one 0.5, a skip 0, and a **wrong one −1**: it is worse than a skip, because it looks like a valid locator and finds another element. The converter's 471.5 points are 100 %.
+**Scoring:** a correct `UiSelector` earns 1 point, a close one 0.5, a skip 0, and a **wrong one −1** (on iOS a wrong chain scored 0): it is worse than a skip, because it looks like a valid locator and finds another element. **S** is the score on the edge cases, **R** on the real-world locators, each out of 100 over the locators that have a `UiSelector` at all: 104 of 149 edge cases and 387 of 531 real ones. The converter scores **S 94.2 / R 96.5**, not 100, because for some locators it has only a close form, worth half a point. No model beat it on any locator.
 
-![Score against cost for three Claude 5.5 models, with and without the rules prompt](img/llm-chart.png)
+![S score against cost for three Claude 5.5 models, with and without the rules prompt, and a table with S, R, wrong answers, tokens, time and cost](img/llm-chart.png)
 
-| Run           | Correct | Close | Wrong | Skip | Missed | Score     | Min   | Cost  |
-| ------------- | ------- | ----- | ----- | ---- | ------ | --------- | ----- | ----- |
-| **Converter** | 452     | 39    | **0** | 189  | –      | **100&nbsp;%** | <&nbsp;0.1 | free  |
-| Opus 5.5      | 400     | 32    | 47    | 179  | 22     | 78.3&nbsp;%    | 12.2  | $3.00 |
-| Sonnet 5.5    | 401     | 32    | 60    | 176  | 11     | 75.7&nbsp;%    | 4.9   | $0.95 |
-| Haiku 5.5     | 390     | 32    | 63    | 169  | 26     | 72.7&nbsp;%    | 5.2   | $0.12 |
+| Run | Correct | Close | Wrong | Skip | Missed | S | R | Min | Cost |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| **Converter** | 452 | 39 | **0** | 189 | – | **94.2** | **96.5** | <&nbsp;0.1 | free |
+| Opus 5.5 | 400 | 32 | 47 | 179 | 22 | 56.7 | 80.1 | 12.2 | $3.00 |
+| Sonnet 5.5 | 401 | 32 | 60 | 176 | 11 | 43.8 | 80.5 | 4.9 | $0.95 |
+| Haiku 5.5 | 390 | 32 | 63 | 169 | 26 | 37.0 | 78.7 | 5.2 | $0.12 |
 
 "Missed" means the model skipped a locator that the converter converts correctly. Cost is the API list price the CLI reports.
 
-- **Every model got most of the list right.** Around 400 correct answers each; the easy locators are easy for everyone.
-- **But 7–9 % of the answers were wrong**, and they look exactly like the correct ones.
+- **On real locators the three models are close to each other** (R 79–80), but 16 points below the converter, and each still wrote 31–32 wrong answers there.
+- **Edge cases tell the models apart:** S 37 to 57 against 94.2.
+- **7–9 % of all answers were wrong**, and they look exactly like the correct ones.
 - **Opus thought longest and was still wrong 47 times.** Most of its 22 missed locators came from assuming that the driver runs XPath 1.0.
 
 ### What the models get wrong
@@ -186,14 +187,14 @@ That is why the converter is strict by default and `--loose` is a flag you turn 
 
 As on iOS, most of these mistakes are about knowing the driver, not about intelligence. So I wrote them down as general rules (about 8,000 characters, [`rules.md`](https://github.com/domovou69/xpath-to-uiselector/blob/main/audit/llm/rules.md), no answers for particular locators) and ran the three models again:
 
-| Run                | Correct | Close | Wrong | Skip | Missed | Score     | Min   | Cost  |
-| ------------------ | ------- | ----- | ----- | ---- | ------ | --------- | ----- | ----- |
-| **Converter**      | 452     | 39    | **0** | 189  | –      | **100&nbsp;%** | <&nbsp;0.1 | free  |
-| Opus 5.5 + rules   | 448     | 37    | 1     | 189  | 5      | 98.7&nbsp;%    | 5.9   | $1.84 |
-| Sonnet 5.5 + rules | 448     | 37    | 1     | 189  | 5      | 98.7&nbsp;%    | 4.1   | $0.89 |
-| Haiku 5.5 + rules  | 443     | 37    | 4     | 189  | 7      | 97.0&nbsp;%    | 6.3   | $0.33 |
+| Run | Correct | Close | Wrong | Skip | Missed | S | R | Min | Cost |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| **Converter** | 452 | 39 | **0** | 189 | – | **94.2** | **96.5** | <&nbsp;0.1 | free |
+| Opus 5.5 + rules | 448 | 37 | 1 | 189 | 5 | 89.4 | 96.3 | 5.9 | $1.84 |
+| Sonnet 5.5 + rules | 448 | 37 | 1 | 189 | 5 | 89.4 | 96.3 | 4.1 | $0.89 |
+| Haiku 5.5 + rules | 443 | 37 | 4 | 189 | 7 | 87.5 | 94.7 | 6.3 | $0.33 |
 
-- **Wrong answers dropped from 47–63 to 1–4.** The one left for Opus and Sonnet is a line-break case: `string-length(@text)=5` → `textMatches("(?s).{5}")`, where ICU's `.` takes CR LF as one character. Haiku also dropped the `className` three times, against an explicit rule.
+- **Wrong answers dropped from 47–63 to 1–4, S rose from 37–57 to 88–89 and R from 79–80 to 95–96.** The one left for Opus and Sonnet is a line-break case: `string-length(@text)=5` → `textMatches("(?s).{5}")`, where ICU's `.` takes CR LF as one character. Haiku also dropped the `className` three times, against an explicit rule.
 - **Opus got cheaper and faster with the rules:** half the time, 60 % of the cost, a quarter of the thinking.
 - **This is an upper bound.** The rules were written from the mistakes on the same 680 locators, and every run was done once.
 
@@ -206,6 +207,8 @@ The comparison also tested the converter. The first Opus run found **one real co
 On iOS, the same three Claude 5.5 models with a plain request made **4–7 wrong class chains out of 676**. On Android they made **47–63 out of 680**, roughly ten times as many, and still at least 27–41 if `textContains` counts as fine.
 
 My explanation: a class chain filter is an NSPredicate, a language the models know well, and its `CONTAINS` is case-sensitive unless you add `[c]`, just like XPath. `UiSelector` reuses XPath-like names with different meanings: `textContains` ignores case, the string literal is not Java, `instance` inside `childSelector` counts per container. Those are exactly the mistakes in the chart above. A model that "knows" UiSelector from Java code samples has seen these methods used, but rarely with the details that make them differ from XPath.
+
+The gap shows on the real locators too. On iOS the models were within 2 points of the converter there (R 94–95 against 96.0); on Android they are 16 points below it (R 79–80 against 96.5). Part of that is the scoring, since a wrong chain scored 0 on iOS and a wrong `UiSelector` costs 1 here: at 0, the Android R would be 87–89.
 
 The two runs are not identical (iOS ran at `low` and `medium` effort, Android at `medium`; the locators are different), so take the ratio as a direction, not a measurement.
 

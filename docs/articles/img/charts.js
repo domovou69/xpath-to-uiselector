@@ -79,50 +79,77 @@ const write = (name, s) => fs.writeFileSync(path.join(out, name), s);
   write('speed-chart.svg', svg(940, 544, 'Time per element lookup vs elements in the tree, XPath and UiSelector', b));
 }
 
-// 2. Claude 5.5 runs: score (% of the converter) vs cost per run, no rules and with rules.
+// 2. Claude 5.5 runs: S score (edge cases) vs cost per run, no rules and with rules, and a table of S, R, wrong, tokens, time, cost.
 {
-  const X0 = 90, X1 = 880, Y0 = 470;
+  // S, R: audit/llm/table.js (points over the locators that have a UiSelector: correct +1, close +0.5, wrong -1)
+  const runs = [
+    { name: 'Opus 5.5', col: C.opus, plain: { s: 56.7, r: 80.1, w: 47, tok: '89k (46k)', min: 12.2, cost: 3.0 }, rules: { s: 89.4, r: 96.3, w: 1, tok: '49k (12k)', min: 5.9, cost: 1.84 } },
+    { name: 'Sonnet 5.5', col: C.sonnet, plain: { s: 43.8, r: 80.5, w: 60, tok: '51k (15k)', min: 4.9, cost: 0.95 }, rules: { s: 89.4, r: 96.3, w: 1, tok: '46k (10k)', min: 4.1, cost: 0.89 } },
+    { name: 'Haiku 5.5', col: C.haiku, plain: { s: 37.0, r: 78.7, w: 63, tok: '81k (42k)', min: 5.2, cost: 0.12 }, rules: { s: 87.5, r: 94.7, w: 4, tok: '103k (47k)', min: 6.3, cost: 0.33 } },
+  ];
+  const CONV = { s: 94.2, r: 96.5 };
+  const X0 = 66, X1 = 452, Y0 = 470, Y1 = 150;
   const lmin = Math.log10(0.08), lmax = Math.log10(4);
   const x = (c) => X0 + ((Math.log10(c) - lmin) / (lmax - lmin)) * (X1 - X0);
-  const y = (v) => Y0 - ((v - 60) / 45) * 338;
-  const runs = [
-    ['Haiku 5.5', C.haiku, [0.12, 72.7, 63], [0.33, 97.0, 4]],
-    ['Sonnet 5.5', C.sonnet, [0.95, 75.7, 60], [0.89, 98.7, 1]],
-    ['Opus 5.5', C.opus, [3.0, 78.3, 47], [1.84, 98.7, 1]],
-  ];
+  const y = (v) => Y0 - ((v - 30) / 70) * (Y0 - Y1);
   let b = '';
   b += t(40, 46, 'Claude 5.5 against the converter on 680 Android XPath locators', { size: 22, weight: 600 });
   b += `<circle cx="47" cy="75" r="6" fill="${C.ink2}"/>` + t(60, 80, 'no rules', { fill: C.ink2 });
   b += `<circle cx="140" cy="75" r="6" fill="${C.surface}" stroke="${C.ink2}" stroke-width="3"/>` + t(153, 80, 'with the rules prompt', { fill: C.ink2 });
-  b += t(290, 80, '· effort medium · one run each', { fill: C.muted });
-  for (const v of [60, 70, 80, 90, 100]) {
-    b += `<line x1="${X0}" y1="${y(v)}" x2="${X1}" y2="${y(v)}" stroke="${v === 60 ? C.axis : C.grid}"/>`;
-    b += t(X0 - 10, y(v) + 5, `${v} %`, { anchor: 'end', fill: C.muted, size: 14 });
+  b += t(322, 80, '· effort medium · one run each', { fill: C.muted });
+  b += t(40, 112, 'S: edge cases, 0–100 (100 = every one that has a UiSelector found exactly)', { fill: C.ink2, size: 14 });
+  for (const v of [30, 40, 50, 60, 70, 80, 90, 100]) {
+    b += `<line x1="${X0}" y1="${y(v)}" x2="${X1}" y2="${y(v)}" stroke="${v === 30 ? C.axis : C.grid}"/>`;
+    b += t(X0 - 8, y(v) + 5, v, { anchor: 'end', fill: C.muted, size: 13 });
   }
-  for (const c of [0.1, 0.2, 0.5, 1, 2, 4]) b += t(x(c), Y0 + 24, `$${c}`, { anchor: 'middle', fill: C.muted, size: 14 });
-  b += t((X0 + X1) / 2, Y0 + 50, 'Cost per run, log scale (left is cheaper)', { anchor: 'middle', fill: C.ink2, size: 15 });
-  b += t(28, (y(60) + y(100)) / 2, 'Score, % of the converter', { anchor: 'middle', fill: C.ink2, size: 15, extra: ` transform="rotate(-90 28 ${(y(60) + y(100)) / 2})"` });
-  // converter reference
-  b += `<line x1="${X0}" y1="${y(100)}" x2="${X1}" y2="${y(100)}" stroke="${C.ink}" stroke-width="1.5" stroke-dasharray="6 5"/>`;
-  b += `<text x="${X0 + 10}" y="${y(100) - 10}" font-size="15" fill="${C.ink}"><tspan font-weight="600">Converter</tspan> 100 % · 0 wrong · free · under a second</text>`;
-  for (const [name, col, p, r] of runs) {
-    b += `<line x1="${x(p[0])}" y1="${y(p[1])}" x2="${x(r[0])}" y2="${y(r[1])}" stroke="${col}" stroke-width="2" stroke-dasharray="3 4"/>`;
-    b += `<circle cx="${x(p[0])}" cy="${y(p[1])}" r="8" fill="${col}" stroke="${C.surface}" stroke-width="2"/>`;
-    b += `<circle cx="${x(r[0])}" cy="${y(r[1])}" r="7" fill="${C.surface}" stroke="${col}" stroke-width="3.5"/>`;
+  for (const c of [0.1, 0.2, 0.5, 1, 2, 4]) b += t(x(c), Y0 + 22, `$${c}`, { anchor: 'middle', fill: C.muted, size: 13 });
+  b += t((X0 + X1) / 2, Y0 + 46, 'Cost per run, log scale (left is cheaper)', { anchor: 'middle', fill: C.ink2, size: 14 });
+  // converter
+  b += `<line x1="${X0}" y1="${y(CONV.s)}" x2="${X1}" y2="${y(CONV.s)}" stroke="${C.ink}" stroke-width="1.5" stroke-dasharray="6 5"/>`;
+  b += `<text x="${X0 + 8}" y="${y(CONV.s) - 8}" font-size="14" fill="${C.ink}"><tspan font-weight="600">Converter</tspan> S ${CONV.s} · 0 wrong · free</text>`;
+  const HALO = ` stroke="${C.surface}" stroke-width="4" paint-order="stroke" stroke-linejoin="round"`;
+  const name = (lx, ly, s, anchor, col) => t(lx, ly, s, { size: 13, weight: 600, anchor, extra: HALO });
+  for (const m of runs) {
+    const p = m.plain, r = m.rules;
+    b += `<line x1="${x(p.cost)}" y1="${y(p.s)}" x2="${x(r.cost)}" y2="${y(r.s)}" stroke="${m.col}" stroke-width="2" stroke-dasharray="3 4"/>`;
+    b += `<circle cx="${x(p.cost)}" cy="${y(p.s)}" r="8" fill="${m.col}" stroke="${C.surface}" stroke-width="2"/>`;
+    b += `<circle cx="${x(r.cost)}" cy="${y(r.s)}" r="7" fill="${C.surface}" stroke="${m.col}" stroke-width="3.5"/>`;
   }
-  // plain labels
-  const lab = (lx, ly, head, sub, anchor) =>
-    t(lx, ly, head, { weight: 600, anchor }) + t(lx, ly + 19, sub, { fill: C.ink2, size: 14, anchor });
-  b += lab(x(0.12) + 16, y(72.7) - 2, 'Haiku 5.5, no rules', '72.7 % · 63 wrong · $0.12');
-  b += lab(x(0.95) + 16, y(75.7) + 10, 'Sonnet 5.5, no rules', '75.7 % · 60 wrong · $0.95');
-  b += lab(x(3.0) - 16, y(78.3) - 6, 'Opus 5.5, no rules', '78.3 % · 47 wrong · $3.00', 'end');
-  // rules labels
-  b += lab(x(0.33) + 16, y(97.0) + 6, '+ rules: 97.0 %', '4 wrong · $0.33');
-  b += lab(x(0.89) + 16, y(98.7) + 18, '+ rules: 98.7 %', '1 wrong · $0.89');
-  b += lab(x(1.84) + 30, y(98.7) + 18, '+ rules: 98.7 %', '1 wrong · $1.84');
-  b += t(40, 560, 'Score: correct +1, close +0.5, wrong −1, skip 0; the converter’s 471.5 points are 100 %. Wrong = a UiSelector that finds other', { fill: C.muted, size: 13 });
-  b += t(40, 578, 'elements than the XPath, checked on an Android emulator. The rules were written from the no-rules mistakes on the same 680 locators.', { fill: C.muted, size: 13 });
-  write('llm-chart.svg', svg(940, 600, 'Claude 5.5 models against the converter: score vs cost, no rules and with rules', b));
+  const [opus, sonnet, haiku] = runs;
+  b += name(x(haiku.plain.cost) + 14, y(haiku.plain.s) + 5, 'Haiku', 'start');
+  b += name(x(sonnet.plain.cost) + 14, y(sonnet.plain.s) + 5, 'Sonnet', 'start');
+  b += name(x(opus.plain.cost) - 14, y(opus.plain.s) + 5, 'Opus', 'end');
+  b += name(x(haiku.rules.cost) - 14, y(haiku.rules.s) + 5, 'Haiku', 'end');
+  b += name(x(sonnet.rules.cost) - 14, y(sonnet.rules.s) + 5, 'Sonnet', 'end');
+  b += name(x(opus.rules.cost) + 14, y(opus.rules.s) + 5, 'Opus', 'start');
+
+  // table on the right
+  const TX = 498, cols = [['S', 640], ['R', 682], ['wrong', 738], ['output tokens', 826], ['min', 872], ['cost', 924]];
+  b += `<rect x="${TX - 12}" y="128" width="${940 - TX + 2}" height="330" rx="10" fill="#f1f0eb"/>`;
+  b += t(TX, 156, '', {});
+  for (const [h, cx] of cols) {
+    if (h === 'output tokens') { b += t(cx, 150, 'output tokens', { anchor: 'end', fill: C.muted, size: 12.5 }) + t(cx, 166, '(thinking)', { anchor: 'end', fill: C.muted, size: 12.5 }); }
+    else b += t(cx, 158, h, { anchor: 'end', fill: C.muted, size: 12.5 });
+  }
+  let ty = 196;
+  const row = (label, col, hollow, d, bold) => {
+    let s = hollow ? `<circle cx="${TX + 7}" cy="${ty - 5}" r="5.5" fill="${C.surface}" stroke="${col}" stroke-width="3"/>` : `<circle cx="${TX + 7}" cy="${ty - 5}" r="6.5" fill="${col}"/>`;
+    s += t(TX + 22, ty, label, { size: 14, weight: bold ? 600 : 400 });
+    const vals = [d.s.toFixed(1), d.r.toFixed(1), d.w, d.tok, d.min, `$${d.cost.toFixed(2)}`].map(v => esc(v));
+    cols.forEach(([, cx], i) => { s += t(cx, ty, vals[i], { anchor: 'end', size: 14, fill: C.ink, weight: i === 0 ? 600 : 400 }); });
+    ty += 30;
+    return s;
+  };
+  b += row('Converter', C.ink, false, { s: CONV.s, r: CONV.r, w: 0, tok: '–', min: '< 0.1', cost: 0 }, true).replace('$0.00', 'free');
+  ty += 8;
+  for (const m of runs) {
+    b += row(m.name, m.col, false, m.plain);
+    b += row('+ rules', m.col, true, m.rules);
+    ty += 8;
+  }
+  b += t(40, 548, 'S = edge cases (104 of 149 have a UiSelector), R = real-world locators (387 of 531). Points over those: correct +1, close +0.5, wrong −1, skip 0;', { fill: C.muted, size: 12.5 });
+  b += t(40, 566, 'so the converter, which has only a close form for some, is below 100. Wrong = other elements than the XPath, checked on an Android emulator.', { fill: C.muted, size: 12.5 });
+  write('llm-chart.svg', svg(940, 580, 'Claude 5.5 models against the converter: S score vs cost, no rules and with rules, with S, R, wrong answers, tokens, time and cost', b));
 }
 
 // 3. Mistakes of the three no-rules runs, by kind (donut).

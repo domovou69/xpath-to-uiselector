@@ -6,15 +6,15 @@ emulator. One run per model and setting, so the numbers are indicative, not a be
 
 ## Result
 
-| Run (effort medium) | Correct | Close | Wrong | Skip | Missed | Score (%) | Time, min | Cost, $ |
-| --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| Converter | 452 | 39 | 0 | 189 | – | 100 | < 0.1 | 0 |
-| Opus 5.5, no rules | 400 | 32 | **47** (14 LB) | 179 | 22 | 78.3 | 12.2 | 3.00 |
-| Opus 5.5, rules | 448 | 37 | **1** (1 LB) | 189 | 5 | 98.7 | 5.9 | 1.84 |
-| Sonnet 5.5, no rules | 401 | 32 | **60** (8 LB) | 176 | 11 | 75.7 | 4.9 | 0.95 |
-| Sonnet 5.5, rules | 448 | 37 | **1** (1 LB) | 189 | 5 | 98.7 | 4.1 | 0.89 |
-| Haiku 5.5, no rules | 390 | 32 | **63** (16 LB) | 169 | 26 | 72.7 | 5.2 | 0.12 |
-| Haiku 5.5, rules | 443 | 37 | **4** (1 LB) | 189 | 7 | 97.0 | 6.3 | 0.33 |
+| Run (effort medium) | Correct | Close | Wrong | Skip | Missed | Score (%) | S | R | Time, min | Cost, $ |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| Converter | 452 | 39 | 0 | 189 | – | 100 | 94.2 | 96.5 | < 0.1 | 0 |
+| Opus 5.5, no rules | 400 | 32 | **47** (14 LB) | 179 | 22 | 78.3 | 56.7 | 80.1 | 12.2 | 3.00 |
+| Opus 5.5, rules | 448 | 37 | **1** (1 LB) | 189 | 5 | 98.7 | 89.4 | 96.3 | 5.9 | 1.84 |
+| Sonnet 5.5, no rules | 401 | 32 | **60** (8 LB) | 176 | 11 | 75.7 | 43.8 | 80.5 | 4.9 | 0.95 |
+| Sonnet 5.5, rules | 448 | 37 | **1** (1 LB) | 189 | 5 | 98.7 | 89.4 | 96.3 | 4.1 | 0.89 |
+| Haiku 5.5, no rules | 390 | 32 | **63** (16 LB) | 169 | 26 | 72.7 | 37.0 | 78.7 | 5.2 | 0.12 |
+| Haiku 5.5, rules | 443 | 37 | **4** (1 LB) | 189 | 7 | 97.0 | 87.5 | 94.7 | 6.3 | 0.33 |
 
 The converter here is the version after the [converter backlog](#converter-backlog) was closed (PR #22); the
 models' answers are the same.
@@ -35,6 +35,11 @@ Each row sums to 680. One verdict per locator:
 - **Missed:** the model skips, and the device confirms the converter's UiSelector.
 - 1–5 answers per run agree on every screen, but their XPath found nothing there (VACUOUS), so they prove nothing:
   they go in the converter's column for that locator.
+
+**S and R** (the article's scores) are the same points over the locators that have a UiSelector, as in the iOS
+comparison: S on the edge cases (104 of 149), R on the real-world locators (387 of 531), each out of 100. The converter
+scores 94.2 / 96.5, below 100 because some locators only have a close form (half a point). `audit/llm/table.js` prints
+them next to the columns.
 
 **Score:** Correct +1, Close +0.5, Wrong −1 (LB included), Skip 0, Missed 0. The converter is the reference: its
 471.5 points are 100 %, and a run's % is its points over the converter's. A model above 100 % would beat the

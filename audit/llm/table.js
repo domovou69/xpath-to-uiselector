@@ -88,15 +88,21 @@ const ORDER = ['opus', 'sonnet', 'haiku'];
 const runs = fs.readdirSync(path.join(__dirname, 'scores')).filter(f => /-device\.json$/.test(f)).map(f => f.replace(/-device\.json$/, ''))
   .sort((a, b) => ORDER.indexOf(a.split('-')[0]) - ORDER.indexOf(b.split('-')[0]) || a.localeCompare(b));
 const rows = [], gaps = {};
-let convCols = null;
+let convCols = null, den = null;
+// S (edge cases) and R (real-world) score as in the iOS comparison: points over the locators that have a UiSelector
+// (the converter's exact + close), so the converter sits below 100 where it only has a close form (half a point)
+const GROUPS = ['S', 'R'];
 for (const r of runs) {
   const { score, dev, final } = finals(r);
   write(`${r}-final.json`, final);
   const cols = Object.fromEntries(COLS.map(k => [k, 0]));
+  const gcols = Object.fromEntries(GROUPS.map(g => [g, Object.fromEntries(COLS.map(k => [k, 0]))]));
   let lb = 0;
   if (!convCols) {
     convCols = Object.fromEntries(COLS.map(k => [k, 0]));
-    for (const c of Object.values(score.cases)) convCols[convCol(c)]++;
+    den = Object.fromEntries(GROUPS.map(g => [g, { cols: Object.fromEntries(COLS.map(k => [k, 0])) }]));
+    for (const c of Object.values(score.cases)) { convCols[convCol(c)]++; den[c.group].cols[convCol(c)]++; }
+    for (const g of GROUPS) den[g].n = den[g].cols.Correct + den[g].cols.Close;
   }
   for (const [id, c] of Object.entries(score.cases)) {
     const t = TRIAGE[id];
@@ -104,6 +110,7 @@ for (const r of runs) {
     const v = better && t && t.status === 'false' ? t.verdict : final[id];
     const col = column(v, c);
     cols[col]++;
+    gcols[c.group][col]++;
     if (v === 'WRONG-LB') lb++;
     if (better) {
       const g = gaps[id] || (gaps[id] = { id, group: c.group, ref: c.ref, xpath: c.xpath, converter: c.converter,
@@ -111,14 +118,15 @@ for (const r of runs) {
       g.runs.push({ run: r, verdict: final[id], uiselector: dev[id].llm });
     }
   }
-  rows.push({ run: r, cols, lb, score: total(cols) });
+  rows.push({ run: r, cols, lb, score: total(cols), gscore: Object.fromEntries(GROUPS.map(g => [g, 100 * total(gcols[g]) / den[g].n])) });
 }
 const conv = total(convCols);
 const pct = s => (100 * s / conv).toFixed(1);
-const L = [`| Run | ${COLS.join(' | ')} | Score | Score (%) |`, `|${' --- |'.repeat(COLS.length + 3)}`,
-  `| Converter | ${COLS.map(k => k === 'Missed' ? '–' : convCols[k]).join(' | ')} | ${conv} | 100.0 |`];
-for (const { run: r, cols, lb, score } of rows)
-  L.push(`| ${r} | ${COLS.map(k => k === 'Wrong' && lb ? `${cols[k]} (${lb} LB)` : cols[k]).join(' | ')} | ${score} | ${pct(score)} |`);
+const gs = o => GROUPS.map(g => (100 * total(o[g].cols) / o[g].n).toFixed(1)).join(' | ');
+const L = [`| Run | ${COLS.join(' | ')} | Score | Score (%) | S | R |`, `|${' --- |'.repeat(COLS.length + 5)}`,
+  `| Converter | ${COLS.map(k => k === 'Missed' ? '–' : convCols[k]).join(' | ')} | ${conv} | 100.0 | ${gs(den)} |`];
+for (const { run: r, cols, lb, score, gscore } of rows)
+  L.push(`| ${r} | ${COLS.map(k => k === 'Wrong' && lb ? `${cols[k]} (${lb} LB)` : cols[k]).join(' | ')} | ${score} | ${pct(score)} | ${GROUPS.map(g => gscore[g].toFixed(1)).join(' | ')} |`);
 const list = Object.values(gaps).sort((a, b) => a.id.localeCompare(b.id));
 L.push('', `Model better than the converter: ${list.length} ids — ` + ['gap', 'false', 'untriaged'].map(s => `${s} ${list.filter(g => g.status === s).length}`).join(', '));
 for (const g of list) L.push(`- ${g.id} ${g.status}: ${g.runs.map(x => `${x.run} ${x.verdict}`).join(', ')}`);
