@@ -94,7 +94,7 @@ const write = (name, s) => fs.writeFileSync(path.join(out, name), s);
   b += t(40, 46, 'Claude 5.5 against the converter on 680 Android XPath locators', { size: 22, weight: 600 });
   b += `<circle cx="47" cy="75" r="6" fill="${C.ink2}"/>` + t(60, 80, 'no rules', { fill: C.ink2 });
   b += `<circle cx="140" cy="75" r="6" fill="${C.surface}" stroke="${C.ink2}" stroke-width="3"/>` + t(153, 80, 'with the rules prompt', { fill: C.ink2 });
-  b += t(290, 80, '· effort medium · one run each', { fill: C.muted });
+  b += t(322, 80, '· effort medium · one run each', { fill: C.muted });
   for (const v of [60, 70, 80, 90, 100]) {
     b += `<line x1="${X0}" y1="${y(v)}" x2="${X1}" y2="${y(v)}" stroke="${v === 60 ? C.axis : C.grid}"/>`;
     b += t(X0 - 10, y(v) + 5, `${v} %`, { anchor: 'end', fill: C.muted, size: 14 });
@@ -111,11 +111,13 @@ const write = (name, s) => fs.writeFileSync(path.join(out, name), s);
     b += `<circle cx="${x(r[0])}" cy="${y(r[1])}" r="7" fill="${C.surface}" stroke="${col}" stroke-width="3.5"/>`;
   }
   // plain labels
+  // a surface-colored outline keeps a grid line from running through a label
+  const HALO = ` stroke="${C.surface}" stroke-width="4" paint-order="stroke" stroke-linejoin="round"`;
   const lab = (lx, ly, head, sub, anchor) =>
-    t(lx, ly, head, { weight: 600, anchor }) + t(lx, ly + 19, sub, { fill: C.ink2, size: 14, anchor });
-  b += lab(x(0.12) + 16, y(72.7) - 2, 'Haiku 5.5, no rules', '72.7 % · 63 wrong · $0.12');
-  b += lab(x(0.95) + 16, y(75.7) + 10, 'Sonnet 5.5, no rules', '75.7 % · 60 wrong · $0.95');
-  b += lab(x(3.0) - 16, y(78.3) - 6, 'Opus 5.5, no rules', '78.3 % · 47 wrong · $3.00', 'end');
+    t(lx, ly, head, { weight: 600, anchor, extra: HALO }) + t(lx, ly + 19, sub, { fill: C.ink2, size: 14, anchor, extra: HALO });
+  b += lab(x(0.12), y(72.7) + 30, 'Haiku 5.5, no rules', '72.7 % · 63 wrong · $0.12', 'middle');
+  b += lab(x(0.95), y(75.7) + 30, 'Sonnet 5.5, no rules', '75.7 % · 60 wrong · $0.95', 'middle');
+  b += lab(x(3.0), y(78.3) + 30, 'Opus 5.5, no rules', '78.3 % · 47 wrong · $3.00', 'middle');
   // rules labels
   b += lab(x(0.33) + 16, y(97.0) + 6, '+ rules: 97.0 %', '4 wrong · $0.33');
   b += lab(x(0.89) + 16, y(98.7) + 18, '+ rules: 98.7 %', '1 wrong · $0.89');
