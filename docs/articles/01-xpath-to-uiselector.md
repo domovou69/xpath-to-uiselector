@@ -114,7 +114,7 @@ Every XPath ends up in one of three groups:
 
 **The default is strict:** a converted locator finds the same elements as your XPath, so `contains(@text,"Total")` becomes the case-sensitive `textMatches("(?s).*Total.*")`. If you prefer simpler, more tolerant locators, `--loose` writes `textContains` / `textStartsWith` (they ignore case) and turns a direct child `//A/B` into `childSelector`. Each loose form is marked close with a warning. On the real locators, `--loose` converts 77 % instead of 73 %.
 
-The bare command only previews. `--write` saves, `--json` writes a report with every skip and warning. Node.js 20+, no dependencies. To try a single XPath without installing anything, use the [online converter](https://domovou69.github.io/xpath-to-uiselector/): it runs the same code in the browser.
+The bare command only previews. `--write` saves, `--json` writes a report with every skip and warning. Node.js 20+, no dependencies. To try XPaths without installing anything, use the [online converter](https://domovou69.github.io/xpath-to-uiselector/): it runs the same code in the browser.
 
 ## How I checked it
 
@@ -125,7 +125,7 @@ The order was facts first, the converter last:
 3. **1645 real XPath locators from 20 open-source Appium projects.** Every converted one (1169 distinct XPaths) ran on random screens built from its own values and on screens built to break each condition. **0 wrong.**
 4. **Checking the check:** 1718 deliberately wrong `UiSelector`s; the screens caught 99.5 % of them.
 
-Android 16 emulator (and Android 17 for the edge cases), Appium 3.8.0, UiAutomator2 driver 8.7.0, default driver settings. The result: **73 % convert (64 % exact, 9 % close)**. Most of the rest have no exact `UiSelector` at all: direct children, absolute `/hierarchy/…` paths, sibling positions, web and iOS attributes.
+Android 16 emulator (and Android 17 for most edge cases), Appium 3.8.0, UiAutomator2 driver 8.7.0, default driver settings. The result: **73 % convert (64 % exact, 9 % close)**. Most of the rest have no exact `UiSelector` at all: direct children, absolute `/hierarchy/…` paths, sibling positions, web and iOS attributes.
 
 ## Claude 5.5 against the converter
 
