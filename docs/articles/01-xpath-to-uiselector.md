@@ -77,14 +77,18 @@ It has no direct-child or parent step and no position among siblings: `childSele
 
 The simple rows above are what everyone converts correctly. The trouble is the methods whose names promise the same thing as XPath but behave differently. All of these were checked on the emulator:
 
-| XPath                            | Looks right                                        | How it differs                                                                                                      |
-| -------------------------------- | -------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------- |
-| `contains(@text,"Total")`        | `textContains("Total")`                            | `textContains` and `textStartsWith` **ignore case**: this also finds "TOTAL". Exact: `textMatches("(?s).*Total.*")` |
-| `matches(@resource-id,".*\.ok")` | `resourceIdMatches(".*\\.ok")` in the locator text | The server's string literal unescapes only `\"`, so the regex gets `\\.`, a literal backslash. It matches nothing   |
-| `(//ScrollView//ImageView)[3]`   | `…childSelector(…ImageView.instance(2))`           | Inside `childSelector`, `instance()` counts per container, not across the screen                                    |
-| `//*`                            | `classNameMatches(".*")`                           | With `classNameMatches`, `findElements` iterates `index(i)` and loses elements                                      |
-| `//ListView/TextView`            | `…childSelector(…)`                                | That is any descendant. UiSelector has no direct child, so there is no exact form                                   |
-| `ends-with(@text,"USD")`         | "skip: XPath 2.0"                                  | The driver runs XPath 2.0 unless `enforceXPath1` is set. `matches()`, `ends-with()`, `lower-case()` all work        |
+- `contains(@text,"Total")` → `textContains("Total")`<br>
+  `textContains` and `textStartsWith` **ignore case**: this also finds "TOTAL". Exact: `textMatches("(?s).*Total.*")`.
+- `matches(@resource-id,".*\.ok")` → `resourceIdMatches(".*\\.ok")` (in the locator text)<br>
+  The server's string literal unescapes only `\"`, so the regex gets `\\.`, a literal backslash. It matches nothing.
+- `(//ScrollView//ImageView)[3]` → `…childSelector(…ImageView.instance(2))`<br>
+  Inside `childSelector`, `instance()` counts per container, not across the screen.
+- `//*` → `classNameMatches(".*")`<br>
+  With `classNameMatches`, `findElements` iterates `index(i)` and loses elements. Exact: `new UiSelector()`.
+- `//ListView/TextView` → `…childSelector(…)`<br>
+  That is any descendant. UiSelector has no direct child, so there is no exact form.
+- `ends-with(@text,"USD")` → "skip: XPath 2.0"<br>
+  The driver runs XPath 2.0 unless `enforceXPath1` is set: `matches()`, `ends-with()`, `lower-case()` all work.
 
 The server accepts all of these: no syntax error, just other elements (or none). The first one is debatable (more on that [below](#is-textcontains-really-wrong)), but it changes what the locator finds without anyone noticing: the test passes today and taps another element when someone adds a "TOTAL" label above it.
 
