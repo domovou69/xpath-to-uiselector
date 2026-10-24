@@ -125,7 +125,7 @@ const write = (name, s) => fs.writeFileSync(path.join(out, name), s);
 // 3. Mistakes of the three no-rules runs, by kind (donut).
 {
   const parts = [
-    ['Case-insensitive textContains / textStartsWith', 65, C.accent, C.surface],
+    ['textContains / textStartsWith: ignore case (debatable)', 65, C.accent, C.surface],
     ['Missing (?s): . stops at a line break', 38, '#8f85e3', C.ink],
     ['Values only the page source has', 18, '#a8a69e', C.ink],
     ['Java-style \\\\ escaping', 18, '#c3c2b7', C.ink],
@@ -157,8 +157,8 @@ const write = (name, s) => fs.writeFileSync(path.join(out, name), s);
     b += t(905, ly, n, { anchor: 'end', size: 15, weight: 600 });
     ly += 46;
   }
-  b += t(440, ly + 4, 'Line-break failures need a line break in a value;', { fill: C.muted, size: 13 });
-  b += t(440, ly + 22, 'real resource ids have none, so most of those are harmless.', { fill: C.muted, size: 13 });
+  b += t(440, ly + 4, 'Ignoring case finds more than the XPath: wrong by a strict definition.', { fill: C.muted, size: 13 });
+  b += t(440, ly + 22, 'Line-break failures need a line break in a value, which real ids lack.', { fill: C.muted, size: 13 });
   write('llm-mistakes.svg', svg(940, 500, 'Wrong UiSelectors of three Claude 5.5 runs without rules, by kind of mistake', b));
 }
 
@@ -176,8 +176,8 @@ const write = (name, s) => fs.writeFileSync(path.join(out, name), s);
     t(920, y0 + 38, verdict, { size: 17, anchor: 'end', fill: ok ? '#5fd38d' : '#ff7a72', weight: 600 });
   b += t(80, 196, esc('//*[contains(@text,"Total")]'), { size: 20, fill: '#d8d6cf', family: MONO });
   b += t(470, 196, 'also matches “TOTAL”?', { size: 17, fill: '#a7a59d' });
-  b += card(214, 'Claude', 'textContains("Total")', '✗ yes, wrong', false);
-  b += card(290, 'Converter', 'textMatches("(?s).*Total.*")', '✓ no, exact', true);
+  b += card(214, 'Claude', 'textContains("Total")', '✗ yes: wider', false);
+  b += card(290, 'Converter', 'textMatches("(?s).*Total.*")', '✓ no: exact', true);
   b += t(56, 398, '680 locators · emulator-checked · converter: 0 wrong · Claude without rules: 47–63 wrong', { size: 16, fill: '#a7a59d' });
   write('cover.svg', svg(W, 420, 'XPath to Android UiSelector: can Claude 5.5 replace a converter?', b).replace(`<rect width="${W}" height="420" fill="${C.surface}"/>\n`, ''));
 }

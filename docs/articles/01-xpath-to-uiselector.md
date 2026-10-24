@@ -17,7 +17,7 @@ and the benchmark's REPORT.md (github.com/domovou69/appium-android-locator-bench
 
 - **UiSelector is faster than XPath on Android:** it won all 30 benchmark cases. It saved 49 % per lookup at 100 elements and 12 % at 2000 (emulator). Below level 70 of the tree, XPath finds nothing at all.
 - **73 % of 1645 real XPath locators convert** to a `UiSelector`. Every converted one ran on an emulator with **0 wrong** results; the rest are skipped with a reason.
-- **Claude 5.5 without rules: 47–63 wrong UiSelectors out of 680** (7–9 %). They look right and often pass a quick check. With a rules prompt, Opus and Sonnet made 1 and Haiku 4, and still no model beat the converter.
+- **Claude 5.5 without rules: 47–63 wrong UiSelectors out of 680** (7–9 %). They look right and often pass a quick check. 65 of the 170 are `textContains`, which ignores case: wrong by a strict definition, and [open to debate](#is-textcontains-really-wrong). With a rules prompt, Opus and Sonnet made 1 and Haiku 4, and still no model beat the converter.
 
 ```bash
 npx xpath-to-uiselector ./tests          # preview the diff
@@ -36,6 +36,7 @@ Or paste a single XPath into the [online converter](https://domovou69.github.io/
 4. [What the converter does](#what-the-converter-does)
 5. [How I checked it](#how-i-checked-it)
 6. [Claude 5.5 against the converter](#claude-55-against-the-converter)
+   - [Is textContains really wrong?](#is-textcontains-really-wrong)
 7. [Android is harder than iOS](#android-is-harder-than-ios)
 8. [The future of UiSelector](#the-future-of-uiselector)
 9. [What I would use](#what-i-would-use)
@@ -76,7 +77,7 @@ It has no direct-child or parent step and no position among siblings: `childSele
 
 The simple rows above are what everyone converts correctly. The trouble is the methods whose names promise the same thing as XPath but behave differently. All of these were checked on the emulator:
 
-| XPath | Looks right | Why it is wrong |
+| XPath | Looks right | How it differs |
 | --- | --- | --- |
 | `contains(@text,"Total")` | `textContains("Total")` | `textContains` and `textStartsWith` **ignore case**: this also finds "TOTAL". Exact: `textMatches("(?s).*Total.*")` |
 | `matches(@resource-id,".*\.ok")` | `resourceIdMatches(".*\\.ok")` in the locator text | The server's string literal unescapes only `\"`, so the regex gets `\\.`, a literal backslash. It matches nothing |
@@ -85,7 +86,7 @@ The simple rows above are what everyone converts correctly. The trouble is the m
 | `//ListView/TextView` | `…childSelector(…)` | That is any descendant. UiSelector has no direct child, so there is no exact form |
 | `ends-with(@text,"USD")` | "skip: XPath 2.0" | The driver runs XPath 2.0 unless `enforceXPath1` is set. `matches()`, `ends-with()`, `lower-case()` all work |
 
-None of these fails loudly. The first one is the dangerous kind: the test passes today and taps the wrong element when someone adds a "TOTAL" label.
+None of these fails loudly. The first one is debatable (more on that [below](#is-textcontains-really-wrong)), but it changes what the locator finds without anyone noticing: the test passes today and taps another element when someone adds a "TOTAL" label above it.
 
 ## What the converter does
 
@@ -106,6 +107,8 @@ Every XPath ends up in one of three groups:
 - **Exact:** the `UiSelector` finds the same elements in the same order.
 - **Close:** the same first element, but not always the same list, for example `//A//B` → `childSelector`. It comes with a warning, and `--exact` leaves these alone.
 - **Skip:** there is no exact `UiSelector`. Most skips come with a hint on how to rewrite the locator by hand.
+
+**The default is strict:** a converted locator finds the same elements as your XPath, so `contains(@text,"Total")` becomes the case-sensitive `textMatches("(?s).*Total.*")`. If you prefer simpler, more tolerant locators, `--loose` writes `textContains` / `textStartsWith` (they ignore case) and turns a direct child `//A/B` into `childSelector`. Each loose form is marked close with a warning. On the real locators, `--loose` converts 77 % instead of 73 %.
 
 The bare command only previews. `--write` saves, `--json` writes a report with every skip and warning. Node.js 20+, no dependencies. To try a single XPath without installing anything, use the [online converter](https://domovou69.github.io/xpath-to-uiselector/): it runs the same code in the browser.
 
@@ -149,7 +152,7 @@ I used the same setup as in the [iOS comparison](https://dev.to/mikhail_yesipchu
 
 ![170 wrong UiSelectors of the three runs without rules, by kind of mistake](img/llm-mistakes.png)
 
-More than a third of all wrong answers are one trap: `textContains` for `contains()`. Every model fell into it 20–23 times. The next group is a regex without `(?s)`, where `.` stops at a line break; real resource ids have no line breaks, so those are mostly harmless. Then come the Java-style `\\` (Sonnet alone: 15), values that exist only in the page source (an empty text, a toast, a slider's value), and positions inside `childSelector`.
+More than a third of all wrong answers are one pattern: `textContains` for `contains()`. Every model wrote it 20–23 times. The next group is a regex without `(?s)`, where `.` stops at a line break; real resource ids have no line breaks, so those are mostly harmless. Then come the Java-style `\\` (Sonnet alone: 15), values that exist only in the page source (an empty text, a toast, a slider's value), and positions inside `childSelector`.
 
 {% details Mistakes per model %}
 
@@ -166,6 +169,14 @@ More than a third of all wrong answers are one trap: `textContains` for `contain
 Each wrong answer is counted once, under the first mistake it shows.
 
 {% enddetails %}
+
+### Is textContains really wrong?
+
+By the definition of this test, yes: `contains(@text,"Total")` does not find "TOTAL", and `textContains("Total")` does. The judge screens include such traps on purpose, so every one of the 65 answers found an extra element there.
+
+In a real app it is less clear. Many people who write `contains(@text,"Total")` probably never thought about case, and a case-insensitive locator survives a designer switching a label to upper case. The cost is the other side of the same thing: a migration of hundreds of locators quietly makes each one wider. Where a "TOTAL" header sits above the "Total: $5" line, `findElement` now returns the header. And a check that the label reads "Total" no longer catches a change to "TOTAL".
+
+That is why the converter is strict by default and `--loose` is a flag you turn on knowingly. If you count `textContains` as acceptable, the models made **27, 37 and 41** wrong answers without rules instead of 47, 60 and 63. Which side are you on? Tell me in the comments.
 
 ### A prompt with rules
 
@@ -188,7 +199,7 @@ The comparison also tested the converter. The first Opus run found **one real co
 
 ## Android is harder than iOS
 
-On iOS, the same three Claude 5.5 models with a plain request made **4–7 wrong class chains out of 676**. On Android they made **47–63 out of 680**, roughly ten times as many.
+On iOS, the same three Claude 5.5 models with a plain request made **4–7 wrong class chains out of 676**. On Android they made **47–63 out of 680**, roughly ten times as many, and still 27–41 if `textContains` counts as fine.
 
 My explanation: a class chain filter is an NSPredicate, a language the models know well, and its `CONTAINS` is case-sensitive unless you add `[c]`, just like XPath. `UiSelector` reuses XPath-like names with different meanings: `textContains` ignores case, the string literal is not Java, `instance` inside `childSelector` counts per container. Those are exactly the mistakes in the chart above. A model that "knows" UiSelector from Java code samples has seen these methods used, but rarely with the details that make them differ from XPath.
 
@@ -205,7 +216,7 @@ So converting today is a bet on a few more years of speed, not forever. XPath lo
 1. **The converter first.** It is free, offline, takes under a second for 680 locators, gives the same answer every time and made no wrong `UiSelector`.
 2. **A model only for what the converter skips**, with [the rules](https://github.com/domovou69/xpath-to-uiselector/blob/main/audit/llm/rules.md) in the prompt. Sonnet 5.5 at `medium` was as good as Opus for half the cost. Most skips have no exact `UiSelector` at all, so expect an explanation rather than a conversion.
 3. **Never paste a model's `UiSelector` into a test without running it** on the screen it is meant for. Without the rules, about one in twelve was wrong, and none of them looked wrong.
-4. **Run `--exact` first** if you want only conversions with no caveats, then review the close ones.
+4. **Run `--exact` first** if you want only conversions with no caveats, then review the close ones. Add `--loose` only if you want case-insensitive locators and accept that they find more.
 
 If you use Claude Code, the repository has a [skill](https://github.com/domovou69/xpath-to-uiselector/tree/main/.claude/skills/xpath-to-uiselector) that does exactly that: it runs the converter, then reviews each skipped locator and suggests a rewrite, marked as unverified.
 
