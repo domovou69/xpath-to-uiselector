@@ -204,11 +204,17 @@ The comparison also tested the converter. The first Opus run found **one real co
 
 ## Android is harder than iOS
 
-On iOS, the same three Claude 5.5 models with a plain request made **4–7 wrong class chains out of 676**. On Android they made **47–63 out of 680**, roughly ten times as many, and still at least 27–41 if `textContains` counts as fine.
+On iOS, the same three Claude 5.5 models with a plain request made **4–7 wrong class chains out of 676**. On Android they made **47–63 out of 680**, roughly ten times as many. The gap shows on the real locators too: on iOS the models were within 2 points of the converter (R 94–95 against 96.0), on Android 16 points below it (R 79–80 against 96.5). Part of that is the scoring, since a wrong chain scored 0 on iOS and a wrong `UiSelector` costs 1 here: at 0, the Android R would be 87–89.
 
-My explanation: a class chain filter is an NSPredicate, a language the models know well, and its `CONTAINS` is case-sensitive unless you add `[c]`, just like XPath. `UiSelector` reuses XPath-like names with different meanings: `textContains` ignores case, the string literal is not Java, `instance` inside `childSelector` counts per container. Those are exactly the mistakes in the chart above. A model that "knows" UiSelector from Java code samples has seen these methods used, but rarely with the details that make them differ from XPath.
+The reason is the target language, not the models. Both converters are strict in the same way: a converted locator must find the same elements as the XPath. On iOS, the obvious answer is usually also the strict one. A class chain filter is an NSPredicate, and its string operators behave like XPath's: `CONTAINS` and `BEGINSWITH` are case-sensitive unless you add `[c]`. So `[contains(@label,"Total")]` becomes ``[`label CONTAINS "Total"`]``, and that is exact.
 
-The gap shows on the real locators too. On iOS the models were within 2 points of the converter there (R 94–95 against 96.0); on Android they are 16 points below it (R 79–80 against 96.5). Part of that is the scoring, since a wrong chain scored 0 on iOS and a wrong `UiSelector` costs 1 here: at 0, the Android R would be 87–89.
+On Android, the obvious answer is often wider than the XPath. `UiSelector` has methods with XPath-like names and different behaviour:
+
+- `textContains` and `textStartsWith` **ignore case**. This one trap is 65 of the 170 wrong answers, and it has no iOS counterpart.
+- The string literal is not Java: the server unescapes only `\"`, so a Java-style `\\` stays two characters.
+- `instance()` inside `childSelector` counts per container, not across the screen.
+
+A model that "knows" `UiSelector` from Java code samples has seen these methods used, but rarely with the details that make them differ from XPath. So the case-insensitive, `--loose`-like answers are an Android problem: on iOS the same habit would produce the exact chain. Even if `textContains` counts as fine, the Android models made at least 27–41 wrong answers, about four to ten times the iOS count. The iOS mistakes were mostly of other kinds: raw line breaks inside a chain and positions such as `[-1]`.
 
 The two runs are not identical (iOS ran at `low` and `medium` effort, Android at `medium`; the locators are different), so take the ratio as a direction, not a measurement.
 
