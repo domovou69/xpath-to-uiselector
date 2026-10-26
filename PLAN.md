@@ -235,6 +235,8 @@ In order:
 3. [optional] Real phone: the edge cases and a slice of the real-world fuzz on a physical Android device (AC power,
    Low Power Mode off), as the iPhone check on iOS; another OEM build. An older Android version (API 33 or 30,
    ≈550–670 MB image) only if a reason comes up: Android 17 already matched Android 16.
+4. [optional] Known issues: code review of `lib/` 2026-10-26, the three silent wrong results fixed (PRs #35, #36),
+   the rest listed with priorities in [docs/known-issues.md](docs/known-issues.md), fixed when that code is touched.
 
 ## Coverage of skipped forms (2026-10-21)
 
