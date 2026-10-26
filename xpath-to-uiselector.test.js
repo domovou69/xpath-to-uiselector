@@ -816,6 +816,12 @@ console.log('— SCANNER: runtime values —');
       `e = driver.findElement(AppiumBy.androidUIAutomator("${U}.text(\\"" + name + "\\")"));`, true],
     ['A.java', 'e = driver.findElement(AppiumBy.xpath("//*[@resource-id=\'" + pkg + ":id/" + ids.get(0) + "\']"));',
       `e = driver.findElement(AppiumBy.androidUIAutomator("${U}.resourceId(\\"" + pkg + ":id/" + ids.get(0) + "\\")"));`, true],
+    // runtime values in a later piece keep their own names
+    ['A.kt', 'val e = driver.findElement(AppiumBy.xpath("//*[@resource-id=\'" + rid + "\'][@content-desc=\'$a\'][@text=\'$b\']"))',
+      `val e = driver.findElement(AppiumBy.androidUIAutomator("${U}.resourceId(\\"" + rid + "\\").description(\\"$a\\").text(\\"$b\\")"))`, true],
+    // a private-use character written in a later piece is text, not a runtime value
+    ['A.java', 'e = driver.findElement(AppiumBy.xpath("//*[@text=\'" + x + "\'][@content-desc=\'\\uF8FF\']"));',
+      `e = driver.findElement(AppiumBy.androidUIAutomator("${U}.text(\\"" + x + "\\").description(\\"\\uF8FF\\")"));`, true],
     ['A.kt', 'val e = driver.findElement(AppiumBy.xpath("//*[@text=\'$name\']"))', `val e = driver.findElement(AppiumBy.androidUIAutomator("${U}.text(\\"$name\\")"))`, true],
     ['a.py', 'e = driver.find_element(AppiumBy.XPATH, f\'//*[@text="{name}"]\')', `e = driver.find_element(AppiumBy.ANDROID_UIAUTOMATOR, f'${U}.text("{name}")')`, true],
     ['a.py', 'e = driver.find_element(AppiumBy.XPATH, \'//*[@text="{}"]\'.format(name))', `e = driver.find_element(AppiumBy.ANDROID_UIAUTOMATOR, '${U}.text("{}")'.format(name))`, true],
