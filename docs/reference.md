@@ -103,7 +103,9 @@ Left as they are, with the `UiSelector` in the report: strings with no strategy 
 (`skipped_unknown_strategy`, e.g. a constant or a `String.format` result), data files, and calls whose client has no
 UiAutomator strategy (`skipped_xpath_strategy`): Selenium `@FindBy(xpath = …)`, `How.XPATH`,
 `findElementByXPath(…)`, `find_element_by_xpath(…)`, CodeceptJS `{ xpath: … }`, selenium-webdriver `By.xpath`,
-appium_lib `xpath(…)`, PHP `WebDriverBy::xpath`.
+appium_lib `xpath(…)`, PHP `WebDriverBy::xpath`. A JS/TS string whose name the same file joins with other text
+(`LIST + '…'`, `` `${LIST}…` ``) is a base path, not a whole selector, and is left alone too
+(`skipped_unsupported_logic`); a join in another file is not seen.
 
 ### Literals and runtime values
 

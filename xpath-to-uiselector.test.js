@@ -594,6 +594,29 @@ console.log('— SCANNER: processFile —');
 }
 
 {
+  // A JS/TS string joined with other text elsewhere in the file is a base path,
+  // not a whole selector: left alone. [source, converted]
+  const L = `'//android.widget.ListView'`;
+  const cases = [
+    [`const LIST = ${L};\nconst ROW = LIST + '[@text="a"]';`, false],
+    [`const LIST = ${L};\nconst ROW = \`\${LIST}/android.widget.TextView\`;`, false],
+    [`class P {\n  list = ${L};\n  row() { return $(this.list + '/android.widget.TextView'); }\n}`, false],
+    [`const sel = { list: ${L} };\nconst row = \`\${sel.list}/android.widget.TextView\`;`, false],
+    [`export const LIST: string = ${L};\nconst ROW = 'x' + LIST;`, false],
+    // used whole, or only a name that contains it is joined
+    [`const LIST = ${L};\nconst el = $(LIST);`, true],
+    [`const LIST = ${L};\nconst t = LIST_TITLE + 'x';`, true],
+  ];
+  for (const [source, converted] of cases) {
+    const { after, records } = scan('a.ts', source);
+    const r = records[0] || {};
+    const good = converted ? r.changed === true : after === source && r.status === STATUS.SKIPPED_UNSUPPORTED_LOGIC;
+    if (good) ok();
+    else fail(`joined JS constant ${JSON.stringify(source)}\n     expected: ${converted ? 'converted' : 'untouched'}\n     got:      ${JSON.stringify(records)}`);
+  }
+}
+
+{
   // unsupported extension: no stats, no records
   const { stats, records } = scan('a.unknown', `const loc = '//android.widget.Button';`);
   if (stats.filesScanned === 0 && records.length === 0) ok();
