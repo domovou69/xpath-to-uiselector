@@ -72,12 +72,12 @@ Results: [results.md](results.md). Method and limits: [coverage report](../audit
 ## 3. Quarterly upstream watch
 
 The rules are exact for one driver and server version. A scheduled job notices when a new release changes a file
-the rules cite. It runs once a quarter, after the Sauce Labs Appium image release, and looks only at the driver
-that works with the latest stable Appium. No LLM is involved: any change to a watched file opens an issue.
+the rules cite. It runs once a quarter, a week after the Sauce Labs Appium image release, and looks at the driver
+in that image, the stack widely in use. No LLM is involved: any change to a watched file opens an issue.
 
 ```mermaid
 flowchart TD
-  job["Quarterly job"] --> latest["Newest driver for stable Appium<br/>and the server it pins"]
+  job["Quarterly job"] --> latest["Driver of the newest<br/>Sauce Labs image<br/>and the server it pins"]
   latest --> cmp{"Watched files changed<br/>since the checked versions?"}
   cmp -->|no| idle["Nothing to do"]
   cmp -->|"yes, or a release<br/>cannot be compared"| issue["GitHub issue<br/>changes + the rules that cite them"]
