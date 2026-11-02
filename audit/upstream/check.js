@@ -1,10 +1,12 @@
 #!/usr/bin/env node
-// Monthly upstream watch: compares the versions in audit/upstream.json `checked` with the latest releases and
+// Quarterly upstream watch: compares the versions in audit/upstream.json `checked` with the releases users can install and
 // collects the changes to the watched upstream files, with the reference rows that cite each file. No
 // dependencies, Node 20+, no LLM.
 // Usage: node audit/upstream/check.js [--driver-base 8.6.0] [--server-base 10.6.0]
 // (the same overrides as env DRIVER_BASE, SERVER_BASE; empty means `checked`).
-// The server's latest version is the one the latest driver pins (`latestFrom`), not the newest server on npm:
+// The driver's latest version is the newest stable release whose `peerDependencies.appium` accepts the latest
+// stable Appium (`peer`), not npm `latest`: a driver that needs an Appium beta cannot be installed yet.
+// The server's latest version is the one that driver pins (`latestFrom`), not the newest server on npm:
 // users get the server through the driver.
 // Writes out/upstream-meta.json and out/upstream-changes.md. Sets the GitHub Actions output
 // `has_changes=true|false`. Exit 1 on any registry or API failure.
@@ -41,6 +43,25 @@ const cmp = (a, b) => {
 };
 const globRe = g => new RegExp('^' + g.replace(/[.+^${}()|[\]\\]/g, '\\$&').replace(/\*/g, '[^/]*') + '$');
 const exact = v => String(v).replace(/^[\^~=v]+/, '');
+const stable = v => /^\d+\.\d+\.\d+$/.test(v);
+// `^X.Y.Z[-pre] || ^...` is the only peer range form the driver uses; anything else fails loudly
+const satisfiesCaret = (v, range) => range.split('||').some(part => {
+  const m = /^\s*\^(\d+)\.(\d+)\.(\d+)(-[\w.]+)?\s*$/.exec(part);
+  if (!m) throw new Error(`unsupported peer range "${range}"`);
+  return Number(m[1]) === Number(v.split('.')[0]) && cmp(v, `${m[1]}.${m[2]}.${m[3]}`) >= 0;
+});
+
+// The newest stable release of `npm` whose peer range accepts the latest stable `peer` (newest first, so the old
+// releases with other range forms are never parsed).
+async function installable(npm, peer) {
+  const [pkg, peerLatest] = [await get(`https://registry.npmjs.org/${npm}`), (await get(`https://registry.npmjs.org/${peer}/latest`)).version];
+  const v = Object.keys(pkg.versions).filter(v => stable(v) && pkg.versions[v].peerDependencies?.[peer]).sort(cmp).reverse()
+    .find(v => satisfiesCaret(peerLatest, pkg.versions[v].peerDependencies[peer]));
+  if (!v) throw new Error(`no ${npm} release accepts ${peer} ${peerLatest}`);
+  const npmLatest = pkg['dist-tags'].latest;
+  return { latest: v, npmLatest,
+    note: npmLatest !== v ? `npm latest ${npmLatest} needs ${peer} ${pkg.versions[npmLatest]?.peerDependencies?.[peer]}, not ${peerLatest}` : undefined };
+}
 
 // Reference rows (`| SRV-12 | … |`) that name a file by its base name (`UiElementSnapshot`).
 function referenceRows() {
@@ -72,17 +93,19 @@ async function tagRef(repo, tag) {
 
 async function component(id, spec, done) {
   const base = override(id) || baseline.checked[id];
-  let latest;
-  if (spec.latestFrom) {
+  let latest, note, npmLatest;
+  if (spec.peer) {
+    ({ latest, npmLatest, note } = await installable(spec.npm, spec.peer));
+  } else if (spec.latestFrom) {
     const from = done[spec.latestFrom.component];
     const pkg = await get(`https://registry.npmjs.org/${baseline.watch[spec.latestFrom.component].npm}/${from.latest}`);
     latest = exact((pkg.dependencies || {})[spec.latestFrom.dependency] || base);
   } else {
     latest = (await get(`https://registry.npmjs.org/${spec.npm}/latest`)).version;
   }
-  const npmLatest = spec.latestFrom ? (await get(`https://registry.npmjs.org/${spec.npm}/latest`)).version : latest;
+  if (!npmLatest) npmLatest = spec.latestFrom ? (await get(`https://registry.npmjs.org/${spec.npm}/latest`)).version : latest;
   const tag = v => spec.tag.replace('{version}', v);
-  const r = { id, name: spec.name, repo: spec.repo, base, latest, npmLatest, newer: cmp(latest, base) > 0, files: [], commits: [] };
+  const r = { id, name: spec.name, repo: spec.repo, base, latest, npmLatest, note, newer: cmp(latest, base) > 0, files: [], commits: [] };
   if (!r.newer) return r;
 
   // A release on npm without its tag in the repository cannot be compared: report it rather than pass.
@@ -174,7 +197,8 @@ function changesMd(results) {
   const L = [];
   for (const r of results) {
     L.push(`### ${r.name}: ${r.base}${r.newer ? ` → ${r.latest}` : ' (no newer release)'}`, '');
-    if (r.npmLatest !== r.latest) L.push(`Newest on npm: ${r.npmLatest}; the latest driver pins ${r.latest}.`, '');
+    if (r.note) L.push(`Skipped: ${r.note}.`, '');
+    else if (r.npmLatest !== r.latest) L.push(`Newest on npm: ${r.npmLatest}; the driver above pins ${r.latest}.`, '');
     if (!r.newer) continue;
     if (r.missingTag) { L.push(`**Cannot compare:** no tag ${r.missingTag.map(t => `\`${t}\``).join(', ')} in ${r.repo}. Compare the sources by hand.`, ''); continue; }
     L.push(`Compare: ${r.compareUrl} (${r.totalCommits} commits in total).`, '');
@@ -207,7 +231,7 @@ function changesMd(results) {
   for (const r of results) {
     const what = !r.newer ? 'no newer release' : r.missingTag ? `cannot compare (no tag ${r.missingTag.join(', ')})`
       : r.files.length ? `${r.files.length} watched file(s) changed: ${r.files.map(f => path.basename(f.filename)).join(', ')}` : 'no watched file changed';
-    console.log(`${r.name}: ${r.base} → ${r.latest}${r.npmLatest !== r.latest ? ` (npm ${r.npmLatest})` : ''}: ${what}`);
+    console.log(`${r.name}: ${r.base} → ${r.latest}${r.note ? ` [${r.note}]` : r.npmLatest !== r.latest ? ` (npm ${r.npmLatest})` : ''}: ${what}`);
   }
   if (issues.length) console.log('\nTracked issues:');
   for (const i of issues) console.log(`- ${i.repo}#${i.number} (${i.title}): ${i.status}, last activity ${i.updated}\n  What you need to do: ${i.action}`);

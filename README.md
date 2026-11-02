@@ -74,12 +74,12 @@ warns that this will make every `-android uiautomator` locator invalid. No date 
 2.4.0, July 2026, still ships it), and the driver's server bundles UiAutomator 2.3.0, so today's locators keep
 working until Appium moves to a version without it. Appium has not announced a replacement:
 [appium-uiautomator2-driver#812](https://github.com/appium/appium-uiautomator2-driver/issues/812) is open. XPath
-locators are not affected. The monthly [upstream watch](audit/upstream/README.md) reports any change to that issue.
+locators are not affected. The quarterly [upstream watch](audit/upstream/README.md) reports any change to that issue.
 
 ## Documentation
 
 - [Reference](docs/reference.md): examples per language, every conversion rule, flags, JSON report, library API
-- [How it works](docs/how-it-works.md): diagrams of the converter, how it was checked, and the monthly upstream watch
+- [How it works](docs/how-it-works.md): diagrams of the converter, how it was checked, and the quarterly upstream watch
 - [Results](docs/results.md): scores, versions checked, the [coverage report](audit/coverage-report.md)
 - [Claude Code skill](.claude/skills/xpath-to-uiselector/SKILL.md): runs the converter and reviews the skips
 - [Article](https://dev.to/mikhail_yesipchuk/xpath-to-android-uiselector-can-claude-55-replace-a-converter-g75) on dev.to: the converter and Claude 5.5 against it ([source](docs/articles/README.md))

@@ -1,5 +1,5 @@
 {
-  "about": "Single source of truth for the versions the converter was last checked against on a device, for the upstream files the monthly watch (audit/upstream/) compares, and for the upstream issues it tracks (`issues`, with the state last read in `seen`). After a device re-check, update `checked` here first, then docs/environment.md, docs/results.md and the devDependencies.",
+  "about": "Single source of truth for the versions the converter was last checked against on a device, for the upstream files the quarterly watch (audit/upstream/) compares, and for the upstream issues it tracks (`issues`, with the state last read in `seen`). After a device re-check, update `checked` here first, then docs/environment.md, docs/results.md and the devDependencies.",
   "checked": {
     "date": "2026-10-21",
     "appium": "3.8.0",
@@ -22,6 +22,7 @@
       "repo": "appium/appium-uiautomator2-driver",
       "npm": "appium-uiautomator2-driver",
       "tag": "v{version}",
+      "peer": "appium",
       "files": [
         "lib/commands/find.*",
         { "path": "lib/driver.*", "match": "locatorStrateg" },

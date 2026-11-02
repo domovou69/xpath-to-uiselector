@@ -13,7 +13,7 @@ files (S, R, C, DRIFT, …): [how-it-works.md](how-it-works.md).
 | Strength of the check | 99.5 % of 1718 deliberately wrong `UiSelector`s (mutants) were caught by the matrix screens (before the skipped-form coverage) |
 | Checked with | Appium 3.8.0, appium-uiautomator2-driver 8.7.0, UiAutomator2 server 10.6.6, androidx uiautomator 2.3.0; Android 16 emulator (API 36), and Android 17 (API 37) for the 134 edge cases and the matrix slice of the real-world fuzz before the skipped-form coverage, with the same results ([compare-api37.md](../audit/device/results/compare-api37.md)); default settings |
 
-Android versions older than 16, real phones and other stack versions were not checked. A monthly job ([audit/upstream/](../audit/upstream/README.md)) opens an
+Android versions older than 16, real phones and other stack versions were not checked. A quarterly job ([audit/upstream/](../audit/upstream/README.md)) opens an
 issue when a new driver or server release changes a file the rules cite.
 
 ## By language (real-world locators, offline)
