@@ -11,7 +11,7 @@ Converts Appium XPath locators in your Android tests to UiAutomator2 `UiSelector
 ## Checked with
 
 - Appium 3.8.0
-- appium-uiautomator2-driver / UiAutomator2 server: 8.7.0 / 10.6.6
+- appium-uiautomator2-driver 8.7.0 / UiAutomator2 server 10.6.6
 - Android 16 emulator (API 36), default driver settings
 
 These are the versions of the Sauce Labs image `appium3-2026-10`. A quarterly [upstream watch](audit/upstream/README.md)
