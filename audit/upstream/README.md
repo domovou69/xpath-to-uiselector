@@ -34,6 +34,14 @@ every change to a watched file is reported, with the reference rows that cite it
 
 androidx `UiSelector` itself has no tags on GitHub; a new version shows up as a change to `libs.versions.toml`.
 
+The server moved after 10.6.6 from `appium/appium-uiautomator2-server` (tags `v{version}`) to the
+[appium-android monorepo](https://github.com/appium/appium-android/tree/main/packages/uiautomator2-server)
+(folder `packages/uiautomator2-server/`, tags `appium-uiautomator2-server@{version}`), without its history. `repos`
+lists both homes, newest first; each version is looked up in the first one that has its tag, and watched paths are
+relative to the package folder. A range that crosses the move lists the changed files (by blob SHA) with links to
+both versions, but no commits or patches. Once `checked.server` is 10.7.0 or later, the old home is no longer used
+and its entry can be dropped.
+
 **Tracked issues** (`issues`): upstream issues whose outcome decides the converter's future, each with the state
 and comment count last read (`seen`). Now:
 [appium-uiautomator2-driver#812](https://github.com/appium/appium-uiautomator2-driver/issues/812), Appium's answer

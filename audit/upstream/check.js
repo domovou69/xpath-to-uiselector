@@ -86,9 +86,15 @@ function citedBy(id, p) {
   return ROWS.filter(r => re.test(r.line)).map(r => r.id);
 }
 
-async function tagRef(repo, tag) {
-  const ref = await get(`https://api.github.com/repos/${repo}/git/ref/tags/${encodeURIComponent(tag)}`, { allow404: true });
-  return ref ? tag : null;
+// Where a version's sources are: the first of `spec.repos` (newest home first) that has its tag; `dir` is the
+// package's folder in a monorepo. The UiAutomator2 server moved to appium/appium-android after 10.6.6.
+async function locate(spec, v) {
+  for (const loc of spec.repos || [{ repo: spec.repo, tag: spec.tag }]) {
+    const tag = loc.tag.replace('{version}', v);
+    if (await get(`https://api.github.com/repos/${loc.repo}/git/ref/tags/${encodeURIComponent(tag)}`, { allow404: true }))
+      return { repo: loc.repo, dir: loc.dir || '', tag };
+  }
+  return null;
 }
 
 async function component(id, spec, done) {
@@ -104,29 +110,44 @@ async function component(id, spec, done) {
     latest = (await get(`https://registry.npmjs.org/${spec.npm}/latest`)).version;
   }
   if (!npmLatest) npmLatest = spec.latestFrom ? (await get(`https://registry.npmjs.org/${spec.npm}/latest`)).version : latest;
-  const tag = v => spec.tag.replace('{version}', v);
-  const r = { id, name: spec.name, repo: spec.repo, base, latest, npmLatest, note, newer: cmp(latest, base) > 0, files: [], commits: [] };
+  const r = { id, name: spec.name, repo: (spec.repos || [spec])[0].repo, base, latest, npmLatest, note, newer: cmp(latest, base) > 0, files: [], commits: [] };
   if (!r.newer) return r;
 
   // A release on npm without its tag in the repository cannot be compared: report it rather than pass.
-  const [B, L] = [await tagRef(spec.repo, tag(base)), await tagRef(spec.repo, tag(latest))];
+  const [B, L] = [await locate(spec, base), await locate(spec, latest)];
   if (!B || !L) {
-    r.missingTag = [!B && tag(base), !L && tag(latest)].filter(Boolean);
+    r.missingTag = [!B && `${base}`, !L && `${latest}`].filter(Boolean);
     return r;
   }
-  r.compareUrl = `https://github.com/${spec.repo}/compare/${tag(base)}...${tag(latest)}`;
-  const api = `https://api.github.com/repos/${spec.repo}`, eB = encodeURIComponent(B), eL = encodeURIComponent(L);
+  r.repo = L.repo;
+  const eB = encodeURIComponent(B.tag), eL = encodeURIComponent(L.tag);
+  // Across a move the two repositories share no history: the changed files come from the trees, with links to both
+  // versions instead of commits and patches.
+  if (B.repo !== L.repo) r.moved = { from: B.repo, to: L.repo };
+  else r.compareUrl = `https://github.com/${L.repo}/compare/${B.tag}...${L.tag}`;
+  const api = `https://api.github.com/repos/${L.repo}`;
 
-  // 1. which watched files changed: blob SHAs of both trees (the compare API lists at most 300 files)
-  const tree = async t => {
-    const x = await get(`${api}/git/trees/${t}?recursive=1`);
-    if (x.truncated) throw new Error(`${spec.repo} tree ${decodeURIComponent(t)} is truncated: watched files cannot be checked`);
-    return new Map(x.tree.filter(e => e.type === 'blob').map(e => [e.path, e.sha]));
+  // 1. which watched files changed: blob SHAs of both trees (the compare API lists at most 300 files); paths are
+  // relative to the package folder
+  const tree = async loc => {
+    const x = await get(`https://api.github.com/repos/${loc.repo}/git/trees/${encodeURIComponent(loc.tag)}?recursive=1`);
+    if (x.truncated) throw new Error(`${loc.repo} tree ${loc.tag} is truncated: watched files cannot be checked`);
+    return new Map(x.tree.filter(e => e.type === 'blob' && e.path.startsWith(loc.dir)).map(e => [e.path.slice(loc.dir.length), e.sha]));
   };
-  const [oldTree, newTree] = [await tree(eB), await tree(eL)];
+  const [oldTree, newTree] = [await tree(B), await tree(L)];
   const watch = spec.files.map(f => (typeof f === 'string' ? { path: f } : f));
   const watchOf = p => watch.find(w => globRe(w.path).test(p));
   const changed = [...new Set([...oldTree.keys(), ...newTree.keys()])].filter(p => watchOf(p) && oldTree.get(p) !== newTree.get(p)).sort();
+
+  const blob = (loc, p) => `https://github.com/${loc.repo}/blob/${loc.tag}/${loc.dir}${p}`;
+  if (r.moved) {
+    for (const p of changed) {
+      const status = !oldTree.has(p) ? 'added' : !newTree.has(p) ? 'removed' : 'modified';
+      r.files.push({ filename: p, status, commits: [], cites: citedBy(id, p),
+        url: blob(status === 'removed' ? B : L, p), oldUrl: status === 'modified' ? blob(B, p) : undefined });
+    }
+    return r;
+  }
 
   // 2. commits in the range (pages of 100) and the compare patches (first page only, 300 files max)
   let compareFiles = [];
@@ -145,17 +166,17 @@ async function component(id, spec, done) {
     const status = !oldTree.has(p) ? 'added' : !newTree.has(p) ? 'removed' : 'modified';
     const list = [];
     for (let page = 1; page <= 5; page++) {
-      const chunk = await get(`${api}/commits?sha=${eL}&path=${encodeURIComponent(p)}&per_page=100&page=${page}`);
+      const chunk = await get(`${api}/commits?sha=${eL}&path=${encodeURIComponent(L.dir + p)}&per_page=100&page=${page}`);
       list.push(...chunk);
       if (chunk.length < 100 || !chunk.some(k => inRange.has(k.sha))) break;
     }
     const commits = list.filter(k => inRange.has(k.sha)).map(k => inRange.get(k.sha)).reverse();
-    const cf = compareFiles.find(f => f.filename === p);
+    const cf = compareFiles.find(f => f.filename === L.dir + p);
     let patch = cf && cf.patch, additions = cf ? cf.additions : 0, deletions = cf ? cf.deletions : 0;
     if (!cf && status !== 'removed') {
       const parts = [];
       for (const k of commits) {
-        const f = ((await get(`${api}/commits/${k.sha}`)).files || []).find(f => f.filename === p);
+        const f = ((await get(`${api}/commits/${k.sha}`)).files || []).find(f => f.filename === L.dir + p);
         if (!f) continue;
         additions += f.additions; deletions += f.deletions;
         parts.push(`# commit ${k.sha.slice(0, 8)}: ${k.title}\n${f.patch || '# (no patch: too large)'}`);
@@ -165,7 +186,7 @@ async function component(id, spec, done) {
     const w = watchOf(p);
     if (w.match && patch && !new RegExp(w.match).test(patch)) continue;
     r.files.push({ filename: p, status, additions, deletions, commits, patch, cites: citedBy(id, p),
-      url: `https://github.com/${spec.repo}/blob/${tag(status === 'removed' ? base : latest)}/${p}` });
+      url: blob(status === 'removed' ? B : L, p) });
     for (const k of commits) if (!seen.has(k.sha)) { seen.add(k.sha); r.commits.push(k); }
   }
   return r;
@@ -200,12 +221,13 @@ function changesMd(results) {
     if (r.note) L.push(`Skipped: ${r.note}.`, '');
     else if (r.npmLatest !== r.latest) L.push(`Newest on npm: ${r.npmLatest}; the driver above pins ${r.latest}.`, '');
     if (!r.newer) continue;
-    if (r.missingTag) { L.push(`**Cannot compare:** no tag ${r.missingTag.map(t => `\`${t}\``).join(', ')} in ${r.repo}. Compare the sources by hand.`, ''); continue; }
-    L.push(`Compare: ${r.compareUrl} (${r.totalCommits} commits in total).`, '');
+    if (r.missingTag) { L.push(`**Cannot compare:** no tag for ${r.missingTag.map(t => `\`${t}\``).join(', ')} in ${r.repo}. Compare the sources by hand.`, ''); continue; }
+    if (r.moved) L.push(`**Moved:** ${r.base} is in ${r.moved.from}, ${r.latest} in ${r.moved.to}, with no shared history: no commits or patches. Open both versions of each file.`, '');
+    else L.push(`Compare: ${r.compareUrl} (${r.totalCommits} commits in total).`, '');
     if (!r.files.length) { L.push('No watched file changed.', ''); continue; }
     L.push('| File | Change | Cited by | Commits |', '| --- | --- | --- | --- |');
     for (const f of r.files) {
-      L.push(`| [${path.basename(f.filename)}](${f.url}) | ${f.status}, +${f.additions} −${f.deletions} | ${f.cites.join(', ') || '—'} | ${f.commits.map(k => `[${k.sha.slice(0, 7)}](${k.url})`).join(' ') || '—'} |`);
+      L.push(`| [${path.basename(f.filename)}](${f.url})${f.oldUrl ? ` ([old](${f.oldUrl}))` : ''} | ${f.status}${r.moved ? '' : `, +${f.additions} −${f.deletions}`} | ${f.cites.join(', ') || '—'} | ${f.commits.map(k => `[${k.sha.slice(0, 7)}](${k.url})`).join(' ') || '—'} |`);
     }
     L.push('');
     for (const f of r.files.filter(f => f.patch)) {

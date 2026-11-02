@@ -32,9 +32,11 @@
     },
     "server": {
       "name": "UiAutomator2 server",
-      "repo": "appium/appium-uiautomator2-server",
+      "repos": [
+        { "repo": "appium/appium-android", "dir": "packages/uiautomator2-server/", "tag": "appium-uiautomator2-server@{version}" },
+        { "repo": "appium/appium-uiautomator2-server", "tag": "v{version}" }
+      ],
       "npm": "appium-uiautomator2-server",
-      "tag": "v{version}",
       "latestFrom": { "component": "driver", "dependency": "appium-uiautomator2-server" },
       "files": [
         "app/src/main/java/io/appium/uiautomator2/core/AccessibilityNodeInfoDumper.java",
