@@ -1,5 +1,5 @@
 {
-  "about": "Single source of truth for the versions the converter was last checked against on a device, for the upstream files the quarterly watch (audit/upstream/) compares, and for the upstream issues it tracks (`issues`, with the state last read in `seen`). After a device re-check, update `checked` here first, then docs/environment.md, docs/results.md and the devDependencies.",
+  "about": "Single source of truth for the versions the converter was last checked against on a device, for the upstream files the quarterly watch (audit/upstream/) compares, and for the upstream issues it tracks (`issues`, with the state last read in `seen`). After a device re-check, update `checked` here first, then docs/environment.md, docs/results.md, the \"Checked with\" list in README.md and the devDependencies.",
   "checked": {
     "date": "2026-10-21",
     "appium": "3.8.0",
@@ -7,6 +7,11 @@
     "server": "10.6.6",
     "uiautomator": "2.3.0",
     "android": "16 (API 36) and 17 (API 37), emulators"
+  },
+  "saucelabs": {
+    "docs": "https://docs.saucelabs.com/mobile-apps/automated-testing/appium/appium-versions/",
+    "repo": "saucelabs/sauce-docs",
+    "path": "docs/mobile-apps/automated-testing/appium/appium-versions.md"
   },
   "issues": [
     {
@@ -22,7 +27,7 @@
       "repo": "appium/appium-uiautomator2-driver",
       "npm": "appium-uiautomator2-driver",
       "tag": "v{version}",
-      "peer": "appium",
+      "saucelabs": true,
       "files": [
         "lib/commands/find.*",
         { "path": "lib/driver.*", "match": "locatorStrateg" },

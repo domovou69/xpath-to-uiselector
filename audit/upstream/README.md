@@ -2,32 +2,34 @@
 
 As a diagram: [docs/how-it-works.md](../../docs/how-it-works.md#3-quarterly-upstream-watch).
 
-Once a quarter (the 3rd of January, April, July and October),
+Once a quarter (the 7th of January, April, July and October),
 [`.github/workflows/upstream-schedule.yml`](../../.github/workflows/upstream-schedule.yml) checks
-whether a new appium-uiautomator2-driver release, or the UiAutomator2 server it pins, changed a file the converter's
+whether the appium-uiautomator2-driver of the newest Sauce Labs Appium image, or the UiAutomator2 server it pins,
+changed a file the converter's
 rules depend on. When one did, the job opens an issue with the label `upstream`, and GitHub emails it. No change
-means no issue. A failure (token, API, registry) fails the job, and GitHub emails the failure. No LLM is involved:
+means no issue. A failure (token, API, registry, no Sauce Labs image for this quarter yet) fails the job, and GitHub emails the failure. No LLM is involved:
 every change to a watched file is reported, with the reference rows that cite it.
 
 ## What it watches
 
 [`audit/upstream.json`](../upstream.json) is the single source of truth:
 
-- `checked`: the versions last verified on the emulator. The job compares `checked` → the release users can
-  install (below), not each package's npm `latest`.
-- Why quarterly: the converter's rules follow the driver, and the driver follows Appium. Sauce Labs "Appium on Real
-  Devices" (docs, section "Versioning Scheme and Release Cycle", images named `appiumX-YYYY-MM`) releases an Appium
-  image every quarter (January, April, July, October), each with the latest drivers of that moment. The check
-  follows the same cycle, on the 3rd so the image is out. Change the schedule only if Sauce Labs changes theirs; use
-  "Run workflow" for an off-cycle release (for example Appium 4).
+- `checked`: the versions last verified on the emulator. The job compares `checked` → the versions of the newest
+  Sauce Labs image (below), not npm `latest`.
+- `saucelabs`: where the image list is read. Sauce Labs [Appium Versions](https://docs.saucelabs.com/mobile-apps/automated-testing/appium/appium-versions/)
+  ("Real Device Appium Images") releases an image `appiumX-YYYY-MM` every quarter (January, April, July,
+  October), each with the latest Appium and drivers of that moment. The job reads the source of that page in
+  `saucelabs/sauce-docs`, takes the newest image and its Appium and `appium-uiautomator2-driver` versions.
+- Why quarterly, on the 7th: the converter's rules follow the driver, and the driver follows Appium; the Sauce Labs
+  image is the stack widely in use. The image of the quarter is out by the 7th. If it is not listed yet, the job
+  fails and GitHub emails it: run the workflow again ("Run workflow") once the page lists it. Change the schedule
+  only if Sauce Labs changes theirs.
 - `watch`: per component, the repository, the tag format and the watched files (`*` matches within one path
   segment; `match` keeps a file only when its patch matches the regex).
-  - **Driver** (`appium-uiautomator2-driver`, the newest stable release whose `peerDependencies.appium` accepts the
-    latest stable Appium, `peer` in the config; a newer npm `latest` that needs an Appium beta, such as 9.x for
-    Appium 4 beta, is skipped and named in the log and the issue): `lib/commands/find.*`, the locator strategy list in
+  - **Driver** (`appium-uiautomator2-driver`, the version in the newest Sauce Labs image; `"saucelabs": true`): `lib/commands/find.*`, the locator strategy list in
     `lib/driver.*`, the server pin in `package.json`, the settings section of `README.md`.
   - **Server** (`appium-uiautomator2-server`, the version **that driver pins**, since users get the server
-    through the driver; the newest server on npm is shown for information): every server file cited in
+    through the driver; Sauce Labs does not list it): every server file cited in
     [`reference/uia2-server.md`](../../reference/uia2-server.md), the settings classes behind
     [`docs/settings.md`](../../docs/settings.md), the androidx `uiautomator` version in `gradle/libs.versions.toml`,
     the vendored PsychoPath commit and the PsychoPath functions cited in [`reference/xpath.md`](../../reference/xpath.md).
@@ -69,7 +71,7 @@ For changed files:
 Read the changed files against the rows in "Cited by". If a rule may have changed, re-run the edge cases
 (`npm run oracle`) and the real-world fuzz (`npm run oracle:fuzz`) on the emulator with the new versions ([audit/device/README.md](../device/README.md)). When the converter still
 behaves the same, update `checked` in `audit/upstream.json` first through a PR, then
-[docs/environment.md](../../docs/environment.md), docs/results.md and the devDependencies. Close the
+[docs/environment.md](../../docs/environment.md), docs/results.md, the "Checked with" list in the root README.md and the devDependencies. Close the
 issue. If `checked` is not updated, the next quarter reports the same range again (one issue per set of latest
 versions).
 

@@ -8,6 +8,16 @@ Converts Appium XPath locators in your Android tests to UiAutomator2 `UiSelector
 `UiSelector` was faster than XPath in 30 of 30 benchmark cases and has no 70-level depth limit
 ([benchmark](https://github.com/domovou69/appium-android-locator-benchmark)).
 
+## Checked with
+
+- Appium 3.8.0
+- appium-uiautomator2-driver / UiAutomator2 server: 8.7.0 / 10.6.6
+- Android 16 emulator (API 36), default driver settings
+
+These are the versions of the Sauce Labs image `appium3-2026-10`. A quarterly [upstream watch](audit/upstream/README.md)
+opens an issue when the next Sauce Labs image brings a driver or server that changes a file the conversion rules
+depend on. Full environment: [docs/environment.md](docs/environment.md).
+
 ## Try it
 
 Nothing to install. The bare command only previews; review the diff, then add `--write`.

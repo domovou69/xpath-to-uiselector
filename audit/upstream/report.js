@@ -40,7 +40,7 @@ const todo = !filesChanged
   'changed, re-run the edge cases (`npm run oracle`) and the real-world fuzz (`npm run oracle:fuzz`) on the emulator with ' +
   'the new versions (`audit/device/README.md`). When the ' +
   'converter still behaves the same, update `checked` in `audit/upstream.json` through a PR, then `docs/environment.md`, ' +
-  'docs/results.md and the devDependencies. Close this issue.';
+  'docs/results.md, the "Checked with" list in README.md and the devDependencies. Close this issue.';
 let detail = changes;
 if (detail.length > BODY_LIMIT) detail = `${detail.slice(0, BODY_LIMIT)}\n\n… cut; the full list is in the run artifact \`upstream-watch\`.`;
 const body = [summaryMd, todo, '', detail, '', `<!-- upstream-key: ${key} -->`].join('\n');
