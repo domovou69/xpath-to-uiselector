@@ -65,7 +65,7 @@ UiAutomator2 server sources (v10.6.6) also refuted parts of the draft's rule tab
 | `${…}` handling, `concat()` folding, `.//X`, `descendant::`/`child::`/`self::` normalization, unions, grouped `(…)[n]`, `\"…\"` (JSON / Java) literals | Same behaviour, re-implemented on the AST |
 | NSPredicate rewrite, class chain validator and optimizer, `elementTypes.js` | Replaced: `UiSelector` emitter, validator for existing `new UiSelector()` strings, method-order normalizer |
 | `npm test` style (one dependency-free test file), `audit/` layout, verdicts and scoring, `coverage-cases.json` | Same |
-| Claude skill, npm metadata, upstream watch (GitHub Action, monthly) | Same; watched files are the server files cited in `reference/` |
+| Claude skill, npm metadata, upstream watch (GitHub Action, quarterly) | Same; watched files are the server files cited in `reference/` |
 
 ## 2. Input and output
 

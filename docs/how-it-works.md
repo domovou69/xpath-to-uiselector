@@ -69,14 +69,15 @@ flowchart TD
 
 Results: [results.md](results.md). Method and limits: [coverage report](../audit/coverage-report.md).
 
-## 3. Monthly upstream watch
+## 3. Quarterly upstream watch
 
 The rules are exact for one driver and server version. A scheduled job notices when a new release changes a file
-the rules cite. No LLM is involved: any change to a watched file opens an issue.
+the rules cite. It runs once a quarter, after the Sauce Labs Appium image release, and looks only at the driver
+that works with the latest stable Appium. No LLM is involved: any change to a watched file opens an issue.
 
 ```mermaid
 flowchart TD
-  job["Monthly job"] --> latest["Latest driver on npm<br/>and the server it pins"]
+  job["Quarterly job"] --> latest["Newest driver for stable Appium<br/>and the server it pins"]
   latest --> cmp{"Watched files changed<br/>since the checked versions?"}
   cmp -->|no| idle["Nothing to do"]
   cmp -->|"yes, or a release<br/>cannot be compared"| issue["GitHub issue<br/>changes + the rules that cite them"]
@@ -84,7 +85,7 @@ flowchart TD
   recheck -->|"a rule changed"| fix["Fix the converter"]
   recheck -->|"still the same"| update["Update checked<br/>and the docs"]
   fix --> update
-  update -.->|"next month compares from here"| cmp
+  update -.->|"next quarter compares from here"| cmp
 ```
 
 `checked` is a field in [audit/upstream.json](../audit/upstream.json). The same job also follows tracked upstream

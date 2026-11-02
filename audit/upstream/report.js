@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-// Monthly upstream watch, second step: reads out/upstream-meta.json and out/upstream-changes.md (check.js) and,
+// Quarterly upstream watch, second step: reads out/upstream-meta.json and out/upstream-changes.md (check.js) and,
 // when a watched file changed or a release cannot be compared, opens a GitHub issue (label `upstream`) unless an
 // open one already names the same versions. Deterministic: any change to a watched file is reported.
 // Usage: node audit/upstream/report.js [--dry-run]   (or env DRY_RUN=true: print the issue body only)
